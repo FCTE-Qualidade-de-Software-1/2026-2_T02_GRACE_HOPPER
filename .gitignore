@@ -1,0 +1,17 @@
+# ==============================================================================
+# .gitignore — Repositório de Qualidade de Software (FGA0315 / UnB)
+# ==============================================================================
+
+# Arquivos de Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Ambientes de Desenvolvimento e IDEs
+.idea/
+.vscode/
+*.swp
+*~
+
+# Arquivos Temporários e Logs
+*.log
+/tmp/
