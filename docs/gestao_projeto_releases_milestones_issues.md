@@ -144,13 +144,13 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Depends on:** Issue #02.
 - **Scope:** Mapeamento de usuários primários e secundários e alinhamento com as Metas 4.1, 4.a e 16.6 da ONU.
 - - [ ] **Task:** Redigir seção de partes interessadas e correlação com ODS da ONU
-  - **Files:** `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar (1).md`
+  - **Files:** `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`
   - **Change:** Formalizar matriz de perfil de usuários e justificativa do i-Educar como Bem Público Digital aberto.
   - **Covers:** Fase 1 (Item 3 — Stakeholders e Item 6 — ODS da ONU).
   - **Acceptance criteria:**
     - Caracterização de secretários escolares, professores, gestores municipais e integradores do INEP.
     - Citação formal dos ODS 4 e 16 com indicadores de impacto na redução da evasão escolar.
-  - **Tests:** `grep -Ei "ODS 4|ODS 16" docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar\ \(1\).md`.
+  - **Tests:** `grep -Ei "ODS 4|ODS 16" docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`.
   - **Risk:** none.
 
 #### Issue #04 — Delimitação de Escopo e Adaptação Gráfica do Modelo ISO/IEC 25010:2023
@@ -285,7 +285,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Depends on:** Issue #09.
 - **Scope:** Configuração do `docker-compose.yml`, versões de imagem (PHP 8.5-ieducar, PostgreSQL 18-alpine, Redis).
 - - [ ] **Task:** Validar e documentar subida do ambiente Docker e banco de dados de testes
-  - **Files:** `docker-compose.yml`, `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar (1).md`
+  - **Files:** `docker-compose.yml`, `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`
   - **Change:** Registrar as portas, variáveis de ambiente necessárias e comandos de migração e seeding.
   - **Covers:** Fase 3 (Item 1 — Ambiente de Testes e Versão do Produto).
   - **Acceptance criteria:**
@@ -323,7 +323,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Depends on:** Issue #08.
 - **Scope:** Roteiro experimental de usabilidade, critérios Lighthouse/axe DevTools e Termo de Consentimento.
 - - [ ] **Task:** Elaborar protocolo experimental de usabilidade e termo TCLE ético
-  - **Files:** `docs/Termo de Consentimento Livre e Esclarecido.docx`, `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar (1).md`
+  - **Files:** `docs/Termo de Consentimento Livre e Esclarecido.docx`, `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`
   - **Change:** Documentar tarefas padronizadas para cálculo de TMET e TSPT e salvaguardas éticas de dados.
   - **Covers:** Fase 3 (Item 2 — Usabilidade e TCLE).
   - **Acceptance criteria:**

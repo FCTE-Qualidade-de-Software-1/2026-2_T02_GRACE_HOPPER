@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RALPH · DEVWORKS</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <main class="shell">
+    <header><p class="eyebrow">DEVWORKS</p><h1>RALPH <span>MONITOR</span></h1></header>
+    <div id="notice" class="notice" role="status">Carregando estado do Ralph…</div>
+    <section class="toolbar" aria-label="Execução exibida"><label for="runs">Execução</label><select id="runs"><option>Carregando…</option></select><span id="updated" class="muted"></span></section>
+    <div class="workspace">
+      <div class="monitor-column">
+        <section id="summary" class="summary" aria-live="polite"></section>
+        <section class="cards"><article class="panel"><h2>PROGRESSO</h2><div id="progress"></div></article><article class="panel"><h2>TRABALHO ATUAL</h2><dl id="current"></dl></article></section>
+        <section class="panel table-panel"><h2>FASES E TASKS</h2><div class="table-scroll"><table><thead><tr><th>ID</th><th>Fase / Task</th><th>Status</th><th>Tentativa</th><th>Gates</th></tr></thead><tbody id="tasks"></tbody></table></div></section>
+      </div>
+      <aside class="panel logs" aria-label="Logs da execução">
+        <div class="logs-header">
+          <div>
+            <p class="section-kicker">SAÍDA EM TEMPO REAL</p>
+            <h2>LOGS RECENTES</h2>
+          </div>
+          <div class="log-actions">
+            <button id="follow-logs" class="active" type="button" aria-pressed="true">Seguindo</button>
+            <button id="jump-logs" type="button">Ir ao fim</button>
+          </div>
+        </div>
+        <p id="log-status" class="log-status" role="status">Seguindo novas linhas</p>
+        <pre id="logs" aria-label="Conteúdo dos logs">Aguardando logs…</pre>
+      </aside>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

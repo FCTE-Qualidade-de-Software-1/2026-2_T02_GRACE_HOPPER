@@ -77,5 +77,6 @@ Todas as mensagens de commit devem ser escritas em português ou inglês seguind
 3. **Critérios de Validação Pré-Merge**:
    - Os testes existentes continuam passando: `vendor/bin/pest` ou scripts locais.
    - O motor de avaliação de qualidade executa sem erro: `php scripts/evaluate-quality.php`.
+   - A documentação e links compilam sem erro em modo estrito: `bash scripts/docs/check_site.sh` ou `mkdocs build --strict`.
    - Nenhum emoji foi introduzido em arquivos formais da disciplina (Critério AG-C3).
    - As tabelas e figuras adicionadas possuem numeração, legenda e fonte citada (Critérios AG-C2 e AG-C4).

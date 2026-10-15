@@ -4,6 +4,7 @@
 [![Norma ISO/IEC 25040:2024](https://img.shields.io/badge/Processo-ISO%2FIEC%2025040%3A2024-green.svg)](https://www.iso.org/standard/83642.html)
 [![Metodologia GQM](https://img.shields.io/badge/Metodologia-GQM%20v2.0-orange.svg)](docs/gqm_evaluation_framework.md)
 [![Status da Release](https://img.shields.io/badge/Release-E1%20(v1.0.0--pc1)-purple.svg)](docs/gestao_projeto_releases_milestones_issues.md)
+[![Documentação GitHub Pages](https://img.shields.io/badge/Docs-GitHub%20Pages-blue.svg)](https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/)
 
 Este repositório abriga o projeto de avaliação de qualidade de software do sistema livre de gestão escolar **i-Educar**, desenvolvido no âmbito da disciplina **Qualidade de Software 1 (FGA0315)** da **Universidade de Brasília (UnB / FGA)** no semestre letivo **2026.2**.
 
@@ -62,14 +63,49 @@ O plano de medição e projeto da avaliação compreende a extração estática 
 
 ## 5. Estrutura e Mapa de Documentação do Projeto
 
-- **Planejamento do Ponto de Controle 1**: [`docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar (1).md`](docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar%20(1).md)
+- **Planejamento do Ponto de Controle 1**: [`docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`](docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md)
 - **Gestão de Milestones, Issues e Releases**: [`docs/gestao_projeto_releases_milestones_issues.md`](docs/gestao_projeto_releases_milestones_issues.md)
 - **Framework GQM de Avaliação de Qualidade (v2.0)**: [`docs/gqm_evaluation_framework.md`](docs/gqm_evaluation_framework.md)
 - **Guia de Contribuição e Governança Git**: [`CONTRIBUTING.md`](CONTRIBUTING.md)
 
 ---
 
-## 6. Governança e Declaração de Uso de Ferramentas de IA (Critério AG-C3)
+## 6. Execução Local da Documentação (GitHub Pages)
+
+A documentação do projeto é construída com o gerador estático [MkDocs](https://www.mkdocs.org/) e o tema [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). Para executar o ambiente localmente e visualizar o site:
+
+### 6.1 Pré-requisitos
+- Python 3.10 ou superior
+- Gerenciador de pacotes `pip`
+
+### 6.2 Passo a Passo para Execução Local
+
+1. **Criar e ativar o ambiente virtual**:
+   ```bash
+   python3 -m venv .venv-docs
+   source .venv-docs/bin/activate
+   ```
+
+2. **Instalar as dependências de documentação**:
+   ```bash
+   pip install -r requirements-docs.txt
+   ```
+
+3. **Iniciar o servidor de desenvolvimento**:
+   ```bash
+   mkdocs serve
+   ```
+   O site estará acessível no navegador em `http://127.0.0.1:8000/`.
+
+4. **Validar o build estrito e integridade dos links**:
+   ```bash
+   bash scripts/docs/check_site.sh
+   ```
+   *(O script executa `mkdocs build --strict` e valida títulos, links e fórmulas renderizadas).*
+
+---
+
+## 7. Governança e Declaração de Uso de Ferramentas de IA (Critério AG-C3)
 
 Em conformidade com os critérios de transparência acadêmica da disciplina FGA0315:
 - **Ferramentas de IA Utilizadas**: Este repositório utilizou assistentes de IA baseados em modelos avançados (Google Gemini / Anthropic Claude) via plataforma Antigravity para apoio em inspeção estática, geração de scaffolds de documentação e formulação de templates.

@@ -1,0 +1,45 @@
+site_name: Grace Hopper — Avaliação de Qualidade de Software
+site_url: https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/
+repo_url: https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Mudar para tema escuro
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Mudar para tema claro
+
+plugins:
+  - search
+  - gen-files:
+      scripts:
+        - scripts/docs/gen_pages.py
+
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Início: index.md
+  - GQM: gqm_evaluation_framework.md
+  - Gestão de Releases: gestao_projeto_releases_milestones_issues.md
+  - Relatório PC1: relatorio_de_planejamento_ponto_de_controle_1_i_educar.md
+  - Contribuição: contributing.md
