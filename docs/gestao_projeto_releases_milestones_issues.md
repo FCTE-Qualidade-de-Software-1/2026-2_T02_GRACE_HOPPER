@@ -140,14 +140,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #02 — Levantamento Arquitetural e Contextualização do i-Educar
 
 - **Milestone:** M1: Requisitos da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 2]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario2]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 4h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Ítalo Alves Sampaio de Oliveira`
+    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `4h` | **Custo:** R$ `200,00`
 - **Goal:** Documentar a arquitetura híbrida (Laravel 13 + Legado) e o papel social do i-Educar na gestão escolar municipal.
 - **Depends on:** Issue #01.
 - **Scope:** Elaboração de texto de contextualização e diagrama de blocos arquiteturais do produto.
-- [ ] **Task:** Mapear arquitetura do sistema e redigir contextualização do produto
+- [x] **Task:** Mapear arquitetura do sistema e redigir contextualização do produto
     - **Files:** `docs/agents/architecture.md`, `docs/agents/project_overview.md`
     - **Change:** Detalhar a transição tecnológica de `ieducar/intranet` para `app/Services/` e os esquemas PostgreSQL.
     - **Covers:** Fase 1 (Item 1 — Contextualização do Produto), Critério AG-C1.
@@ -160,14 +160,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #03 — Mapeamento de Stakeholders e Alinhamento aos ODS 4 e 16
 
 - **Milestone:** M1: Requisitos da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 4]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario4]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 4h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Ítalo Alves Sampaio de Oliveira`
+    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `4h` | **Custo:** R$ `200,00`
 - **Goal:** Identificar as partes interessadas na avaliação e justificar o impacto social nos ODS 4 e 16.
 - **Depends on:** Issue #02.
 - **Scope:** Mapeamento de usuários primários e secundários e alinhamento com as Metas 4.1, 4.a e 16.6 da ONU.
-- [ ] **Task:** Redigir seção de partes interessadas e correlação com ODS da ONU
+- [x] **Task:** Redigir seção de partes interessadas e correlação com ODS da ONU
     - **Files:** `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`
     - **Change:** Formalizar matriz de perfil de usuários e justificativa do i-Educar como Bem Público Digital aberto.
     - **Covers:** Fase 1 (Item 3 — Stakeholders e Item 6 — ODS da ONU).

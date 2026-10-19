@@ -55,27 +55,20 @@ Para garantir pontuação máxima na rubrica da Fase 1, os requisitos da avalia�
 
 #### 2.1.3 Identificação do Requisitante e Partes Interessadas (Stakeholders)
 
-<div class="grid cards" markdown>
+As partes interessadas foram caracterizadas pelo papel que exercem no i-Educar, pela necessidade principal e pela característica do modelo de qualidade que as afeta. A Tabela 1-A consolida essa caracterização. Os perfis de secretários escolares e professores são os usuários finais primários; os integradores (equipes de TI municipais e o INEP) são os usuários secundários.
 
--   **Requisitante / Mantenedor**
+**Tabela 1-A — Caracterização das partes interessadas no i-Educar**
 
-    ---
+| Parte interessada | Perfil e papel no i-Educar | Necessidade principal | Característica avaliada (ISO/IEC 25010:2023) |
+| :--- | :--- | :--- | :--- |
+| **Secretários escolares** (usuários finais primários) | Registram matrículas e enturmações (`pmieducar.matricula` e `pmieducar.matricula_turma`). | Entrada de dados sem erro, com mensagens claras quando há bloqueio. | Capacidade de Interação (M12 a M15) |
+| **Professores** (usuários finais primários) | Lançam notas e menções no diário (`modules.nota_componente_curricular`). | Cálculo de notas determinístico e diário sem perda de dados. | Confiabilidade (M3 e M4); Capacidade de Interação (M14 e M15) |
+| **Gestores municipais** (Secretarias Municipais de Educação) | Decidem a adoção, a manutenção e a necessidade de suporte técnico do sistema (Tabela 1). | Dados confiáveis para decisão e prestação de contas. | Confiabilidade (Gates) e índice global IQM |
+| **Equipes de TI municipais** (integradores de sistemas municipais) | Integram o i-Educar a outros sistemas municipais pela API REST (`routes/api.php` e `routes/api_v2.php`) e mantêm a convivência no mesmo ambiente. | Contratos de API estáveis e convivência sem conflito de recursos. | Compatibilidade (M1 e M2) |
+| **Integradores do INEP** (sistemas de coleta do Censo Escolar) | Recebem os dados do Censo Escolar enviados pelas secretarias, gerados pelo módulo Educacenso (pacote `i-educar-educacenso-package`). | Dados do Censo fiéis aos registros de matrícula e de notas. | Fora do escopo direto da avaliação; a dependência desses dados é tratada como risco de Confiabilidade. |
+| **Mantenedores** (Portabilis e comunidade i-Educar) | Mantêm o código dos módulos avaliados e recebem as correções que a avaliação identificar. | Código analisável, modificável e testável. | Manutenibilidade (M7 a M11) |
 
-    Comunidade i-Educar, Portabilis e equipes de TI das prefeituras municipais.
-
--   **Usuários Finais Primários**
-
-    ---
-
-    Secretários escolares, diretores, coordenadores pedagógicos e professores da rede pública.
-
--   **Usuários Secundários / Integradores**
-
-    ---
-
-    Analistas de sistemas municipais responsáveis pela integração via API REST e envio de dados ao MEC/INEP.
-
-</div>
+*Fonte: elaborado pelos autores a partir dos modelos e rotas do repositório `portabilis/i-educar` (branch `2.12`, commit `7903a3efc7689942ee700007f86ed581023aad27`) e do Framework GQM.*
 
 #### 2.1.4 Seleção, Priorização e Adaptação do Modelo de Qualidade (ISO/IEC 25010:2023)
 
@@ -154,23 +147,19 @@ A criticidade é calculada como $C = I \times R$. São selecionadas as três car
 
 #### 2.1.6 Relação com os Objetivos de Desenvolvimento Sustentável (ODS da ONU)
 
-<div class="grid cards" markdown>
+A Tabela 1-B apresenta os textos oficiais das metas publicados pela ONU, os indicadores oficiais de acompanhamento e a justificativa do vínculo com o i-Educar. O vínculo é indireto: a avaliação mede a qualidade do produto, e não os resultados educacionais ou institucionais que as metas acompanham.
 
--   **ODS 4 — Educação de Qualidade**
+**Tabela 1-B — Metas dos ODS 4 e 16 relacionadas ao i-Educar**
 
-    ---
+| ODS e meta | Texto oficial da meta (ONU) | Indicadores oficiais de acompanhamento | Justificativa do vínculo com o i-Educar |
+| :--- | :--- | :--- | :--- |
+| **ODS 4, Meta 4.1** | "By 2030, ensure that all girls and boys complete free, equitable and quality primary and secondary education leading to relevant and effective learning outcomes" (tradução livre: até 2030, garantir que todas as meninas e todos os meninos concluam o ensino primário e secundário gratuito, equitativo e de qualidade, com resultados de aprendizagem relevantes e eficazes). | 4.1.2: taxa de conclusão (primário, fundamental e médio). | O i-Educar registra matrículas, enturmações e notas, que alimentam a gestão escolar e os dados do Censo Escolar. Não se mede conclusão nem evasão nesta avaliação. |
+| **ODS 4, Meta 4.a** | "Build and upgrade education facilities that are child, disability and gender sensitive and provide safe, non-violent, inclusive and effective learning environments for all" (tradução livre: construir e adaptar instalações educacionais sensíveis a crianças, pessoas com deficiência e gênero, com ambientes de aprendizagem seguros, não violentos, inclusivos e eficazes para todos). | 4.a.1: proporção de escolas com serviços básicos, por tipo de serviço. | O vínculo é limitado: o sistema não atua sobre a infraestrutura física das escolas. Ele contribui apenas pela gestão dos registros escolares. |
+| **ODS 16, Meta 16.6** | "Develop effective, accountable and transparent institutions at all levels" (tradução livre: desenvolver instituições eficazes, responsáveis e transparentes em todos os níveis). | 16.6.1: despesas primárias do governo como proporção do orçamento aprovado; 16.6.2: proporção da população satisfeita com a última experiência em serviços públicos. | Registros escolares rastreáveis, cálculo de notas verificável e código aberto e auditável favorecem a transparência administrativa. Essa relação é qualitativa e não é medida pela avaliação. |
 
-    - **Metas 4.1 e 4.a:** Garantir educação primária e secundária de qualidade e melhorar a gestão dos ambientes escolares.
-    - **Justificativa e Indicadores:** O i-Educar reduz a evasão escolar e melhora a alocação de recursos públicos ao automatizar o controle de frequência, notas e o reporte fidedigno ao Censo Escolar.
+*Fonte: textos das metas e indicadores extraídos de <https://sdgs.un.org/goals/goal4> e <https://sdgs.un.org/goals/goal16>; justificativas elaboradas pelos autores.*
 
--   **ODS 16 — Paz, Justiça e Instituições Eficazes**
-
-    ---
-
-    - **Meta 16.6:** Desenvolver instituições eficazes, responsáveis e transparentes em todos os níveis.
-    - **Justificativa:** Por ser um Bem Público Digital (*Digital Public Good*) em código aberto, promove transparência administrativa e economia de recursos públicos em centenas de municípios brasileiros.
-
-</div>
+**Justificativa do i-Educar como Bem Público Digital aberto.** A equipe classifica o i-Educar como Bem Público Digital. Essa afirmação se apoia em três fatos verificados: o software é licenciado sob GPL-2.0-or-later (`composer.json`), é de acesso público e gratuito e é mantido pela Portabilis, conforme publicação do BID. O registro formal como Bem Público Digital não foi verificado nas fontes consultadas, e a classificação deve ser tratada como afirmação da equipe.
 
 ---
 
@@ -199,7 +188,7 @@ Para demonstrar planejamento completo e alinhamento com a futura execução (Fas
 
     ---
 
-    Utilização do ambiente conteinerizado oficial (`docker-compose` do repositório `portabilis/i-educar`), fixando a *tag/release* estável mais recente (`v2.12`) para garantir reprodutibilidade científica.
+    Utilização do ambiente conteinerizado oficial (`docker-compose` do repositório `portabilis/i-educar`), fixando o branch oficial `2.12` (versão declarada `2.12.0`, commit de referência `7903a3e`) para garantir reprodutibilidade científica. A tag `2.12.0` ainda não foi publicada; a última tag publicada é `2.11.0`.
 
 -   **Manutenibilidade (Análise Estática)**
 
