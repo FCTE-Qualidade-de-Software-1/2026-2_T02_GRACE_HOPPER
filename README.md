@@ -22,7 +22,7 @@ A tabela abaixo registra os membros da equipe avaliadora, com campos reservados 
 | **Gustavo Silva Rodrigues** | `23/2036887` | `@g-srodrigues` | Analista de Qualidade / Modelo ISO/IEC 25010 e Escopo | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
 | **Ítalo Alves Sampaio de Oliveira** | `23/2037937` | `@ItaloSamP` | Analista do Produto e Stakeholders / GitPage | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
 | **Ricardo Lucas Winchello Vieira Branco** | `22/1008409` | `@ChickRicks` | Redação do Artigo (Overleaf) | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
-| **TOTAL CONSOLIDADO** | — | — | **Esforço Acumulado — Ponto de Controle 1** | **72h** | **R$ 50,00** | **R$ 3.600,00** | **100%** |
+| **TOTAL CONSOLIDADO** | — | — | **Esforço Acumulado — Ponto de Controle 1** | **72h** | Média: R$ 50,00/h | **R$ 3.600,00** | **100%** |
 
 *Nota: O esforço foi dividido igualmente entre os 6 integrantes (1/6 cada); os centésimos foram ajustados para que a soma seja exatamente 100%. Horas e custos devem ser atualizados conforme o andamento das issues associadas.*
 
@@ -33,43 +33,49 @@ A tabela abaixo registra os membros da equipe avaliadora, com campos reservados 
 O software avaliado é o **i-Educar** (versão 2.12.0 / repositório base `portabilis/i-educar`), um monólito híbrido que articula um núcleo legado em PHP (`ieducar/`) a uma infraestrutura moderna em Laravel 13 com banco de dados relacional PostgreSQL.
 
 A avaliação concentra-se em dois módulos funcionais de alta criticidade:
-1. **Módulo de Matrícula de Alunos**: Vínculo formal (`pmieducar.matricula`), enturmação e remanejamento (`pmieducar.matricula_turma`), ciclo de vida de situações escolares (`RegistrationStatus`) e operações de cancelamento atômico (`RegistrationService`).
-2. **Módulo de Lançamento de Notas e Menções**: Regras pedagógicas configuráveis (`modules.regra_avaliacao`), tabelas dinâmicas de menção e arredondamento (`modules.tabela_arredondamento_valor`), controle do diário eletrônico (`DiarioController` e `DiarioApiController`) e motor de médias (`Avaliacao_Service_Boletim`).
+
+| Módulo Avaliado | Tabelas Principais (PostgreSQL) | Classes e Controladores-Chave | Escopo Funcional |
+| :--- | :--- | :--- | :--- |
+| **1. Matrícula de Alunos** | `pmieducar.matricula`<br>`pmieducar.matricula_turma` | `LegacyRegistration`<br>`LegacyEnrollment`<br>`RegistrationStatus`<br>`RegistrationService` | Vínculo formal do estudante, enturmação, remanejamento, ciclo de vida de 14 situações escolares e cancelamento atômico transacional. |
+| **2. Lançamento de Notas e Menções** | `modules.regra_avaliacao`<br>`modules.tabela_arredondamento_valor`<br>`modules.nota_aluno`<br>`modules.nota_componente_curricular` | `LegacyEvaluationRule`<br>`LegacyValueRoundingTable`<br>`DiarioController`<br>`DiarioApiController`<br>`Avaliacao_Service_Boletim` | Regras pedagógicas configuráveis, tabelas dinâmicas de menção/arredondamento, controle do diário eletrônico e motor de cálculo de médias. |
 
 ---
 
 ## 3. Fundamentação Normativa e Metodológica
 
 A avaliação é conduzida seguindo estritamente as normas internacionais vigentes e frameworks de engenharia:
-- **ISO/IEC 25010:2023** (*Product Quality Model*): 4 características recortadas:
-  - **Compatibilidade** (Coexistência de Recursos e Interoperabilidade de Dados)
-  - **Confiabilidade** (Ausência de Falhas / *Faultlessness*, Tolerância a Falhas e Recuperabilidade)
-  - **Manutenibilidade** (Modularidade, Analisabilidade, Modificabilidade e Testabilidade)
-  - **Capacidade de Interação** (*Interaction Capability* — Proteção contra Erros do Usuário e Autodescritividade)
-- **ISO/IEC 25019:2023** (*Quality-in-Use Model*): Avaliação da Eficácia e Eficiência em contexto de uso escolar real (tempo de tarefa e sucesso de primeira tentativa no diário).
-- **ISO/IEC 25040:2024** (*Quality Evaluation Process*): Ciclo estruturado em 5 atividades (Requisitos, Especificação, Desenho, Execução e Julgamento).
-- **Metodologia GQM (Goal-Question-Metric)**: Desdobramento formal em 15 métricas quantitativas com 3 Gates Binários eliminatórios de integridade.
-- **Framework PSM/CID**: Rastreamento de métricas de processo, custos financeiros e esforço dedicado da equipe.
+
+| Norma / Framework | Papel na Avaliação | Recorte Aplicado ao i-Educar |
+| :--- | :--- | :--- |
+| **ISO/IEC 25010:2023** (*Product Quality Model*) | Modelo de Qualidade de Produto | **Compatibilidade** (Coexistência e Interoperabilidade), **Confiabilidade** (Ausência de Falhas / *Faultlessness*, Tolerância a Falhas e Recuperabilidade), **Manutenibilidade** (Modularidade, Analisabilidade, Modificabilidade e Testabilidade) e **Capacidade de Interação** (*Interaction Capability* — Proteção contra Erros e Autodescritividade). |
+| **ISO/IEC 25019:2023** (*Quality-in-Use Model*) | Modelo de Qualidade em Uso | Avaliação da **Eficácia** e **Eficiência** em contexto de uso escolar real (tempo de tarefa e sucesso de primeira tentativa no diário e na matrícula). |
+| **ISO/IEC 25040:2024** (*Quality Evaluation Process*) | Processo de Avaliação | Ciclo estruturado em 5 atividades (Requisitos, Especificação, Desenho, Execução e Julgamento). |
+| **Metodologia GQM** (*Goal-Question-Metric*) | Derivação de Métricas | Desdobramento formal em 4 objetivos, 13 questões e 15 métricas quantitativas com 3 Gates Binários eliminatórios de integridade. |
+| **Framework PSM/CID** | Gestão de Recursos e Custos | Rastreamento de métricas de processo, custos financeiros e esforço dedicado da equipe. |
 
 ---
 
 ## 4. Projeto e Métodos de Coleta da Avaliação (Fase 3 — ISO/IEC 25040:2024)
 
 O plano de medição e projeto da avaliação compreende a extração estática e dinâmica das métricas diretamente do software avaliado:
-- **Gates Binários de Confiabilidade**: Verificação determinística de notas (M3) e atomicidade transacional em operações de notas e matrícula (M4).
-- **Métricas de Manutenibilidade**: Coleta de complexidade ciclomática (P90 e máxima), atrito de dados (IFDL) e índice de manutenibilidade (MI).
+
+- **Gates Binários de Confiabilidade**: Verificação determinística de notas (`M3`) e atomicidade transacional em operações de notas e matrícula (`M4`).
+- **Métricas de Manutenibilidade**: Coleta de complexidade ciclomática ($P_{90}$ e máxima), atrito de dados (`IFDL`) e índice de manutenibilidade (`MI`).
 - **Testabilidade de Domínio**: Auditoria de cobertura comportamental e detecção de testes desativados com `markTestSkipped()`.
-- **Agregação e Julgamento**: Modelo de agregação multicritério para cálculo do Índice por Característica ($IQC_k$) e Índice Global ($IQM$).
+- **Agregação e Julgamento**: Modelo de agregação multicritério para cálculo do Índice por Característica ($\text{IQC}_k$) e Índice Global ($\text{IQM}$).
 
 ---
 
 ## 5. Estrutura e Mapa de Documentação do Projeto
 
 - **Artigo IEEE**: [estrutura e rastreabilidade](docs/artigo/modelo_ieee.md), com [fonte LaTeX editável](docs/artigo/main.tex).
-- **Planejamento do Ponto de Controle 1**: [`docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`](docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md)
-- **Gestão de Milestones, Issues e Releases**: [`docs/gestao_projeto_releases_milestones_issues.md`](docs/gestao_projeto_releases_milestones_issues.md)
-- **Framework GQM de Avaliação de Qualidade (v2.0)**: [`docs/gqm_evaluation_framework.md`](docs/gqm_evaluation_framework.md)
-- **Guia de Contribuição e Governança Git**: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+
+| Artefato Documental | Caminho no Repositório | Conteúdo Principal |
+| :--- | :--- | :--- |
+| **Planejamento do Ponto de Controle 1** | [`docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`](docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md) | Linha do tempo (M0 a M5), requisitos da Fase 1, matriz de priorização ($C = I \times R$), resumo GQM e estrutura de slides. |
+| **Framework GQM de Avaliação (v2.0)** | [`docs/gqm_evaluation_framework.md`](docs/gqm_evaluation_framework.md) | Objeto de avaliação, árvores GQM por característica, fórmulas matemáticas (M1 a M15), limiares e regras de decisão. |
+| **Gestão de Milestones, Issues e Releases** | [`docs/gestao_projeto_releases_milestones_issues.md`](docs/gestao_projeto_releases_milestones_issues.md) | Alocação de custos PSM/CID, diagrama de marcos, catálogo atômico das Issues #01 a #19 e especificação das Releases E1 e E2. |
+| **Guia de Contribuição e Governança Git** | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Fluxo de trabalho de issues, branches, padrão de commits e política de revisão por pares. |
 
 ---
 
@@ -78,6 +84,7 @@ O plano de medição e projeto da avaliação compreende a extração estática 
 A documentação do projeto é construída com o gerador estático [MkDocs](https://www.mkdocs.org/) e o tema [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/). Para executar o ambiente localmente e visualizar o site:
 
 ### 6.1 Pré-requisitos
+
 - Python 3.10 ou superior
 - Gerenciador de pacotes `pip`
 
@@ -111,6 +118,7 @@ A documentação do projeto é construída com o gerador estático [MkDocs](http
 ## 7. Governança e Declaração de Uso de Ferramentas de IA (Critério AG-C3)
 
 Em conformidade com os critérios de transparência acadêmica da disciplina FGA0315:
+
 - **Ferramentas de IA Utilizadas**: Este repositório utilizou assistentes de IA baseados em modelos avançados (Google Gemini / Anthropic Claude) via plataforma Antigravity para apoio em inspeção estática, geração de scaffolds de documentação e formulação de templates.
 - **Supervisão Humana**: Todo o conteúdo conceitual, mapeamento de normas (ISO 25010/25019/25040), equações matemáticas e julgamentos técnicos foram integralmente revisados, calibrados e validados tecnicamente pelos integrantes da equipe.
 - **Rigor Editorial**: O repositório e os artefatos acadêmicos observam rigor formal estrito, sem inclusão de emojis decorativos ou textos não rastreáveis.

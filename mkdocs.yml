@@ -1,9 +1,19 @@
-site_name: Grace Hopper — Avaliação de Qualidade de Software
+site_name: Grace Hopper I-Educar
 site_url: https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/
 repo_url: https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER
+repo_name: 2026-2_T02_GRACE_HOPPER
+copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA) · Release E1 (v1.0.0-pc1) · Última atualização: Outubro de 2026"
 
 theme:
   name: material
+  language: pt-BR
+  features:
+    - navigation.sections
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
   palette:
     - scheme: default
       primary: indigo
@@ -26,12 +36,23 @@ plugins:
 
 markdown_extensions:
   - tables
+  - attr_list
+  - md_in_html
+  - def_list
   - toc:
       permalink: true
   - admonition
+  - pymdownx.details
   - pymdownx.arithmatex:
       generic: true
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_css:
+  - stylesheets/extra.css
 
 extra_javascript:
   - javascripts/mathjax.js

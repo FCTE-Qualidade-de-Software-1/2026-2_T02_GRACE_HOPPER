@@ -16,7 +16,7 @@ else
 fi
 
 echo "Executando mkdocs build --strict..."
-"$MKDOCS" build --strict
+DISABLE_MKDOCS_2_WARNING=true "$MKDOCS" build --strict
 
 echo "Validando site/index.html..."
 if [ ! -f "site/index.html" ]; then
@@ -30,21 +30,43 @@ if ! grep -q "$README_TITLE" site/index.html; then
     exit 1
 fi
 
-echo "Verificando se restaram links com href=\"docs/\" no HTML..."
+echo "Verificando se restaram links com href=\"docs/\" ou href=\"file:///\" no HTML..."
 if grep -rn 'href="docs/' site/; then
     echo "Erro: links relativos não reescritos com href=\"docs/\" encontrados no HTML gerado!" >&2
     exit 1
 fi
 
-echo "Verificando fórmulas arithmatex na página GQM..."
+if grep -rn 'href="file:///' site/; then
+    echo "Erro: links locais inválidos (href=\"file:///\") encontrados no HTML gerado!" >&2
+    exit 1
+fi
+
+echo "Verificando fórmulas arithmatex (display e inline) na página GQM..."
 GQM_HTML="site/gqm_evaluation_framework/index.html"
 if [ ! -f "$GQM_HTML" ]; then
     echo "Erro: página $GQM_HTML não encontrada!" >&2
     exit 1
 fi
 
-if ! grep -q 'class="arithmatex"' "$GQM_HTML"; then
-    echo "Erro: class=\"arithmatex\" não encontrada em $GQM_HTML" >&2
+if ! grep -q '<div class="arithmatex">' "$GQM_HTML"; then
+    echo "Erro: blocos de equação '<div class=\"arithmatex\">' não encontrados em $GQM_HTML" >&2
+    exit 1
+fi
+
+if grep -n '\$<span class="arithmatex">' "$GQM_HTML"; then
+    echo "Erro: fórmulas mal formatadas com cifrão literal (\$<span class=\"arithmatex\">) encontradas em $GQM_HTML!" >&2
+    exit 1
+fi
+
+echo "Verificando renderização de diagramas Mermaid..."
+if ! grep -q 'class="mermaid"' "$GQM_HTML"; then
+    echo "Erro: diagrama Mermaid não renderizado em $GQM_HTML!" >&2
+    exit 1
+fi
+
+GESTAO_HTML="site/gestao_projeto_releases_milestones_issues/index.html"
+if ! grep -q 'class="mermaid"' "$GESTAO_HTML"; then
+    echo "Erro: diagrama Mermaid não renderizado em $GESTAO_HTML!" >&2
     exit 1
 fi
 
