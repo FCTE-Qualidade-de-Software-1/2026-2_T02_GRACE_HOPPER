@@ -16,13 +16,15 @@ A tabela abaixo registra os membros da equipe avaliadora, com campos reservados 
 
 | Integrante | Matrícula UnB | Usuário GitHub | Papel Principal | Horas (h) | Valor / Hora | Custo Total | % Esforço |
 | :--- | :---: | :---: | :--- | :---: | :---: | :---: | :---: |
-| **[Preencher: Integrante 1]** | `[00/0000000]` | `@[usuario1]` | Gestor de Qualidade / Especialista em Compatibilidade | 12h | R$ [50,00] | R$ [600,00] | **25%** |
-| **[Preencher: Integrante 2]** | `[00/0000000]` | `@[usuario2]` | Analista de Arquitetura / Especialista em Manutenibilidade | 12h | R$ [50,00] | R$ [600,00] | **25%** |
-| **[Preencher: Integrante 3]** | `[00/0000000]` | `@[usuario3]` | Engenheiro de Testes / Especialista em Confiabilidade | 12h | R$ [50,00] | R$ [600,00] | **25%** |
-| **[Preencher: Integrante 4]** | `[00/0000000]` | `@[usuario4]` | Especialista em UX / Capacidade de Interação e Uso | 12h | R$ [50,00] | R$ [600,00] | **25%** |
-| **TOTAL CONSOLIDADO** | — | — | **Esforço Acumulado — Ponto de Controle 1** | **48h** | **Média: R$ [50,00]** | **R$ [2.400,00]** | **100%** |
+| **Arthur Soares Parente** | `23/2036770` | `@ArthurDevWorks` | Gestor de Configuração / GitPage | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
+| **Fábio Santos Araujo** | `22/2022082` | `@fabiofonteles1` | Redação do Artigo (Overleaf) | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
+| **Gabriel Barbaceli** | `21/1045122` | `@Nibaacriba` | GitPage / Especificação GQM (Compatibilidade e Capacidade de Interação) | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
+| **Gustavo Silva Rodrigues** | `23/2036887` | `@g-srodrigues` | Analista de Qualidade / Modelo ISO/IEC 25010 e Escopo | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
+| **Ítalo Alves Sampaio de Oliveira** | `23/2037937` | `@ItaloSamP` | Analista do Produto e Stakeholders / GitPage | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
+| **Ricardo Lucas Winchello Vieira Branco** | `22/1008409` | `@ChickRicks` | Redação do Artigo (Overleaf) | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
+| **TOTAL CONSOLIDADO** | — | — | **Esforço Acumulado — Ponto de Controle 1** | **72h** | **R$ 50,00** | **R$ 3.600,00** | **100%** |
 
-*Nota: Os integrantes devem preencher e atualizar suas respectivas horas e custos conforme o andamento das issues associadas.*
+*Nota: O esforço foi dividido igualmente entre os 6 integrantes (1/6 cada); os centésimos foram ajustados para que a soma seja exatamente 100%. Horas e custos devem ser atualizados conforme o andamento das issues associadas.*
 
 ---
 

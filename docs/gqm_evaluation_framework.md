@@ -50,8 +50,8 @@ graph TD
     end
 
     %% G1: Compatibilidade
-    G1 --> Q11["Q1.1: O sistema coexiste de forma segura com outras instâncias e serviços sem colisão de recursos?"]
-    G1 --> Q12["Q1.2: Quão rigorosa é a conformidade das APIs e integrações aos schemas de interoperabilidade?"]
+    G1 --> Q11["Q1.1: Os recursos de ambiente do i-Educar podem ser isolados por configuração para coexistir com outras instâncias e serviços no mesmo host?"]
+    G1 --> Q12["Q1.2: As respostas da API dos módulos de matrícula e notas obedecem a um contrato de dados verificável?"]
     Q11 --> M1["M1: Taxa de Isolamento e Não-Colisão de Recursos (TINCR)"]
     Q12 --> M2["M2: Conformidade com Esquemas de Interoperabilidade (CEI)"]
 
@@ -79,8 +79,8 @@ graph TD
     %% G4: Capacidade de Interação e Qualidade em Uso
     G4 --> Q41["Q4.1: O sistema impede proativamente erros de entrada ou operações fora de prazo pedagógico?"]
     G4 --> Q42["Q4.2: As mensagens de validação e recusa são autodescritivas e orientadas à ação?"]
-    G4 --> Q43["Q4.3: Qual o tempo médio requerido pelo usuário para concluir as tarefas essenciais?"]
-    G4 --> Q44["Q4.4: Qual a taxa de sucesso de primeira tentativa no preenchimento do diário de classe?"]
+    G4 --> Q43["Q4.3: Quanto tempo um usuário novo leva para concluir as tarefas essenciais, em relação a um usuário experiente?"]
+    G4 --> Q44["Q4.4: Usuários novos concluem as tarefas essenciais corretamente na primeira tentativa?"]
     Q41 --> M12["M12: Índice de Proteção contra Erros do Usuário (IPPE)"]
     Q42 --> M13["M13: Autodescritividade das Mensagens de Validação (ADMV)"]
     Q43 --> M14["M14: Tempo Médio de Execução de Tarefa Operacional (TMET)"]
@@ -93,21 +93,43 @@ graph TD
 
 ### 3.1 Característica 1: Compatibilidade (*Compatibility* — ISO 25010:2023)
 
+**Objetivo G1 (modelo GQM):** Analisar **o ambiente de execução e a API REST dos módulos de Matrícula e de Notas do i-Educar 2.12** com o propósito de **avaliar** com respeito à **coexistência e à interoperabilidade** do ponto de vista de **integradores (equipes de TI municipais)** no contexto de **uma instalação local via Docker, a partir do repositório oficial `portabilis/i-educar`**.
+
+**Rastreabilidade:** G1 → Q1.1 → M1 (TINCR); G1 → Q1.2 → M2 (CEI).
+
+**Fora do escopo de G1:** a exportação de dados para o Educacenso/INEP, distribuída em pacote separado (`i-educar-educacenso-package`), e integrações com sistemas de terceiros que exigiriam credenciais de produção.
+
 #### M1 — Taxa de Isolamento e Não-Colisão de Recursos (TINCR)
-- **Subcaracterística**: Coexistência (*Co-existence* — ISO 25010:2023, item 8.3.2).
-- **Conceito**: Mede a capacidade do i-Educar coexistir no mesmo servidor de banco (PostgreSQL) e cache (Redis) com outros serviços (ex.: i-Diário, microserviços municipais) sem colisão de locks, concorrência predatória de pools de conexão ou invasão de esquemas.
+- **Subcaracterística**: Coexistência (*Co-existence* — ISO 25010:2023).
+- **Questão respondida**: Q1.1.
+- **Conceito**: Proporção dos recursos compartilháveis do ambiente de execução do i-Educar que podem ser isolados apenas por configuração, sem alterar código-fonte, permitindo que o sistema funcione no mesmo host que outra instância do i-Educar ou outro serviço sem conflito. São recursos compartilháveis: portas de rede expostas, nomes de containers, nome do banco de dados e usuário do PostgreSQL, prefixo de chaves do Redis e diretórios de armazenamento.
 - **Fórmula de Cálculo**:
-  $$\text{TINCR} = \left( 1 - \frac{N_{\text{deadlocks\_cross\_service}} + N_{\text{conn\_exhaustion}}}{N_{\text{periodos\_monitorados}}} \right) \times 100\%$$
+  $$\text{TINCR} = \frac{N_{\text{isolaveis}}}{N_{\text{identificados}}} \times 100\%$$
+- **Variáveis**:
+  - $N_{\text{identificados}}$: número de recursos compartilháveis inventariados em `docker-compose.yml`, `.env.example` e `config/`.
+  - $N_{\text{isolaveis}}$: número desses recursos cujo valor pode ser alterado por variável de ambiente ou arquivo de configuração e cuja alteração foi confirmada no teste de coexistência.
+- **Procedimento de Coleta**:
+  1. Inventariar os recursos compartilháveis (por exemplo: `DOCKER_NGINX_PORT`, `DOCKER_POSTGRES_PORT`, `DOCKER_REDIS_PORT`, `DB_DATABASE`, `DB_USERNAME`, `REDIS_PREFIX` e os `container_name` definidos no `docker-compose.yml`).
+  2. Classificar cada recurso como parametrizável ou fixo no código/configuração versionada.
+  3. Teste de coexistência: subir uma segunda instância do i-Educar no mesmo host, alterando apenas variáveis de ambiente, e registrar cada conflito observado (porta em uso, nome de container duplicado, colisão de chaves no Redis, colisão de banco).
 - **Tipo de Escala**: Razão ($[0\%, 100\%]$).
-- **Instrumento de Coleta**: Logs de erro do PostgreSQL (`deadlock detected`), métricas do `pg_stat_activity` e métricas do Redis.
+- **Instrumento de Coleta**: Inspeção dos arquivos de configuração e execução do `docker compose`; evidências registradas em log de terminal e capturas de tela.
 
 #### M2 — Conformidade com Esquemas de Interoperabilidade (CEI)
-- **Subcaracterística**: Interoperabilidade (*Interoperability* — ISO 25010:2023, item 8.3.3 / ISO 25023 ref: CIn-1-G).
-- **Conceito**: Percentual de endpoints e layouts de exportação/importação (Educacenso/INEP, SEB, APIs REST do Diário e Matrícula) que validam 100% contra os esquemas contratuais formais (OpenAPI JSON Schema / Layout INEP).
+- **Subcaracterística**: Interoperabilidade (*Interoperability* — ISO 25010:2023).
+- **Questão respondida**: Q1.2.
+- **Conceito**: Percentual de *endpoints* da API REST do núcleo do i-Educar relacionados a matrícula, enturmação e lançamento de notas cujas respostas obedecem ao contrato de referência. Um *endpoint* é conforme somente se todos os seus casos de teste passarem:
+  1. requisição válida retorna o código HTTP esperado e `Content-Type: application/json`;
+  2. a resposta contém todos os campos obrigatórios do contrato, com os tipos esperados;
+  3. requisição inválida (parâmetro ausente ou chave de API incorreta) retorna erro estruturado, sem erro 500 nem página HTML.
+- **Contrato de Referência**: documentação oficial da API, quando existir; na sua ausência, contrato derivado pela equipe a partir dos controllers em `ieducar/modules/Api/` e das rotas em `routes/`, registrado em JSON Schema no repositório da equipe **antes** da execução, para evitar viés.
 - **Fórmula de Cálculo**:
-  $$\text{CEI} = \frac{N_{\text{estruturas\_validadas\_sucesso}}}{N_{\text{estruturas\_testadas}}} \times 100\%$$
+  $$\text{CEI} = \frac{N_{\text{endpoints\_conformes}}}{N_{\text{endpoints\_testados}}} \times 100\%$$
+- **Variáveis**:
+  - $N_{\text{endpoints\_testados}}$: *endpoints* da API dos módulos avaliados incluídos na coleção de testes.
+  - $N_{\text{endpoints\_conformes}}$: *endpoints* em que todos os casos 1 a 3 passaram.
 - **Tipo de Escala**: Razão ($[0\%, 100\%]$).
-- **Instrumento de Coleta**: Testes de validação de schema (`tests/Api/`, script `composer openapi`, validação contra XSD do Educacenso).
+- **Instrumento de Coleta**: Coleção de requisições versionada (Postman ou Insomnia) com validação de JSON Schema; relatório de execução exportado.
 
 ---
 
@@ -200,43 +222,62 @@ graph TD
 
 ### 3.4 Característica 4: Capacidade de Interação (ISO 25010) & Qualidade em Uso (ISO 25019)
 
+**Objetivo G4 (modelo GQM):** Analisar **os fluxos de matrícula e de lançamento de notas do i-Educar 2.12** com o propósito de **avaliar** com respeito à **proteção contra erros do usuário, à autodescritividade e à eficácia e eficiência em uso** do ponto de vista de **secretários escolares e professores sem experiência prévia no sistema** no contexto de **sessões de teste supervisionadas em instalação local com dados fictícios**.
+
+**Rastreabilidade:** G4 → Q4.1 → M12 (IPPE); G4 → Q4.2 → M13 (ADMV); G4 → Q4.3 → M14 (TMET); G4 → Q4.4 → M15 (TSPT).
+
+**Separação entre produto e uso:** M12 e M13 medem propriedades do **produto** (ISO/IEC 25010:2023) e são coletadas por testes e inspeção, sem participantes. M14 e M15 medem a **qualidade em uso** (ISO/IEC 25019:2023) e dependem de sessões com participantes, conforme o protocolo abaixo.
+
 #### M12 — Índice de Proteção contra Erros do Usuário (IPPE) — [GATE BINÁRIO]
-- **Subcaracterística**: Proteção contra Erro do Usuário (*User error protection* — ISO 25010:2023, item 8.4.5).
-- **Conceito**: Eficácia do sistema em interceptar proativamente antes da persistência:
+- **Subcaracterística**: Proteção contra Erro do Usuário (*User error protection* — ISO 25010:2023).
+- **Questão respondida**: Q4.1.
+- **Conceito**: Eficácia do sistema em interceptar entradas inválidas antes da persistência, nos seguintes tipos de cenário:
   1. Lançamento de notas fora da faixa permitida na regra (`$regra->nota_maxima_geral` e `$regra->nota_minima_geral`).
   2. Lançamento em ano/etapa encerrada ou bloqueada (`validatesCanChangeDiarioForAno` e `validatesPeriodoLancamentoFaltasNotas`).
   3. Menções conceituais inválidas não constantes em `modules.tabela_arredondamento_valor`.
   4. Matrícula com conflito temporal ou dados inconsistentes.
+- **Critério de "bloqueio amigável"**: a entrada não é gravada no banco **e** o sistema exibe mensagem ao usuário, sem erro 500, tela em branco ou perda dos demais dados digitados.
 - **Fórmula de Cálculo**:
-  $$\text{IPPE} = \frac{N_{\text{erros\_invalidos\_bloqueados\_amigavelmente}}}{N_{\text{cenarios\_invalidos\_submetidos}}} \times 100\%$$
+  $$\text{IPPE} = \frac{N_{\text{cenarios\_bloqueados\_amigavelmente}}}{N_{\text{cenarios\_invalidos\_submetidos}}} \times 100\%$$
 - **Tipo de Escala**: Razão ($[0\%, 100\%]$).
-- **Instrumento de Coleta**: Testes de validação de formulário e testes de API com injeção de payloads fora dos limites.
+- **Instrumento de Coleta**: Catálogo de cenários inválidos (no mínimo 3 cenários por tipo), executados pela interface e pela API; a persistência é verificada por consulta ao banco após cada cenário.
 
 #### M13 — Autodescritividade das Mensagens de Validação (ADMV)
-- **Subcaracterística**: Autodescritividade e Assistência ao Usuário (*Self-descriptiveness & User assistance* — ISO 25010:2023, itens 8.4.3 e 8.4.8).
-- **Conceito**: Proporção de mensagens de erro emitidas pelo `Portabilis_Messenger` e controllers que explicam a causa do bloqueio e indicam a ação corretiva necessária (ex.: código de erro padronizado `Error::SCORE_GREATER_THAN_MAX_ALLOWED` com texto orientativo).
+- **Subcaracterística**: Autodescritividade e Assistência ao Usuário (*Self-descriptiveness & User assistance* — ISO 25010:2023).
+- **Questão respondida**: Q4.2.
+- **Conceito**: Proporção das mensagens de erro exibidas nos cenários de M12 que (a) informam a **causa** do bloqueio e (b) indicam a **ação corretiva** esperada do usuário.
 - **Fórmula de Cálculo**:
-  $$\text{ADMV} = \frac{N_{\text{mensagens\_com\_causa\_e\_acao}}}{N_{\text{mensagens\_de\_erro\_totais}}} \times 100\%$$
+  $$\text{ADMV} = \frac{N_{\text{mensagens\_com\_causa\_e\_acao}}}{N_{\text{mensagens\_de\_erro\_avaliadas}}} \times 100\%$$
+- **Procedimento de Classificação**: dois integrantes classificam cada mensagem de forma independente (atende/não atende a cada critério); divergências são resolvidas por consenso e registradas.
 - **Tipo de Escala**: Razão ($[0\%, 100\%]$).
-- **Instrumento de Coleta**: Análise estática do catálogo de mensagens (`src/Support/Exceptions/Error.php` e chamadas `$this->messenger->append()`).
+- **Instrumento de Coleta**: Capturas das mensagens obtidas na execução de M12, complementadas pela inspeção do catálogo de mensagens (`src/Support/Exceptions/Error.php` e chamadas `$this->messenger->append()`).
+
+#### Protocolo das sessões de uso (M14 e M15)
+- **Participantes**: no mínimo 5 pessoas sem experiência prévia no i-Educar, recrutadas voluntariamente; todas assinam o Termo de Consentimento Livre e Esclarecido (TCLE) e os dados são anonimizados (identificação por código P1 a P5).
+- **Tarefas padronizadas** (executadas na mesma ordem, com dados fornecidos em ficha impressa):
+  - **T1 — Matrícula:** matricular um aluno já cadastrado em uma turma e realizar a enturmação.
+  - **T2 — Diário:** lançar as notas de um componente curricular para uma turma de 10 alunos.
+- **Tempo de referência ($T_{\text{ref}}$)**: média de 3 execuções de cada tarefa por um integrante da equipe treinado no sistema.
+- **Registro**: gravação de tela com áudio, cronometragem a partir da leitura da tarefa até a confirmação de gravação; o avaliador não auxilia o participante durante a tarefa.
 
 #### M14 — Tempo Médio de Execução de Tarefa Operacional (TMET)
-- **Característica ISO 25019:2023**: Qualidade em Uso › Benefício › Eficiência (*Beneficialness › Efficiency in use*).
-- **Conceito**: Tempo médio cronometrado (em minutos) despendido por um operador típico para concluir tarefas padrão:
-  - $TMET_{\text{matrícula}}$: Realizar uma matrícula e respectiva enturmação completa.
-  - $TMET_{\text{diário}}$: Preencher notas/menções de 1 componente para uma turma completa de 30 alunos.
-- **Fórmula de Cálculo**:
-  $$\text{TMET} = \frac{1}{K} \sum_{k=1}^K T_k$$
-- **Tipo de Escala**: Razão contínua em minutos ($[0, \infty)$).
-- **Instrumento de Coleta**: Sessão de teste de usabilidade supervisionada com amostragem mínima de $N=10$ usuários.
+- **Característica ISO 25019:2023**: Qualidade em Uso › Eficiência.
+- **Questão respondida**: Q4.3.
+- **Conceito**: Tempo médio, em minutos, que os participantes levam para concluir cada tarefa padronizada ($TMET_{T1}$ e $TMET_{T2}$). Para o julgamento, o tempo é comparado ao tempo de referência por meio da razão $R_{\text{tempo}}$.
+- **Fórmulas de Cálculo**:
+  $$\text{TMET}_{T} = \frac{1}{K} \sum_{k=1}^{K} t_{k,T} \qquad R_{\text{tempo},T} = \frac{\text{TMET}_{T}}{T_{\text{ref},T}}$$
+  onde $t_{k,T}$ é o tempo do participante $k$ na tarefa $T$ e $K$ é o número de participantes que concluíram a tarefa.
+- **Tipo de Escala**: Razão contínua (minutos; razão adimensional para o julgamento).
+- **Instrumento de Coleta**: Gravações das sessões e planilha de cronometragem.
 
 #### M15 — Taxa de Sucesso na Primeira Tentativa em Uso (TSPT)
-- **Característica ISO 25019:2023**: Qualidade em Uso › Benefício › Eficácia (*Beneficialness › Effectiveness in use*).
-- **Conceito**: Percentual de sessões de lançamento de notas no diário que são concluídas e salvas na primeira submissão sem recarga acidental, erro de timeout ou perda de dados digitados.
+- **Característica ISO 25019:2023**: Qualidade em Uso › Eficácia.
+- **Questão respondida**: Q4.4.
+- **Conceito**: Percentual de execuções de tarefa (T1 e T2) concluídas corretamente na primeira submissão, sem erro de validação, recarga da página, perda de dados digitados ou ajuda do avaliador.
 - **Fórmula de Cálculo**:
-  $$\text{TSPT} = \frac{N_{\text{submissoes\_sem\_reprocessamento}}}{N_{\text{submissoes\_totais}}} \times 100\%$$
+  $$\text{TSPT} = \frac{N_{\text{execucoes\_corretas\_na\_1a\_submissao}}}{N_{\text{execucoes\_totais}}} \times 100\%$$
 - **Tipo de Escala**: Razão ($[0\%, 100\%]$).
-- **Instrumento de Coleta**: Telemetria de interface web e logs de requisições de salvamento.
+- **Instrumento de Coleta**: Observação das sessões e gravações; a correção do resultado é conferida por consulta ao banco após cada execução.
 
 ---
 
@@ -246,8 +287,8 @@ graph TD
 
 | ID | Métrica | Subcaracterística (ISO 25010/25019) | Crítico (1) | Regular (2) | Bom (3) | Excelente (4) | Peso ($w_i$) | Tipo de Regra |
 |---|---|---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **M1** | Isolamento de Recursos ($TINCR$) | Compatibilidade › Coexistência | $< 95.0\%$ | $[95.0\%, 98.0\%)$ | $[98.0\%, 99.5\%)$ | $\ge 99.5\%$ | 1.0 | Gradual |
-| **M2** | Conformidade de Interoperabilidade ($CEI$) | Compatibilidade › Interoperabilidade | $< 90.0\%$ | $[90.0\%, 95.0\%)$ | $[95.0\%, 99.0\%)$ | $\ge 99.0\%$ | 1.0 | Gradual |
+| **M1** | Isolamento de Recursos ($TINCR$) | Compatibilidade › Coexistência | $< 70.0\%$ | $[70.0\%, 85.0\%)$ | $[85.0\%, 100\%)$ | $100\%$ | 1.0 | Gradual |
+| **M2** | Conformidade de Interoperabilidade ($CEI$) | Compatibilidade › Interoperabilidade | $< 70.0\%$ | $[70.0\%, 85.0\%)$ | $[85.0\%, 100\%)$ | $100\%$ | 1.0 | Gradual |
 | **M3** | Determinismo de Notas/Menções ($DCNM$) | Confiabilidade › Ausência de Falhas | $< 100\%$ | — | — | $100\%$ | **2.0** | **GATE BINÁRIO** |
 | **M4** | Integridade Transacional ($ITAE$) | Confiabilidade › Tolerância a Falhas | $< 100\%$ | — | — | $100\%$ | **2.0** | **GATE BINÁRIO** |
 | **M5** | Densidade de Defeitos de Matrícula ($DDOM$) | Confiabilidade › Ausência de Falhas | $> 5.0$ | $(2.0, 5.0]$ | $(0.5, 2.0]$ | $\le 0.5$ | 1.2 | Gradual |
@@ -260,9 +301,9 @@ graph TD
 | **M11**| Testes Ativos de Domínio ($TTAE$) | Manutenibilidade › Testabilidade | $< 70.0\%$ | $[70.0\%, 85.0\%)$ | $[85.0\%, 95.0\%)$ | $\ge 95.0\%$ | 1.4 | Gradual |
 | **M12**| Proteção contra Erros ($IPPE$) | Interação › Proteção de Erro | $< 100\%$ | — | — | $100\%$ | **2.0** | **GATE BINÁRIO** |
 | **M13**| Autodescritividade de Mensagens ($ADMV$) | Interação › Autodescritividade | $< 80.0\%$ | $[80.0\%, 90.0\%)$ | $[90.0\%, 98.0\%)$ | $\ge 98.0\%$ | 0.8 | Gradual |
-| **M14a**| Tempo Médio: Matrícula ($TMET_M$) | Qualidade em Uso › Eficiência | $> 4.0$ min | $(2.5, 4.0]$ | $(1.5, 2.5]$ | $\le 1.5$ min | 0.8 | Gradual |
-| **M14b**| Tempo Médio: Diário Turma ($TMET_D$) | Qualidade em Uso › Eficiência | $> 6.0$ min | $(4.0, 6.0]$ | $(2.0, 4.0]$ | $\le 2.0$ min | 1.0 | Gradual |
-| **M15**| Sucesso 1ª Tentativa Diário ($TSPT$) | Qualidade em Uso › Eficácia | $< 85.0\%$ | $[85.0\%, 92.0\%)$ | $[92.0\%, 98.0\%)$ | $\ge 98.0\%$ | 1.0 | Gradual |
+| **M14a**| Razão de Tempo: Matrícula ($R_{tempo,T1}$) | Qualidade em Uso › Eficiência | $> 3.0$ | $(2.0, 3.0]$ | $(1.5, 2.0]$ | $\le 1.5$ | 0.8 | Gradual |
+| **M14b**| Razão de Tempo: Diário ($R_{tempo,T2}$) | Qualidade em Uso › Eficiência | $> 3.0$ | $(2.0, 3.0]$ | $(1.5, 2.0]$ | $\le 1.5$ | 1.0 | Gradual |
+| **M15**| Sucesso na 1ª Tentativa ($TSPT$) | Qualidade em Uso › Eficácia | $< 50.0\%$ | $[50.0\%, 70.0\%)$ | $[70.0\%, 90.0\%)$ | $\ge 90.0\%$ | 1.0 | Gradual |
 
 ---
 
