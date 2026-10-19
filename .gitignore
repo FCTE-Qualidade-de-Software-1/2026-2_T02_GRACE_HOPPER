@@ -15,3 +15,7 @@ Thumbs.db
 # Arquivos Temporários e Logs
 *.log
 /tmp/
+
+# Documentação MkDocs
+site/
+.venv-docs/

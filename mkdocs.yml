@@ -1,0 +1,67 @@
+site_name: Grace Hopper I-Educar
+site_url: https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/
+repo_url: https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER
+repo_name: 2026-2_T02_GRACE_HOPPER
+copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA) · Release E1 (v1.0.0-pc1) · Última atualização: Outubro de 2026"
+
+theme:
+  name: material
+  language: pt-BR
+  features:
+    - navigation.sections
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Mudar para tema escuro
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Mudar para tema claro
+
+plugins:
+  - search
+  - gen-files:
+      scripts:
+        - scripts/docs/gen_pages.py
+
+markdown_extensions:
+  - tables
+  - attr_list
+  - md_in_html
+  - def_list
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Início: index.md
+  - GQM: gqm_evaluation_framework.md
+  - Gestão de Releases: gestao_projeto_releases_milestones_issues.md
+  - Relatório PC1: relatorio_de_planejamento_ponto_de_controle_1_i_educar.md
+  - Artigo IEEE: artigo/modelo_ieee.md
+  - Contribuição: contributing.md
