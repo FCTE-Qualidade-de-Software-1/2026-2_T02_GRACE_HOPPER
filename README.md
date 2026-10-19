@@ -6,7 +6,21 @@
 [![Status da Release](https://img.shields.io/badge/Release-E1%20(v1.0.0--pc1)-purple.svg)](docs/gestao_projeto_releases_milestones_issues.md)
 [![Documentação GitHub Pages](https://img.shields.io/badge/Docs-GitHub%20Pages-blue.svg)](https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/)
 
-Este repositório abriga o projeto de avaliação de qualidade de software do sistema livre de gestão escolar **i-Educar**, desenvolvido no âmbito da disciplina **Qualidade de Software 1 (FGA0315)** da **Universidade de Brasília (UnB / FGA)** no semestre letivo **2026.2**.
+<section class="gh-hero">
+  <p class="gh-hero__eyebrow">Universidade de Brasília · FGA · Qualidade de Software 1</p>
+  <p class="gh-hero__lead">Uma avaliação sistemática da qualidade do <strong>i-Educar</strong>, conectando normas internacionais, métricas e evidências técnicas.</p>
+  <div class="gh-hero__meta">
+    <span>Projeto acadêmico</span>
+    <span>Semestre 2026.2</span>
+    <span>Release E1 · v1.0.0-pc1</span>
+  </div>
+  <div class="gh-hero__actions">
+    <a class="gh-button gh-button--primary" href="https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/gqm_evaluation_framework/">Explorar framework GQM</a>
+    <a class="gh-button gh-button--secondary" href="https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/relatorio_de_planejamento_ponto_de_controle_1_i_educar/">Ver planejamento</a>
+  </div>
+</section>
+
+O projeto avalia o sistema livre de gestão escolar **i-Educar** no âmbito da disciplina **Qualidade de Software 1 (FGA0315)** da **Universidade de Brasília (UnB / FGA)**.
 
 ---
 
