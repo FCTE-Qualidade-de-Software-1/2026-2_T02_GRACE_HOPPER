@@ -36,8 +36,20 @@ Para garantir pontuação máxima na rubrica da Fase 1, a equipe deve documentar
    * Gerencia matrículas, turmas, enturmações, diários de classe, lançamento de notas/frequências, emissão de históricos e exportação direta para o Censo Escolar (Educacenso/INEP).
 
 2. **Propósito da Avaliação e Uso Pretendido:**
-   * **Propósito:** Avaliar a qualidade interna, externa e em uso da versão atual do i-Educar para diagnosticar pontos críticos de arquitetura, estabilidade, integração e interface.
-   * **Uso Pretendido:** Fornecer um parecer técnico estruturado para Secretarias Municipais de Educação (que desejam implantar ou atualizar o sistema) e para a comunidade de desenvolvedores (orientando refatorações prioritárias).
+   * **Propósito:** Avaliar a qualidade de produto (ISO/IEC 25010:2023) e, de forma complementar, a qualidade em uso (ISO/IEC 25019:2023) dos módulos de **Matrícula** e de **Lançamento de Notas e Menções** do i-Educar 2.12, verificando se esses módulos oferecem o nível de confiabilidade, manutenibilidade, compatibilidade e capacidade de interação exigido por redes públicas de ensino.
+   * **Natureza da avaliação:** avaliação independente e diagnóstica, conduzida por avaliadores externos ao projeto i-Educar. Não constitui certificação nem homologação oficial do software.
+   * **Uso pretendido dos resultados:** a Tabela 1 relaciona cada decisão que a avaliação pretende apoiar, quem a toma e qual resultado a informa.
+
+   **Tabela 1 — Decisões apoiadas pelos resultados da avaliação**
+
+   | Quem decide | Decisão apoiada | Resultado da avaliação que informa a decisão |
+   | :--- | :--- | :--- |
+   | Secretarias Municipais de Educação (gestores e equipes de TI) | Adotar, manter ou atualizar o i-Educar para matrícula e diário de classe; definir se a adoção exige suporte técnico contratado ou customizações. | Resultado dos critérios eliminatórios de confiabilidade (cálculo de notas e integridade das operações de matrícula) e índice de qualidade por característica. |
+   | Mantenedores (Portabilis e comunidade i-Educar) | Priorizar refatorações, testes e correções nos módulos avaliados. | Métricas de manutenibilidade e de proteção contra erros do usuário, com os pontos críticos localizados no código. |
+   | Integradores (equipes de TI municipais) | Integrar o i-Educar a outros sistemas municipais no mesmo ambiente e via API, sem adaptações extras. | Métricas de compatibilidade (coexistência de recursos e conformidade das respostas da API). |
+   | Secretários escolares e professores (representados pelas Secretarias) | Definir a necessidade de capacitação para matrícula e lançamento de notas. | Métricas de capacidade de interação e de qualidade em uso (tempo de tarefa e sucesso na primeira tentativa). |
+
+   *Fonte: Elaborado pelos autores.*
 
 3. **Identificação do Requisitante e Partes Interessadas (Stakeholders):**
    * **Requisitante / Mantenedor:** Comunidade i-Educar, Portabilis e equipes de TI das prefeituras.
@@ -50,6 +62,39 @@ Para garantir pontuação máxima na rubrica da Fase 1, a equipe deve documentar
      * **Compatibilidade** (1ª característica adicional): *Coexistência* e *Interoperabilidade*. Justificativa: dependência obrigatória de troca de dados com o sistema Educacenso (INEP) e integração via API REST com sistemas municipais.
      * **Confiabilidade** (2ª característica adicional): *Maturidade*, *Disponibilidade* e *Tolerância a falhas*. Justificativa: alta criticidade durante períodos de matrícula e fechamento de bimestres letivos; falhas nesses períodos paralisam a gestão escolar municipal.
      * **Manutenibilidade** (3ª característica adicional): *Modularidade*, *Analisabilidade*, *Modificabilidade* e *Testabilidade*. Justificativa: coexistência de código legado (`ieducar/intranet`) com código moderno em Laravel (`app/`), exigindo facilidade de manutenção para adaptar regras de avaliação específicas de cada município.
+
+   * **Método de priorização das características:** a Capacidade de Interação (denominação da ISO/IEC 25010:2023 para a antiga Usabilidade) é obrigatória na disciplina e, por isso, não participa da priorização; entra na avaliação com peso fixo. As demais características da ISO/IEC 25010:2023 foram comparadas em uma matriz de criticidade com três critérios, pontuados de 1 (baixo) a 5 (alto):
+     * **Impacto (I):** gravidade da consequência para os *stakeholders* caso os módulos avaliados apresentem baixa qualidade na característica.
+     * **Risco (R):** probabilidade de haver problemas na característica, considerando a arquitetura do i-Educar (núcleo legado em `ieducar/` convivendo com código Laravel em `app/`) e seu tempo de uso em produção.
+     * **Viabilidade de medição (V):** possibilidade de coletar evidências objetivas com os recursos da equipe (ambiente Docker local, código-fonte aberto, sem acesso a ambientes de produção).
+
+     A criticidade é calculada como $C = I \times R$. São selecionadas as três características de maior criticidade que tenham $V \ge 3$; em caso de empate, prevalece a maior viabilidade. A Tabela 2 apresenta o resultado.
+
+   **Tabela 2 — Matriz de priorização das características da ISO/IEC 25010:2023**
+
+   | Característica | I | R | V | C = I × R | Decisão | Peso no índice global |
+   | :--- | :---: | :---: | :---: | :---: | :--- | :---: |
+   | Manutenibilidade | 4 | 5 | 5 | 20 | Selecionada | 30% |
+   | Confiabilidade | 5 | 4 | 4 | 20 | Selecionada | 30% |
+   | Segurança | 5 | 4 | 2 | 20 | Excluída (V < 3) | — |
+   | Compatibilidade | 4 | 3 | 3 | 12 | Selecionada | 20% |
+   | Adequação Funcional | 5 | 2 | 4 | 10 | Excluída (criticidade menor) | — |
+   | Eficiência de Desempenho | 3 | 3 | 2 | 9 | Excluída (V < 3) | — |
+   | Flexibilidade (antiga Portabilidade) | 2 | 2 | 4 | 4 | Excluída (criticidade menor) | — |
+   | Capacidade de Interação | — | — | — | — | Obrigatória (fora da priorização) | 20% |
+
+   *Fonte: Elaborado pelos autores.*
+
+     Justificativa das pontuações que definem o recorte:
+     * **Manutenibilidade (R = 5):** a convivência entre o núcleo legado e o código Laravel aumenta o risco de baixa analisabilidade e testabilidade; a medição é altamente viável por análise estática do código aberto (V = 5).
+     * **Confiabilidade (I = 5):** erros no cálculo de médias ou operações de matrícula incompletas afetam diretamente a vida escolar do estudante e os dados oficiais da rede.
+     * **Compatibilidade (I = 4, R = 3, V = 3):** o i-Educar compartilha banco de dados, cache e portas com outros serviços municipais e expõe uma API REST para integrações; a medição é viável, porém depende de montar um segundo serviço no ambiente local.
+     * **Adequação Funcional (R = 2):** as funções de matrícula e notas estão em uso em produção em diversos municípios há anos, o que torna improvável a ausência de funções essenciais; além disso, a exatidão do cálculo de notas já é verificada pela métrica de ausência de falhas em Confiabilidade.
+
+     **Trade-offs da priorização:**
+     * A exclusão de **Segurança** é a escolha mais sensível, pois o i-Educar armazena dados pessoais de estudantes, em grande parte menores de idade, protegidos pela LGPD. Uma avaliação com evidência objetiva exigiria testes de intrusão e varredura de vulnerabilidades, com riscos éticos e de infraestrutura incompatíveis com o prazo da disciplina; uma avaliação superficial produziria conclusões frágeis. A equipe registra essa lacuna como limitação do estudo.
+     * Atribuir o mesmo peso (30%) a Manutenibilidade e Confiabilidade privilegia a visão de mantenedores e gestores sobre a do usuário final; esse desequilíbrio é compensado pela inclusão obrigatória da Capacidade de Interação com métricas de qualidade em uso.
+     * Compatibilidade entra com peso menor (20%) e escopo restrito à coexistência no ambiente e à API REST do núcleo: a exportação para o Educacenso/INEP fica fora do escopo por ser distribuída em pacote separado (`i-educar-educacenso-package`).
 
 5. **Escopo, Profundidade e Objetos de Avaliação (O que entra e o que fica de fora):**
    * **Dentro do Escopo (Objetos Avaliados):** Fluxos centrais de cadastro escolar e matrícula (Usabilidade), *endpoints* da API REST e módulo de integração/exportação (Compatibilidade), tratamento de exceções e histórico de defeitos/testes nos módulos centrais (Confiabilidade), e análise estática dos diretórios `app/` e módulos principais do repositório `portabilis/i-educar` (Manutenibilidade).
@@ -97,13 +142,15 @@ Para demonstrar planejamento completo e alinhamento com a futura execução (Fas
 
 Conforme solicitado pela professora e exigido pela métrica de **Recursos e Custos (PSM/CID)** e pelo critério **AG-C5 (Transparência da Contribuição Individual)**, a tabela abaixo unifica as tarefas executadas, a quantidade de horas dedicadas, o **valor por hora de cada integrante** e o **percentual de esforço (somando 100%)**.
 
-| Integrante | Papel Principal na Equipe | Responsabilidades e Tarefas Executadas no Ponto de Controle 1 | Horas Dedicadas (h) | Valor / Hora (R$) | Custo Total (R$) | % de Esforço (AG-C5) |
+| Integrante | Papel Principal na Equipe | Responsabilidades e Tarefas no Ponto de Controle 1 | Horas Dedicadas (h) | Valor / Hora (R$) | Custo Total (R$) | % de Esforço (AG-C5) |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Integrante 1** | Gestor de Qualidade / Especialista em Compatibilidade | Estruturação da GitPage e métricas PSM/CID; mapeamento de *stakeholders* (Fase 1); especificação GQM de **Compatibilidade** (Fase 2); revisão da Introdução do artigo. | 12h | R$ 50,00 | R$ 600,00 | **25%** |
-| **Integrante 2** | Analista de Arquitetura / Especialista em Manutenibilidade | Levantamento da arquitetura do repositório `portabilis/i-educar`; adaptação gráfica do modelo ISO 25010 (Fase 1); especificação GQM de **Manutenibilidade** (Fase 2); Referencial Teórico. | 12h | R$ 50,00 | R$ 600,00 | **25%** |
-| **Integrante 3** | Engenheiro de Testes / Especialista em Confiabilidade | Análise de *issues* e maturidade do i-Educar; definição do propósito e escopo da avaliação (Fase 1); especificação GQM de **Confiabilidade** (Fase 2); seção de Metodologia. | 12h | R$ 50,00 | R$ 600,00 | **25%** |
-| **Integrante 4** | Especialista em UX / Usabilidade | Mapeamento dos perfis de usuários escolares e alinhamento aos ODS 4 e 16 (Fase 1); especificação GQM de **Usabilidade** (Fase 2); elaboração dos slides e padronização do artigo. | 12h | R$ 50,00 | R$ 600,00 | **25%** |
-| **TOTAL DA EQUIPE** | — | **Entregáveis Consolidados até o Ponto de Controle 1** | **48h** | **Média: R$ 50,00/h** | **R$ 2.400,00** | **100%** |
+| **Arthur Soares Parente** | Gestor de Configuração / GitPage | Configuração do repositório, templates de issue e estrutura da GitPage (Issue #01). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
+| **Fábio Santos Araujo** | Redação do Artigo | Primeira versão do artigo no Overleaf (Issue #13). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
+| **Gabriel Barbaceli** | GitPage / Especificação GQM | Propósito, uso pretendido e priorização (Issue #17); especificação GQM de **Compatibilidade** e de **Capacidade de Interação** (Issues #05 e #08); tabela de integrantes (Issue #19). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
+| **Gustavo Silva Rodrigues** | Analista de Qualidade / Modelagem | Modelo ISO/IEC 25010 adaptado e delimitação de escopo (Issue #04). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
+| **Ítalo Alves Sampaio de Oliveira** | Analista do Produto e Stakeholders / GitPage | Contextualização do i-Educar (Issue #02); stakeholders e ODS 4 e 16 (Issue #03). | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
+| **Ricardo Lucas Winchello Vieira Branco** | Redação do Artigo | Primeira versão do artigo no Overleaf (Issue #13). | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
+| **TOTAL DA EQUIPE** | — | **Entregáveis Consolidados até o Ponto de Controle 1** | **72h** | **R$ 50,00/h** | **R$ 3.600,00** | **100%** |
 
 ---
 
