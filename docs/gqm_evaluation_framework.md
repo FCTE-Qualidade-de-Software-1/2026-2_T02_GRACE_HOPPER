@@ -21,9 +21,9 @@ O sistema avaliado é o núcleo acadêmico do **i-Educar 2.12** (`projeto-qualid
 
 | Dimensão Arquitetural | Especificação Técnica no Objeto Avaliado |
 | :--- | :--- |
-| **Camada Moderna** | `Laravel 13` · `PHP >= 8.3` · Modelos Eloquent e Services em `app/Models/` e `app/Services/` |
-| **Núcleo Legado** | Subsistema histórico em `ieducar/intranet/` e `ieducar/modules/` (`Avaliacao`, `Api`, `RegraAvaliacao`) |
-| **Persistência Relacional** | `PostgreSQL 14+` dividido nos esquemas `pmieducar`, `modules` e `cadastro` |
+| **Camada Moderna** | `Laravel 13` · `PHP 8.5` (`composer.json`: `^8.5`) · Modelos Eloquent e Services em `app/Models/` e `app/Services/` |
+| **Núcleo Legado** | Subsistema histórico em `ieducar/intranet/` e `ieducar/modules/` (`Avaliacao`, `Api`, `RegraAvaliacao`), acessado pelo `LegacyController` |
+| **Persistência Relacional** | `PostgreSQL 18` (imagem `postgres:18-alpine` da stack Docker oficial) dividido nos esquemas `pmieducar`, `modules` e `cadastro` |
 
 A avaliação concentra-se cirurgicamente em **dois módulos funcionais interdependentes** de alta criticidade:
 
@@ -48,7 +48,7 @@ A avaliação concentra-se cirurgicamente em **dois módulos funcionais interdep
 
     - **Regras Pedagógicas:** Tabela `modules.regra_avaliacao` (`app/Models/LegacyEvaluationRule.php`) e tipos de nota em `RegraAvaliacao_Model_Nota_TipoValor` (`1` = Numérica, `2` = Conceitual/Menção, `3` = Mista, `0` = Nenhuma).
     - **Arredondamento e Conversão:** Tabela `modules.tabela_arredondamento_valor` (`app/Models/LegacyValueRoundingTable.php`).
-    - **Diário Eletrônico e Motor de Boletim:** Controladores `DiarioController.php` (`ieducar/modules/Api/Views/`), `DiarioApiController.php` (`ieducar/modules/Avaliacao/Views/`) e serviço `Avaliacao_Service_Boletim` (`ieducar/modules/Avaliacao/Service/Boletim.php`).
+    - **Diário Eletrônico e Motor de Boletim:** Controladores `DiarioController.php` e `DiarioApiController.php` (ambos em `ieducar/modules/Avaliacao/Views/`), serviço `Avaliacao_Service_Boletim` (`ieducar/modules/Avaliacao/Service/Boletim.php`). Detalhamento verificado em [Arquitetura](agents/architecture.md).
     - **Tabelas de Armazenamento:** `modules.nota_aluno`, `modules.nota_componente_curricular` e `modules.nota_componente_curricular_media`.
 
 </div>
@@ -268,7 +268,7 @@ $$
 $$
 
 - **Tipo de Escala**: Razão ($[0\%, 100\%]$).
-- **Instrumento de Coleta**: Testes de injeção de falha simulada (Chaos / Mock throw) e inspeção estática de blocos transacionais nos serviços (`app/Services/RegistrationService.php` e `ieducar/modules/Api/Views/DiarioController.php`).
+- **Instrumento de Coleta**: Testes de injeção de falha simulada (Chaos / Mock throw) e inspeção estática de blocos transacionais nos serviços (`app/Services/RegistrationService.php` e `ieducar/modules/Avaliacao/Views/DiarioController.php`).
 
 #### M5 — Densidade de Defeitos Operacionais de Matrícula (DDOM)
 - **Subcaracterística**: Ausência de Falhas (*Faultlessness* — ISO 25010:2023, item 8.5.2).

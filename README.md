@@ -74,6 +74,8 @@ O plano de medição e projeto da avaliação compreende a extração estática 
 | :--- | :--- | :--- |
 | **Planejamento do Ponto de Controle 1** | [`docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`](docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md) | Linha do tempo (M0 a M5), requisitos da Fase 1, matriz de priorização ($C = I \times R$), resumo GQM e estrutura de slides. |
 | **Framework GQM de Avaliação (v2.0)** | [`docs/gqm_evaluation_framework.md`](docs/gqm_evaluation_framework.md) | Objeto de avaliação, árvores GQM por característica, fórmulas matemáticas (M1 a M15), limiares e regras de decisão. |
+| **Visão do Produto i-Educar** | [`docs/agents/project_overview.md`](docs/agents/project_overview.md) | Descrição do sistema avaliado, finalidade social, partes interessadas e relação com a avaliação. |
+| **Arquitetura do i-Educar** | [`docs/agents/architecture.md`](docs/agents/architecture.md) | Arquitetura híbrida (Laravel 13 e núcleo legado), papel do `LegacyController`, versões verificadas (PHP 8.5, PostgreSQL 18), módulos avaliados e esquemas PostgreSQL. |
 | **Gestão de Milestones, Issues e Releases** | [`docs/gestao_projeto_releases_milestones_issues.md`](docs/gestao_projeto_releases_milestones_issues.md) | Alocação de custos PSM/CID, diagrama de marcos, catálogo atômico das Issues #01 a #19 e especificação das Releases E1 e E2. |
 | **Guia de Contribuição e Governança Git** | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Fluxo de trabalho de issues, branches, padrão de commits e política de revisão por pares. |
 
