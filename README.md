@@ -65,6 +65,7 @@ O plano de medição e projeto da avaliação compreende a extração estática 
 
 ## 5. Estrutura e Mapa de Documentação do Projeto
 
+- **Artigo IEEE**: [estrutura e rastreabilidade](docs/artigo/modelo_ieee.md), com [fonte LaTeX editável](docs/artigo/main.tex).
 - **Planejamento do Ponto de Controle 1**: [`docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`](docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md)
 - **Gestão de Milestones, Issues e Releases**: [`docs/gestao_projeto_releases_milestones_issues.md`](docs/gestao_projeto_releases_milestones_issues.md)
 - **Framework GQM de Avaliação de Qualidade (v2.0)**: [`docs/gqm_evaluation_framework.md`](docs/gqm_evaluation_framework.md)
