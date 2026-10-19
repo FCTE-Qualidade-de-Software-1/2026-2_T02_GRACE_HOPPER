@@ -1,0 +1,399 @@
+% Esqueleto adaptado ao PDF model/conference_101719.pdf enviado pela equipe.
+% Compilar a partir de docs/artigo; usar a classe fornecida sem modificá-la.
+\makeatletter
+\def\input@path{{model/}}
+\makeatother
+\documentclass[conference]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage{url}
+
+\newcommand{\pendente}[1]{\textit{[PREENCHER: #1]}}
+
+\title{Avaliação da Qualidade de Software da Plataforma i-Educar:
+um Estudo dos Módulos de Matrícula e Lançamento de Notas}
+
+% Autores na ordem registrada no README e na seção 3 do planejamento PC1.
+\author{\IEEEauthorblockN{Arthur Soares Parente, Fábio Santos Araujo, Gabriel Barbaceli,\\
+Gustavo Silva Rodrigues, Ítalo Alves Sampaio de Oliveira,\\
+Ricardo Lucas Winchello Vieira Branco}
+\IEEEauthorblockA{Universidade de Brasília\\
+Qualidade de Software 1 --- Turma Grace Hopper\\
+\pendente{contatos acadêmicos}}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Este artigo apresenta o planejamento de uma avaliação da qualidade de
+software da plataforma i-Educar, delimitada aos módulos de matrícula
+e lançamento de notas e menções. A estrutura da avaliação segue o
+framework Goal--Question--Metric (GQM) definido pela equipe, abrangendo
+compatibilidade, confiabilidade, manutenibilidade, capacidade de
+interação e qualidade em uso. A avaliação é independente e diagnóstica,
+com testes previstos em instalação local e sessões supervisionadas
+com usuários sem experiência prévia no sistema. Os resultados deverão
+apoiar decisões de adoção, integração, manutenção e capacitação.
+Esta versão contém o esqueleto do estudo;
+a coleta, os resultados e o julgamento da qualidade estão pendentes.
+\pendente{após a execução, revisar o resumo com os principais resultados,
+as limitações e a conclusão sustentada pelas evidências.}
+\end{abstract}
+
+\begin{IEEEkeywords}
+qualidade de software, i-Educar, avaliação de software, GQM, gestão escolar
+\end{IEEEkeywords}
+
+\section{Introdução}
+\label{sec:introducao}
+% Origem: ../relatorio_de_planejamento_ponto_de_controle_1_i_educar.md,
+% seção 2.1, itens 2 a 5; ../gqm_evaluation_framework.md, seções 1 e 3.
+Este trabalho tem como objetivo avaliar a qualidade de software da
+plataforma i-Educar~\cite{ieducar}, com foco nos módulos de matrícula
+e lançamento de notas e menções. O planejamento da avaliação e o
+detalhamento das métricas estão disponíveis nos artefatos produzidos
+pela equipe~\cite{gqm,pc1}.
+
+Conforme o planejamento~\cite{pc1}, a avaliação é independente e
+diagnóstica, conduzida por avaliadores externos ao projeto i-Educar;
+não constitui certificação ou homologação oficial do software.
+Pretende-se apoiar Secretarias Municipais de Educação em decisões de
+adoção, manutenção ou atualização; mantenedores na priorização de
+correções e refatorações; integradores na análise de coexistência e
+conformidade da API; e equipes escolares na identificação de
+necessidades de capacitação.
+
+\pendente{contextualizar o problema com fontes consultadas, justificar
+o recorte e explicitar as contribuições pretendidas.}
+
+\section{Fundamentação e Trabalhos Relacionados}
+\label{sec:fundamentacao}
+% Origem: ../gqm_evaluation_framework.md, enquadramento normativo e seção 1.2.
+\subsection{Modelos e processo de avaliação da qualidade}
+A ISO/IEC 25010:2023 define um modelo de qualidade de produto,
+com características e subcaracterísticas para especificar, medir
+e avaliar propriedades de produtos de software e de tecnologia da
+informação e comunicação~\cite{iso25010}. A ISO/IEC 25019:2023 trata
+da qualidade em uso, considerando os efeitos do uso de um sistema
+para as partes interessadas em um contexto especificado~\cite{iso25019}.
+A ISO/IEC 25040:2024 apresenta um framework para avaliação da qualidade,
+incluindo conceitos, requisitos e recomendações para os processos
+de avaliação; ela não determina métodos específicos de teste nem
+os limiares adotados neste estudo~\cite{iso25040}.
+
+O recorte de características, as métricas operacionais e os critérios
+de julgamento deste artigo são definidos pelo planejamento e pelo
+framework GQM da equipe~\cite{gqm,pc1}. As referências normativas
+identificam a base conceitual; os valores de aceitação e os pesos
+do projeto não são apresentados como exigências das normas.
+% Metadados e escopo conferidos nos catálogos públicos da ISO.
+% A consulta ao catálogo não equivale à leitura integral das normas.
+\pendente{aprofundar o recorte de características e subcaracterísticas
+após consulta ao texto integral das normas.}
+
+\subsection{Goal--Question--Metric}
+A abordagem Goal--Question--Metric organiza a medição em três níveis:
+objetivos que especificam o que se pretende avaliar, questões que
+operacionalizam esses objetivos e métricas que fornecem os dados
+necessários para responder às questões~\cite{basili1994}. Neste estudo,
+essa relação orienta a rastreabilidade entre G1--G4, as questões de
+avaliação, as medições planejadas e a interpretação dos resultados.
+
+\subsection{Estudos relacionados}
+\pendente{comparar estudos de avaliação de sistemas de gestão escolar
+ou de software livre, indicando diferenças de escopo e método.}
+
+\section{Metodologia}
+\label{sec:metodologia}
+% Origem: ../gqm_evaluation_framework.md, seções 1 a 5.
+\subsection{Objeto e contexto da avaliação}
+\label{sec:objeto}
+O recorte planejado compreende matrícula e lançamento de notas e
+menções. As características selecionadas no planejamento são
+compatibilidade, confiabilidade, manutenibilidade e capacidade de
+interação, articuladas à avaliação de qualidade em uso.
+
+\pendente{registrar versão, hash do commit, data, módulos, ambiente,
+dependências e justificativa do desenho do estudo. Verificar esses
+dados diretamente no software avaliado.}
+
+O planejamento adota o i-Educar 2.12 como alvo e prevê uma instalação
+local via Docker, com dados fictícios nas sessões de uso~\cite{gqm,pc1}.
+O escopo de compatibilidade compreende o ambiente de execução e a
+API REST do núcleo nos módulos selecionados. A exportação para o
+Educacenso/INEP e integrações que dependam de credenciais de produção
+ficam fora de G1~\cite{gqm}.
+
+\subsection{Priorização das características}
+\label{sec:priorizacao}
+% Origem: planejamento PC1, seção 2.1, item 4 e Tabela 2.
+O planejamento compara impacto, risco e viabilidade em escalas de
+1 a 5. A criticidade corresponde ao produto de impacto e risco;
+selecionam-se as três características de maior criticidade com
+viabilidade de pelo menos 3, usando a maior viabilidade como
+desempate. Capacidade de interação é obrigatória na disciplina e
+entra com peso fixo, fora da priorização~\cite{pc1}.
+
+Foram selecionadas manutenibilidade e confiabilidade, com criticidade
+20 e peso de 30\% cada, e compatibilidade, com criticidade 12 e peso
+de 20\%. O grupo interação e qualidade em uso recebe os 20\%
+restantes no índice global~\cite{gqm,pc1}. As pontuações refletem o
+planejamento da equipe, sem representar medições da qualidade do produto.
+
+\subsection{Objetivos, questões e métricas GQM}
+\label{sec:gqm}
+Os identificadores abaixo preservam a árvore GQM e os desdobramentos
+da tabela de métricas do projeto~\cite{gqm}. Para cada métrica, o
+protocolo de coleta deverá registrar unidade, fonte, instrumento,
+amostra e critério de aceitação antes da execução.
+
+\subsubsection{G1 --- Compatibilidade}
+\label{met:g1}
+% Origem: framework GQM, seções 2, 3.1 e 4.
+G1 avalia coexistência e interoperabilidade do ponto de vista dos
+integradores municipais em uma instalação local via Docker~\cite{gqm}.
+Q1.1 verifica se os recursos podem ser isolados por configuração para
+coexistir com outra instância ou serviço no mesmo host. M1 (TINCR)
+mede a proporção dos recursos inventariados cujo isolamento por
+configuração é confirmado em um teste com uma segunda instância,
+sem alterar código-fonte. O inventário abrange portas, nomes de
+contêineres, banco e usuário PostgreSQL, prefixos Redis e diretórios
+de armazenamento.
+
+Q1.2 verifica se as respostas da API de matrícula, enturmação e notas
+obedecem a um contrato verificável. M2 (CEI) mede a proporção de
+endpoints em que todos os casos previstos passam: código HTTP e
+tipo JSON esperados para requisições válidas, campos obrigatórios
+e tipos corretos, e erros estruturados para requisições inválidas,
+sem erro 500 nem resposta HTML. O contrato será o da documentação
+oficial ou, se ausente, um JSON Schema derivado pela equipe e
+versionado antes da execução~\cite{gqm}.
+\pendente{registrar inventário, configurações das duas instâncias,
+endpoints, contratos, coleção de requisições e relatórios de G1.}
+
+\subsubsection{G2 --- Confiabilidade}
+\label{met:g2}
+% Origem: framework GQM, seções 2, 3.2, 4 e 5.1.
+Q2.1 trata do determinismo de notas e menções (M3). Q2.2 trata da
+integridade e reversão de operações compostas (M4), associadas à
+densidade de defeitos operacionais de matrícula (M5). Q2.3 trata do
+procedimento de backup e recuperação (M6).
+\pendente{definir oráculos de cálculo, injeção de falhas, operações
+avaliadas e evidências de recuperação para G2.}
+
+\subsubsection{G3 --- Manutenibilidade}
+\label{met:g3}
+% Origem: framework GQM, seções 2, 3.3 e 4.
+Q3.1 trata da complexidade ciclomática: percentil 90 (M7a) e máximo
+(M7b). Q3.2 trata da distância da sequência principal (M8). Q3.3 trata
+da fricção de dados entre legado e camada moderna (M9). Q3.4 trata do
+índice de manutenibilidade (M10). Q3.5 trata dos testes ativos e
+eficazes de domínio (M11).
+\pendente{fixar arquivos e métodos analisados, ferramentas, versões
+e critérios de seleção dos testes para G3.}
+
+\subsubsection{G4 --- Interação e qualidade em uso}
+\label{met:g4}
+% Origem: framework GQM, seções 2, 3.4, 4 e 5.1.
+G4 avalia os fluxos de matrícula e notas do ponto de vista de
+secretários escolares e professores sem experiência prévia no
+sistema, em instalação local com dados fictícios~\cite{gqm}.
+M12 e M13 medem propriedades do produto por testes e inspeção,
+sem participantes; M14 e M15 dependem de sessões de uso.
+
+Q4.1 trata da proteção contra erros (M12): notas fora da faixa,
+etapas encerradas, menções inválidas e matrículas inconsistentes.
+Prevê-se no mínimo três cenários por tipo, executados pela interface
+e pela API, com verificação da persistência no banco. O bloqueio
+deve impedir a gravação e apresentar uma mensagem, sem erro 500,
+tela em branco ou perda dos demais dados digitados~\cite{gqm}.
+
+Q4.2 trata das mensagens observadas nesses cenários (M13): cada
+mensagem deve explicar a causa e indicar a ação corretiva. Dois
+integrantes classificarão as mensagens de forma independente;
+as divergências serão resolvidas por consenso e registradas.
+
+Q4.3 compara o tempo de usuários novos com o de um integrante
+treinado. M14a e M14b preservam o tempo médio em minutos por tarefa,
+mas o julgamento usa a razão entre esse tempo e o tempo de
+referência. Q4.4 verifica a conclusão correta na primeira submissão
+(M15), abrangendo tanto matrícula quanto diário, sem erro de
+validação, recarga, perda de dados ou ajuda do avaliador~\cite{gqm}.
+
+\subsection{Protocolo das sessões de uso}
+\label{sec:sessoes}
+% Origem: framework GQM, seção 3.4, protocolo de M14 e M15.
+Estão previstas sessões com no mínimo cinco voluntários sem
+experiência prévia no i-Educar, consentimento por TCLE e dados
+anonimizados por códigos de participante. As tarefas serão
+executadas na mesma ordem, com dados fornecidos em ficha: T1,
+matricular um aluno já cadastrado e realizar sua enturmação; T2,
+lançar notas de um componente curricular para dez alunos~\cite{gqm}.
+
+O tempo de referência de cada tarefa será a média de três execuções
+por um integrante treinado. As sessões serão gravadas com tela e
+áudio, cronometrando da leitura da tarefa à confirmação de gravação,
+sem auxílio do avaliador durante a execução. A média de M14 considera
+os participantes que concluíram a tarefa. M15 considera todas as
+execuções de T1 e T2, conferindo no banco a correção do resultado.
+\pendente{registrar recrutamento, consentimento, códigos, fichas,
+tempos individuais e de referência, desistências e falhas.
+Definir antes da coleta o tratamento de tarefas sem concluintes
+ou com tempo de referência inválido.}
+
+\subsection{Procedimentos de coleta e análise}
+\label{sec:coleta}
+% Origem: framework GQM, seções 3, 4 e 6; ferramentas previstas precisam
+% ter sua existência e execução verificadas antes de serem relatadas.
+\pendente{descrever cenários, repetições, ferramentas e versões,
+tratamento de dados ausentes, normalização, pesos e critérios
+eliminatórios. Informar como reproduzir a coleta e localizar evidências.}
+
+\subsection{Critérios de julgamento e rastreabilidade}
+\label{sec:julgamento}
+% Origem: framework GQM, seções 4 e 5. Não alterar pesos ou limiares aqui.
+O planejamento estabelece critérios eliminatórios para M3, M4 e M12.
+Os limiares, pesos e regras de agregação serão os da versão do framework
+GQM identificada no protocolo~\cite{gqm}. Para M1 e M2, as faixas
+atuais são: crítico abaixo de 70\%, regular de 70\% a menos de 85\%,
+bom de 85\% a menos de 100\% e excelente em 100\%.
+Para M14a e M14b, a razão de tempo é crítica acima de 3, regular
+acima de 2 até 3, boa acima de 1,5 até 2 e excelente até 1,5.
+M15 é crítica abaixo de 50\%, regular de 50\% a menos de 70\%,
+boa de 70\% a menos de 90\% e excelente a partir de 90\%~\cite{gqm}.
+\pendente{fixar a revisão usada na execução, conferir a cobertura dos
+limiares e explicitar o tratamento de casos sem classificação antes
+de aplicar os critérios. Documentar o cálculo dos índices por
+característica e global, sem atribuir pontuação a dados ausentes.}
+
+Cada registro de medição deverá indicar objetivo, questão, métrica,
+cenário ou amostra, valor e unidade, critério aplicado, localização
+da evidência, versão do software, data e responsável pela coleta.
+Resultados indisponíveis permanecerão identificados como pendentes.
+
+\section{Resultados}
+\label{sec:resultados}
+% Origem futura: registros de execução e evidências vinculados ao GQM.
+A coleta está pendente. As subseções reservam o vínculo entre o
+protocolo metodológico, as medições e as questões de avaliação.
+
+\subsection{G1 --- Compatibilidade}
+\label{res:g1}
+\pendente{responder Q1.1 e Q1.2 com M1 e M2, conforme a
+Seção~\ref{met:g1}; apresentar valores, unidades, amostras, critérios
+e referências às evidências. Informar recursos identificados e
+isoláveis, conflitos entre instâncias e endpoints conformes e
+testados, com o contrato e todos os casos de teste por endpoint.}
+
+\subsection{G2 --- Confiabilidade}
+\label{res:g2}
+\pendente{responder Q2.1 a Q2.3 com M3 a M6, conforme a
+Seção~\ref{met:g2}; apresentar evidências dos critérios eliminatórios
+M3 e M4, defeitos observados e verificação do procedimento de backup.}
+
+\subsection{G3 --- Manutenibilidade}
+\label{res:g3}
+\pendente{responder Q3.1 a Q3.5 com M7a, M7b e M8 a M11, conforme
+a Seção~\ref{met:g3}; informar o universo analisado, os valores,
+as unidades, os critérios e as evidências.}
+
+\subsection{G4 --- Interação e qualidade em uso}
+\label{res:g4}
+\pendente{responder Q4.1 a Q4.4 com M12, M13, M14a, M14b e M15,
+conforme a Seção~\ref{met:g4}; apresentar o critério eliminatório M12,
+cenários e persistência, classificação independente das mensagens
+e consensos. Para T1 e T2, apresentar amostras, tempos em minutos,
+referência de três execuções, razões de tempo e sucesso na primeira
+submissão, conforme a Seção~\ref{sec:sessoes}. Vincular cada resultado
+às evidências anonimizadas.}
+
+\subsection{Síntese do julgamento}
+\label{res:julgamento}
+\pendente{consolidar os critérios eliminatórios, índices por
+característica e índice global segundo a Seção~\ref{sec:julgamento}.
+Registrar dados ausentes e limitações que impeçam o julgamento.
+Não emitir classificação antes da coleta e conferência das evidências.}
+
+\section{Discussão}
+\label{sec:discussao}
+% Dependências: resultados G1--G4 e critérios de julgamento.
+\pendente{responder às questões GQM a partir dos resultados, discutir
+divergências, priorizar recomendações e separar observações de
+hipóteses explicativas. Relacionar as respostas às
+Seções~\ref{res:g1}, \ref{res:g2},
+\ref{res:g3} e~\ref{res:g4}, indicando quais evidências sustentam
+cada recomendação e os limites de sua aplicação.}
+
+\section{Ameaças à Validade}
+\label{sec:validade}
+O recorte não inclui segurança, excluída na priorização por baixa
+viabilidade de medição, nem desempenho sob estresse em escala de
+produção~\cite{pc1}. Portanto, os resultados não permitirão concluir
+sobre a qualidade integral da plataforma. A instalação local, o
+contrato de API eventualmente derivado pela equipe e a participação
+de usuários iniciantes também delimitam a interpretação.
+\pendente{discutir validade de construto, vieses de seleção e execução,
+limites dos instrumentos e da amostra, influência do ambiente e
+generalização para outros módulos ou instalações do i-Educar.
+Registrar as medidas de mitigação efetivamente adotadas.}
+
+\section{Conclusão}
+\label{sec:conclusao}
+\pendente{retomar o objetivo, sintetizar achados sustentados pelas
+evidências, explicitar limitações e indicar trabalhos futuros.
+Na versão de planejamento, relatar apenas o plano e os próximos passos.}
+
+\section*{Declaração de Uso de Inteligência Artificial}
+\label{sec:ia}
+\pendente{informar ferramentas e modelos utilizados, tarefas apoiadas
+e revisão humana efetivamente realizada. A preparação desta estrutura
+teve apoio do assistente Codex; revisar e complementar o registro.}
+
+\begin{thebibliography}{00}
+% Origem: documentos locais efetivamente consultados para este esqueleto.
+% Ordenar as entradas pela primeira citação no texto (estilo IEEE).
+\bibitem{ieducar}
+Portabilis e colaboradores, ``i-Educar,'' repositório de software.
+[Online]. Disponível em: \url{https://github.com/portabilis/i-educar}.
+Acesso em: 18 out. 2026.
+% Base documental consultada: merge ff53da3. Atualizar após nova revisão.
+\bibitem{gqm}
+Equipe Grace Hopper, ``Framework GQM de Avaliação de Qualidade de
+Software --- Versão 2.0,'' documento do projeto. [Online]. Disponível em:
+\url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/blob/ff53da3/docs/gqm_evaluation_framework.md}.
+Revisão ff53da3, 2026.
+\bibitem{pc1}
+Equipe Grace Hopper, ``Relatório de Planejamento --- Ponto de Controle 1
+(i-Educar),'' documento do projeto. [Online]. Disponível em:
+\url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/blob/ff53da3/docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md}.
+Revisão ff53da3, 2026.
+\bibitem{iso25010}
+ISO e IEC, \emph{Systems and software engineering --- Systems and
+software Quality Requirements and Evaluation (SQuaRE) --- Product
+quality model}, ISO/IEC 25010:2023, 2nd ed., 2023.
+[Online]. Disponível em: \url{https://www.iso.org/standard/78176.html}.
+Acesso ao catálogo em: 18 out. 2026.
+\bibitem{iso25019}
+ISO e IEC, \emph{Systems and software engineering --- Systems and
+software Quality Requirements and Evaluation (SQuaRE) --- Quality-in-use
+model}, ISO/IEC 25019:2023, 1st ed., 2023.
+[Online]. Disponível em: \url{https://www.iso.org/standard/78177.html}.
+Acesso ao catálogo em: 18 out. 2026.
+\bibitem{iso25040}
+ISO e IEC, \emph{Systems and software engineering --- Systems and
+software Quality Requirements and Evaluation (SQuaRE) --- Quality
+evaluation framework}, ISO/IEC 25040:2024, 2nd ed., 2024.
+[Online]. Disponível em: \url{https://www.iso.org/standard/83467.html}.
+Acesso ao catálogo em: 18 out. 2026.
+\bibitem{basili1994}
+V. R. Basili, G. Caldiera e H. D. Rombach, ``Goal Question Metric
+Approach,'' em \emph{Encyclopedia of Software Engineering}.
+John Wiley \& Sons, 1994, pp. 528--532.
+[Online]. Disponível em:
+\url{https://www.cs.umd.edu/~basili/publications/technical/T89.pdf}.
+Acesso em: 18 out. 2026.
+% Estudos relacionados serão incluídos após seleção e leitura.
+\end{thebibliography}
+
+\end{document}
