@@ -188,13 +188,13 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Depends on:** Issue #02.
 - **Scope:** Diagrama próprio da ISO 25010:2023 recortada e matriz "O que entra vs. O que fica de fora do escopo".
 - [ ] **Task:** Desenhar diagrama adaptado da ISO 25010:2023 e justificar limites de escopo
-    - **Files:** `docs/agents/gqm_evaluation_framework.md`
+    - **Files:** `docs/gqm_evaluation_framework.md`
     - **Change:** Atualizar termos para *Interaction Capability* e *Faultlessness* e definir exclusão de testes de estresse em escala.
     - **Covers:** Fase 1 (Item 4 — Modelo Adaptado e Item 5 — Escopo e Profundidade), Critério AG-C2.
     - **Acceptance criteria:**
         - Diagrama vetorial ou Mermaid numerado, com legenda e fonte citada.
         - Justificativa técnica para o foco em Matrícula e Lançamento de Notas/Menções.
-    - **Tests:** `grep -Fq "Interaction Capability" docs/agents/gqm_evaluation_framework.md`.
+    - **Tests:** `grep -Fq "Interaction Capability" docs/gqm_evaluation_framework.md`.
     - **Risk:** none.
 
 ---

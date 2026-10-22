@@ -97,6 +97,59 @@ Em alinhamento estrito com a revisão normativa 2023/2024, foram recortadas quat
 
 </div>
 
+### Figura 1 — Adaptação da ISO/IEC 25010:2023 ao recorte da avaliação
+
+O diagrama abaixo é uma **adaptação da equipe**, não uma reprodução da figura nem da lista normativa completa. A página pública da ISO informa que a edição de 2023 contém nove características subdivididas em subcaracterísticas, mas não disponibiliza gratuitamente o texto integral. O recorte seleciona quatro características para a avaliação; os pesos refletem a matriz de priorização do relatório PC1. Os nomes das subcaracterísticas e sua vinculação às métricas são os usados pelo projeto e devem ser conferidos na norma integral antes de serem apresentados como citação normativa literal.
+
+```mermaid
+flowchart LR
+    subgraph ADAPTACAO["Adaptação da equipe — quatro características selecionadas"]
+        COMP["1. Compatibilidade · 20%"]
+        REL["2. Confiabilidade · 30%"]
+        MAN["3. Manutenibilidade · 30%"]
+        INT["4. Capacidade de Interação · 20%"]
+
+        COMP --> COEX["Coexistência · M1"]
+        COMP --> INTEROP["Interoperabilidade · M2"]
+        REL --> FAULT["Ausência de falhas / faultlessness · M3, M5"]
+        REL --> TOL["Tolerância a falhas · M4"]
+        REL --> REC["Recuperabilidade · M6"]
+        MAN --> MOD["Modularidade · M7, M8"]
+        MAN --> ANAL["Analisabilidade · M7, M9"]
+        MAN --> MODIF["Modificabilidade · M8, M9, M10"]
+        MAN --> TEST["Testabilidade · M11"]
+        INT --> ERR["Proteção contra erros · M12"]
+        INT --> SELF["Autodescritividade · M13"]
+    end
+
+    COMP --> PESO["Priorização do PC1<br/>C = Impacto × Risco<br/>Viabilidade mínima = 3"]
+    REL --> PESO
+    MAN --> PESO
+    INT --> OBR["Obrigatória na disciplina;<br/>peso fixo, fora da priorização"]
+    PESO --> IQM["Pesos no IQM<br/>20% + 30% + 30% + 20% = 100%"]
+    OBR --> IQM
+    QOU["Qualidade em uso — ISO/IEC 25019:2023<br/>M14a/M14b: eficiência; M15: eficácia"] -. "complementar; fora das 4 características ISO 25010" .-> INT
+    OUT["Não selecionadas na matriz PC1:<br/>Adequação funcional, Segurança,<br/>Eficiência de desempenho e Flexibilidade.<br/>A matriz não registra decisão/peso<br/>para a 9ª característica do modelo."]
+```
+
+**Legenda:** caixas numeradas são as quatro características avaliadas; caixas subordinadas são o recorte de subcaracterísticas e métricas adotado pela equipe; linhas pontilhadas separam a qualidade em uso (ISO/IEC 25019) da qualidade do produto; pesos e regras de priorização são decisões do PC1, não pesos prescritos pela ISO. A lista atual de alternativas da matriz PC1 registra quatro características não selecionadas; como a matriz não identifica nem pontua a nona característica mencionada no resumo público da ISO, essa lacuna permanece explícita e não recebe nome, nota ou peso inventado.
+
+**Fonte e limite:** adaptação da equipe com base na página pública [ISO/IEC 25010:2023](https://www.iso.org/standard/78176.html) (metadados e resumo: modelo de qualidade de produto com nove características e subcaracterísticas), no relatório PC1, seção 2.1.4, e no framework GQM. A página pública não substitui a norma paga. Termos, subcaracterísticas, enumeração completa, numeração de cláusulas e relações normativas não foram validados contra o texto integral. *Interaction Capability* e *Faultlessness* são mantidos como termos do projeto; “Maturity” é tratado apenas como nomenclatura anterior já presente nos documentos, não como equivalência normativa afirmada aqui.
+
+### 1.3 Escopo e justificativa do recorte
+
+O recorte concentra a inspeção e os protocolos nos módulos de **Matrícula** e **Lançamento de Notas/Menções**. A escolha é coerente com as partes interessadas do PC1: secretarias e equipes de TI dependem de registros de matrícula/enturmação; professores e gestores dependem do diário e de cálculos corretos; mantenedores precisam alterar regras municipais no núcleo híbrido. A consequência de um registro inconsistente ou de um cálculo incorreto alcança o histórico escolar e a gestão da rede. A base técnica documentada no objeto da avaliação localiza esses fluxos em `RegistrationService`, `LegacyRegistration`, `LegacyEnrollment`, `DiarioController`, `DiarioApiController`, `Boletim.php` e tabelas dos esquemas `pmieducar` e `modules`; o relatório de arquitetura descreve a transição entre o legado `ieducar/` e Laravel em `app/`. Esse é o fundamento do recorte, não uma afirmação de que todos os módulos ou cenários de produção foram executados nesta tarefa.
+
+| Dentro do escopo | Fora do escopo / limite |
+| --- | --- |
+| Fluxos e código de matrícula, enturmação, remanejamento e ciclo de vida do vínculo escolar. | Pacotes externos, `vendor/` e exportação Educacenso/INEP em repositório separado. |
+| Regras, conversão/arredondamento de notas e menções e gravação do diário. | Integrações que dependem de credenciais ou dados de produção não fornecidos. |
+| Configuração de ambiente e API REST do núcleo, operações transacionais e procedimento de backup/restauração em ambiente local ou de homologação. | Teste sob estresse simultâneo de múltiplos municípios; não há infraestrutura representativa da produção disponível para esta avaliação. |
+| Análise estática e testes dos caminhos de código associados aos módulos descritos. | Segurança como característica avaliada, desempenho em escala e avaliação dos demais módulos do produto; sua exclusão limita a generalização dos resultados. |
+| M5 permanece definido como indicador dependente de registros operacionais; sua mensuração requer dados de produção e não é presumida por esta delimitação. | Resultados empíricos, incidentes ou volumes de produção sem evidência fornecida. |
+
+Este quadro é a delimitação operacional comum para G1–G4. Uma métrica que depende de produção mantém sua definição e fonte necessária, mas deve ser marcada como **não mensurável** quando os registros correspondentes não estiverem disponíveis; ausência de dados não equivale a zero, aprovação ou reprovação.
+
 ---
 
 ## 2. Atividade 2 (ISO 25040:2024): Especificação da Avaliação (Árvore GQM)

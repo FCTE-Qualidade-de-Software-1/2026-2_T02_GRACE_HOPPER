@@ -72,14 +72,14 @@ As partes interessadas foram caracterizadas pelo papel que exercem no i-Educar, 
 
 #### 2.1.4 Seleção, Priorização e Adaptação do Modelo de Qualidade (ISO/IEC 25010:2023)
 
-O modelo adaptado da ISO/IEC 25010 destaca as **4 características** e respectivas **subcaracterísticas** recortadas para o i-Educar:
+O modelo adaptado da ISO/IEC 25010 destaca as **4 características** e respectivas **subcaracterísticas** recortadas para o i-Educar. A Figura 1 do [framework GQM](gqm_evaluation_framework.md#figura-1-adaptacao-da-isoiec-250102023-ao-recorte-da-avaliacao) apresenta o diagrama próprio da equipe; não é reprodução da figura normativa. A página pública da ISO descreve nove características, mas a íntegra da edição é paga. Portanto, a figura identifica o recorte e seus termos como adaptação da equipe, não como transcrição integral verificada.
 
-- **Capacidade de Interação / Usabilidade** (Característica obrigatória / foco em interação): *Apreensibilidade*, *Operabilidade*, *Proteção contra erros do usuário* e *Autodescritividade*. Justificativa: perfil heterogêneo de letramento digital dos servidores escolares e necessidade de evitar erros de preenchimento cadastral.
+- **Capacidade de Interação** (característica obrigatória na disciplina / foco em interação): *Proteção contra erros do usuário* e *Autodescritividade* são operacionalizadas por M12 e M13. Apreensibilidade e operabilidade aparecem como necessidades de contexto, mas não têm métricas próprias nesta versão. Justificativa: perfil heterogêneo de letramento digital dos servidores escolares e necessidade de evitar erros de preenchimento cadastral.
 - **Compatibilidade** (1ª característica adicional): *Coexistência* e *Interoperabilidade*. Justificativa: dependência obrigatória de troca de dados com o sistema Educacenso (INEP) e integração via API REST com sistemas municipais.
-- **Confiabilidade** (2ª característica adicional): *Ausência de Falhas (Maturidade)*, *Tolerância a falhas* e *Recuperabilidade*. Justificativa: alta criticidade durante períodos de matrícula e fechamento de bimestres letivos; falhas nesses períodos paralisam a gestão escolar municipal.
+- **Confiabilidade** (2ª característica adicional): *Ausência de Falhas (Faultlessness, termo usado no framework)*, *Tolerância a falhas* e *Recuperabilidade*. “Maturidade” é nomenclatura anterior registrada em documentos do projeto, não uma equivalência normativa afirmada neste relatório. Justificativa: alta criticidade durante períodos de matrícula e fechamento de bimestres letivos; falhas nesses períodos podem comprometer registros e cálculos escolares.
 - **Manutenibilidade** (3ª característica adicional): *Modularidade*, *Analisabilidade*, *Modificabilidade* e *Testabilidade*. Justificativa: coexistência de código legado (`ieducar/intranet`) com código moderno em Laravel (`app/`), exigindo facilidade de manutenção para adaptar regras de avaliação específicas de cada município.
 
-**Método de priorização das características:** a Capacidade de Interação (denominação da ISO/IEC 25010:2023 para a antiga Usabilidade) é obrigatória na disciplina e, por isso, não participa da priorização; entra na avaliação com peso fixo. As demais características da ISO/IEC 25010:2023 foram comparadas em uma matriz de criticidade com três critérios, pontuados de 1 (baixo) a 5 (alto):
+**Método de priorização das características:** a Capacidade de Interação, conforme o recorte apresentado pela equipe e requisito da disciplina, é obrigatória e, por isso, não participa da priorização; entra na avaliação com peso fixo. As demais alternativas registradas pela equipe foram comparadas em uma matriz de criticidade com três critérios, pontuados de 1 (baixo) a 5 (alto):
 
 - **Impacto ($I$):** gravidade da consequência para os *stakeholders* caso os módulos avaliados apresentem baixa qualidade na característica.
 - **Risco ($R$):** probabilidade de haver problemas na característica, considerando a arquitetura do i-Educar (núcleo legado em `ieducar/` convivendo com código Laravel em `app/`) e seu tempo de uso em produção.
@@ -101,6 +101,8 @@ A criticidade é calculada como $C = I \times R$. São selecionadas as três car
 | Capacidade de Interação | — | — | — | — | Obrigatória (fora da priorização) | 20% |
 
 *Fonte: Elaborado pelos autores.*
+
+**Limite da matriz:** esta tabela registra as alternativas consideradas pela equipe e não enumera todas as nove características mencionadas no resumo público da ISO/IEC 25010:2023. A característica que não aparece na tabela não recebeu nome, pontuação ou decisão nesta revisão; completar essa lacuna exige consulta ao texto normativo e decisão da equipe. A ISO não prescreve os pesos de 30% / 30% / 20% / 20%, que são uma decisão local.
 
 <div class="grid cards" markdown>
 
@@ -125,23 +127,26 @@ A criticidade é calculada como $C = I \times R$. São selecionadas as três car
 
 #### 2.1.5 Escopo, Profundidade e Objetos de Avaliação
 
+O foco em **Matrícula** e **Notas/Menções** decorre da criticidade dos registros para secretarias, professores e gestores (Tabelas 1 e 1-A) e da arquitetura observada nos artefatos do produto: vínculo e enturmação em `pmieducar.matricula`/`matricula_turma` e seus modelos/serviço Laravel; regras pedagógicas, diário e cálculos em `modules` e no subsistema legado `ieducar/modules/Avaliacao`. A avaliação é diagnóstica desses fluxos, não certificação do produto completo.
+
 <div class="grid cards" markdown>
 
 -   **Dentro do Escopo (Objetos Avaliados)**
 
     ---
 
-    - Fluxos centrais de cadastro escolar, matrícula e diário de classe (Capacidade de Interação e Qualidade em Uso).
+    - Fluxos e código de matrícula, enturmação, remanejamento, ciclo de vida do vínculo escolar, diário, regras de avaliação, notas e menções (Interação/Uso, Confiabilidade e Manutenibilidade).
     - *Endpoints* da API REST do núcleo e isolamento de recursos de ambiente via Docker (Compatibilidade).
-    - Determinismo de cálculo de notas, transações atômicas e rotina de backup nos módulos centrais (Confiabilidade).
-    - Análise estática dos diretórios `app/` e módulos principais do repositório `portabilis/i-educar` (Manutenibilidade).
+    - Determinismo de cálculo, operações transacionais e planejamento/teste de restauração dos esquemas `pmieducar`, `modules` e `cadastro` em ambiente local ou de homologação (Confiabilidade).
+    - Análise estática dos caminhos de código associados nos diretórios `app/` e `ieducar/` (Manutenibilidade); M5 é definido, mas depende de registros de produção para ser mensurado.
 
 -   **Fora do Escopo (Exclusões Justificadas)**
 
     ---
 
-    - Avaliação de *Performance / Eficiência de Desempenho* sob estresse de múltiplos municípios simultâneos (exigiria infraestrutura de nuvem equivalente à produção de grandes prefeituras).
+    - Teste sob estresse simultâneo de múltiplos municípios; não há infraestrutura representativa da produção disponível para esta avaliação.
     - Pacotes de terceiros e bibliotecas externas na pasta `vendor/` ou repositórios separados como `i-educar-educacenso-package` (avalia-se apenas o código sob responsabilidade direta do núcleo do i-Educar).
+    - Segurança como característica avaliada, eficiência de desempenho em escala, integrações que dependam de credenciais/dados de produção e módulos que não sejam Matrícula e Notas/Menções.
 
 </div>
 
