@@ -38,7 +38,7 @@ flowchart TD
     subgraph PC1["Ponto de Controle 1 — Entrega 1 (v1.0.0-pc1)"]
         M0["M0: Setup Inicial (Etapa 1)<br/>Configuração Git · Templates de Issue · Base da GitPage"]
         M1["M1: Requisitos da Avaliação — Fase 1 ISO/IEC 25040 (Etapa 2)<br/>Contexto · Stakeholders · ODS 4 e 16 · Modelo ISO/IEC 25010:2023"]
-        M2["M2: Especificação da Avaliação — Fase 2 ISO/IEC 25040 (Etapa 3)<br/>Árvores GQM · 15 Métricas · 3 Gates Binários · Limiares"]
+        M2["M2: Especificação da Avaliação — Fase 2 ISO/IEC 25040 (Etapa 3)<br/>Árvores GQM · 15 famílias / 17 linhas · 3 Gates Binários · Limiares"]
         M3["M3: Projeto da Avaliação — Fase 3 ISO/IEC 25040 (Etapa 4)<br/>Ambiente Docker · SonarQube/Pest · Protocolo TCLE · Scripts"]
         M4["M4: Consolidação, Slides e Release E1 (Etapa 5)<br/>Artigo v1 · Apresentação PC1 · Tabela PSM/CID · Tag v1.0.0-pc1"]
         M0 --> M1 --> M2 --> M3 --> M4
@@ -73,7 +73,7 @@ flowchart TD
 
     ---
 
-    - **Objetivo:** Construir as árvores GQM para as 4 características, definir as 15 métricas, fórmulas, limiares e Gates Binários.
+    - **Objetivo:** Construir as árvores GQM para as 4 características, definir 15 famílias de métricas (17 linhas operacionais, com M7a/b e M14a/b), fórmulas, limiares e Gates Binários.
     - **Entregáveis:** Documento [`gqm_evaluation_framework.md`](gqm_evaluation_framework.md), árvores em Mermaid e tabela de pontuação.
     - **Critério de Conclusão:** Rastreabilidade estrita $\text{G} \rightarrow \text{Q} \rightarrow \text{M}$ sem lacunas operacionais.
 
@@ -82,7 +82,7 @@ flowchart TD
     ---
 
     - **Objetivo:** Estruturar plano de medição e testes, ambiente Docker oficial, ferramentas estáticas e protocolo TCLE.
-    - **Entregáveis:** Script `scripts/evaluate-quality.php`, configuração Docker e minuta do TCLE.
+    - **Entregáveis planejados:** Implementação do script `scripts/evaluate-quality.php`, configuração Docker e minuta do TCLE; o script não está presente neste checkout documental.
     - **Critério de Conclusão:** Scripts de medição e ambiente conteinerizado validados localmente.
 
 -   **Milestone M4 — Consolidação, Slides e Release E1** · `Etapa 5`
@@ -256,8 +256,8 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
     - **Change:** Inserir equações de McCabe, Distância da Sequência Principal de Martin ($D$) e Maintainability Index.
     - **Covers:** Fase 2 (GQM Manutenibilidade).
     - **Acceptance criteria:**
-        - Inclusão do percentil 90 e valor máximo conforme recomendação do NIST SP 500-235.
-        - Definição da métrica TTAE para penalizar testes com `markTestSkipped()`.
+        - Inclusão de M7a (P90) e M7b (máximo); não atribuir o P90 ao NIST SP 500-235, que não o recomenda.
+        - Definição de M11 para testes ativos com asserção, distinguindo asserção de eficácia por mutação/falha controlada.
     - **Tests:** `grep -Fq "MI-SEI" docs/gqm_evaluation_framework.md`.
     - **Risk:** none.
 
@@ -296,7 +296,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
     - **Change:** Estabelecer pesos das características (30% Conf, 30% Manut, 20% Inter/Uso, 20% Comp) e regras A, B e C.
     - **Covers:** Fase 2 (Critérios de Julgamento).
     - **Acceptance criteria:**
-        - Tabela completa de limiares para as 15 métricas em 4 níveis (Crítico a Excelente).
+        - Tabela completa de limiares para as 15 famílias (17 linhas operacionais) em 4 níveis (Crítico a Excelente).
         - Diagrama de fluxo de decisão de aprovação de release em Mermaid.
     - **Tests:** `grep -Fq "IQM" docs/gqm_evaluation_framework.md`.
     - **Risk:** none.
@@ -522,8 +522,8 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
     - **Data de Publicação:** Ponto de Controle 1 (Conforme cronograma da disciplina).
     - **Conteúdo da Release:**
         - Planejamento do Processo de Avaliação (Fases 1, 2 e 3 da ISO/IEC 25040:2024).
-        - Framework Técnico GQM v2.0 com 15 métricas, limiares e Gates Binários.
-        - Motor executável de extração estática `scripts/evaluate-quality.php`.
+        - Framework Técnico GQM v2.0 com 15 famílias (17 linhas operacionais), limiares e Gates Binários.
+        - Motor `scripts/evaluate-quality.php` previsto no planejamento, cuja implementação e validação no checkout do produto permanecem pendentes.
         - 1ª Versão do Artigo Acadêmico e Apresentação de Slides do PC1.
         - Tabela consolidada de custos e esforço individual (PSM/CID — 72h, R$ 3.600,00, 100%).
 

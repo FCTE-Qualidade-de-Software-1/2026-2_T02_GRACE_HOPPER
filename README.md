@@ -64,7 +64,7 @@ A avaliação é conduzida seguindo estritamente as normas internacionais vigent
 | **ISO/IEC 25010:2023** (*Product Quality Model*) | Modelo de Qualidade de Produto | **Compatibilidade** (Coexistência e Interoperabilidade), **Confiabilidade** (Ausência de Falhas / *Faultlessness*, Tolerância a Falhas e Recuperabilidade), **Manutenibilidade** (Modularidade, Analisabilidade, Modificabilidade e Testabilidade) e **Capacidade de Interação** (*Interaction Capability* — Proteção contra Erros e Autodescritividade). |
 | **ISO/IEC 25019:2023** (*Quality-in-Use Model*) | Modelo de Qualidade em Uso | Avaliação da **Eficácia** e **Eficiência** em contexto de uso escolar real (tempo de tarefa e sucesso de primeira tentativa no diário e na matrícula). |
 | **ISO/IEC 25040:2024** (*Quality Evaluation Process*) | Processo de Avaliação | Ciclo estruturado em 5 atividades (Requisitos, Especificação, Desenho, Execução e Julgamento). |
-| **Metodologia GQM** (*Goal-Question-Metric*) | Derivação de Métricas | Desdobramento formal em 4 objetivos, 13 questões e 15 métricas quantitativas com 3 Gates Binários eliminatórios de integridade. |
+| **Metodologia GQM** (*Goal-Question-Metric*) | Derivação de Métricas | Desdobramento formal em 4 objetivos, 13 questões, 15 famílias e 17 linhas operacionais (M7a/b e M14a/b desdobradas), com 3 Gates Binários eliminatórios. |
 | **Framework PSM/CID** | Gestão de Recursos e Custos | Rastreamento de métricas de processo, custos financeiros e esforço dedicado da equipe. |
 
 ---

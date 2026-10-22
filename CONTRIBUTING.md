@@ -79,7 +79,7 @@ Todas as mensagens de commit devem ser escritas em português ou inglês seguind
 2. **Revisão por Pares**: Todo PR exige a revisão e aprovação de pelo menos **um colega de equipe** antes do merge em `develop`.
 3. **Critérios de Validação Pré-Merge**:
     - Os testes existentes continuam passando: `vendor/bin/pest` ou scripts locais.
-    - O motor de avaliação de qualidade executa sem erro: `php scripts/evaluate-quality.php`.
+    - Quando implementado e presente no checkout versionado do produto, o motor de avaliação executa sem erro: `php scripts/evaluate-quality.php`. O script não está presente neste repositório de documentação; não considerar sua execução um gate concluído até validar a implementação.
     - A documentação e links compilam sem erro em modo estrito: `bash scripts/docs/check_site.sh` ou `mkdocs build --strict`.
     - Nenhum emoji foi introduzido em arquivos formais da disciplina (Critério AG-C3).
     - As tabelas e figuras adicionadas possuem numeração, legenda e fonte citada (Critérios AG-C2 e AG-C4).

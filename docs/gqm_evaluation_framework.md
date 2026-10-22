@@ -9,7 +9,7 @@
     | **ISO/IEC 25040:2024** | Processo de Avaliação de Qualidade (*Quality evaluation process* — 2ª Edição, 5 atividades). |
     | **ISO/IEC 25002:2024** | Visão Geral e Uso de Modelos de Qualidade (*Quality models overview and usage*). |
     | **ISO/IEC 25023:2016** | Medição de Qualidade de Produto (*Measurement of system and software product quality*). |
-    | **GQM (Basili et al.)** | Metodologia *Goal-Question-Metric* desdobrada em 4 objetivos, 13 questões e 15 métricas. |
+    | **GQM (Basili et al.)** | Metodologia *Goal-Question-Metric* desdobrada em 4 objetivos, 13 questões, 15 famílias de métricas e 17 linhas operacionais. |
 
 ---
 
@@ -84,7 +84,7 @@ Em alinhamento estrito com a revisão normativa 2023/2024, foram recortadas quat
     *Maintainability — ISO/IEC 25010:2023*
 
     - **Subcaracterísticas:** Modularidade, Analisabilidade, Modificabilidade e Testabilidade.
-    - **Foco Técnico:** Complexidade ciclomática $P_{90}/\max$ (`M7`), acoplamento de Martin (`M8`), atrito legado-moderno (`M9`), índice $\text{MI-SEI}$ (`M10`) e testes ativos sem *skips* (`M11`).
+    - **Foco Técnico:** Complexidade ciclomática $P_{90}/\max$ (`M7a`/`M7b`), acoplamento de Martin (`M8`), atrito legado-moderno (`M9`), índice local de manutenibilidade (`M10`) e testes ativos com asserção (`M11`).
 
 -   **G4 — Interação e Qualidade em Uso** · `Peso: 20%`
 
@@ -199,17 +199,17 @@ flowchart LR
 flowchart LR
     G3["G3: Manutenibilidade<br/>(Modularidade, Analisabilidade,<br/>Modificabilidade e Testabilidade)"]
 
-    Q31["Q3.1: Qual a complexidade ciclomática<br/>dos métodos mais críticos dos módulos?"]
+    Q31["Q3.1: Qual a complexidade ciclomática<br/>dos métodos no universo declarado?"]
     Q32["Q3.2: Quão desacoplados e equilibrados estão<br/>os componentes estruturais do domínio?"]
     Q33["Q3.3: Qual o grau de atrito e adaptação de<br/>dados entre a camada legada e moderna?"]
     Q34["Q3.4: Qual o índice global de<br/>manutenibilidade do código?"]
-    Q35["Q3.5: Qual o percentual de testes efetivamente<br/>ativos e livres de skips no módulo avaliado?"]
+    Q35["Q3.5: Qual o percentual de casos de teste<br/>ativos com asserção no domínio avaliado?"]
 
-    M7["M7 (CC-P90/MAX)<br/>Complexidade Ciclomática<br/>Percentil 90 e Máximo"]
+    M7["M7a / M7b (CC)<br/>Complexidade Ciclomática<br/>P90 e máximo"]
     M8["M8 (DSPM)<br/>Distância da Sequência<br/>Principal de Martin"]
     M9["M9 (IFDL)<br/>Índice de Fricção de Dados<br/>Legado-Moderno"]
     M10["M10 (MI-SEI)<br/>Índice de Manutenibilidade<br/>Normalizado"]
-    M11["M11 (TTAE)<br/>Taxa de Testes Ativos e<br/>Eficazes de Domínio"]
+    M11["M11 (TTAE)<br/>Taxa de Testes Ativos<br/>com Asserção"]
 
     G3 --> Q31 --> M7
     G3 --> Q32 --> M8
@@ -371,26 +371,28 @@ $$
 
 !!! info "Objetivo G3 — Manutenibilidade (Modelo GQM)"
     - **Objetivo:** Analisar **o código-fonte dos módulos de Matrícula e de Lançamento de Notas/Menções (`app/` e `ieducar/`)** com o propósito de **avaliar** com respeito à **modularidade, analisabilidade, modificabilidade e testabilidade** do ponto de vista dos **mantenedores e engenheiros de software** no contexto da **arquitetura monolítica híbrida (Laravel + Legado)**.
-    - **Rastreabilidade:** $\text{G3} \rightarrow \text{Q3.1} \rightarrow \text{M7 (CC)}$ · $\text{G3} \rightarrow \text{Q3.2} \rightarrow \text{M8 (DSPM)}$ · $\text{G3} \rightarrow \text{Q3.3} \rightarrow \text{M9 (IFDL)}$ · $\text{G3} \rightarrow \text{Q3.4} \rightarrow \text{M10 (MI-SEI)}$ · $\text{G3} \rightarrow \text{Q3.5} \rightarrow \text{M11 (TTAE)}$.
+    - **Rastreabilidade:** $\text{G3} \rightarrow \text{Q3.1} \rightarrow \text{M7a/M7b (CC)}$ · $\text{G3} \rightarrow \text{Q3.2} \rightarrow \text{M8 (DSPM)}$ · $\text{G3} \rightarrow \text{Q3.3} \rightarrow \text{M9 (IFDL)}$ · $\text{G3} \rightarrow \text{Q3.4} \rightarrow \text{M10 (MI-SEI)}$ · $\text{G3} \rightarrow \text{Q3.5} \rightarrow \text{M11 (TTAE)}$.
 
-#### M7 — Complexidade Ciclomática dos Métodos Críticos (CC-P90/MAX)
-- **Subcaracterística**: Modularidade e Analisabilidade (*Modularity & Analysability* — ISO 25010:2023, itens 8.7.2 e 8.7.4 / NIST SP 500-235).
-- **Conceito**: Mede a complexidade ciclomática de McCabe ($v(G)$) no percentil 90 ($P_{90}$) e o valor máximo absoluto ($V_{\max}$) nos métodos das classes centrais de matrícula e diário (`DiarioApiController.php`, `DiarioController.php`, `Boletim.php`, `RegistrationService.php`).
-- **Fórmula de Cálculo**:
+#### M7a — Percentil 90 da Complexidade Ciclomática (CC-P90)
+- **Subcaracterística de trabalho**: Modularidade. O mapeamento é da equipe; a atribuição e numeração de cláusulas ISO não foram verificadas na norma paga.
+- **População e unidade**: todos os métodos e funções concretos, contáveis pelo analisador, nos arquivos de produção em escopo previamente listados: `app/Services/RegistrationService.php`, `ieducar/modules/Avaliacao/Views/DiarioApiController.php`, `ieducar/modules/Avaliacao/Views/DiarioController.php` e `ieducar/modules/Avaliacao/Service/Boletim.php`. Uma unidade é uma declaração callable. Excluem-se testes, `vendor/`, código gerado e declarações abstratas/interface; closures só entram se o analisador as reportar como unidade separada, e essa decisão fica registrada. O inventário registra caminho, símbolo e commit; método sem complexidade extraída invalida a cobertura, não é descartado silenciosamente.
+- **Janela e estatística**: uma análise estática sobre um commit fixado. Ordenar os $n$ valores inteiros de $v(G)$ em ordem crescente e usar o percentil de posto mais próximo (*nearest rank*): $r=\lceil0{,}90n\rceil$ e $P_{90}=x_{(r)}$, sem interpolação. O universo precisa conter pelo menos um método.
+- **Fórmula e unidade**: $v(G)=E-N+2P$, em que $E$ são arestas, $N$ nós e $P$ componentes conexos do grafo de fluxo de controle da unidade. M7a é o inteiro $x_{(\lceil0{,}90n\rceil)}$, em pontos de complexidade ciclomática por método; não é tempo nem percentual.
+- **Vazio e cobertura**: se $n=0$, M7a é não mensurável. Se um método elegível não puder ser analisado, a coleta é incompleta e não recebe limiar/pontuação até o problema ser resolvido ou a exclusão justificada antes da execução.
+- **Ferramenta/evidência/limitação**: usar analisador PHP que exponha grafo/CC, registrando nome, versão, configuração, commit, inventário e saída por método. `scripts/evaluate-quality.php` é mencionado em planos do repositório, mas não existe neste checkout; portanto nenhuma execução automatizada desse script é alegada. PHP parser, closures e construções dinâmicas podem alterar a população/CC; registrar limitações e não comparar resultados de ferramentas/configurações diferentes sem reprocessar.
 
-$$
-v(G) = E - N + 2P \qquad \Big| \qquad \text{CC}_{P90} = P_{90}\big(v(G)\big), \quad \text{CC}_{\max} = \max\big(v(G)\big)
-$$
+#### M7b — Máximo da Complexidade Ciclomática (CC-MAX)
+- **Subcaracterística de trabalho**: Analisabilidade. O mapeamento é da equipe, não uma citação de cláusula ISO verificada.
+- **População, unidade, commit, exclusões e janela**: exatamente o mesmo inventário de métodos e a mesma execução de M7a. É obrigatório publicar $n$ e o inventário para que o máximo não seja calculado sobre subconjunto diferente.
+- **Fórmula e unidade**: $\text{CC}_{\max}=\max(v(G))$, inteiro em pontos de complexidade por método. Empate no máximo preserva todos os símbolos empatados na evidência.
+- **Vazio e cobertura**: $n=0$ ou extração incompleta resulta em não mensurável, não zero; vale a mesma regra de cobertura de M7a.
+- **Ferramenta e limites**: mesma ferramenta, versão, saída e limitações de M7a. O valor máximo é sensível a um único callable e não substitui a distribuição de M7a.
 
-- **Variáveis**:
-    - $E$: número de arestas do grafo de fluxo de controle do método; $N$: número de nós; $P$: número de componentes conexos.
-    - Avaliam-se simultaneamente o percentil 90 ($\text{CC}_{P90}$) e o teto absoluto ($\text{CC}_{\max}$).
-- **Tipo de Escala**: Razão discreta ($v(G) \ge 1$).
-- **Instrumento de Coleta**: Analisador estático de código PHP (`scripts/evaluate-quality.php`).
+**Atribuição correta do NIST:** o NIST SP 500-235, *Structured Testing: A Testing Methodology Using the Cyclomatic Complexity Metric*, discute complexidade ciclomática e seu uso em planejamento de testes estruturais/caminhos. A inspeção do PDF oficial (`https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication500-235.pdf`) não encontrou recomendação para P90. Assim, o uso de P90, o método *nearest rank* e os limiares de M7a/M7b são decisões operacionais da equipe, não recomendação atribuída ao NIST. O relatório não apresenta essa métrica como exigência ISO.
 
 #### M8 — Distância da Sequência Principal de Martin (DSPM)
-- **Subcaracterística**: Modularidade e Modificabilidade (*Modularity & Modifiability* — ISO 25010:2023, itens 8.7.2 e 8.7.5).
-- **Conceito**: Mede o equilíbrio arquitetural dos pacotes/módulos de domínio entre abstratividade ($A$) e instabilidade ($I$), verificando se o código não se encontra na "Zona da Dor" (concreto e altamente estável/acoplado) nem na "Zona da Inutilidade" (abstrato e não utilizado).
+- **Subcaracterística de trabalho**: Modularidade e Modificabilidade, conforme mapeamento local; não se atribui cláusula ISO sem conferência do texto integral.
+- **Universo e unidade**: componentes/pacotes de domínio de Matrícula e Notas/Menções, delimitados por uma tabela de mapeamento caminho → componente e congelados antes da análise. Uma unidade é um componente com ao menos um tipo PHP (classe ou interface). Classes/interfaces são atribuídas a exatamente um componente; dependência aferente/eferente conta uma vez por par de tipos distintos, não por ocorrência de import.
 - **Fórmula de Cálculo**:
 
 $$
@@ -398,17 +400,16 @@ I = \dfrac{C_e}{C_a + C_e}, \qquad A = \dfrac{N_a}{N_c}, \qquad D = \left| A + I
 $$
 
 - **Variáveis**:
-    - $C_e$: Acoplamento Eferente (classes externas consumidas).
-    - $C_a$: Acoplamento Aferente (classes que dependem desta).
-    - $N_a$: Número de classes e interfaces abstratas no pacote.
-    - $N_c$: Número total de classes no pacote.
-    - $D \in [0, 1]$: Distância normalizada da sequência principal ($D=0$ é o equilíbrio perfeito).
-- **Tipo de Escala**: Razão contínua ($[0, 1]$).
-- **Instrumento de Coleta**: Analisador estático de grafo de classes PHP.
+    - $C_e$: número de classes externas que o componente consome por referência de tipo/uso estrutural direta; $C_a$: número de classes externas que dependem dele.
+    - $N_a$: classes abstratas mais interfaces do componente; $N_c$: total de classes e interfaces elegíveis no componente; $A=N_a/N_c$.
+    - $D \in [0,1]$: distância do componente à sequência principal; M8 é a média aritmética sem ponderação dos $D$ de todos os componentes elegíveis mapeados, em pontos de distância.
+- **Agregação e zeros**: $\text{DSPM}=\sum D_p/P$, em que $P$ é o número de componentes no mapa congelado. Para $C_a+C_e=0$, definir $I=0$ por convenção local (sem dependências contadas). Se $N_c=0$ em componente planejado ou $P=0$, M8 é não mensurável; não excluir componentes vazios depois de ver o resultado. Sem classes abstratas/interfaces, $A=0$ é válido.
+- **Ferramenta/evidência/limites**: analisador PHP de AST/grafo com nome e versão registrados; conservar mapa de componentes, nós/dependências, $C_a,C_e,N_a,N_c,D_p$ e relatório final. Nenhum analisador nem o script `scripts/evaluate-quality.php` está presente neste checkout. Reflexão, dependência dinâmica e fronteira de pacotes alteram o grafo; o resultado depende do mapa e não prova, sozinho, bom design.
+- **Tipo de Escala**: razão contínua ($[0,1]$).
 
 #### M9 — Índice de Fricção de Dados Legado-Moderno (IFDL)
-- **Subcaracterística**: Analisabilidade e Modificabilidade (*Analysability & Modifiability* — ISO 25010:2023, itens 8.7.4 e 8.7.5).
-- **Conceito**: Mede a densidade de adaptadores de compatibilidade defensiva (traits `HasLegacyDates`, casts manuais de datas `d/m/Y` $\leftrightarrow$ `Y-m-d`, sanitizações de string vazia para `null`) necessários para interoperar o Eloquent moderno com os esquemas legados.
+- **Subcaracterística de trabalho**: Analisabilidade e Modificabilidade (mapeamento da equipe; sem cláusula ISO afirmada).
+- **Universo e unidade**: modelos de domínio `Legacy*` efetivamente usados pelos fluxos avaliados, listados por caminho/classe num manifesto congelado. Uma unidade é uma classe de modelo. Um adaptador defensivo é um ponto de conversão/normalização em código que transforma representação entre legado e moderno (por exemplo, data, vazio/null); duplicatas de busca/uso no mesmo ponto lógico contam uma vez conforme rubricagem versionada antes da leitura.
 - **Fórmula de Cálculo**:
 
 $$
@@ -416,35 +417,42 @@ $$
 $$
 
 - **Variáveis**:
-    - $M_{\text{modelos}}$: total de modelos de domínio avaliados; $A_{\text{defensivos}, i}$: quantidade de adaptadores defensivos no modelo $i$.
-- **Tipo de Escala**: Razão contínua ($[0, \infty)$).
-- **Instrumento de Coleta**: Inspeção de modelos em `app/Models/Legacy*.php`.
+    - $M_{\text{modelos}}$: número de modelos do manifesto; $A_{\text{defensivos},i}$: contagem de pontos lógicos de adaptação no modelo $i$.
+- **Agregação, unidade e zeros**: média aritmética não ponderada de adaptadores por modelo ($\text{adaptações}/\text{modelo}$); universo não vazio sem adaptadores tem valor válido zero. $M_{\text{modelos}}=0$ é não mensurável, não zero.
+- **Ferramenta/evidência/limites**: inspeção manual guiada por busca e/ou parser PHP, registrando ferramentas/versões, manifesto e arquivo/linha/categoria por ocorrência, com revisão independente de casos ambíguos. Script de medição não existe neste checkout. A classificação depende de rubricagem; contagens de adaptadores são indicador local, não medida validada de custo/tempo de manutenção.
+- **Tipo de Escala**: razão contínua ($[0, \infty)$), em adaptações/modelo.
 
 #### M10 — Índice de Manutenibilidade Normalizado (MI-SEI)
-- **Subcaracterística**: Modificabilidade (*Modifiability* — ISO 25010:2023, item 8.7.5 / Padrão SEI / Microsoft).
-- **Conceito**: Fórmula clássica de Oman-Coleman normalizada para a escala $[0, 100]$.
+- **Subcaracterística de trabalho**: Modificabilidade (mapeamento local; não métrica prescrita pela ISO).
+- **Universo e unidade**: mesmos callables concretos do manifesto M7a/M7b. Calcular $HV$, $v(G)$ e LOC lógico por callable, e depois média aritmética sem ponderação do MI por callable; registrar cada entrada e score. Excluir testes, código gerado e `vendor/` conforme universo M7.
+- **Conceito e atribuição**: variante local de Maintainability Index com coeficientes preservados do framework atual. Não atribuir a Oman-Coleman, SEI ou Microsoft sem uma referência verificável para esta variante e convenção.
 - **Fórmula de Cálculo**:
 
 $$
-\text{MI} = \max\left(0,\; \dfrac{171 - 5{,}2 \ln(\text{HV}) - 0{,}23\, v(G) - 16{,}2 \ln(\text{LOC})}{171} \times 100\right)
+\text{MI}_{m} = \min\left(100,\; \max\left(0,\; \dfrac{171 - 5{,}2 \ln(\text{HV}_{m}) - 0{,}23\, v(G_m) - 16{,}2 \ln(\text{LOC}_{m})}{171} \times 100\right)\right), \qquad \text{MI-SEI}=\dfrac{1}{n}\sum_{m=1}^{n}\text{MI}_{m}
 $$
 
 - **Variáveis**:
-    - $\text{HV}$: Volume de Halstead; $v(G)$: complexidade ciclomática; $\text{LOC}$: linhas de código-fonte lógicas.
-- **Tipo de Escala**: Razão normalizada ($[0, 100]$).
-- **Instrumento de Coleta**: Analisador de métricas de software (`scripts/evaluate-quality.php`).
+    - $HV_m$: volume de Halstead por callable; $v(G_m)$: CC de M7; $LOC_m$: linhas lógicas do callable; $n$: número de callables analisados.
+- **Unidade, agregação e casos-limite**: pontos normalizados $[0,100]$, média simples por callable. $HV\le0$, $LOC\le0$, $n=0$ ou componente não extraído tornam a métrica não mensurável/incompleta, não nota zero; entradas ausentes não podem ser omitidas. O limite superior 100 evita score fora da escala quando entradas mínimas fazem a expressão exceder 100.
+- **Ferramenta/evidência/limites**: analisador de Halstead/LOC/CC com nome, versão e regras de tokenização fixados; conservar valores brutos, por callable e média. `scripts/evaluate-quality.php` não existe neste checkout. A fórmula é sensível à linguagem, pré-processamento, definição de LOC e variante de Halstead; MI é proxy, não previsão validada de esforço ou defeitos. A referência bibliográfica e calibração dos coeficientes devem ser verificadas antes de atribuição histórica.
+- **Tipo de Escala**: razão normalizada ($[0,100]$).
 
-#### M11 — Taxa de Testes Ativos e Eficazes de Domínio (TTAE)
-- **Subcaracterística**: Testabilidade (*Testability* — ISO 25010:2023, item 8.7.6).
-- **Conceito**: Mede o percentual de testes de regras pedagógicas e de matrícula que executam asserções ativas em relação ao total declarado, penalizando testes desativados com `markTestSkipped()` ou sem asserções.
+#### M11 — Taxa de Testes Ativos com Asserção em Domínio (TTAE)
+- **Subcaracterística de trabalho**: Testabilidade (mapeamento local; sem cláusula ISO afirmada).
+- **População e unidade**: todos os casos de teste declarados e descobertos pelo runner nos diretórios/arquivos de teste que cobrem matrícula, enturmação, regras de notas/menções e diário, conforme manifesto domínio → testes congelado. Uma unidade é um caso identificado pelo runner; helpers não são casos. Testes fora dos domínios são excluídos com justificativa antes da coleta.
+- **Definições distintas**: **declarado** = caso listado/disponível no runner; **ativo** = runner entrou e executou o caso, mesmo se falhou; **com asserção** = contador/runtime do runner registra ao menos uma asserção naquele caso; **eficaz** = detecta uma falha controlada (por exemplo, mutação viável no código). A presença de uma chamada/assertion não prova eficácia.
+- **Conceito e denominador**: M11 mede apenas atividade com asserção em relação a todos os casos declarados em escopo. *Skipped*, pendente, desabilitado, não descoberto após o manifesto e não executado não entram no numerador, mas permanecem no denominador planejado. Caso ativo que falha ainda pode contar no numerador se o runner registrar asserção executada; resultado funcional da suíte é reportado separadamente.
 - **Fórmula de Cálculo**:
 
 $$
-\text{TTAE} = \dfrac{N_{\text{testes ativos com asserção}}}{N_{\text{testes declarados totais}}} \times 100\%
+\text{TTAE} = \dfrac{N_{\text{testes ativos com ao menos uma asserção}}}{N_{\text{casos declarados no manifesto}}} \times 100\%
 $$
 
+- **Eficácia — diagnóstico separado, sem pontuação M11**: para afirmar que a suíte detecta defeitos, executar mutação/injeção controlada no universo de código em escopo e calcular $\text{MS}=N_{\text{mutações viáveis mortas}}/N_{\text{mutações viáveis executadas}}\times100\%$. Uma mutação é morta se pelo menos um teste ativo falha por causa da alteração; mutações equivalentes só podem ser excluídas com justificativa registrada. Mutações planejadas mas não executadas permanecem como cobertura incompleta. Unidade: mutação viável. Se não houver mutações viáveis executadas, MS é não mensurável. Relatar ferramenta/versão, mutações geradas, mortas, sobreviventes, excluídas e vínculo teste-mutação. Sem esse experimento, eficácia é desconhecida; M11 não chama presença de asserção de eficácia.
+- **Janela, vazio e evidência**: uma execução completa contra commit, runner, configuração e manifesto fixados; salvar lista descoberta, resultado por caso, skips/pending, contador de asserções e saída do runner. Com zero casos no manifesto, M11 é não mensurável, não 100%; com universo não vazio e zero casos ativos com asserção, vale 0%. Falha de coleta ou descoberta incompleta é não mensurável.
 - **Tipo de Escala**: Razão ($[0\%, 100\%]$).
-- **Instrumento de Coleta**: Relatório de execução do Pest/PHPUnit (`vendor/bin/pest` ou parser do `tests/Unit/Modules/Service/`).
+- **Ferramenta/limites**: exigir checkout do commit avaliado, runner Pest/PHPUnit em versão fixada e relatório que associe asserções a cada caso; listagem simples de AST/asserções não prova execução. Mutação requer ferramenta separada e configuração publicada. Nenhum código de produto, runner ou script de coleta está disponível neste repositório de documentação; as ferramentas ainda precisam ser validadas no checkout do i-Educar.
 
 ---
 
@@ -641,4 +649,4 @@ $$
 
 ## 6. Procedimento Operacional de Coleta Automatizada
 
-O framework disponibiliza uma ferramenta de execução automatizada em `scripts/evaluate-quality.php`, que realiza a extração direta das métricas do repositório, calcula a complexidade ciclomática com $P_{90}$ e máximo, audita transações, contabiliza testes ativos versus skips e gera o relatório consolidado com o veredito GQM.
+O planejamento da ferramenta de execução automatizada referencia `scripts/evaluate-quality.php`, mas esse arquivo não existe neste checkout do repositório de documentação. Nenhuma extração automatizada, medição do produto ou veredito executado é afirmado aqui. Para a avaliação, a equipe ainda precisa implementar/validar o instrumento no checkout versionado do i-Educar, fixar versões/configurações e preservar as saídas brutas. M7a usa P90 definido localmente (*nearest rank*); a atribuição de uma recomendação P90 ao NIST SP 500-235 foi removida. As definições de M8–M11 acima informam universos, instrumentos pretendidos e limitações; resultados permanecem pendentes até execução reproduzível.
