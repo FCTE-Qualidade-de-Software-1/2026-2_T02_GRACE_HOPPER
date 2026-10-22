@@ -300,52 +300,70 @@ $$
     - **Rastreabilidade:** $\text{G2} \rightarrow \text{Q2.1} \rightarrow \text{M3 (DCNM — Gate)}$ · $\text{G2} \rightarrow \text{Q2.2} \rightarrow \text{M4 (ITAE — Gate), M5 (DDOM)}$ · $\text{G2} \rightarrow \text{Q2.3} \rightarrow \text{M6 (CVPB)}$.
 
 #### M3 — Determinismo no Cálculo de Notas e Menções (DCNM) — [GATE BINÁRIO]
-- **Subcaracterística**: Ausência de Falhas (*Faultlessness* — ISO 25010:2023, item 8.5.2, antiga *Maturity* / ISO 25023 ref: FCr-1-G).
+- **Subcaracterística**: Ausência de Falhas (*Faultlessness*, termo de trabalho do framework; ver limite de fonte da Figura 1).
 - **Conceito**: Exatidão determinística dos algoritmos de cálculo de médias (aritmética, ponderada), regras de recuperação paralela, aplicação de exames finais e mapeamento para menções conceituais a partir de `modules.tabela_arredondamento_valor`.
+- **População e unidade**: conjunto finito, identificado e versionado de casos de oráculo para as formas de regra de avaliação suportadas e enumeradas pela equipe nos módulos avaliados. Uma unidade é um caso identificado (regra + entradas + resultado esperado). O universo não presume cobrir todas as configurações possíveis de todos os municípios; a lista de formas cobertas e suas exclusões acompanha o manifesto da suíte.
+- **Janela e execução**: uma execução integral da suíte contra um commit fixado, banco/fixtures fixados e versão do oráculo registrada. Casos não são multiplicados por reexecuções; uma repetição diagnóstica fica anexada à evidência do mesmo caso.
 - **Fórmula de Cálculo**:
 
 $$
-\text{DCNM} = \dfrac{N_{\text{cálculos conformes ao gabarito}}}{N_{\text{oráculos de teste executados}}} \times 100\%
+\text{DCNM} = \dfrac{N_{\text{casos conformes ao oráculo}}}{N_{\text{casos planejados no manifesto}}} \times 100\%
 $$
 
+- **Regra por caso**: conforme somente se o resultado e a conversão para menção coincidirem com o oráculo, respeitando a precisão/arredondamento explicitamente definido na fixture. Divergência, erro inesperado, *skip*, falha de execução ou ausência de evidência contam como não conformidade no denominador planejado.
+- **Regra de conjunto vazio**: se o manifesto não contiver casos, DCNM é **não mensurável** e M3 não passa. Não se atribui 100% a `0/0`; o gate fica sem comprovação e bloqueia a decisão de release até haver universo não vazio e pré-declarado.
+- **Evidências**: manifesto e versão da suíte; commit do produto; fixtures e oráculos; relatório completo com estado por ID; logs de execução; regra de arredondamento aplicada. Não registrar dados pessoais reais.
 - **Tipo de Escala**: Razão ($[0\%, 100\%]$).
-- **Instrumento de Coleta**: Suíte de testes parametrizados com oráculo formal (tabela verdade com todas as permutações de regras de avaliação municipais).
+- **Instrumento de Coleta**: suíte de testes parametrizados com oráculo formal (Pest/PHPUnit ou instrumento equivalente); tabela de casos versionada antes da execução.
 
 #### M4 — Integridade Transacional e Atomicidade de Estado (ITAE) — [GATE BINÁRIO]
-- **Subcaracterística**: Tolerância a Falhas e Integridade de Recuperação (*Fault tolerance & Recoverability* — ISO 25010:2023, itens 8.5.4 e 8.5.5).
-- **Conceito**: Percentual de operações compostas de matrícula (ex.: cancelamento com inativação de enturmação e transferência) e de gravação de diário em lote que executam sob transações atômicas estritas (`DB::transaction`). Em caso de exceção intermediária, o rollback deve ser 100% garantido sem deixar registros órfãos ou inconsistentes em `pmieducar` e `modules`.
+- **Subcaracterística**: Tolerância a Falhas e Recuperabilidade (mapeamento de trabalho do framework; ver limite de fonte da Figura 1).
+- **Conceito**: proporção das operações compostas em escopo que, sob uma falha injetada em cada ponto de escrita previsto no plano, fazem rollback integral, sem registros parciais, órfãos ou inconsistentes nos esquemas envolvidos.
+- **População e unidade**: inventário congelado antes da execução de todas as operações multi-escrita de matrícula/enturmação e diário em lote identificadas nos caminhos de código avaliados. Uma unidade do denominador é uma operação composta identificada. Cada operação só é conforme se todos os seus cenários de injeção de falha planejados forem executados e passarem; pontos de falha e estados prévios/posteriores são listados no manifesto. O conjunto não representa operações de módulos fora do escopo.
+- **Janela e execução**: execução única do manifesto contra commit e banco de teste fixados. Para cada operação, primeiro confirmar que o caminho de sucesso persiste o estado esperado; depois injetar exceção em cada etapa de escrita planejada e conferir o estado integral após rollback. A repetição diagnóstica não cria nova unidade.
 - **Fórmula de Cálculo**:
 
 $$
 \text{ITAE} = \dfrac{N_{\text{operações compostas com rollback verificado}}}{N_{\text{operações compostas analisadas}}} \times 100\%
 $$
 
+- **Regra por operação**: aprovação exige sucesso do caminho normal e rollback de cada ponto injetado até o estado inicial esperado, com integridade referencial conferida. Persistência parcial, estado inconsistente, cenário omitido/*skip*, operação não inventariada após congelamento ou evidência ausente significa operação não conforme.
+- **Regra de conjunto vazio**: inventário sem operações compostas não produz `100%`; M4 é **não mensurável**, não passa e bloqueia a decisão de release até que o inventário seja revisto e validado.
+- **Evidências**: inventário de operações e pontos de falha; commit e esquema do banco de teste; estados antes/depois; logs das exceções; consultas ou asserts de integridade; relatório por operação/cenário. Usar apenas dados sintéticos ou de homologação.
 - **Tipo de Escala**: Razão ($[0\%, 100\%]$).
-- **Instrumento de Coleta**: Testes de injeção de falha simulada (Chaos / Mock throw) e inspeção estática de blocos transacionais nos serviços (`app/Services/RegistrationService.php` e `ieducar/modules/Avaliacao/Views/DiarioController.php`).
+- **Instrumento de Coleta**: testes de injeção determinística de falha (`Mock throw` ou equivalente) e inspeção estática dos serviços transacionais associados.
 
 #### M5 — Densidade de Defeitos Operacionais de Matrícula (DDOM)
-- **Subcaracterística**: Ausência de Falhas (*Faultlessness* — ISO 25010:2023, item 8.5.2).
-- **Conceito**: Taxa de incidentes/bugs reportados em produção por 1.000 movimentações de alunos (matrícula, enturmação, remanejamento, transferência, abandono).
+- **Subcaracterística**: Ausência de Falhas (*Faultlessness*, mapeamento de trabalho do framework; ver limite de fonte da Figura 1).
+- **Conceito**: taxa de incidentes/bugs confirmados em produção por 1.000 movimentações de alunos (matrícula, enturmação, remanejamento, transferência, abandono). A definição permanece válida mesmo quando a medição não pode ser feita.
+- **População e janela**: todas as movimentações concluídas nos fluxos de Matrícula abrangidos, em cada implantação de produção previamente identificada, durante **90 dias consecutivos completos**. O plano de coleta registra deployment(s), municípios cobertos, fuso horário, início/fim e instante de extração antes de consultar os registros. Incluem-se apenas movimentos com ID e data de conclusão; rascunhos, tentativas falhas e duplicatas de eventos transacionais são excluídos. Incidentes devem ter ocorrência dentro da mesma janela e atribuição confirmada a defeito de software nesses fluxos; duplicatas de chamados para o mesmo episódio/causa são consolidadas, enquanto episódios distintos permanecem separados. Excluem-se engano de operação, dado inválido de origem e falha externa sem causa atribuída ao produto; cada classificação fica registrada.
+- **Unidades e fontes necessárias**: numerador = episódios únicos de incidente/defeito confirmados; denominador = movimentações concluídas únicas; resultado em incidentes por 1.000 movimentações. Exige logs/telemetria de produção (incluindo Honeybadger, se implantado), chamados de suporte com IDs, datas e triagem de causa, e registro transacional das movimentações com mesma cobertura temporal.
 - **Fórmula de Cálculo**:
 
 $$
 \text{DDOM} = \dfrac{N_{\text{incidentes de matrícula}}}{N_{\text{movimentações de matrícula}}} \times 1.000
 $$
 
+- **Zero e ausência de dados**: se o numerador for zero e houver cobertura completa com denominador maior que zero, o resultado é zero. Se o denominador for zero, houver lacuna na cobertura, falta de acesso aos registros ou ausência de triagem/atribuição, o resultado é **não mensurável**, não zero; não recebe nível nem pontuação no IQC/IQM. Registros de produção e evidências não foram fornecidos nesta execução, portanto M5 está **não mensurável, sem nota atribuída**.
+- **Evidências**: consulta exportada com filtros, deployment(s)/período/fuso, dicionário de eventos, totais deduplicados, IDs pseudonimizados, decisões de triagem e prova da cobertura do denominador. Não copiar conteúdo sensível de chamados para o relatório.
 - **Tipo de Escala**: Razão ($[0, \infty)$).
-- **Instrumento de Coleta**: Logs de erro unificados via Honeybadger (`honeybadger-io/honeybadger-laravel`) e registros de chamado de suporte da rede escolar.
+- **Instrumento de Coleta**: consultas de telemetria/logs e registros de suporte ligados aos IDs das movimentações, quando fornecidos pelo responsável pela implantação. A disponibilidade/integração do Honeybadger é pressuposto a verificar, não um fato confirmado aqui.
 
 #### M6 — Completude e Verificabilidade do Procedimento de Backup (CVPB)
-- **Subcaracterística**: Recuperabilidade (*Recoverability* — ISO 25010:2023, item 8.5.5).
-- **Conceito**: Avalia se o sistema dispõe de rotina automatizada e verificada de backup dos esquemas críticos (`pmieducar`, `modules`, `cadastro`), validando a integridade do dump e a taxa de restauração com sucesso em ambiente de homologação.
+- **Subcaracterística**: Recuperabilidade (mapeamento de trabalho do framework; ver limite de fonte da Figura 1).
+- **Conceito**: proporção de tentativas planejadas de restauração que recuperam o conjunto dos esquemas críticos (`pmieducar`, `modules`, `cadastro`) e passam todas as verificações previamente especificadas em alvo isolado de teste/homologação. M6 avalia execução de restore; a existência de rotina automatizada de backup é registrada à parte como contexto/evidência, não substitui um restore comprovado.
+- **População, unidade e janela**: manifesto prévio relaciona cada artefato de backup identificável a um alvo e procedimento de restauração; cada par artefato-alvo planejado é uma unidade do denominador. A janela é o intervalo de validação com início/fim fixados no manifesto, abrangendo artefatos produzidos no período de referência previamente declarado. Tentativas adicionais de depuração não alteram o denominador; artefato ausente, tentativa não iniciada ou *skip* mantém-se como falha da unidade planejada.
+- **Critérios de sucesso**: artefato esperado presente e legível; checksum/validação de integridade passa; restauração dos três esquemas termina; objetos e dados de referência definidos pelo plano estão disponíveis; verificações funcionais/de consistência pré-declaradas passam. Falha de qualquer etapa reprova a unidade. Não usar dados pessoais de produção em alvo não autorizado; se o procedimento exigir produção, não executá-lo sem autorização e salvaguardas.
+- **Denominador zero**: se nenhuma restauração foi planejada, CVPB é **não mensurável**, não 100%, não recebe nível e não pode sustentar decisão de release. Falta de artefato ou evidência em tentativa planejada é falha, não exclusão posterior.
 - **Fórmula de Cálculo**:
 
 $$
 \text{CVPB} = \dfrac{N_{\text{restaurações bem-sucedidas}}}{N_{\text{restaurações planejadas}}} \times 100\%
 $$
 
+- **Evidências**: manifesto congelado; IDs, datas e checksums dos artefatos; configuração do alvo isolado; logs de backup/restore; resultados das verificações para cada esquema; relatório de sucesso/falha por unidade. Nenhuma tentativa ou resultado empírico é afirmado neste documento.
 - **Tipo de Escala**: Razão ($[0\%, 100\%]$).
-- **Instrumento de Coleta**: Testes automatizados do pipeline de backup (`/backup-download` em `routes/web.php` e scripts de infraestrutura em `docker/`).
+- **Instrumento de Coleta**: ferramenta/procedimento de backup e restauração configurado pela equipe e logs do PostgreSQL/ambiente de teste; a rota `/backup-download` ou scripts em `docker/` só são fonte se sua participação no procedimento for confirmada na revisão do código.
 
 ---
 
@@ -568,7 +586,7 @@ Antes de qualquer agregação estatística ou média de índices, o sistema é s
 </div>
 
 !!! danger "Regra Eliminatória dos Gates Binários"
-    **A reprovação em qualquer um dos Gates Binários implica REPROVAÇÃO IMEDIATA (Status: BLOQUEADO)**, independentemente da nota das demais métricas.
+    **A reprovação em qualquer um dos Gates Binários implica REPROVAÇÃO IMEDIATA (Status: BLOQUEADO)**, independentemente da nota das demais métricas. Para M3/M4, 100% só é possível com universo pré-declarado e não vazio; universo vazio, evidência ausente ou cobertura incompleta significa **gate não comprovado / BLOQUEADO**, nunca aprovação automática. Casos planejados não executados ou pulados permanecem no denominador e não conformes.
 
 ### 5.2 Função de Agregação por Característica ($IQC_k$)
 Para as métricas contínuas e graduais de cada característica $k$:
@@ -578,6 +596,8 @@ $$
 $$
 
 Onde $S_i \in \{1, 2, 3, 4\}$ é a pontuação discreta obtida pela métrica $i$ conforme o enquadramento na tabela de limiares e $w_i$ é o seu peso relativo.
+
+Uma métrica gradual não mensurável não recebe zero nem nota substituta. Sem política de exclusão/renormalização aprovada previamente, a característica correspondente e o IQM ficam **não calculáveis** enquanto houver métrica sem resultado; não se declara aprovação de release com base em média parcial.
 
 ### 5.3 Índice Global de Qualidade dos Módulos ($IQM$)
 
