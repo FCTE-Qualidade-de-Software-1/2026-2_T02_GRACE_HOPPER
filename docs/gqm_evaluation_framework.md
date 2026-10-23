@@ -114,8 +114,8 @@ flowchart LR
         REL --> FAULT["Ausência de falhas / faultlessness · M3, M5"]
         REL --> TOL["Tolerância a falhas · M4"]
         REL --> REC["Recuperabilidade · M6"]
-        MAN --> MOD["Modularidade · M7, M8"]
-        MAN --> ANAL["Analisabilidade · M7, M9"]
+        MAN --> MOD["Modularidade · M7a, M8"]
+        MAN --> ANAL["Analisabilidade · M7b, M9"]
         MAN --> MODIF["Modificabilidade · M8, M9, M10"]
         MAN --> TEST["Testabilidade · M11"]
         INT --> ERR["Proteção contra erros · M12"]
@@ -205,13 +205,13 @@ flowchart LR
     Q34["Q3.4: Qual o índice global de<br/>manutenibilidade do código?"]
     Q35["Q3.5: Qual o percentual de casos de teste<br/>ativos com asserção no domínio avaliado?"]
 
-    M7["M7a / M7b (CC)<br/>Complexidade Ciclomática<br/>P90 e máximo"]
+    M7a_M7b["M7a / M7b (CC)<br/>Complexidade Ciclomática<br/>P90 e máximo"]
     M8["M8 (DSPM)<br/>Distância da Sequência<br/>Principal de Martin"]
     M9["M9 (IFDL)<br/>Índice de Fricção de Dados<br/>Legado-Moderno"]
-    M10["M10 (MI-SEI)<br/>Índice de Manutenibilidade<br/>Normalizado"]
+    M10["M10 (MI)<br/>Índice de Manutenibilidade<br/>Normalizado"]
     M11["M11 (TTAE)<br/>Taxa de Testes Ativos<br/>com Asserção"]
 
-    G3 --> Q31 --> M7
+    G3 --> Q31 --> M7a_M7b
     G3 --> Q32 --> M8
     G3 --> Q33 --> M9
     G3 --> Q34 --> M10
@@ -371,7 +371,7 @@ $$
 
 !!! info "Objetivo G3 — Manutenibilidade (Modelo GQM)"
     - **Objetivo:** Analisar **o código-fonte dos módulos de Matrícula e de Lançamento de Notas/Menções (`app/` e `ieducar/`)** com o propósito de **avaliar** com respeito à **modularidade, analisabilidade, modificabilidade e testabilidade** do ponto de vista dos **mantenedores e engenheiros de software** no contexto da **arquitetura monolítica híbrida (Laravel + Legado)**.
-    - **Rastreabilidade:** $\text{G3} \rightarrow \text{Q3.1} \rightarrow \text{M7a/M7b (CC)}$ · $\text{G3} \rightarrow \text{Q3.2} \rightarrow \text{M8 (DSPM)}$ · $\text{G3} \rightarrow \text{Q3.3} \rightarrow \text{M9 (IFDL)}$ · $\text{G3} \rightarrow \text{Q3.4} \rightarrow \text{M10 (MI-SEI)}$ · $\text{G3} \rightarrow \text{Q3.5} \rightarrow \text{M11 (TTAE)}$.
+    - **Rastreabilidade:** $\text{G3} \rightarrow \text{Q3.1} \rightarrow \text{M7a/M7b (CC)}$ · $\text{G3} \rightarrow \text{Q3.2} \rightarrow \text{M8 (DSPM)}$ · $\text{G3} \rightarrow \text{Q3.3} \rightarrow \text{M9 (IFDL)}$ · $\text{G3} \rightarrow \text{Q3.4} \rightarrow \text{M10 (MI)}$ · $\text{G3} \rightarrow \text{Q3.5} \rightarrow \text{M11 (TTAE)}$.
 
 #### M7a — Percentil 90 da Complexidade Ciclomática (CC-P90)
 - **Subcaracterística de trabalho**: Modularidade. O mapeamento é da equipe; a atribuição e numeração de cláusulas ISO não foram verificadas na norma paga.
@@ -422,14 +422,14 @@ $$
 - **Ferramenta/evidência/limites**: inspeção manual guiada por busca e/ou parser PHP, registrando ferramentas/versões, manifesto e arquivo/linha/categoria por ocorrência, com revisão independente de casos ambíguos. Script de medição não existe neste checkout. A classificação depende de rubricagem; contagens de adaptadores são indicador local, não medida validada de custo/tempo de manutenção.
 - **Tipo de Escala**: razão contínua ($[0, \infty)$), em adaptações/modelo.
 
-#### M10 — Índice de Manutenibilidade Normalizado (MI-SEI)
+#### M10 — Índice de Manutenibilidade Normalizado (MI)
 - **Subcaracterística de trabalho**: Modificabilidade (mapeamento local; não métrica prescrita pela ISO).
 - **Universo e unidade**: mesmos callables concretos do manifesto M7a/M7b. Calcular $HV$, $v(G)$ e LOC lógico por callable, e depois média aritmética sem ponderação do MI por callable; registrar cada entrada e score. Excluir testes, código gerado e `vendor/` conforme universo M7.
 - **Conceito e atribuição**: variante local de Maintainability Index com coeficientes preservados do framework atual. Não atribuir a Oman-Coleman, SEI ou Microsoft sem uma referência verificável para esta variante e convenção.
 - **Fórmula de Cálculo**:
 
 $$
-\text{MI}_{m} = \min\left(100,\; \max\left(0,\; \dfrac{171 - 5{,}2 \ln(\text{HV}_{m}) - 0{,}23\, v(G_m) - 16{,}2 \ln(\text{LOC}_{m})}{171} \times 100\right)\right), \qquad \text{MI-SEI}=\dfrac{1}{n}\sum_{m=1}^{n}\text{MI}_{m}
+\text{MI}_{m} = \min\left(100,\; \max\left(0,\; \dfrac{171 - 5{,}2 \ln(\text{HV}_{m}) - 0{,}23\, v(G_m) - 16{,}2 \ln(\text{LOC}_{m})}{171} \times 100\right)\right), \qquad \text{MI}=\dfrac{1}{n}\sum_{m=1}^{n}\text{MI}_{m}
 $$
 
 - **Variáveis**:
@@ -547,7 +547,7 @@ $$
 | **M6** | Verificabilidade de Backup ($\text{CVPB}$) | Confiabilidade › Recuperabilidade | $< 90{,}0\%$ | $[90{,}0\%, 95{,}0\%)$ | $[95{,}0\%, 99{,}0\%)$ | $100\%$ | 1.0 | Gradual |
 | **M7a**| Complexidade Ciclomática $P_{90}$ ($\text{CC}_{P90}$) | Manutenibilidade › Modularidade | $> 20$ | $(15, 20]$ | $(10, 15]$ | $\le 10$ | 1.0 | Gradual |
 | **M7b**| Complexidade Ciclomática Máxima ($\text{CC}_{\max}$) | Manutenibilidade › Analisabilidade | $> 50$ | $(30, 50]$ | $(15, 30]$ | $\le 15$ | 1.2 | Gradual |
-| **M8** | Distância Sequência Principal ($\text{DSPM}$) | Manutenibilidade › Modificabilidade | $> 0{,}50$ | $(0{,}35, 0{,}50]$ | $(0{,}20, 0{,}35]$ | $\le 0{,}20$ | 0.8 | Gradual |
+| **M8** | Distância Sequência Principal ($\text{DSPM}$) | Manutenibilidade › Modularidade e Modificabilidade (mapeamento local) | $> 0{,}50$ | $(0{,}35, 0{,}50]$ | $(0{,}20, 0{,}35]$ | $\le 0{,}20$ | 0.8 | Gradual |
 | **M9** | Fricção de Dados Legado ($\text{IFDL}$) | Manutenibilidade › Analisabilidade | $> 4{,}0$ | $(2{,}5, 4{,}0]$ | $(1{,}0, 2{,}5]$ | $\le 1{,}0$ | 0.6 | Gradual |
 | **M10**| Índice de Manutenibilidade ($\text{MI}$) | Manutenibilidade › Modificabilidade | $< 40$ | $[40, 60)$ | $[60, 80)$ | $\ge 80$ | 1.0 | Gradual |
 | **M11**| Testes Ativos de Domínio ($\text{TTAE}$) | Manutenibilidade › Testabilidade | $< 70{,}0\%$ | $[70{,}0\%, 85{,}0\%)$ | $[85{,}0\%, 95{,}0\%)$ | $\ge 95{,}0\%$ | 1.4 | Gradual |

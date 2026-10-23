@@ -251,14 +251,15 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Goal:** Definir métricas de complexidade (P90 e máximo), acoplamento de Martin, atrito de dados e índice MI.
 - **Depends on:** Issue #04.
 - **Scope:** Métricas M7a, M7b, M8, M9, M10 e M11 da ISO/IEC 25010:2023.
-- [ ] **Task:** Formular equações de complexidade ciclomática e manutenibilidade SEI
+- [ ] **Task:** Formular equações de complexidade ciclomática e manutenibilidade local
     - **Files:** `docs/gqm_evaluation_framework.md`
-    - **Change:** Inserir equações de McCabe, Distância da Sequência Principal de Martin ($D$) e Maintainability Index.
+    - **Change:** Inserir equações de McCabe, Distância da Sequência Principal de Martin ($D$) e índice local de manutenibilidade (MI).
     - **Covers:** Fase 2 (GQM Manutenibilidade).
     - **Acceptance criteria:**
         - Inclusão de M7a (P90) e M7b (máximo); não atribuir o P90 ao NIST SP 500-235, que não o recomenda.
+        - M8 mapeada localmente para Modularidade e Modificabilidade, de forma consistente na figura, definição e tabela de limiares.
         - Definição de M11 para testes ativos com asserção, distinguindo asserção de eficácia por mutação/falha controlada.
-    - **Tests:** `grep -Fq "MI-SEI" docs/gqm_evaluation_framework.md`.
+    - **Tests:** `grep -Fq "M10 — Índice de Manutenibilidade Normalizado (MI)" docs/gqm_evaluation_framework.md`.
     - **Risk:** none.
 
 #### Issue #08 — Especificação GQM de Capacidade de Interação e Qualidade em Uso
