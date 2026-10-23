@@ -31,7 +31,7 @@ assignees: []
 
 ## Descrição do Problema e Evidência
 
-[Descreva a inconsistência observada, incluindo trechos de código, logs de teste ou a saída do motor de qualidade `php scripts/evaluate-quality.php`]
+[Descreva a inconsistência observada, incluindo trechos de código, logs de teste ou, quando implementado no checkout do produto, a saída do motor de qualidade `php scripts/evaluate-quality.php`]
 
 ---
 
@@ -45,6 +45,6 @@ assignees: []
 ## Critérios de Aceitação e Verificação
 
 - [ ] A alteração não introduz regressão funcional
-- [ ] A métrica relacionada no `scripts/evaluate-quality.php` atinge o limiar esperado
+- [ ] Quando houver instrumento implementado, a métrica relacionada em `scripts/evaluate-quality.php` atinge o limiar esperado; se não houver, registrar a limitação sem inventar resultado
 - [ ] Testes unitários/integração executam com sucesso: `vendor/bin/pest <caminho_do_teste>`
 - [ ] Registro de esforço preenchido nesta issue e no relatório de custos

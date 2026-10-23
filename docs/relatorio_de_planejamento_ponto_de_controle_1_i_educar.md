@@ -72,14 +72,14 @@ As partes interessadas foram caracterizadas pelo papel que exercem no i-Educar, 
 
 #### 2.1.4 Seleção, Priorização e Adaptação do Modelo de Qualidade (ISO/IEC 25010:2023)
 
-O modelo adaptado da ISO/IEC 25010 destaca as **4 características** e respectivas **subcaracterísticas** recortadas para o i-Educar:
+O modelo adaptado da ISO/IEC 25010 destaca as **4 características** e respectivas **subcaracterísticas** recortadas para o i-Educar. A Figura 1 do [framework GQM](gqm_evaluation_framework.md#figura-1-adaptacao-da-isoiec-250102023-ao-recorte-da-avaliacao) apresenta o diagrama próprio da equipe; não é reprodução da figura normativa. A página pública da ISO descreve nove características, mas a íntegra da edição é paga. Portanto, a figura identifica o recorte e seus termos como adaptação da equipe, não como transcrição integral verificada.
 
-- **Capacidade de Interação / Usabilidade** (Característica obrigatória / foco em interação): *Apreensibilidade*, *Operabilidade*, *Proteção contra erros do usuário* e *Autodescritividade*. Justificativa: perfil heterogêneo de letramento digital dos servidores escolares e necessidade de evitar erros de preenchimento cadastral.
+- **Capacidade de Interação** (característica obrigatória na disciplina / foco em interação): *Proteção contra erros do usuário* e *Autodescritividade* são operacionalizadas por M12 e M13. Apreensibilidade e operabilidade aparecem como necessidades de contexto, mas não têm métricas próprias nesta versão. Justificativa: perfil heterogêneo de letramento digital dos servidores escolares e necessidade de evitar erros de preenchimento cadastral.
 - **Compatibilidade** (1ª característica adicional): *Coexistência* e *Interoperabilidade*. Justificativa: dependência obrigatória de troca de dados com o sistema Educacenso (INEP) e integração via API REST com sistemas municipais.
-- **Confiabilidade** (2ª característica adicional): *Ausência de Falhas (Maturidade)*, *Tolerância a falhas* e *Recuperabilidade*. Justificativa: alta criticidade durante períodos de matrícula e fechamento de bimestres letivos; falhas nesses períodos paralisam a gestão escolar municipal.
+- **Confiabilidade** (2ª característica adicional): *Ausência de Falhas (Faultlessness, termo usado no framework)*, *Tolerância a falhas* e *Recuperabilidade*. “Maturidade” é nomenclatura anterior registrada em documentos do projeto, não uma equivalência normativa afirmada neste relatório. Justificativa: alta criticidade durante períodos de matrícula e fechamento de bimestres letivos; falhas nesses períodos podem comprometer registros e cálculos escolares.
 - **Manutenibilidade** (3ª característica adicional): *Modularidade*, *Analisabilidade*, *Modificabilidade* e *Testabilidade*. Justificativa: coexistência de código legado (`ieducar/intranet`) com código moderno em Laravel (`app/`), exigindo facilidade de manutenção para adaptar regras de avaliação específicas de cada município.
 
-**Método de priorização das características:** a Capacidade de Interação (denominação da ISO/IEC 25010:2023 para a antiga Usabilidade) é obrigatória na disciplina e, por isso, não participa da priorização; entra na avaliação com peso fixo. As demais características da ISO/IEC 25010:2023 foram comparadas em uma matriz de criticidade com três critérios, pontuados de 1 (baixo) a 5 (alto):
+**Método de priorização das características:** a Capacidade de Interação, conforme o recorte apresentado pela equipe e requisito da disciplina, é obrigatória e, por isso, não participa da priorização; entra na avaliação com peso fixo. As demais alternativas registradas pela equipe foram comparadas em uma matriz de criticidade com três critérios, pontuados de 1 (baixo) a 5 (alto):
 
 - **Impacto ($I$):** gravidade da consequência para os *stakeholders* caso os módulos avaliados apresentem baixa qualidade na característica.
 - **Risco ($R$):** probabilidade de haver problemas na característica, considerando a arquitetura do i-Educar (núcleo legado em `ieducar/` convivendo com código Laravel em `app/`) e seu tempo de uso em produção.
@@ -101,6 +101,8 @@ A criticidade é calculada como $C = I \times R$. São selecionadas as três car
 | Capacidade de Interação | — | — | — | — | Obrigatória (fora da priorização) | 20% |
 
 *Fonte: Elaborado pelos autores.*
+
+**Limite da matriz:** esta tabela registra as alternativas consideradas pela equipe e não enumera todas as nove características mencionadas no resumo público da ISO/IEC 25010:2023. A característica que não aparece na tabela não recebeu nome, pontuação ou decisão nesta revisão; completar essa lacuna exige consulta ao texto normativo e decisão da equipe. A ISO não prescreve os pesos de 30% / 30% / 20% / 20%, que são uma decisão local.
 
 <div class="grid cards" markdown>
 
@@ -125,23 +127,26 @@ A criticidade é calculada como $C = I \times R$. São selecionadas as três car
 
 #### 2.1.5 Escopo, Profundidade e Objetos de Avaliação
 
+O foco em **Matrícula** e **Notas/Menções** decorre da criticidade dos registros para secretarias, professores e gestores (Tabelas 1 e 1-A) e da arquitetura observada nos artefatos do produto: vínculo e enturmação em `pmieducar.matricula`/`matricula_turma` e seus modelos/serviço Laravel; regras pedagógicas, diário e cálculos em `modules` e no subsistema legado `ieducar/modules/Avaliacao`. A avaliação é diagnóstica desses fluxos, não certificação do produto completo.
+
 <div class="grid cards" markdown>
 
 -   **Dentro do Escopo (Objetos Avaliados)**
 
     ---
 
-    - Fluxos centrais de cadastro escolar, matrícula e diário de classe (Capacidade de Interação e Qualidade em Uso).
+    - Fluxos e código de matrícula, enturmação, remanejamento, ciclo de vida do vínculo escolar, diário, regras de avaliação, notas e menções (Interação/Uso, Confiabilidade e Manutenibilidade).
     - *Endpoints* da API REST do núcleo e isolamento de recursos de ambiente via Docker (Compatibilidade).
-    - Determinismo de cálculo de notas, transações atômicas e rotina de backup nos módulos centrais (Confiabilidade).
-    - Análise estática dos diretórios `app/` e módulos principais do repositório `portabilis/i-educar` (Manutenibilidade).
+    - Determinismo de cálculo, operações transacionais e planejamento/teste de restauração dos esquemas `pmieducar`, `modules` e `cadastro` em ambiente local ou de homologação (Confiabilidade).
+    - Análise estática dos caminhos de código associados nos diretórios `app/` e `ieducar/` (Manutenibilidade); M5 é definido, mas depende de registros de produção para ser mensurado.
 
 -   **Fora do Escopo (Exclusões Justificadas)**
 
     ---
 
-    - Avaliação de *Performance / Eficiência de Desempenho* sob estresse de múltiplos municípios simultâneos (exigiria infraestrutura de nuvem equivalente à produção de grandes prefeituras).
+    - Teste sob estresse simultâneo de múltiplos municípios; não há infraestrutura representativa da produção disponível para esta avaliação.
     - Pacotes de terceiros e bibliotecas externas na pasta `vendor/` ou repositórios separados como `i-educar-educacenso-package` (avalia-se apenas o código sob responsabilidade direta do núcleo do i-Educar).
+    - Segurança como característica avaliada, eficiência de desempenho em escala, integrações que dependam de credenciais/dados de produção e módulos que não sejam Matrícula e Notas/Menções.
 
 </div>
 
@@ -172,9 +177,11 @@ Nesta fase, a equipe transforma as 4 características em medições concretas ut
 | Característica (Subcaracterística) | Objetivo (Goal - GQM) | Questões (Questions) | Métricas e Fórmulas (Metrics) | Níveis de Pontuação e Critério de Julgamento |
 | :--- | :--- | :--- | :--- | :--- |
 | **Compatibilidade** (*Coexistência e Interoperabilidade*) | Analisar o ambiente de execução e a API REST do i-Educar com o propósito de avaliar a coexistência e a interoperabilidade sob o ponto de vista de integradores técnicos. | **Q1.1:** Os recursos de ambiente podem ser isolados por configuração sem conflito?<br>**Q1.2:** As respostas da API obedecem a um contrato de dados verificável? | **M1 ($\text{TINCR}$):**<br>$\text{TINCR} = \dfrac{N_{\text{isoláveis}}}{N_{\text{identificados}}} \times 100\%$<br><br>**M2 ($\text{CEI}$):**<br>$\text{CEI} = \dfrac{N_{\text{endpoints conformes}}}{N_{\text{endpoints testados}}} \times 100\%$ | **Crítico (1):** $< 70\%$<br>**Regular (2):** $[70\%, 85\%)$<br>**Bom (3):** $[85\%, 100\%)$<br>**Excelente (4):** $100\%$ |
-| **Confiabilidade** (*Ausência de Falhas, Tolerância a Falhas e Recuperabilidade*) | Analisar os fluxos críticos de notas e matrícula com o propósito de avaliar o determinismo de cálculo e a integridade transacional sob o ponto de vista da gestão escolar. | **Q2.1:** O cálculo de notas e menções é 100% determinístico?<br>**Q2.2:** Operações compostas garantem rollback integral sem dados órfãos? | **M3 ($\text{DCNM}$ — Gate):**<br>$\text{DCNM} = \dfrac{N_{\text{cálculos conformes}}}{N_{\text{oráculos executados}}} \times 100\%$<br><br>**M4 ($\text{ITAE}$ — Gate):**<br>$\text{ITAE} = \dfrac{N_{\text{rollback verificado}}}{N_{\text{operações analisadas}}} \times 100\%$ | **Gates Binários (M3 e M4):**<br>**Reprovado:** $< 100\%$<br>**Aprovado:** $100\%$ |
-| **Manutenibilidade** (*Modularidade, Analisabilidade, Modificabilidade e Testabilidade*) | Analisar o código-fonte do repositório `portabilis/i-educar` com o propósito de avaliar a facilidade de manutenção e testabilidade sob o ponto de vista dos mantenedores. | **Q3.1:** Qual a complexidade ciclomática dos métodos críticos?<br>**Q3.4 / Q3.5:** Qual o índice de manutenibilidade e a taxa de testes ativos? | **M7 ($\text{CC}$):** $v(G) = E - N + 2P$<br><br>**M10 ($\text{MI}$):** Escala normalizada $[0, 100]$<br><br>**M11 ($\text{TTAE}$):**<br>$\text{TTAE} = \dfrac{N_{\text{testes ativos}}}{N_{\text{testes declarados}}} \times 100\%$ | **M7a ($\text{CC}_{P90}$):** Excelente $\le 10$; Crítico $> 20$.<br>**M10 ($\text{MI}$):** Excelente $\ge 80$; Crítico $< 40$.<br>**M11 ($\text{TTAE}$):** Excelente $\ge 95\%$; Crítico $< 70\%$. |
+| **Confiabilidade** (*Ausência de Falhas, Tolerância a Falhas e Recuperabilidade*) | Analisar os fluxos críticos de notas e matrícula com o propósito de avaliar o determinismo de cálculo e a integridade transacional sob o ponto de vista da gestão escolar. | **Q2.1:** O cálculo de notas e menções é 100% determinístico?<br>**Q2.2:** Operações compostas garantem rollback integral sem dados órfãos? | **M3 ($\text{DCNM}$ — Gate):**<br>$\text{DCNM} = \dfrac{N_{\text{casos conformes}}}{N_{\text{casos planejados no manifesto}}} \times 100\%$<br><br>**M4 ($\text{ITAE}$ — Gate):**<br>$\text{ITAE} = \dfrac{N_{\text{operações com todos os rollbacks verificados}}}{N_{\text{operações compostas planejadas}}} \times 100\%$ | **Gates Binários (M3 e M4):**<br>**Reprovado:** $< 100\%$<br>**Aprovado:** $100\%$ |
+| **Manutenibilidade** (*Modularidade, Analisabilidade, Modificabilidade e Testabilidade*) | Analisar o código-fonte do repositório `portabilis/i-educar` com o propósito de avaliar a facilidade de manutenção e testabilidade sob o ponto de vista dos mantenedores. | **Q3.1:** Qual a complexidade ciclomática dos métodos no universo declarado?<br>**Q3.4 / Q3.5:** Qual o índice de manutenibilidade e a taxa de testes ativos com asserção? | **M7a/M7b ($\text{CC}$):** $v(G) = E - N + 2P$; P90 e máximo.<br><br>**M10 ($\text{MI}$):** escala local normalizada $[0, 100]$<br><br>**M11 ($\text{TTAE}$):**<br>$\text{TTAE} = \dfrac{N_{\text{testes ativos com asserção}}}{N_{\text{casos declarados no manifesto}}} \times 100\%$ | **M7a ($\text{CC}_{P90}$):** Excelente $\le 10$; Crítico $> 20$.<br>**M7b ($\text{CC}_{\max}$):** conforme tabela do framework.<br>**M10 ($\text{MI}$):** Excelente $\ge 80$; Crítico $< 40$.<br>**M11 ($\text{TTAE}$):** Excelente $\ge 95\%$; Crítico $< 70\%$. A asserção não prova eficácia; eficácia exige teste controlado separado. |
 | **Capacidade de Interação e Qualidade em Uso** (*Proteção contra erros, Autodescritividade, Eficiência e Eficácia*) | Analisar os fluxos de matrícula e diário de classe com o propósito de avaliar a prevenção de erros e a eficiência/eficácia operacional sob o ponto de vista de secretários e professores. | **Q4.1 / Q4.2:** O sistema bloqueia entradas inválidas com mensagens claras?<br>**Q4.3 / Q4.4:** Qual a razão de tempo e o sucesso na 1ª tentativa em uso? | **M12 ($\text{IPPE}$ — Gate):**<br>$\text{IPPE} = \dfrac{N_{\text{bloqueios amigáveis}}}{N_{\text{cenários inválidos}}} \times 100\%$<br><br>**M14 ($R_{\text{tempo},T}$):** $R_{\text{tempo},T} = \dfrac{\text{TMET}_T}{T_{\text{ref},T}}$<br><br>**M15 ($\text{TSPT}$):** $\text{TSPT} = \dfrac{N_{\text{1ª submissão}}}{N_{\text{execuções}}} \times 100\%$ | **M12 (Gate):** $100\%$<br>**M14 ($R_{\text{tempo}}$):** Excelente $\le 1{,}5$; Crítico $> 3{,}0$.<br>**M15 ($\text{TSPT}$):** Excelente $\ge 90\%$; Crítico $< 50\%$. |
+
+Para M3 e M4, os denominadores são manifestos planejados e congelados antes da execução. Universo vazio, cobertura incompleta ou evidência ausente não aprova o gate (não se interpreta `0/0` como 100%); os procedimentos completos estão no framework GQM.
 
 ---
 
@@ -194,7 +201,7 @@ Para demonstrar planejamento completo e alinhamento com a futura execução (Fas
 
     ---
 
-    Execução de análise estática via **SonarQube / PHPMetrics** e script `scripts/evaluate-quality.php` sobre os diretórios do projeto, exportando relatórios brutos (CSV/JSON/PDF).
+    Planeja-se comparar **SonarQube / PHPMetrics** e implementar/validar `scripts/evaluate-quality.php` no checkout do i-Educar, com relatórios brutos. O script não está presente neste repositório de documentação; versões, configurações e resultados ainda precisam ser registrados na execução.
 
 -   **Compatibilidade e Confiabilidade**
 
