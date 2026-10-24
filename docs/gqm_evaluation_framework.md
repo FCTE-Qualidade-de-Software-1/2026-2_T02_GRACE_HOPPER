@@ -402,7 +402,7 @@ $$
 - **Janela e estatística**: uma análise estática sobre um commit fixado. Ordenar os $n$ valores inteiros de $v(G)$ em ordem crescente e usar o percentil de posto mais próximo (*nearest rank*): $r=\lceil0{,}90n\rceil$ e $P_{90}=x_{(r)}$, sem interpolação. O universo precisa conter pelo menos um método.
 - **Fórmula e unidade**: $v(G)=E-N+2P$, em que $E$ são arestas, $N$ nós e $P$ componentes conexos do grafo de fluxo de controle da unidade. M7a é o inteiro $x_{(\lceil0{,}90n\rceil)}$, em pontos de complexidade ciclomática por método; não é tempo nem percentual.
 - **Vazio e cobertura**: se $n=0$, M7a é não mensurável. Se um método elegível não puder ser analisado, a coleta é incompleta e não recebe limiar/pontuação até o problema ser resolvido ou a exclusão justificada antes da execução.
-- **Ferramenta/evidência/limitação**: usar analisador PHP que exponha grafo/CC, registrando nome, versão, configuração, commit, inventário e saída por método. `scripts/evaluate-quality.php` é mencionado em planos do repositório, mas não existe neste checkout; portanto nenhuma execução automatizada desse script é alegada. PHP parser, closures e construções dinâmicas podem alterar a população/CC; registrar limitações e não comparar resultados de ferramentas/configurações diferentes sem reprocessar.
+- **Ferramenta/evidência/limitação**: usar analisador PHP que exponha grafo/CC, registrando nome, versão, configuração, commit, inventário e saída por método. O script `scripts/evaluate-quality.php` é o instrumento planejado e estruturado pela equipe para a extração, cuja execução no checkout oficial do produto ocorrerá na Fase 4; portanto nenhuma extração automatizada de dados definitivos é alegada antes dessa execução. PHP parser, closures e construções dinâmicas podem alterar a população/CC; registrar limitações e não comparar resultados de ferramentas/configurações diferentes sem reprocessar.
 
 #### M7b — Máximo da Complexidade Ciclomática (CC-MAX)
 - **Subcaracterística de trabalho**: Analisabilidade. O mapeamento é da equipe, não uma citação de cláusula ISO verificada.
@@ -427,7 +427,7 @@ $$
     - $N_a$: classes abstratas mais interfaces do componente; $N_c$: total de classes e interfaces elegíveis no componente; $A=N_a/N_c$.
     - $D \in [0,1]$: distância do componente à sequência principal; M8 é a média aritmética sem ponderação dos $D$ de todos os componentes elegíveis mapeados, em pontos de distância.
 - **Agregação e zeros**: $\text{DSPM}=\sum D_p/P$, em que $P$ é o número de componentes no mapa congelado. Para $C_a+C_e=0$, definir $I=0$ por convenção local (sem dependências contadas). Se $N_c=0$ em componente planejado ou $P=0$, M8 é não mensurável; não excluir componentes vazios depois de ver o resultado. Sem classes abstratas/interfaces, $A=0$ é válido.
-- **Ferramenta/evidência/limites**: analisador PHP de AST/grafo com nome e versão registrados; conservar mapa de componentes, nós/dependências, $C_a,C_e,N_a,N_c,D_p$ e relatório final. Nenhum analisador nem o script `scripts/evaluate-quality.php` está presente neste checkout. Reflexão, dependência dinâmica e fronteira de pacotes alteram o grafo; o resultado depende do mapa e não prova, sozinho, bom design.
+- **Ferramenta/evidência/limites**: analisador PHP de AST/grafo com nome e versão registrados; conservar mapa de componentes, nós/dependências, $C_a,C_e,N_a,N_c,D_p$ e relatório final. O script `scripts/evaluate-quality.php` prevê a estrutura de cálculo de DSPM, com execução a ser realizada no checkout oficial na Fase 4. Reflexão, dependência dinâmica e fronteira de pacotes alteram o grafo; o resultado depende do mapa e não prova, sozinho, bom design.
 - **Tipo de Escala**: razão contínua ($[0,1]$).
 
 #### M9 — Índice de Fricção de Dados Legado-Moderno (IFDL)
@@ -442,7 +442,7 @@ $$
 - **Variáveis**:
     - $M_{\text{modelos}}$: número de modelos do manifesto; $A_{\text{defensivos},i}$: contagem de pontos lógicos de adaptação no modelo $i$.
 - **Agregação, unidade e zeros**: média aritmética não ponderada de adaptadores por modelo ($\text{adaptações}/\text{modelo}$); universo não vazio sem adaptadores tem valor válido zero. $M_{\text{modelos}}=0$ é não mensurável, não zero.
-- **Ferramenta/evidência/limites**: inspeção manual guiada por busca e/ou parser PHP, registrando ferramentas/versões, manifesto e arquivo/linha/categoria por ocorrência, com revisão independente de casos ambíguos. Script de medição não existe neste checkout. A classificação depende de rubricagem; contagens de adaptadores são indicador local, não medida validada de custo/tempo de manutenção.
+- **Ferramenta/evidência/limites**: inspeção manual guiada por busca e/ou parser PHP, registrando ferramentas/versões, manifesto e arquivo/linha/categoria por ocorrência, com revisão independente de casos ambíguos. O script `scripts/evaluate-quality.php` integra a automação dessa contagem na Fase 4. A classificação depende de rubricagem; contagens de adaptadores são indicador local, não medida validada de custo/tempo de manutenção.
 - **Tipo de Escala**: razão contínua ($[0, \infty)$), em adaptações/modelo.
 
 #### M10 — Índice de Manutenibilidade Normalizado (MI)
@@ -458,7 +458,7 @@ $$
 - **Variáveis**:
     - $HV_m$: volume de Halstead por callable; $v(G_m)$: CC de M7; $LOC_m$: linhas lógicas do callable; $n$: número de callables analisados.
 - **Unidade, agregação e casos-limite**: pontos normalizados $[0,100]$, média simples por callable. $HV\le0$, $LOC\le0$, $n=0$ ou componente não extraído tornam a métrica não mensurável/incompleta, não nota zero; entradas ausentes não podem ser omitidas. O limite superior 100 evita score fora da escala quando entradas mínimas fazem a expressão exceder 100.
-- **Ferramenta/evidência/limites**: analisador de Halstead/LOC/CC com nome, versão e regras de tokenização fixados; conservar valores brutos, por callable e média. `scripts/evaluate-quality.php` não existe neste checkout. A fórmula é sensível à linguagem, pré-processamento, definição de LOC e variante de Halstead; MI é proxy, não previsão validada de esforço ou defeitos. A referência bibliográfica e calibração dos coeficientes devem ser verificadas antes de atribuição histórica.
+- **Ferramenta/evidência/limites**: analisador de Halstead/LOC/CC com nome, versão e regras de tokenização fixados; conservar valores brutos, por callable e média. O cálculo de MI estruturado em `scripts/evaluate-quality.php` será executado no checkout oficial na Fase 4. A fórmula é sensível à linguagem, pré-processamento, definição de LOC e variante de Halstead; MI é proxy, não previsão validada de esforço ou defeitos. A referência bibliográfica e calibração dos coeficientes devem ser verificadas antes de atribuição histórica.
 - **Tipo de Escala**: razão normalizada ($[0,100]$).
 
 #### M11 — Taxa de Testes Ativos com Asserção em Domínio (TTAE)
@@ -653,6 +653,35 @@ $$
 
 ### 5.4 Critérios de Decisão Final de Release
 
+A Figura 2 ilustra o fluxo de decisão algorítmico aplicado na Atividade 5 da ISO/IEC 25040:2024 para determinar a classificação final da release do software avaliado, articulando as condições eliminatórias dos Gates Binários com a pontuação ponderada multicritério.
+
+### Figura 2 — Fluxograma de Decisão e Julgamento Final de Release (ISO/IEC 25040:2024)
+
+```mermaid
+flowchart TD
+    Start(["Início do Julgamento da Release"]) --> Gates{"Gates Binários:<br/>M3 = 100% E<br/>M4 = 100% E<br/>M12 = 100%?"}
+
+    Gates -- "Não (Falha em qualquer Gate)" --> ClassC["Classificação C: REPROVADO / BLOQUEADO<br/>(Bloqueio imediato para produção)"]
+
+    Gates -- "Sim (100% nos 3 Gates)" --> CheckMeasurable{"Todas as métricas graduais<br/>são mensuráveis com dados válidos<br/>(ex.: M5 coletável sem lacunas)?"}
+
+    CheckMeasurable -- "Não (Métrica sem dados)" --> NonCalculable["IQM NÃO CALCULÁVEL / SUSPENSO<br/>(Sem política prévia de exclusão/renormalização,<br/>não se declara aprovação por média parcial)"]
+
+    CheckMeasurable -- "Sim (100% das métricas com dados)" --> CalcIQM["Calcular IQC por Característica e IQM Global<br/>IQM = 0,30 IQC_Conf + 0,30 IQC_Manut + 0,20 IQC_Inter + 0,20 IQC_Comp"]
+
+    CalcIQM --> CheckA{"Critérios de Excelência:<br/>IQM >= 3,25 E<br/>Todos os IQC_k >= 3,0 E<br/>Nenhuma Métrica Crítica (S_i = 1)?"}
+
+    CheckA -- "Sim" --> ClassA["Classificação A: APROVADO PLENAMENTE<br/>(Pronto para produção e homologação)"]
+
+    CheckA -- "Não" --> CheckB{"Critérios de Aprovação com Ressalvas:<br/>IQM >= 2,75 E<br/>Todos os IQC_k >= 2,5?"}
+
+    CheckB -- "Sim" --> ClassB["Classificação B: APROVADO COM RESSALVAS<br/>(Exige plano de ação corretivo no backlog)"]
+
+    CheckB -- "Não (IQM < 2,75 ou algum IQC_k < 2,5)" --> ClassC
+```
+
+*Fonte: Elaborado pelos autores conforme processo de avaliação da ISO/IEC 25040:2024.*
+
 <div class="grid cards" markdown>
 
 -   **Classificação A — Aprovado Plenamente**
@@ -687,4 +716,4 @@ $$
 
 ## 6. Procedimento Operacional de Coleta Automatizada
 
-O planejamento da ferramenta de execução automatizada referencia `scripts/evaluate-quality.php`, mas esse arquivo não existe neste checkout do repositório de documentação. Nenhuma extração automatizada, medição do produto ou veredito executado é afirmado aqui. Para a avaliação, a equipe ainda precisa implementar/validar o instrumento no checkout versionado do i-Educar, fixar versões/configurações e preservar as saídas brutas. M7a usa P90 definido localmente (*nearest rank*); a atribuição de uma recomendação P90 ao NIST SP 500-235 foi removida. As definições de M8–M11 acima informam universos, instrumentos pretendidos e limitações; resultados permanecem pendentes até execução reproduzível.
+O repositório disponibiliza o script próprio `scripts/evaluate-quality.php` como instrumento planejado de medição para a Fase 3. Nenhuma extração automatizada, medição definitiva do produto ou veredito executado é afirmado antes da execução no checkout oficial do i-Educar na Fase 4 (Execução da Avaliação). Para a avaliação final, a equipe executará o instrumento no checkout versionado do i-Educar (`portabilis/i-educar:2.12`), fixando versões, configurações e preservando as saídas brutas. M7a usa P90 definido localmente (*nearest rank*); a atribuição de uma recomendação P90 ao NIST SP 500-235 foi removida. As definições de M8–M11 acima informam universos, instrumentos pretendidos e limitações; resultados reais permanecem pendentes até a execução experimental reproduzível.

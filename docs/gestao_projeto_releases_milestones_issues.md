@@ -82,7 +82,7 @@ flowchart TD
     ---
 
     - **Objetivo:** Estruturar plano de medição e testes, ambiente Docker oficial, ferramentas estáticas e protocolo TCLE.
-    - **Entregáveis planejados:** Implementação do script `scripts/evaluate-quality.php`, configuração Docker e minuta do TCLE; o script não está presente neste checkout documental.
+    - **Entregáveis planejados:** Implementação do script próprio `scripts/evaluate-quality.php` (instrumento planejado), ambiente Docker Compose oficial e minuta do TCLE.
     - **Critério de Conclusão:** Scripts de medição e ambiente conteinerizado validados localmente.
 
 -   **Milestone M4 — Consolidação, Slides e Release E1** · `Etapa 5`
@@ -180,14 +180,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #04 — Delimitação de Escopo e Adaptação Gráfica do Modelo ISO/IEC 25010:2023
 
 - **Milestone:** M1: Requisitos da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 2]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario2]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 4h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Gustavo Silva Rodrigues`
+    - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `4h` | **Custo:** R$ `200,00`
 - **Goal:** Produzir a representação gráfica do modelo adaptado da ISO 25010:2023 com as 4 características recortadas.
 - **Depends on:** Issue #02.
 - **Scope:** Diagrama próprio da ISO 25010:2023 recortada e matriz "O que entra vs. O que fica de fora do escopo".
-- [ ] **Task:** Desenhar diagrama adaptado da ISO 25010:2023 e justificar limites de escopo
+- [x] **Task:** Desenhar diagrama adaptado da ISO 25010:2023 e justificar limites de escopo
     - **Files:** `docs/gqm_evaluation_framework.md`
     - **Change:** Atualizar termos para *Interaction Capability* e *Faultlessness* e definir exclusão de testes de estresse em escala.
     - **Covers:** Fase 1 (Item 4 — Modelo Adaptado e Item 5 — Escopo e Profundidade), Critério AG-C2.
@@ -224,14 +224,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #06 — Especificação GQM da Característica Confiabilidade e Gates Binários
 
 - **Milestone:** M2: Especificação da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 3]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario3]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 4h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Ítalo Alves Sampaio de Oliveira`
+    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `4h` | **Custo:** R$ `200,00`
 - **Goal:** Especificar os Gates Binários M3 (Determinismo de Notas) e M4 (Integridade Transacional), além de M5 e M6.
 - **Depends on:** Issue #04.
 - **Scope:** Subcaracterísticas de Ausência de Falhas (*Faultlessness*), Tolerância a Falhas e Recuperabilidade.
-- [ ] **Task:** Estruturar critérios não-compensatórios de Confiabilidade e cálculo de médias
+- [x] **Task:** Estruturar critérios não-compensatórios de Confiabilidade e cálculo de médias
     - **Files:** `docs/gqm_evaluation_framework.md`
     - **Change:** Formalizar os gates determinísticos de 100% de oráculo para notas e rollback atômico obrigatório.
     - **Covers:** Fase 2 (GQM Confiabilidade e Gates de Qualidade).
@@ -244,14 +244,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #07 — Especificação GQM da Característica Manutenibilidade
 
 - **Milestone:** M2: Especificação da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 2]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario2]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 4h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Ítalo Alves Sampaio de Oliveira`
+    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `4h` | **Custo:** R$ `200,00`
 - **Goal:** Definir métricas de complexidade (P90 e máximo), acoplamento de Martin, atrito de dados e índice MI.
 - **Depends on:** Issue #04.
 - **Scope:** Métricas M7a, M7b, M8, M9, M10 e M11 da ISO/IEC 25010:2023.
-- [ ] **Task:** Formular equações de complexidade ciclomática e manutenibilidade local
+- [x] **Task:** Formular equações de complexidade ciclomática e manutenibilidade local
     - **Files:** `docs/gqm_evaluation_framework.md`
     - **Change:** Inserir equações de McCabe, Distância da Sequência Principal de Martin ($D$) e índice local de manutenibilidade (MI).
     - **Covers:** Fase 2 (GQM Manutenibilidade).
@@ -285,14 +285,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #09 — Formulação Matemática dos Limiares e Regras de Decisão Global
 
 - **Milestone:** M2: Especificação da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 3]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario3]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 3h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Arthur Soares Parente`
+    - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 3h | **Horas Realizadas:** `3h` | **Custo:** R$ `150,00`
 - **Goal:** Integrar a tabela unificada de limiares, os pesos relativos e o modelo de decisão do Índice Global IQM.
 - **Depends on:** Issues #05, #06, #07 e #08.
 - **Scope:** Atividades 3, 4 e 5 da ISO/IEC 25040:2024.
-- [ ] **Task:** Consolidar função de agregação ponderada e critérios de aprovação de release
+- [x] **Task:** Consolidar função de agregação ponderada e critérios de aprovação de release
     - **Files:** `docs/gqm_evaluation_framework.md`
     - **Change:** Estabelecer pesos das características (30% Conf, 30% Manut, 20% Inter/Uso, 20% Comp) e regras A, B e C.
     - **Covers:** Fase 2 (Critérios de Julgamento).
@@ -309,14 +309,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #10 — Planejamento do Ambiente de Testes Conteinerizado (Docker)
 
 - **Milestone:** M3: Projeto da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 3]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario3]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 3h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Arthur Soares Parente`
+    - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 3h | **Horas Realizadas:** `3h` | **Custo:** R$ `150,00`
 - **Goal:** Documentar o ambiente e versionamento conteinerizado oficial para garantir reprodutibilidade da avaliação.
 - **Depends on:** Issue #09.
 - **Scope:** Configuração do `docker-compose.yml`, versões de imagem (PHP 8.5-ieducar, PostgreSQL 18-alpine, Redis).
-- [ ] **Task:** Validar e documentar subida do ambiente Docker e banco de dados de testes
+- [x] **Task:** Validar e documentar subida do ambiente Docker e banco de dados de testes
     - **Files:** `docker-compose.yml`, `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`
     - **Change:** Registrar as portas, variáveis de ambiente necessárias e comandos de migração e seeding.
     - **Covers:** Fase 3 (Item 1 — Ambiente de Testes e Versão do Produto).
@@ -329,14 +329,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #11 — Planejamento das Ferramentas de Análise Estática e Motor PHP
 
 - **Milestone:** M3: Projeto da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 2]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario2]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 3h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Arthur Soares Parente`
+    - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 3h | **Horas Realizadas:** `3h` | **Custo:** R$ `150,00`
 - **Goal:** Integrar o script executável de extração estática e planejar o pipeline com SonarQube/Pest.
 - **Depends on:** Issue #09.
 - **Scope:** `scripts/evaluate-quality.php` e ferramentas de análise de código.
-- [ ] **Task:** Construir e testar motor executável de medição estática GQM
+- [x] **Task:** Construir e testar motor executável de medição estática GQM
     - **Files:** `scripts/evaluate-quality.php`
     - **Change:** Implementar parser de tokens PHP para complexidade ciclomática, contagem de skips e verificação transacional.
     - **Covers:** Fase 3 (Item 2 — Métodos e Ferramentas de Coleta).
@@ -349,21 +349,21 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #12 — Planejamento dos Testes de Usabilidade e Protocolo TCLE
 
 - **Milestone:** M3: Projeto da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 4]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario4]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 3h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Arthur Soares Parente`
+    - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 3h | **Horas Realizadas:** `3h` | **Custo:** R$ `150,00`
 - **Goal:** Estruturar o roteiro de tarefas guiadas de matrícula e diário e elaborar o documento formal do TCLE.
 - **Depends on:** Issue #08.
 - **Scope:** Roteiro experimental de usabilidade, critérios Lighthouse/axe DevTools e Termo de Consentimento.
-- [ ] **Task:** Elaborar protocolo experimental de usabilidade e termo TCLE ético
-    - **Files:** `docs/Termo de Consentimento Livre e Esclarecido.docx`, `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`
+- [x] **Task:** Elaborar protocolo experimental de usabilidade e termo TCLE ético
+    - **Files:** `docs/termo_consentimento_livre_esclarecido.md`, `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`
     - **Change:** Documentar tarefas padronizadas para cálculo de TMET e TSPT e salvaguardas éticas de dados.
     - **Covers:** Fase 3 (Item 2 — Usabilidade e TCLE).
     - **Acceptance criteria:**
         - Protocolo com roteiro de tarefas passo a passo para secretários e docentes.
         - Minuta do TCLE em conformidade com as diretrizes da disciplina FGA0315.
-    - **Tests:** `test -f "docs/Termo de Consentimento Livre e Esclarecido.docx"`.
+    - **Tests:** `test -f "docs/termo_consentimento_livre_esclarecido.md"`.
     - **Risk:** none.
 
 ---
@@ -374,9 +374,9 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M4: Consolidação e Release E1
 - **Atribuição Individual:**
-    - **Responsável:** `Fábio Santos Araujo` e `Ricardo Lucas Winchello Vieira Branco`
-    - **Matrícula UnB:** `22/2022082` / `22/1008409` | **GitHub:** `@fabiofonteles1` / `@ChickRicks`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 12h cada | **Horas Realizadas:** `12h cada` | **Custo:** R$ `600,00 cada`
+    - **Responsável:** `Fábio Santos Araujo` e `Gustavo Silva Rodrigues`
+    - **Matrícula UnB:** `22/2022082` / `23/2036887` | **GitHub:** `@fabiofonteles1` / `@g-srodrigues`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 12h cada | **Horas Realizadas:** `[Em andamento]` | **Custo:** `[A consolidar]`
 - **Goal:** Redigir as seções de Introdução, Referencial Teórico, Metodologia e Fases 1 a 3 no formato SBC.
 - **Depends on:** Issues #02 a #12.
 - **Scope:** Artigo científico da Entrega 1 (Ponto de Controle 1).
@@ -393,10 +393,10 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #14 — Elaboração da Apresentação de Slides para o Ponto de Controle 1
 
 - **Milestone:** M4: Consolidação e Release E1
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 2h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Fábio Santos Araujo`
+    - **Matrícula UnB:** `22/2022082` | **GitHub:** `@fabiofonteles1`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 2h | **Horas Realizadas:** `[Em andamento]` | **Custo:** `[A consolidar]`
 - **Goal:** Criar apresentação de 8 slides objetivos para demonstrar o andamento da equipe na data do PC1.
 - **Depends on:** Issue #13.
 - **Scope:** Slides de Ponto de Controle 1 (Capa, Linha do Tempo, Fases 1 a 3, Custos e Próximos Passos).
@@ -413,14 +413,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #15 — Auditoria de Conformidade com as Rubricas e Tabela PSM/CID
 
 - **Milestone:** M4: Consolidação e Release E1
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 2h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Arthur Soares Parente`
+    - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 2h | **Horas Realizadas:** `2h` | **Custo:** R$ `100,00`
 - **Goal:** Realizar revisão prévia de todos os entregáveis frente aos critérios AG-C1 a AG-C5 da disciplina.
 - **Depends on:** Issues #13 e #14.
 - **Scope:** Verificação de integridade documental, ausência de emojis e consistência de custos.
-- [ ] **Task:** Executar checklist de auditoria preventiva de penalidades da disciplina
+- [x] **Task:** Executar checklist de auditoria preventiva de penalidades da disciplina
     - **Files:** `docs/gestao_projeto_releases_milestones_issues.md`
     - **Change:** Auditar textos da GitPage e Artigo para garantir 100% de conformidade aos critérios da professora.
     - **Covers:** Critérios AG-C1..AG-C5 e PSM/CID.
@@ -434,14 +434,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #16 — Publicação da GitPage, Geração de Tag e Publicação da Release E1
 
 - **Milestone:** M4: Consolidação e Release E1
-- **Atribuição Individual (Preencher ao Assumir):**
+- **Atribuição Individual:**
     - **Responsável:** `Arthur Soares Parente`
     - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 1h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 1h | **Horas Realizadas:** `1h` | **Custo:** R$ `50,00`
 - **Goal:** Publicar a versão final do Ponto de Controle 1 no GitHub e disparar a Release E1.
 - **Depends on:** Issue #15.
 - **Scope:** Criação da tag Git `v1.0.0-pc1`, geração do release package e deploy na GitPage.
-- [ ] **Task:** Publicar Release E1 no GitHub e sincronizar GitPage
+- [x] **Task:** Publicar Release E1 no GitHub e sincronizar GitPage
     - **Files:** `README.md`, `.github/workflows/pages.yml`
     - **Change:** Atualizar link da release, registrar notas de versão e publicar GitPage via GitHub Actions.
     - **Covers:** Critério F3-C7 e Marco M4.
@@ -476,11 +476,11 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Atribuição Individual:**
     - **Responsável:** `Arthur Soares Parente` e `Fábio Santos Araujo`
     - **Matrícula UnB:** `23/2036770` / `22/2022082` | **GitHub:** `@ArthurDevWorks` / `@fabiofonteles1`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `4h` | **Custo:** R$ `200,00`
 - **Goal:** Publicar a GitPage com a estrutura navegável, fórmulas renderizadas e workflow de deploy automático no GitHub Pages.
 - **Depends on:** Issue #01.
 - **Scope:** `mkdocs.yml`, `docs/stylesheets/extra.css`, `.github/workflows/pages.yml` e páginas de `docs/`.
-- [ ] **Task:** Publicar a GitPage com a estrutura navegável e o conteúdo do Ponto de Controle 1
+- [x] **Task:** Publicar a GitPage com a estrutura navegável e o conteúdo do Ponto de Controle 1
     - **Files:** `mkdocs.yml`, `docs/stylesheets/extra.css`, `.github/workflows/pages.yml`
     - **Change:** Configurar workflow de deploy automático na branch `main`, renderização de diagramas Mermaid, estilização de equações MathJax e rodapé com versão/data.
     - **Covers:** Ponto de Controle 1, Critério F3-C7.
@@ -524,7 +524,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
     - **Conteúdo da Release:**
         - Planejamento do Processo de Avaliação (Fases 1, 2 e 3 da ISO/IEC 25040:2024).
         - Framework Técnico GQM v2.0 com 15 famílias (17 linhas operacionais), limiares e Gates Binários.
-        - Motor `scripts/evaluate-quality.php` previsto no planejamento, cuja implementação e validação no checkout do produto permanecem pendentes.
+        - Motor próprio `scripts/evaluate-quality.php` estruturado como instrumento planejado da Fase 3, cuja execução sobre o checkout oficial ocorrerá na Fase 4.
         - 1ª Versão do Artigo Acadêmico e Apresentação de Slides do PC1.
         - Tabela consolidada de custos e esforço individual (PSM/CID — 72h, R$ 3.600,00, 100%).
 
