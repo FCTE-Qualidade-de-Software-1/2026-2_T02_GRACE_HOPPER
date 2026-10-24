@@ -1,399 +1,923 @@
-% Esqueleto adaptado ao PDF model/conference_101719.pdf enviado pela equipe.
-% Compilar a partir de docs/artigo; usar a classe fornecida sem modificá-la.
-\makeatletter
-\def\input@path{{model/}}
-\makeatother
-\documentclass[conference]{IEEEtran}
-\usepackage[T1]{fontenc}
+%% =====================================================================
+%%  ARTIGO: Avaliação da qualidade do i-Educar (ISO/IEC 25010:2023)
+%%  Template IEEE (IEEEtran) para o Overleaf / TeX Live
+%%  Alinhado ao enunciado FGA0315 (v1.0, 05/10/2026) e às rubricas Fases 1 e 2
+%%  Conteúdo transposto da GitPage da Equipe Grace Hopper (quatro objetivos GQM,
+%%  terminologia ISO/IEC 25010:2023 + ISO/IEC 25019:2023 + ISO/IEC 25040:2024)
+%% =====================================================================
+%%  COMO USAR
+%%   1. Overleaf > New Project > Blank Project > cole este arquivo em main.tex
+%%   2. Compilador: pdfLaTeX (padrão). A classe IEEEtran já vem no Overleaf.
+%%   3. Tudo em vermelho "[TODO: ...]" é pendência. Para esconder os TODOs
+%%      na versão final, troque \rascunhotrue por \rascunhofalse abaixo.
+%%   4. Seções da Entrega 2 (Fases 3 e 4) ficam escondidas. Para exibir,
+%%      troque \entregafinalfalse por \entregafinaltrue.
+%%
+%%  REGRAS QUE AFETAM ESTE ARQUIVO
+%%   - Máximo de 10 páginas no PDF, INCLUINDO referências e apêndices.
+%%     Artigo acima do limite é rejeitado: confira o total a cada commit.
+%%   - Preservar a formatação do modelo (não alterar margens, fontes nem
+%%     espaçamentos globais).
+%%   - Link do repositório e versão (release) no corpo do artigo.
+%%   - Entrega em PDF no Moodle.
+%%
+%%  CHECKLIST DA ENTREGA 1 (26/10)
+%%   [x] Introdução, Referencial teórico, Metodologia de desenvolvimento
+%%   [x] Fase 1: propósito, stakeholders, tipo de produto + diagrama,
+%%       modelo de qualidade + diagrama, priorização (método explícito),
+%%       escopo/profundidade, ODS
+%%   [x] Fase 2 (GQM): objetivos (template), questões (não podem ser só a
+%%       métrica em forma de pergunta), hipóteses para TODAS as questões,
+%%       métricas com definição/cálculo/fonte/coleta/critério, níveis de
+%%       pontuação para TODAS as métricas, gráfico GQM com TODOS os
+%%       objetivos e os três níveis identificados
+%%   [x] Consistência Fase 1 <-> Fase 2 explícita e justificada
+%%   [x] Toda figura/tabela: legenda, fonte e chamada no texto
+%%   [x] Declaração de IA: ferramenta + tarefa + uma frase de como conferiu
+%%   [x] Link do repositório e release E1 citados no artigo
+%%   [x] GitPage atualizada (seção "Fase 1/2", versão e data no rodapé,
+%%       alt-text, links)
+%%   [x] Tabela de contribuição (Apêndice A) com esforço em %, somando 100%
+%%   [x] Sem emojis/ícones de IA; sem jargão fora do escopo
+%% =====================================================================
+
+\IfFileExists{model/IEEEtran.cls}{%
+  \documentclass[conference]{model/IEEEtran}%
+}{%
+  \documentclass[conference]{IEEEtran}%
+}
+\IEEEoverridecommandlockouts
+
+% ---------- Pacotes ----------
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[brazilian]{babel}
+\IfFileExists{cite.sty}{\usepackage{cite}}{}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{array}
+\IfFileExists{multirow.sty}{\usepackage{multirow}}{}
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\usepackage{tikz}
+\usetikzlibrary{positioning,fit,arrows.meta}
 \usepackage{url}
+\usepackage[hidelinks]{hyperref}
+% Evita subscritos menores que as fontes disponíveis nas tabelas GQM.
+\DeclareMathSizes{6.5}{6.5}{5}{5}
 
-\newcommand{\pendente}[1]{\textit{[PREENCHER: #1]}}
+% ---------- Chaves de controle ----------
+\newif\ifrascunho      \rascunhofalse
+\newif\ifentregafinal  \entregafinalfalse
 
-\title{Avaliação da Qualidade de Software da Plataforma i-Educar:
-um Estudo dos Módulos de Matrícula e Lançamento de Notas}
+% ---------- Macros auxiliares ----------
+\newcommand{\TODO}[1]{\ifrascunho\textcolor{red}{\textbf{[TODO: #1]}}\fi}
 
-% Autores na ordem registrada no README e na seção 3 do planejamento PC1.
-\author{\IEEEauthorblockN{Arthur Soares Parente, Fábio Santos Araujo, Gabriel Barbaceli,\\
-Gustavo Silva Rodrigues, Ítalo Alves Sampaio de Oliveira,\\
-Ricardo Lucas Winchello Vieira Branco}
-\IEEEauthorblockA{Universidade de Brasília\\
-Qualidade de Software 1 --- Turma Grace Hopper\\
-\pendente{contatos acadêmicos}}}
+% Quebra de linha limpa para grade 3x2 de autores no IEEEtran
+\makeatletter
+\newcommand{\linebreakand}{%
+  \end{@IEEEauthorhalign}
+  \hfill\mbox{}\par
+  \mbox{}\hfill\begin{@IEEEauthorhalign}
+}
+\makeatother
 
+% Colunas de tabela com quebra de linha
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% Linhas das tabelas GQM (6 colunas: ID, métrica e como medir, níveis 4/3/2/1 + peso)
+% Soma das seis larguras e dos dez espaços internos entre colunas.
+\newcommand{\gqmwidth}{\dimexpr16.30cm+10\tabcolsep\relax}
+\newcommand{\gqmO}[1]{\midrule
+  \multicolumn{6}{@{}>{\columncolor{gray!20}[0pt][0pt]\raggedright\arraybackslash}p{\gqmwidth}@{}}{\strut\textbf{#1}\strut}\\[1pt]}
+\newcommand{\gqmQ}[4]{\midrule
+  \multicolumn{6}{@{}>{\columncolor{gray!8}[0pt][0pt]\raggedright\arraybackslash}p{\gqmwidth}@{}}{%
+    \strut\textbf{#1} [#2] #3\par%
+    \textbf{Hipótese:} #4\strut}\\}
+\newcommand{\gqmM}[6]{#1 & #2 & #3 & #4 & #5 & #6\\}
+\newcommand{\gqmhead}{\toprule
+  \textbf{ID} & \textbf{Métrica (definição, cálculo, fonte e coleta)} &
+  \textbf{Nível 4 (Excel.)} & \textbf{Nível 3 (Bom)} &
+  \textbf{Nível 2 (Reg.)} & \textbf{Nível 1 (Crít.) / Peso}\\}
+
+% Coluna do gráfico GQM: questão, caixa de métricas e ligação ao objetivo
+\newcommand{\gqmcol}[5]{%
+  \node[quest, anchor=north] (q#1) at (#2,-1.95) {#3};
+  \node[metr, anchor=north] (m#1) at (#2,-2.68) {#4};
+  \draw (#5.south) -- ++(0,-0.13) -| (q#1.north);
+  \draw (q#1.south) -- (m#1.north);}
+
+% Gráfico GQM completo desenhado em TikZ
+\newcommand{\gqmfigtikz}{%
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  every node/.style={font=\scriptsize, align=center},
+  car/.style={draw, fill=gray!35, rounded corners, minimum height=0.42cm, inner sep=2pt, font=\scriptsize\bfseries},
+  goal/.style={draw, fill=gray!18, rounded corners, minimum height=0.88cm, inner sep=2pt},
+  quest/.style={draw, fill=gray!6, minimum width=1.12cm, minimum height=0.45cm, inner sep=1pt},
+  metr/.style={draw, rounded corners=1pt, minimum width=1.12cm, minimum height=0.58cm, inner sep=1.5pt},
+  lvl/.style={anchor=east, align=right, font=\scriptsize\itshape}
+]
+\node[lvl] at (-0.75,-0.21) {Característica};
+\node[lvl] at (-0.75,-1.14) {Objetivo\\(conceitual)};
+\node[lvl] at (-0.75,-2.17) {Questão e Hipótese\\(operacional)};
+\node[lvl] at (-0.75,-3.02) {Métrica\\(quantitativo)};
+% Características
+\node[car, anchor=north, text width=2.45cm] (c1) at (0.68,0) {Compatibilidade (20\%)};
+\node[car, anchor=north, text width=3.85cm] (c2) at (4.06,0) {Confiabilidade (30\%)};
+\node[car, anchor=north, text width=6.55cm] (c3) at (9.46,0) {Manutenibilidade (30\%)};
+\node[car, anchor=north, text width=5.15cm] (c4) at (15.54,0) {Capacidade de Interação e Uso (20\%)};
+% Objetivos
+\node[goal, anchor=north, text width=2.45cm] (g1) at (0.68,-0.68) {G1: Coexistência de ambiente e contrato da API REST};
+\node[goal, anchor=north, text width=3.85cm] (g2) at (4.06,-0.68) {G2: Determinismo de notas, transações e restauração de backup};
+\node[goal, anchor=north, text width=6.55cm] (g3) at (9.46,-0.68) {G3: Complexidade, acoplamento, atrito legado-moderno, MI e testes};
+\node[goal, anchor=north, text width=5.15cm] (g4) at (15.54,-0.68) {G4: Proteção contra erros, mensagens e eficiência/eficácia em uso};
+\foreach \ch/\ob in {c1/g1, c2/g2, c3/g3, c4/g4}
+  \draw (\ch.south) -- (\ob.north);
+% G1: Compatibilidade
+\gqmcol{11}{0.00}{Q1.1\\(H1.1)}{M1\\(TINCR)}{g1}
+\gqmcol{12}{1.35}{Q1.2\\(H1.2)}{M2\\(CEI)}{g1}
+% G2: Confiabilidade
+\gqmcol{21}{2.71}{Q2.1\\(H2.1)}{M3$^*$\\(DCNM)}{g2}
+\gqmcol{22}{4.06}{Q2.2\\(H2.2)}{M4$^*$ (ITAE)\\M5 (DDOM)}{g2}
+\gqmcol{23}{5.41}{Q2.3\\(H2.3)}{M6\\(CVPB)}{g2}
+% G3: Manutenibilidade
+\gqmcol{31}{6.76}{Q3.1\\(H3.1)}{M7a ($\text{CC}_{P90}$)\\M7b ($\text{CC}_{\max}$)}{g3}
+\gqmcol{32}{8.11}{Q3.2\\(H3.2)}{M8\\(DSPM)}{g3}
+\gqmcol{33}{9.46}{Q3.3\\(H3.3)}{M9\\(IFDL)}{g3}
+\gqmcol{34}{10.81}{Q3.4\\(H3.4)}{M10\\(MI)}{g3}
+\gqmcol{35}{12.16}{Q3.5\\(H3.5)}{M11\\(TTAE)}{g3}
+% G4: Capacidade de Interação e Uso
+\gqmcol{41}{13.51}{Q4.1\\(H4.1)}{M12$^*$\\(IPPE)}{g4}
+\gqmcol{42}{14.86}{Q4.2\\(H4.2)}{M13\\(ADMV)}{g4}
+\gqmcol{43}{16.21}{Q4.3\\(H4.3)}{M14a (T1)\\M14b (T2)}{g4}
+\gqmcol{44}{17.56}{Q4.4\\(H4.4)}{M15\\(TSPT)}{g4}
+\end{tikzpicture}}}
+
+% ---------- Título e autores ----------
 \begin{document}
+
+\title{Avaliação da Qualidade do i-Educar com Base na ISO/IEC 25010:2023 e ISO/IEC 25019:2023:\\
+Estudo de Caso nos Módulos de Matrícula e Lançamento de Notas}
+
+\author{
+\IEEEauthorblockN{Arthur Soares Parente}
+\IEEEauthorblockA{Engenharia de Software\\
+Universidade de Brasília (UnB)\\
+232036770@aluno.unb.br}
+\and
+\IEEEauthorblockN{Fábio Santos Araujo}
+\IEEEauthorblockA{Engenharia de Software\\
+Universidade de Brasília (UnB)\\
+222022082@aluno.unb.br}
+\and
+\IEEEauthorblockN{Gabriel Barbaceli}
+\IEEEauthorblockA{Engenharia de Software\\
+Universidade de Brasília (UnB)\\
+211045122@aluno.unb.br}
+\linebreakand
+\IEEEauthorblockN{Gustavo Silva Rodrigues}
+\IEEEauthorblockA{Engenharia de Software\\
+Universidade de Brasília (UnB)\\
+232036887@aluno.unb.br}
+\and
+\IEEEauthorblockN{Ítalo Alves Sampaio de Oliveira}
+\IEEEauthorblockA{Engenharia de Software\\
+Universidade de Brasília (UnB)\\
+232037937@aluno.unb.br}
+\and
+\IEEEauthorblockN{Ricardo Lucas Winchello Vieira Branco}
+\IEEEauthorblockA{Engenharia de Software\\
+Universidade de Brasília (UnB)\\
+221008409@aluno.unb.br}
+}
+
 \maketitle
 
+% ---------- Resumo e palavras-chave ----------
 \begin{abstract}
-Este artigo apresenta o planejamento de uma avaliação da qualidade de
-software da plataforma i-Educar, delimitada aos módulos de matrícula
-e lançamento de notas e menções. A estrutura da avaliação segue o
-framework Goal--Question--Metric (GQM) definido pela equipe, abrangendo
-compatibilidade, confiabilidade, manutenibilidade, capacidade de
-interação e qualidade em uso. A avaliação é independente e diagnóstica,
-com testes previstos em instalação local e sessões supervisionadas
-com usuários sem experiência prévia no sistema. Os resultados deverão
-apoiar decisões de adoção, integração, manutenção e capacitação.
-Esta versão contém o esqueleto do estudo;
-a coleta, os resultados e o julgamento da qualidade estão pendentes.
-\pendente{após a execução, revisar o resumo com os principais resultados,
-as limitações e a conclusão sustentada pelas evidências.}
+Sistemas públicos de gestão escolar concentram registros de matrícula, enturmação, notas e menções que sustentam históricos escolares e o Censo Escolar. Este artigo apresenta o planejamento e a especificação da avaliação de qualidade da plataforma livre i-Educar (\texttt{branch 2.12}), delimitada aos módulos de Matrícula de Alunos e de Lançamento de Notas e Menções. A avaliação adota a ISO/IEC 25040:2024 como referência de processo e combina o modelo de produto da ISO/IEC 25010:2023 com a qualidade em uso da ISO/IEC 25019:2023. O recorte abrange Compatibilidade, Confiabilidade, Manutenibilidade e Capacidade de interação, complementadas por eficácia e eficiência em tarefas. A Fase 1 define propósito, partes interessadas, arquitetura, modelo adaptado, priorização, escopo e relação com os ODS 4 e 16. A Fase 2 aplica \textit{Goal-Question-Metric} (GQM): 4 objetivos, 14 questões com hipóteses verificáveis, 15 medições (famílias de métricas) e 17 linhas operacionais, incluindo três critérios eliminatórios para exatidão de notas, atomicidade transacional e proteção contra entradas inválidas. O acompanhamento do projeto utiliza medidas do \textit{Practical Software Measurement} (PSM/CID). Esta entrega especifica a avaliação; a coleta e a análise empírica dos resultados compõem a segunda entrega.
 \end{abstract}
 
 \begin{IEEEkeywords}
-qualidade de software, i-Educar, avaliação de software, GQM, gestão escolar
+qualidade de software, i-Educar, ISO/IEC 25010, ISO/IEC 25019, ISO/IEC 25040, GQM, PSM/CID, gestão escolar
 \end{IEEEkeywords}
 
-\section{Introdução}
-\label{sec:introducao}
-% Origem: ../relatorio_de_planejamento_ponto_de_controle_1_i_educar.md,
-% seção 2.1, itens 2 a 5; ../gqm_evaluation_framework.md, seções 1 e 3.
-Este trabalho tem como objetivo avaliar a qualidade de software da
-plataforma i-Educar~\cite{ieducar}, com foco nos módulos de matrícula
-e lançamento de notas e menções. O planejamento da avaliação e o
-detalhamento das métricas estão disponíveis nos artefatos produzidos
-pela equipe~\cite{gqm,pc1}.
+% =====================================================================
+\section{Introdução}\label{sec:intro}
 
-Conforme o planejamento~\cite{pc1}, a avaliação é independente e
-diagnóstica, conduzida por avaliadores externos ao projeto i-Educar;
-não constitui certificação ou homologação oficial do software.
-Pretende-se apoiar Secretarias Municipais de Educação em decisões de
-adoção, manutenção ou atualização; mantenedores na priorização de
-correções e refatorações; integradores na análise de coexistência e
-conformidade da API; e equipes escolares na identificação de
-necessidades de capacitação.
+A administração de redes públicas municipais de ensino depende da consistência dos registros de matrícula, enturmação e transferência de alunos, bem como da exatidão no lançamento de notas, menções conceituais e frequências ao longo do ano letivo. Falhas de arredondamento de médias, registros parciais deixados por operações interrompidas ou dificuldades no preenchimento do diário eletrônico afetam diretamente a emissão de históricos escolares, a progressão dos estudantes e os dados reportados ao Censo Escolar (Educacenso/INEP).
 
-\pendente{contextualizar o problema com fontes consultadas, justificar
-o recorte e explicitar as contribuições pretendidas.}
+O i-Educar~\cite{ieducar_repo} foi selecionado como objeto de estudo por três motivos. Primeiro, é uma plataforma livre de gestão escolar catalogada pelo Banco Interamericano de Desenvolvimento (BID)~\cite{bid_ieducar}. Segundo, sua arquitetura combina um núcleo legado em PHP procedural (\texttt{ieducar/}) com uma camada moderna em Laravel (\texttt{app/}) sobre o mesmo banco PostgreSQL, permitindo investigar atrito estrutural, manutenibilidade e atomicidade transacional. Terceiro, a disponibilidade do código sob licença GPL-2.0-or-later permite inspecionar os módulos, as migrações e a suíte de testes.
 
-\section{Fundamentação e Trabalhos Relacionados}
-\label{sec:fundamentacao}
-% Origem: ../gqm_evaluation_framework.md, enquadramento normativo e seção 1.2.
-\subsection{Modelos e processo de avaliação da qualidade}
-A ISO/IEC 25010:2023 define um modelo de qualidade de produto,
-com características e subcaracterísticas para especificar, medir
-e avaliar propriedades de produtos de software e de tecnologia da
-informação e comunicação~\cite{iso25010}. A ISO/IEC 25019:2023 trata
-da qualidade em uso, considerando os efeitos do uso de um sistema
-para as partes interessadas em um contexto especificado~\cite{iso25019}.
-A ISO/IEC 25040:2024 apresenta um framework para avaliação da qualidade,
-incluindo conceitos, requisitos e recomendações para os processos
-de avaliação; ela não determina métodos específicos de teste nem
-os limiares adotados neste estudo~\cite{iso25040}.
+Este trabalho avalia os módulos de \textbf{Matrícula de Alunos} e de \textbf{Lançamento de Notas e Menções} do i-Educar (\texttt{branch 2.12}) quanto a quatro características da ISO/IEC 25010:2023~\cite{iso25010} --- Compatibilidade, Confiabilidade, Manutenibilidade e Capacidade de interação --- complementadas por eficácia e eficiência em uso da ISO/IEC 25019:2023~\cite{iso25019}. Os objetivos específicos são verificar: (i) se a aplicação coexiste sem colisão de recursos e mantém contratos JSON estáveis na API REST; (ii) se o cálculo de médias/menções é determinístico e se as escritas compostas e restaurações de backup preservam a integridade do banco; (iii) qual o nível de complexidade, acoplamento e cobertura de testes ativos na arquitetura híbrida; e (iv) se o sistema previne erros de digitação com mensagens claras e permite que usuários iniciantes concluam matrículas e lançamentos de notas com eficiência.
 
-O recorte de características, as métricas operacionais e os critérios
-de julgamento deste artigo são definidos pelo planejamento e pelo
-framework GQM da equipe~\cite{gqm,pc1}. As referências normativas
-identificam a base conceitual; os valores de aceitação e os pesos
-do projeto não são apresentados como exigências das normas.
-% Metadados e escopo conferidos nos catálogos públicos da ISO.
-% A consulta ao catálogo não equivale à leitura integral das normas.
-\pendente{aprofundar o recorte de características e subcaracterísticas
-após consulta ao texto integral das normas.}
+A contribuição desta entrega consiste no planejamento da avaliação (Fase 1) e na especificação das medições com GQM (Fase 2), conectando cada parte interessada a objetivos, questões, hipóteses, equações e regras de decisão. A Seção~\ref{sec:ref} apresenta o referencial teórico; a Seção~\ref{sec:met}, a metodologia e o PSM/CID; a Seção~\ref{sec:fase1}, os requisitos da avaliação (Fase 1); e a Seção~\ref{sec:fase2}, o planejamento GQM (Fase 2). O planejamento e a especificação GQM estão documentados na GitPage da equipe~\cite{gracehopper_gqm,gracehopper_pc1}, associados à entrega \texttt{E1} (\texttt{v1.0.0-pc1}).
 
-\subsection{Goal--Question--Metric}
-A abordagem Goal--Question--Metric organiza a medição em três níveis:
-objetivos que especificam o que se pretende avaliar, questões que
-operacionalizam esses objetivos e métricas que fornecem os dados
-necessários para responder às questões~\cite{basili1994}. Neste estudo,
-essa relação orienta a rastreabilidade entre G1--G4, as questões de
-avaliação, as medições planejadas e a interpretação dos resultados.
+% =====================================================================
+\section{Referencial Teórico}\label{sec:ref}
 
-\subsection{Estudos relacionados}
-\pendente{comparar estudos de avaliação de sistemas de gestão escolar
-ou de software livre, indicando diferenças de escopo e método.}
+\subsection{Qualidade de produto, qualidade em uso e a família SQuaRE}
+A família de normas ISO/IEC 25000 (\textit{Systems and software Quality Requirements and Evaluation} --- SQuaRE) estabelece modelos e processos para especificar, medir e avaliar a qualidade de software~\cite{iso25002}. Na revisão vigente, a ISO/IEC 25010:2023~\cite{iso25010} define o modelo de qualidade de produto em nove características; a ISO/IEC 25019:2023~\cite{iso25019} define o modelo de qualidade em uso; a ISO/IEC 25023:2016~\cite{iso25023} fornece medidas de referência; e a ISO/IEC 25040:2024~\cite{iso25040} estrutura o processo de avaliação em cinco atividades.
 
-\section{Metodologia}
-\label{sec:metodologia}
-% Origem: ../gqm_evaluation_framework.md, seções 1 a 5.
-\subsection{Objeto e contexto da avaliação}
-\label{sec:objeto}
-O recorte planejado compreende matrícula e lançamento de notas e
-menções. As características selecionadas no planejamento são
-compatibilidade, confiabilidade, manutenibilidade e capacidade de
-interação, articuladas à avaliação de qualidade em uso.
+\subsection{Características avaliadas}
+Em relação à edição de 2011, a ISO/IEC 25010:2023~\cite{iso25010} substituiu \textit{Usability} por \textit{Interaction Capability} (Capacidade de interação), \textit{Portability} por \textit{Flexibility} (Flexibilidade) e \textit{Maturity} por \textit{Faultlessness} (Ausência de falhas), além de introduzir \textit{Safety} (Ausência de risco). Na falta de tradução brasileira oficial da edição de 2023, adotam-se as traduções técnicas documentadas pela equipe, mantendo os termos em inglês quando necessário para precisão.
 
-\pendente{registrar versão, hash do commit, data, módulos, ambiente,
-dependências e justificativa do desenho do estudo. Verificar esses
-dados diretamente no software avaliado.}
+A \textbf{Compatibilidade} aborda a capacidade de componentes trocarem informações (\textit{interoperabilidade}) e compartilharem o mesmo ambiente sem impacto negativo mútuo (\textit{coexistência}). A \textbf{Confiabilidade} avalia o desempenho das funções especificadas sob condições definidas, abrangendo \textit{ausência de falhas} (\textit{faultlessness}), \textit{disponibilidade}, \textit{tolerância a falhas} e \textit{recuperabilidade}. A \textbf{Manutenibilidade} mede a eficácia e eficiência com que o software pode ser modificado por seus mantenedores, reunindo \textit{modularidade}, \textit{reusabilidade}, \textit{analisabilidade}, \textit{modificabilidade} e \textit{testabilidade}. A \textbf{Capacidade de interação} trata da facilidade com que usuários interagem com o produto, sendo complementada por \textit{eficácia} e \textit{eficiência} em uso da ISO/IEC 25019:2023~\cite{iso25019}. As subcaracterísticas mantidas e excluídas são justificadas na Seção~\ref{sec:modelo}.
 
-O planejamento adota o i-Educar 2.12 como alvo e prevê uma instalação
-local via Docker, com dados fictícios nas sessões de uso~\cite{gqm,pc1}.
-O escopo de compatibilidade compreende o ambiente de execução e a
-API REST do núcleo nos módulos selecionados. A exportação para o
-Educacenso/INEP e integrações que dependam de credenciais de produção
-ficam fora de G1~\cite{gqm}.
+\subsection{Goal-Question-Metric (GQM) e PSM/CID}
+A abordagem GQM, proposta por Basili, Caldiera e Rombach~\cite{basili1994gqm}, especifica medições em três níveis: (1) \textit{conceitual} (\textit{Goal}), com objeto, propósito, foco de qualidade, ponto de vista e contexto; (2) \textit{operacional} (\textit{Question}), com perguntas que decompõem cada objetivo; e (3) \textit{quantitativo} (\textit{Metric}), com medidas que respondem às questões. Neste estudo, as perguntas são acompanhadas de hipóteses verificáveis, e as métricas recebem fórmulas, procedimentos de coleta e critérios de decisão. Para a gestão da avaliação, o \textit{Practical Software Measurement} (PSM)~\cite{mcgarry2002psm} orienta indicadores de \textit{desempenho dos processos}, \textit{calendário e progresso} e \textit{recursos e custos} (Seção~\ref{sec:psmcid}).
 
-\subsection{Priorização das características}
-\label{sec:priorizacao}
-% Origem: planejamento PC1, seção 2.1, item 4 e Tabela 2.
-O planejamento compara impacto, risco e viabilidade em escalas de
-1 a 5. A criticidade corresponde ao produto de impacto e risco;
-selecionam-se as três características de maior criticidade com
-viabilidade de pelo menos 3, usando a maior viabilidade como
-desempate. Capacidade de interação é obrigatória na disciplina e
-entra com peso fixo, fora da priorização~\cite{pc1}.
+% =====================================================================
+\section{Metodologia}\label{sec:met}
 
-Foram selecionadas manutenibilidade e confiabilidade, com criticidade
-20 e peso de 30\% cada, e compatibilidade, com criticidade 12 e peso
-de 20\%. O grupo interação e qualidade em uso recebe os 20\%
-restantes no índice global~\cite{gqm,pc1}. As pontuações refletem o
-planejamento da equipe, sem representar medições da qualidade do produto.
+O estudo caracteriza-se como pesquisa aplicada, diagnóstica e de abordagem mista (quantitativa e qualitativa), conduzida por meio de estudo de caso sobre os módulos de Matrícula e de Lançamento de Notas e Menções do i-Educar 2.12. A avaliação é independente e realizada por avaliadores externos, não constituindo certificação ou homologação oficial.
 
-\subsection{Objetivos, questões e métricas GQM}
-\label{sec:gqm}
-Os identificadores abaixo preservam a árvore GQM e os desdobramentos
-da tabela de métricas do projeto~\cite{gqm}. Para cada métrica, o
-protocolo de coleta deverá registrar unidade, fonte, instrumento,
-amostra e critério de aceitação antes da execução.
+\subsection{Abordagem de avaliação e estratégia de medição}
+A avaliação toma como referência o repositório oficial \texttt{portabilis/i-educar}~\cite{ieducar_repo}, na \texttt{branch 2.12}, fixado no commit \path{7903a3efc7689942ee700007f86ed581023aad27}. A execução prevista utiliza uma instância Docker local, isolada de redes municipais reais. A vertente quantitativa reúne métricas estáticas de código (complexidade ciclomática~\cite{mccabe1996structured}, acoplamento e índice de manutenibilidade), conformidade de contrato JSON, oráculos de notas, injeção de falhas e sessões de uso; a qualitativa examina rotas, modelos e mensagens. Nesta entrega, especificam-se os instrumentos e critérios; os resultados dessas medições dependem da execução na Entrega 2.
 
-\subsubsection{G1 --- Compatibilidade}
-\label{met:g1}
-% Origem: framework GQM, seções 2, 3.1 e 4.
-G1 avalia coexistência e interoperabilidade do ponto de vista dos
-integradores municipais em uma instalação local via Docker~\cite{gqm}.
-Q1.1 verifica se os recursos podem ser isolados por configuração para
-coexistir com outra instância ou serviço no mesmo host. M1 (TINCR)
-mede a proporção dos recursos inventariados cujo isolamento por
-configuração é confirmado em um teste com uma segunda instância,
-sem alterar código-fonte. O inventário abrange portas, nomes de
-contêineres, banco e usuário PostgreSQL, prefixos Redis e diretórios
-de armazenamento.
+O julgamento segue duas etapas: (i) verificação de três critérios eliminatórios não-compensatórios (\textit{gates binários}) para funções em que falhas parciais corrompem registros escolares; e (ii) agregação ponderada das pontuações discretas ($S_i \in \{1, 2, 3, 4\}$) em Índices de Qualidade por Característica ($\text{IQC}_k$) e no Índice Global de Qualidade dos Módulos ($\text{IQM}$).
 
-Q1.2 verifica se as respostas da API de matrícula, enturmação e notas
-obedecem a um contrato verificável. M2 (CEI) mede a proporção de
-endpoints em que todos os casos previstos passam: código HTTP e
-tipo JSON esperados para requisições válidas, campos obrigatórios
-e tipos corretos, e erros estruturados para requisições inválidas,
-sem erro 500 nem resposta HTML. O contrato será o da documentação
-oficial ou, se ausente, um JSON Schema derivado pela equipe e
-versionado antes da execução~\cite{gqm}.
-\pendente{registrar inventário, configurações das duas instâncias,
-endpoints, contratos, coleção de requisições e relatórios de G1.}
+\subsection{Processo de avaliação}
+O trabalho acompanha as quatro fases da disciplina alinhadas à ISO/IEC 25040:2024~\cite{iso25040}: \textbf{Fase 1} (requisitos da avaliação: propósito, partes interessadas, arquitetura, adaptação/priorização do modelo, escopo e ODS); \textbf{Fase 2} (especificação GQM: objetivos, questões, hipóteses, equações e níveis de pontuação); \textbf{Fase 3} (projeto da avaliação: manifestos congelados, scripts, coleções de API e protocolo de uso); e \textbf{Fase 4} (execução, análise dos dados e proposição de melhorias).
 
-\subsubsection{G2 --- Confiabilidade}
-\label{met:g2}
-% Origem: framework GQM, seções 2, 3.2, 4 e 5.1.
-Q2.1 trata do determinismo de notas e menções (M3). Q2.2 trata da
-integridade e reversão de operações compostas (M4), associadas à
-densidade de defeitos operacionais de matrícula (M5). Q2.3 trata do
-procedimento de backup e recuperação (M6).
-\pendente{definir oráculos de cálculo, injeção de falhas, operações
-avaliadas e evidências de recuperação para G2.}
+\subsection{Gestão do projeto com PSM/CID}\label{sec:psmcid}
+Para monitorar o projeto nas três categorias do PSM/CID~\cite{mcgarry2002psm}, definem-se as medidas abaixo. Sua apuração exige registrar o universo de issues e PRs da Entrega 1, a data de corte e os apontamentos de esforço:
+\begin{equation}\label{eq:psmcid1}
+\begin{aligned}
+\text{TCM} &= \frac{N_{\text{issues concluídas}}}{N_{\text{issues planejadas E1}}} \times 100\%, \\
+\text{TRCD} &= \frac{N_{\text{PRs build estrito OK}}}{N_{\text{PRs integrados E1}}} \times 100\%
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eq:psmcid2}
+\text{VEC} = \frac{E_{\text{realizado}} - E_{\text{planejado}}}{E_{\text{planejado}}} \times 100\%
+\end{equation}
+onde $\text{TCM}$ é a Taxa de Conclusão de Marcos (Calendário e Progresso), $\text{TRCD}$ é a Taxa de Revisão e Conformidade Documental (Desempenho dos Processos), e $\text{VEC}$ é a Variação de Esforço e Custo. O esforço planejado é $E_{\text{planejado}} = 72\,\mathrm{h}$, equivalente a R\$ 3.600,00 à razão de R\$ 50,00/h. A Tabela~\ref{tab:psmcid} relaciona as medidas, suas evidências e as decisões apoiadas. A alocação planejada não comprova esforço realizado nem permite atribuir $\text{VEC}=0$ sem apontamentos individuais.
 
-\subsubsection{G3 --- Manutenibilidade}
-\label{met:g3}
-% Origem: framework GQM, seções 2, 3.3 e 4.
-Q3.1 trata da complexidade ciclomática: percentil 90 (M7a) e máximo
-(M7b). Q3.2 trata da distância da sequência principal (M8). Q3.3 trata
-da fricção de dados entre legado e camada moderna (M9). Q3.4 trata do
-índice de manutenibilidade (M10). Q3.5 trata dos testes ativos e
-eficazes de domínio (M11).
-\pendente{fixar arquivos e métodos analisados, ferramentas, versões
-e critérios de seleção dos testes para G3.}
+\begin{table}[!t]
+\centering
+\caption{Plano de acompanhamento do projeto (PSM/CID) na Entrega 1. Fonte: planejamento e histórico Git da equipe.}
+\label{tab:psmcid}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}L{1.4cm}L{2.3cm}L{2.3cm}L{2.3cm}@{}}
+\toprule
+\textbf{Categoria} & \textbf{Medida e evidência} & \textbf{Interpretação} & \textbf{Decisão de gestão} \\
+\midrule
+Desempenho dos processos &
+$\text{TRCD}$: requer relatórios de build dos PRs integrados. O commit \texttt{cd9da95}, integrado pelo PR \texttt{\#25}, registra ajuste de nomenclatura &
+O histórico de revisão evidencia correções, mas não substitui os relatórios necessários ao cálculo da taxa &
+Conferir documentação e commit de referência do produto antes de integrar cada PR \\
+\addlinespace[2pt]
+Calendário e progresso &
+$\text{TCM}$: requer lista congelada de issues planejadas e concluídas, com data de corte e vínculo aos marcos da Entrega 1 &
+O catálogo de tarefas define o planejamento; a taxa depende da comprovação das conclusões &
+Monitorar pendências e congelar os manifestos de teste no início da Fase 3 \\
+\addlinespace[2pt]
+Recursos e custos &
+$\text{VEC}$: requer horas realizadas. Base planejada: 72h e R\$ 3.600; 12h e R\$ 600 por integrante (Apêndice A) &
+A divisão entre seis integrantes é uma estimativa; os percentuais arredondados somam 100\% &
+Registrar horas por integrante e issue para comparar execução e planejamento \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\subsubsection{G4 --- Interação e qualidade em uso}
-\label{met:g4}
-% Origem: framework GQM, seções 2, 3.4, 4 e 5.1.
-G4 avalia os fluxos de matrícula e notas do ponto de vista de
-secretários escolares e professores sem experiência prévia no
-sistema, em instalação local com dados fictícios~\cite{gqm}.
-M12 e M13 medem propriedades do produto por testes e inspeção,
-sem participantes; M14 e M15 dependem de sessões de uso.
+\subsection{Rastreabilidade, aspectos éticos e limitações}\label{sec:limitacoes}
+A GitPage da equipe reúne a documentação da avaliação, incluindo o planejamento e o framework GQM~\cite{gracehopper_gqm,gracehopper_pc1}. Para assegurar a rastreabilidade, cada medição deverá registrar a versão do produto, a versão do instrumento, o cenário, a data, o responsável e a evidência produzida.
 
-Q4.1 trata da proteção contra erros (M12): notas fora da faixa,
-etapas encerradas, menções inválidas e matrículas inconsistentes.
-Prevê-se no mínimo três cenários por tipo, executados pela interface
-e pela API, com verificação da persistência no banco. O bloqueio
-deve impedir a gravação e apresentar uma mensagem, sem erro 500,
-tela em branco ou perda dos demais dados digitados~\cite{gqm}.
+Em observância à Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018)~\cite{lgpd2018}, os testes locais deverão empregar dados fictícios. As sessões de qualidade em uso (M14 e M15) exigirão TCLE prévio e identificação por códigos anônimos (\texttt{P01}, \texttt{P02}, etc.). A amostra de iniciantes, o ambiente Docker e o recorte de dois módulos limitam a generalização. M5 depende de registros de produção ainda indisponíveis; sua ausência não será substituída por dados sintéticos nem por nota zero. O estudo não constitui certificação de segurança ou desempenho em nuvem.
 
-Q4.2 trata das mensagens observadas nesses cenários (M13): cada
-mensagem deve explicar a causa e indicar a ação corretiva. Dois
-integrantes classificarão as mensagens de forma independente;
-as divergências serão resolvidas por consenso e registradas.
+% =====================================================================
+\section{Fase 1: Definição da Avaliação}\label{sec:fase1}
 
-Q4.3 compara o tempo de usuários novos com o de um integrante
-treinado. M14a e M14b preservam o tempo médio em minutos por tarefa,
-mas o julgamento usa a razão entre esse tempo e o tempo de
-referência. Q4.4 verifica a conclusão correta na primeira submissão
-(M15), abrangendo tanto matrícula quanto diário, sem erro de
-validação, recarga, perda de dados ou ajuda do avaliador~\cite{gqm}.
+\subsection{Propósito da avaliação e uso pretendido}
+A adoção e a manutenção do i-Educar por redes municipais despertam quatro questões práticas: (1) se a plataforma pode coexistir em servidores compartilhados e integrar-se via API REST sem quebras de contrato; (2) se o cálculo de médias/menções e as operações compostas de matrícula preservam 100\% de exatidão e atomicidade transacional; (3) qual o custo técnico imposto pela convivência entre o código legado (\texttt{ieducar/}) e o núcleo Laravel (\texttt{app/}); e (4) se secretários e docentes sem treinamento prévio conseguem operar a matrícula e o diário sem erros ou perda de dados.
 
-\subsection{Protocolo das sessões de uso}
-\label{sec:sessoes}
-% Origem: framework GQM, seção 3.4, protocolo de M14 e M15.
-Estão previstas sessões com no mínimo cinco voluntários sem
-experiência prévia no i-Educar, consentimento por TCLE e dados
-anonimizados por códigos de participante. As tarefas serão
-executadas na mesma ordem, com dados fornecidos em ficha: T1,
-matricular um aluno já cadastrado e realizar sua enturmação; T2,
-lançar notas de um componente curricular para dez alunos~\cite{gqm}.
+O propósito desta avaliação é diagnosticar de forma objetiva até que ponto os módulos de Matrícula e de Lançamento de Notas e Menções do i-Educar 2.12 atendem a esses requisitos, apoiando decisões específicas de quatro grupos de tomadores de decisão (Tabela~\ref{tab:stakeholders}): adoção/atualização pelas Secretarias Municipais de Educação, priorização de refatorações e testes pelos mantenedores, configuração de integrações pelas equipes de TI municipais e dimensionamento de capacitação pelas equipes escolares.
 
-O tempo de referência de cada tarefa será a média de três execuções
-por um integrante treinado. As sessões serão gravadas com tela e
-áudio, cronometrando da leitura da tarefa à confirmação de gravação,
-sem auxílio do avaliador durante a execução. A média de M14 considera
-os participantes que concluíram a tarefa. M15 considera todas as
-execuções de T1 e T2, conferindo no banco a correção do resultado.
-\pendente{registrar recrutamento, consentimento, códigos, fichas,
-tempos individuais e de referência, desistências e falhas.
-Definir antes da coleta o tratamento de tarefas sem concluintes
-ou com tempo de referência inválido.}
+\subsection{Requisitante e partes interessadas}
+Em conformidade com a ISO/IEC 25040:2024~\cite{iso25040}, a docente da disciplina atua como requisitante metodológica no contexto acadêmico, enquanto as Secretarias Municipais de Educação representam o requisitante institucional no domínio do software. A equipe autora atua como avaliadora independente. A Tabela~\ref{tab:stakeholders} consolida as partes interessadas, seus critérios de sucesso, as decisões apoiadas e sua influência na avaliação.
 
-\subsection{Procedimentos de coleta e análise}
-\label{sec:coleta}
-% Origem: framework GQM, seções 3, 4 e 6; ferramentas previstas precisam
-% ter sua existência e execução verificadas antes de serem relatadas.
-\pendente{descrever cenários, repetições, ferramentas e versões,
-tratamento de dados ausentes, normalização, pesos e critérios
-eliminatórios. Informar como reproduzir a coleta e localizar evidências.}
+\begin{table*}[!t]
+\centering
+\caption{Partes interessadas, critérios de sucesso, decisões apoiadas e influência na avaliação. Fonte: elaboração própria.}
+\label{tab:stakeholders}
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}L{2.8cm}L{4.8cm}L{4.8cm}L{4.4cm}@{}}
+\toprule
+\textbf{Parte interessada (papel SQuaRE)} & \textbf{Necessidade e critério de sucesso} & \textbf{Decisão apoiada e critério de decisão} & \textbf{Influência na avaliação} \\
+\midrule
+Secretários escolares (usuário final primário) &
+Cadastrar matrículas, enturmações e transferências (\texttt{pmieducar.matricula}) sem gravar dados inconsistentes; sucesso: bloqueio de 100\% das entradas inválidas e mensagens claras &
+Dimensionar necessidade de treinamento e material de apoio nas secretarias escolares (recomendado reforço se $\text{ADMV} < 90\%$ ou $R_{\text{tempo},T1} > 2{,}0$) &
+Motivou a inclusão do Gate Binário M12 e de M13; ponto de vista de G4; definiu a tarefa T1 do protocolo de uso \\
+\addlinespace[2pt]
+Professores da rede municipal (usuário final primário) &
+Lançar notas e menções no diário eletrônico sem perda de dados e com cálculo exato; sucesso: zero divergência no cálculo de médias ($\text{DCNM} = 100\%$) e conclusão ágil por turma &
+Adotar o lançamento direto no diário eletrônico pelas escolas e definir necessidade de oficina prática para docentes (se $R_{\text{tempo},T2} > 2{,}0$ ou $\text{TSPT} < 70\%$) &
+Ponto de vista de G2 (cálculo de boletim) e G4 (uso do diário); definiu a tarefa T2 do protocolo de uso \\
+\addlinespace[2pt]
+Secretarias Municipais de Educação --- gestores (requisitante / adquirente) &
+Garantir a integridade dos históricos escolares e a prestação de contas da rede; sucesso: aprovação nos três Gates Binários, $\text{IQM} \ge 2{,}75$ e backup restaurável ($\text{CVPB} \ge 95\%$) &
+Adotar, manter ou atualizar o i-Educar 2.12 na rede municipal e decidir se exige suporte contratado ou plano corretivo prévio (Classificações A, B ou C do IQM) &
+Motivou o peso de 30\% para Confiabilidade e a criação dos Gates Binários não-compensatórios (M3, M4 e M12) \\
+\addlinespace[2pt]
+Equipes de TI municipais (operador / integrador) &
+Operar os containers em infraestrutura compartilhada e integrar dados via API REST (\texttt{routes/api.php}); sucesso: isolamento por \texttt{.env} sem colisão e contrato JSON íntegro &
+Implantar o i-Educar no mesmo host de outros sistemas municipais e consumir a API REST sem adaptadores extras (se $\text{TINCR} \ge 85\%$ e $\text{CEI} \ge 85\%$) &
+Motivou a seleção de Compatibilidade (20\%); ponto de vista de G1 (M1 e M2) \\
+\addlinespace[2pt]
+Mantenedores --- Portabilis e comunidade (desenvolvedor) &
+Evoluir o código em \texttt{app/} e manter o legado em \texttt{ieducar/} com baixo risco de regressão; sucesso: baixa complexidade, baixo atrito nos modelos \texttt{Legacy*} e testes ativos &
+Priorizar quais classes e métodos refatorar primeiro e onde remover \texttt{markTestSkipped()} (métrica Crítica ou Regular gera recomendação por arquivo) &
+Motivou a seleção de Manutenibilidade (30\%); ponto de vista de G3 (M7a, M7b, M8, M9, M10 e M11) \\
+\addlinespace[2pt]
+Sistemas do INEP / Censo Escolar (usuário secundário indireto) &
+Receber dados íntegros de vínculo e situação final do aluno gerados a partir da base escolar; sucesso: ausência de corrupção nas tabelas de matrícula e avaliação &
+--- (o pacote externo \path{i-educar-educacenso-package} fica fora do escopo direto de G1) &
+Tratado como risco indireto de Confiabilidade (G2) sobre \texttt{pmieducar.matricula} e \texttt{modules.nota\_aluno} \\
+\bottomrule
+\end{tabular}
+\end{table*}
 
-\subsection{Critérios de julgamento e rastreabilidade}
-\label{sec:julgamento}
-% Origem: framework GQM, seções 4 e 5. Não alterar pesos ou limiares aqui.
-O planejamento estabelece critérios eliminatórios para M3, M4 e M12.
-Os limiares, pesos e regras de agregação serão os da versão do framework
-GQM identificada no protocolo~\cite{gqm}. Para M1 e M2, as faixas
-atuais são: crítico abaixo de 70\%, regular de 70\% a menos de 85\%,
-bom de 85\% a menos de 100\% e excelente em 100\%.
-Para M14a e M14b, a razão de tempo é crítica acima de 3, regular
-acima de 2 até 3, boa acima de 1,5 até 2 e excelente até 1,5.
-M15 é crítica abaixo de 50\%, regular de 50\% a menos de 70\%,
-boa de 70\% a menos de 90\% e excelente a partir de 90\%~\cite{gqm}.
-\pendente{fixar a revisão usada na execução, conferir a cobertura dos
-limiares e explicitar o tratamento de casos sem classificação antes
-de aplicar os critérios. Documentar o cálculo dos índices por
-característica e global, sem atribuir pontuação a dados ausentes.}
+\subsection{Tipo de produto e descrição estruturada}
+O i-Educar é um sistema web de gestão administrativa e pedagógica escolar (\textit{Educational Management Information System}), distribuído sob licença GPL-2.0-or-later~\cite{ieducar_repo,bid_ieducar}. A descrição técnica segue a inspeção registrada na documentação da equipe~\cite{gracehopper_pc1}: \texttt{branch 2.12}, versão declarada \texttt{2.12.0} e commit \texttt{7903a3e}. Nesse registro, a stack compreende PHP \texttt{\^{}8.5}, Laravel \texttt{\^{}13.0}, PostgreSQL 18, Redis 8, Nginx 1.30 e Pest \texttt{\^{}5.0}; as dependências deverão ser reconferidas no checkout usado na coleta.
 
-Cada registro de medição deverá indicar objetivo, questão, métrica,
-cenário ou amostra, valor e unidade, critério aplicado, localização
-da evidência, versão do software, data e responsável pela coleta.
-Resultados indisponíveis permanecerão identificados como pendentes.
+Arquiteturalmente, opera como um \textbf{monólito híbrido} (Figura~\ref{fig:arquitetura} e Tabela~\ref{tab:modulos}). As rotas modernas (\path{routes/web.php} e \path{routes/api.php}) são atendidas por controladores Laravel, serviços (\path{app/Services/}) e modelos Eloquent (\path{app/Models/Legacy*.php}). Já as rotas legadas (\texttt{intranet/}, \texttt{module/} e \texttt{modules/}) são interceptadas por \path{app/Http/Controllers/LegacyController.php}, que altera o diretório de execução para \path{ieducar/intranet} e encapsula a resposta gerada pelos scripts procedurais. Essas propriedades definem \textbf{o que dá e o que não dá para medir agora}:
+\begin{itemize}
+  \item \textbf{O que dá para medir agora}: o código aberto permite planejar a coexistência de duas instâncias (M1), os contratos JSON (M2), o oráculo de notas (M3), o \textit{rollback} transacional (M4), a restauração isolada (M6), as medidas de código e testes (M7a a M11) e as validações de entrada e mensagens (M12 e M13). A coleta depende da preparação do ambiente e dos manifestos; M14 e M15 exigem também voluntários e TCLE. A viabilidade desses protocolos não significa que as medições já tenham sido executadas.
+  \item \textbf{O que não dá para medir agora}: sem acesso a servidores de produção, telemetria (Honeybadger) ou chamados reais de prefeituras, não é possível medir a densidade de defeitos em produção (M5, mantida formalmente no GQM com regra explícita de não mensurabilidade), nem executar testes de carga multi-município ou auditorias de intrusão em infraestrutura real.
+\end{itemize}
 
-\section{Resultados}
-\label{sec:resultados}
-% Origem futura: registros de execução e evidências vinculados ao GQM.
-A coleta está pendente. As subseções reservam o vínculo entre o
-protocolo metodológico, as medições e as questões de avaliação.
+\begin{figure}[!t]
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tikzpicture}[
+  node distance=0.22cm and 0.25cm,
+  every node/.style={font=\scriptsize, align=center},
+  ext/.style={draw, dashed, fill=gray!5, rounded corners=2pt, inner sep=3pt, minimum height=0.72cm},
+  comp/.style={draw, fill=gray!15, rounded corners=2pt, inner sep=3pt, minimum height=0.82cm},
+  db/.style={draw, fill=gray!28, rounded corners=2pt, inner sep=3pt, minimum height=0.68cm},
+  arr/.style={-{Stealth[length=1.7mm]}, semithick}
+]
+\node[comp, text width=5.6cm] (nginx) at (0,0) {\textbf{Nginx 1.30 $\rightarrow$ Roteador Laravel 13}\\(\texttt{routes/web.php}, \texttt{api.php})};
+\node[comp, text width=2.65cm, below left=0.26cm and -2.72cm of nginx] (app) {\textbf{Núcleo Moderno (\texttt{app/})}\\\texttt{Registration\allowbreak Service}\\Models \texttt{Legacy*.php}};
+\node[comp, text width=2.65cm, below right=0.26cm and -2.72cm of nginx] (leg) {\textbf{Núcleo Legado (\texttt{ieducar/})}\\\texttt{LegacyController}\\\texttt{Boletim} e \texttt{Diario*}};
+\node[db, text width=5.6cm, below=2.45cm of nginx] (pg) {\textbf{PostgreSQL 18} (\texttt{pmieducar}, \texttt{modules}, \texttt{cadastro}) + \textbf{Redis 8}};
+\node[draw, rounded corners=3pt, inner sep=4pt, fit=(nginx)(app)(leg)(pg), label={[font=\scriptsize\bfseries]above:Ambiente Docker do i-Educar 2.12 (commit \texttt{7903a3e})}] (box) {};
 
-\subsection{G1 --- Compatibilidade}
-\label{res:g1}
-\pendente{responder Q1.1 e Q1.2 com M1 e M2, conforme a
-Seção~\ref{met:g1}; apresentar valores, unidades, amostras, critérios
-e referências às evidências. Informar recursos identificados e
-isoláveis, conflitos entre instâncias e endpoints conformes e
-testados, com o contrato e todos os casos de teste por endpoint.}
+\node[ext, text width=1.50cm, left=0.32cm of app] (usr) {Secretários\\Professores};
+\node[ext, text width=1.50cm, below=0.20cm of usr] (api) {Sistemas\\Municipais};
+\node[ext, text width=1.45cm, right=0.32cm of leg] (inep) {Pacote externo\\Educacenso\\(fora de G1)};
 
-\subsection{G2 --- Confiabilidade}
-\label{res:g2}
-\pendente{responder Q2.1 a Q2.3 com M3 a M6, conforme a
-Seção~\ref{met:g2}; apresentar evidências dos critérios eliminatórios
-M3 e M4, defeitos observados e verificação do procedimento de backup.}
+\draw[arr] (usr.east) -- (nginx.west);
+\draw[arr] (api.east) to[out=0,in=180] ([yshift=-0.20cm]nginx.west);
+\draw[arr] (nginx.south) -- (app.north);
+\draw[arr] (nginx.south) -- (leg.north);
+% Chamadas no mesmo processo; o traço distingue dependência de fluxo HTTP.
+\coordinate (calls) at ([yshift=-0.42cm]app.south);
+\draw[<->, >=Stealth, dashed, semithick]
+  (app.south) -- (calls) -- node[below, fill=white, inner sep=1pt] {chamadas internas}
+  (calls -| leg.south) -- (leg.south);
+% Acesso à persistência por portas laterais, sem cruzar a ligação interna.
+\coordinate (appdb) at ([xshift=0.18cm]app.south west);
+\coordinate (legdb) at ([xshift=-0.18cm]leg.south east);
+\draw[arr] (appdb) -- (appdb |- pg.north);
+\draw[arr] (legdb) -- (legdb |- pg.north);
+\draw[arr, dashed] (pg.east) -| (inep.south);
+\end{tikzpicture}}
+\caption{Arquitetura monolítica híbrida do i-Educar 2.12. Setas contínuas: encaminhamento de requisições e acesso à persistência; ligação bidirecional tracejada: chamadas internas entre núcleos; caixas tracejadas: componentes externos. Fonte: elaboração própria a partir de~\cite{ieducar_repo}.}
+\label{fig:arquitetura}
+\end{figure}
 
-\subsection{G3 --- Manutenibilidade}
-\label{res:g3}
-\pendente{responder Q3.1 a Q3.5 com M7a, M7b e M8 a M11, conforme
-a Seção~\ref{met:g3}; informar o universo analisado, os valores,
-as unidades, os critérios e as evidências.}
+Os núcleos compartilham a persistência e apresentam dependências em ambos os sentidos: serviços modernos instanciam componentes legados de avaliação, enquanto páginas legadas utilizam serviços Laravel. No commit avaliado, \texttt{DiarioControllerService} instancia o boletim legado, e a página de matrícula utiliza \texttt{RegistrationService}~\cite{ieducar_repo}. Essas chamadas internas não representam comunicação entre serviços de rede independentes.
 
-\subsection{G4 --- Interação e qualidade em uso}
-\label{res:g4}
-\pendente{responder Q4.1 a Q4.4 com M12, M13, M14a, M14b e M15,
-conforme a Seção~\ref{met:g4}; apresentar o critério eliminatório M12,
-cenários e persistência, classificação independente das mensagens
-e consensos. Para T1 e T2, apresentar amostras, tempos em minutos,
-referência de três execuções, razões de tempo e sucesso na primeira
-submissão, conforme a Seção~\ref{sec:sessoes}. Vincular cada resultado
-às evidências anonimizadas.}
+\begin{table}[!t]
+\centering
+\caption{Módulos, interfaces, tabelas e dependências do i-Educar 2.12 no escopo avaliado. Fonte: elaboração própria a partir de~\cite{ieducar_repo}.}
+\label{tab:modulos}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}L{1.8cm}L{3.8cm}L{2.7cm}@{}}
+\toprule
+\textbf{Componente} & \textbf{Função e interfaces principais (PostgreSQL 18)} & \textbf{Métricas associadas} \\
+\midrule
+Módulo de Matrícula &
+Vínculo, enturmação, transferência e 14 status cadastrais: \path{app/Services/RegistrationService.php}; \texttt{LegacyRegistration} (\texttt{pmieducar.matricula}) e \texttt{LegacyEnrollment} (\texttt{matricula\_turma}); telas em \path{ieducar/intranet/educar_matricula*.php} &
+G2 (M4$^*$, M5); G3 (M7a/b, M8--M11); G4 (M12$^*$, M13, M14a, M15) \\
+\addlinespace[2pt]
+Módulo de Notas e Menções &
+Regras de avaliação, arredondamento e diário: \path{ieducar/modules/Avaliacao/Service/Boletim.php}; \path{DiarioController.php}; \path{DiarioApiController.php}; tabelas \path{modules.regra_avaliacao}, \path{tabela_arredondamento_valor} e \path{nota_aluno} &
+G2 (M3$^*$, M4$^*$); G3 (M7a/b, M8--M11); G4 (M12$^*$, M13, M14b, M15) \\
+\addlinespace[2pt]
+Ponte Legado-Laravel &
+Interceptação de rotas legadas e adaptação de tipos para o Eloquent: \path{app/Http/Controllers/LegacyController.php} e \path{app/Models/Legacy*.php} &
+G3 (M8, M9) \\
+\addlinespace[2pt]
+API REST e Docker &
+Endpoints JSON (\path{routes/api.php}, \path{ieducar/modules/Api/}) e containers (\path{docker-compose.yml}, \path{.env.example}: Nginx 1.30, PostgreSQL 18, Redis 8) &
+G1 (M1, M2) \\
+\addlinespace[2pt]
+Persistência e Backup &
+Esquemas \texttt{pmieducar}, \texttt{modules} e \texttt{cadastro}; utilitários \texttt{pg\_dump}/\texttt{pg\_restore} e rota \path{/backup-download} &
+G2 (M4$^*$, M6) \\
+\addlinespace[2pt]
+Pacote Educacenso &
+Pacote externo via Composer: \path{portabilis/}\allowbreak\path{i-educar-}\allowbreak\path{educacenso-package} &
+Fora do escopo direto (Tabela~\ref{tab:escopo}) \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\subsection{Síntese do julgamento}
-\label{res:julgamento}
-\pendente{consolidar os critérios eliminatórios, índices por
-característica e índice global segundo a Seção~\ref{sec:julgamento}.
-Registrar dados ausentes e limitações que impeçam o julgamento.
-Não emitir classificação antes da coleta e conferência das evidências.}
+\subsection{Modelo de qualidade}\label{sec:modelo}
+O modelo de qualidade parte da ISO/IEC 25010:2023~\cite{iso25010} e, de forma complementar para as sessões com usuários, da ISO/IEC 25019:2023~\cite{iso25019}. A Figura~\ref{fig:modelo} apresenta as quatro características selecionadas, as subcaracterísticas mantidas (com objetivos G1--G4 e métricas), as subcaracterísticas excluídas (tracejadas) e as cinco características não incluídas.
 
-\section{Discussão}
-\label{sec:discussao}
-% Dependências: resultados G1--G4 e critérios de julgamento.
-\pendente{responder às questões GQM a partir dos resultados, discutir
-divergências, priorizar recomendações e separar observações de
-hipóteses explicativas. Relacionar as respostas às
-Seções~\ref{res:g1}, \ref{res:g2},
-\ref{res:g3} e~\ref{res:g4}, indicando quais evidências sustentam
-cada recomendação e os limites de sua aplicação.}
+\begin{figure}[!t]
+\centering
+\begin{tikzpicture}[
+  every node/.style={font=\scriptsize, align=center},
+  root/.style={draw, fill=gray!30, rounded corners=2pt, font=\scriptsize\bfseries, minimum height=0.46cm, text width=8.4cm},
+  car/.style={draw, fill=gray!20, rounded corners=2pt, font=\scriptsize\bfseries, minimum height=0.50cm, text width=1.96cm, inner sep=1.5pt},
+  sub/.style={draw, fill=white, rounded corners=1pt, minimum height=0.44cm, text width=1.96cm, inner sep=1.5pt, align=left},
+  excl/.style={draw, dashed, text=black!65, fill=gray!4, rounded corners=1pt, minimum height=0.40cm, text width=1.96cm, inner sep=1.5pt, align=left}
+]
+\node[root] (r) at (3.3,0) {Modelo de Qualidade Adaptado ao i-Educar 2.12 (ISO/IEC 25010:2023 + 25019:2023)};
 
-\section{Ameaças à Validade}
-\label{sec:validade}
-O recorte não inclui segurança, excluída na priorização por baixa
-viabilidade de medição, nem desempenho sob estresse em escala de
-produção~\cite{pc1}. Portanto, os resultados não permitirão concluir
-sobre a qualidade integral da plataforma. A instalação local, o
-contrato de API eventualmente derivado pela equipe e a participação
-de usuários iniciantes também delimitam a interpretação.
-\pendente{discutir validade de construto, vieses de seleção e execução,
-limites dos instrumentos e da amostra, influência do ambiente e
-generalização para outros módulos ou instalações do i-Educar.
-Registrar as medidas de mitigação efetivamente adotadas.}
+\node[car, below=7mm of r.south, xshift=-3.3cm] (c1) {Compatibilidade\\(20\%)};
+\node[car, below=7mm of r.south, xshift=-1.1cm] (c2) {Confiabilidade\\(30\%)};
+\node[car, below=7mm of r.south, xshift=1.1cm] (c3) {Manutenibilidade\\(30\%)};
+\node[car, below=7mm of r.south, xshift=3.3cm] (c4) {Interação e Uso\\(20\%)};
 
-\section{Conclusão}
-\label{sec:conclusao}
-\pendente{retomar o objetivo, sintetizar achados sustentados pelas
-evidências, explicitar limitações e indicar trabalhos futuros.
-Na versão de planejamento, relatar apenas o plano e os próximos passos.}
+% Uma única linha de distribuição mantém as quatro derivações visíveis.
+\coordinate (branch) at ([yshift=-3.5mm]r.south);
+\draw (r.south) -- (branch);
+\draw (branch -| c1.north) -- (branch -| c4.north);
+\foreach \x in {c1,c2,c3,c4} \draw (branch -| \x.north) -- (\x.north);
 
+% Coluna 1
+\node[sub, below=1mm of c1] (s11) {Coexistência (G1: M1)};
+\node[sub, anchor=north, below=0.05cm of s11] (s12) {Interoperabilidade (G1: M2)};
+
+% Coluna 2
+\node[sub, below=1mm of c2] (s21) {Ausência de falhas (G2: M3$^*$, M5)};
+\node[sub, anchor=north, below=0.05cm of s21] (s22) {Tolerância a falhas (G2: M4$^*$)};
+\node[sub, anchor=north, below=0.05cm of s22] (s23) {Recuperabilidade (G2: M6)};
+\node[excl, anchor=north, below=0.05cm of s23] (s24) {Disponibilidade};
+
+% Coluna 3
+\node[sub, below=1mm of c3] (s31) {Modularidade (G3: M7a, M8)};
+\node[sub, anchor=north, below=0.05cm of s31] (s32) {Analisabilidade (G3: M7b, M9)};
+\node[sub, anchor=north, below=0.05cm of s32] (s33) {Modificabilidade (G3: M8--M10)};
+\node[sub, anchor=north, below=0.05cm of s33] (s34) {Testabilidade (G3: M11)};
+\node[excl, anchor=north, below=0.05cm of s34] (s35) {Reusabilidade};
+
+% Coluna 4
+\node[sub, below=1mm of c4] (s41) {Proteção contra erros (G4: M12$^*$)};
+\node[sub, anchor=north, below=0.05cm of s41] (s42) {Autodescritividade (G4: M13)};
+\node[sub, anchor=north, below=0.05cm of s42] (s43) {Eficiência em uso --- 25019 (M14a/b)};
+\node[sub, anchor=north, below=0.05cm of s43] (s44) {Eficácia em uso --- 25019 (G4: M15)};
+\node[excl, anchor=north, below=0.05cm of s44] (s45) {Apreensib./Operab.\\(em M14/M15)};
+\node[excl, anchor=north, below=0.05cm of s45] (s46) {Inclusiv./Engajam.};
+
+\coordinate (outtop) at (r.center |- s46.south);
+\node[excl, text width=8.4cm, align=center, below=3mm of outtop] (out) {Características da ISO/IEC 25010:2023 não selecionadas: Segurança (\textit{security}), Adequação funcional, Eficiência de desempenho, Flexibilidade (\textit{flexibility}) e Ausência de risco (\textit{safety})};
+\end{tikzpicture}
+\caption{Modelo de qualidade adaptado ao i-Educar 2.12: subcaracterísticas mantidas (com objetivo e métricas; $^*$ indica \textit{gate} binário) e excluídas (tracejadas). Fonte: adaptado pela equipe a partir de~\cite{iso25010,iso25019}.}
+\label{fig:modelo}
+\end{figure}
+
+Em \textbf{Compatibilidade (G1)}, mantiveram-se \textit{coexistência} e \textit{interoperabilidade}, pois prefeituras hospedam o i-Educar junto a outros serviços e consomem sua API REST. Em \textbf{Confiabilidade (G2)}, mantiveram-se \textit{ausência de falhas} (\textit{faultlessness}), \textit{tolerância a falhas} e \textit{recuperabilidade}; excluiu-se \textit{disponibilidade} (\textit{uptime}), que exigiria monitoramento contínuo de produção. Em \textbf{Manutenibilidade (G3)}, mantiveram-se \textit{modularidade}, \textit{analisabilidade}, \textit{modificabilidade} e \textit{testabilidade}; excluiu-se \textit{reusabilidade}, dado que os módulos implementam regras específicas da legislação educacional brasileira. Em \textbf{Capacidade de interação e Uso (G4)}, priorizaram-se \textit{proteção contra erros} e \textit{autodescritividade} (no produto) somadas a \textit{eficiência} e \textit{eficácia} nas tarefas T1 e T2 (em uso), que capturam empiricamente a facilidade de operação por iniciantes.
+
+\subsection{Seleção e priorização de características}
+Pelas diretrizes da disciplina, a Capacidade de interação é obrigatória e recebe peso fixo de 20\% no índice global. As demais oito características da ISO/IEC 25010:2023 foram comparadas por uma matriz de criticidade com três critérios de 1 (baixo) a 5 (alto): \textbf{Impacto ($I$)} para os stakeholders (Tabela~\ref{tab:stakeholders}), \textbf{Risco ($R$)} técnico na arquitetura híbrida (\texttt{ieducar/} vs.\ \texttt{app/}) e \textbf{Viabilidade ($V$)} de medição em ambiente Docker local e código aberto. A criticidade é $C = I \times R$, selecionando-se as três características de maior $C$ que atendam a $V \ge 3$ (com maior $V$ como desempate), conforme a Tabela~\ref{tab:priorizacao}.
+
+\begin{table}[!t]
+\centering
+\caption{Matriz de priorização das características da ISO/IEC 25010:2023; selecionadas em negrito. Fonte: elaboração própria.}
+\label{tab:priorizacao}
+\scriptsize
+\setlength{\tabcolsep}{2.4pt}
+\begin{tabular}{@{}L{2.0cm}cccccL{3.5cm}@{}}
+\toprule
+\textbf{Característica} & \textbf{I} & \textbf{R} & \textbf{V} & \textbf{I$\times$R} & \textbf{Peso} & \textbf{Decisão e justificativa} \\
+\midrule
+\textbf{Manutenibilidade} & 4 & 5 & 5 & \textbf{20} & \textbf{30\%} & \textbf{Selecionada}: coexistência legado-Laravel eleva o risco ($R=5$); código aberto permite medição estática ($V=5$) \\
+\textbf{Confiabilidade} & 5 & 4 & 4 & \textbf{20} & \textbf{30\%} & \textbf{Selecionada}: erro em notas/matrícula afeta o histórico oficial ($I=5$); testável via oráculo e injeção ($V=4$) \\
+Segurança (\textit{security}) & 5 & 4 & 2 & 20 & --- & Excluída ($V<3$): embora trate dados da LGPD, pentest realista exigiria ambiente de produção e escopo próprio \\
+\textbf{Compatibilidade} & 4 & 3 & 3 & \textbf{12} & \textbf{20\%} & \textbf{Selecionada}: necessidade das equipes de TI para coexistência Docker e API REST ($V=3$) \\
+Adequação funcional & 5 & 2 & 4 & 10 & --- & Excluída ($C$ menor): o recorte prioriza as características selecionadas; a exatidão de notas é tratada em Confiabilidade (M3) \\
+Eficiência de desempenho & 3 & 3 & 2 & 9 & --- & Excluída ($V<3$): teste sob carga de múltiplos municípios requer nuvem indisponível \\
+Flexibilidade (\textit{flexibility}) & 2 & 2 & 4 & 4 & --- & Excluída ($C$ menor): operação ocorre em navegadores desktop padrão e container fixo \\
+Ausência de risco (\textit{safety}) & 2 & 1 & 2 & 2 & --- & Excluída ($C$ e $V$): sistema administrativo sem risco físico direto \\
+\textbf{Capacidade de interação} & --- & --- & --- & --- & \textbf{20\%} & \textbf{Obrigatória}: exigência da disciplina; avaliada no produto (M12, M13) e em uso (M14a/b, M15) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Na análise de \textit{trade-offs}, a exclusão de \textbf{Segurança} ($C=20$, mas $V=2$) é a decisão mais sensível, pois o i-Educar armazena dados de menores protegidos pela LGPD~\cite{lgpd2018}; contudo, uma verificação restrita a cabeçalhos não mediria a segurança real dos módulos, registrando-se a lacuna como limitação. Entre as características avaliadas, destacam-se duas tensões técnicas: (1) adaptadores defensivos nos modelos \texttt{Legacy*} favorecem a \textbf{Confiabilidade} e a \textbf{Capacidade de interação} ao sanitizar dados legados, mas elevam o atrito estrutural medido na \textbf{Manutenibilidade} (M9); e (2) validações síncronas rigorosas protegem contra erros do usuário (M12), mas aumentam a complexidade ciclomática dos controladores (M7a/M7b).
+
+\subsection{Escopo, profundidade e objetos de avaliação}
+O escopo concentra-se nos módulos de \textbf{Matrícula de Alunos} e de \textbf{Lançamento de Notas e Menções}, que exemplificam os dois estágios da arquitetura híbrida do i-Educar: matrícula parcialmente migrada para serviços Laravel e avaliação concentrada no motor legado \texttt{Boletim.php}. A Tabela~\ref{tab:escopo} sintetiza o que entra e o que fica fora do escopo. Quanto à profundidade, articulam-se três níveis: (1) \textbf{caixa-branca}, via análise estática de AST/grafo em \texttt{app/} e \texttt{ieducar/} e auditoria da suíte Pest/PHPUnit; (2) \textbf{caixa-cinza}, via testes de oráculo de médias, injeção de exceções em transações PostgreSQL, restauração de dumps e validação de JSON Schema; e (3) \textbf{caixa-preta e qualidade em uso}, via submissão de entradas inválidas na interface e sessões com cinco participantes iniciantes executando as tarefas T1 e T2.
+
+\begin{table}[!t]
+\centering
+\caption{Delimitação do escopo da avaliação e racional de cada corte. Fonte: elaboração própria.}
+\label{tab:escopo}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}L{1.65cm}L{3.35cm}L{3.3cm}@{}}
+\toprule
+\textbf{Objeto} & \textbf{Dentro do escopo} & \textbf{Fora do escopo (motivo do corte)} \\
+\midrule
+Módulo de Matrícula &
+Fluxos, rotas, \texttt{RegistrationService} e modelos \texttt{LegacyRegistration} / \texttt{LegacyEnrollment} &
+Módulos paralelos (biblioteca, transporte, alimentação), para manter profundidade nos dois módulos centrais \\
+\addlinespace[2pt]
+Módulo de Notas e Menções &
+Regras (\texttt{LegacyEvaluationRule}), arredondamento, \texttt{Boletim.php} e \texttt{Diario*Controller} &
+Relatórios gráficos em JasperReports (\path{ieducar/modules/Reports/}), mantidos em pacote separado \\
+\addlinespace[2pt]
+Docker e API REST &
+Isolamento de variáveis/portas em subida de 2ª instância (M1) e contratos JSON de matrícula e notas (M2) &
+Exportação do Educacenso/INEP (repositório externo) e integrações que exijam credenciais de produção \\
+\addlinespace[2pt]
+Banco e código-fonte &
+Oráculos (M3), transações (M4), restore de 3 esquemas (M6) e código/testes em \texttt{app/} e \texttt{ieducar/} (M7a--M11) &
+Terceiros em \texttt{vendor/}; estresse multi-município; coleta empírica de M5 caso não haja logs reais de produção \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{ODS, metas e indicadores relacionados}
+No plano socioinstitucional, a avaliação relaciona-se indiretamente aos ODS 4 e 16 da Agenda 2030 da ONU~\cite{onu_ods_brasil,un_sdg_indicators} (Tabela~\ref{tab:ods}). Na \textbf{Meta 4.1}, a integridade dos registros (G2) e a operação correta pelas equipes escolares (G4) apoiam a fidedignidade dos dados de conclusão escolar. Na \textbf{Meta 4.a}, o vínculo restringe-se à gestão administrativa de unidades e turmas (G1 e G4). Na \textbf{Meta 16.6}, o acesso ao código~\cite{bid_ieducar}, a auditabilidade dos cálculos, a integridade transacional (G2) e a manutenibilidade (G3) podem apoiar a transparência municipal. Esses vínculos são interpretações da equipe; as métricas do produto não medem diretamente os indicadores oficiais nem comprovam impacto educacional.
+
+\begin{table}[!t]
+\centering
+\caption{Alinhamento do objeto de estudo aos ODS 4 e 16 da ONU. Fonte: elaboração própria a partir de~\cite{onu_ods_brasil,un_sdg_indicators}.}
+\label{tab:ods}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}L{1.3cm}L{3.1cm}L{2.8cm}L{0.9cm}@{}}
+\toprule
+\textbf{ODS} & \textbf{Meta oficial (ONU)} & \textbf{Indicador oficial} & \textbf{Obj.} \\
+\midrule
+4 Educação de qualidade &
+4.1: conclusão do ensino primário e secundário gratuito, equitativo e de qualidade &
+4.1.2: taxa de conclusão (ensino primário, fundamental e médio) &
+G2, G4 \\
+\addlinespace[2pt]
+4 Educação de qualidade &
+4.a: ambientes escolares inclusivos, seguros e eficazes &
+4.a.1: proporção de escolas com acesso a serviços básicos &
+G1, G4 \\
+\addlinespace[2pt]
+16 Instituições eficazes &
+16.6: desenvolver instituições eficazes, responsáveis e transparentes &
+16.6.1: despesas vs.\ orçamento; 16.6.2: satisfação com serviços públicos &
+G2, G3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =====================================================================
+\section{Fase 2: Planejamento da Medição (GQM)}\label{sec:fase2}
+
+A especificação aplica o GQM~\cite{basili1994gqm} em três níveis: \textbf{conceitual}, com 4 objetivos (\texttt{G1}--\texttt{G4}); \textbf{operacional}, com 14 questões e suas hipóteses (2 de G1, 3 de G2, 5 de G3 e 4 de G4); e \textbf{quantitativo}, com 15 medições (famílias \texttt{M1}--\texttt{M15}) em 17 linhas operacionais. M7 desdobra-se em percentil 90 e máximo (M7a/M7b), e M14 nas tarefas T1 e T2 (M14a/M14b). M3, M4 e M12 são \textit{gates} binários. As Tabelas~\ref{tab:gqm1} e~\ref{tab:gqm2} detalham as questões, hipóteses e critérios; a Figura~\ref{fig:gqm} explicita suas ligações.
+
+\begin{table*}[!t]
+\centering
+\caption{Especificação GQM de Compatibilidade (G1) e Confiabilidade (G2). Faixas cinza: questões e hipóteses; linhas brancas: métricas e pontuação. Fonte: elaboração própria.}
+\label{tab:gqm1}
+\fontsize{6.5}{7.8}\selectfont
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.04}
+% Separadores compactos; mantém a fonte e a entrelinha dos textos.
+\setlength{\aboverulesep}{0.3ex}
+\setlength{\belowrulesep}{0.4ex}
+\begin{tabular}{@{}L{0.60cm}L{7.90cm}C{1.85cm}C{1.95cm}C{1.95cm}C{2.05cm}@{}}
+\gqmhead
+
+\gqmO{G1: Compatibilidade do ambiente de execução e da API REST (Peso no IQM: 20\%)}
+\gqmQ{Q1.1}{Coexistência}{Os recursos de ambiente do i-Educar podem ser isolados por configuração para coexistir com outras instâncias e serviços no mesmo host?}{Pelo menos 85\% dos recursos compartilháveis são parametrizáveis via \texttt{.env}, mas nomes fixos de containers podem exigir ajuste na subida simultânea ($\text{TINCR} \ge 85\%$, H1.1).}
+\gqmM{M1}{Taxa de Isolamento e Não-Colisão de Recursos ($\text{TINCR}$, Eq.~\ref{eq:m1m2}): recursos isoláveis por configuração e confirmados na subida simultânea de 2ª instância / recursos inventariados em \path{docker-compose.yml}, \path{.env.example} e \path{config/} (portas Nginx/PostgreSQL/Redis, containers, banco, prefixo Redis e \texttt{LEGACY\_*}).}{$100\%$}{$[85{,}0\%, 100\%)$}{$[70{,}0\%, 85{,}0\%)$}{$< 70{,}0\%$ ($w_1=1{,}0$, Gradual)}
+
+\gqmQ{Q1.2}{Interoperabilidade}{As respostas da API dos módulos de matrícula e notas obedecem a um contrato de dados verificável?}{Ao menos 85\% dos endpoints testados seguem o contrato JSON em requisições válidas, podendo ocorrer falhas de padronização de erro em rotas legadas ($\text{CEI} \ge 85\%$, H1.2).}
+\gqmM{M2}{Conformidade com Esquemas de Interoperabilidade ($\text{CEI}$, Eq.~\ref{eq:m1m2}): endpoints conformes nos 3 critérios (status HTTP e \texttt{application/json} válidos; aderência ao JSON Schema pré-declarado; e erro estruturado sem HTTP 500 ou HTML em chamadas inválidas) / endpoints testados em \path{routes/api.php} e \path{ieducar/modules/Api/}.}{$100\%$}{$[85{,}0\%, 100\%)$}{$[70{,}0\%, 85{,}0\%)$}{$< 70{,}0\%$ ($w_2=1{,}0$, Gradual)}
+
+\gqmO{G2: Confiabilidade no cálculo de notas, transações compostas e backup (Peso no IQM: 30\%)}
+\gqmQ{Q2.1}{Ausência de falhas (\textit{faultlessness})}{As rotinas de cálculo de notas, médias e conversão de menções são 100\% determinísticas?}{O motor \texttt{Avaliacao\_Service\_Boletim} calcula médias e menções com 100\% de exatidão frente ao oráculo formal quando configurado ($\text{DCNM} = 100\%$, H2.1).}
+\gqmM{M3$^*$}{Determinismo no Cálculo de Notas e Menções ($\text{DCNM}$, Eq.~\ref{eq:m3m4}): casos conformes ao oráculo formal / casos planejados no manifesto congelado (média aritmética, ponderada, recuperação, exame final e conversão em \texttt{modules.tabela\_arredondamento\_valor}), via Pest/PHPUnit. Universo vazio ($0/0$) bloqueia o gate.}{$100\%$}{---}{---}{$< 100\%$ ($w_3=2{,}0$, \textbf{Gate})}
+
+\gqmQ{Q2.2}{Tolerância a falhas e Ausência de falhas}{Operações compostas de matrícula e diário garantem \textit{rollback} integral e ausência de dados órfãos?}{Serviços migrados para Laravel (\texttt{RegistrationService}) garantem \textit{rollback} via \texttt{DB::transaction}, mas fluxos que mesclam legado podem falhar no gate ($\text{ITAE} \le 100\%$, H2.2); já M5 ficará não mensurável sem logs de produção.}
+\gqmM{M4$^*$}{Integridade Transacional e Atomicidade de Estado ($\text{ITAE}$, Eq.~\ref{eq:m3m4}): operações compostas multi-escrita com \textit{rollback} integral em todos os pontos de injeção de exceção planejados / operações analisadas no manifesto (\path{RegistrationService.php} e \path{DiarioController.php}), conferindo \texttt{pmieducar} e \texttt{modules}.}{$100\%$}{---}{---}{$< 100\%$ ($w_4=2{,}0$, \textbf{Gate})}
+\gqmM{M5}{Densidade de Defeitos Operacionais de Matrícula ($\text{DDOM}$, Eq.~\ref{eq:m5m6}): incidentes confirmados em produção / $1.000$ movimentações em janela de 90 dias (Honeybadger e chamados). Sem dados reais de produção, registra-se como \textit{não mensurável} (sem nota zero ou substituta).}{$\le 0{,}5$}{$(0{,}5, 2{,}0]$}{$(2{,}0, 5{,}0]$}{$> 5{,}0$ ($w_5=1{,}2$, Gradual)}
+
+\gqmQ{Q2.3}{Recuperabilidade}{O sistema disponibiliza mecanismo confiável de backup e recuperação de desastres?}{Ao menos 95\% das tentativas planejadas de restauração em banco isolado recuperam os esquemas \texttt{pmieducar}, \texttt{modules} e \texttt{cadastro}, passando todas as verificações previstas ($\text{CVPB} \ge 95\%$, H2.3).}
+\gqmM{M6}{Completude e Verificabilidade do Procedimento de Backup ($\text{CVPB}$, Eq.~\ref{eq:m5m6}): tentativas planejadas de restauração que recuperam os 3 esquemas críticos em banco isolado com aprovação de checksum e integridade referencial / restaurações planejadas no manifesto.}{$100\%$}{$[95{,}0\%, 99{,}0\%)$}{$[90{,}0\%, 95{,}0\%)$}{$< 90{,}0\%$ ($w_6=1{,}0$, Gradual)}
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure*}[!t]
+\centering
+\gqmfigtikz
+\caption{Hierarquia GQM completa da avaliação do i-Educar 2.12, com os três níveis formais identificados ($^*$ indica Gate Binário eliminatório). Fonte: elaboração própria.}
+\label{fig:gqm}
+\end{figure*}
+
+\begin{table*}[!t]
+\centering
+\caption{Especificação GQM de Manutenibilidade (G3) e Capacidade de Interação e Uso (G4). Faixas cinza: questões e hipóteses; linhas brancas: métricas e pontuação. Fonte: elaboração própria.}
+\label{tab:gqm2}
+\fontsize{6.5}{7.8}\selectfont
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.04}
+\setlength{\aboverulesep}{0.3ex}
+\setlength{\belowrulesep}{0.4ex}
+\begin{tabular}{@{}L{0.60cm}L{7.90cm}C{1.85cm}C{1.95cm}C{1.95cm}C{2.05cm}@{}}
+\gqmhead
+
+\gqmO{G3: Manutenibilidade do código-fonte na arquitetura híbrida (Peso no IQM: 30\%)}
+\gqmQ{Q3.1}{Modularidade e Analisabilidade}{Qual a complexidade ciclomática dos métodos no universo declarado?}{Métodos legados em \texttt{Boletim.php} e \texttt{DiarioApiController.php} elevarão o percentil 90 para $10 < \text{CC}_{P90} \le 20$ e o máximo para $\text{CC}_{\max} > 30$ (H3.1).}
+\gqmM{M7a}{Percentil 90 da Complexidade Ciclomática ($\text{CC}_{P90}$, Eq.~\ref{eq:m7}): $x_{(\lceil 0{,}90n \rceil)}$ (\textit{nearest rank}) sobre os $n$ métodos concretos de \path{RegistrationService.php}, \path{DiarioApiController.php}, \path{DiarioController.php} e \path{Boletim.php}, via analisador estático de AST PHP.}{$\le 10$}{$(10, 15]$}{$(15, 20]$}{$> 20$ ($w_{7a}=1{,}0$, Gradual)}
+\gqmM{M7b}{Máximo da Complexidade Ciclomática ($\text{CC}_{\max}$, Eq.~\ref{eq:m7}): $\max_{1\le m\le n} v(G_m)$ medido sobre exatamente o mesmo inventário de $n$ métodos concretos de M7a, preservando todos os símbolos empatados no teto.}{$\le 15$}{$(15, 30]$}{$(30, 50]$}{$> 50$ ($w_{7b}=1{,}2$, Gradual)}
+
+\gqmQ{Q3.2}{Modularidade e Modificabilidade}{Quão desacoplados e equilibrados estão os componentes estruturais do domínio?}{O baixo uso de interfaces ($A \approx 0$) e o acoplamento direto a modelos concretos situarão a distância média da sequência principal entre $0{,}20$ e $0{,}50$ (H3.2).}
+\gqmM{M8}{Distância da Sequência Principal de Martin ($\text{DSPM}$, Eq.~\ref{eq:m8}): média de $D_p = |A_p + I_p - 1|$ sobre os $P$ componentes mapeados no manifesto, com $I_p = C_e/(C_a+C_e)$ e $A_p = N_a/N_c$ extraídos por grafo de dependências entre tipos PHP.}{$\le 0{,}20$}{$(0{,}20, 0{,}35]$}{$(0{,}35, 0{,}50]$}{$> 0{,}50$ ($w_8=0{,}8$, Gradual)}
+
+\gqmQ{Q3.3}{Analisabilidade e Modificabilidade}{Qual o grau de atrito e adaptação de dados entre a camada legada e moderna?}{Os modelos \texttt{Legacy*} apresentam em média entre $1{,}0$ e $2{,}5$ adaptações defensivas por modelo ($1{,}0 < \text{IFDL} \le 2{,}5$, H3.3).}
+\gqmM{M9}{Índice de Fricção de Dados Legado-Moderno ($\text{IFDL}$, Eq.~\ref{eq:m9m11}): média de pontos lógicos de adaptação defensiva ($A_{\text{defensivos},i}$: traits de datas legadas, casts manuais e normalizações de string vazia para \texttt{null}) por modelo em \path{app/Models/Legacy*.php}.}{$\le 1{,}0$}{$(1{,}0, 2{,}5]$}{$(2{,}5, 4{,}0]$}{$> 4{,}0$ ($w_9=0{,}6$, Gradual)}
+
+\gqmQ{Q3.4}{Modificabilidade}{Qual o índice global de manutenibilidade do código?}{A média do índice de manutenibilidade normalizado dos métodos analisados situar-se-á na faixa Boa ($60 \le \text{MI} < 80$, H3.4), puxada para baixo pelos métodos extensos do legado.}
+\gqmM{M10}{Índice de Manutenibilidade Normalizado ($\text{MI}$, Eq.~\ref{eq:m10}): média aritmética de $\text{MI}_m \in [0, 100]$ sobre os $n$ métodos concretos do universo M7a/M7b, calculado a partir do Volume de Halstead ($\text{HV}_m$), $v(G_m)$ e $\text{LOC}_m$ lógico.}{$\ge 80$}{$[60, 80)$}{$[40, 60)$}{$< 40$ ($w_{10}=1{,}0$, Gradual)}
+
+\gqmQ{Q3.5}{Testabilidade}{Qual o percentual de casos de teste ativos com asserção no domínio avaliado?}{A presença de testes marcados com \texttt{markTestSkipped()} na suíte legada reduzirá a taxa de testes ativos com asserção para $70\% \le \text{TTAE} < 95\%$ (H3.5).}
+\gqmM{M11}{Taxa de Testes Ativos com Asserção em Domínio ($\text{TTAE}$, Eq.~\ref{eq:m9m11}): casos de teste executados pelo runner Pest/PHPUnit que registram ao menos 1 asserção em runtime / total de casos declarados no manifesto de matrícula e avaliação (eficácia por mutação reportada à parte).}{$\ge 95{,}0\%$}{$[85{,}0\%, 95{,}0\%)$}{$[70{,}0\%, 85{,}0\%)$}{$< 70{,}0\%$ ($w_{11}=1{,}4$, Gradual)}
+
+\gqmO{G4: Capacidade de Interação (ISO 25010) e Qualidade em Uso (ISO 25019) (Peso no IQM: 20\%)}
+\gqmQ{Q4.1}{Proteção contra erros do usuário}{O sistema impede proativamente erros de entrada ou operações fora de prazo pedagógico?}{O sistema bloqueia 100\% dos cenários inválidos previstos sem persistir dados corrompidos nem retornar erro HTTP 500 ($\text{IPPE} = 100\%$, H4.1).}
+\gqmM{M12$^*$}{Índice de Proteção contra Erros do Usuário ($\text{IPPE}$, Eq.~\ref{eq:m12m13}): cenários inválidos bloqueados amigavelmente (sem gravação no banco, sem HTTP 500/tela branca e sem perda dos demais campos) / cenários submetidos ($\ge 3$ por classe: nota fora da faixa, etapa encerrada, menção inexistente e matrícula conflitante).}{$100\%$}{---}{---}{$< 100\%$ ($w_{12}=2{,}0$, \textbf{Gate})}
+
+\gqmQ{Q4.2}{Autodescritividade}{As mensagens de validação e recusa são autodescritivas e orientadas à ação?}{Entre 80\% e 90\% das mensagens informam causa e ação corretiva ($\text{ADMV} \in [80\%, 90\%)$, H4.2), com mensagens genéricas residuais no núcleo legado.}
+\gqmM{M13}{Autodescritividade das Mensagens de Validação ($\text{ADMV}$, Eq.~\ref{eq:m12m13}): mensagens coletadas em M12 que explicam simultaneamente a causa do bloqueio e a ação corretiva (avaliadas por 2 classificadores independentes com consenso) / total de mensagens avaliadas.}{$\ge 98{,}0\%$}{$[90{,}0\%, 98{,}0\%)$}{$[80{,}0\%, 90{,}0\%)$}{$< 80{,}0\%$ ($w_{13}=0{,}8$, Gradual)}
+
+\gqmQ{Q4.3}{Eficiência em uso --- ISO/IEC 25019}{Quanto tempo um usuário novo leva para concluir as tarefas essenciais face a um experiente?}{Participantes iniciantes levarão entre $1{,}5$ e $2{,}5$ vezes o tempo de referência nas tarefas T1 e T2 ($1{,}5 < R_{\text{tempo}} \le 2{,}5$, H4.3), devido aos filtros na interface legada.}
+\gqmM{M14a}{Razão de Tempo na Tarefa T1 --- Matrícula ($R_{\text{tempo},T1}$, Eq.~\ref{eq:m14m15}): $\text{TMET}_{T1}/T_{\text{ref},T1}$ dos iniciantes que concluírem a matrícula e enturmação de aluno já cadastrado. Recrutamento previsto: ao menos 5 voluntários, com TCLE.}{$\le 1{,}5$}{$(1{,}5, 2{,}0]$}{$(2{,}0, 3{,}0]$}{$> 3{,}0$ ($w_{14a}=0{,}8$, Gradual)}
+\gqmM{M14b}{Razão de Tempo na Tarefa T2 --- Diário ($R_{\text{tempo},T2}$, Eq.~\ref{eq:m14m15}): $\text{TMET}_{T2}/T_{\text{ref},T2}$ dos voluntários iniciantes para lançar notas de um componente em turma de 10 alunos frente à referência.}{$\le 1{,}5$}{$(1{,}5, 2{,}0]$}{$(2{,}0, 3{,}0]$}{$> 3{,}0$ ($w_{14b}=1{,}0$, Gradual)}
+
+\gqmQ{Q4.4}{Eficácia em uso --- ISO/IEC 25019}{Usuários novos concluem as tarefas essenciais corretamente na primeira tentativa?}{Entre 70\% e 90\% das execuções de T1 e T2 serão concluídas corretamente na primeira submissão ($\text{TSPT} \in [70\%, 90\%)$, H4.4).}
+\gqmM{M15}{Taxa de Sucesso na Primeira Tentativa em Uso ($\text{TSPT}$, Eq.~\ref{eq:m14m15}): execuções das tarefas T1 e T2 concluídas corretamente já na 1ª submissão (confirmadas no PostgreSQL) / total de execuções realizadas pelos participantes.}{$\ge 90{,}0\%$}{$[70{,}0\%, 90{,}0\%)$}{$[50{,}0\%, 70{,}0\%)$}{$< 50{,}0\%$ ($w_{15}=1{,}0$, Gradual)}
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Objetivos de medição e consistência entre as Fases 1 e 2}
+Os quatro objetivos de medição seguem o template estruturado de cinco elementos de Basili, Caldiera e Rombach~\cite{basili1994gqm} e guardam rastreabilidade direta com as características priorizadas na Tabela~\ref{tab:priorizacao} e os stakeholders da Tabela~\ref{tab:stakeholders}, conforme consolidado na Tabela~\ref{tab:objetivos}. Os cortes de escopo da Fase 1 (Tabela~\ref{tab:escopo}) são integralmente preservados na Fase 2: nenhuma métrica avalia o pacote externo do Educacenso, diretórios \texttt{vendor/} ou carga simultânea de produção, e a métrica \texttt{M5} mantém regra explícita de não mensurabilidade na ausência de logs reais de produção.
+
+\begin{table}[!t]
+\centering
+\caption{Objetivos GQM no nível conceitual e rastreabilidade com a Fase 1. Fonte: elaboração própria.}
+\label{tab:objetivos}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}L{1.15cm}L{5.35cm}L{1.8cm}@{}}
+\toprule
+\textbf{Obj.\ (Peso)} & \textbf{Enunciado estruturado GQM (Analisar / Com o propósito de / Com respeito a / Do ponto de vista de / No contexto de)} & \textbf{Rastreabilidade Fase 1 $\rightarrow$ 2} \\
+\midrule
+\textbf{G1} Compatib.\ (20\%) &
+\textbf{Analisar} o ambiente Docker e a API REST dos módulos de Matrícula e Notas \textbf{com o propósito de} avaliar colisões e quebras de contrato \textbf{com respeito a} coexistência e interoperabilidade \textbf{do ponto de vista de} equipes de TI municipais \textbf{no contexto do} commit \texttt{7903a3e}. &
+TI municipal (Tabela~\ref{tab:stakeholders}) $\rightarrow$ Q1.1, Q1.2 (M1, M2) \\
+\addlinespace[2pt]
+\textbf{G2} Confiab.\ (30\%) &
+\textbf{Analisar} o cálculo de notas, transações compostas e rotinas de backup \textbf{com o propósito de} avaliar a exatidão determinística e a integridade de persistência \textbf{com respeito a} ausência de falhas, tolerância a falhas e recuperabilidade \textbf{do ponto de vista de} gestores, docentes e engenharia de testes \textbf{no contexto de} oráculos, injeção de falhas e restore isolado. &
+Gestores e docentes (Tabela~\ref{tab:stakeholders}) $\rightarrow$ Q2.1--Q2.3 (M3$^*$, M4$^*$, M5, M6) \\
+\addlinespace[2pt]
+\textbf{G3} Manuten.\ (30\%) &
+\textbf{Analisar} o código-fonte de Matrícula e Notas (\texttt{app/} e \texttt{ieducar/}) \textbf{com o propósito de} avaliar o custo estrutural de manutenção e a cobertura de testes ativos \textbf{com respeito a} modularidade, analisabilidade, modificabilidade e testabilidade \textbf{do ponto de vista de} mantenedores (Portabilis e comunidade) \textbf{no contexto da} arquitetura monolítica híbrida. &
+Mantenedores (Tabela~\ref{tab:stakeholders}) $\rightarrow$ Q3.1--Q3.5 (M7a/b, M8--M11) \\
+\addlinespace[2pt]
+\textbf{G4} Interação e Uso (20\%) &
+\textbf{Analisar} os fluxos de matrícula e lançamento de notas \textbf{com o propósito de} avaliar a prevenção de erros, a clareza de feedback e a eficiência/eficácia operacional \textbf{com respeito a} proteção contra erros, autodescritividade, eficiência e eficácia em uso \textbf{do ponto de vista de} secretários e professores iniciantes \textbf{no contexto de} entradas inválidas e sessões supervisionadas. &
+Secretários e docentes (Tabela~\ref{tab:stakeholders}) $\rightarrow$ Q4.1--Q4.4 (M12$^*$, M13, M14a/b, M15) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Questões e hipóteses operacionais}
+As 14 questões examinam atributos das subcaracterísticas selecionadas. As respectivas hipóteses, identificadas de H1.1 a H4.4 nas Tabelas~\ref{tab:gqm1} e~\ref{tab:gqm2}, expressam expectativas a confrontar com a coleta, não resultados do produto. A confirmação de uma hipótese não equivale à aprovação: H3.1, por exemplo, prevê complexidade elevada, enquanto o julgamento aplica os limiares da métrica. Preservam-se, assim, a distinção entre expectativa, valor medido e critério de aceitação.
+
+\subsection{Métricas e fórmulas matemáticas de cálculo}\label{sec:formulas}
+As equações abaixo sintetizam as 15 medições definidas no framework da equipe~\cite{gracehopper_gqm}. Fórmulas, pesos e limiares constituem a operacionalização local do modelo; não são apresentados como valores prescritos pelas normas ISO. Os manifestos e instrumentos deverão ser versionados antes da coleta.
+
+\subsubsection{Compatibilidade (G1)}
+\textbf{M1 (TINCR)} mede a proporção de recursos compartilháveis inventariados em \path{docker-compose.yml}, \path{.env.example} e \path{config/} ($N_{\text{identificados}}$) isoláveis por configuração na subida simultânea de 2ª instância ($N_{\text{isoláveis}}$); e \textbf{M2 (CEI)} mede a proporção de endpoints da API REST de matrícula e notas conformes em status HTTP, JSON Schema e erro estruturado sem HTTP 500:
+\begin{equation}\label{eq:m1m2}
+\begin{aligned}
+\text{TINCR} &= \frac{N_{\text{isoláveis}}}{N_{\text{identificados}}} \times 100\%, \\
+\text{CEI} &= \frac{N_{\text{endpoints conformes}}}{N_{\text{endpoints testados}}} \times 100\%
+\end{aligned}
+\end{equation}
+
+\subsubsection{Confiabilidade (G2)}
+\textbf{M3 (DCNM --- Gate Binário)} mede a exatidão determinística de \path{Boletim.php} frente a um manifesto congelado de casos de oráculo; \textbf{M4 (ITAE --- Gate Binário)} mede a proporção de operações compostas multi-escrita que executam \textit{rollback} integral sob injeção de exceção em cada etapa; \textbf{M5 (DDOM)} mede incidentes confirmados em produção por $1.000$ movimentações em 90 dias; e \textbf{M6 (CVPB)} mede a taxa de restaurações bem-sucedidas dos esquemas \texttt{pmieducar}, \texttt{modules} e \texttt{cadastro} em banco isolado:
+\begin{equation}\label{eq:m3m4}
+\begin{aligned}
+\text{DCNM} &= \frac{N_{\text{conformes}}}{N_{\text{casos oráculo}}} \times 100\%, \\
+\text{ITAE} &= \frac{N_{\text{rollback OK}}}{N_{\text{op.\ compostas}}} \times 100\%
+\end{aligned}
+\end{equation}
+\begin{equation}\label{eq:m5m6}
+\begin{aligned}
+\text{DDOM} &= \frac{N_{\text{incidentes}}}{N_{\text{movimentações}}} \times 1.000, \\
+\text{CVPB} &= \frac{N_{\text{restores OK}}}{N_{\text{restores planej.}}} \times 100\%
+\end{aligned}
+\end{equation}
+
+\subsubsection{Manutenibilidade (G3)}
+Sobre os $n$ métodos concretos (\textit{callables}) declarados em \path{RegistrationService.php}, \path{DiarioApiController.php}, \path{DiarioController.php} e \path{Boletim.php}, a complexidade ciclomática~\cite{mccabe1996structured} é $v(G_m) = E_m - N_m + 2P_m$. $E_m$ e $N_m$ contam arestas e nós do grafo de fluxo; $P_m=1$ para o grafo conectado de um método. O percentil 90 é uma agregação local, não uma recomendação atribuída ao NIST. Ordenando $x_{(1)} \le \dots \le x_{(n)}$, definem-se \textbf{M7a} e \textbf{M7b} (\textit{nearest rank}):
+\begin{equation}\label{eq:m7}
+\text{CC}_{P90} = x_{(\lceil 0{,}90n \rceil)}, \qquad \text{CC}_{\max} = \max_{1 \le m \le n} v(G_m)
+\end{equation}
+Para \textbf{M8 (DSPM)}, sobre os $P$ componentes mapeados, calculam-se a instabilidade $I_p$, a abstratividade $A_p$ e a distância média à sequência principal de Martin. Em cada componente, $C_e$ e $C_a$ contam dependências de saída e entrada; $N_a$ e $N_c$, tipos abstratos e tipos totais:
+\begin{equation}\label{eq:m8}
+\begin{aligned}
+I_p &= \frac{C_e}{C_a + C_e}, \qquad A_p = \frac{N_a}{N_c}, \\
+\text{DSPM} &= \frac{1}{P} \sum_{p=1}^{P} |A_p + I_p - 1|
+\end{aligned}
+\end{equation}
+Para \textbf{M9 (IFDL)}, calcula-se a média de pontos lógicos de adaptação defensiva ($A_{\text{defensivos},i}$) nos $M_{\text{modelos}}$ modelos \path{app/Models/Legacy*.php}; e para \textbf{M11 (TTAE)}, a proporção de casos de teste no manifesto de matrícula e avaliação executados pelo runner que registram ao menos uma asserção em runtime:
+\begin{equation}\label{eq:m9m11}
+\begin{aligned}
+\text{IFDL} &= \frac{1}{M_{\text{mod}}}\sum_{i=1}^{M_{\text{mod}}} A_{\text{def},i}, \\
+\text{TTAE} &= \frac{N_{\text{ativos c/ asserção}}}{N_{\text{casos manifesto}}} \times 100\%
+\end{aligned}
+\end{equation}
+Para \textbf{M10 (MI)}, calcula-se a média do índice local normalizado em $[0,100]$ sobre os $n$ métodos. $\text{HV}_m$ é o Volume de Halstead, e $\text{LOC}_m$ conta linhas lógicas. A expressão intermediária $B_m$ e o índice são:
+\begin{equation}\label{eq:m10}
+\begin{aligned}
+B_m &= 171 - 5{,}2\ln(\text{HV}_m) - 0{,}23v(G_m) \\
+    &\quad - 16{,}2\ln(\text{LOC}_m), \\
+\text{MI}_m &= \min\!\left(100,\max\!\left(0,\frac{B_m}{171}\times100\right)\right), \\
+\text{MI} &= \frac{1}{n}\sum_{m=1}^{n}\text{MI}_m
+\end{aligned}
+\end{equation}
+Conforme as convenções do framework, em M8 adota-se $I_p=0$ quando $C_a+C_e=0$; componente planejado sem tipos torna M8 não mensurável. Em M10, $\text{HV}_m$ e $\text{LOC}_m$ devem ser positivos, e $n>0$; entradas ausentes não são omitidas nem substituídas por zero.
+
+\subsubsection{Capacidade de interação e Qualidade em uso (G4)}
+No produto, \textbf{M12 (IPPE --- Gate Binário)} mede o percentual de cenários inválidos bloqueados amigavelmente sem persistência indevida nem HTTP 500, e \textbf{M13 (ADMV)} mede a proporção dessas mensagens que informam causa e ação corretiva:
+\begin{equation}\label{eq:m12m13}
+\begin{aligned}
+\text{IPPE} &= \frac{N_{\text{bloq.\ amig.}}}{N_{\text{inv.\ subm.}}} \times 100\%, \\
+\text{ADMV} &= \frac{N_{\text{msgs causa+ação}}}{N_{\text{msgs aval.}}} \times 100\%
+\end{aligned}
+\end{equation}
+Em uso (ISO/IEC 25019:2023), serão recrutados ao menos 5 iniciantes para executar, nessa ordem e sem auxílio, \textbf{T1} (matrícula e enturmação de aluno já cadastrado) e \textbf{T2} (notas de um componente para 10 alunos). Para cada tarefa $T$, $K$ é o número de concluintes, $t_{k,T}$ é o tempo do participante $k$, e $T_{\text{ref},T}$ é a média de 3 execuções de um integrante treinado. A razão de tempos é adimensional; os tempos são registrados em minutos. Definem-se \textbf{M14a/M14b} e \textbf{M15}:
+\begin{equation}\label{eq:m14m15}
+\begin{aligned}
+R_{\text{tempo},T} &= \frac{\frac{1}{K}\sum_{k=1}^{K} t_{k,T}}{T_{\text{ref},T}}, \\
+\text{TSPT} &= \frac{N_{\text{1ª sub.\ OK}}}{N_{\text{exec.\ totais}}} \times 100\%
+\end{aligned}
+\end{equation}
+
+\subsection{Níveis de pontuação, critérios de julgamento e gráfico GQM}
+Cada métrica gradual mensurável recebe $S_i \in \{1,2,3,4\}$: \textbf{Excelente (4)}, \textbf{Bom (3)}, \textbf{Regular (2)} ou \textbf{Crítico (1)}, conforme as Tabelas~\ref{tab:gqm1} e~\ref{tab:gqm2}. Na \textbf{Etapa 1}, M3, M4 e M12 exigem $100\%$ em universos não vazios. Para M3/M4, casos planejados não executados ou sem evidência permanecem no denominador como não conformes; universo vazio não produz aprovação. Falha ou comprovação insuficiente bloqueia a decisão de release. Na \textbf{Etapa 2}, aprovados os gates, agregam-se as métricas graduais em $\text{IQC}_k$ e $\text{IQM}$. Conforme o framework, métrica gradual indisponível não recebe zero nem nota substituta: sem política prévia de exclusão, a característica e o índice global ficam não calculáveis. Isso se aplica a M5 enquanto faltarem os registros de produção.
+\begin{equation}\label{eq:iqm}
+\begin{aligned}
+\text{IQC}_k &= \frac{\sum_{i \in k} (S_i \times w_i)}{\sum_{i \in k} w_i}, \\
+\text{IQM} &= 0{,}30\,\text{IQC}_{\text{Conf}} + 0{,}30\,\text{IQC}_{\text{Manut}} \\
+           &\quad + 0{,}20\,\text{IQC}_{\text{Inter/Uso}} + 0{,}20\,\text{IQC}_{\text{Comp}}
+\end{aligned}
+\end{equation}
+onde $i \in k$ identifica as métricas graduais da característica $k$, e $w_i$ é o peso local. Mantêm-se os critérios do framework: \textbf{Classe A}, gates aprovados, $\text{IQM} \ge 3{,}25$, todo $\text{IQC}_k \ge 3{,}0$ e nenhum $S_i=1$; \textbf{Classe B}, gates aprovados, $2{,}75 \le \text{IQM} < 3{,}25$ e todo $\text{IQC}_k \ge 2{,}5$, com plano corretivo para nível Regular; \textbf{Classe C}, falha em gate, $\text{IQM} < 2{,}75$ ou algum $\text{IQC}_k < 2{,}5$. A ausência de medição não constitui classificação empírica do produto. A Figura~\ref{fig:gqm} resume a hierarquia da especificação.
+
+% =====================================================================
+%  SEÇÕES DA ENTREGA 2 (escondidas na Entrega 1)
+% =====================================================================
+\ifentregafinal
+
+\section{Fase 3: Projeto da Avaliação}\label{sec:fase3}
+\TODO{Descrever na Entrega 2 os manifestos congelados, scripts de coleta, procedimentos de teste e ambiente Docker.}
+
+\section{Fase 4: Execução, Resultados e Análise}\label{sec:fase4}
+\TODO{Apresentar na Entrega 2 os valores medidos, níveis atingidos, confronto com hipóteses e melhorias executadas.}
+
+\section{Conclusão}\label{sec:conclusao}
+\TODO{Retomar na Entrega 2 os objetivos, responder às necessidades dos stakeholders e sintetizar as conclusões.}
+
+\fi % fim do \ifentregafinal
+
+% =====================================================================
 \section*{Declaração de Uso de Inteligência Artificial}
-\label{sec:ia}
-\pendente{informar ferramentas e modelos utilizados, tarefas apoiadas
-e revisão humana efetivamente realizada. A preparação desta estrutura
-teve apoio do assistente Codex; revisar e complementar o registro.}
 
-\begin{thebibliography}{00}
-% Origem: documentos locais efetivamente consultados para este esqueleto.
-% Ordenar as entradas pela primeira citação no texto (estilo IEEE).
-\bibitem{ieducar}
-Portabilis e colaboradores, ``i-Educar,'' repositório de software.
-[Online]. Disponível em: \url{https://github.com/portabilis/i-educar}.
-Acesso em: 18 out. 2026.
-% Base documental consultada: merge ff53da3. Atualizar após nova revisão.
-\bibitem{gqm}
-Equipe Grace Hopper, ``Framework GQM de Avaliação de Qualidade de
-Software --- Versão 2.0,'' documento do projeto. [Online]. Disponível em:
-\url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/blob/ff53da3/docs/gqm_evaluation_framework.md}.
-Revisão ff53da3, 2026.
-\bibitem{pc1}
-Equipe Grace Hopper, ``Relatório de Planejamento --- Ponto de Controle 1
-(i-Educar),'' documento do projeto. [Online]. Disponível em:
-\url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/blob/ff53da3/docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md}.
-Revisão ff53da3, 2026.
+Em atendimento aos critérios de transparência acadêmica (F1-C10, F2-C9 e AG-C3), a Tabela~\ref{tab:ia} registra o apoio de IA e os limites de verificação. A revisão assistida não substitui a validação final dos autores.
+
+% Mantém a declaração de IA antes do início das referências.
+\begin{table}[H]
+\centering
+\caption{Uso de IA, verificações e limites da revisão. Fonte: registro do projeto e revisão deste artigo.}
+\label{tab:ia}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}L{1.60cm}L{2.30cm}L{0.85cm}L{3.35cm}@{}}
+\toprule
+\textbf{Ferramenta} & \textbf{Tarefa apoiada} & \textbf{Quando} & \textbf{Verificações e limites} \\
+\midrule
+Google Gemini / Claude (via Antigravity) &
+Estruturação de templates da GitPage (MkDocs) e formatação de tabelas e equações em \LaTeX\ (\texttt{IEEEtran}) &
+Out. 2026 &
+Uso registrado na GitPage. A validação integral contra os PDFs das rubricas permanece sob responsabilidade dos autores \\
+\addlinespace[2pt]
+OpenAI Codex / ChatGPT &
+Revisão editorial com Mathbox e LaTeX Document Maker; conferência de referências via Article Galaxy, autorizada pelo usuário &
+Out. 2026 &
+Comparação com os documentos locais, revisão de notação e compilação em duas passagens. Pendências de fontes e método são relatadas aos autores; não se afirma nova auditoria do código do produto \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =====================================================================
+\begin{thebibliography}{15}
+
+\bibitem{ieducar_repo}
+Portabilis e colaboradores, ``i-Educar --- Software livre de gest\~ao escolar,'' reposit\'orio oficial GitHub, \texttt{branch 2.12}, commit \texttt{7903a3efc7689942ee700007f86ed581023aad27}, 2026. [Online]. Dispon\'ivel em: \url{https://github.com/portabilis/i-educar}. Acesso em: 19 out. 2026.
+
+\bibitem{bid_ieducar}
+Banco Interamericano de Desenvolvimento (BID), ``i-Educar: solu\c{c}\~ao de c\'odigo aberto para gest\~ao escolar,'' Cat\'alogo C\'odigo para o Desenvolvimento. [Online]. Dispon\'ivel em: \url{https://knowledge.iadb.org/pt-br/conhecimento-aberto/codigo-para-desenvolvimento/solucao-de-codigo-aberto/i-educar}. Acesso em: 19 out. 2026.
+
 \bibitem{iso25010}
-ISO e IEC, \emph{Systems and software engineering --- Systems and
-software Quality Requirements and Evaluation (SQuaRE) --- Product
-quality model}, ISO/IEC 25010:2023, 2nd ed., 2023.
-[Online]. Disponível em: \url{https://www.iso.org/standard/78176.html}.
-Acesso ao catálogo em: 18 out. 2026.
+ISO/IEC, ``ISO/IEC 25010:2023 --- Systems and software engineering --- Systems and software Quality Requirements and Evaluation (SQuaRE) --- Product quality model,'' 2nd ed., Geneva, 2023. [Online]. Dispon\'ivel em: \url{https://www.iso.org/standard/78176.html}. Acesso em: 18 out. 2026.
+
 \bibitem{iso25019}
-ISO e IEC, \emph{Systems and software engineering --- Systems and
-software Quality Requirements and Evaluation (SQuaRE) --- Quality-in-use
-model}, ISO/IEC 25019:2023, 1st ed., 2023.
-[Online]. Disponível em: \url{https://www.iso.org/standard/78177.html}.
-Acesso ao catálogo em: 18 out. 2026.
+ISO/IEC, ``ISO/IEC 25019:2023 --- Systems and software engineering --- SQuaRE --- Quality-in-use model,'' 1st ed., Geneva, 2023. [Online]. Dispon\'ivel em: \url{https://www.iso.org/standard/78177.html}. Acesso em: 18 out. 2026.
+
+\bibitem{gracehopper_gqm}
+Equipe Grace Hopper, ``Framework GQM de Avalia\c{c}\~ao de Qualidade de Software --- Vers\~ao 2.0,'' documenta\c{c}\~ao do projeto, UnB/FGA, 2026. [Online]. Dispon\'ivel em: \url{https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/gqm_evaluation_framework/}.
+
+\bibitem{gracehopper_pc1}
+Equipe Grace Hopper, ``Relat\'orio de Planejamento e Acompanhamento --- Ponto de Controle 1 (i-Educar),'' documenta\c{c}\~ao do projeto, UnB/FGA, 2026. [Online]. Dispon\'ivel em: \url{https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/relatorio_de_planejamento_ponto_de_controle_1_i_educar/}.
+
+\bibitem{iso25002}
+ISO/IEC, ``ISO/IEC 25002:2024 --- Systems and software engineering --- SQuaRE --- Quality model overview and usage,'' 1st ed., Geneva, 2024.
+
+\bibitem{iso25023}
+ISO/IEC, ``ISO/IEC 25023:2016 --- Systems and software engineering --- SQuaRE --- Measurement of system and software product quality,'' Geneva, 2016.
+
 \bibitem{iso25040}
-ISO e IEC, \emph{Systems and software engineering --- Systems and
-software Quality Requirements and Evaluation (SQuaRE) --- Quality
-evaluation framework}, ISO/IEC 25040:2024, 2nd ed., 2024.
-[Online]. Disponível em: \url{https://www.iso.org/standard/83467.html}.
-Acesso ao catálogo em: 18 out. 2026.
-\bibitem{basili1994}
-V. R. Basili, G. Caldiera e H. D. Rombach, ``Goal Question Metric
-Approach,'' em \emph{Encyclopedia of Software Engineering}.
-John Wiley \& Sons, 1994, pp. 528--532.
-[Online]. Disponível em:
-\url{https://www.cs.umd.edu/~basili/publications/technical/T89.pdf}.
-Acesso em: 18 out. 2026.
-% Estudos relacionados serão incluídos após seleção e leitura.
+ISO/IEC, ``ISO/IEC 25040:2024 --- Systems and software engineering --- SQuaRE --- Quality evaluation framework,'' 2nd ed., Geneva, 2024. [Online]. Dispon\'ivel em: \url{https://www.iso.org/standard/83467.html}. Acesso em: 18 out. 2026.
+
+\bibitem{basili1994gqm}
+V. R. Basili, G. Caldiera, and H. D. Rombach, ``The Goal Question Metric approach,'' in \emph{Encyclopedia of Software Engineering}, J. J. Marciniak, Ed. New York, NY, USA: Wiley, 1994, pp. 528--532. [Online]. Dispon\'ivel em: \url{https://www.cs.umd.edu/~basili/publications/technical/T89.pdf}.
+
+\bibitem{mcgarry2002psm}
+J. McGarry, D. Card, C. Jones, B. Layman, E. Clark, J. Dean, and F. Hall, \emph{Practical Software Measurement: Objective Information for Decision Makers}. Boston, MA, USA: Addison-Wesley, 2002.
+
+\bibitem{mccabe1996structured}
+A. H. Watson and T. J. McCabe, \emph{Structured Testing: A Testing Methodology Using the Cyclomatic Complexity Metric}, NIST Special Publication 500-235, Gaithersburg, MD, USA, 1996.
+
+\bibitem{lgpd2018}
+Brasil, ``Lei n\textsuperscript{o} 13.709, de 14 de agosto de 2018 --- Lei Geral de Prote\c{c}\~ao de Dados Pessoais (LGPD),'' 2018. [Online]. Dispon\'ivel em: \url{https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm}.
+
+\bibitem{onu_ods_brasil}
+Na\c{c}\~oes Unidas Brasil, ``Objetivos de Desenvolvimento Sustent\'avel --- ODS 4 e ODS 16.'' [Online]. Dispon\'ivel em: \url{https://brasil.un.org/pt-br/sdgs}. Acesso em: 19 out. 2026.
+
+\bibitem{un_sdg_indicators}
+United Nations Statistics Division, ``Global indicator framework for the Sustainable Development Goals and targets of the 2030 Agenda for Sustainable Development.'' [Online]. Dispon\'ivel em: \url{https://unstats.un.org/sdgs/indicators/indicators-list/}. Acesso em: 19 out. 2026.
+
 \end{thebibliography}
+
+% =====================================================================
+%  APÊNDICE A — TABELA DE CONTRIBUIÇÃO (incluída nas 10 páginas)
+% =====================================================================
+\appendices
+\section{Tabela de Contribuição dos Integrantes}\label{ap:contribuicao}
+
+Em atendimento à transparência da contribuição individual (Premissa 13 e Critério AG-C5), a Tabela~\ref{tab:contribuicao} apresenta responsabilidades e alocação planejada para a Entrega 1: 12h por integrante, à razão de R\$ 50,00/h. Os totais de 72h e R\$ 3.600 não representam apontamentos de execução; os percentuais foram arredondados para somar 100\%.
+
+\begin{table}[!h]
+\centering
+\caption{Responsabilidades e esforço planejado por integrante na Entrega 1. Fonte: quadro de gestão da equipe.}
+\label{tab:contribuicao}
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\begin{tabular}{@{}L{1.15cm}L{1.65cm}L{2.75cm}ccr@{}}
+\toprule
+\textbf{Matrícula} & \textbf{Nome} & \textbf{Responsabilidade (E1)} & \textbf{Horas} & \textbf{Custo} & \textbf{\%} \\
+\midrule
+232036770 & Arthur Soares Parente & Setup do repositório, templates de issue e automação MkDocs da GitPage (Issues \texttt{\#01}, \texttt{\#16}, \texttt{\#18}) & 12h & R\$ 600 & 16,67\% \\
+222022082 & Fábio Santos Araujo & Estruturação do template IEEE, redação e revisão do artigo em \LaTeX\ (Issues \texttt{\#13}, \texttt{\#18}) & 12h & R\$ 600 & 16,67\% \\
+211045122 & Gabriel Barbaceli & Propósito e matriz de priorização (Issue \texttt{\#17}); GQM de Compatibilidade e Interação/Uso (Issues \texttt{\#05}, \texttt{\#08}); Tabela PSM/CID (Issue \texttt{\#19}) & 12h & R\$ 600 & 16,67\% \\
+232036887 & Gustavo Silva Rodrigues & Adaptação gráfica da ISO/IEC 25010:2023 e delimitação de escopo (Issue \texttt{\#04}); revisão técnica de PRs; redação e revisão da 1ª versão do artigo (Issue \texttt{\#13}) & 12h & R\$ 600 & 16,67\% \\
+232037937 & Ítalo Alves Sampaio de Oliveira & Arquitetura do i-Educar (Issue \texttt{\#02}), stakeholders e ODS 4/16 (Issue \texttt{\#03}) e operacionalização GQM de Confiabilidade e Manutenibilidade (Issues \texttt{\#06}, \texttt{\#07}) & 12h & R\$ 600 & 16,66\% \\
+221008409 & Ricardo Lucas W.\ V.\ Branco & Redação das seções de referencial teórico, metodologia e revisão editorial do artigo em \LaTeX\ (Issue \texttt{\#13}) & 12h & R\$ 600 & 16,66\% \\
+\midrule
+\textbf{Total} & \textbf{Equipe Grace Hopper} & \textbf{Consolidado Entrega 1} & \textbf{72h} & \textbf{R\$ 3.600} & \textbf{100,00\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \end{document}
