@@ -189,7 +189,7 @@ Para M3 e M4, os denominadores são manifestos planejados e congelados antes da 
 
 ### 2.3. Fase 3: Projetar a Avaliação (Plano de Avaliação e Ferramentas)
 
-Para demonstrar planejamento completo e alinhamento com a futura execução (Fase 4), o projeto da avaliação estrutura o ambiente e os instrumentos de coleta em três frentes operacionais:
+Para demonstrar planejamento completo e alinhamento com a futura execução (Fase 4), o projeto da avaliação estrutura o ambiente e os instrumentos de coleta em quatro frentes operacionais:
 
 #### 2.3.1 Ambiente Conteinerizado de Testes e Reprodutibilidade (Docker Compose — Issue #10)
 
@@ -218,17 +218,33 @@ Para assegurar a reprodutibilidade científica da avaliação independente, o am
 
 ---
 
-#### 2.3.2 Métodos e Ferramentas de Análise Estática (SonarQube e Motor PHP CLI — Issue #11)
+#### 2.3.2 Métodos e Ferramentas para Compatibilidade e Confiabilidade (G1 e G2 — Issues #05 e #06)
 
-A medição das métricas da característica **Manutenibilidade** (M7a, M7b, M8, M9, M10 e M11) articula ferramentas consagradas de mercado com scripts de automação proprietários:
+A coleta e verificação dos dados para as características de **Compatibilidade** e **Confiabilidade** foram planejadas com os seguintes métodos e oráculos de teste:
 
-* **SonarQube / PHPMetrics:** Utilizados para cálculo global de cobertura de código, métricas estruturais de acoplamento e complexidade ciclomática.
-* **Motor Proprietário de Inspeção (`scripts/evaluate-quality.php`):** Script executável desenvolvido em PHP CLI nativo, capaz de percorrer a árvore de arquivos de `app/` e `ieducar/modules/`, aplicando análise léxica (*token_get_all*) para:
-    * Calcular o $P_{90}$ e o valor máximo da Complexidade Ciclomática ($\text{CC}_{P90}$ e $\text{CC}_{\max}$ — M7a e M7b).
+* **Compatibilidade (Coexistência e Interoperabilidade — M1 e M2):**
+    * **M1 ($\text{TINCR}$):** Verificação de isolamento e ausência de colisão de recursos de ambiente (portas HTTP `8080`, PostgreSQL `5432` e Redis `6379`, além de variáveis de ambiente do `.env`), validando que o i-Educar coexiste com outros serviços municipais no mesmo host sem sobreposição.
+    * **M2 ($\text{CEI}$):** Coleta via coleção de requisições estruturadas no **Postman / Insomnia** com asserções automatizadas de conformidade de contrato contra esquemas **JSON Schema** formalizados para os endpoints da API REST de matrícula e diário de classe.
+* **Confiabilidade (Gates Binários M3 e M4, além de M5 e M6):**
+    * **Gate M3 ($\text{DCNM}$ — Determinismo de Cálculo):** Bateria de testes de oráculo automatizados implementados com **PHPUnit / Pest**, cobrindo o catálogo exaustivo de regras de avaliação pedagógica (médias aritméticas, ponderadas e arredondamentos normativos), exigindo $100\%$ de determinismo sem tolerância a desvios.
+    * **Gate M4 ($\text{ITAE}$ — Integridade Transacional):** Protocolo de injeção de falhas sintéticas durante transações compostas críticas (ex.: matrícula associada a enturmação simultânea), verificando por queries SQL diretas no PostgreSQL que nenhuma persistência parcial ou dado órfão permaneça após falha induzida (rollback obrigatório de $100\%$).
+    * **M5 ($\text{D1KM}$):** Registro e contagem de incidentes e defeitos em logs de produção/homologação normalizados por mil movimentações escolares.
+    * **M6 ($\text{CVPB}$):** Rotina programada de geração de dump PostgreSQL (`pg_dump`), drop da base e restauração em banco limpo com conferência automatizada de hashes de tabelas e contagem de tuplas.
+
+---
+
+#### 2.3.3 Métodos e Ferramentas de Análise Estática (SonarQube e Motor Próprio PHP CLI — Issue #11)
+
+A medição das métricas da característica **Manutenibilidade** (M7a, M7b, M8, M9, M10 e M11) articula ferramentas consagradas de mercado com scripts de automação próprios da equipe:
+
+* **SonarQube:** Utilizado para análise estática contínua, detecção de dívida técnica e medição de cobertura de código integrada à suíte de testes do repositório (via drivers Xdebug/Pcov).
+* **PHPMetrics:** Empregado para extração de métricas de acoplamento eferente/aferente e complexidade estrutural de classes no universo PHP. Destaca-se que o cálculo de cobertura de código não é realizado pelo PHPMetrics, mas sim pelas ferramentas de execução de testes.
+* **Motor Próprio de Inspeção (`scripts/evaluate-quality.php`):** Instrumento planejado e desenvolvido em PHP CLI nativo pela equipe Grace Hopper, concebido para percorrer a árvore de arquivos de `app/` e `ieducar/modules/`, aplicando análise léxica (*token_get_all*) para:
+    * Extrair o $P_{90}$ e o valor máximo da Complexidade Ciclomática ($\text{CC}_{P90}$ e $\text{CC}_{\max}$ — M7a e M7b).
     * Computar a Distância da Sequência Principal de Martin ($\text{DSPM}$ — M8) e o Índice de Fricção de Dados Legado-Moderno ($\text{IFDL}$ — M9).
-    * Gerar o Índice de Manutenibilidade Normalizado ($\text{MI}$ — M10).
-    * Auditar a suíte de testes com detecção automatizada de asserções ativas e contagem de testes pulados com `markTestSkipped()` ($\text{TTAE}$ — M11).
-* **Formatos de Saída:** Suporte nativo a relatório tabular em console e saída em JSON estruturado para consumo em pipelines de integração contínua:
+    * Calcular o Índice de Manutenibilidade Normalizado ($\text{MI}$ — M10).
+    * Auditar testes ativos com asserção e identificar supressões com `markTestSkipped()` ($\text{TTAE}$ — M11).
+* **Estágio do Instrumento e Formatos de Saída:** Por se tratar de entregável da Fase 3 (Projeto da Avaliação), o script constitui uma ferramenta planejada cujos cálculos e extrações reais ocorrerão no checkout oficial do i-Educar durante a Fase 4 (Execução da Avaliação), retornando valores `null` / pendentes na ausência dos dados de execução para evitar qualquer arbitragem fictícia:
    ```bash
    php scripts/evaluate-quality.php --format=table
    php scripts/evaluate-quality.php --format=json
@@ -236,13 +252,18 @@ A medição das métricas da característica **Manutenibilidade** (M7a, M7b, M8,
 
 ---
 
-#### 2.3.3 Protocolo Experimental de Usabilidade e Conformidade Ética (TCLE — Issue #12)
+#### 2.3.4 Protocolo Experimental de Usabilidade e Conformidade Ética (TCLE — Issue #12)
 
-Para a medição empírica das métricas de **Capacidade de Interação** e **Qualidade em Uso** (M12, M13, M14a, M14b e M15), foi formulado um protocolo experimental estruturado em tarefas guiadas com secretários escolares e professores:
+Para a medição empírica das métricas de **Capacidade de Interação** e **Qualidade em Uso** (M12, M13, M14a, M14b e M15), foi formalizada a distinção entre coletas técnicas sem participantes e sessões guiadas de uso com usuários finais:
 
-* **Tarefa 1 (T1 — Matrícula e Enturmação):** Cadastro de novo estudante e enturmação em turma de 6º ano, com registro de tempo de conclusão ($R_{\text{tempo},T1}$ — M14a) e taxa de submissão na 1ª tentativa ($TSPT$ — M15).
-* **Tarefa 2 (T2 — Diário de Classe e Notas):** Lançamento de notas e menções bimestrais no diário eletrônico com cálculo automático de média ponderada ($R_{\text{tempo},T2}$ — M14b).
-* **Salvaguardas Éticas e Documento Formal:** Em observância à Resolução CNS nº 510/2016 e à LGPD (Lei nº 13.709/2018), a coleta assegura total anonimização dos participantes, voluntariedade de participação e uso restrito a ambiente de homologação. O documento completo encontra-se publicado na GitPage em:
+* **Métricas Técnicas sem Participantes:**
+    * **Gate M12 ($\text{IPPE}$ — Proteção contra Erros):** Medido por bateria de testes de validação com entradas propositalmente inválidas (CPFs malformados, notas fora da faixa $[0, 10]$ e datas fora do ano letivo), exigindo $100\%$ de bloqueios amigáveis sem exceções 500 não tratadas.
+    * **M13 ($\text{ADMV}$ — Autodescritividade de Mensagens):** Medido por inspeção do catálogo de mensagens e classes do `Portabilis_Messenger` (`src/Support/Exceptions/Error.php`), aferindo se cada mensagem expõe com clareza a causa do impedimento e a ação corretiva recomendada.
+* **Sessões de Uso com Participantes Voluntários (M14 e M15):**
+    * **Tarefa 1 (T1 — Matrícula e Enturmação):** Matricular um aluno já cadastrado em uma turma e realizar a respectiva enturmação, registrando o tempo médio de execução para a razão de tempo ($R_{\text{tempo},T1}$ — M14a) e o sucesso na primeira tentativa ($TSPT_{T1}$ — M15).
+    * **Tarefa 2 (T2 — Diário de Classe e Lançamento de Notas):** Lançar as notas de um componente curricular para uma turma de 10 alunos, registrando o tempo de conclusão ($R_{\text{tempo},T2}$ — M14b) e o sucesso na primeira tentativa ($TSPT_{T2}$ — M15).
+    * A métrica **M15 ($\text{TSPT}$)** cobre ambas as tarefas T1 e T2 de forma integrada.
+* **Salvaguardas Éticas e Documento Formal:** Em estrita observância à Resolução CNS nº 510/2016 e à LGPD (Lei nº 13.709/2018), a pesquisa é classificada como de risco mínimo, garantindo anonimização total dos participantes com códigos padronizados (`P01`, `P02`, etc.), voluntariedade integral, opção explícita de autorização ou recusa de gravação de tela e áudio, e execução exclusiva em banco de dados pedagógico fictício. O termo formal encontra-se publicado na GitPage em:
   [Termo de Consentimento Livre e Esclarecido (TCLE)](termo_consentimento_livre_esclarecido.md).
 
 ---

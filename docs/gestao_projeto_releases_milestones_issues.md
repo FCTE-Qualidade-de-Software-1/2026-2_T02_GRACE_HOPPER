@@ -82,7 +82,7 @@ flowchart TD
     ---
 
     - **Objetivo:** Estruturar plano de medição e testes, ambiente Docker oficial, ferramentas estáticas e protocolo TCLE.
-    - **Entregáveis planejados:** Implementação do script `scripts/evaluate-quality.php`, configuração Docker e minuta do TCLE; o script não está presente neste checkout documental.
+    - **Entregáveis planejados:** Implementação do script próprio `scripts/evaluate-quality.php` (instrumento planejado), ambiente Docker Compose oficial e minuta do TCLE.
     - **Critério de Conclusão:** Scripts de medição e ambiente conteinerizado validados localmente.
 
 -   **Milestone M4 — Consolidação, Slides e Release E1** · `Etapa 5`
@@ -225,8 +225,8 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M2: Especificação da Avaliação
 - **Atribuição Individual:**
-    - **Responsável:** `Gustavo Silva Rodrigues`
-    - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
+    - **Responsável:** `Ítalo Alves Sampaio de Oliveira`
+    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `4h` | **Custo:** R$ `200,00`
 - **Goal:** Especificar os Gates Binários M3 (Determinismo de Notas) e M4 (Integridade Transacional), além de M5 e M6.
 - **Depends on:** Issue #04.
@@ -245,8 +245,8 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M2: Especificação da Avaliação
 - **Atribuição Individual:**
-    - **Responsável:** `Gustavo Silva Rodrigues`
-    - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
+    - **Responsável:** `Ítalo Alves Sampaio de Oliveira`
+    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `4h` | **Custo:** R$ `200,00`
 - **Goal:** Definir métricas de complexidade (P90 e máximo), acoplamento de Martin, atrito de dados e índice MI.
 - **Depends on:** Issue #04.
@@ -286,8 +286,8 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M2: Especificação da Avaliação
 - **Atribuição Individual:**
-    - **Responsável:** `Gustavo Silva Rodrigues`
-    - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
+    - **Responsável:** `Arthur Soares Parente`
+    - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 3h | **Horas Realizadas:** `3h` | **Custo:** R$ `150,00`
 - **Goal:** Integrar a tabela unificada de limiares, os pesos relativos e o modelo de decisão do Índice Global IQM.
 - **Depends on:** Issues #05, #06, #07 e #08.
@@ -310,8 +310,8 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M3: Projeto da Avaliação
 - **Atribuição Individual:**
-    - **Responsável:** `Ítalo Alves Sampaio de Oliveira`
-    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
+    - **Responsável:** `Arthur Soares Parente`
+    - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 3h | **Horas Realizadas:** `3h` | **Custo:** R$ `150,00`
 - **Goal:** Documentar o ambiente e versionamento conteinerizado oficial para garantir reprodutibilidade da avaliação.
 - **Depends on:** Issue #09.
@@ -330,8 +330,8 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M3: Projeto da Avaliação
 - **Atribuição Individual:**
-    - **Responsável:** `Gustavo Silva Rodrigues`
-    - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
+    - **Responsável:** `Arthur Soares Parente`
+    - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 3h | **Horas Realizadas:** `3h` | **Custo:** R$ `150,00`
 - **Goal:** Integrar o script executável de extração estática e planejar o pipeline com SonarQube/Pest.
 - **Depends on:** Issue #09.
@@ -350,20 +350,20 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M3: Projeto da Avaliação
 - **Atribuição Individual:**
-    - **Responsável:** `Gabriel Barbaceli`
-    - **Matrícula UnB:** `21/1045122` | **GitHub:** `@Nibaacriba`
+    - **Responsável:** `Arthur Soares Parente`
+    - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 3h | **Horas Realizadas:** `3h` | **Custo:** R$ `150,00`
 - **Goal:** Estruturar o roteiro de tarefas guiadas de matrícula e diário e elaborar o documento formal do TCLE.
 - **Depends on:** Issue #08.
 - **Scope:** Roteiro experimental de usabilidade, critérios Lighthouse/axe DevTools e Termo de Consentimento.
 - [x] **Task:** Elaborar protocolo experimental de usabilidade e termo TCLE ético
-    - **Files:** `docs/Termo de Consentimento Livre e Esclarecido.docx`, `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`
+    - **Files:** `docs/termo_consentimento_livre_esclarecido.md`, `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`
     - **Change:** Documentar tarefas padronizadas para cálculo de TMET e TSPT e salvaguardas éticas de dados.
     - **Covers:** Fase 3 (Item 2 — Usabilidade e TCLE).
     - **Acceptance criteria:**
         - Protocolo com roteiro de tarefas passo a passo para secretários e docentes.
         - Minuta do TCLE em conformidade com as diretrizes da disciplina FGA0315.
-    - **Tests:** `test -f "docs/Termo de Consentimento Livre e Esclarecido.docx"`.
+    - **Tests:** `test -f "docs/termo_consentimento_livre_esclarecido.md"`.
     - **Risk:** none.
 
 ---
@@ -374,9 +374,9 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M4: Consolidação e Release E1
 - **Atribuição Individual:**
-    - **Responsável:** `Fábio Santos Araujo` e `Ricardo Lucas Winchello Vieira Branco`
-    - **Matrícula UnB:** `22/2022082` / `22/1008409` | **GitHub:** `@fabiofonteles1` / `@ChickRicks`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 12h cada | **Horas Realizadas:** `12h cada` | **Custo:** R$ `600,00 cada`
+    - **Responsável:** `Fábio Santos Araujo` e `Gustavo Silva Rodrigues`
+    - **Matrícula UnB:** `22/2022082` / `23/2036887` | **GitHub:** `@fabiofonteles1` / `@g-srodrigues`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 12h cada | **Horas Realizadas:** `[Em andamento]` | **Custo:** `[A consolidar]`
 - **Goal:** Redigir as seções de Introdução, Referencial Teórico, Metodologia e Fases 1 a 3 no formato SBC.
 - **Depends on:** Issues #02 a #12.
 - **Scope:** Artigo científico da Entrega 1 (Ponto de Controle 1).
@@ -394,9 +394,9 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M4: Consolidação e Release E1
 - **Atribuição Individual:**
-    - **Responsável:** `Ricardo Lucas Winchello Vieira Branco`
-    - **Matrícula UnB:** `22/1008409` | **GitHub:** `@ChickRicks`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 2h | **Horas Realizadas:** `2h` | **Custo:** R$ `100,00`
+    - **Responsável:** `Fábio Santos Araujo`
+    - **Matrícula UnB:** `22/2022082` | **GitHub:** `@fabiofonteles1`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 2h | **Horas Realizadas:** `[Em andamento]` | **Custo:** `[A consolidar]`
 - **Goal:** Criar apresentação de 8 slides objetivos para demonstrar o andamento da equipe na data do PC1.
 - **Depends on:** Issue #13.
 - **Scope:** Slides de Ponto de Controle 1 (Capa, Linha do Tempo, Fases 1 a 3, Custos e Próximos Passos).
@@ -524,7 +524,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
     - **Conteúdo da Release:**
         - Planejamento do Processo de Avaliação (Fases 1, 2 e 3 da ISO/IEC 25040:2024).
         - Framework Técnico GQM v2.0 com 15 famílias (17 linhas operacionais), limiares e Gates Binários.
-        - Motor `scripts/evaluate-quality.php` previsto no planejamento, cuja implementação e validação no checkout do produto permanecem pendentes.
+        - Motor próprio `scripts/evaluate-quality.php` estruturado como instrumento planejado da Fase 3, cuja execução sobre o checkout oficial ocorrerá na Fase 4.
         - 1ª Versão do Artigo Acadêmico e Apresentação de Slides do PC1.
         - Tabela consolidada de custos e esforço individual (PSM/CID — 72h, R$ 3.600,00, 100%).
 
