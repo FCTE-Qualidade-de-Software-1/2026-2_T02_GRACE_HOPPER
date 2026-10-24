@@ -532,7 +532,7 @@ $$
 - **Instrumento de Coleta**: Capturas das mensagens obtidas na execução de M12, complementadas pela inspeção do catálogo de mensagens (`src/Support/Exceptions/Error.php` e chamadas `$this->messenger->append()`).
 
 #### Protocolo das sessões de uso (M14 e M15)
-- **Participantes**: no mínimo 5 pessoas sem experiência prévia no i-Educar, recrutadas voluntariamente; todas assinam o Termo de Consentimento Livre e Esclarecido (TCLE) e os dados são anonimizados (identificação por código P1 a P5).
+- **Participantes**: no mínimo 5 pessoas sem experiência prévia no i-Educar, recrutadas voluntariamente; todas assinam o Termo de Consentimento Livre e Esclarecido (TCLE) e os dados são anonimizados (identificação por códigos P01, P02, P03 etc.).
 - **Tarefas padronizadas** (executadas na mesma ordem, com dados fornecidos em ficha impressa):
     - **T1 — Matrícula:** matricular um aluno já cadastrado em uma turma e realizar a enturmação.
     - **T2 — Diário:** lançar as notas de um componente curricular para uma turma de 10 alunos.

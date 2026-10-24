@@ -46,10 +46,10 @@ Para garantir pontuação máxima na rubrica da Fase 1, os requisitos da avalia�
 
 | Quem decide | Decisão apoiada | Resultado da avaliação que informa a decisão |
 | :--- | :--- | :--- |
-| Secretarias Municipais de Educação (gestores e equipes de TI) | Adotar, manter ou atualizar o i-Educar para matrícula e diário de classe; definir se a adoção exige suporte técnico contratado ou customizações. | Resultado dos critérios eliminatórios de confiabilidade (cálculo de notas e integridade das operações de matrícula) e índice de qualidade por característica. |
-| Mantenedores (Portabilis e comunidade i-Educar) | Priorizar refatorações, testes e correções nos módulos avaliados. | Métricas de manutenibilidade e de proteção contra erros do usuário, com os pontos críticos localizados no código. |
-| Integradores (equipes de TI municipais) | Integrar o i-Educar a outros sistemas municipais no mesmo ambiente e via API, sem adaptações extras. | Métricas de compatibilidade (coexistência de recursos e conformidade das respostas da API). |
-| Secretários escolares e professores (representados pelas Secretarias) | Definir a necessidade de capacitação para matrícula e lançamento de notas. | Métricas de capacidade de interação e de qualidade em uso (tempo de tarefa e sucesso na primeira tentativa). |
+| Secretarias Municipais de Educação (gestores e equipes de TI) | Adotar, manter ou atualizar o i-Educar para matrícula e diário de classe; definir se a adoção exige suporte técnico contratado ou customizações. | Resultado dos critérios eliminatórios de confiabilidade (cálculo de notas e integridade das operações de matrícula) e índice de qualidade por característica. **Critério:** aprovação nos três *gates* (M3, M4 e M12), $\text{IQM} \ge 2{,}75$ e backup restaurável ($\text{CVPB} \ge 95\%$). |
+| Mantenedores (Portabilis e comunidade i-Educar) | Priorizar refatorações, testes e correções nos módulos avaliados. | Métricas de manutenibilidade e de proteção contra erros do usuário, com os pontos críticos localizados no código. **Critério:** métrica em nível Crítico ou Regular gera recomendação de refatoração por arquivo. |
+| Integradores (equipes de TI municipais) | Integrar o i-Educar a outros sistemas municipais no mesmo ambiente e via API, sem adaptações extras. | Métricas de compatibilidade (coexistência de recursos e conformidade das respostas da API). **Critério:** integrar sem adaptadores extras se $\text{TINCR} \ge 85\%$ e $\text{CEI} \ge 85\%$. |
+| Secretários escolares e professores (representados pelas Secretarias) | Definir a necessidade de capacitação para matrícula e lançamento de notas. | Métricas de capacidade de interação e de qualidade em uso (tempo de tarefa e sucesso na primeira tentativa). **Critério:** reforçar a capacitação de secretários se $\text{ADMV} < 90\%$ ou $R_{\text{tempo},T1} > 2{,}0$, e de professores se $R_{\text{tempo},T2} > 2{,}0$ ou $\text{TSPT} < 70\%$. |
 
 *Fonte: Elaborado pelos autores.*
 
@@ -98,11 +98,12 @@ A criticidade é calculada como $C = I \times R$. São selecionadas as três car
 | Adequação Funcional | 5 | 2 | 4 | 10 | Excluída (criticidade menor) | — |
 | Eficiência de Desempenho | 3 | 3 | 2 | 9 | Excluída (V < 3) | — |
 | Flexibilidade (antiga Portabilidade) | 2 | 2 | 4 | 4 | Excluída (criticidade menor) | — |
+| Ausência de risco (*safety*) | 2 | 1 | 2 | 2 | Excluída (criticidade menor e V < 3) | — |
 | Capacidade de Interação | — | — | — | — | Obrigatória (fora da priorização) | 20% |
 
 *Fonte: Elaborado pelos autores.*
 
-**Limite da matriz:** esta tabela registra as alternativas consideradas pela equipe e não enumera todas as nove características mencionadas no resumo público da ISO/IEC 25010:2023. A característica que não aparece na tabela não recebeu nome, pontuação ou decisão nesta revisão; completar essa lacuna exige consulta ao texto normativo e decisão da equipe. A ISO não prescreve os pesos de 30% / 30% / 20% / 20%, que são uma decisão local.
+**Abrangência da matriz:** a Tabela 2 cobre as nove características da ISO/IEC 25010:2023: as oito comparadas pela matriz de criticidade e a Capacidade de Interação, obrigatória na disciplina. A ISO não prescreve os pesos de 30% / 30% / 20% / 20%, que são uma decisão local da equipe.
 
 <div class="grid cards" markdown>
 
@@ -114,6 +115,7 @@ A criticidade é calculada como $C = I \times R$. São selecionadas as três car
     - **Confiabilidade ($I = 5$):** erros no cálculo de médias ou operações de matrícula incompletas afetam diretamente a vida escolar do estudante e os dados oficiais da rede.
     - **Compatibilidade ($I = 4, R = 3, V = 3$):** o i-Educar compartilha banco de dados, cache e portas com outros serviços municipais e expõe uma API REST para integrações; a medição é viável, porém depende de montar um segundo serviço no ambiente local.
     - **Adequação Funcional ($R = 2$):** as funções de matrícula e notas estão em uso em produção em diversos municípios há anos, o que torna improvável a ausência de funções essenciais; além disso, a exatidão do cálculo de notas já é verificada pela métrica de ausência de falhas em Confiabilidade.
+    - **Ausência de risco (*safety*) ($I = 2, R = 1, V = 2$):** o i-Educar é um sistema administrativo, sem controle de equipamentos ou risco físico direto a pessoas; a característica foi excluída por baixa criticidade e baixa viabilidade de medição.
 
 -   **Trade-offs da Priorização**
 
