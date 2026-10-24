@@ -19,29 +19,30 @@ O objetivo do estudo é avaliar experimentalmente a **Capacidade de Interação*
 
 Caso concorde em participar da avaliação:
 
-1. **Execução de Tarefas Guiadas:** Você será convidado(a) a executar duas tarefas representativas do cotidiano escolar no sistema i-Educar montado em ambiente de homologação local:
-    * **Tarefa 1 (T1 — Matrícula e Enturmação):** Realizar o cadastro simplificado de um estudante fictício e associá-lo a uma turma pré-existente.
-    * **Tarefa 2 (T2 — Diário de Classe e Notas):** Acessar a interface de diário de classe e efetuar o lançamento de menções e notas bimestrais para componentes curriculares definidos.
-2. **Coleta de Métricas Operacionais:** Durante as tarefas, serão cronometrados os tempos de conclusão para cálculo do indicador de eficiência ($R_{\text{tempo}}$ — Métrica M14) e computada a taxa de sucesso na primeira submissão ($TSPT$ — Métrica M15), além do registro de eventuais mensagens de validação e bloqueio apresentadas pelo sistema ($ADMV$ — Métrica M13).
+1. **Execução de Tarefas Padronizadas:** Você será convidado(a) a executar duas tarefas representativas do cotidiano escolar no sistema i-Educar montado em ambiente de homologação local (com dados fornecidos em roteiro pedagógico impresso ou digital):
+    * **Tarefa 1 (T1 — Matrícula e Enturmação):** Matricular um aluno já cadastrado em uma turma pré-existente e realizar a respectiva enturmação.
+    * **Tarefa 2 (T2 — Diário de Classe e Notas):** Lançar as notas de um componente curricular para uma turma composta por 10 alunos.
+2. **Coleta de Métricas Operacionais:** Durante as tarefas, serão cronometrados os tempos de conclusão para cálculo do indicador de eficiência ($R_{\text{tempo}}$ — Métrica M14) e computada a taxa de sucesso na primeira submissão ($TSPT$ — Métrica M15, cobrindo tanto T1 quanto T2). As métricas técnicas de proteção contra erros ($IPPE$ — Gate M12) e autodescritividade de mensagens ($ADMV$ — M13) são aferidas por inspeção e testes automatizados previamente, sem avaliação sobre o participante.
 3. **Duração Estimada:** A sessão terá duração total aproximada de 20 a 30 minutos.
 
 ---
 
 ## 3. Riscos, Desconfortos e Salvaguardas
 
-* **Riscos Mínimos:** A participação nesta avaliação não acarreta riscos físicos, psicológicos, legais ou financeiros aos voluntários. O esforço exigido assemelha-se ao uso habitual de sistemas computacionais de escritório.
+* **Riscos Mínimos:** Em conformidade com as diretrizes da Resolução CNS nº 510/2016, a pesquisa envolve **riscos mínimos**, semelhantes àqueles enfrentados em atividades cotidianas de escritório ou uso educacional de computadores, restritos a eventual cansaço visual ou leve desconforto passageiro pelo tempo despendido em frente à tela.
 * **Avaliação do Sistema, Não do Participante:** Enfatizamos explicitamente que **o objeto sob avaliação é o software i-Educar, e jamais a sua capacidade intelectual, técnica ou profissional**. Erros de digitação, dúvidas na navegação ou dificuldades de operação são interpretados tecnicamente como falhas de usabilidade do próprio sistema avaliado.
 * **Direito de Interrupção:** Sua participação é estritamente voluntária. Você tem total liberdade para recusar participar, suspender uma tarefa ou retirar seu consentimento a qualquer momento da sessão, sem qualquer tipo de penalidade, prejuízo ou constrangimento.
 
 ---
 
-## 4. Confidencialidade e Sigilo dos Dados
+## 4. Confidencialidade, Sigilo e Gravação da Sessão
 
 Em estrita consonância com a **Lei Geral de Proteção de Dados Pessoais (LGPD — Lei nº 13.709/2018)** e a **Resolução CNS nº 510/2016**:
 
-* **Anonimização Total:** Nenhuma informação de identificação pessoal (como nome, CPF, e-mail institucional ou imagem) será divulgada nos relatórios, artigos científicos, slides ou na GitPage do projeto.
-* **Identificadores Codificados:** Cada participante será identificado unicamente por um código alfanumérico aleatório (ex.: `P01`, `P02`).
+* **Anonimização Total:** Nenhuma informação de identificação pessoal (como nome, CPF, e-mail institucional ou imagem facial) será divulgada nos relatórios, artigos científicos, slides ou na GitPage do projeto.
+* **Identificadores Codificados:** Cada participante será identificado unicamente por um código alfanumérico padronizado (ex.: `P01`, `P02`).
 * **Dados Fictícios:** Todo o processo é executado em base de dados de testes conteinerizada, utilizando registros escolares inteiramente fictícios gerados para fins pedagógicos.
+* **Gravação de Tela e Áudio:** O protocolo experimental prevê a gravação de tela com áudio para fins exclusivos de medição precisa dos tempos operacionais ($R_{\text{tempo}}$) e auditoria de primeira tentativa ($TSPT$). A gravação é **facultativa**: o participante possui a liberdade de autorizar ou não o registro audiovisual sem qualquer prejuízo à sua participação na pesquisa (caso recuse, a cronometragem será realizada por observação direta manual).
 * **Uso Exclusivamente Acadêmico:** Os resultados consolidados serão utilizados exclusivamente na elaboração do artigo científico e nas apresentações acadêmicas da disciplina FGA0315.
 
 ---
@@ -70,11 +71,16 @@ Para quaisquer esclarecimentos sobre a condução da pesquisa, dúvidas sobre se
 
 Declaro que li e compreendi as informações contidas neste documento, tive a oportunidade de esclarecer todas as dúvidas sobre os procedimentos da pesquisa e concordo voluntariamente em participar da avaliação experimental de usabilidade do software i-Educar.
 
+**Autorização para Registro Audiovisual da Sessão:**
+
+- [ ] **SIM**, autorizo a gravação de tela e áudio durante a sessão para fins estritos de cronometragem e cálculo de métricas acadêmicas.
+- [ ] **NÃO**, não autorizo a gravação de tela e áudio (opto pela cronometragem manual via observação presencial).
+
 <br>
 
 **Data da Sessão:** \_\_\_\_ / \_\_\_\_ / 2026
 
-**Código do Participante:** `P-`\_\_\_\_
+**Código do Participante:** `P`\_\_\_\_ *(ex.: P01)*
 
 **Assinatura do Participante:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
