@@ -63,6 +63,7 @@ nav:
   - GQM: gqm_evaluation_framework.md
   - Gestão de Releases: gestao_projeto_releases_milestones_issues.md
   - Relatório PC1: relatorio_de_planejamento_ponto_de_controle_1_i_educar.md
+  - Protocolo Ético (TCLE): termo_consentimento_livre_esclarecido.md
   - Contexto do Produto:
       - Visão do Produto: agents/project_overview.md
       - Arquitetura: agents/architecture.md
