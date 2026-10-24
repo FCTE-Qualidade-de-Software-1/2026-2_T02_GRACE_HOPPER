@@ -180,14 +180,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #04 — Delimitação de Escopo e Adaptação Gráfica do Modelo ISO/IEC 25010:2023
 
 - **Milestone:** M1: Requisitos da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 2]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario2]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 4h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Gustavo Silva Rodrigues`
+    - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `4h` | **Custo:** R$ `200,00`
 - **Goal:** Produzir a representação gráfica do modelo adaptado da ISO 25010:2023 com as 4 características recortadas.
 - **Depends on:** Issue #02.
 - **Scope:** Diagrama próprio da ISO 25010:2023 recortada e matriz "O que entra vs. O que fica de fora do escopo".
-- [ ] **Task:** Desenhar diagrama adaptado da ISO 25010:2023 e justificar limites de escopo
+- [x] **Task:** Desenhar diagrama adaptado da ISO 25010:2023 e justificar limites de escopo
     - **Files:** `docs/gqm_evaluation_framework.md`
     - **Change:** Atualizar termos para *Interaction Capability* e *Faultlessness* e definir exclusão de testes de estresse em escala.
     - **Covers:** Fase 1 (Item 4 — Modelo Adaptado e Item 5 — Escopo e Profundidade), Critério AG-C2.
@@ -224,14 +224,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #06 — Especificação GQM da Característica Confiabilidade e Gates Binários
 
 - **Milestone:** M2: Especificação da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 3]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario3]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 4h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Gustavo Silva Rodrigues`
+    - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `4h` | **Custo:** R$ `200,00`
 - **Goal:** Especificar os Gates Binários M3 (Determinismo de Notas) e M4 (Integridade Transacional), além de M5 e M6.
 - **Depends on:** Issue #04.
 - **Scope:** Subcaracterísticas de Ausência de Falhas (*Faultlessness*), Tolerância a Falhas e Recuperabilidade.
-- [ ] **Task:** Estruturar critérios não-compensatórios de Confiabilidade e cálculo de médias
+- [x] **Task:** Estruturar critérios não-compensatórios de Confiabilidade e cálculo de médias
     - **Files:** `docs/gqm_evaluation_framework.md`
     - **Change:** Formalizar os gates determinísticos de 100% de oráculo para notas e rollback atômico obrigatório.
     - **Covers:** Fase 2 (GQM Confiabilidade e Gates de Qualidade).
@@ -244,14 +244,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #07 — Especificação GQM da Característica Manutenibilidade
 
 - **Milestone:** M2: Especificação da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 2]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario2]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 4h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Gustavo Silva Rodrigues`
+    - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `4h` | **Custo:** R$ `200,00`
 - **Goal:** Definir métricas de complexidade (P90 e máximo), acoplamento de Martin, atrito de dados e índice MI.
 - **Depends on:** Issue #04.
 - **Scope:** Métricas M7a, M7b, M8, M9, M10 e M11 da ISO/IEC 25010:2023.
-- [ ] **Task:** Formular equações de complexidade ciclomática e manutenibilidade local
+- [x] **Task:** Formular equações de complexidade ciclomática e manutenibilidade local
     - **Files:** `docs/gqm_evaluation_framework.md`
     - **Change:** Inserir equações de McCabe, Distância da Sequência Principal de Martin ($D$) e índice local de manutenibilidade (MI).
     - **Covers:** Fase 2 (GQM Manutenibilidade).
@@ -393,10 +393,10 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #14 — Elaboração da Apresentação de Slides para o Ponto de Controle 1
 
 - **Milestone:** M4: Consolidação e Release E1
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 2h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Ricardo Lucas Winchello Vieira Branco`
+    - **Matrícula UnB:** `22/1008409` | **GitHub:** `@ChickRicks`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 2h | **Horas Realizadas:** `2h` | **Custo:** R$ `100,00`
 - **Goal:** Criar apresentação de 8 slides objetivos para demonstrar o andamento da equipe na data do PC1.
 - **Depends on:** Issue #13.
 - **Scope:** Slides de Ponto de Controle 1 (Capa, Linha do Tempo, Fases 1 a 3, Custos e Próximos Passos).
@@ -413,14 +413,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #15 — Auditoria de Conformidade com as Rubricas e Tabela PSM/CID
 
 - **Milestone:** M4: Consolidação e Release E1
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 2h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Arthur Soares Parente`
+    - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 2h | **Horas Realizadas:** `2h` | **Custo:** R$ `100,00`
 - **Goal:** Realizar revisão prévia de todos os entregáveis frente aos critérios AG-C1 a AG-C5 da disciplina.
 - **Depends on:** Issues #13 e #14.
 - **Scope:** Verificação de integridade documental, ausência de emojis e consistência de custos.
-- [ ] **Task:** Executar checklist de auditoria preventiva de penalidades da disciplina
+- [x] **Task:** Executar checklist de auditoria preventiva de penalidades da disciplina
     - **Files:** `docs/gestao_projeto_releases_milestones_issues.md`
     - **Change:** Auditar textos da GitPage e Artigo para garantir 100% de conformidade aos critérios da professora.
     - **Covers:** Critérios AG-C1..AG-C5 e PSM/CID.
@@ -476,11 +476,11 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Atribuição Individual:**
     - **Responsável:** `Arthur Soares Parente` e `Fábio Santos Araujo`
     - **Matrícula UnB:** `23/2036770` / `22/2022082` | **GitHub:** `@ArthurDevWorks` / `@fabiofonteles1`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 4h | **Horas Realizadas:** `4h` | **Custo:** R$ `200,00`
 - **Goal:** Publicar a GitPage com a estrutura navegável, fórmulas renderizadas e workflow de deploy automático no GitHub Pages.
 - **Depends on:** Issue #01.
 - **Scope:** `mkdocs.yml`, `docs/stylesheets/extra.css`, `.github/workflows/pages.yml` e páginas de `docs/`.
-- [ ] **Task:** Publicar a GitPage com a estrutura navegável e o conteúdo do Ponto de Controle 1
+- [x] **Task:** Publicar a GitPage com a estrutura navegável e o conteúdo do Ponto de Controle 1
     - **Files:** `mkdocs.yml`, `docs/stylesheets/extra.css`, `.github/workflows/pages.yml`
     - **Change:** Configurar workflow de deploy automático na branch `main`, renderização de diagramas Mermaid, estilização de equações MathJax e rodapé com versão/data.
     - **Covers:** Ponto de Controle 1, Critério F3-C7.
