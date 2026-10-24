@@ -160,13 +160,19 @@ Para garantir legibilidade integral na visualização web, a Árvore GQM complet
 
 ```mermaid
 flowchart LR
-    G1["G1: Compatibilidade<br/>(Coexistência e Interoperabilidade)"]
+    subgraph NC1["Nível Conceitual — Objetivo"]
+        G1["G1: Compatibilidade<br/>(Coexistência e Interoperabilidade)"]
+    end
 
-    Q11["Q1.1: Os recursos de ambiente do i-Educar<br/>podem ser isolados por configuração para coexistir<br/>com outras instâncias e serviços no mesmo host?"]
-    Q12["Q1.2: As respostas da API dos módulos de<br/>matrícula e notas obedecem a um contrato<br/>de dados verificável?"]
+    subgraph NO1["Nível Operacional — Questões e Hipóteses"]
+        Q11["Q1.1: Os recursos de ambiente do i-Educar<br/>podem ser isolados por configuração para coexistir<br/>com outras instâncias e serviços no mesmo host?<br/><i>H1.1: TINCR ≥ 85%</i>"]
+        Q12["Q1.2: As respostas da API dos módulos de<br/>matrícula e notas obedecem a um contrato<br/>de dados verificável?<br/><i>H1.2: CEI ≥ 85%</i>"]
+    end
 
-    M1["M1 (TINCR)<br/>Taxa de Isolamento e<br/>Não-Colisão de Recursos"]
-    M2["M2 (CEI)<br/>Conformidade com Esquemas<br/>de Interoperabilidade"]
+    subgraph NQ1["Nível Quantitativo — Métricas"]
+        M1["M1 (TINCR)<br/>Taxa de Isolamento e<br/>Não-Colisão de Recursos"]
+        M2["M2 (CEI)<br/>Conformidade com Esquemas<br/>de Interoperabilidade"]
+    end
 
     G1 --> Q11 --> M1
     G1 --> Q12 --> M2
@@ -222,17 +228,23 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    G4["G4: Interação e Qualidade em Uso<br/>(Proteção, Autodescritividade,<br/>Eficácia e Eficiência)"]
+    subgraph NC4["Nível Conceitual — Objetivo"]
+        G4["G4: Interação e Qualidade em Uso<br/>(Proteção, Autodescritividade,<br/>Eficácia e Eficiência)"]
+    end
 
-    Q41["Q4.1: O sistema impede proativamente erros<br/>de entrada ou operações fora de prazo pedagógico?"]
-    Q42["Q4.2: As mensagens de validação e recusa são<br/>autodescritivas e orientadas à ação?"]
-    Q43["Q4.3: Quanto tempo um usuário novo leva para<br/>concluir as tarefas essenciais face a um experiente?"]
-    Q44["Q4.4: Usuários novos concluem as tarefas<br/>essenciais corretamente na primeira tentativa?"]
+    subgraph NO4["Nível Operacional — Questões e Hipóteses"]
+        Q41["Q4.1: O sistema impede proativamente erros<br/>de entrada ou operações fora de prazo pedagógico?<br/><i>H4.1: IPPE = 100%</i>"]
+        Q42["Q4.2: As mensagens de validação e recusa são<br/>autodescritivas e orientadas à ação?<br/><i>H4.2: ADMV entre 80% e 90%</i>"]
+        Q43["Q4.3: Quanto tempo um usuário novo leva para<br/>concluir as tarefas essenciais face a um experiente?<br/><i>H4.3: R_tempo entre 1,5 e 2,5</i>"]
+        Q44["Q4.4: Usuários novos concluem as tarefas<br/>essenciais corretamente na primeira tentativa?<br/><i>H4.4: TSPT entre 70% e 90%</i>"]
+    end
 
-    M12["M12 — GATE (IPPE)<br/>Índice de Proteção contra<br/>Erros do Usuário"]
-    M13["M13 (ADMV)<br/>Autodescritividade das<br/>Mensagens de Validação"]
-    M14["M14 (TMET)<br/>Tempo Médio de Execução<br/>de Tarefa Operacional"]
-    M15["M15 (TSPT)<br/>Taxa de Sucesso na<br/>Primeira Tentativa em Uso"]
+    subgraph NQ4["Nível Quantitativo — Métricas"]
+        M12["M12 — GATE (IPPE)<br/>Índice de Proteção contra<br/>Erros do Usuário"]
+        M13["M13 (ADMV)<br/>Autodescritividade das<br/>Mensagens de Validação"]
+        M14["M14 (TMET)<br/>Tempo Médio de Execução<br/>de Tarefa Operacional"]
+        M15["M15 (TSPT)<br/>Taxa de Sucesso na<br/>Primeira Tentativa em Uso"]
+    end
 
     G4 --> Q41 --> M12
     G4 --> Q42 --> M13
@@ -251,9 +263,19 @@ flowchart LR
     - **Rastreabilidade:** $\text{G1} \rightarrow \text{Q1.1} \rightarrow \text{M1 (TINCR)}$ · $\text{G1} \rightarrow \text{Q1.2} \rightarrow \text{M2 (CEI)}$.
     - **Fora do escopo de G1:** Exportação de dados para o Educacenso/INEP, distribuída em pacote separado (`i-educar-educacenso-package`), e integrações com sistemas de terceiros que exigiriam credenciais de produção.
 
+**Tabela H1 — Questões e hipóteses de G1 (Compatibilidade)**
+
+| Questão | Hipótese | Verificação (métrica e critério) |
+| :--- | :--- | :--- |
+| **Q1.1:** Os recursos de ambiente do i-Educar podem ser isolados por configuração para coexistir com outras instâncias e serviços no mesmo host? | **H1.1:** Pelo menos 85% dos recursos compartilháveis são parametrizáveis via `.env`, mas os nomes fixos de containers (`container_name`) podem exigir ajuste na subida simultânea. | M1: confirmada se $\text{TINCR} \ge 85\%$. |
+| **Q1.2:** As respostas da API dos módulos de matrícula e notas obedecem a um contrato de dados verificável? | **H1.2:** Ao menos 85% dos *endpoints* testados seguem o contrato JSON em requisições válidas, podendo ocorrer falhas de padronização de erro em rotas legadas. | M2: confirmada se $\text{CEI} \ge 85\%$. |
+
+*Fonte: Elaborado pelos autores.* A confirmação ou a refutação de uma hipótese não equivale à aprovação ou à reprovação da característica: o julgamento segue os limiares da Seção 4 e as regras da Seção 5.
+
 #### M1 — Taxa de Isolamento e Não-Colisão de Recursos (TINCR)
 - **Subcaracterística**: Coexistência (*Co-existence* — ISO 25010:2023).
 - **Questão respondida**: Q1.1.
+- **Hipótese associada**: H1.1 (Tabela H1).
 - **Conceito**: Proporção dos recursos compartilháveis do ambiente de execução do i-Educar que podem ser isolados apenas por configuração, sem alterar código-fonte, permitindo que o sistema funcione no mesmo host que outra instância do i-Educar ou outro serviço sem conflito. São recursos compartilháveis: portas de rede expostas, nomes de containers, nome do banco de dados e usuário do PostgreSQL, prefixo de chaves do Redis e diretórios de armazenamento.
 - **Fórmula de Cálculo**:
 
@@ -274,6 +296,7 @@ $$
 #### M2 — Conformidade com Esquemas de Interoperabilidade (CEI)
 - **Subcaracterística**: Interoperabilidade (*Interoperability* — ISO 25010:2023).
 - **Questão respondida**: Q1.2.
+- **Hipótese associada**: H1.2 (Tabela H1).
 - **Conceito**: Percentual de *endpoints* da API REST do núcleo do i-Educar relacionados a matrícula, enturmação e lançamento de notas cujas respostas obedecem ao contrato de referência. Um *endpoint* é conforme somente se todos os seus casos de teste passarem:
     1. requisição válida retorna o código HTTP esperado e `Content-Type: application/json`;
     2. a resposta contém todos os campos obrigatórios do contrato, com os tipos esperados;
@@ -463,9 +486,21 @@ $$
     - **Rastreabilidade:** $\text{G4} \rightarrow \text{Q4.1} \rightarrow \text{M12 (IPPE)}$ · $\text{G4} \rightarrow \text{Q4.2} \rightarrow \text{M13 (ADMV)}$ · $\text{G4} \rightarrow \text{Q4.3} \rightarrow \text{M14 (TMET)}$ · $\text{G4} \rightarrow \text{Q4.4} \rightarrow \text{M15 (TSPT)}$.
     - **Separação entre produto e uso:** `M12` e `M13` medem propriedades do **produto** (ISO/IEC 25010:2023) e são coletadas por testes e inspeção, sem participantes. `M14` e `M15` medem a **qualidade em uso** (ISO/IEC 25019:2023) e dependem de sessões com participantes, conforme o protocolo abaixo.
 
+**Tabela H4 — Questões e hipóteses de G4 (Capacidade de Interação e Qualidade em Uso)**
+
+| Questão | Hipótese | Verificação (métrica e critério) |
+| :--- | :--- | :--- |
+| **Q4.1:** O sistema impede proativamente erros de entrada ou operações fora de prazo pedagógico? | **H4.1:** O sistema bloqueia 100% dos cenários inválidos previstos sem persistir dados corrompidos nem retornar erro HTTP 500. | M12: confirmada se $\text{IPPE} = 100\%$. |
+| **Q4.2:** As mensagens de validação e recusa são autodescritivas e orientadas à ação? | **H4.2:** Entre 80% e 90% das mensagens informam causa e ação corretiva, com mensagens genéricas residuais no núcleo legado. | M13: confirmada se $\text{ADMV} \in [80\%, 90\%)$. |
+| **Q4.3:** Quanto tempo um usuário novo leva para concluir as tarefas essenciais, em relação a um usuário experiente? | **H4.3:** Participantes iniciantes levarão entre 1,5 e 2,5 vezes o tempo de referência nas tarefas T1 e T2, devido aos filtros da interface legada. | M14: confirmada se $1{,}5 < R_{\text{tempo},T} \le 2{,}5$ em T1 e em T2. |
+| **Q4.4:** Usuários novos concluem as tarefas essenciais corretamente na primeira tentativa? | **H4.4:** Entre 70% e 90% das execuções de T1 e T2 serão concluídas corretamente na primeira submissão. | M15: confirmada se $\text{TSPT} \in [70\%, 90\%)$. |
+
+*Fonte: Elaborado pelos autores.* A confirmação ou a refutação de uma hipótese não equivale à aprovação ou à reprovação da característica: o julgamento segue os limiares da Seção 4 e as regras da Seção 5.
+
 #### M12 — Índice de Proteção contra Erros do Usuário (IPPE) — [GATE BINÁRIO]
 - **Subcaracterística**: Proteção contra Erro do Usuário (*User error protection* — ISO 25010:2023).
 - **Questão respondida**: Q4.1.
+- **Hipótese associada**: H4.1 (Tabela H4).
 - **Conceito**: Eficácia do sistema em interceptar entradas inválidas antes da persistência, nos seguintes tipos de cenário:
     1. Lançamento de notas fora da faixa permitida na regra (`$regra->nota_maxima_geral` e `$regra->nota_minima_geral`).
     2. Lançamento em ano/etapa encerrada ou bloqueada (`validatesCanChangeDiarioForAno` e `validatesPeriodoLancamentoFaltasNotas`).
@@ -484,6 +519,7 @@ $$
 #### M13 — Autodescritividade das Mensagens de Validação (ADMV)
 - **Subcaracterística**: Autodescritividade e Assistência ao Usuário (*Self-descriptiveness & User assistance* — ISO 25010:2023).
 - **Questão respondida**: Q4.2.
+- **Hipótese associada**: H4.2 (Tabela H4).
 - **Conceito**: Proporção das mensagens de erro exibidas nos cenários de M12 que (a) informam a **causa** do bloqueio e (b) indicam a **ação corretiva** esperada do usuário.
 - **Fórmula de Cálculo**:
 
@@ -496,7 +532,7 @@ $$
 - **Instrumento de Coleta**: Capturas das mensagens obtidas na execução de M12, complementadas pela inspeção do catálogo de mensagens (`src/Support/Exceptions/Error.php` e chamadas `$this->messenger->append()`).
 
 #### Protocolo das sessões de uso (M14 e M15)
-- **Participantes**: no mínimo 5 pessoas sem experiência prévia no i-Educar, recrutadas voluntariamente; todas assinam o Termo de Consentimento Livre e Esclarecido (TCLE) e os dados são anonimizados (identificação por código P1 a P5).
+- **Participantes**: no mínimo 5 pessoas sem experiência prévia no i-Educar, recrutadas voluntariamente; todas assinam o Termo de Consentimento Livre e Esclarecido (TCLE) e os dados são anonimizados (identificação por códigos P01, P02, P03 etc.).
 - **Tarefas padronizadas** (executadas na mesma ordem, com dados fornecidos em ficha impressa):
     - **T1 — Matrícula:** matricular um aluno já cadastrado em uma turma e realizar a enturmação.
     - **T2 — Diário:** lançar as notas de um componente curricular para uma turma de 10 alunos.
@@ -506,6 +542,7 @@ $$
 #### M14 — Tempo Médio de Execução de Tarefa Operacional (TMET)
 - **Característica ISO 25019:2023**: Qualidade em Uso › Eficiência.
 - **Questão respondida**: Q4.3.
+- **Hipótese associada**: H4.3 (Tabela H4).
 - **Conceito**: Tempo médio, em minutos, que os participantes levam para concluir cada tarefa padronizada ($\text{TMET}_{T1}$ e $\text{TMET}_{T2}$). Para o julgamento, o tempo é comparado ao tempo de referência por meio da razão $R_{\text{tempo},T}$.
 - **Fórmulas de Cálculo**:
 
@@ -521,6 +558,7 @@ $$
 #### M15 — Taxa de Sucesso na Primeira Tentativa em Uso (TSPT)
 - **Característica ISO 25019:2023**: Qualidade em Uso › Eficácia.
 - **Questão respondida**: Q4.4.
+- **Hipótese associada**: H4.4 (Tabela H4).
 - **Conceito**: Percentual de execuções de tarefa (T1 e T2) concluídas corretamente na primeira submissão, sem erro de validação, recarga da página, perda de dados digitados ou ajuda do avaliador.
 - **Fórmula de Cálculo**:
 
