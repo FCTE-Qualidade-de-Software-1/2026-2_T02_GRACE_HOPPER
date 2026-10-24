@@ -653,6 +653,31 @@ $$
 
 ### 5.4 Critérios de Decisão Final de Release
 
+A Figura 2 ilustra o fluxo de decisão algorítmico aplicado na Atividade 5 da ISO/IEC 25040:2024 para determinar a classificação final da release do software avaliado, articulando as condições eliminatórias dos Gates Binários com a pontuação ponderada multicritério.
+
+### Figura 2 — Fluxograma de Decisão e Julgamento Final de Release (ISO/IEC 25040:2024)
+
+```mermaid
+flowchart TD
+    Start(["Início do Julgamento da Release"]) --> Gates{"Gates Binários:<br/>M3 = 100% E<br/>M4 = 100% E<br/>M12 = 100%?"}
+
+    Gates -- "Não (Falha em qualquer Gate)" --> ClassC["Classificação C: REPROVADO / BLOQUEADO<br/>(Bloqueio imediato para produção)"]
+
+    Gates -- "Sim (100% nos 3 Gates)" --> CalcIQM["Calcular IQC por Característica e IQM Global<br/>IQM = 0,30 IQC_Conf + 0,30 IQC_Manut + 0,20 IQC_Inter + 0,20 IQC_Comp"]
+
+    CalcIQM --> CheckA{"Critérios de Excelência:<br/>IQM >= 3,25 E<br/>Todos os IQC_k >= 3,0 E<br/>Nenhuma Métrica Crítica (S_i = 1)?"}
+
+    CheckA -- "Sim" --> ClassA["Classificação A: APROVADO PLENAMENTE<br/>(Pronto para produção e homologação)"]
+
+    CheckA -- "Não" --> CheckB{"Critérios de Aprovação com Ressalvas:<br/>IQM >= 2,75 E<br/>Todos os IQC_k >= 2,5?"}
+
+    CheckB -- "Sim" --> ClassB["Classificação B: APROVADO COM RESSALVAS<br/>(Exige plano de ação corretivo no backlog)"]
+
+    CheckB -- "Não (IQM < 2,75 ou algum IQC_k < 2,5)" --> ClassC
+```
+
+*Fonte: Elaborado pelos autores conforme processo de avaliação da ISO/IEC 25040:2024.*
+
 <div class="grid cards" markdown>
 
 -   **Classificação A — Aprovado Plenamente**
