@@ -285,14 +285,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #09 — Formulação Matemática dos Limiares e Regras de Decisão Global
 
 - **Milestone:** M2: Especificação da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 3]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario3]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 3h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Gustavo Silva Rodrigues`
+    - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 3h | **Horas Realizadas:** `3h` | **Custo:** R$ `150,00`
 - **Goal:** Integrar a tabela unificada de limiares, os pesos relativos e o modelo de decisão do Índice Global IQM.
 - **Depends on:** Issues #05, #06, #07 e #08.
 - **Scope:** Atividades 3, 4 e 5 da ISO/IEC 25040:2024.
-- [ ] **Task:** Consolidar função de agregação ponderada e critérios de aprovação de release
+- [x] **Task:** Consolidar função de agregação ponderada e critérios de aprovação de release
     - **Files:** `docs/gqm_evaluation_framework.md`
     - **Change:** Estabelecer pesos das características (30% Conf, 30% Manut, 20% Inter/Uso, 20% Comp) e regras A, B e C.
     - **Covers:** Fase 2 (Critérios de Julgamento).
@@ -309,14 +309,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #10 — Planejamento do Ambiente de Testes Conteinerizado (Docker)
 
 - **Milestone:** M3: Projeto da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 3]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario3]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 3h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Ítalo Alves Sampaio de Oliveira`
+    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 3h | **Horas Realizadas:** `3h` | **Custo:** R$ `150,00`
 - **Goal:** Documentar o ambiente e versionamento conteinerizado oficial para garantir reprodutibilidade da avaliação.
 - **Depends on:** Issue #09.
 - **Scope:** Configuração do `docker-compose.yml`, versões de imagem (PHP 8.5-ieducar, PostgreSQL 18-alpine, Redis).
-- [ ] **Task:** Validar e documentar subida do ambiente Docker e banco de dados de testes
+- [x] **Task:** Validar e documentar subida do ambiente Docker e banco de dados de testes
     - **Files:** `docker-compose.yml`, `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`
     - **Change:** Registrar as portas, variáveis de ambiente necessárias e comandos de migração e seeding.
     - **Covers:** Fase 3 (Item 1 — Ambiente de Testes e Versão do Produto).
@@ -329,14 +329,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #11 — Planejamento das Ferramentas de Análise Estática e Motor PHP
 
 - **Milestone:** M3: Projeto da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 2]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario2]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 3h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Gustavo Silva Rodrigues`
+    - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 3h | **Horas Realizadas:** `3h` | **Custo:** R$ `150,00`
 - **Goal:** Integrar o script executável de extração estática e planejar o pipeline com SonarQube/Pest.
 - **Depends on:** Issue #09.
 - **Scope:** `scripts/evaluate-quality.php` e ferramentas de análise de código.
-- [ ] **Task:** Construir e testar motor executável de medição estática GQM
+- [x] **Task:** Construir e testar motor executável de medição estática GQM
     - **Files:** `scripts/evaluate-quality.php`
     - **Change:** Implementar parser de tokens PHP para complexidade ciclomática, contagem de skips e verificação transacional.
     - **Covers:** Fase 3 (Item 2 — Métodos e Ferramentas de Coleta).
@@ -349,14 +349,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #12 — Planejamento dos Testes de Usabilidade e Protocolo TCLE
 
 - **Milestone:** M3: Projeto da Avaliação
-- **Atribuição Individual (Preencher ao Assumir):**
-    - **Responsável:** `[Preencher: Integrante 4]`
-    - **Matrícula UnB:** `[00/0000000]` | **GitHub:** `@[usuario4]`
-    - **Valor da Hora:** R$ `[50,00]` | **Horas Estimadas:** 3h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+- **Atribuição Individual:**
+    - **Responsável:** `Gabriel Barbaceli`
+    - **Matrícula UnB:** `21/1045122` | **GitHub:** `@Nibaacriba`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 3h | **Horas Realizadas:** `3h` | **Custo:** R$ `150,00`
 - **Goal:** Estruturar o roteiro de tarefas guiadas de matrícula e diário e elaborar o documento formal do TCLE.
 - **Depends on:** Issue #08.
 - **Scope:** Roteiro experimental de usabilidade, critérios Lighthouse/axe DevTools e Termo de Consentimento.
-- [ ] **Task:** Elaborar protocolo experimental de usabilidade e termo TCLE ético
+- [x] **Task:** Elaborar protocolo experimental de usabilidade e termo TCLE ético
     - **Files:** `docs/Termo de Consentimento Livre e Esclarecido.docx`, `docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`
     - **Change:** Documentar tarefas padronizadas para cálculo de TMET e TSPT e salvaguardas éticas de dados.
     - **Covers:** Fase 3 (Item 2 — Usabilidade e TCLE).
@@ -434,14 +434,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 #### Issue #16 — Publicação da GitPage, Geração de Tag e Publicação da Release E1
 
 - **Milestone:** M4: Consolidação e Release E1
-- **Atribuição Individual (Preencher ao Assumir):**
+- **Atribuição Individual:**
     - **Responsável:** `Arthur Soares Parente`
     - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 1h | **Horas Realizadas:** `[__h]` | **Custo:** R$ `[___,00]`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 1h | **Horas Realizadas:** `1h` | **Custo:** R$ `50,00`
 - **Goal:** Publicar a versão final do Ponto de Controle 1 no GitHub e disparar a Release E1.
 - **Depends on:** Issue #15.
 - **Scope:** Criação da tag Git `v1.0.0-pc1`, geração do release package e deploy na GitPage.
-- [ ] **Task:** Publicar Release E1 no GitHub e sincronizar GitPage
+- [x] **Task:** Publicar Release E1 no GitHub e sincronizar GitPage
     - **Files:** `README.md`, `.github/workflows/pages.yml`
     - **Change:** Atualizar link da release, registrar notas de versão e publicar GitPage via GitHub Actions.
     - **Covers:** Critério F3-C7 e Marco M4.

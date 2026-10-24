@@ -189,35 +189,61 @@ Para M3 e M4, os denominadores são manifestos planejados e congelados antes da 
 
 ### 2.3. Fase 3: Projetar a Avaliação (Plano de Avaliação e Ferramentas)
 
-Para demonstrar planejamento completo e alinhamento com a futura execução (Fase 4), o projeto da avaliação estrutura o ambiente e os instrumentos de coleta:
+Para demonstrar planejamento completo e alinhamento com a futura execução (Fase 4), o projeto da avaliação estrutura o ambiente e os instrumentos de coleta em três frentes operacionais:
 
-<div class="grid cards" markdown>
+#### 2.3.1 Ambiente Conteinerizado de Testes e Reprodutibilidade (Docker Compose — Issue #10)
 
--   **Ambiente de Testes e Versão**
+Para assegurar a reprodutibilidade científica da avaliação independente, o ambiente de testes utiliza uma infraestrutura conteinerizada padronizada via Docker Compose, ancorada nas seguintes definições de versionamento:
 
-    ---
+* **Repositório Base:** `https://github.com/portabilis/i-educar` (branch oficial `2.12`, commit congelado de referência `7903a3efc7689942ee700007f86ed581023aad27`).
+* **Serviço de Aplicação (`app`):** Imagem conteinerizada `portabilis/i-educar:2.12.0` executando PHP 8.5 e framework Laravel 13, exposta localmente na porta `8080`.
+* **Serviço de Banco de Dados (`database`):** PostgreSQL versão 18 (`postgres:18-alpine`) com esquemas relacionais `pmieducar`, `modules` e `cadastro`, exposto na porta `5432`.
+* **Serviço de Cache e Sessão (`cache`):** Redis 7 (`redis:7-alpine`) operando na porta `6379`.
 
-    Utilização do ambiente conteinerizado oficial (`docker-compose` do repositório `portabilis/i-educar`), fixando o branch oficial `2.12` (versão declarada `2.12.0`, commit de referência `7903a3e`) para garantir reprodutibilidade científica. A tag `2.12.0` ainda não foi publicada; a última tag publicada é `2.11.0`.
+**Procedimento Sequencial de Inicialização e Carga Pedagógica:**
 
--   **Manutenibilidade (Análise Estática)**
+1. Validação do arquivo de composição conteinerizada:
+   ```bash
+   docker compose config
+   ```
+2. Inicialização dos serviços em segundo plano:
+   ```bash
+   docker compose up -d
+   ```
+3. Execução das migrações de banco e carga de sementes de teste (*seeders* controlados com regras de avaliação pré-configuradas):
+   ```bash
+   docker compose exec app php artisan migrate --seed
+   ```
+4. Verificação de prontidão dos endpoints de API via healthcheck HTTP (status code 200).
 
-    ---
+---
 
-    Planeja-se comparar **SonarQube / PHPMetrics** e implementar/validar `scripts/evaluate-quality.php` no checkout do i-Educar, com relatórios brutos. O script não está presente neste repositório de documentação; versões, configurações e resultados ainda precisam ser registrados na execução.
+#### 2.3.2 Métodos e Ferramentas de Análise Estática (SonarQube e Motor PHP CLI — Issue #11)
 
--   **Compatibilidade e Confiabilidade**
+A medição das métricas da característica **Manutenibilidade** (M7a, M7b, M8, M9, M10 e M11) articula ferramentas consagradas de mercado com scripts de automação proprietários:
 
-    ---
+* **SonarQube / PHPMetrics:** Utilizados para cálculo global de cobertura de código, métricas estruturais de acoplamento e complexidade ciclomática.
+* **Motor Proprietário de Inspeção (`scripts/evaluate-quality.php`):** Script executável desenvolvido em PHP CLI nativo, capaz de percorrer a árvore de arquivos de `app/` e `ieducar/modules/`, aplicando análise léxica (*token_get_all*) para:
+    * Calcular o $P_{90}$ e o valor máximo da Complexidade Ciclomática ($\text{CC}_{P90}$ e $\text{CC}_{\max}$ — M7a e M7b).
+    * Computar a Distância da Sequência Principal de Martin ($\text{DSPM}$ — M8) e o Índice de Fricção de Dados Legado-Moderno ($\text{IFDL}$ — M9).
+    * Gerar o Índice de Manutenibilidade Normalizado ($\text{MI}$ — M10).
+    * Auditar a suíte de testes com detecção automatizada de asserções ativas e contagem de testes pulados com `markTestSkipped()` ($\text{TTAE}$ — M11).
+* **Formatos de Saída:** Suporte nativo a relatório tabular em console e saída em JSON estruturado para consumo em pipelines de integração contínua:
+   ```bash
+   php scripts/evaluate-quality.php --format=table
+   php scripts/evaluate-quality.php --format=json
+   ```
 
-    Execução de suíte de testes de API via **Postman / Insomnia** e testes funcionais/transacionais nos fluxos de matrícula e notas, com gravação de *logs* e evidências.
+---
 
--   **Capacidade de Interação e Uso**
+#### 2.3.3 Protocolo Experimental de Usabilidade e Conformidade Ética (TCLE — Issue #12)
 
-    ---
+Para a medição empírica das métricas de **Capacidade de Interação** e **Qualidade em Uso** (M12, M13, M14a, M14b e M15), foi formulado um protocolo experimental estruturado em tarefas guiadas com secretários escolares e professores:
 
-    Testes de proteção contra erros e mensagens (`M12`/`M13`), inspeção automatizada e avaliação guiada de tarefas (`T1` e `T2`) com aplicação do **Termo de Consentimento Livre e Esclarecido (TCLE)**.
-
-</div>
+* **Tarefa 1 (T1 — Matrícula e Enturmação):** Cadastro de novo estudante e enturmação em turma de 6º ano, com registro de tempo de conclusão ($R_{\text{tempo},T1}$ — M14a) e taxa de submissão na 1ª tentativa ($TSPT$ — M15).
+* **Tarefa 2 (T2 — Diário de Classe e Notas):** Lançamento de notas e menções bimestrais no diário eletrônico com cálculo automático de média ponderada ($R_{\text{tempo},T2}$ — M14b).
+* **Salvaguardas Éticas e Documento Formal:** Em observância à Resolução CNS nº 510/2016 e à LGPD (Lei nº 13.709/2018), a coleta assegura total anonimização dos participantes, voluntariedade de participação e uso restrito a ambiente de homologação. O documento completo encontra-se publicado na GitPage em:
+  [Termo de Consentimento Livre e Esclarecido (TCLE)](termo_consentimento_livre_esclarecido.md).
 
 ---
 
