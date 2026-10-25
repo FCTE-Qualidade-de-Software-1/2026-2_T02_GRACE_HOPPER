@@ -52,8 +52,9 @@ qualidade de software, i-Educar, avaliação de software, GQM, gestão escolar
 Este trabalho tem como objetivo avaliar a qualidade de software da
 plataforma i-Educar~\cite{ieducar}, com foco nos módulos de matrícula
 e lançamento de notas e menções. O planejamento da avaliação e o
-detalhamento das métricas estão disponíveis nos artefatos produzidos
-pela equipe~\cite{gqm,pc1}.
+detalhamento das métricas estão documentados na GitPage da
+equipe~\cite{gqm,pc1} e versionados no repositório
+\url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER}.
 
 Conforme o planejamento~\cite{pc1}, a avaliação é independente e
 diagnóstica, conduzida por avaliadores externos ao projeto i-Educar;
@@ -140,6 +141,54 @@ Foram selecionadas manutenibilidade e confiabilidade, com criticidade
 de 20\%. O grupo interação e qualidade em uso recebe os 20\%
 restantes no índice global~\cite{gqm,pc1}. As pontuações refletem o
 planejamento da equipe, sem representar medições da qualidade do produto.
+
+\subsection{Objetivo de gestão e medições PSM/CID}
+\label{sec:gestao}
+O objetivo de gestão é analisar o processo de trabalho da equipe com
+o propósito de controlar prazo, esforço e conformidade documental, do
+ponto de vista da equipe e da docente, no contexto da Entrega 1 (PC1).
+O acompanhamento usa Issues, Milestones e o quadro Kanban do GitHub
+Project ``Grace Hopper'' (29 itens em 25 out. 2026; acesso restrito à
+equipe)~\cite{repo}. As métricas operacionais e os dados observados em
+25 out. 2026 estão sintetizados na Tabela~\ref{tab:psm}; elas descrevem
+a gestão do trabalho, não a qualidade do i-Educar.
+
+\begin{table*}[!t]
+\centering
+\caption{Objetivo e medições PSM/CID da equipe no PC1}
+\label{tab:psm}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|p{1.7cm}|p{1.2cm}|p{6.5cm}|p{7.2cm}|}
+\hline
+Dimensão & Métrica & Definição operacional & Resultado e interpretação em 25 out. 2026 \\
+\hline
+Desempenho do processo &
+TCM &
+Issues fechadas no milestone dividido pelo total de issues atribuídas ao milestone. &
+M0: 1/1; M1: 6/6; M2: 5/5; M3: 3/3; M4: 2/4. Total: 17/19 (89,5\%). Em M4, metade das issues estava concluída. \\
+\hline
+Calendário &
+ACM &
+Milestones concluídos até a data prevista dividido pelo total de milestones com prazo registrado. &
+Não calculável: os milestones consultados no GitHub não têm data-limite registrada. \\
+\hline
+Recursos e custos &
+VEC &
+Variação de esforço/custo: $(H_{\mathrm{real}}-H_{\mathrm{estimado}})\times \mathrm{R\$\,50{,}00/h}$, usando os apontamentos existentes nas issues. &
+M4: 3 das 4 issues tinham horas estimadas e realizadas; 7 h realizadas ante 7 h estimadas, VEC de R\$\,0{,}00. A issue restante não tinha horas realizadas registradas. \\
+\hline
+\end{tabular}
+\end{table*}
+
+O TCM é calculado a partir do estado das issues por milestone no
+repositório~\cite{repo}; o VEC usa os campos de esforço registrados nas
+issues e o valor-hora documentado no planejamento~\cite{pc1}. O quadro
+Kanban da equipe está disponível em
+\url{https://github.com/orgs/FCTE-Qualidade-de-Software-1/projects/34};
+como o projeto é privado, seu conteúdo requer acesso autorizado. A
+ausência de datas-limite impede interpretar o andamento das issues
+como cumprimento de calendário.
 
 \subsection{Objetivos, questões e métricas GQM}
 \label{sec:gqm}
@@ -346,9 +395,13 @@ Na versão de planejamento, relatar apenas o plano e os próximos passos.}
 
 \section*{Declaração de Uso de Inteligência Artificial}
 \label{sec:ia}
-\pendente{informar ferramentas e modelos utilizados, tarefas apoiadas
-e revisão humana efetivamente realizada. A preparação desta estrutura
-teve apoio do assistente Codex; revisar e complementar o registro.}
+Um assistente de IA integrado ao Copilot SDK no VS Code foi utilizado
+para apoiar a redação e a revisão de clareza do manuscrito, bem como a
+organização das medições de gestão a partir dos registros do projeto.
+A ferramenta não executou a avaliação do i-Educar nem gerou resultados
+experimentais. A equipe validou tecnicamente o conteúdo por conferência
+manual das fórmulas, pesos e limiares contra o framework GQM e pela
+verificação dos dados de TCM e VEC nas Issues e Milestones do GitHub.
 
 \begin{thebibliography}{00}
 % Origem: documentos locais efetivamente consultados para este esqueleto.
@@ -368,6 +421,11 @@ Equipe Grace Hopper, ``Relatório de Planejamento --- Ponto de Controle 1
 (i-Educar),'' documento do projeto. [Online]. Disponível em:
 \url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/blob/ff53da3/docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md}.
 Revisão ff53da3, 2026.
+\bibitem{repo}
+Equipe Grace Hopper, ``Repositório e quadro de gestão do projeto.'' [Online].
+Disponível em: \url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues}
+e \url{https://github.com/orgs/FCTE-Qualidade-de-Software-1/projects/34}.
+Acesso em: 25 out. 2026.
 \bibitem{iso25010}
 ISO e IEC, \emph{Systems and software engineering --- Systems and
 software Quality Requirements and Evaluation (SQuaRE) --- Product
