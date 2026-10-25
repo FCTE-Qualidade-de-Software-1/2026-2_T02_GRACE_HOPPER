@@ -216,7 +216,7 @@ O i-Educar~\cite{ieducar_repo} foi selecionado como objeto de estudo por três m
 
 Este trabalho avalia os módulos de \textbf{Matrícula de Alunos} e de \textbf{Lançamento de Notas e Menções} do i-Educar (\texttt{branch 2.12}) quanto a quatro características da ISO/IEC 25010:2023~\cite{iso25010} --- Compatibilidade, Confiabilidade, Manutenibilidade e Capacidade de interação --- complementadas por eficácia e eficiência em uso da ISO/IEC 25019:2023~\cite{iso25019}. Os objetivos específicos são verificar: (i) se a aplicação coexiste sem colisão de recursos e mantém contratos JSON estáveis na API REST; (ii) se o cálculo de médias/menções é determinístico e se as escritas compostas e restaurações de backup preservam a integridade do banco; (iii) qual o nível de complexidade, acoplamento e cobertura de testes ativos na arquitetura híbrida; e (iv) se o sistema previne erros de digitação com mensagens claras e permite que usuários iniciantes concluam matrículas e lançamentos de notas com eficiência.
 
-A contribuição desta entrega consiste no planejamento da avaliação (Fase 1) e na especificação das medições com GQM (Fase 2), conectando cada parte interessada a objetivos, questões, hipóteses, equações e regras de decisão. A Seção~\ref{sec:ref} apresenta o referencial teórico; a Seção~\ref{sec:met}, a metodologia e o PSM/CID; a Seção~\ref{sec:fase1}, os requisitos da avaliação (Fase 1); e a Seção~\ref{sec:fase2}, o planejamento GQM (Fase 2). O planejamento e a especificação GQM estão documentados na GitPage da equipe~\cite{gracehopper_gqm,gracehopper_pc1}, associados à entrega \texttt{E1} (\texttt{v1.0.0-pc1}).
+A contribuição desta entrega consiste no planejamento da avaliação (Fase 1) e na especificação das medições com GQM (Fase 2), conectando cada parte interessada a objetivos, questões, hipóteses, equações e regras de decisão. A Seção~\ref{sec:ref} apresenta o referencial teórico; a Seção~\ref{sec:met}, a metodologia e o PSM/CID; a Seção~\ref{sec:fase1}, os requisitos da avaliação (Fase 1); e a Seção~\ref{sec:fase2}, o planejamento GQM (Fase 2). O planejamento e a especificação GQM estão documentados na GitPage da equipe~\cite{gracehopper_gqm,gracehopper_pc1} e versionados no repositório da equipe (\url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER}), associados à entrega \texttt{E1} (\texttt{v1.0.0-pc1}).
 
 % =====================================================================
 \section{Referencial Teórico}\label{sec:ref}
@@ -246,21 +246,22 @@ O julgamento segue duas etapas: (i) verificação de três critérios eliminató
 O trabalho acompanha as quatro fases da disciplina alinhadas à ISO/IEC 25040:2024~\cite{iso25040}: \textbf{Fase 1} (requisitos da avaliação: propósito, partes interessadas, arquitetura, adaptação/priorização do modelo, escopo e ODS); \textbf{Fase 2} (especificação GQM: objetivos, questões, hipóteses, equações e níveis de pontuação); \textbf{Fase 3} (projeto da avaliação: manifestos congelados, scripts, coleções de API e protocolo de uso); e \textbf{Fase 4} (execução, análise dos dados e proposição de melhorias).
 
 \subsection{Gestão do projeto com PSM/CID}\label{sec:psmcid}
-Para monitorar o projeto nas três categorias do PSM/CID~\cite{mcgarry2002psm}, definem-se as medidas abaixo. Sua apuração exige registrar o universo de issues e PRs da Entrega 1, a data de corte e os apontamentos de esforço:
+O objetivo de gestão é analisar o processo de trabalho da equipe com o propósito de controlar prazo, esforço e conformidade documental, do ponto de vista da equipe e da docente, no contexto da Entrega 1 (PC1). O acompanhamento utiliza Issues, Milestones e o quadro Kanban do GitHub Project ``Grace Hopper''~\cite{repo_gracehopper}. Para monitorar desempenho dos processos, calendário e recursos/custos segundo o PSM/CID~\cite{mcgarry2002psm}, definem-se as medidas abaixo. A apuração considera os registros disponíveis no GitHub em 25 out. 2026:
 \begin{equation}\label{eq:psmcid1}
 \begin{aligned}
 \text{TCM} &= \frac{N_{\text{issues concluídas}}}{N_{\text{issues planejadas E1}}} \times 100\%, \\
-\text{TRCD} &= \frac{N_{\text{PRs build estrito OK}}}{N_{\text{PRs integrados E1}}} \times 100\%
+\text{TRCD} &= \frac{N_{\text{PRs build estrito OK}}}{N_{\text{PRs integrados E1}}} \times 100\%, \\
+\text{ACM} &= \frac{N_{\text{marcos concluídos no prazo}}}{N_{\text{marcos com prazo definido}}} \times 100\%
 \end{aligned}
 \end{equation}
 \begin{equation}\label{eq:psmcid2}
 \text{VEC} = \frac{E_{\text{realizado}} - E_{\text{planejado}}}{E_{\text{planejado}}} \times 100\%
 \end{equation}
-onde $\text{TCM}$ é a Taxa de Conclusão de Marcos (Calendário e Progresso), $\text{TRCD}$ é a Taxa de Revisão e Conformidade Documental (Desempenho dos Processos), e $\text{VEC}$ é a Variação de Esforço e Custo. O esforço planejado é $E_{\text{planejado}} = 72\,\mathrm{h}$, equivalente a R\$ 3.600,00 à razão de R\$ 50,00/h. A Tabela~\ref{tab:psmcid} relaciona as medidas, suas evidências e as decisões apoiadas. A alocação planejada não comprova esforço realizado nem permite atribuir $\text{VEC}=0$ sem apontamentos individuais.
+onde $\text{TCM}$ é a Taxa de Conclusão de Issues por milestone, $\text{TRCD}$ é a Taxa de Revisão e Conformidade Documental, $\text{ACM}$ é a Aderência ao Calendário dos Marcos, e $\text{VEC}$ é a Variação de Esforço e Custo. O esforço planejado é $E_{\text{planejado}} = 72\,\mathrm{h}$, equivalente a R\$ 3.600,00 à razão de R\$ 50,00/h. A Tabela~\ref{tab:psmcid} apresenta os resultados observados e suas limitações; a falta de horas registradas não é tratada como esforço zero.
 
 \begin{table}[!t]
 \centering
-\caption{Plano de acompanhamento do projeto (PSM/CID) na Entrega 1. Fonte: planejamento e histórico Git da equipe.}
+\caption{Medições de gestão (PSM/CID) na Entrega 1. Fonte: planejamento e histórico de Issues, Milestones e PRs da equipe.}
 \label{tab:psmcid}
 \scriptsize
 \setlength{\tabcolsep}{2.5pt}
@@ -270,24 +271,29 @@ onde $\text{TCM}$ é a Taxa de Conclusão de Marcos (Calendário e Progresso), $
 \midrule
 Desempenho dos processos &
 $\text{TRCD}$: requer relatórios de build dos PRs integrados. O commit \texttt{cd9da95}, integrado pelo PR \texttt{\#25}, registra ajuste de nomenclatura &
-O histórico de revisão evidencia correções, mas não substitui os relatórios necessários ao cálculo da taxa &
-Conferir documentação e commit de referência do produto antes de integrar cada PR \\
+Não calculável sem universo consolidado de PRs integrados e respectivos relatórios de build &
+Conferir documentação e commit de referência antes de integrar cada PR \\
 \addlinespace[2pt]
 Calendário e progresso &
-$\text{TCM}$: requer lista congelada de issues planejadas e concluídas, com data de corte e vínculo aos marcos da Entrega 1 &
-O catálogo de tarefas define o planejamento; a taxa depende da comprovação das conclusões &
-Monitorar pendências e congelar os manifestos de teste no início da Fase 3 \\
+$\text{TCM}$: issues concluídas ÷ issues planejadas em cada milestone &
+M0: 1/1; M1: 6/6; M2: 5/5; M3: 3/3; M4: 2/4. Total: 17/19 (89,5\%); metade das issues de M4 permanece aberta &
+Monitorar pendências e congelar manifestos no início da Fase 3 \\
+\addlinespace[2pt]
+Calendário &
+$\text{ACM}$: marcos concluídos no prazo ÷ marcos com prazo definido &
+Não calculável: os milestones consultados não têm data-limite registrada &
+Definir prazos nos milestones para acompanhar aderência ao calendário \\
 \addlinespace[2pt]
 Recursos e custos &
-$\text{VEC}$: requer horas realizadas. Base planejada: 72h e R\$ 3.600; 12h e R\$ 600 por integrante (Apêndice A) &
-A divisão entre seis integrantes é uma estimativa; os percentuais arredondados somam 100\% &
+\text{VEC}: $(E_{\text{realizado}}-E_{\text{planejado}})/E_{\text{planejado}}$ &
+Em M4, 3 de 4 issues têm horas realizadas: 7h realizadas/7h planejadas, VEC = 0\% (R\$ 0); uma issue não tem apontamento realizado. Resultado parcial, não total da equipe &
 Registrar horas por integrante e issue para comparar execução e planejamento \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \subsection{Rastreabilidade, aspectos éticos e limitações}\label{sec:limitacoes}
-A GitPage da equipe reúne a documentação da avaliação, incluindo o planejamento e o framework GQM~\cite{gracehopper_gqm,gracehopper_pc1}. Para assegurar a rastreabilidade, cada medição deverá registrar a versão do produto, a versão do instrumento, o cenário, a data, o responsável e a evidência produzida.
+A GitPage da equipe reúne a documentação da avaliação, incluindo o planejamento e o framework GQM~\cite{gracehopper_gqm,gracehopper_pc1}; o quadro Kanban está no GitHub Project da equipe~\cite{repo_gracehopper}. Para assegurar a rastreabilidade, cada medição deverá registrar a versão do produto, a versão do instrumento, o cenário, a data, o responsável e a evidência produzida.
 
 Em observância à Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018)~\cite{lgpd2018}, os testes locais deverão empregar dados fictícios. As sessões de qualidade em uso (M14 e M15) exigirão TCLE prévio e identificação por códigos anônimos (\texttt{P01}, \texttt{P02}, etc.). A amostra de iniciantes, o ambiente Docker e o recorte de dois módulos limitam a generalização. M5 depende de registros de produção ainda indisponíveis; sua ausência não será substituída por dados sintéticos nem por nota zero. O estudo não constitui certificação de segurança ou desempenho em nuvem.
 
@@ -814,7 +820,7 @@ onde $i \in k$ identifica as métricas graduais da característica $k$, e $w_i$ 
 % =====================================================================
 \section*{Declaração de Uso de Inteligência Artificial}
 
-Em atendimento aos critérios de transparência acadêmica (F1-C10, F2-C9 e AG-C3), a Tabela~\ref{tab:ia} registra o apoio de IA e os limites de verificação. A revisão assistida não substitui a validação final dos autores.
+Em atendimento aos critérios de transparência acadêmica (F1-C10, F2-C9 e AG-C3), a Tabela~\ref{tab:ia} registra as ferramentas, tarefas apoiadas e verificações realizadas pela equipe.
 
 % Mantém a declaração de IA antes do início das referências.
 \begin{table}[H]
@@ -830,12 +836,12 @@ Em atendimento aos critérios de transparência acadêmica (F1-C10, F2-C9 e AG-C
 Google Gemini / Claude (via Antigravity) &
 Estruturação de templates da GitPage (MkDocs) e formatação de tabelas e equações em \LaTeX\ (\texttt{IEEEtran}) &
 Out. 2026 &
-Uso registrado na GitPage. A validação integral contra os PDFs das rubricas permanece sob responsabilidade dos autores \\
+A equipe conferiu fórmulas, pesos e limiares contra o framework GQM e executou o build estrito do MkDocs \\
 \addlinespace[2pt]
 OpenAI Codex / ChatGPT &
-Revisão editorial com Mathbox e LaTeX Document Maker; conferência de referências via Article Galaxy, autorizada pelo usuário &
+Revisão editorial com Mathbox e LaTeX Document Maker; conferência de referências via Article Galaxy &
 Out. 2026 &
-Comparação com os documentos locais, revisão de notação e compilação em duas passagens. Pendências de fontes e método são relatadas aos autores; não se afirma nova auditoria do código do produto \\
+A equipe conferiu TCM e VEC nas Issues e Milestones, compilou o PDF e inspecionou o documento gerado; revisão por pares em andamento neste PR \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -860,6 +866,9 @@ Equipe Grace Hopper, ``Framework GQM de Avalia\c{c}\~ao de Qualidade de Software
 
 \bibitem{gracehopper_pc1}
 Equipe Grace Hopper, ``Relat\'orio de Planejamento e Acompanhamento --- Ponto de Controle 1 (i-Educar),'' documenta\c{c}\~ao do projeto, UnB/FGA, 2026. [Online]. Dispon\'ivel em: \url{https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/relatorio_de_planejamento_ponto_de_controle_1_i_educar/}.
+
+\bibitem{repo_gracehopper}
+Equipe Grace Hopper, ``Reposit\'orio e quadro Kanban do projeto.'' [Online]. Dispon\'ivel em: \url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER} e \url{https://github.com/orgs/FCTE-Qualidade-de-Software-1/projects/34}. Acesso em: 25 out. 2026.
 
 \bibitem{iso25002}
 ISO/IEC, ``ISO/IEC 25002:2024 --- Systems and software engineering --- SQuaRE --- Quality model overview and usage,'' 1st ed., Geneva, 2024.
