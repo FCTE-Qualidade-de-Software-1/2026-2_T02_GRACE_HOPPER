@@ -16,6 +16,8 @@ Thumbs.db
 # Arquivos Temporários e Logs
 *.log
 /tmp/
+__pycache__/
+*.pyc
 
 # Documentação MkDocs
 site/
