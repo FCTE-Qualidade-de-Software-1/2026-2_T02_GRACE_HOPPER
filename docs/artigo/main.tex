@@ -237,7 +237,7 @@ O julgamento segue duas etapas: (i) verificação de três critérios eliminató
 O trabalho acompanha as quatro fases da disciplina alinhadas à ISO/IEC 25040:2024~\cite{iso25040}: \textbf{Fase 1} (requisitos da avaliação: propósito, partes interessadas, arquitetura, adaptação/priorização do modelo, escopo e ODS); \textbf{Fase 2} (especificação GQM: objetivos, questões, hipóteses, equações e níveis de pontuação); \textbf{Fase 3} (projeto da avaliação: manifestos congelados, scripts, coleções de API e protocolo de uso); e \textbf{Fase 4} (execução, análise dos dados e proposição de melhorias).
 
 \subsection{Gestão do projeto com PSM/CID}\label{sec:psmcid}
-O objetivo de gestão é analisar o processo de trabalho da equipe com o propósito de controlar prazo, esforço e conformidade documental, do ponto de vista da equipe e da docente, no contexto da Entrega 1 (PC1). O acompanhamento utiliza Issues, Milestones e o quadro Kanban do GitHub Project ``Grace Hopper''~\cite{repo_gracehopper}. Para monitorar desempenho dos processos, calendário e recursos/custos segundo o PSM/CID~\cite{mcgarry2002psm}, definem-se as medidas abaixo. A apuração considera os registros disponíveis no GitHub em 25 out. 2026:
+O objetivo de gestão é analisar o processo de trabalho da equipe com o propósito de controlar prazo, esforço e conformidade documental, do ponto de vista da equipe e da docente, no contexto da Entrega 1 (PC1). O acompanhamento utiliza Issues, Milestones e o quadro Kanban do GitHub Project ``Grace Hopper''~\cite{repo_gracehopper}; o acesso ao conteúdo do quadro é restrito à equipe. Essas medidas descrevem a gestão do trabalho, não a qualidade do i-Educar. Para monitorar desempenho dos processos, calendário e recursos/custos segundo o PSM/CID~\cite{mcgarry2002psm}, definem-se as medidas abaixo. A apuração considera os registros disponíveis no GitHub em 25 out. 2026:
 \begin{equation}\label{eq:psmcid1}
 \begin{aligned}
 \text{TCM} &= \frac{N_{\text{issues concluídas}}}{N_{\text{issues planejadas E1}}} \times 100\%, \\
@@ -248,7 +248,7 @@ O objetivo de gestão é analisar o processo de trabalho da equipe com o propós
 \begin{equation}\label{eq:psmcid2}
 \text{VEC} = \frac{E_{\text{realizado}} - E_{\text{planejado}}}{E_{\text{planejado}}} \times 100\%
 \end{equation}
-onde $\text{TCM}$ é a Taxa de Conclusão de Issues por milestone, $\text{TRCD}$ é a Taxa de Revisão e Conformidade Documental, $\text{ACM}$ é a Aderência ao Calendário dos Marcos, e $\text{VEC}$ é a Variação de Esforço e Custo. O esforço planejado é $E_{\text{planejado}} = 72\,\mathrm{h}$, equivalente a R\$ 3.600,00 à razão de R\$ 50,00/h. A Tabela~\ref{tab:psmcid} apresenta os resultados observados e suas limitações; a falta de horas registradas não é tratada como esforço zero.
+onde $\text{TCM}$ é a Taxa de Conclusão de Issues por milestone, $\text{TRCD}$ é a Taxa de Revisão e Conformidade Documental, $\text{ACM}$ é a Aderência ao Calendário dos Marcos, e $\text{VEC}$ é a Variação de Esforço e Custo. Na Eq.~\ref{eq:psmcid2}, os esforços realizado e planejado são medidos em horas para o mesmo conjunto de issues, e o VEC é expresso em percentual. O planejamento global da equipe é de $72\,\mathrm{h}$, equivalente a R\$ 3.600,00 à razão de R\$ 50,00/h. No recorte observado de M4, as três issues com apontamentos completos somam $7\,\mathrm{h}$ realizadas e $7\,\mathrm{h}$ planejadas, resultando em VEC de 0\% e desvio de custo de R\$ 0,00. Esse resultado parcial não permite calcular o VEC global da equipe, pois os apontamentos estão incompletos. A Tabela~\ref{tab:psmcid} apresenta os resultados observados e suas limitações; a falta de horas registradas não é tratada como esforço zero.
 
 \begin{table}[!t]
 \centering
@@ -276,8 +276,8 @@ Não calculável: os milestones consultados não têm data-limite registrada &
 Definir prazos nos milestones para acompanhar aderência ao calendário \\
 \addlinespace[2pt]
 Recursos e custos &
-\text{VEC}: $(E_{\text{realizado}}-E_{\text{planejado}})/E_{\text{planejado}}$ &
-Em M4, 3 de 4 issues têm horas realizadas: 7h realizadas/7h planejadas, VEC = 0\% (R\$ 0); uma issue não tem apontamento realizado. Resultado parcial, não total da equipe &
+$\text{VEC}$: variação percentual do esforço no mesmo conjunto de issues (Eq.~\ref{eq:psmcid2}) &
+M4: 3 de 4 issues têm apontamentos completos; 7h realizadas/7h planejadas, VEC = 0\% e desvio de custo de R\$ 0,00. Uma issue não tem horas realizadas; VEC global não calculável &
 Registrar horas por integrante e issue para comparar execução e planejamento \\
 \bottomrule
 \end{tabular}
@@ -849,8 +849,16 @@ onde $i \in k$ identifica as métricas graduais da característica $k$, e $w_i$ 
 
 % =====================================================================
 \section*{Declaração de Uso de Inteligência Artificial}
-
+\label{sec:ia}
 Em atendimento aos critérios de transparência acadêmica (F1-C10, F2-C9 e AG-C3), a Tabela~\ref{tab:ia} registra as ferramentas, tarefas apoiadas e verificações realizadas pela equipe.
+
+Um assistente de IA integrado ao Copilot SDK no VS Code foi utilizado
+para apoiar a redação e a revisão de clareza do manuscrito, bem como a
+organização das medições de gestão a partir dos registros do projeto.
+A ferramenta não executou a avaliação do i-Educar nem gerou resultados
+experimentais. A equipe validou tecnicamente o conteúdo por conferência
+manual das fórmulas, pesos e limiares contra o framework GQM e pela
+verificação dos dados de TCM e VEC nas Issues e Milestones do GitHub.
 
 % Mantém a declaração de IA antes do início das referências.
 \begin{table}[H]
