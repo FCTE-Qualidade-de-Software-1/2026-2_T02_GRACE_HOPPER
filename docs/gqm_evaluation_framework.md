@@ -9,7 +9,7 @@
     | **ISO/IEC 25040:2024** | Processo de Avaliação de Qualidade (*Quality evaluation process* — 2ª Edição, 5 atividades). |
     | **ISO/IEC 25002:2024** | Visão Geral e Uso de Modelos de Qualidade (*Quality models overview and usage*). |
     | **ISO/IEC 25023:2016** | Medição de Qualidade de Produto (*Measurement of system and software product quality*). |
-    | **GQM (Basili et al.)** | Metodologia *Goal-Question-Metric* desdobrada em 4 objetivos, 13 questões, 15 famílias de métricas e 17 linhas operacionais. |
+    | **GQM (Basili et al.)** | Metodologia *Goal-Question-Metric* desdobrada em 4 objetivos, 14 questões, 15 famílias de métricas e 17 linhas operacionais. |
 
 ---
 

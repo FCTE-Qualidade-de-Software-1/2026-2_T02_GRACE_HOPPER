@@ -58,6 +58,10 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
+# Mantém os arquivos do artigo no repositório, fora do site gerado.
+exclude_docs: |
+  /artigo/
+
 nav:
   - Início: index.md
   - GQM: gqm_evaluation_framework.md
@@ -67,5 +71,4 @@ nav:
   - Contexto do Produto:
       - Visão do Produto: agents/project_overview.md
       - Arquitetura: agents/architecture.md
-  - Artigo IEEE: artigo/modelo_ieee.md
   - Contribuição: contributing.md
