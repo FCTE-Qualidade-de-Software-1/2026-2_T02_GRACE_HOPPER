@@ -104,59 +104,50 @@
   \textbf{Nível 4 (Excel.)} & \textbf{Nível 3 (Bom)} &
   \textbf{Nível 2 (Reg.)} & \textbf{Nível 1 (Crít.) / Peso}\\}
 
-% Coluna do gráfico GQM: questão, caixa de métricas e ligação ao objetivo
-\newcommand{\gqmcol}[5]{%
-  \node[quest, anchor=north] (q#1) at (#2,-1.95) {#3};
-  \node[metr, anchor=north] (m#1) at (#2,-2.68) {#4};
-  \draw (#5.south) -- ++(0,-0.13) -| (q#1.north);
-  \draw (q#1.south) -- (m#1.north);}
+% Cada objetivo tem uma única linha de distribuição acima das questões.
+% Os corredores de ligação ficam entre as caixas, com espaço adicional antes de G4.
+\newcommand{\gqmbranch}[6]{%
+  \node[quest] (q#1) at (#2,#3) {#4};
+  \node[metr, below=3mm of q#1] (m#1) {#5};
+  \draw[->] ([yshift=2.5mm]q#1.north) -- (q#1.north);
+  \draw[->] (q#1.south) -- (m#1.north);}
 
-% Gráfico GQM completo desenhado em TikZ
 \newcommand{\gqmfigtikz}{%
-\resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[
-  every node/.style={font=\scriptsize, align=center},
-  car/.style={draw, fill=gray!35, rounded corners, minimum height=0.42cm, inner sep=2pt, font=\scriptsize\bfseries},
-  goal/.style={draw, fill=gray!18, rounded corners, minimum height=0.88cm, inner sep=2pt},
-  quest/.style={draw, fill=gray!6, minimum width=1.12cm, minimum height=0.45cm, inner sep=1pt},
-  metr/.style={draw, rounded corners=1pt, minimum width=1.12cm, minimum height=0.58cm, inner sep=1.5pt},
-  lvl/.style={anchor=east, align=right, font=\scriptsize\itshape}
+  every node/.style={font=\footnotesize, align=center},
+  goal/.style={draw,fill=gray!18,rounded corners,text width=2.8cm,minimum height=1.25cm,inner sep=3pt},
+  quest/.style={draw,fill=gray!6,text width=1.95cm,minimum height=0.52cm,inner sep=2pt},
+  metr/.style={draw,rounded corners=1pt,text width=1.95cm,minimum height=0.67cm,inner sep=2pt}
 ]
-\node[lvl] at (-0.75,-0.21) {Característica};
-\node[lvl] at (-0.75,-1.14) {Objetivo\\(conceitual)};
-\node[lvl] at (-0.75,-2.17) {Questão e Hipótese\\(operacional)};
-\node[lvl] at (-0.75,-3.02) {Métrica\\(quantitativo)};
-% Características
-\node[car, anchor=north, text width=2.45cm] (c1) at (0.68,0) {Compatibilidade (20\%)};
-\node[car, anchor=north, text width=3.85cm] (c2) at (4.06,0) {Confiabilidade (30\%)};
-\node[car, anchor=north, text width=6.55cm] (c3) at (9.46,0) {Manutenibilidade (30\%)};
-\node[car, anchor=north, text width=5.15cm] (c4) at (15.54,0) {Capacidade de Interação e Uso (20\%)};
-% Objetivos
-\node[goal, anchor=north, text width=2.45cm] (g1) at (0.68,-0.68) {G1: Coexistência de ambiente e contrato da API REST};
-\node[goal, anchor=north, text width=3.85cm] (g2) at (4.06,-0.68) {G2: Determinismo de notas, transações e restauração de backup};
-\node[goal, anchor=north, text width=6.55cm] (g3) at (9.46,-0.68) {G3: Complexidade, acoplamento, atrito legado-moderno, MI e testes};
-\node[goal, anchor=north, text width=5.15cm] (g4) at (15.54,-0.68) {G4: Proteção contra erros, mensagens e eficiência/eficácia em uso};
-\foreach \ch/\ob in {c1/g1, c2/g2, c3/g3, c4/g4}
-  \draw (\ch.south) -- (\ob.north);
-% G1: Compatibilidade
-\gqmcol{11}{0.00}{Q1.1\\(H1.1)}{M1\\(TINCR)}{g1}
-\gqmcol{12}{1.35}{Q1.2\\(H1.2)}{M2\\(CEI)}{g1}
-% G2: Confiabilidade
-\gqmcol{21}{2.71}{Q2.1\\(H2.1)}{M3$^*$\\(DCNM)}{g2}
-\gqmcol{22}{4.06}{Q2.2\\(H2.2)}{M4$^*$ (ITAE)\\M5 (DDOM)}{g2}
-\gqmcol{23}{5.41}{Q2.3\\(H2.3)}{M6\\(CVPB)}{g2}
-% G3: Manutenibilidade
-\gqmcol{31}{6.76}{Q3.1\\(H3.1)}{M7a ($\text{CC}_{P90}$)\\M7b ($\text{CC}_{\max}$)}{g3}
-\gqmcol{32}{8.11}{Q3.2\\(H3.2)}{M8\\(DSPM)}{g3}
-\gqmcol{33}{9.46}{Q3.3\\(H3.3)}{M9\\(IFDL)}{g3}
-\gqmcol{34}{10.81}{Q3.4\\(H3.4)}{M10\\(MI)}{g3}
-\gqmcol{35}{12.16}{Q3.5\\(H3.5)}{M11\\(TTAE)}{g3}
-% G4: Capacidade de Interação e Uso
-\gqmcol{41}{13.51}{Q4.1\\(H4.1)}{M12$^*$\\(IPPE)}{g4}
-\gqmcol{42}{14.86}{Q4.2\\(H4.2)}{M13\\(ADMV)}{g4}
-\gqmcol{43}{16.21}{Q4.3\\(H4.3)}{M14a (T1)\\M14b (T2)}{g4}
-\gqmcol{44}{17.56}{Q4.4\\(H4.4)}{M15\\(TSPT)}{g4}
-\end{tikzpicture}}}
+\node[font=\footnotesize\bfseries] at (1.6,0.85) {Objetivo (conceitual)};
+\node[font=\footnotesize] at (9.6,0.85) {Em cada ramo: questão/hipótese (operacional) $\rightarrow$ métrica (quantitativo)};
+
+\node[goal] (g1) at (1.6,-0.45) {\textbf{G1: Compatibilidade (20\%)}\\Coexistência e contratos da API};
+\gqmbranch{11}{4.8}{0.0}{Q1.1 / H1.1}{M1\\TINCR}{g1}
+\gqmbranch{12}{7.2}{0.0}{Q1.2 / H1.2}{M2\\CEI}{g1}
+\draw (g1.east) -- ++(3mm,0) |- ([yshift=2.5mm]q12.north);
+
+\node[goal] (g2) at (1.6,-2.55) {\textbf{G2: Confiabilidade (30\%)}\\Notas, transações e backup};
+\gqmbranch{21}{4.8}{-2.1}{Q2.1 / H2.1}{M3$^*$\\DCNM}{g2}
+\gqmbranch{22}{7.2}{-2.1}{Q2.2 / H2.2}{M4$^*$ (ITAE)\\M5 (DDOM)}{g2}
+\gqmbranch{23}{9.6}{-2.1}{Q2.3 / H2.3}{M6\\CVPB}{g2}
+\draw (g2.east) -- ++(3mm,0) |- ([yshift=2.5mm]q23.north);
+
+\node[goal] (g3) at (1.6,-4.65) {\textbf{G3: Manutenibilidade (30\%)}\\Código e testes};
+\gqmbranch{31}{4.8}{-4.2}{Q3.1 / H3.1}{M7a / M7b\\CC: P90 / máximo}{g3}
+\gqmbranch{32}{7.2}{-4.2}{Q3.2 / H3.2}{M8\\DSPM}{g3}
+\gqmbranch{33}{9.6}{-4.2}{Q3.3 / H3.3}{M9\\IFDL}{g3}
+\gqmbranch{34}{12.0}{-4.2}{Q3.4 / H3.4}{M10\\MI}{g3}
+\gqmbranch{35}{14.4}{-4.2}{Q3.5 / H3.5}{M11\\TTAE}{g3}
+\draw (g3.east) -- ++(3mm,0) |- ([yshift=2.5mm]q35.north);
+
+\node[goal] (g4) at (1.6,-7.15) {\textbf{G4: Interação e uso (20\%)}\\Proteção, mensagens e tarefas};
+\gqmbranch{41}{4.8}{-6.7}{Q4.1 / H4.1}{M12$^*$\\IPPE}{g4}
+\gqmbranch{42}{7.2}{-6.7}{Q4.2 / H4.2}{M13\\ADMV}{g4}
+\gqmbranch{43}{9.6}{-6.7}{Q4.3 / H4.3}{M14a / M14b\\Tempo: T1 / T2}{g4}
+\gqmbranch{44}{12.0}{-6.7}{Q4.4 / H4.4}{M15\\TSPT}{g4}
+\draw (g4.east) -- ++(3mm,0) |- ([yshift=2.5mm]q44.north);
+\end{tikzpicture}}
 
 % ---------- Título e autores ----------
 \begin{document}
@@ -295,7 +286,7 @@ Registrar horas por integrante e issue para comparar execução e planejamento \
 \subsection{Rastreabilidade, aspectos éticos e limitações}\label{sec:limitacoes}
 A GitPage da equipe reúne a documentação da avaliação, incluindo o planejamento e o framework GQM~\cite{gracehopper_gqm,gracehopper_pc1}; o quadro Kanban está no GitHub Project da equipe~\cite{repo_gracehopper}. Para assegurar a rastreabilidade, cada medição deverá registrar a versão do produto, a versão do instrumento, o cenário, a data, o responsável e a evidência produzida.
 
-Em observância à Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018)~\cite{lgpd2018}, os testes locais deverão empregar dados fictícios. As sessões de qualidade em uso (M14 e M15) exigirão TCLE prévio e identificação por códigos anônimos (\texttt{P01}, \texttt{P02}, etc.). A amostra de iniciantes, o ambiente Docker e o recorte de dois módulos limitam a generalização. M5 depende de registros de produção ainda indisponíveis; sua ausência não será substituída por dados sintéticos nem por nota zero. O estudo não constitui certificação de segurança ou desempenho em nuvem.
+Em observância à Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018)~\cite{lgpd2018}, os testes locais deverão empregar dados fictícios. As sessões de qualidade em uso (M14 e M15) exigirão consentimento prévio, conforme o \href{https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/termo_consentimento_livre_esclarecido/}{Termo de Consentimento Livre e Esclarecido (TCLE)}, e identificação por códigos anônimos (\texttt{P01}, \texttt{P02}, etc.). A gravação de tela e áudio será facultativa; sem autorização, a coleta será realizada por observação e cronometragem manual, sem prejuízo à participação. A amostra de iniciantes, o ambiente Docker e o recorte de dois módulos limitam a generalização. M5 depende de registros de produção ainda indisponíveis; sua ausência não será substituída por dados sintéticos nem por nota zero. O estudo não constitui certificação de segurança ou desempenho em nuvem.
 
 % =====================================================================
 \section{Fase 1: Definição da Avaliação}\label{sec:fase1}
@@ -593,105 +584,26 @@ G2, G3 \\
 % =====================================================================
 \section{Fase 2: Planejamento da Medição (GQM)}\label{sec:fase2}
 
-A especificação aplica o GQM~\cite{basili1994gqm} em três níveis: \textbf{conceitual}, com 4 objetivos (\texttt{G1}--\texttt{G4}); \textbf{operacional}, com 14 questões e suas hipóteses (2 de G1, 3 de G2, 5 de G3 e 4 de G4); e \textbf{quantitativo}, com 15 medições (famílias \texttt{M1}--\texttt{M15}) em 17 linhas operacionais. M7 desdobra-se em percentil 90 e máximo (M7a/M7b), e M14 nas tarefas T1 e T2 (M14a/M14b). M3, M4 e M12 são \textit{gates} binários. As Tabelas~\ref{tab:gqm1} e~\ref{tab:gqm2} detalham as questões, hipóteses e critérios; a Figura~\ref{fig:gqm} explicita suas ligações.
+% Alinha os quadros de página inteira ao topo, sem grandes intervalos entre eles.
+\makeatletter
+\setlength{\@dblfptop}{0pt}
+\setlength{\@dblfpsep}{12pt}
+\setlength{\@dblfpbot}{0pt plus 1fil}
+\makeatother
 
-\begin{table*}[!t]
-\centering
-\caption{Especificação GQM de Compatibilidade (G1) e Confiabilidade (G2). Faixas cinza: questões e hipóteses; linhas brancas: métricas e pontuação. Fonte: elaboração própria.}
-\label{tab:gqm1}
-\fontsize{6.5}{7.8}\selectfont
-\setlength{\tabcolsep}{2.5pt}
-\renewcommand{\arraystretch}{1.04}
-% Separadores compactos; mantém a fonte e a entrelinha dos textos.
-\setlength{\aboverulesep}{0.3ex}
-\setlength{\belowrulesep}{0.4ex}
-\begin{tabular}{@{}L{0.60cm}L{7.90cm}C{1.85cm}C{1.95cm}C{1.95cm}C{2.05cm}@{}}
-\gqmhead
 
-\gqmO{G1: Compatibilidade do ambiente de execução e da API REST (Peso no IQM: 20\%)}
-\gqmQ{Q1.1}{Coexistência}{Os recursos de ambiente do i-Educar podem ser isolados por configuração para coexistir com outras instâncias e serviços no mesmo host?}{Pelo menos 85\% dos recursos compartilháveis são parametrizáveis via \texttt{.env}, mas nomes fixos de containers podem exigir ajuste na subida simultânea ($\text{TINCR} \ge 85\%$, H1.1).}
-\gqmM{M1}{Taxa de Isolamento e Não-Colisão de Recursos ($\text{TINCR}$, Eq.~\ref{eq:m1m2}): recursos isoláveis por configuração e confirmados na subida simultânea de 2ª instância / recursos inventariados em \path{docker-compose.yml}, \path{.env.example} e \path{config/} (portas Nginx/PostgreSQL/Redis, containers, banco, prefixo Redis e \texttt{LEGACY\_*}).}{$100\%$}{$[85{,}0\%, 100\%)$}{$[70{,}0\%, 85{,}0\%)$}{$< 70{,}0\%$ ($w_1=1{,}0$, Gradual)}
-
-\gqmQ{Q1.2}{Interoperabilidade}{As respostas da API dos módulos de matrícula e notas obedecem a um contrato de dados verificável?}{Ao menos 85\% dos endpoints testados seguem o contrato JSON em requisições válidas, podendo ocorrer falhas de padronização de erro em rotas legadas ($\text{CEI} \ge 85\%$, H1.2).}
-\gqmM{M2}{Conformidade com Esquemas de Interoperabilidade ($\text{CEI}$, Eq.~\ref{eq:m1m2}): endpoints conformes nos 3 critérios (status HTTP e \texttt{application/json} válidos; aderência ao JSON Schema pré-declarado; e erro estruturado sem HTTP 500 ou HTML em chamadas inválidas) / endpoints testados em \path{routes/api.php} e \path{ieducar/modules/Api/}.}{$100\%$}{$[85{,}0\%, 100\%)$}{$[70{,}0\%, 85{,}0\%)$}{$< 70{,}0\%$ ($w_2=1{,}0$, Gradual)}
-
-\gqmO{G2: Confiabilidade no cálculo de notas, transações compostas e backup (Peso no IQM: 30\%)}
-\gqmQ{Q2.1}{Ausência de falhas (\textit{faultlessness})}{As rotinas de cálculo de notas, médias e conversão de menções são 100\% determinísticas?}{O motor \texttt{Avaliacao\_Service\_Boletim} calcula médias e menções com 100\% de exatidão frente ao oráculo formal quando configurado ($\text{DCNM} = 100\%$, H2.1).}
-\gqmM{M3$^*$}{Determinismo no Cálculo de Notas e Menções ($\text{DCNM}$, Eq.~\ref{eq:m3m4}): casos conformes ao oráculo formal / casos planejados no manifesto congelado (média aritmética, ponderada, recuperação, exame final e conversão em \texttt{modules.tabela\_arredondamento\_valor}), via Pest/PHPUnit. Universo vazio ($0/0$) bloqueia o gate.}{$100\%$}{---}{---}{$< 100\%$ ($w_3=2{,}0$, \textbf{Gate})}
-
-\gqmQ{Q2.2}{Tolerância a falhas e Ausência de falhas}{Operações compostas de matrícula e diário garantem \textit{rollback} integral e ausência de dados órfãos?}{Serviços migrados para Laravel (\texttt{RegistrationService}) garantem \textit{rollback} via \texttt{DB::transaction}, mas fluxos que mesclam legado podem falhar no gate ($\text{ITAE} \le 100\%$, H2.2); já M5 ficará não mensurável sem logs de produção.}
-\gqmM{M4$^*$}{Integridade Transacional e Atomicidade de Estado ($\text{ITAE}$, Eq.~\ref{eq:m3m4}): operações compostas multi-escrita com \textit{rollback} integral em todos os pontos de injeção de exceção planejados / operações analisadas no manifesto (\path{RegistrationService.php} e \path{DiarioController.php}), conferindo \texttt{pmieducar} e \texttt{modules}.}{$100\%$}{---}{---}{$< 100\%$ ($w_4=2{,}0$, \textbf{Gate})}
-\gqmM{M5}{Densidade de Defeitos Operacionais de Matrícula ($\text{DDOM}$, Eq.~\ref{eq:m5m6}): incidentes confirmados em produção / $1.000$ movimentações em janela de 90 dias (Honeybadger e chamados). Sem dados reais de produção, registra-se como \textit{não mensurável} (sem nota zero ou substituta).}{$\le 0{,}5$}{$(0{,}5, 2{,}0]$}{$(2{,}0, 5{,}0]$}{$> 5{,}0$ ($w_5=1{,}2$, Gradual)}
-
-\gqmQ{Q2.3}{Recuperabilidade}{O sistema disponibiliza mecanismo confiável de backup e recuperação de desastres?}{Ao menos 95\% das tentativas planejadas de restauração em banco isolado recuperam os esquemas \texttt{pmieducar}, \texttt{modules} e \texttt{cadastro}, passando todas as verificações previstas ($\text{CVPB} \ge 95\%$, H2.3).}
-\gqmM{M6}{Completude e Verificabilidade do Procedimento de Backup ($\text{CVPB}$, Eq.~\ref{eq:m5m6}): tentativas planejadas de restauração que recuperam os 3 esquemas críticos em banco isolado com aprovação de checksum e integridade referencial / restaurações planejadas no manifesto.}{$100\%$}{$[95{,}0\%, 99{,}0\%)$}{$[90{,}0\%, 95{,}0\%)$}{$< 90{,}0\%$ ($w_6=1{,}0$, Gradual)}
-\bottomrule
-\end{tabular}
-\end{table*}
-
-\begin{figure*}[!t]
-\centering
-\gqmfigtikz
-\caption{Hierarquia GQM completa da avaliação do i-Educar 2.12, com os três níveis formais identificados ($^*$ indica Gate Binário eliminatório). Fonte: elaboração própria.}
-\label{fig:gqm}
-\end{figure*}
-
-\begin{table*}[!t]
-\centering
-\caption{Especificação GQM de Manutenibilidade (G3) e Capacidade de Interação e Uso (G4). Faixas cinza: questões e hipóteses; linhas brancas: métricas e pontuação. Fonte: elaboração própria.}
-\label{tab:gqm2}
-\fontsize{6.5}{7.8}\selectfont
-\setlength{\tabcolsep}{2.5pt}
-\renewcommand{\arraystretch}{1.04}
-\setlength{\aboverulesep}{0.3ex}
-\setlength{\belowrulesep}{0.4ex}
-\begin{tabular}{@{}L{0.60cm}L{7.90cm}C{1.85cm}C{1.95cm}C{1.95cm}C{2.05cm}@{}}
-\gqmhead
-
-\gqmO{G3: Manutenibilidade do código-fonte na arquitetura híbrida (Peso no IQM: 30\%)}
-\gqmQ{Q3.1}{Modularidade e Analisabilidade}{Qual a complexidade ciclomática dos métodos no universo declarado?}{Métodos legados em \texttt{Boletim.php} e \texttt{DiarioApiController.php} elevarão o percentil 90 para $10 < \text{CC}_{P90} \le 20$ e o máximo para $\text{CC}_{\max} > 30$ (H3.1).}
-\gqmM{M7a}{Percentil 90 da Complexidade Ciclomática ($\text{CC}_{P90}$, Eq.~\ref{eq:m7}): $x_{(\lceil 0{,}90n \rceil)}$ (\textit{nearest rank}) sobre os $n$ métodos concretos de \path{RegistrationService.php}, \path{DiarioApiController.php}, \path{DiarioController.php} e \path{Boletim.php}, via analisador estático de AST PHP.}{$\le 10$}{$(10, 15]$}{$(15, 20]$}{$> 20$ ($w_{7a}=1{,}0$, Gradual)}
-\gqmM{M7b}{Máximo da Complexidade Ciclomática ($\text{CC}_{\max}$, Eq.~\ref{eq:m7}): $\max_{1\le m\le n} v(G_m)$ medido sobre exatamente o mesmo inventário de $n$ métodos concretos de M7a, preservando todos os símbolos empatados no teto.}{$\le 15$}{$(15, 30]$}{$(30, 50]$}{$> 50$ ($w_{7b}=1{,}2$, Gradual)}
-
-\gqmQ{Q3.2}{Modularidade e Modificabilidade}{Quão desacoplados e equilibrados estão os componentes estruturais do domínio?}{O baixo uso de interfaces ($A \approx 0$) e o acoplamento direto a modelos concretos situarão a distância média da sequência principal entre $0{,}20$ e $0{,}50$ (H3.2).}
-\gqmM{M8}{Distância da Sequência Principal de Martin ($\text{DSPM}$, Eq.~\ref{eq:m8}): média de $D_p = |A_p + I_p - 1|$ sobre os $P$ componentes mapeados no manifesto, com $I_p = C_e/(C_a+C_e)$ e $A_p = N_a/N_c$ extraídos por grafo de dependências entre tipos PHP.}{$\le 0{,}20$}{$(0{,}20, 0{,}35]$}{$(0{,}35, 0{,}50]$}{$> 0{,}50$ ($w_8=0{,}8$, Gradual)}
-
-\gqmQ{Q3.3}{Analisabilidade e Modificabilidade}{Qual o grau de atrito e adaptação de dados entre a camada legada e moderna?}{Os modelos \texttt{Legacy*} apresentam em média entre $1{,}0$ e $2{,}5$ adaptações defensivas por modelo ($1{,}0 < \text{IFDL} \le 2{,}5$, H3.3).}
-\gqmM{M9}{Índice de Fricção de Dados Legado-Moderno ($\text{IFDL}$, Eq.~\ref{eq:m9m11}): média de pontos lógicos de adaptação defensiva ($A_{\text{defensivos},i}$: traits de datas legadas, casts manuais e normalizações de string vazia para \texttt{null}) por modelo em \path{app/Models/Legacy*.php}.}{$\le 1{,}0$}{$(1{,}0, 2{,}5]$}{$(2{,}5, 4{,}0]$}{$> 4{,}0$ ($w_9=0{,}6$, Gradual)}
-
-\gqmQ{Q3.4}{Modificabilidade}{Qual o índice global de manutenibilidade do código?}{A média do índice de manutenibilidade normalizado dos métodos analisados situar-se-á na faixa Boa ($60 \le \text{MI} < 80$, H3.4), puxada para baixo pelos métodos extensos do legado.}
-\gqmM{M10}{Índice de Manutenibilidade Normalizado ($\text{MI}$, Eq.~\ref{eq:m10}): média aritmética de $\text{MI}_m \in [0, 100]$ sobre os $n$ métodos concretos do universo M7a/M7b, calculado a partir do Volume de Halstead ($\text{HV}_m$), $v(G_m)$ e $\text{LOC}_m$ lógico.}{$\ge 80$}{$[60, 80)$}{$[40, 60)$}{$< 40$ ($w_{10}=1{,}0$, Gradual)}
-
-\gqmQ{Q3.5}{Testabilidade}{Qual o percentual de casos de teste ativos com asserção no domínio avaliado?}{A presença de testes marcados com \texttt{markTestSkipped()} na suíte legada reduzirá a taxa de testes ativos com asserção para $70\% \le \text{TTAE} < 95\%$ (H3.5).}
-\gqmM{M11}{Taxa de Testes Ativos com Asserção em Domínio ($\text{TTAE}$, Eq.~\ref{eq:m9m11}): casos de teste executados pelo runner Pest/PHPUnit que registram ao menos 1 asserção em runtime / total de casos declarados no manifesto de matrícula e avaliação (eficácia por mutação reportada à parte).}{$\ge 95{,}0\%$}{$[85{,}0\%, 95{,}0\%)$}{$[70{,}0\%, 85{,}0\%)$}{$< 70{,}0\%$ ($w_{11}=1{,}4$, Gradual)}
-
-\gqmO{G4: Capacidade de Interação (ISO 25010) e Qualidade em Uso (ISO 25019) (Peso no IQM: 20\%)}
-\gqmQ{Q4.1}{Proteção contra erros do usuário}{O sistema impede proativamente erros de entrada ou operações fora de prazo pedagógico?}{O sistema bloqueia 100\% dos cenários inválidos previstos sem persistir dados corrompidos nem retornar erro HTTP 500 ($\text{IPPE} = 100\%$, H4.1).}
-\gqmM{M12$^*$}{Índice de Proteção contra Erros do Usuário ($\text{IPPE}$, Eq.~\ref{eq:m12m13}): cenários inválidos bloqueados amigavelmente (sem gravação no banco, sem HTTP 500/tela branca e sem perda dos demais campos) / cenários submetidos ($\ge 3$ por classe: nota fora da faixa, etapa encerrada, menção inexistente e matrícula conflitante).}{$100\%$}{---}{---}{$< 100\%$ ($w_{12}=2{,}0$, \textbf{Gate})}
-
-\gqmQ{Q4.2}{Autodescritividade}{As mensagens de validação e recusa são autodescritivas e orientadas à ação?}{Entre 80\% e 90\% das mensagens informam causa e ação corretiva ($\text{ADMV} \in [80\%, 90\%)$, H4.2), com mensagens genéricas residuais no núcleo legado.}
-\gqmM{M13}{Autodescritividade das Mensagens de Validação ($\text{ADMV}$, Eq.~\ref{eq:m12m13}): mensagens coletadas em M12 que explicam simultaneamente a causa do bloqueio e a ação corretiva (avaliadas por 2 classificadores independentes com consenso) / total de mensagens avaliadas.}{$\ge 98{,}0\%$}{$[90{,}0\%, 98{,}0\%)$}{$[80{,}0\%, 90{,}0\%)$}{$< 80{,}0\%$ ($w_{13}=0{,}8$, Gradual)}
-
-\gqmQ{Q4.3}{Eficiência em uso --- ISO/IEC 25019}{Quanto tempo um usuário novo leva para concluir as tarefas essenciais face a um experiente?}{Participantes iniciantes levarão entre $1{,}5$ e $2{,}5$ vezes o tempo de referência nas tarefas T1 e T2 ($1{,}5 < R_{\text{tempo}} \le 2{,}5$, H4.3), devido aos filtros na interface legada.}
-\gqmM{M14a}{Razão de Tempo na Tarefa T1 --- Matrícula ($R_{\text{tempo},T1}$, Eq.~\ref{eq:m14m15}): $\text{TMET}_{T1}/T_{\text{ref},T1}$ dos iniciantes que concluírem a matrícula e enturmação de aluno já cadastrado. Recrutamento previsto: ao menos 5 voluntários, com TCLE.}{$\le 1{,}5$}{$(1{,}5, 2{,}0]$}{$(2{,}0, 3{,}0]$}{$> 3{,}0$ ($w_{14a}=0{,}8$, Gradual)}
-\gqmM{M14b}{Razão de Tempo na Tarefa T2 --- Diário ($R_{\text{tempo},T2}$, Eq.~\ref{eq:m14m15}): $\text{TMET}_{T2}/T_{\text{ref},T2}$ dos voluntários iniciantes para lançar notas de um componente em turma de 10 alunos frente à referência.}{$\le 1{,}5$}{$(1{,}5, 2{,}0]$}{$(2{,}0, 3{,}0]$}{$> 3{,}0$ ($w_{14b}=1{,}0$, Gradual)}
-
-\gqmQ{Q4.4}{Eficácia em uso --- ISO/IEC 25019}{Usuários novos concluem as tarefas essenciais corretamente na primeira tentativa?}{Entre 70\% e 90\% das execuções de T1 e T2 serão concluídas corretamente na primeira submissão ($\text{TSPT} \in [70\%, 90\%)$, H4.4).}
-\gqmM{M15}{Taxa de Sucesso na Primeira Tentativa em Uso ($\text{TSPT}$, Eq.~\ref{eq:m14m15}): execuções das tarefas T1 e T2 concluídas corretamente já na 1ª submissão (confirmadas no PostgreSQL) / total de execuções realizadas pelos participantes.}{$\ge 90{,}0\%$}{$[70{,}0\%, 90{,}0\%)$}{$[50{,}0\%, 70{,}0\%)$}{$< 50{,}0\%$ ($w_{15}=1{,}0$, Gradual)}
-\bottomrule
-\end{tabular}
-\end{table*}
+A especificação aplica o GQM~\cite{basili1994gqm} em três níveis: \textbf{conceitual}, com 4 objetivos (\texttt{G1}--\texttt{G4}); \textbf{operacional}, com 14 questões e suas hipóteses (2 de G1, 3 de G2, 5 de G3 e 4 de G4); e \textbf{quantitativo}, com 15 medições (famílias \texttt{M1}--\texttt{M15}) em 17 linhas operacionais. M7 desdobra-se em percentil 90 e máximo (M7a/M7b), e M14 nas tarefas T1 e T2 (M14a/M14b). M3, M4 e M12 são \textit{gates} binários. As Tabelas~\ref{tab:gqm1} a~\ref{tab:gqm_interacao} detalham as questões, hipóteses e critérios; a Figura~\ref{fig:gqm} explicita suas ligações.
 
 \subsection{Objetivos de medição e consistência entre as Fases 1 e 2}
 Os quatro objetivos de medição seguem o template estruturado de cinco elementos de Basili, Caldiera e Rombach~\cite{basili1994gqm} e guardam rastreabilidade direta com as características priorizadas na Tabela~\ref{tab:priorizacao} e os stakeholders da Tabela~\ref{tab:stakeholders}, conforme consolidado na Tabela~\ref{tab:objetivos}. Os cortes de escopo da Fase 1 (Tabela~\ref{tab:escopo}) são integralmente preservados na Fase 2: nenhuma métrica avalia o pacote externo do Educacenso, diretórios \texttt{vendor/} ou carga simultânea de produção, e a métrica \texttt{M5} mantém regra explícita de não mensurabilidade na ausência de logs reais de produção.
 
-\begin{table}[!t]
+\begin{table*}[!t]
 \centering
 \caption{Objetivos GQM no nível conceitual e rastreabilidade com a Fase 1. Fonte: elaboração própria.}
 \label{tab:objetivos}
-\scriptsize
+\footnotesize
 \setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{@{}L{1.15cm}L{5.35cm}L{1.8cm}@{}}
+\begin{tabular}{@{}L{1.3cm}L{10.9cm}L{4.0cm}@{}}
 \toprule
 \textbf{Obj.\ (Peso)} & \textbf{Enunciado estruturado GQM (Analisar / Com o propósito de / Com respeito a / Do ponto de vista de / No contexto de)} & \textbf{Rastreabilidade Fase 1 $\rightarrow$ 2} \\
 \midrule
@@ -712,10 +624,128 @@ Mantenedores (Tabela~\ref{tab:stakeholders}) $\rightarrow$ Q3.1--Q3.5 (M7a/b, M8
 Secretários e docentes (Tabela~\ref{tab:stakeholders}) $\rightarrow$ Q4.1--Q4.4 (M12$^*$, M13, M14a/b, M15) \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
+
+\begin{figure*}[!t]
+\centering
+\gqmfigtikz
+\caption{Hierarquia GQM completa da avaliação do i-Educar 2.12, organizada por objetivo e com os três níveis formais identificados ($^*$ indica Gate Binário eliminatório). Fonte: elaboração própria.}
+\label{fig:gqm}
+\end{figure*}
 
 \subsection{Questões e hipóteses operacionais}
-As 14 questões examinam atributos das subcaracterísticas selecionadas. As respectivas hipóteses, identificadas de H1.1 a H4.4 nas Tabelas~\ref{tab:gqm1} e~\ref{tab:gqm2}, expressam expectativas a confrontar com a coleta, não resultados do produto. A confirmação de uma hipótese não equivale à aprovação: H3.1, por exemplo, prevê complexidade elevada, enquanto o julgamento aplica os limiares da métrica. Preservam-se, assim, a distinção entre expectativa, valor medido e critério de aceitação.
+As 14 questões examinam atributos das subcaracterísticas selecionadas. As respectivas hipóteses, identificadas de H1.1 a H4.4 nas Tabelas~\ref{tab:gqm1} a~\ref{tab:gqm_interacao}, expressam expectativas a confrontar com a coleta, não resultados do produto. A confirmação de uma hipótese não equivale à aprovação: H3.1, por exemplo, prevê complexidade elevada, enquanto o julgamento aplica os limiares da métrica. Preservam-se, assim, a distinção entre expectativa, valor medido e critério de aceitação.
+
+\begin{table*}[!t]
+\centering
+\caption{Especificação GQM de Compatibilidade (G1). Faixas cinza: questões e hipóteses; linhas brancas: métricas e pontuação. Fonte: elaboração própria.}
+\label{tab:gqm1}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\setlength{\aboverulesep}{0.4ex}
+\setlength{\belowrulesep}{0.4ex}
+\begin{tabular}{@{}L{0.72cm}L{7.78cm}C{1.85cm}C{1.95cm}C{1.95cm}C{2.05cm}@{}}
+\gqmhead
+\gqmO{G1: Compatibilidade do ambiente de execução e da API REST (Peso no IQM: 20\%)}
+\gqmQ{Q1.1}{Coexistência}{Os recursos de ambiente do i-Educar podem ser isolados por configuração para coexistir com outras instâncias e serviços no mesmo host?}{Pelo menos 85\% dos recursos compartilháveis são parametrizáveis via \texttt{.env}, mas nomes fixos de containers podem exigir ajuste na subida simultânea ($\text{TINCR} \ge 85\%$, H1.1).}
+\gqmM{M1}{Taxa de Isolamento e Não-Colisão de Recursos ($\text{TINCR}$, Eq.~\ref{eq:m1m2}): recursos isoláveis por configuração e confirmados na subida simultânea de 2ª instância / recursos inventariados em \path{docker-compose.yml}, \path{.env.example} e \path{config/} (portas Nginx/PostgreSQL/Redis, containers, banco, prefixo Redis e \texttt{LEGACY\_*}).}{$100\%$}{$[85{,}0\%, 100\%)$}{$[70{,}0\%, 85{,}0\%)$}{$< 70{,}0\%$ ($w_1=1{,}0$, Gradual)}
+
+\gqmQ{Q1.2}{Interoperabilidade}{As respostas da API dos módulos de matrícula e notas obedecem a um contrato de dados verificável?}{Ao menos 85\% dos endpoints testados seguem o contrato JSON em requisições válidas, podendo ocorrer falhas de padronização de erro em rotas legadas ($\text{CEI} \ge 85\%$, H1.2).}
+\gqmM{M2}{Conformidade com Esquemas de Interoperabilidade ($\text{CEI}$, Eq.~\ref{eq:m1m2}): endpoints conformes nos 3 critérios (status HTTP e \texttt{application/json} válidos; aderência ao JSON Schema pré-declarado; e erro estruturado sem HTTP 500 ou HTML em chamadas inválidas) / endpoints testados em \path{routes/api.php} e \path{ieducar/modules/Api/}.}{$100\%$}{$[85{,}0\%, 100\%)$}{$[70{,}0\%, 85{,}0\%)$}{$< 70{,}0\%$ ($w_2=1{,}0$, Gradual)}
+
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[!t]
+\centering
+\caption{Especificação GQM de Confiabilidade (G2). Faixas cinza: questões e hipóteses; linhas brancas: métricas e pontuação. Fonte: elaboração própria.}
+\label{tab:gqm_confiabilidade}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\setlength{\aboverulesep}{0.4ex}
+\setlength{\belowrulesep}{0.4ex}
+\begin{tabular}{@{}L{0.72cm}L{7.78cm}C{1.85cm}C{1.95cm}C{1.95cm}C{2.05cm}@{}}
+\gqmhead
+\gqmO{G2: Confiabilidade no cálculo de notas, transações compostas e backup (Peso no IQM: 30\%)}
+\gqmQ{Q2.1}{Ausência de falhas (\textit{faultlessness})}{As rotinas de cálculo de notas, médias e conversão de menções são 100\% determinísticas?}{O motor \texttt{Avaliacao\_Service\_Boletim} calcula médias e menções com 100\% de exatidão frente ao oráculo formal quando configurado ($\text{DCNM} = 100\%$, H2.1).}
+\gqmM{M3$^*$}{Determinismo no Cálculo de Notas e Menções ($\text{DCNM}$, Eq.~\ref{eq:m3m4}): casos conformes ao oráculo formal / casos planejados no manifesto congelado (média aritmética, ponderada, recuperação, exame final e conversão em \texttt{modules.tabela\_arredondamento\_valor}), via Pest/PHPUnit. Universo vazio ($0/0$) bloqueia o gate.}{$100\%$}{---}{---}{$< 100\%$ ($w_3=2{,}0$, \textbf{Gate})}
+
+\gqmQ{Q2.2}{Tolerância a falhas e Ausência de falhas}{Operações compostas de matrícula e diário garantem \textit{rollback} integral e ausência de dados órfãos?}{Serviços migrados para Laravel (\texttt{RegistrationService}) garantem \textit{rollback} via \texttt{DB::transaction}, mas fluxos que mesclam legado podem falhar no gate ($\text{ITAE} \le 100\%$, H2.2); já M5 ficará não mensurável sem logs de produção.}
+\gqmM{M4$^*$}{Integridade Transacional e Atomicidade de Estado ($\text{ITAE}$, Eq.~\ref{eq:m3m4}): operações compostas multi-escrita com \textit{rollback} integral em todos os pontos de injeção de exceção planejados / operações analisadas no manifesto (\path{RegistrationService.php} e \path{DiarioController.php}), conferindo \texttt{pmieducar} e \texttt{modules}.}{$100\%$}{---}{---}{$< 100\%$ ($w_4=2{,}0$, \textbf{Gate})}
+\gqmM{M5}{Densidade de Defeitos Operacionais de Matrícula ($\text{DDOM}$, Eq.~\ref{eq:m5m6}): incidentes confirmados em produção / $1.000$ movimentações em janela de 90 dias (Honeybadger e chamados). Sem dados reais de produção, registra-se como \textit{não mensurável} (sem nota zero ou substituta).}{$\le 0{,}5$}{$(0{,}5, 2{,}0]$}{$(2{,}0, 5{,}0]$}{$> 5{,}0$ ($w_5=1{,}2$, Gradual)}
+
+\gqmQ{Q2.3}{Recuperabilidade}{O sistema disponibiliza mecanismo confiável de backup e recuperação de desastres?}{Ao menos 95\% das tentativas planejadas de restauração em banco isolado recuperam os esquemas \texttt{pmieducar}, \texttt{modules} e \texttt{cadastro}, passando todas as verificações previstas ($\text{CVPB} \ge 95\%$, H2.3).}
+\gqmM{M6}{Completude e Verificabilidade do Procedimento de Backup ($\text{CVPB}$, Eq.~\ref{eq:m5m6}): tentativas planejadas de restauração que recuperam os 3 esquemas críticos em banco isolado com aprovação de checksum e integridade referencial / restaurações planejadas no manifesto.}{$100\%$}{$[95{,}0\%, 99{,}0\%)$}{$[90{,}0\%, 95{,}0\%)$}{$< 90{,}0\%$ ($w_6=1{,}0$, Gradual)}
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[!t]
+\centering
+\caption{Especificação GQM de Manutenibilidade (G3). Faixas cinza: questões e hipóteses; linhas brancas: métricas e pontuação. Fonte: elaboração própria.}
+\label{tab:gqm2}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\setlength{\aboverulesep}{0.4ex}
+\setlength{\belowrulesep}{0.4ex}
+\begin{tabular}{@{}L{0.72cm}L{7.78cm}C{1.85cm}C{1.95cm}C{1.95cm}C{2.05cm}@{}}
+\gqmhead
+\gqmO{G3: Manutenibilidade do código-fonte na arquitetura híbrida (Peso no IQM: 30\%)}
+\gqmQ{Q3.1}{Modularidade e Analisabilidade}{Qual a complexidade ciclomática dos métodos no universo declarado?}{Métodos legados em \texttt{Boletim.php} e \texttt{DiarioApiController.php} elevarão o percentil 90 para $10 < \text{CC}_{P90} \le 20$ e o máximo para $\text{CC}_{\max} > 30$ (H3.1).}
+\gqmM{M7a}{Percentil 90 da Complexidade Ciclomática ($\text{CC}_{P90}$, Eq.~\ref{eq:m7}): $x_{(\lceil 0{,}90n \rceil)}$ (\textit{nearest rank}) sobre os $n$ métodos concretos de \path{RegistrationService.php}, \path{DiarioApiController.php}, \path{DiarioController.php} e \path{Boletim.php}, via analisador estático de AST PHP.}{$\le 10$}{$(10, 15]$}{$(15, 20]$}{$> 20$ ($w_{7a}=1{,}0$, Gradual)}
+\gqmM{M7b}{Máximo da Complexidade Ciclomática ($\text{CC}_{\max}$, Eq.~\ref{eq:m7}): $\max_{1\le m\le n} v(G_m)$ medido sobre exatamente o mesmo inventário de $n$ métodos concretos de M7a, preservando todos os símbolos empatados no teto.}{$\le 15$}{$(15, 30]$}{$(30, 50]$}{$> 50$ ($w_{7b}=1{,}2$, Gradual)}
+
+\gqmQ{Q3.2}{Modularidade e Modificabilidade}{Quão desacoplados e equilibrados estão os componentes estruturais do domínio?}{O baixo uso de interfaces ($A \approx 0$) e o acoplamento direto a modelos concretos situarão a distância média da sequência principal entre $0{,}20$ e $0{,}50$ (H3.2).}
+\gqmM{M8}{Distância da Sequência Principal de Martin ($\text{DSPM}$, Eq.~\ref{eq:m8}): média de $D_p = |A_p + I_p - 1|$ sobre os $P$ componentes mapeados no manifesto, com $I_p = C_e/(C_a+C_e)$ e $A_p = N_a/N_c$ extraídos por grafo de dependências entre tipos PHP.}{$\le 0{,}20$}{$(0{,}20, 0{,}35]$}{$(0{,}35, 0{,}50]$}{$> 0{,}50$ ($w_8=0{,}8$, Gradual)}
+
+\gqmQ{Q3.3}{Analisabilidade e Modificabilidade}{Qual o grau de atrito e adaptação de dados entre a camada legada e moderna?}{Os modelos \texttt{Legacy*} apresentam em média entre $1{,}0$ e $2{,}5$ adaptações defensivas por modelo ($1{,}0 < \text{IFDL} \le 2{,}5$, H3.3).}
+\gqmM{M9}{Índice de Fricção de Dados Legado-Moderno ($\text{IFDL}$, Eq.~\ref{eq:m9m11}): média de pontos lógicos de adaptação defensiva ($A_{\text{defensivos},i}$: traits de datas legadas, casts manuais e normalizações de string vazia para \texttt{null}) por modelo em \path{app/Models/Legacy*.php}.}{$\le 1{,}0$}{$(1{,}0, 2{,}5]$}{$(2{,}5, 4{,}0]$}{$> 4{,}0$ ($w_9=0{,}6$, Gradual)}
+
+\gqmQ{Q3.4}{Modificabilidade}{Qual o índice global de manutenibilidade do código?}{A média do índice de manutenibilidade normalizado dos métodos analisados situar-se-á na faixa Boa ($60 \le \text{MI} < 80$, H3.4), puxada para baixo pelos métodos extensos do legado.}
+\gqmM{M10}{Índice de Manutenibilidade Normalizado ($\text{MI}$, Eq.~\ref{eq:m10}): média aritmética de $\text{MI}_m \in [0, 100]$ sobre os $n$ métodos concretos do universo M7a/M7b, calculado a partir do Volume de Halstead ($\text{HV}_m$), $v(G_m)$ e $\text{LOC}_m$ lógico.}{$\ge 80$}{$[60, 80)$}{$[40, 60)$}{$< 40$ ($w_{10}=1{,}0$, Gradual)}
+
+\gqmQ{Q3.5}{Testabilidade}{Qual o percentual de casos de teste ativos com asserção no domínio avaliado?}{A presença de testes marcados com \texttt{markTestSkipped()} na suíte legada reduzirá a taxa de testes ativos com asserção para $70\% \le \text{TTAE} < 95\%$ (H3.5).}
+\gqmM{M11}{Taxa de Testes Ativos com Asserção em Domínio ($\text{TTAE}$, Eq.~\ref{eq:m9m11}): casos de teste executados pelo runner Pest/PHPUnit que registram ao menos 1 asserção em runtime / total de casos declarados no manifesto de matrícula e avaliação (eficácia por mutação reportada à parte).}{$\ge 95{,}0\%$}{$[85{,}0\%, 95{,}0\%)$}{$[70{,}0\%, 85{,}0\%)$}{$< 70{,}0\%$ ($w_{11}=1{,}4$, Gradual)}
+
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[!t]
+\centering
+\caption{Especificação GQM de Capacidade de Interação e Qualidade em Uso (G4). Faixas cinza: questões e hipóteses; linhas brancas: métricas e pontuação. Fonte: elaboração própria.}
+\label{tab:gqm_interacao}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{1.08}
+\setlength{\aboverulesep}{0.4ex}
+\setlength{\belowrulesep}{0.4ex}
+\begin{tabular}{@{}L{0.72cm}L{7.78cm}C{1.85cm}C{1.95cm}C{1.95cm}C{2.05cm}@{}}
+\gqmhead
+\gqmO{G4: Capacidade de Interação (ISO 25010) e Qualidade em Uso (ISO 25019) (Peso no IQM: 20\%)}
+\gqmQ{Q4.1}{Proteção contra erros do usuário}{O sistema impede proativamente erros de entrada ou operações fora de prazo pedagógico?}{O sistema bloqueia 100\% dos cenários inválidos previstos sem persistir dados corrompidos nem retornar erro HTTP 500 ($\text{IPPE} = 100\%$, H4.1).}
+\gqmM{M12$^*$}{Índice de Proteção contra Erros do Usuário ($\text{IPPE}$, Eq.~\ref{eq:m12m13}): cenários inválidos bloqueados amigavelmente (sem gravação no banco, sem HTTP 500/tela branca e sem perda dos demais campos) / cenários submetidos ($\ge 3$ por classe: nota fora da faixa, etapa encerrada, menção inexistente e matrícula conflitante).}{$100\%$}{---}{---}{$< 100\%$ ($w_{12}=2{,}0$, \textbf{Gate})}
+
+\gqmQ{Q4.2}{Autodescritividade}{As mensagens de validação e recusa são autodescritivas e orientadas à ação?}{Entre 80\% e 90\% das mensagens informam causa e ação corretiva ($\text{ADMV} \in [80\%, 90\%)$, H4.2), com mensagens genéricas residuais no núcleo legado.}
+\gqmM{M13}{Autodescritividade das Mensagens de Validação ($\text{ADMV}$, Eq.~\ref{eq:m12m13}): mensagens coletadas em M12 que explicam simultaneamente a causa do bloqueio e a ação corretiva (avaliadas por 2 classificadores independentes com consenso) / total de mensagens avaliadas.}{$\ge 98{,}0\%$}{$[90{,}0\%, 98{,}0\%)$}{$[80{,}0\%, 90{,}0\%)$}{$< 80{,}0\%$ ($w_{13}=0{,}8$, Gradual)}
+
+\gqmQ{Q4.3}{Eficiência em uso --- ISO/IEC 25019}{Quanto tempo um usuário novo leva para concluir as tarefas essenciais face a um experiente?}{Participantes iniciantes levarão entre $1{,}5$ e $2{,}5$ vezes o tempo de referência nas tarefas T1 e T2 ($1{,}5 < R_{\text{tempo}} \le 2{,}5$, H4.3), devido aos filtros na interface legada.}
+\gqmM{M14a}{Razão de Tempo na Tarefa T1 --- Matrícula ($R_{\text{tempo},T1}$, Eq.~\ref{eq:m14m15}): $\text{TMET}_{T1}/T_{\text{ref},T1}$ dos iniciantes que concluírem a matrícula e enturmação de aluno já cadastrado. Recrutamento previsto: ao menos 5 voluntários, com TCLE.}{$\le 1{,}5$}{$(1{,}5, 2{,}0]$}{$(2{,}0, 3{,}0]$}{$> 3{,}0$ ($w_{14a}=0{,}8$, Gradual)}
+\gqmM{M14b}{Razão de Tempo na Tarefa T2 --- Diário ($R_{\text{tempo},T2}$, Eq.~\ref{eq:m14m15}): $\text{TMET}_{T2}/T_{\text{ref},T2}$ dos voluntários iniciantes para lançar notas de um componente em turma de 10 alunos frente à referência.}{$\le 1{,}5$}{$(1{,}5, 2{,}0]$}{$(2{,}0, 3{,}0]$}{$> 3{,}0$ ($w_{14b}=1{,}0$, Gradual)}
+
+\gqmQ{Q4.4}{Eficácia em uso --- ISO/IEC 25019}{Usuários novos concluem as tarefas essenciais corretamente na primeira tentativa?}{Entre 70\% e 90\% das execuções de T1 e T2 serão concluídas corretamente na primeira submissão ($\text{TSPT} \in [70\%, 90\%)$, H4.4).}
+\gqmM{M15}{Taxa de Sucesso na Primeira Tentativa em Uso ($\text{TSPT}$, Eq.~\ref{eq:m14m15}): execuções das tarefas T1 e T2 concluídas corretamente já na 1ª submissão (confirmadas no PostgreSQL) / total de execuções realizadas pelos participantes.}{$\ge 90{,}0\%$}{$[70{,}0\%, 90{,}0\%)$}{$[50{,}0\%, 70{,}0\%)$}{$< 50{,}0\%$ ($w_{15}=1{,}0$, Gradual)}
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% Conclui os quadros GQM e reinicia as duas colunas antes das equações.
+\clearpage
+\twocolumn
 
 \subsection{Métricas e fórmulas matemáticas de cálculo}\label{sec:formulas}
 As equações abaixo sintetizam as 15 medições definidas no framework da equipe~\cite{gracehopper_gqm}. Fórmulas, pesos e limiares constituem a operacionalização local do modelo; não são apresentados como valores prescritos pelas normas ISO. Os manifestos e instrumentos deverão ser versionados antes da coleta.
@@ -782,7 +812,7 @@ No produto, \textbf{M12 (IPPE --- Gate Binário)} mede o percentual de cenários
 \text{ADMV} &= \frac{N_{\text{msgs causa+ação}}}{N_{\text{msgs aval.}}} \times 100\%
 \end{aligned}
 \end{equation}
-Em uso (ISO/IEC 25019:2023), serão recrutados ao menos 5 iniciantes para executar, nessa ordem e sem auxílio, \textbf{T1} (matrícula e enturmação de aluno já cadastrado) e \textbf{T2} (notas de um componente para 10 alunos). Para cada tarefa $T$, $K$ é o número de concluintes, $t_{k,T}$ é o tempo do participante $k$, e $T_{\text{ref},T}$ é a média de 3 execuções de um integrante treinado. A razão de tempos é adimensional; os tempos são registrados em minutos. Definem-se \textbf{M14a/M14b} e \textbf{M15}:
+As condições de consentimento e registro das sessões seguem o TCLE indicado na Seção~\ref{sec:limitacoes}. Em uso (ISO/IEC 25019:2023), serão recrutados ao menos 5 iniciantes para executar, nessa ordem e sem auxílio, \textbf{T1} (matrícula e enturmação de aluno já cadastrado) e \textbf{T2} (notas de um componente para 10 alunos). Para cada tarefa $T$, $K$ é o número de concluintes, $t_{k,T}$ é o tempo do participante $k$, e $T_{\text{ref},T}$ é a média de 3 execuções de um integrante treinado. A razão de tempos é adimensional; os tempos são registrados em minutos. Definem-se \textbf{M14a/M14b} e \textbf{M15}:
 \begin{equation}\label{eq:m14m15}
 \begin{aligned}
 R_{\text{tempo},T} &= \frac{\frac{1}{K}\sum_{k=1}^{K} t_{k,T}}{T_{\text{ref},T}}, \\
@@ -790,8 +820,8 @@ R_{\text{tempo},T} &= \frac{\frac{1}{K}\sum_{k=1}^{K} t_{k,T}}{T_{\text{ref},T}}
 \end{aligned}
 \end{equation}
 
-\subsection{Níveis de pontuação, critérios de julgamento e gráfico GQM}
-Cada métrica gradual mensurável recebe $S_i \in \{1,2,3,4\}$: \textbf{Excelente (4)}, \textbf{Bom (3)}, \textbf{Regular (2)} ou \textbf{Crítico (1)}, conforme as Tabelas~\ref{tab:gqm1} e~\ref{tab:gqm2}. Na \textbf{Etapa 1}, M3, M4 e M12 exigem $100\%$ em universos não vazios. Para M3/M4, casos planejados não executados ou sem evidência permanecem no denominador como não conformes; universo vazio não produz aprovação. Falha ou comprovação insuficiente bloqueia a decisão de release. Na \textbf{Etapa 2}, aprovados os gates, agregam-se as métricas graduais em $\text{IQC}_k$ e $\text{IQM}$. Conforme o framework, métrica gradual indisponível não recebe zero nem nota substituta: sem política prévia de exclusão, a característica e o índice global ficam não calculáveis. Isso se aplica a M5 enquanto faltarem os registros de produção.
+\subsection{Níveis de pontuação e critérios de julgamento}
+Cada métrica gradual mensurável recebe $S_i \in \{1,2,3,4\}$: \textbf{Excelente (4)}, \textbf{Bom (3)}, \textbf{Regular (2)} ou \textbf{Crítico (1)}, conforme as Tabelas~\ref{tab:gqm1} a~\ref{tab:gqm_interacao}. Na \textbf{Etapa 1}, M3, M4 e M12 exigem $100\%$ em universos não vazios. Para M3/M4, casos planejados não executados ou sem evidência permanecem no denominador como não conformes; universo vazio não produz aprovação. Falha ou comprovação insuficiente bloqueia a decisão de release. Na \textbf{Etapa 2}, aprovados os gates, agregam-se as métricas graduais em $\text{IQC}_k$ e $\text{IQM}$. Conforme o framework, métrica gradual indisponível não recebe zero nem nota substituta: sem política prévia de exclusão, a característica e o índice global ficam não calculáveis. Isso se aplica a M5 enquanto faltarem os registros de produção.
 \begin{equation}\label{eq:iqm}
 \begin{aligned}
 \text{IQC}_k &= \frac{\sum_{i \in k} (S_i \times w_i)}{\sum_{i \in k} w_i}, \\
