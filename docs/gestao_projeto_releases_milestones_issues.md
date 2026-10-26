@@ -22,7 +22,7 @@ A tabela a seguir consolida a composição da equipe de avaliação. Cada integr
 | **Gabriel Barbaceli**<br>Matrícula: `21/1045122` | `@Nibaacriba` | GitPage / Especificação GQM (Compatibilidade e Capacidade de Interação) | 12h | R$ 50,00 | R$ 600,00 | **16,67%** | [x] Confirmado |
 | **Gustavo Silva Rodrigues**<br>Matrícula: `23/2036887` | `@g-srodrigues` | Analista de Qualidade / Modelo ISO/IEC 25010 e Escopo | 12h | R$ 50,00 | R$ 600,00 | **16,67%** | [x] Confirmado |
 | **Ítalo Alves Sampaio de Oliveira**<br>Matrícula: `23/2037937` | `@ItaloSamP` | Analista do Produto e Stakeholders / GitPage | 12h | R$ 50,00 | R$ 600,00 | **16,66%** | [x] Confirmado |
-| **Ricardo Lucas Winchello Vieira Branco**<br>Matrícula: `22/1008409` | `@ChickRicks` | Redação do Artigo (Overleaf) | 12h | R$ 50,00 | R$ 600,00 | **16,66%** | [x] Confirmado |
+| **Ricardo Lucas Winchello Vieira Branco**<br>Matrícula: `22/1008409` | `@ChickRicks` | Revisão da GitPage e do artigo | 12h | R$ 50,00 | R$ 600,00 | **16,66%** | [x] Confirmado |
 | **TOTAIS ACUMULADOS (PC1)** | — | **Entregáveis Consolidados — Ponto de Controle 1** | **72h** | Média: R$ 50,00/h | **R$ 3.600,00** | **100%** | **6 de 6 Ativos** |
 
 *Fonte: Elaborado pelos autores conforme diretrizes da disciplina FGA0315 e modelo PSM/CID.*

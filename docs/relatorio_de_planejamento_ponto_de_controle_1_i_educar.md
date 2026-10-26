@@ -279,7 +279,7 @@ Conforme solicitado pela professora e exigido pela métrica de **Recursos e Cust
 | **Gabriel Barbaceli** | GitPage / Especificação GQM | Propósito, uso pretendido e priorização (Issue #17); especificação GQM de **Compatibilidade** e de **Capacidade de Interação** (Issues #05 e #08); tabela de integrantes (Issue #19). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
 | **Gustavo Silva Rodrigues** | Analista de Qualidade / Modelagem | Modelo ISO/IEC 25010 adaptado e delimitação de escopo (Issue #04). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
 | **Ítalo Alves Sampaio de Oliveira** | Analista do Produto e Stakeholders / GitPage | Contextualização do i-Educar (Issue #02); stakeholders e ODS 4 e 16 (Issue #03). | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
-| **Ricardo Lucas Winchello Vieira Branco** | Redação do Artigo | Primeira versão do artigo no Overleaf (Issue #13). | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
+| **Ricardo Lucas Winchello Vieira Branco** | Revisor da GitPage e do artigo | Revisão da GitPage e do artigo. | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
 | **TOTAL DA EQUIPE** | — | **Entregáveis Consolidados até o Ponto de Controle 1** | **72h** | Média: R$ 50,00/h | **R$ 3.600,00** | **100%** |
 
 ---
