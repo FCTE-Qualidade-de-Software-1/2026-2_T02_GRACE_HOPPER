@@ -237,7 +237,7 @@ O julgamento segue duas etapas: (i) verificação de três critérios eliminató
 O trabalho acompanha as quatro fases da disciplina alinhadas à ISO/IEC 25040:2024~\cite{iso25040}: \textbf{Fase 1} (requisitos da avaliação: propósito, partes interessadas, arquitetura, adaptação/priorização do modelo, escopo e ODS); \textbf{Fase 2} (especificação GQM: objetivos, questões, hipóteses, equações e níveis de pontuação); \textbf{Fase 3} (projeto da avaliação: manifestos congelados, scripts, coleções de API e protocolo de uso); e \textbf{Fase 4} (execução, análise dos dados e proposição de melhorias).
 
 \subsection{Gestão do projeto com PSM/CID}\label{sec:psmcid}
-O objetivo de gestão é analisar o processo de trabalho da equipe com o propósito de controlar prazo, esforço e conformidade documental, do ponto de vista da equipe e da docente, no contexto da Entrega 1 (PC1). O acompanhamento utiliza Issues, Milestones e o quadro Kanban do GitHub Project ``Grace Hopper''~\cite{repo_gracehopper}; o acesso ao conteúdo do quadro é restrito à equipe. Essas medidas descrevem a gestão do trabalho, não a qualidade do i-Educar. Para monitorar desempenho dos processos, calendário e recursos/custos segundo o PSM/CID~\cite{mcgarry2002psm}, definem-se as medidas abaixo. A apuração considera os registros disponíveis no GitHub em 25 out. 2026:
+O objetivo de gestão é analisar o processo de trabalho da equipe com o propósito de controlar prazo, esforço e conformidade documental, do ponto de vista da equipe e da docente, no contexto da Entrega 1 (PC1). O acompanhamento utiliza Issues, Milestones e o quadro Kanban do GitHub Project ``Grace Hopper''~\cite{repo_gracehopper}; o acesso ao conteúdo do quadro é restrito à equipe. Essas medidas descrevem a gestão do trabalho, não a qualidade do i-Educar. Para monitorar desempenho dos processos, calendário e recursos/custos segundo o PSM/CID~\cite{mcgarry2002psm}, definem-se as medidas abaixo. A apuração considera os registros disponíveis no GitHub em 27 out. 2026:
 \begin{equation}\label{eq:psmcid1}
 \begin{aligned}
 \text{TCM} &= \frac{N_{\text{issues concluídas}}}{N_{\text{issues planejadas E1}}} \times 100\%, \\
@@ -248,7 +248,7 @@ O objetivo de gestão é analisar o processo de trabalho da equipe com o propós
 \begin{equation}\label{eq:psmcid2}
 \text{VEC} = \frac{E_{\text{realizado}} - E_{\text{planejado}}}{E_{\text{planejado}}} \times 100\%
 \end{equation}
-onde $\text{TCM}$ é a Taxa de Conclusão de Issues por milestone, $\text{TRCD}$ é a Taxa de Revisão e Conformidade Documental, $\text{ACM}$ é a Aderência ao Calendário dos Marcos, e $\text{VEC}$ é a Variação de Esforço e Custo. Na Eq.~\ref{eq:psmcid2}, os esforços realizado e planejado são medidos em horas para o mesmo conjunto de issues, e o VEC é expresso em percentual. O planejamento global da equipe é de $72\,\mathrm{h}$, equivalente a R\$ 3.600,00 à razão de R\$ 50,00/h. No recorte observado de M4, as três issues com apontamentos completos somam $7\,\mathrm{h}$ realizadas e $7\,\mathrm{h}$ planejadas, resultando em VEC de 0\% e desvio de custo de R\$ 0,00. Esse resultado parcial não permite calcular o VEC global da equipe, pois os apontamentos estão incompletos. A Tabela~\ref{tab:psmcid} apresenta os resultados observados e suas limitações; a falta de horas registradas não é tratada como esforço zero.
+onde $\text{TCM}$ é a Taxa de Conclusão de Issues por milestone, $\text{TRCD}$ é a Taxa de Revisão e Conformidade Documental, $\text{ACM}$ é a Aderência ao Calendário dos Marcos, e $\text{VEC}$ é a Variação de Esforço e Custo. Na Eq.~\ref{eq:psmcid2}, os esforços realizado e planejado são medidos em horas para o mesmo conjunto de issues, e o VEC é expresso em percentual. O planejamento global da equipe é de $72\,\mathrm{h}$, equivalente a R\$ 3.600,00 à razão de R\$ 50,00/h. Nas 17 issues com apontamento de horas, somam-se $63\,\mathrm{h}$ realizadas e $63\,\mathrm{h}$ planejadas, resultando em VEC de 0\% e desvio de custo de R\$ 0,00. As issues \texttt{\#13} e \texttt{\#14} ainda não tinham horas realizadas registradas, e as horas realizadas foram registradas iguais às estimadas, o que limita a interpretação do desvio. A Tabela~\ref{tab:psmcid} apresenta os resultados observados e suas limitações; a falta de horas registradas não é tratada como esforço zero.
 
 \begin{table}[!t]
 \centering
@@ -261,14 +261,14 @@ onde $\text{TCM}$ é a Taxa de Conclusão de Issues por milestone, $\text{TRCD}$
 \textbf{Categoria} & \textbf{Medida e evidência} & \textbf{Interpretação} & \textbf{Decisão de gestão} \\
 \midrule
 Desempenho dos processos &
-$\text{TRCD}$: requer relatórios de build dos PRs integrados. O commit \texttt{cd9da95}, integrado pelo PR \texttt{\#25}, registra ajuste de nomenclatura &
-Não calculável sem universo consolidado de PRs integrados e respectivos relatórios de build &
-Conferir documentação e commit de referência antes de integrar cada PR \\
+$\text{TRCD}$: PRs integrados com build estrito aprovado ÷ PRs integrados (\texttt{\#20} a \texttt{\#30}) &
+9/11 (81,8\%). Os PRs \texttt{\#20} e \texttt{\#21} antecedem o \textit{workflow} de build estrito (PR \texttt{\#22}); desde então, 9/9 aprovados &
+Manter o build estrito como requisito para integrar qualquer PR \\
 \addlinespace[2pt]
 Calendário e progresso &
 $\text{TCM}$: issues concluídas ÷ issues planejadas em cada milestone &
-M0: 1/1; M1: 6/6; M2: 5/5; M3: 3/3; M4: 2/4. Total: 17/19 (89,5\%); metade das issues de M4 permanece aberta &
-Monitorar pendências e congelar manifestos no início da Fase 3 \\
+M0: 1/1; M1: 6/6; M2: 5/5; M3: 3/3; M4: 4/4. Total: 19/19 (100\%); todas as issues da Entrega 1 foram concluídas &
+Abrir as issues da Fase 4 no M5 com responsável e estimativa \\
 \addlinespace[2pt]
 Calendário &
 $\text{ACM}$: marcos concluídos no prazo ÷ marcos com prazo definido &
@@ -277,7 +277,7 @@ Definir prazos nos milestones para acompanhar aderência ao calendário \\
 \addlinespace[2pt]
 Recursos e custos &
 $\text{VEC}$: variação percentual do esforço no mesmo conjunto de issues (Eq.~\ref{eq:psmcid2}) &
-M4: 3 de 4 issues têm apontamentos completos; 7h realizadas/7h planejadas, VEC = 0\% e desvio de custo de R\$ 0,00. Uma issue não tem horas realizadas; VEC global não calculável &
+17 issues com apontamento: 63h realizadas/63h planejadas, VEC = 0\% e desvio de R\$ 0,00. Horas realizadas iguais às estimadas limitam a análise; \texttt{\#13} e \texttt{\#14} sem apontamento &
 Registrar horas por integrante e issue para comparar execução e planejamento \\
 \bottomrule
 \end{tabular}
@@ -491,7 +491,7 @@ O modelo de qualidade parte da ISO/IEC 25010:2023~\cite{iso25010} e, de forma co
 Em \textbf{Compatibilidade (G1)}, mantiveram-se \textit{coexistência} e \textit{interoperabilidade}, pois prefeituras hospedam o i-Educar junto a outros serviços e consomem sua API REST. Em \textbf{Confiabilidade (G2)}, mantiveram-se \textit{ausência de falhas} (\textit{faultlessness}), \textit{tolerância a falhas} e \textit{recuperabilidade}; excluiu-se \textit{disponibilidade} (\textit{uptime}), que exigiria monitoramento contínuo de produção. Em \textbf{Manutenibilidade (G3)}, mantiveram-se \textit{modularidade}, \textit{analisabilidade}, \textit{modificabilidade} e \textit{testabilidade}; excluiu-se \textit{reusabilidade}, dado que os módulos implementam regras específicas da legislação educacional brasileira. Em \textbf{Capacidade de interação e Uso (G4)}, priorizaram-se \textit{proteção contra erros} e \textit{autodescritividade} (no produto) somadas a \textit{eficiência} e \textit{eficácia} nas tarefas T1 e T2 (em uso), que capturam empiricamente a facilidade de operação por iniciantes.
 
 \subsection{Seleção e priorização de características}
-Pelas diretrizes da disciplina, a Capacidade de interação é obrigatória e recebe peso fixo de 20\% no índice global. As demais oito características da ISO/IEC 25010:2023 foram comparadas por uma matriz de criticidade com três critérios de 1 (baixo) a 5 (alto): \textbf{Impacto ($I$)} para os stakeholders (Tabela~\ref{tab:stakeholders}), \textbf{Risco ($R$)} técnico na arquitetura híbrida (\texttt{ieducar/} vs.\ \texttt{app/}) e \textbf{Viabilidade ($V$)} de medição em ambiente Docker local e código aberto. A criticidade é $C = I \times R$, selecionando-se as três características de maior $C$ que atendam a $V \ge 3$ (com maior $V$ como desempate), conforme a Tabela~\ref{tab:priorizacao}.
+A Capacidade de interação é obrigatória pelas diretrizes da disciplina; a equipe atribuiu-lhe peso fixo de 20\% no índice global. As demais oito características da ISO/IEC 25010:2023 foram comparadas por uma matriz de criticidade com três critérios de 1 (baixo) a 5 (alto): \textbf{Impacto ($I$)} para os stakeholders (Tabela~\ref{tab:stakeholders}), \textbf{Risco ($R$)} técnico na arquitetura híbrida (\texttt{ieducar/} vs.\ \texttt{app/}) e \textbf{Viabilidade ($V$)} de medição em ambiente Docker local e código aberto. A criticidade é $C = I \times R$, selecionando-se as três características de maior $C$ que atendam a $V \ge 3$ (com maior $V$ como desempate), conforme a Tabela~\ref{tab:priorizacao}.
 
 \begin{table}[!t]
 \centering
@@ -537,7 +537,7 @@ Módulos paralelos (biblioteca, transporte, alimentação), para manter profundi
 \addlinespace[2pt]
 Módulo de Notas e Menções &
 Regras (\texttt{LegacyEvaluationRule}), arredondamento, \texttt{Boletim.php} e \texttt{Diario*Controller} &
-Relatórios gráficos em JasperReports (\path{ieducar/modules/Reports/}), mantidos em pacote separado \\
+Relatórios gráficos em JasperReports, mantidos em pacote separado (\texttt{i-educar-}\allowbreak\texttt{reports-package}) \\
 \addlinespace[2pt]
 Docker e API REST &
 Isolamento de variáveis/portas em subida de 2ª instância (M1) e contratos JSON de matrícula e notas (M2) &
@@ -673,12 +673,12 @@ As 14 questões examinam atributos das subcaracterísticas selecionadas. As resp
 \gqmQ{Q2.1}{Ausência de falhas (\textit{faultlessness})}{As rotinas de cálculo de notas, médias e conversão de menções são 100\% determinísticas?}{O motor \texttt{Avaliacao\_Service\_Boletim} calcula médias e menções com 100\% de exatidão frente ao oráculo formal quando configurado ($\text{DCNM} = 100\%$, H2.1).}
 \gqmM{M3$^*$}{Determinismo no Cálculo de Notas e Menções ($\text{DCNM}$, Eq.~\ref{eq:m3m4}): casos conformes ao oráculo formal / casos planejados no manifesto congelado (média aritmética, ponderada, recuperação, exame final e conversão em \texttt{modules.tabela\_arredondamento\_valor}), via Pest/PHPUnit. Universo vazio ($0/0$) bloqueia o gate.}{$100\%$}{---}{---}{$< 100\%$ ($w_3=2{,}0$, \textbf{Gate})}
 
-\gqmQ{Q2.2}{Tolerância a falhas e Ausência de falhas}{Operações compostas de matrícula e diário garantem \textit{rollback} integral e ausência de dados órfãos?}{Serviços migrados para Laravel (\texttt{RegistrationService}) garantem \textit{rollback} via \texttt{DB::transaction}, mas fluxos que mesclam legado podem falhar no gate ($\text{ITAE} \le 100\%$, H2.2); já M5 ficará não mensurável sem logs de produção.}
+\gqmQ{Q2.2}{Tolerância a falhas e Ausência de falhas}{Operações compostas de matrícula e diário garantem \textit{rollback} integral e ausência de dados órfãos?}{Serviços migrados para Laravel (\texttt{RegistrationService}) garantem \textit{rollback} via \texttt{DB::transaction}, mas ao menos uma operação composta que mescla legado não fará \textit{rollback} integral ($\text{ITAE} < 100\%$, H2.2); já M5 ficará não mensurável sem logs de produção.}
 \gqmM{M4$^*$}{Integridade Transacional e Atomicidade de Estado ($\text{ITAE}$, Eq.~\ref{eq:m3m4}): operações compostas multi-escrita com \textit{rollback} integral em todos os pontos de injeção de exceção planejados / operações analisadas no manifesto (\path{RegistrationService.php} e \path{DiarioController.php}), conferindo \texttt{pmieducar} e \texttt{modules}.}{$100\%$}{---}{---}{$< 100\%$ ($w_4=2{,}0$, \textbf{Gate})}
 \gqmM{M5}{Densidade de Defeitos Operacionais de Matrícula ($\text{DDOM}$, Eq.~\ref{eq:m5m6}): incidentes confirmados em produção / $1.000$ movimentações em janela de 90 dias (Honeybadger e chamados). Sem dados reais de produção, registra-se como \textit{não mensurável} (sem nota zero ou substituta).}{$\le 0{,}5$}{$(0{,}5, 2{,}0]$}{$(2{,}0, 5{,}0]$}{$> 5{,}0$ ($w_5=1{,}2$, Gradual)}
 
 \gqmQ{Q2.3}{Recuperabilidade}{O sistema disponibiliza mecanismo confiável de backup e recuperação de desastres?}{Ao menos 95\% das tentativas planejadas de restauração em banco isolado recuperam os esquemas \texttt{pmieducar}, \texttt{modules} e \texttt{cadastro}, passando todas as verificações previstas ($\text{CVPB} \ge 95\%$, H2.3).}
-\gqmM{M6}{Completude e Verificabilidade do Procedimento de Backup ($\text{CVPB}$, Eq.~\ref{eq:m5m6}): tentativas planejadas de restauração que recuperam os 3 esquemas críticos em banco isolado com aprovação de checksum e integridade referencial / restaurações planejadas no manifesto.}{$100\%$}{$[95{,}0\%, 99{,}0\%)$}{$[90{,}0\%, 95{,}0\%)$}{$< 90{,}0\%$ ($w_6=1{,}0$, Gradual)}
+\gqmM{M6}{Completude e Verificabilidade do Procedimento de Backup ($\text{CVPB}$, Eq.~\ref{eq:m5m6}): tentativas planejadas de restauração que recuperam os 3 esquemas críticos em banco isolado com aprovação de checksum e integridade referencial / restaurações planejadas no manifesto.}{$100\%$}{$[95{,}0\%, 100\%)$}{$[90{,}0\%, 95{,}0\%)$}{$< 90{,}0\%$ ($w_6=1{,}0$, Gradual)}
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -916,7 +916,7 @@ Equipe Grace Hopper, ``Framework GQM de Avalia\c{c}\~ao de Qualidade de Software
 Equipe Grace Hopper, ``Relat\'orio de Planejamento e Acompanhamento --- Ponto de Controle 1 (i-Educar),'' documenta\c{c}\~ao do projeto, UnB/FGA, 2026. [Online]. Dispon\'ivel em: \url{https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/relatorio_de_planejamento_ponto_de_controle_1_i_educar/}.
 
 \bibitem{repo_gracehopper}
-Equipe Grace Hopper, ``Reposit\'orio e quadro Kanban do projeto.'' [Online]. Dispon\'ivel em: \url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER} e \url{https://github.com/orgs/FCTE-Qualidade-de-Software-1/projects/34}. Acesso em: 25 out. 2026.
+Equipe Grace Hopper, ``Reposit\'orio e quadro Kanban do projeto.'' [Online]. Dispon\'ivel em: \url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER} e \url{https://github.com/orgs/FCTE-Qualidade-de-Software-1/projects/34}. Acesso em: 27 out. 2026.
 
 \bibitem{iso25002}
 ISO/IEC, ``ISO/IEC 25002:2024 --- Systems and software engineering --- SQuaRE --- Quality model overview and usage,'' 1st ed., Geneva, 2024.
