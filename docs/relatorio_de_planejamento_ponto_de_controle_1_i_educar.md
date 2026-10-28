@@ -10,16 +10,20 @@
 
 ## 1. Linha do Tempo e Ponto Atual do Projeto (Calendário e Progresso — PSM/CID)
 
-Esta seção substitui a exibição de trechos soltos do artigo, permitindo que a professora acompanhe visualmente a evolução do trabalho, o estágio atual da equipe e o encadeamento das entregas até a **Release E1**.
+Esta seção substitui a exibição de trechos soltos do artigo, permitindo que a professora acompanhe visualmente a evolução do trabalho, o estágio atual da equipe e o encadeamento das entregas até a **Release E1**. A Tabela 3 apresenta a situação dos marcos no fechamento da Entrega 1: os marcos M0 a M4 foram concluídos, e o M5 corresponde à Entrega 2.
+
+**Tabela 3 — Linha do tempo dos marcos do projeto**
 
 | Marco (Milestone) | Etapa / Período Relativo | Fase / Entregável Relacionado | Descrição das Atividades | Status Atual |
 | :--- | :--- | :--- | :--- | :--- |
 | **M0: Setup Inicial** | Etapa 1 | Concepção e Infraestrutura | Definição do grupo, escolha do software livre **i-Educar**, criação do repositório Git, configuração de *Issues/Milestones* e estrutura base da GitPage. | **CONCLUÍDO** |
-| **M1: Requisitos da Avaliação** | Etapa 2 | **Fase 1 (ISO/IEC 25040)** | Definição do propósito da avaliação, identificação de *stakeholders*, adaptação gráfica do modelo de qualidade, justificativa das 4 características (Compatibilidade, Confiabilidade, Manutenibilidade e Usabilidade), definição de escopo/profundidade e alinhamento aos ODS da ONU. | **ONDE ESTAMOS (Ponto de Controle 1)** |
-| **M2: Especificação da Avaliação** | Etapa 3 | **Fase 2 (ISO/IEC 25040)** | Construção das árvores GQM (*Goal-Question-Metric*) para as 4 características selecionadas, definição das métricas, fórmulas de cálculo, níveis de pontuação (limiares numéricos) e critérios de julgamento. | **EM ANDAMENTO (Próximo Passo Imediato)** |
-| **M3: Projeto da Avaliação** | Etapa 4 | **Fase 3 (ISO/IEC 25040)** | Seleção das ferramentas de análise e teste (SonarQube, Postman, Lighthouse, TCLE), definição do ambiente Docker do i-Educar, planejamento de coleta e cronograma de execução. | **PLANEJADO** |
-| **M4: Consolidação, Slides e Release E1** | Etapa 5 (Marco da Entrega 1) | **GitPage + Artigo v1 + Slides PC1 + Release 1** | Redação da 1ª versão do artigo (Introdução, Referencial Teórico, Metodologia, Fases 1 a 3), atualização da GitPage, elaboração dos slides do Ponto de Controle 1, Tabela de Contribuição/Custos e publicação da *Tag/Release E1*. | **PLANEJADO** |
-| **M5: Execução e Conclusão** | Etapa Final (Pós-Entrega 1) | **Fase 4 (ISO/IEC 25040) + Entrega 2** | Ajustes apontados pela professora no PC1, coleta de dados brutos, logs e vídeos no i-Educar (Fase 4), análise dos resultados e conclusão da 2ª versão do artigo (*Release E2*). | **FUTURO (Entrega 2)** |
+| **M1: Requisitos da Avaliação** | Etapa 2 | **Fase 1 (ISO/IEC 25040)** | Definição do propósito da avaliação, identificação de *stakeholders*, adaptação gráfica do modelo de qualidade, justificativa das 4 características (Compatibilidade, Confiabilidade, Manutenibilidade e Capacidade de Interação), definição de escopo/profundidade e alinhamento aos ODS da ONU. | **CONCLUÍDO** |
+| **M2: Especificação da Avaliação** | Etapa 3 | **Fase 2 (ISO/IEC 25040)** | Construção das árvores GQM (*Goal-Question-Metric*) para as 4 características selecionadas, definição das métricas, fórmulas de cálculo, níveis de pontuação (limiares numéricos) e critérios de julgamento. | **CONCLUÍDO** |
+| **M3: Projeto da Avaliação** | Etapa 4 | **Fase 3 (ISO/IEC 25040)** | Seleção das ferramentas de análise e teste (SonarQube, Postman, Lighthouse, TCLE), definição do ambiente Docker do i-Educar, planejamento de coleta e cronograma de execução. | **CONCLUÍDO** |
+| **M4: Consolidação, Slides e Release E1** | Etapa 5 (Marco da Entrega 1) | **GitPage + Artigo v1 + Slides PC1 + Release 1** | Redação da 1ª versão do artigo (Introdução, Referencial Teórico, Metodologia, Fases 1 a 3), atualização da GitPage, elaboração dos slides do Ponto de Controle 1, Tabela de Contribuição/Custos e publicação da *Tag/Release E1*. | **CONCLUÍDO** |
+| **M5: Execução e Conclusão** | Etapa Final (Pós-Entrega 1) | **Fase 4 (ISO/IEC 25040) + Entrega 2** | Ajustes apontados pela professora no PC1, coleta de dados brutos, logs e vídeos no i-Educar (Fase 4), análise dos resultados e conclusão da 2ª versão do artigo (*Release E2*). | **PRÓXIMO MARCO (Entrega 2)** |
+
+*Fonte: Elaborado pelos autores a partir dos milestones do repositório da equipe.*
 
 ---
 
@@ -176,12 +180,18 @@ Nesta fase, a equipe transforma as 4 características em medições concretas ut
 
 #### Quadro Resumo do GQM Proposto para o i-Educar
 
+A Tabela 3-A consolida a matriz sintética de operacionalização GQM para as quatro características selecionadas, correlacionando objetivos, questões investigativas, métricas associadas e critérios de julgamento estabelecidos.
+
+**Tabela 3-A — Síntese da especificação GQM por característica avaliada**
+
 | Característica (Subcaracterística) | Objetivo (Goal - GQM) | Questões (Questions) | Métricas e Fórmulas (Metrics) | Níveis de Pontuação e Critério de Julgamento |
 | :--- | :--- | :--- | :--- | :--- |
 | **Compatibilidade** (*Coexistência e Interoperabilidade*) | Analisar o ambiente de execução e a API REST do i-Educar com o propósito de avaliar a coexistência e a interoperabilidade sob o ponto de vista de integradores técnicos. | **Q1.1:** Os recursos de ambiente podem ser isolados por configuração sem conflito?<br>*H1.1: $\text{TINCR} \ge 85\%$*<br>**Q1.2:** As respostas da API obedecem a um contrato de dados verificável?<br>*H1.2: $\text{CEI} \ge 85\%$* | **M1 ($\text{TINCR}$):**<br>$\text{TINCR} = \dfrac{N_{\text{isoláveis}}}{N_{\text{identificados}}} \times 100\%$<br><br>**M2 ($\text{CEI}$):**<br>$\text{CEI} = \dfrac{N_{\text{endpoints conformes}}}{N_{\text{endpoints testados}}} \times 100\%$ | **Crítico (1):** $< 70\%$<br>**Regular (2):** $[70\%, 85\%)$<br>**Bom (3):** $[85\%, 100\%)$<br>**Excelente (4):** $100\%$ |
 | **Confiabilidade** (*Ausência de Falhas, Tolerância a Falhas e Recuperabilidade*) | Analisar os fluxos críticos de notas e matrícula com o propósito de avaliar o determinismo de cálculo e a integridade transacional sob o ponto de vista da gestão escolar. | **Q2.1:** O cálculo de notas e menções é 100% determinístico?<br>**Q2.2:** Operações compostas garantem rollback integral sem dados órfãos? | **M3 ($\text{DCNM}$ — Gate):**<br>$\text{DCNM} = \dfrac{N_{\text{casos conformes}}}{N_{\text{casos planejados no manifesto}}} \times 100\%$<br><br>**M4 ($\text{ITAE}$ — Gate):**<br>$\text{ITAE} = \dfrac{N_{\text{operações com todos os rollbacks verificados}}}{N_{\text{operações compostas planejadas}}} \times 100\%$ | **Gates Binários (M3 e M4):**<br>**Reprovado:** $< 100\%$<br>**Aprovado:** $100\%$ |
 | **Manutenibilidade** (*Modularidade, Analisabilidade, Modificabilidade e Testabilidade*) | Analisar o código-fonte do repositório `portabilis/i-educar` com o propósito de avaliar a facilidade de manutenção e testabilidade sob o ponto de vista dos mantenedores. | **Q3.1:** Qual a complexidade ciclomática dos métodos no universo declarado?<br>**Q3.4 / Q3.5:** Qual o índice de manutenibilidade e a taxa de testes ativos com asserção? | **M7a/M7b ($\text{CC}$):** $v(G) = E - N + 2P$; P90 e máximo.<br><br>**M10 ($\text{MI}$):** escala local normalizada $[0, 100]$<br><br>**M11 ($\text{TTAE}$):**<br>$\text{TTAE} = \dfrac{N_{\text{testes ativos com asserção}}}{N_{\text{casos declarados no manifesto}}} \times 100\%$ | **M7a ($\text{CC}_{P90}$):** Excelente $\le 10$; Crítico $> 20$.<br>**M7b ($\text{CC}_{\max}$):** conforme tabela do framework.<br>**M10 ($\text{MI}$):** Excelente $\ge 80$; Crítico $< 40$.<br>**M11 ($\text{TTAE}$):** Excelente $\ge 95\%$; Crítico $< 70\%$. A asserção não prova eficácia; eficácia exige teste controlado separado. |
 | **Capacidade de Interação e Qualidade em Uso** (*Proteção contra erros, Autodescritividade, Eficiência e Eficácia*) | Analisar os fluxos de matrícula e diário de classe com o propósito de avaliar a prevenção de erros e a eficiência/eficácia operacional sob o ponto de vista de secretários e professores. | **Q4.1:** O sistema impede erros de entrada e operações fora de prazo?<br>*H4.1: $\text{IPPE} = 100\%$*<br>**Q4.2:** As mensagens de validação informam causa e ação corretiva?<br>*H4.2: $\text{ADMV} \in [80\%, 90\%)$*<br>**Q4.3:** Quanto tempo um usuário novo leva em relação a um experiente?<br>*H4.3: $1{,}5 < R_{\text{tempo}} \le 2{,}5$*<br>**Q4.4:** Usuários novos acertam as tarefas na primeira tentativa?<br>*H4.4: $\text{TSPT} \in [70\%, 90\%)$* | **M12 ($\text{IPPE}$ — Gate):**<br>$\text{IPPE} = \dfrac{N_{\text{bloqueios amigáveis}}}{N_{\text{cenários inválidos}}} \times 100\%$<br><br>**M13 ($\text{ADMV}$):**<br>$\text{ADMV} = \dfrac{N_{\text{mensagens com causa e ação}}}{N_{\text{mensagens avaliadas}}} \times 100\%$<br><br>**M14 ($R_{\text{tempo},T}$):** $R_{\text{tempo},T} = \dfrac{\text{TMET}_T}{T_{\text{ref},T}}$<br><br>**M15 ($\text{TSPT}$):** $\text{TSPT} = \dfrac{N_{\text{1ª submissão}}}{N_{\text{execuções}}} \times 100\%$ | **M12 (Gate):** $100\%$<br>**M13 ($\text{ADMV}$):** Excelente $\ge 98\%$; Crítico $< 80\%$.<br>**M14 ($R_{\text{tempo}}$):** Excelente $\le 1{,}5$; Crítico $> 3{,}0$.<br>**M15 ($\text{TSPT}$):** Excelente $\ge 90\%$; Crítico $< 50\%$. |
+
+*Fonte: Elaborado pelos autores a partir do Framework GQM de Avaliação.*
 
 Para M3 e M4, os denominadores são manifestos planejados e congelados antes da execução. Universo vazio, cobertura incompleta ou evidência ausente não aprova o gate (não se interpreta `0/0` como 100%); os procedimentos completos estão no framework GQM.
 
@@ -270,11 +280,13 @@ Para a medição empírica das métricas de **Capacidade de Interação** e **Qu
 
 ## 3. Gestão de Recursos, Esforço e Custos (PSM/CID e Critério AG-C5)
 
-Conforme solicitado pela professora e exigido pela métrica de **Recursos e Custos (PSM/CID)** e pelo critério **AG-C5 (Transparência da Contribuição Individual)**, a tabela abaixo unifica as tarefas executadas, a quantidade de horas dedicadas, o **valor por hora de cada integrante** e o **percentual de esforço (somando 100%)**.
+Conforme solicitado pela professora e exigido pela métrica de **Recursos e Custos (PSM/CID)** e pelo critério **AG-C5 (Transparência da Contribuição Individual)**, a tabela abaixo unifica as tarefas executadas, a quantidade de horas dedicadas, o **valor por hora de cada integrante** e o **percentual de esforço (somando 100%)**, conforme a Tabela 4.
+
+**Tabela 4 — Esforço, custo e percentual de contribuição por integrante**
 
 | Integrante | Papel Principal na Equipe | Responsabilidades e Tarefas no Ponto de Controle 1 | Horas Dedicadas (h) | Valor / Hora (R$) | Custo Total (R$) | % de Esforço (AG-C5) |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Arthur Soares Parente** | Gestor de Configuração / GitPage | Configuração do repositório, templates de issue e estrutura da GitPage (Issue #01). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
+| **Arthur Soares Parente** | Gestor de Configuração / GitPage | Configuração do repositório, automação da GitPage, planejamento de testes e auditoria de conformidade (Issues #01, #09, #10, #11, #12, #15, #16 e #18). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
 | **Fábio Santos Araujo** | Redação do Artigo | Primeira versão do artigo no Overleaf (Issue #13). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
 | **Gabriel Barbaceli** | GitPage / Especificação GQM | Propósito, uso pretendido e priorização (Issue #17); especificação GQM de **Compatibilidade** e de **Capacidade de Interação** (Issues #05 e #08); tabela de integrantes (Issue #19). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
 | **Gustavo Silva Rodrigues** | Analista de Qualidade / Modelagem | Modelo ISO/IEC 25010 adaptado e delimitação de escopo (Issue #04). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
@@ -282,22 +294,54 @@ Conforme solicitado pela professora e exigido pela métrica de **Recursos e Cust
 | **Ricardo Lucas Winchello Vieira Branco** | Revisor da GitPage e do artigo | Revisão da GitPage e do artigo. | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
 | **TOTAL DA EQUIPE** | — | **Entregáveis Consolidados até o Ponto de Controle 1** | **72h** | Média: R$ 50,00/h | **R$ 3.600,00** | **100%** |
 
+*Fonte: Elaborado pelos autores. As horas são as planejadas por integrante para a Entrega 1.*
+
+### 3.1. Indicadores de Gestão do Projeto (PSM/CID)
+
+**Objetivo de medição da gestão:** acompanhar o progresso, o cumprimento do calendário, a conformidade documental e o esforço da equipe na Entrega 1, para decidir a tempo o que replanejar antes da Entrega 2.
+
+**Fonte dos dados:** issues, milestones, pull requests e execuções do GitHub Actions do repositório da equipe, organizados no [quadro Kanban do GitHub Projects](https://github.com/orgs/FCTE-Qualidade-de-Software-1/projects/34). Os indicadores são calculados a partir dos dados que o próprio GitHub registra (estado das issues, milestones, PRs integrados e resultado do build), sem planilha paralela.
+
+Os quatro indicadores e as fórmulas são os mesmos definidos no artigo:
+
+- **TCM (Taxa de Conclusão por Milestone)** = issues concluídas ÷ issues planejadas no milestone.
+- **TRCD (Taxa de Revisão e Conformidade Documental)** = PRs integrados com build estrito aprovado ÷ PRs integrados.
+- **ACM (Aderência ao Calendário dos Marcos)** = marcos concluídos no prazo ÷ marcos com prazo definido.
+- **VEC (Variação de Esforço e Custo)** = (horas realizadas − horas planejadas) ÷ horas planejadas, no mesmo conjunto de issues.
+
+A Tabela 5 apresenta os valores coletados no fechamento da Entrega 1.
+
+**Tabela 5 — Indicadores PSM/CID na Entrega 1**
+
+| Indicador | Valor coletado | Interpretação | Decisão de gestão |
+| :--- | :--- | :--- | :--- |
+| **TCM** | M0: 1/1; M1: 6/6; M2: 5/5; M3: 3/3; M4: 4/4. Total: **19/19 (100%)** | Todas as issues planejadas para a Entrega 1 foram concluídas. | Abrir as issues da Fase 4 no milestone M5 já com responsável e estimativa. |
+| **TRCD** | **9/11 (81,8%)** dos PRs integrados (#20 a #30) com build estrito aprovado | Os PRs #20 e #21 foram integrados antes da criação do *workflow* de build estrito (PR #22). Desde então, 9/9 PRs passaram pelo build. | Manter o build estrito como requisito para integrar qualquer PR. |
+| **ACM** | Não calculável | Os milestones não têm data-limite registrada no GitHub. | Cadastrar data-limite no milestone M5 para medir a aderência na Entrega 2. |
+| **VEC** | **0%** (63h realizadas ÷ 63h planejadas, em 17 issues com apontamento) | As issues #13 e #14 ainda não tinham horas realizadas registradas. As horas realizadas foram registradas iguais às estimadas, o que limita a análise de desvio. | Registrar as horas realmente gastas por integrante ao fechar cada issue da Entrega 2. |
+
+*Fonte: Elaborado pelos autores a partir das issues, milestones, PRs e execuções do GitHub Actions do repositório da equipe.*
+
 ---
 
 ## 4. Estrutura da Apresentação de Slides para o Ponto de Controle 1
 
-Como o objetivo da apresentação é mostrar o andamento do projeto, a linha do tempo, o ponto atual e os próximos passos (em vez de ler trechos longos do artigo), recomenda-se uma apresentação objetiva de **8 slides**:
+Para demonstrar com clareza o andamento do projeto, a linha do tempo, o estágio atual da equipe e os próximos passos rumo à Entrega 2, a estrutura planejada para a apresentação de **8 slides** está sintetizada na Tabela 6:
+
+**Tabela 6 — Estrutura e roteiro da apresentação de slides para o Ponto de Controle 1**
 
 | Slide | Tópico Principal | Conteúdo e Evidências Apresentadas |
 | :---: | :--- | :--- |
 | **Slide 1** | **Capa e Identificação** | Título do projeto (*Avaliação de Qualidade do Sistema de Gestão Escolar i-Educar sob a Ótica da Família ISO/IEC 25000 — SQuaRE*), integrantes, link do repositório avaliado (`portabilis/i-educar`) e link da GitPage. |
-| **Slide 2** | **Linha do Tempo ("Onde Estamos")** | Exibição visual da **Tabela da Seção 1** destacando o marco concluído (**M0**), o estágio atual (**M1/M2 — Ponto de Controle 1**) e os próximos passos até a **Release E1** e **Entrega 2**. |
+| **Slide 2** | **Linha do Tempo ("Onde Estamos")** | Exibição visual da **Tabela 3** com os marcos **M0 a M4** concluídos na Entrega 1 e o **M5** como próximo marco (**Entrega 2**). |
 | **Slide 3** | **Fase 1: Objeto, Propósito e Stakeholders** | Visão da arquitetura do **i-Educar** (PHP/Laravel), propósito da avaliação, partes interessadas (Secretarias Municipais, Portabilis, Professores/Secretários) e alinhamento com os **ODS 4 e ODS 16 da ONU**. |
 | **Slide 4** | **Fase 1: Modelo Adaptado (ISO/IEC 25010) e Escopo** | Apresentação do recorte das 4 características (**Compatibilidade, Confiabilidade, Manutenibilidade e Capacidade de Interação**), matriz de priorização ($C = I \times R$) e quadro "Dentro vs. Fora do Escopo". |
-| **Slide 5** | **Fase 2: Especificação GQM (Compatibilidade e Confiabilidade)** | Síntese visual dos Objetivos, Questões, Métricas (`M1` a `M6`) e Gates Binários (`M3` e `M4`) para a API/ambiente (Compatibilidade) e determinismo/transações (Confiabilidade). |
-| **Slide 6** | **Fase 2: Especificação GQM (Manutenibilidade e Interação/Uso)** | Síntese visual dos Objetivos, Questões, Métricas (`M7` a `M15`) e Critérios de Julgamento para o código-fonte (Manutenibilidade) e fluxos de matrícula/diário (Capacidade de Interação e Qualidade em Uso). |
-| **Slide 7** | **Gestão do Projeto (PSM/CID)** | Apresentação da **Tabela da Seção 3** com o papel de cada integrante, horas dedicadas (`72h`), valor/hora (`R$ 50,00/h`), custo total acumulado (`R$ 3.600,00`) e percentual de esforço somando **100%**. |
-| **Slide 8** | **Próximos Passos e Entregáveis** | Validação do GQM no Ponto de Controle 1, consolidação do Plano de Avaliação (Fase 3: Docker, SonarQube, Postman, TCLE), fechamento da 1ª versão do Artigo, revisão da GitPage (**F3-C7**) e publicação da *Release E1*. |
+| **Slide 5** | **Fase 2: Especificação GQM (Compatibilidade e Confiabilidade)** | Síntese visual dos Objetivos, Questões, Hipóteses, Métricas (`M1` a `M6`) e Gates Binários (`M3` e `M4`) para a API/ambiente (Compatibilidade) e determinismo/transações (Confiabilidade). |
+| **Slide 6** | **Fase 2: Especificação GQM (Manutenibilidade e Interação/Uso)** | Síntese visual dos Objetivos, Questões, Hipóteses, Métricas (`M7` a `M15`) e Critérios de Julgamento para o código-fonte (Manutenibilidade) e fluxos de matrícula/diário (Capacidade de Interação e Qualidade em Uso). |
+| **Slide 7** | **Gestão do Projeto (PSM/CID)** | Objetivo de medição da gestão, indicadores **TCM, TRCD, ACM e VEC** (Tabela 5), quadro Kanban e a **Tabela 4** com papel de cada integrante, horas (`72h`), valor/hora (`R$ 50,00/h`), custo total (`R$ 3.600,00`) e esforço somando **100%**. |
+| **Slide 8** | **Próximos Passos e Entregáveis** | Ajustes do retorno do Ponto de Controle 1, publicação da *Release E1* e início da Fase 4: congelar manifestos, executar as medições no ambiente Docker e consolidar o artigo para a Entrega 2. |
+
+*Fonte: Elaborado pelos autores.*
 
 ---
 

@@ -42,7 +42,9 @@ Ao finalizar a tarefa e abrir o Pull Request correspondente:
 
 ## 2. Política de Branches (Padrão GitFlow Adaptado)
 
-O repositório adota a seguinte convenção de branches para evitar conflitos e manter a integridade dos artefatos:
+O repositório adota a convenção de branches detalhada na Tabela 1 para evitar conflitos e manter a rastreabilidade estrita das entregas:
+
+**Tabela 1 — Convenção de nomenclatura de branches (GitFlow adaptado)**
 
 | Padrão de Branch | Finalidade | Exemplos |
 | :--- | :--- | :--- |
@@ -50,6 +52,8 @@ O repositório adota a seguinte convenção de branches para evitar conflitos e 
 | **`develop`** | Branch de integração contínua onde as features aprovadas são unificadas antes dos pontos de controle. | `develop` |
 | **`feature/issue-<num>-<desc>`** | Branches individuais de trabalho criadas a partir de `develop`. | `feature/issue-05-gqm-compatibilidade`<br>`feature/issue-11-motor-qualidade-php` |
 | **`docs/issue-<num>-<desc>`** | Branches dedicadas à documentação e redação do artigo científico. | `docs/issue-13-artigo-v1`<br>`docs/git-pages` |
+
+*Fonte: Elaborado pelos autores.*
 
 ---
 
@@ -63,6 +67,10 @@ Todas as mensagens de commit devem ser escritas em português ou inglês seguind
 
 ### Tipos Permitidos
 
+A Tabela 2 relaciona os tipos semânticos admitidos no repositório, sua finalidade técnica e exemplos de mensagens:
+
+**Tabela 2 — Tipos semânticos permitidos para mensagens de commit**
+
 | Tipo | Finalidade | Exemplo |
 | :--- | :--- | :--- |
 | **`docs`** | Alterações em documentação, relatórios, artigo acadêmico ou slides. | `docs(gqm): especificar metricas de compatibilidade M1 e M2 #05` |
@@ -70,6 +78,8 @@ Todas as mensagens de commit devem ser escritas em português ou inglês seguind
 | **`fix`** | Correção de bug no código ou ajuste em fórmulas/tabelas inconsistentes. | `fix(framework): corrigir escala de pontuacao da metrica M10 #09` |
 | **`test`** | Criação ou reativação de testes unitários e de integração. | `test(avaliacao): reativar testes de nota em NotaSituacaoCommon #06` |
 | **`refactor`** | Refatoração de código sem alteração de comportamento externo. | `refactor(registration): adicionar transacao atomica em cancelamento #04` |
+
+*Fonte: Elaborado pelos autores com base na convenção Conventional Commits.*
 
 ---
 
