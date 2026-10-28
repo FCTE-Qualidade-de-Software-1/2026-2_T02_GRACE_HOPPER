@@ -26,7 +26,9 @@ O projeto avalia o sistema livre de gestão escolar **i-Educar** no âmbito da d
 
 ## 1. Identificação da Equipe e Gestão de Recursos (PSM/CID — Critério AG-C5)
 
-A tabela abaixo registra os membros da equipe avaliadora, com campos reservados para identificação individual, papel, valor/hora de trabalho e esforço planejado para o **Ponto de Controle 1 (Entrega 1)**.
+A Tabela 1 registra os membros da equipe avaliadora, com campos reservados para identificação individual, papel, valor/hora de trabalho e esforço planejado para o **Ponto de Controle 1 (Entrega 1)**.
+
+**Tabela 1 — Identificação da equipe avaliadora, papéis e alocação de esforço (PSM/CID)**
 
 | Integrante                                | Matrícula UnB |  Usuário GitHub   | Papel Principal                                                         | Horas (h) |   Valor / Hora    |   Custo Total   | % Esforço  |
 | :---------------------------------------- | :-----------: | :---------------: | :---------------------------------------------------------------------- | :-------: | :---------------: | :-------------: | :--------: |
@@ -38,6 +40,8 @@ A tabela abaixo registra os membros da equipe avaliadora, com campos reservados 
 | **Ricardo Lucas Winchello Vieira Branco** | `22/1008409`  |   `@ChickRicks`   | Revisão da GitPage e do artigo                                          |    12h    |     R$ 50,00      |    R$ 600,00    | **16,66%** |
 | **TOTAL CONSOLIDADO**                     |       —       |         —         | **Esforço Acumulado — Ponto de Controle 1**                             |  **72h**  | Média: R$ 50,00/h | **R$ 3.600,00** |  **100%**  |
 
+*Fonte: Elaborado pelos autores conforme diretrizes da disciplina FGA0315 e modelo PSM/CID.*
+
 _Nota: O esforço foi dividido igualmente entre os 6 integrantes (1/6 cada); os centésimos foram ajustados para que a soma seja exatamente 100%. Horas e custos devem ser atualizados conforme o andamento das issues associadas._
 
 ---
@@ -46,18 +50,24 @@ _Nota: O esforço foi dividido igualmente entre os 6 integrantes (1/6 cada); os 
 
 O software avaliado é o **i-Educar** (versão 2.12.0 / repositório base `portabilis/i-educar`), um monólito híbrido que articula um núcleo legado em PHP (`ieducar/`) a uma infraestrutura moderna em Laravel 13 com banco de dados relacional PostgreSQL.
 
-A avaliação concentra-se em dois módulos funcionais de alta criticidade:
+A avaliação concentra-se em dois módulos funcionais de alta criticidade, cujos componentes e escopo estão discriminados na Tabela 2:
+
+**Tabela 2 — Módulos funcionais prioritários do i-Educar sob avaliação**
 
 | Módulo Avaliado                      | Tabelas Principais (PostgreSQL)                                                                                                    | Classes e Controladores-Chave                                                                                                      | Escopo Funcional                                                                                                                          |
 | :----------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- |
 | **1. Matrícula de Alunos**           | `pmieducar.matricula`<br>`pmieducar.matricula_turma`                                                                               | `LegacyRegistration`<br>`LegacyEnrollment`<br>`RegistrationStatus`<br>`RegistrationService`                                        | Vínculo formal do estudante, enturmação, remanejamento, ciclo de vida de 14 situações escolares e cancelamento atômico transacional.      |
 | **2. Lançamento de Notas e Menções** | `modules.regra_avaliacao`<br>`modules.tabela_arredondamento_valor`<br>`modules.nota_aluno`<br>`modules.nota_componente_curricular` | `LegacyEvaluationRule`<br>`LegacyValueRoundingTable`<br>`DiarioController`<br>`DiarioApiController`<br>`Avaliacao_Service_Boletim` | Regras pedagógicas configuráveis, tabelas dinâmicas de menção/arredondamento, controle do diário eletrônico e motor de cálculo de médias. |
 
+*Fonte: Elaborado pelos autores a partir do repositório oficial portabilis/i-educar.*
+
 ---
 
 ## 3. Fundamentação Normativa e Metodológica
 
-A avaliação é conduzida seguindo estritamente as normas internacionais vigentes e frameworks de engenharia:
+A avaliação é conduzida seguindo estritamente as normas internacionais vigentes e frameworks de engenharia, sintetizados na Tabela 3:
+
+**Tabela 3 — Normas internacionais e metodologias adotadas na avaliação**
 
 | Norma / Framework                                     | Papel na Avaliação             | Recorte Aplicado ao i-Educar                                                                                                                                                                                                                                                                                                                              |
 | :---------------------------------------------------- | :----------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -66,6 +76,8 @@ A avaliação é conduzida seguindo estritamente as normas internacionais vigent
 | **ISO/IEC 25040:2024** (_Quality Evaluation Process_) | Processo de Avaliação          | Ciclo estruturado em 5 atividades (Requisitos, Especificação, Desenho, Execução e Julgamento).                                                                                                                                                                                                                                                            |
 | **Metodologia GQM** (_Goal-Question-Metric_)          | Derivação de Métricas          | Desdobramento formal em 4 objetivos, 14 questões, 15 famílias e 17 linhas operacionais (M7a/b e M14a/b desdobradas), com 3 Gates Binários eliminatórios.                                                                                                                                                                                                  |
 | **Framework PSM/CID**                                 | Gestão de Recursos e Custos    | Rastreamento de métricas de processo, custos financeiros e esforço dedicado da equipe.                                                                                                                                                                                                                                                                    |
+
+*Fonte: Elaborado pelos autores com base nas normas ISO/IEC e referências metodológicas da disciplina.*
 
 ---
 
@@ -82,6 +94,10 @@ O plano de medição e projeto da avaliação compreende a extração estática 
 
 ## 5. Estrutura e Mapa de Documentação do Projeto
 
+A documentação do projeto está organizada em módulos temáticos, detalhados na Tabela 4 com os respectivos caminhos de acesso e escopos de conteúdo:
+
+**Tabela 4 — Mapa de artefatos e navegação da documentação técnica**
+
 | Artefato Documental                         | Caminho no Repositório                                                                                                             | Conteúdo Principal                                                                                                                                                    |
 | :------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Planejamento do Ponto de Controle 1**     | [`docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md`](docs/relatorio_de_planejamento_ponto_de_controle_1_i_educar.md) | Linha do tempo (M0 a M5), requisitos da Fase 1, matriz de priorização ($C = I \times R$), resumo GQM e estrutura de slides.                                           |
@@ -90,6 +106,8 @@ O plano de medição e projeto da avaliação compreende a extração estática 
 | **Arquitetura do i-Educar**                 | [`docs/agents/architecture.md`](docs/agents/architecture.md)                                                                       | Arquitetura híbrida (Laravel 13 e núcleo legado), papel do `LegacyController`, versões verificadas (PHP 8.5, PostgreSQL 18), módulos avaliados e esquemas PostgreSQL. |
 | **Gestão de Milestones, Issues e Releases** | [`docs/gestao_projeto_releases_milestones_issues.md`](docs/gestao_projeto_releases_milestones_issues.md)                           | Alocação de custos PSM/CID, diagrama de marcos, catálogo atômico das Issues #01 a #19 e especificação das Releases E1 e E2.                                           |
 | **Guia de Contribuição e Governança Git**   | [`CONTRIBUTING.md`](CONTRIBUTING.md)                                                                                               | Fluxo de trabalho de issues, branches, padrão de commits e política de revisão por pares.                                                                             |
+
+*Fonte: Elaborado pelos autores.*
 
 ---
 
@@ -157,9 +175,9 @@ Durante a preparação da Entrega 1, ferramentas de inteligência artificial apo
 
 ### 7.4 Arthur Soares Parente
 
-- **Participação no trabalho:** estruturação da GitPage, organização dos documentos e preparação de templates, com relação às tarefas #01 e #18 do [catálogo de tarefas](docs/gestao_projeto_releases_milestones_issues.md).
+- **Participação no trabalho:** infraestrutura do repositório, automação e estruturação da GitPage; formulação matemática dos limiares e regras de decisão; planejamento do ambiente de testes conteinerizado (Docker), das ferramentas de análise estática (motor PHP) e do protocolo experimental de usabilidade (TCLE); auditoria preventiva de conformidade com as rubricas da disciplina e publicação da Release E1. Essas atividades correspondem às tarefas #01, #09, #10, #11, #12, #15, #16 e #18 do [catálogo de tarefas](docs/gestao_projeto_releases_milestones_issues.md).
 - **Ferramentas utilizadas:** Gemini e Codex.
-- **Apoio de IA declarado:** refinamento da documentação técnica e apoio à organização e estruturação da GitPage, buscando clareza e coerência na apresentação dos artefatos do projeto.
+- **Apoio de IA declarado:** refinamento da documentação técnica e de conformidade com as rubricas, apoio à estruturação e automação das páginas da GitPage, auxílio na conferência de consistência das especificações do ambiente e na auditoria documental frente às rubricas avaliativas, buscando rigor técnico, clareza e coerência na entrega dos artefatos.
 
 ### 7.5 Gustavo Silva Rodrigues
 

@@ -180,12 +180,18 @@ Nesta fase, a equipe transforma as 4 características em medições concretas ut
 
 #### Quadro Resumo do GQM Proposto para o i-Educar
 
+A Tabela 3-A consolida a matriz sintética de operacionalização GQM para as quatro características selecionadas, correlacionando objetivos, questões investigativas, métricas associadas e critérios de julgamento estabelecidos.
+
+**Tabela 3-A — Síntese da especificação GQM por característica avaliada**
+
 | Característica (Subcaracterística) | Objetivo (Goal - GQM) | Questões (Questions) | Métricas e Fórmulas (Metrics) | Níveis de Pontuação e Critério de Julgamento |
 | :--- | :--- | :--- | :--- | :--- |
 | **Compatibilidade** (*Coexistência e Interoperabilidade*) | Analisar o ambiente de execução e a API REST do i-Educar com o propósito de avaliar a coexistência e a interoperabilidade sob o ponto de vista de integradores técnicos. | **Q1.1:** Os recursos de ambiente podem ser isolados por configuração sem conflito?<br>*H1.1: $\text{TINCR} \ge 85\%$*<br>**Q1.2:** As respostas da API obedecem a um contrato de dados verificável?<br>*H1.2: $\text{CEI} \ge 85\%$* | **M1 ($\text{TINCR}$):**<br>$\text{TINCR} = \dfrac{N_{\text{isoláveis}}}{N_{\text{identificados}}} \times 100\%$<br><br>**M2 ($\text{CEI}$):**<br>$\text{CEI} = \dfrac{N_{\text{endpoints conformes}}}{N_{\text{endpoints testados}}} \times 100\%$ | **Crítico (1):** $< 70\%$<br>**Regular (2):** $[70\%, 85\%)$<br>**Bom (3):** $[85\%, 100\%)$<br>**Excelente (4):** $100\%$ |
 | **Confiabilidade** (*Ausência de Falhas, Tolerância a Falhas e Recuperabilidade*) | Analisar os fluxos críticos de notas e matrícula com o propósito de avaliar o determinismo de cálculo e a integridade transacional sob o ponto de vista da gestão escolar. | **Q2.1:** O cálculo de notas e menções é 100% determinístico?<br>**Q2.2:** Operações compostas garantem rollback integral sem dados órfãos? | **M3 ($\text{DCNM}$ — Gate):**<br>$\text{DCNM} = \dfrac{N_{\text{casos conformes}}}{N_{\text{casos planejados no manifesto}}} \times 100\%$<br><br>**M4 ($\text{ITAE}$ — Gate):**<br>$\text{ITAE} = \dfrac{N_{\text{operações com todos os rollbacks verificados}}}{N_{\text{operações compostas planejadas}}} \times 100\%$ | **Gates Binários (M3 e M4):**<br>**Reprovado:** $< 100\%$<br>**Aprovado:** $100\%$ |
 | **Manutenibilidade** (*Modularidade, Analisabilidade, Modificabilidade e Testabilidade*) | Analisar o código-fonte do repositório `portabilis/i-educar` com o propósito de avaliar a facilidade de manutenção e testabilidade sob o ponto de vista dos mantenedores. | **Q3.1:** Qual a complexidade ciclomática dos métodos no universo declarado?<br>**Q3.4 / Q3.5:** Qual o índice de manutenibilidade e a taxa de testes ativos com asserção? | **M7a/M7b ($\text{CC}$):** $v(G) = E - N + 2P$; P90 e máximo.<br><br>**M10 ($\text{MI}$):** escala local normalizada $[0, 100]$<br><br>**M11 ($\text{TTAE}$):**<br>$\text{TTAE} = \dfrac{N_{\text{testes ativos com asserção}}}{N_{\text{casos declarados no manifesto}}} \times 100\%$ | **M7a ($\text{CC}_{P90}$):** Excelente $\le 10$; Crítico $> 20$.<br>**M7b ($\text{CC}_{\max}$):** conforme tabela do framework.<br>**M10 ($\text{MI}$):** Excelente $\ge 80$; Crítico $< 40$.<br>**M11 ($\text{TTAE}$):** Excelente $\ge 95\%$; Crítico $< 70\%$. A asserção não prova eficácia; eficácia exige teste controlado separado. |
 | **Capacidade de Interação e Qualidade em Uso** (*Proteção contra erros, Autodescritividade, Eficiência e Eficácia*) | Analisar os fluxos de matrícula e diário de classe com o propósito de avaliar a prevenção de erros e a eficiência/eficácia operacional sob o ponto de vista de secretários e professores. | **Q4.1:** O sistema impede erros de entrada e operações fora de prazo?<br>*H4.1: $\text{IPPE} = 100\%$*<br>**Q4.2:** As mensagens de validação informam causa e ação corretiva?<br>*H4.2: $\text{ADMV} \in [80\%, 90\%)$*<br>**Q4.3:** Quanto tempo um usuário novo leva em relação a um experiente?<br>*H4.3: $1{,}5 < R_{\text{tempo}} \le 2{,}5$*<br>**Q4.4:** Usuários novos acertam as tarefas na primeira tentativa?<br>*H4.4: $\text{TSPT} \in [70\%, 90\%)$* | **M12 ($\text{IPPE}$ — Gate):**<br>$\text{IPPE} = \dfrac{N_{\text{bloqueios amigáveis}}}{N_{\text{cenários inválidos}}} \times 100\%$<br><br>**M13 ($\text{ADMV}$):**<br>$\text{ADMV} = \dfrac{N_{\text{mensagens com causa e ação}}}{N_{\text{mensagens avaliadas}}} \times 100\%$<br><br>**M14 ($R_{\text{tempo},T}$):** $R_{\text{tempo},T} = \dfrac{\text{TMET}_T}{T_{\text{ref},T}}$<br><br>**M15 ($\text{TSPT}$):** $\text{TSPT} = \dfrac{N_{\text{1ª submissão}}}{N_{\text{execuções}}} \times 100\%$ | **M12 (Gate):** $100\%$<br>**M13 ($\text{ADMV}$):** Excelente $\ge 98\%$; Crítico $< 80\%$.<br>**M14 ($R_{\text{tempo}}$):** Excelente $\le 1{,}5$; Crítico $> 3{,}0$.<br>**M15 ($\text{TSPT}$):** Excelente $\ge 90\%$; Crítico $< 50\%$. |
+
+*Fonte: Elaborado pelos autores a partir do Framework GQM de Avaliação.*
 
 Para M3 e M4, os denominadores são manifestos planejados e congelados antes da execução. Universo vazio, cobertura incompleta ou evidência ausente não aprova o gate (não se interpreta `0/0` como 100%); os procedimentos completos estão no framework GQM.
 
@@ -280,7 +286,7 @@ Conforme solicitado pela professora e exigido pela métrica de **Recursos e Cust
 
 | Integrante | Papel Principal na Equipe | Responsabilidades e Tarefas no Ponto de Controle 1 | Horas Dedicadas (h) | Valor / Hora (R$) | Custo Total (R$) | % de Esforço (AG-C5) |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Arthur Soares Parente** | Gestor de Configuração / GitPage | Configuração do repositório, templates de issue e estrutura da GitPage (Issue #01). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
+| **Arthur Soares Parente** | Gestor de Configuração / GitPage | Configuração do repositório, automação da GitPage, planejamento de testes e auditoria de conformidade (Issues #01, #09, #10, #11, #12, #15, #16 e #18). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
 | **Fábio Santos Araujo** | Redação do Artigo | Primeira versão do artigo no Overleaf (Issue #13). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
 | **Gabriel Barbaceli** | GitPage / Especificação GQM | Propósito, uso pretendido e priorização (Issue #17); especificação GQM de **Compatibilidade** e de **Capacidade de Interação** (Issues #05 e #08); tabela de integrantes (Issue #19). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
 | **Gustavo Silva Rodrigues** | Analista de Qualidade / Modelagem | Modelo ISO/IEC 25010 adaptado e delimitação de escopo (Issue #04). | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
@@ -320,7 +326,9 @@ A Tabela 5 apresenta os valores coletados no fechamento da Entrega 1.
 
 ## 4. Estrutura da Apresentação de Slides para o Ponto de Controle 1
 
-Como o objetivo da apresentação é mostrar o andamento do projeto, a linha do tempo, o ponto atual e os próximos passos (em vez de ler trechos longos do artigo), recomenda-se uma apresentação objetiva de **8 slides**:
+Para demonstrar com clareza o andamento do projeto, a linha do tempo, o estágio atual da equipe e os próximos passos rumo à Entrega 2, a estrutura planejada para a apresentação de **8 slides** está sintetizada na Tabela 6:
+
+**Tabela 6 — Estrutura e roteiro da apresentação de slides para o Ponto de Controle 1**
 
 | Slide | Tópico Principal | Conteúdo e Evidências Apresentadas |
 | :---: | :--- | :--- |
@@ -332,6 +340,8 @@ Como o objetivo da apresentação é mostrar o andamento do projeto, a linha do 
 | **Slide 6** | **Fase 2: Especificação GQM (Manutenibilidade e Interação/Uso)** | Síntese visual dos Objetivos, Questões, Hipóteses, Métricas (`M7` a `M15`) e Critérios de Julgamento para o código-fonte (Manutenibilidade) e fluxos de matrícula/diário (Capacidade de Interação e Qualidade em Uso). |
 | **Slide 7** | **Gestão do Projeto (PSM/CID)** | Objetivo de medição da gestão, indicadores **TCM, TRCD, ACM e VEC** (Tabela 5), quadro Kanban e a **Tabela 4** com papel de cada integrante, horas (`72h`), valor/hora (`R$ 50,00/h`), custo total (`R$ 3.600,00`) e esforço somando **100%**. |
 | **Slide 8** | **Próximos Passos e Entregáveis** | Ajustes do retorno do Ponto de Controle 1, publicação da *Release E1* e início da Fase 4: congelar manifestos, executar as medições no ambiente Docker e consolidar o artigo para a Entrega 2. |
+
+*Fonte: Elaborado pelos autores.*
 
 ---
 
