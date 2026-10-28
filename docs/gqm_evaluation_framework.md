@@ -198,16 +198,22 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    G2["G2: Confiabilidade<br/>(Ausência de Falhas, Tolerância<br/>a Falhas e Recuperabilidade)"]
+    subgraph NC2["Nível Conceitual — Objetivo"]
+        G2["G2: Confiabilidade<br/>(Ausência de Falhas, Tolerância<br/>a Falhas e Recuperabilidade)"]
+    end
 
-    Q21["Q2.1: As rotinas de cálculo de notas,<br/>médias e conversão de menções<br/>são 100% determinísticas?"]
-    Q22["Q2.2: Operações compostas de matrícula<br/>e diário garantem rollback integral e<br/>ausência de dados órfãos?"]
-    Q23["Q2.3: O sistema disponibiliza mecanismo<br/>confiável de backup e recuperação<br/>de desastres?"]
+    subgraph NO2["Nível Operacional — Questões e Hipóteses"]
+        Q21["Q2.1: As rotinas de cálculo de notas,<br/>médias e conversão de menções<br/>são 100% determinísticas?<br/><i>H2.1: DCNM = 100%</i>"]
+        Q22["Q2.2: Operações compostas de matrícula<br/>e diário garantem rollback integral e<br/>ausência de dados órfãos?<br/><i>H2.2: ITAE abaixo de 100% em fluxo legado</i>"]
+        Q23["Q2.3: O sistema disponibiliza mecanismo<br/>confiável de backup e recuperação<br/>de desastres?<br/><i>H2.3: CVPB ≥ 95%</i>"]
+    end
 
-    M3["M3 — GATE (DCNM)<br/>Determinismo de Cálculo<br/>de Notas e Menções"]
-    M4["M4 — GATE (ITAE)<br/>Integridade Transacional e<br/>Atomicidade de Estado"]
-    M5["M5 (DDOM)<br/>Densidade de Defeitos<br/>Operacionais de Matrícula"]
-    M6["M6 (CVPB)<br/>Completude e Verificabilidade<br/>do Procedimento de Backup"]
+    subgraph NQ2["Nível Quantitativo — Métricas"]
+        M3["M3 — GATE (DCNM)<br/>Determinismo de Cálculo<br/>de Notas e Menções"]
+        M4["M4 — GATE (ITAE)<br/>Integridade Transacional e<br/>Atomicidade de Estado"]
+        M5["M5 (DDOM)<br/>Densidade de Defeitos<br/>Operacionais de Matrícula"]
+        M6["M6 (CVPB)<br/>Completude e Verificabilidade<br/>do Procedimento de Backup"]
+    end
 
     G2 --> Q21 --> M3
     G2 --> Q22 --> M4
@@ -219,19 +225,25 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    G3["G3: Manutenibilidade<br/>(Modularidade, Analisabilidade,<br/>Modificabilidade e Testabilidade)"]
+    subgraph NC3["Nível Conceitual — Objetivo"]
+        G3["G3: Manutenibilidade<br/>(Modularidade, Analisabilidade,<br/>Modificabilidade e Testabilidade)"]
+    end
 
-    Q31["Q3.1: Qual a complexidade ciclomática<br/>dos métodos no universo declarado?"]
-    Q32["Q3.2: Quão desacoplados e equilibrados estão<br/>os componentes estruturais do domínio?"]
-    Q33["Q3.3: Qual o grau de atrito e adaptação de<br/>dados entre a camada legada e moderna?"]
-    Q34["Q3.4: Qual o índice global de<br/>manutenibilidade do código?"]
-    Q35["Q3.5: Qual o percentual de casos de teste<br/>ativos com asserção no domínio avaliado?"]
+    subgraph NO3["Nível Operacional — Questões e Hipóteses"]
+        Q31["Q3.1: Qual a complexidade ciclomática<br/>dos métodos no universo declarado?<br/><i>H3.1: CC P90 entre 10 e 20; máximo acima de 30</i>"]
+        Q32["Q3.2: Quão desacoplados e equilibrados estão<br/>os componentes estruturais do domínio?<br/><i>H3.2: DSPM entre 0,20 e 0,50</i>"]
+        Q33["Q3.3: Qual o grau de atrito e adaptação de<br/>dados entre a camada legada e moderna?<br/><i>H3.3: IFDL entre 1,0 e 2,5</i>"]
+        Q34["Q3.4: Qual o índice global de<br/>manutenibilidade do código?<br/><i>H3.4: MI entre 60 e 80</i>"]
+        Q35["Q3.5: Qual o percentual de casos de teste<br/>ativos com asserção no domínio avaliado?<br/><i>H3.5: TTAE entre 70% e 95%</i>"]
+    end
 
-    M7a_M7b["M7a / M7b (CC)<br/>Complexidade Ciclomática<br/>P90 e máximo"]
-    M8["M8 (DSPM)<br/>Distância da Sequência<br/>Principal de Martin"]
-    M9["M9 (IFDL)<br/>Índice de Fricção de Dados<br/>Legado-Moderno"]
-    M10["M10 (MI)<br/>Índice de Manutenibilidade<br/>Normalizado"]
-    M11["M11 (TTAE)<br/>Taxa de Testes Ativos<br/>com Asserção"]
+    subgraph NQ3["Nível Quantitativo — Métricas"]
+        M7a_M7b["M7a / M7b (CC)<br/>Complexidade Ciclomática<br/>P90 e máximo"]
+        M8["M8 (DSPM)<br/>Distância da Sequência<br/>Principal de Martin"]
+        M9["M9 (IFDL)<br/>Índice de Fricção de Dados<br/>Legado-Moderno"]
+        M10["M10 (MI)<br/>Índice de Manutenibilidade<br/>Normalizado"]
+        M11["M11 (TTAE)<br/>Taxa de Testes Ativos<br/>com Asserção"]
+    end
 
     G3 --> Q31 --> M7a_M7b
     G3 --> Q32 --> M8
@@ -338,8 +350,20 @@ $$
     - **Objetivo:** Analisar **os serviços de cálculo de notas, transações de matrícula e rotinas de backup do i-Educar 2.12** com o propósito de **avaliar** com respeito à **ausência de falhas (*faultlessness*), tolerância a falhas e recuperabilidade** do ponto de vista da **gestão escolar municipal e engenharia de testes** no contexto de **testes baseados em oráculo formal, injeção de falhas e restauração de banco**.
     - **Rastreabilidade:** $\text{G2} \rightarrow \text{Q2.1} \rightarrow \text{M3 (DCNM — Gate)}$ · $\text{G2} \rightarrow \text{Q2.2} \rightarrow \text{M4 (ITAE — Gate), M5 (DDOM)}$ · $\text{G2} \rightarrow \text{Q2.3} \rightarrow \text{M6 (CVPB)}$.
 
+**Tabela H2 — Questões e hipóteses de G2 (Confiabilidade)**
+
+| Questão | Hipótese | Verificação (métrica e critério) |
+| :--- | :--- | :--- |
+| **Q2.1:** As rotinas de cálculo de notas, médias e conversão de menções são 100% determinísticas? | **H2.1:** O motor `Avaliacao_Service_Boletim` calcula médias e menções com 100% de exatidão frente ao oráculo formal quando configurado. | M3: confirmada se $\text{DCNM} = 100\%$. |
+| **Q2.2:** Operações compostas de matrícula e diário garantem *rollback* integral e ausência de dados órfãos? | **H2.2:** Os serviços migrados para Laravel (`RegistrationService`) fazem *rollback* via `DB::transaction`, mas ao menos uma operação composta que mescla código legado não faz *rollback* integral. A M5 ficará não mensurável sem logs de produção. | M4: confirmada se $\text{ITAE} < 100\%$, com a falha concentrada em operação que mescla legado. M5: registrada como não mensurável na ausência de dados de produção. |
+| **Q2.3:** O sistema disponibiliza mecanismo confiável de backup e recuperação de desastres? | **H2.3:** Ao menos 95% das tentativas planejadas de restauração em banco isolado recuperam os esquemas `pmieducar`, `modules` e `cadastro`, passando todas as verificações previstas. | M6: confirmada se $\text{CVPB} \ge 95\%$. |
+
+*Fonte: Elaborado pelos autores.* A confirmação ou a refutação de uma hipótese não equivale à aprovação ou à reprovação da característica: o julgamento segue os limiares da Seção 4 e as regras da Seção 5.
+
 #### M3 — Determinismo no Cálculo de Notas e Menções (DCNM) — [GATE BINÁRIO]
 - **Subcaracterística**: Ausência de Falhas (*Faultlessness*, termo de trabalho do framework; ver limite de fonte da Figura 1).
+- **Questão respondida**: Q2.1.
+- **Hipótese associada**: H2.1 (Tabela H2).
 - **Conceito**: Exatidão determinística dos algoritmos de cálculo de médias (aritmética, ponderada), regras de recuperação paralela, aplicação de exames finais e mapeamento para menções conceituais a partir de `modules.tabela_arredondamento_valor`.
 - **População e unidade**: conjunto finito, identificado e versionado de casos de oráculo para as formas de regra de avaliação suportadas e enumeradas pela equipe nos módulos avaliados. Uma unidade é um caso identificado (regra + entradas + resultado esperado). O universo não presume cobrir todas as configurações possíveis de todos os municípios; a lista de formas cobertas e suas exclusões acompanha o manifesto da suíte.
 - **Janela e execução**: uma execução integral da suíte contra um commit fixado, banco/fixtures fixados e versão do oráculo registrada. Casos não são multiplicados por reexecuções; uma repetição diagnóstica fica anexada à evidência do mesmo caso.
@@ -357,6 +381,8 @@ $$
 
 #### M4 — Integridade Transacional e Atomicidade de Estado (ITAE) — [GATE BINÁRIO]
 - **Subcaracterística**: Tolerância a Falhas e Recuperabilidade (mapeamento de trabalho do framework; ver limite de fonte da Figura 1).
+- **Questão respondida**: Q2.2.
+- **Hipótese associada**: H2.2 (Tabela H2).
 - **Conceito**: proporção das operações compostas em escopo que, sob uma falha injetada em cada ponto de escrita previsto no plano, fazem rollback integral, sem registros parciais, órfãos ou inconsistentes nos esquemas envolvidos.
 - **População e unidade**: inventário congelado antes da execução de todas as operações multi-escrita de matrícula/enturmação e diário em lote identificadas nos caminhos de código avaliados. Uma unidade do denominador é uma operação composta identificada. Cada operação só é conforme se todos os seus cenários de injeção de falha planejados forem executados e passarem; pontos de falha e estados prévios/posteriores são listados no manifesto. O conjunto não representa operações de módulos fora do escopo.
 - **Janela e execução**: execução única do manifesto contra commit e banco de teste fixados. Para cada operação, primeiro confirmar que o caminho de sucesso persiste o estado esperado; depois injetar exceção em cada etapa de escrita planejada e conferir o estado integral após rollback. A repetição diagnóstica não cria nova unidade.
@@ -374,6 +400,8 @@ $$
 
 #### M5 — Densidade de Defeitos Operacionais de Matrícula (DDOM)
 - **Subcaracterística**: Ausência de Falhas (*Faultlessness*, mapeamento de trabalho do framework; ver limite de fonte da Figura 1).
+- **Questão respondida**: Q2.2.
+- **Hipótese associada**: H2.2 (Tabela H2).
 - **Conceito**: taxa de incidentes/bugs confirmados em produção por 1.000 movimentações de alunos (matrícula, enturmação, remanejamento, transferência, abandono). A definição permanece válida mesmo quando a medição não pode ser feita.
 - **População e janela**: todas as movimentações concluídas nos fluxos de Matrícula abrangidos, em cada implantação de produção previamente identificada, durante **90 dias consecutivos completos**. O plano de coleta registra deployment(s), municípios cobertos, fuso horário, início/fim e instante de extração antes de consultar os registros. Incluem-se apenas movimentos com ID e data de conclusão; rascunhos, tentativas falhas e duplicatas de eventos transacionais são excluídos. Incidentes devem ter ocorrência dentro da mesma janela e atribuição confirmada a defeito de software nesses fluxos; duplicatas de chamados para o mesmo episódio/causa são consolidadas, enquanto episódios distintos permanecem separados. Excluem-se engano de operação, dado inválido de origem e falha externa sem causa atribuída ao produto; cada classificação fica registrada.
 - **Unidades e fontes necessárias**: numerador = episódios únicos de incidente/defeito confirmados; denominador = movimentações concluídas únicas; resultado em incidentes por 1.000 movimentações. Exige logs/telemetria de produção (incluindo Honeybadger, se implantado), chamados de suporte com IDs, datas e triagem de causa, e registro transacional das movimentações com mesma cobertura temporal.
@@ -390,6 +418,8 @@ $$
 
 #### M6 — Completude e Verificabilidade do Procedimento de Backup (CVPB)
 - **Subcaracterística**: Recuperabilidade (mapeamento de trabalho do framework; ver limite de fonte da Figura 1).
+- **Questão respondida**: Q2.3.
+- **Hipótese associada**: H2.3 (Tabela H2).
 - **Conceito**: proporção de tentativas planejadas de restauração que recuperam o conjunto dos esquemas críticos (`pmieducar`, `modules`, `cadastro`) e passam todas as verificações previamente especificadas em alvo isolado de teste/homologação. M6 avalia execução de restore; a existência de rotina automatizada de backup é registrada à parte como contexto/evidência, não substitui um restore comprovado.
 - **População, unidade e janela**: manifesto prévio relaciona cada artefato de backup identificável a um alvo e procedimento de restauração; cada par artefato-alvo planejado é uma unidade do denominador. A janela é o intervalo de validação com início/fim fixados no manifesto, abrangendo artefatos produzidos no período de referência previamente declarado. Tentativas adicionais de depuração não alteram o denominador; artefato ausente, tentativa não iniciada ou *skip* mantém-se como falha da unidade planejada.
 - **Critérios de sucesso**: artefato esperado presente e legível; checksum/validação de integridade passa; restauração dos três esquemas termina; objetos e dados de referência definidos pelo plano estão disponíveis; verificações funcionais/de consistência pré-declaradas passam. Falha de qualquer etapa reprova a unidade. Não usar dados pessoais de produção em alvo não autorizado; se o procedimento exigir produção, não executá-lo sem autorização e salvaguardas.
@@ -412,8 +442,22 @@ $$
     - **Objetivo:** Analisar **o código-fonte dos módulos de Matrícula e de Lançamento de Notas/Menções (`app/` e `ieducar/`)** com o propósito de **avaliar** com respeito à **modularidade, analisabilidade, modificabilidade e testabilidade** do ponto de vista dos **mantenedores e engenheiros de software** no contexto da **arquitetura monolítica híbrida (Laravel + Legado)**.
     - **Rastreabilidade:** $\text{G3} \rightarrow \text{Q3.1} \rightarrow \text{M7a/M7b (CC)}$ · $\text{G3} \rightarrow \text{Q3.2} \rightarrow \text{M8 (DSPM)}$ · $\text{G3} \rightarrow \text{Q3.3} \rightarrow \text{M9 (IFDL)}$ · $\text{G3} \rightarrow \text{Q3.4} \rightarrow \text{M10 (MI)}$ · $\text{G3} \rightarrow \text{Q3.5} \rightarrow \text{M11 (TTAE)}$.
 
+**Tabela H3 — Questões e hipóteses de G3 (Manutenibilidade)**
+
+| Questão | Hipótese | Verificação (métrica e critério) |
+| :--- | :--- | :--- |
+| **Q3.1:** Qual a complexidade ciclomática dos métodos no universo declarado? | **H3.1:** Métodos legados em `Boletim.php` e `DiarioApiController.php` elevarão o percentil 90 para a faixa entre 10 e 20 e o máximo para acima de 30. | M7a e M7b: confirmada se $10 < \text{CC}_{P90} \le 20$ e $\text{CC}_{\max} > 30$. |
+| **Q3.2:** Quão desacoplados e equilibrados estão os componentes estruturais do domínio? | **H3.2:** O baixo uso de interfaces ($A \approx 0$) e o acoplamento direto a modelos concretos situarão a distância média da sequência principal entre 0,20 e 0,50. | M8: confirmada se $0{,}20 < \text{DSPM} \le 0{,}50$. |
+| **Q3.3:** Qual o grau de atrito e adaptação de dados entre a camada legada e moderna? | **H3.3:** Os modelos `Legacy*` apresentam em média entre 1,0 e 2,5 adaptações defensivas por modelo. | M9: confirmada se $1{,}0 < \text{IFDL} \le 2{,}5$. |
+| **Q3.4:** Qual o índice global de manutenibilidade do código? | **H3.4:** A média do índice de manutenibilidade normalizado ficará na faixa Boa, puxada para baixo pelos métodos extensos do legado. | M10: confirmada se $60 \le \text{MI} < 80$. |
+| **Q3.5:** Qual o percentual de casos de teste ativos com asserção no domínio avaliado? | **H3.5:** A presença de testes marcados com `markTestSkipped()` na suíte legada reduzirá a taxa de testes ativos com asserção para a faixa entre 70% e 95%. | M11: confirmada se $70\% \le \text{TTAE} < 95\%$. |
+
+*Fonte: Elaborado pelos autores.* A confirmação ou a refutação de uma hipótese não equivale à aprovação ou à reprovação da característica: o julgamento segue os limiares da Seção 4 e as regras da Seção 5.
+
 #### M7a — Percentil 90 da Complexidade Ciclomática (CC-P90)
 - **Subcaracterística de trabalho**: Modularidade. O mapeamento é da equipe; a atribuição e numeração de cláusulas ISO não foram verificadas na norma paga.
+- **Questão respondida**: Q3.1.
+- **Hipótese associada**: H3.1 (Tabela H3).
 - **População e unidade**: todos os métodos e funções concretos, contáveis pelo analisador, nos arquivos de produção em escopo previamente listados: `app/Services/RegistrationService.php`, `ieducar/modules/Avaliacao/Views/DiarioApiController.php`, `ieducar/modules/Avaliacao/Views/DiarioController.php` e `ieducar/modules/Avaliacao/Service/Boletim.php`. Uma unidade é uma declaração callable. Excluem-se testes, `vendor/`, código gerado e declarações abstratas/interface; closures só entram se o analisador as reportar como unidade separada, e essa decisão fica registrada. O inventário registra caminho, símbolo e commit; método sem complexidade extraída invalida a cobertura, não é descartado silenciosamente.
 - **Janela e estatística**: uma análise estática sobre um commit fixado. Ordenar os $n$ valores inteiros de $v(G)$ em ordem crescente e usar o percentil de posto mais próximo (*nearest rank*): $r=\lceil0{,}90n\rceil$ e $P_{90}=x_{(r)}$, sem interpolação. O universo precisa conter pelo menos um método.
 - **Fórmula e unidade**: $v(G)=E-N+2P$, em que $E$ são arestas, $N$ nós e $P$ componentes conexos do grafo de fluxo de controle da unidade. M7a é o inteiro $x_{(\lceil0{,}90n\rceil)}$, em pontos de complexidade ciclomática por método; não é tempo nem percentual.
@@ -422,6 +466,8 @@ $$
 
 #### M7b — Máximo da Complexidade Ciclomática (CC-MAX)
 - **Subcaracterística de trabalho**: Analisabilidade. O mapeamento é da equipe, não uma citação de cláusula ISO verificada.
+- **Questão respondida**: Q3.1.
+- **Hipótese associada**: H3.1 (Tabela H3).
 - **População, unidade, commit, exclusões e janela**: exatamente o mesmo inventário de métodos e a mesma execução de M7a. É obrigatório publicar $n$ e o inventário para que o máximo não seja calculado sobre subconjunto diferente.
 - **Fórmula e unidade**: $\text{CC}_{\max}=\max(v(G))$, inteiro em pontos de complexidade por método. Empate no máximo preserva todos os símbolos empatados na evidência.
 - **Vazio e cobertura**: $n=0$ ou extração incompleta resulta em não mensurável, não zero; vale a mesma regra de cobertura de M7a.
@@ -431,6 +477,8 @@ $$
 
 #### M8 — Distância da Sequência Principal de Martin (DSPM)
 - **Subcaracterística de trabalho**: Modularidade e Modificabilidade, conforme mapeamento local; não se atribui cláusula ISO sem conferência do texto integral.
+- **Questão respondida**: Q3.2.
+- **Hipótese associada**: H3.2 (Tabela H3).
 - **Universo e unidade**: componentes/pacotes de domínio de Matrícula e Notas/Menções, delimitados por uma tabela de mapeamento caminho → componente e congelados antes da análise. Uma unidade é um componente com ao menos um tipo PHP (classe ou interface). Classes/interfaces são atribuídas a exatamente um componente; dependência aferente/eferente conta uma vez por par de tipos distintos, não por ocorrência de import.
 - **Fórmula de Cálculo**:
 
@@ -448,6 +496,8 @@ $$
 
 #### M9 — Índice de Fricção de Dados Legado-Moderno (IFDL)
 - **Subcaracterística de trabalho**: Analisabilidade e Modificabilidade (mapeamento da equipe; sem cláusula ISO afirmada).
+- **Questão respondida**: Q3.3.
+- **Hipótese associada**: H3.3 (Tabela H3).
 - **Universo e unidade**: modelos de domínio `Legacy*` efetivamente usados pelos fluxos avaliados, listados por caminho/classe num manifesto congelado. Uma unidade é uma classe de modelo. Um adaptador defensivo é um ponto de conversão/normalização em código que transforma representação entre legado e moderno (por exemplo, data, vazio/null); duplicatas de busca/uso no mesmo ponto lógico contam uma vez conforme rubricagem versionada antes da leitura.
 - **Fórmula de Cálculo**:
 
@@ -463,6 +513,8 @@ $$
 
 #### M10 — Índice de Manutenibilidade Normalizado (MI)
 - **Subcaracterística de trabalho**: Modificabilidade (mapeamento local; não métrica prescrita pela ISO).
+- **Questão respondida**: Q3.4.
+- **Hipótese associada**: H3.4 (Tabela H3).
 - **Universo e unidade**: mesmos callables concretos do manifesto M7a/M7b. Calcular $HV$, $v(G)$ e LOC lógico por callable, e depois média aritmética sem ponderação do MI por callable; registrar cada entrada e score. Excluir testes, código gerado e `vendor/` conforme universo M7.
 - **Conceito e atribuição**: variante local de Maintainability Index com coeficientes preservados do framework atual. Não atribuir a Oman-Coleman, SEI ou Microsoft sem uma referência verificável para esta variante e convenção.
 - **Fórmula de Cálculo**:
@@ -479,6 +531,8 @@ $$
 
 #### M11 — Taxa de Testes Ativos com Asserção em Domínio (TTAE)
 - **Subcaracterística de trabalho**: Testabilidade (mapeamento local; sem cláusula ISO afirmada).
+- **Questão respondida**: Q3.5.
+- **Hipótese associada**: H3.5 (Tabela H3).
 - **População e unidade**: todos os casos de teste declarados e descobertos pelo runner nos diretórios/arquivos de teste que cobrem matrícula, enturmação, regras de notas/menções e diário, conforme manifesto domínio → testes congelado. Uma unidade é um caso identificado pelo runner; helpers não são casos. Testes fora dos domínios são excluídos com justificativa antes da coleta.
 - **Definições distintas**: **declarado** = caso listado/disponível no runner; **ativo** = runner entrou e executou o caso, mesmo se falhou; **com asserção** = contador/runtime do runner registra ao menos uma asserção naquele caso; **eficaz** = detecta uma falha controlada (por exemplo, mutação viável no código). A presença de uma chamada/assertion não prova eficácia.
 - **Conceito e denominador**: M11 mede apenas atividade com asserção em relação a todos os casos declarados em escopo. *Skipped*, pendente, desabilitado, não descoberto após o manifesto e não executado não entram no numerador, mas permanecem no denominador planejado. Caso ativo que falha ainda pode contar no numerador se o runner registrar asserção executada; resultado funcional da suíte é reportado separadamente.
@@ -602,7 +656,7 @@ A Tabela 4 consolida os limiares numéricos, os quatro níveis de pontuação (C
 | **M3** | Determinismo de Notas/Menções ($\text{DCNM}$) | Confiabilidade › Ausência de Falhas | $< 100\%$ | — | — | $100\%$ | **2.0** | **GATE BINÁRIO** |
 | **M4** | Integridade Transacional ($\text{ITAE}$) | Confiabilidade › Tolerância a Falhas | $< 100\%$ | — | — | $100\%$ | **2.0** | **GATE BINÁRIO** |
 | **M5** | Densidade de Defeitos de Matrícula ($\text{DDOM}$) | Confiabilidade › Ausência de Falhas | $> 5{,}0$ | $(2{,}0, 5{,}0]$ | $(0{,}5, 2{,}0]$ | $\le 0{,}5$ | 1.2 | Gradual |
-| **M6** | Verificabilidade de Backup ($\text{CVPB}$) | Confiabilidade › Recuperabilidade | $< 90{,}0\%$ | $[90{,}0\%, 95{,}0\%)$ | $[95{,}0\%, 99{,}0\%)$ | $100\%$ | 1.0 | Gradual |
+| **M6** | Verificabilidade de Backup ($\text{CVPB}$) | Confiabilidade › Recuperabilidade | $< 90{,}0\%$ | $[90{,}0\%, 95{,}0\%)$ | $[95{,}0\%, 100\%)$ | $100\%$ | 1.0 | Gradual |
 | **M7a**| Complexidade Ciclomática $P_{90}$ ($\text{CC}_{P90}$) | Manutenibilidade › Modularidade | $> 20$ | $(15, 20]$ | $(10, 15]$ | $\le 10$ | 1.0 | Gradual |
 | **M7b**| Complexidade Ciclomática Máxima ($\text{CC}_{\max}$) | Manutenibilidade › Analisabilidade | $> 50$ | $(30, 50]$ | $(15, 30]$ | $\le 15$ | 1.2 | Gradual |
 | **M8** | Distância Sequência Principal ($\text{DSPM}$) | Manutenibilidade › Modularidade e Modificabilidade (mapeamento local) | $> 0{,}50$ | $(0{,}35, 0{,}50]$ | $(0{,}20, 0{,}35]$ | $\le 0{,}20$ | 0.8 | Gradual |
