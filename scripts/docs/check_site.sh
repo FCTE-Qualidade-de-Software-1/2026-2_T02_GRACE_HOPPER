@@ -70,5 +70,11 @@ if ! grep -q 'class="mermaid"' "$GESTAO_HTML"; then
     exit 1
 fi
 
+PAINEL_HTML="site/painel_projeto/index.html"
+if [ ! -f "$PAINEL_HTML" ] || ! grep -q 'id="painel-projeto"' "$PAINEL_HTML" || ! grep -q 'painel.js' "$PAINEL_HTML"; then
+    echo "Erro: painel em tempo real ausente ou sem script em $PAINEL_HTML!" >&2
+    exit 1
+fi
+
 echo "Todas as verificações passaram com sucesso!"
 exit 0
