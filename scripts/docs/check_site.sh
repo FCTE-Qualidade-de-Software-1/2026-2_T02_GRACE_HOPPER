@@ -76,5 +76,12 @@ if [ ! -f "$PAINEL_HTML" ] || ! grep -q 'id="painel-projeto"' "$PAINEL_HTML" || 
     exit 1
 fi
 
+echo "Verificando a página de indicadores PSM/CID..."
+PSM_HTML="site/indicadores_psm/index.html"
+if [ ! -f "$PSM_HTML" ]; then
+    echo "Erro: página $PSM_HTML não encontrada!" >&2
+    exit 1
+fi
+
 echo "Todas as verificações passaram com sucesso!"
 exit 0

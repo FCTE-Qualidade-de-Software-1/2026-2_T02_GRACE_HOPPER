@@ -309,7 +309,7 @@ Os quatro indicadores e as fórmulas são os mesmos definidos no artigo:
 - **ACM (Aderência ao Calendário dos Marcos)** = marcos concluídos no prazo ÷ marcos com prazo definido.
 - **VEC (Variação de Esforço e Custo)** = (horas realizadas − horas planejadas) ÷ horas planejadas, no mesmo conjunto de issues.
 
-A Tabela 5 apresenta os valores coletados no fechamento da Entrega 1.
+A Tabela 5 registra os valores coletados manualmente no fechamento da Entrega 1 (27/10/2026). Desde então, os indicadores são recalculados automaticamente pelo GitHub Actions a cada push na `main` e diariamente, com evolução semanal, gráficos e dados brutos, na página [Indicadores PSM/CID](indicadores_psm.md).
 
 **Tabela 5 — Indicadores PSM/CID na Entrega 1**
 

@@ -8,9 +8,15 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    # Recalcula os indicadores PSM/CID todo dia às 00h10 (horário de Brasília).
+    - cron: "10 3 * * *"
 
 permissions:
   contents: read
+  issues: read
+  pull-requests: read
+  actions: read
   pages: write
   id-token: write
 
@@ -37,6 +43,14 @@ jobs:
 
       - name: Run page generator unit tests
         run: python3 -m unittest scripts/docs/test_gen_pages.py
+
+      - name: Run PSM/CID indicator unit tests
+        run: python3 -m unittest scripts/psm/test_indicadores.py
+
+      - name: Collect PSM/CID data from the GitHub API
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/psm/coletar_dados.py
 
       - name: Build and validate site (strict mode)
         env:

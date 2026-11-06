@@ -33,6 +33,7 @@ plugins:
   - gen-files:
       scripts:
         - scripts/docs/gen_pages.py
+        - scripts/docs/gen_indicadores.py
 
 markdown_extensions:
   - tables
@@ -68,6 +69,7 @@ nav:
   - GQM: gqm_evaluation_framework.md
   - Gestão de Releases: gestao_projeto_releases_milestones_issues.md
   - Painel do Projeto: painel_projeto.md
+  - Indicadores PSM/CID: indicadores_psm.md
   - Relatório PC1: relatorio_de_planejamento_ponto_de_controle_1_i_educar.md
   - Protocolo Ético (TCLE): termo_consentimento_livre_esclarecido.md
   - Contexto do Produto:
