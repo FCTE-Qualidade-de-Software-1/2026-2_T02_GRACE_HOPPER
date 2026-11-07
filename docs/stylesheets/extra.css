@@ -798,3 +798,78 @@ div.arithmatex mjx-container[display="true"] {
   .pp-skel,
   .pp-btn:disabled .pp-icon { animation: none !important; }
 }
+
+/* Indicadores PSM/CID (página gerada por scripts/docs/gen_indicadores.py) */
+:root {
+  --psm-s1: #17324d;
+  --psm-s2: #0f8b83;
+  --psm-s3: #c77d1a;
+  --psm-s4: #8a4fb8;
+  --psm-atraso: #c2410c;
+  --psm-trilho: rgba(23, 50, 77, 0.10);
+  --psm-grade: rgba(36, 53, 72, 0.12);
+}
+
+[data-md-color-scheme="slate"] {
+  --psm-s1: #7fb3e6;
+  --psm-s2: #54d6c5;
+  --psm-s3: #f0b860;
+  --psm-s4: #c8a2ef;
+  --psm-atraso: #fb8a5c;
+  --psm-trilho: rgba(255, 255, 255, 0.10);
+  --psm-grade: rgba(255, 255, 255, 0.12);
+}
+
+.psm-cartoes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin: 1.2rem 0 1.6rem;
+}
+
+.psm-cartao {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.6rem;
+  background: var(--md-default-bg-color);
+  box-shadow: 0 1px 4px rgba(16, 37, 58, 0.12);
+}
+
+[data-md-color-scheme="slate"] .psm-cartao {
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: none;
+}
+
+.psm-sigla { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; color: var(--md-accent-fg-color); }
+.psm-valor { white-space: nowrap; font-size: 1.6rem; font-weight: 700; line-height: 1.1; color: var(--md-default-fg-color); }
+.psm-nome { font-size: 0.75rem; font-weight: 600; }
+.psm-detalhe { font-size: 0.7rem; color: var(--md-default-fg-color--light); }
+
+.md-typeset figure.psm-grafico { display: block; width: 100%; max-width: 100%; margin: 0.6rem 0 0.4rem; }
+
+@media screen and (max-width: 44.9375em) {
+  .psm-cartoes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.psm-grafico svg { width: 100%; height: auto; font-family: var(--md-text-font-family, sans-serif); }
+.psm-grafico text { fill: var(--md-default-fg-color); }
+.psm-rot { font-size: 13px; }
+.psm-val { font-size: 12px; font-weight: 600; }
+.psm-eixo { font-size: 11px; fill: var(--md-default-fg-color--light) !important; }
+.psm-trilho { fill: var(--psm-trilho); }
+.psm-barra { fill: var(--psm-s2); }
+.psm-grade { stroke: var(--psm-grade); stroke-width: 1; }
+.psm-eixo-linha { stroke: var(--md-default-fg-color--light); stroke-width: 1; }
+.psm-linha { fill: none; stroke-width: 2.5; }
+.psm-linha.psm-s1, .psm-ponto.psm-s1 { stroke: var(--psm-s1); }
+.psm-linha.psm-s2, .psm-ponto.psm-s2 { stroke: var(--psm-s2); }
+.psm-linha.psm-s3, .psm-ponto.psm-s3 { stroke: var(--psm-s3); }
+.psm-linha.psm-s4, .psm-ponto.psm-s4 { stroke: var(--psm-s4); }
+.psm-ponto { fill: var(--md-default-bg-color); stroke-width: 2.5; }
+.psm-leg.psm-s1 { fill: var(--psm-s1); }
+.psm-leg.psm-s2 { fill: var(--psm-s2); }
+.psm-leg.psm-s3 { fill: var(--psm-s3); }
+.psm-leg.psm-s4 { fill: var(--psm-s4); }
+.psm-atraso { fill: var(--psm-atraso); }
+.psm-adiantado { fill: var(--psm-s2); }
