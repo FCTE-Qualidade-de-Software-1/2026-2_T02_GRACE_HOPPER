@@ -67,6 +67,7 @@ exclude_docs: |
 nav:
   - Início: index.md
   - GQM: gqm_evaluation_framework.md
+  - Plano de Medição e Testes: plano_medicao_testes.md
   - Gestão de Releases: gestao_projeto_releases_milestones_issues.md
   - Painel do Projeto: painel_projeto.md
   - Indicadores PSM/CID: indicadores_psm.md
