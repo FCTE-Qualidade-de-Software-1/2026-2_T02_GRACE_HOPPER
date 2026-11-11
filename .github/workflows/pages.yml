@@ -47,6 +47,12 @@ jobs:
       - name: Run PSM/CID indicator unit tests
         run: python3 -m unittest scripts/psm/test_indicadores.py
 
+      - name: Run static analysis engine tests (M7a, M7b, M10)
+        run: php scripts/tests/evaluate_quality_test.php
+
+      - name: Run quality-in-use calculation tests (M14a, M14b, M15)
+        run: python3 -m unittest scripts/uso/test_calcular_m14_m15.py
+
       - name: Collect PSM/CID data from the GitHub API
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

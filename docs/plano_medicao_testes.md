@@ -96,6 +96,8 @@ A Tabela 3 estabelece o roteiro operacional para a extração das métricas est�
 
 *Fonte: Elaborado pelos autores conforme ISO/IEC 25010:2023 e Framework GQM.*
 
+A execução de M7a, M7b e M10 sobre o commit congelado e os resultados por callable estão em [Manutenibilidade (M7a, M7b e M10)](fase-4/manutenibilidade-m7-m10.md).
+
 ---
 
 ### 2.4 Característica 4 — Capacidade de Interação e Qualidade em Uso (G4)
@@ -112,6 +114,8 @@ A Tabela 4 sintetiza o roteiro para o Gate M12, a auditoria de mensagens M13 e o
 | **M15 — TSPT** | Eficácia em Uso (ISO 25019) | Mesmas sessões supervisionadas das tarefas T1 e T2. | 1. Observar se o participante conclui a tarefa na primeira submissão.<br>2. Registrar ocorrência de erro de validação, perda de dados ou necessidade de ajuda.<br>3. Verificar integridade do dado gravado no banco após submissão.<br>4. Calcular $\text{TSPT} = (N_{\text{sucessos na 1ª tentativa}} / N_{\text{execuções totais}}) \times 100\%$. | Ficha de observação de teste de usabilidade | Relatório de eficácia por participante em `evidencias/g4_interacao_uso/m15_tspt.csv`. | Excelente: $\ge 90{,}0\%$<br>Bom: $[70{,}0\%, 90{,}0\%)$<br>Regular: $[50{,}0\%, 70{,}0\%)$<br>Crítico: $< 50{,}0\%$ |
 
 *Fonte: Elaborado pelos autores conforme ISO/IEC 25010:2023, ISO/IEC 25019:2023 e Framework GQM.*
+
+O roteiro detalhado das sessões de M14a, M14b e M15, as fichas de registro e o script de cálculo estão em [Qualidade em uso (M14a, M14b e M15)](fase-4/qualidade-em-uso-m14-m15.md).
 
 ---
 

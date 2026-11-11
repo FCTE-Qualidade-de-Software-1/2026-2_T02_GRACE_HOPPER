@@ -109,7 +109,10 @@ nav:
       - fase-3/index.md
       - Ambiente Docker e instrumentos: fase-3/ambiente.md
       - Plano de medição e testes: plano_medicao_testes.md
-  - Fases 4 e 5: fase-4/index.md
+  - Fases 4 e 5:
+      - fase-4/index.md
+      - Manutenibilidade (M7a, M7b e M10): fase-4/manutenibilidade-m7-m10.md
+      - Qualidade em uso (M14a, M14b e M15): fase-4/qualidade-em-uso-m14-m15.md
   - Gestão do projeto:
       - gestao/index.md
       - Planejar:
