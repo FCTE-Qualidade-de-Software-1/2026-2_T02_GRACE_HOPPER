@@ -1,0 +1,171 @@
+{
+  "$comment": "Contratos de referencia (JSON Schema 2020-12) congelados ANTES da execucao de M2 (CEI). Derivados dos controllers em ieducar/modules/Api/Views/MatriculaController.php, ieducar/modules/Avaliacao/Views/DiarioApiController.php, ieducar/lib/Portabilis/Controller/ApiCoreController.php e app/Http/Controllers/Api/{Registration,Situation}Controller.php do commit 7903a3efc7689942ee700007f86ed581023aad27. Nao existe documentacao oficial de contrato para estes endpoints.",
+  "schemas": {
+    "legacy_matricula": {
+      "type": "object",
+      "required": ["id", "aluno_id", "ano", "instituicao_id", "escola_id", "curso_id", "serie_id", "oper", "resource", "msgs", "any_error_msg"],
+      "properties": {
+        "id": {"type": "integer"},
+        "aluno_id": {"type": "integer"},
+        "ano": {"type": "integer"},
+        "instituicao_id": {"type": "integer"},
+        "escola_id": {"type": "integer"},
+        "curso_id": {"type": "integer"},
+        "serie_id": {"type": "integer"},
+        "oper": {"type": "string"},
+        "resource": {"type": "string"},
+        "msgs": {"type": "array"},
+        "any_error_msg": {"type": "boolean", "const": false}
+      }
+    },
+    "legacy_matriculas_aluno": {
+      "type": "object",
+      "required": ["matriculas", "oper", "resource", "msgs", "any_error_msg"],
+      "properties": {
+        "matriculas": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "ano", "instituicao_id", "escola_id", "curso_id", "serie_id", "aprovado", "situacao"],
+            "properties": {
+              "id": {"type": "integer"},
+              "ano": {"type": "integer"},
+              "instituicao_id": {"type": "integer"},
+              "escola_id": {"type": "integer"},
+              "curso_id": {"type": "integer"},
+              "serie_id": {"type": "integer"},
+              "aprovado": {"type": "integer"},
+              "situacao": {"type": "string"}
+            }
+          }
+        },
+        "any_error_msg": {"type": "boolean", "const": false}
+      }
+    },
+    "legacy_matriculas_escola": {
+      "type": "object",
+      "required": ["matriculas", "oper", "resource", "msgs", "any_error_msg"],
+      "properties": {
+        "matriculas": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["aluno_id", "matricula_id", "escola_id", "situacao", "ativo"],
+            "properties": {
+              "aluno_id": {"type": "integer"},
+              "matricula_id": {"type": "integer"},
+              "escola_id": {"type": "integer"},
+              "situacao": {"type": "integer"},
+              "ativo": {"type": "integer"}
+            }
+          }
+        },
+        "any_error_msg": {"type": "boolean", "const": false}
+      }
+    },
+    "legacy_frequencia": {
+      "type": "object",
+      "required": ["frequencia", "oper", "resource", "msgs", "any_error_msg"],
+      "properties": {
+        "frequencia": {"type": ["number", "string", "null"]},
+        "any_error_msg": {"type": "boolean", "const": false}
+      }
+    },
+    "legacy_matricula_search": {
+      "type": "object",
+      "required": ["result", "oper", "resource", "msgs", "any_error_msg"],
+      "properties": {
+        "result": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string"}},
+        "any_error_msg": {"type": "boolean", "const": false}
+      }
+    },
+    "legacy_movimentacao_enturmacao": {
+      "type": "object",
+      "required": ["enturmacoes", "oper", "resource", "msgs", "any_error_msg"],
+      "properties": {
+        "enturmacoes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "turma_id", "matricula_id", "sequencial", "data_entrada"],
+            "properties": {
+              "id": {"type": "integer"},
+              "turma_id": {"type": "integer"},
+              "matricula_id": {"type": "integer"},
+              "sequencial": {"type": "integer"},
+              "data_entrada": {"type": "string"}
+            }
+          }
+        },
+        "any_error_msg": {"type": "boolean", "const": false}
+      }
+    },
+    "legacy_matriculas_dependencia": {
+      "type": "object",
+      "required": ["matriculas", "oper", "resource", "msgs", "any_error_msg"],
+      "properties": {
+        "matriculas": {"type": "array"},
+        "any_error_msg": {"type": "boolean", "const": false}
+      }
+    },
+    "legacy_diario_matriculas": {
+      "type": "object",
+      "required": ["matricula_id", "matriculas", "navegacao_tab", "can_change", "locked", "oper", "resource", "msgs", "any_error_msg"],
+      "properties": {
+        "matriculas": {"type": "array"},
+        "can_change": {"type": "boolean"},
+        "locked": {"type": "boolean"},
+        "any_error_msg": {"type": "boolean", "const": false}
+      }
+    },
+    "rest_registration": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "student_id", "ano", "aprovado", "ref_ref_cod_escola", "ref_cod_curso"],
+            "properties": {
+              "id": {"type": "integer"},
+              "student_id": {"type": "integer"},
+              "ano": {"type": "integer"},
+              "aprovado": {"type": "integer"},
+              "ref_ref_cod_escola": {"type": "integer"},
+              "ref_cod_curso": {"type": "integer"}
+            }
+          }
+        }
+      }
+    },
+    "rest_situation": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+        "data": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string"}}
+      }
+    },
+    "erro_legacy": {
+      "type": "object",
+      "required": ["msgs", "any_error_msg"],
+      "properties": {
+        "any_error_msg": {"type": "boolean", "const": true},
+        "msgs": {
+          "type": "array",
+          "minItems": 1,
+          "contains": {"type": "object", "required": ["msg", "type"], "properties": {"msg": {"type": "string"}, "type": {"const": "error"}}}
+        }
+      }
+    },
+    "erro_laravel": {
+      "type": "object",
+      "required": ["message"],
+      "properties": {"message": {"type": "string"}}
+    }
+  }
+}

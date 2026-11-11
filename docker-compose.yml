@@ -1,54 +1,109 @@
 # Ambiente Conteinerizado de Avaliação de Qualidade — i-Educar 2.12 (ISO/IEC 25040:2024)
 # Disciplina: Qualidade de Software 1 (FGA0315) - UnB / FGA
 # Issue #10: Planejamento do Ambiente de Testes Conteinerizado (Docker)
+# Issue #20 (GitHub #38): Provisionamento do ambiente e medição de coexistência (M1 - TINCR)
+#
+# Este manifesto orquestra o checkout oficial de `portabilis/i-educar` fixado no commit
+# 7903a3efc7689942ee700007f86ed581023aad27 (branch 2.12). Nenhum arquivo do i-Educar é
+# alterado: a imagem PHP é construída a partir de `${IEDUCAR_SRC}/docker/php`.
+#
+# Todo recurso compartilhável do host é parametrizado por variável de ambiente (ver
+# `.env.example`), de modo que uma segunda instância sobe no mesmo host alterando apenas
+# o arquivo de variáveis (`--env-file`), sem editar este arquivo.
+#
+# Uso (instância padrão):
+#   cp .env.example .env
+#   git clone https://github.com/portabilis/i-educar.git i-educar-src
+#   git -C i-educar-src checkout 7903a3efc7689942ee700007f86ed581023aad27
+#   docker compose up -d --build
+#   docker compose exec php composer new-install
+#   docker compose exec php php artisan db:seed
+#   docker compose exec php php artisan db:seed --class=DemoSeeder
+
+name: ${COMPOSE_PROJECT_NAME:-ieducar-a}
+
+x-php: &php
+  build:
+    context: ${IEDUCAR_SRC:-./i-educar-src}/docker/php
+    args:
+      PHP_VERSION: "8.5"
+      COMPOSER_VERSION: "2.10"
+      HOST_UID: ${HOST_UID:-1001}
+      HOST_GID: ${HOST_GID:-1001}
+  image: ${INSTANCE_NAME:-ieducar-a}-php:8.5
+  working_dir: /var/www/ieducar
+  volumes:
+    - ${IEDUCAR_SRC:-./i-educar-src}:/var/www/ieducar
+  environment:
+    APP_ENV: ${APP_ENV:-local}
+    APP_URL: ${APP_URL:-http://localhost}
+    DB_CONNECTION: pgsql
+    DB_HOST: postgres
+    DB_PORT: 5432
+    DB_DATABASE: ${DB_DATABASE:-ieducar}
+    DB_USERNAME: ${DB_USERNAME:-ieducar}
+    DB_PASSWORD: ${DB_PASSWORD:-ieducar}
+    PGPASSWORD: ${DB_PASSWORD:-ieducar}
+    CACHE_DRIVER: redis
+    CACHE_STORE: redis
+    REDIS_HOST: redis
+    REDIS_PORT: 6379
+    REDIS_PREFIX: ${REDIS_PREFIX:-ieducar-a-}
+  extra_hosts:
+    - host.docker.internal:host-gateway
 
 services:
-  app:
-    image: portabilis/i-educar:2.12.0
-    container_name: ieducar-app
-    restart: unless-stopped
-    ports:
-      - "8080:80"
-    environment:
-      - APP_ENV=testing
-      - APP_DEBUG=true
-      - APP_KEY=base64:7KqZ4uN2V7R5j3s1Q8t9W2e6Y4u1I3o5P7a9S1d3F5g=
-      - DB_CONNECTION=pgsql
-      - DB_HOST=database
-      - DB_PORT=5432
-      - DB_DATABASE=ieducar_test
-      - DB_USERNAME=ieducar
-      - DB_PASSWORD=secret
-      - CACHE_DRIVER=redis
-      - REDIS_HOST=cache
-      - REDIS_PORT=6379
-    depends_on:
-      database:
-        condition: service_healthy
-      cache:
-        condition: service_started
-    volumes:
-      - ./reports:/var/www/reports
+  php:
+    <<: *php
+    container_name: ${INSTANCE_NAME:-ieducar-a}-php
+    command: tail -f /dev/null
 
-  database:
+  fpm:
+    <<: *php
+    container_name: ${INSTANCE_NAME:-ieducar-a}-fpm
+    depends_on:
+      - postgres
+      - redis
+
+  nginx:
+    container_name: ${INSTANCE_NAME:-ieducar-a}-nginx
+    image: nginx:1.30-alpine
+    working_dir: /var/www/ieducar
+    depends_on:
+      - fpm
+    volumes:
+      - ${IEDUCAR_SRC:-./i-educar-src}:/var/www/ieducar
+      - ${IEDUCAR_SRC:-./i-educar-src}/docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - ${IEDUCAR_SRC:-./i-educar-src}/docker/nginx/snippets:/etc/nginx/snippets/
+    ports:
+      - ${DOCKER_NGINX_PORT:-8080}:80
+      - ${DOCKER_NGINX_SSL_PORT:-8443}:443
+
+  postgres:
+    container_name: ${INSTANCE_NAME:-ieducar-a}-postgres
     image: postgres:18-alpine
-    container_name: ieducar-db
     restart: unless-stopped
     environment:
-      - POSTGRES_DB=ieducar_test
-      - POSTGRES_USER=ieducar
-      - POSTGRES_PASSWORD=secret
+      POSTGRES_DB: ${DB_DATABASE:-ieducar}
+      POSTGRES_USER: ${DB_USERNAME:-ieducar}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-ieducar}
+      PGUSER: ${DB_USERNAME:-ieducar}
+    volumes:
+      - postgres:/var/lib/postgresql/18/docker
     ports:
-      - "5432:5432"
+      - ${DOCKER_POSTGRES_PORT:-5432}:5432
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ieducar -d ieducar_test"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-ieducar} -d ${DB_DATABASE:-ieducar}"]
       interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 10
 
-  cache:
-    image: redis:7-alpine
-    container_name: ieducar-cache
+  redis:
+    container_name: ${INSTANCE_NAME:-ieducar-a}-redis
+    image: redis:8-alpine
     restart: unless-stopped
     ports:
-      - "6379:6379"
+      - ${DOCKER_REDIS_PORT:-6379}:6379
+
+volumes:
+  postgres:
