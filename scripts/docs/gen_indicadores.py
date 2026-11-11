@@ -165,6 +165,22 @@ def gerar_csvs(dados: dict, r: dict) -> dict[str, str]:
     }
 
 
+def moeda(v: float) -> str:
+    inteiro, dec = f"{v:,.2f}".split(".")
+    return "R$ " + inteiro.replace(",", ".") + "," + dec
+
+
+def ficha_psm(oque: str, formula: str, fonte: str, criterio: str) -> str:
+    return (
+        '<div class="psm-ficha" markdown="0">'
+        f'<div><strong>O que mede:</strong> {escape(oque)}</div>'
+        f'<div><strong>Fórmula:</strong> {escape(formula)}</div>'
+        f'<div><strong>Fonte dos dados:</strong> {escape(fonte)}</div>'
+        f'<div><strong>Critério de decisão:</strong> {escape(criterio)}</div>'
+        '</div>\n'
+    )
+
+
 # ------------------------------------------------------------------ página
 def cartao(sigla: str, valor: str, nome: str, detalhe: str) -> str:
     return (f'<div class="psm-cartao"><span class="psm-sigla">{sigla}</span>'
@@ -174,39 +190,51 @@ def cartao(sigla: str, valor: str, nome: str, detalhe: str) -> str:
 
 def pagina(dados: dict) -> str:
     r = ind.calcular(dados)
-    t, b, a = r["tcm"], r["trcd"], r["acm"]
+    t, b, a, v = r["tcm"], r["trcd"], r["acm"], r["vec"]
     coleta = ind.data(dados["coletado_em"])
     simulados = [m for m in dados["milestones"] if m.get("prazo_simulado")]
     L = []
-    L.append("# Indicadores de Gestão do Projeto (PSM/CID)\n")
+    L.append("# Painel de Indicadores PSM/CID\n")
     L.append(f"Indicadores calculados automaticamente a partir das issues, milestones, pull requests e execuções do "
              f"GitHub Actions do [repositório da equipe]({REPO_URL}). A coleta roda no GitHub Actions a cada push na "
-             f"`main` e diariamente; cada execução recalcula todos os valores. As tarefas do dia a dia ficam no "
-             f"[quadro Kanban]({KANBAN_URL}) e no [Painel do Projeto](painel_projeto.md).\n")
+             f"`main` e diariamente; cada execução recalcula todos os valores. As especificações completas de cada medida "
+             f"estão no [Plano de Medição (PSM)](gestao/plano-de-medicao.md), a análise crítica no "
+             f"[Registro de Medições](gestao/registro-de-medicoes.md) e o acompanhamento vivo no "
+             f"[Painel em Tempo Real](painel_projeto.md).\n")
     L.append(f"**Última coleta:** {coleta.astimezone(ind.FUSO_BRT).strftime('%d/%m/%Y às %H:%M')} (horário de Brasília).\n")
     if simulados:
         L.append('!!! warning "Pré-visualização com prazos simulados"\n    Os prazos dos milestones '
                  + ", ".join(titulo_curto(m["titulo"]) for m in simulados)
                  + " ainda não estão cadastrados no GitHub; esta versão usa os prazos propostos apenas para conferência.\n")
-    L.append("**Objetivo de medição:** acompanhar o progresso, o cumprimento do calendário, a conformidade "
-             "dos pull requests da equipe, para replanejar a tempo das entregas da disciplina.\n")
+    L.append("**Objetivo de medição:** acompanhar o progresso, o cumprimento do calendário, a variação de esforço/custo e a "
+             "conformidade dos pull requests da equipe, apoiando decisões de replanejamento entre as entregas.\n")
+    vec_detalhe = (f'{num(v["horas_realizadas"])}h reais / {num(v["horas_estimadas"])}h est. ({v["com_registro"]} issues)'
+                   if v["com_registro"] else "sem issues com ambos os registros")
     L.append('<div class="psm-cartoes" markdown="0">'
              + cartao("TCM", pct(t["taxa"]), "Conclusão por milestone", f'{t["concluidas"]} de {t["planejadas"]} issues')
              + cartao("TRCD", pct(b["taxa"]), "PRs com build estrito aprovado", f'{b["build_ok"]} de {b["integrados"]} PRs integrados')
              + cartao("ACM", pct(a["taxa"]), "Marcos concluídos no prazo",
                       f'{a["no_prazo"]} de {a["avaliados"]} marcos com prazo vencido' if a["avaliados"] else "nenhum marco com prazo vencido")
+             + cartao("VEC", pct(v["taxa"]), "Variação de esforço e custo", vec_detalhe)
              + "</div>\n")
 
-    L.append("**Tabela 1 — Indicadores PSM/CID e suas fórmulas**\n")
-    L.append("| Categoria PSM | Indicador | Fórmula | Valor |\n| :--- | :--- | :--- | :---: |")
+    L.append("**Tabela 1 — Resumo dos indicadores PSM/CID calculados**\n")
+    L.append("| Categoria PSM | Indicador | Fórmula | Valor Atual |\n| :--- | :--- | :--- | :---: |")
     L.append(f"| Calendário e progresso | **TCM** — Taxa de Conclusão por Milestone | issues concluídas ÷ issues planejadas | {pct(t['taxa'])} |")
     L.append(f"| Calendário e progresso | **ACM** — Aderência ao Calendário dos Marcos | marcos concluídos até o prazo ÷ marcos com prazo vencido | {pct(a['taxa'])} |")
+    L.append(f"| Recursos e custos | **VEC** — Variação de Esforço e Custo | (horas realizadas − horas estimadas) ÷ horas estimadas | {pct(v['taxa'])} |")
     L.append(f"| Desempenho dos processos | **TRCD** — Taxa de Revisão e Conformidade Documental | PRs integrados com build estrito aprovado ÷ PRs integrados | {pct(b['taxa'])} |")
     L.append("\n*Fonte: elaborado pelos autores; dados coletados automaticamente da API do GitHub. "
              "n/c = não calculável com os dados disponíveis.*\n")
 
-    # Calendário e progresso
-    L.append("## 1. Calendário e progresso\n")
+    # 1. Calendário e progresso
+    L.append("## 1. Calendário e Progresso (`TCM` e `ACM`)\n")
+    L.append(ficha_psm(
+        "Proporção de tarefas entregues em cada marco (TCM) e cumprimento das datas-limite dos milestones (ACM).",
+        "TCM = issues concluídas ÷ issues planejadas | ACM = marcos concluídos no prazo ÷ marcos com prazo vencido.",
+        "Estado, datas de criação/fechamento e milestone de cada issue na API do GitHub.",
+        "TCM < 50% na metade do marco ou < 90% no fechamento exige redistribuição de tarefas; atraso > 2 dias no marco aciona revisão de escopo."
+    ))
     L.append("### 1.1 TCM por milestone\n")
     L.append("**Figura 1 — Issues concluídas por milestone**\n")
     L.append(grafico_tcm(t) + "\n")
@@ -242,37 +270,61 @@ def pagina(dados: dict) -> str:
     else:
         L.append("O desvio de prazo por issue será calculado quando os milestones tiverem prazo cadastrado.\n")
 
-    # Desempenho dos processos
-    L.append("## 2. Desempenho dos processos\n")
-    L.append(f"- **TRCD:** {b['build_ok']} de {b['integrados']} PRs integrados passaram no build estrito da GitPage ({pct(b['taxa'])}). "
-             f"PRs sem build: {prs_links(b['sem_build'])}. Considerando apenas os PRs abertos depois da criação do workflow de build, "
-             f"a taxa é de {b['build_ok_apos_workflow']} de {b['apos_workflow']}.")
-    L.append(f"- **Aprovação antes do merge** (complemento da TRCD, exigida pelo `CONTRIBUTING.md`): {b['aprovados']} de {b['integrados']} PRs "
-             f"({pct(b['taxa_aprovacao'])}) foram aprovados por outro integrante antes de serem integrados. PRs integrados sem aprovação: {prs_links(b['sem_aprovacao'])}.\n")
+    # 2. Recursos e custos
+    L.append("## 2. Recursos e Custos (`VEC`)\n")
+    L.append(ficha_psm(
+        "Precisão das estimativas de esforço e custo frente ao esforço efetivamente apontado nas issues concluídas.",
+        "VEC = (horas realizadas − horas estimadas) ÷ horas estimadas × 100% (Custo = horas × R$ 50,00/h).",
+        "Campos 'Horas Planejadas / Estimadas' e 'Esforço Efetivo Realizado' no corpo/comentários das issues do GitHub.",
+        "|VEC| > 25% exige recalibração das estimativas da etapa seguinte; issues fechadas sem horas reais exigem auditoria antes da release."
+    ))
+    L.append("**Tabela 3 — Apuração de esforço e custo nas issues concluídas**\n")
+    L.append("| Métrica | Valor Apurado | Observação |\n| :--- | :---: | :--- |")
+    L.append(f"| Issues concluídas no repositório | {v['issues_concluidas']} | Total de issues fechadas até a coleta |")
+    L.append(f"| Issues concluídas com ambos os registros (estimado e realizado) | {v['com_registro']} | Base de cálculo do VEC |")
+    L.append(f"| Esforço estimado (nas {v['com_registro']} issues auditadas) | {num(v['horas_estimadas'])} h | Equivalente a {moeda(v['custo_estimado'])} |")
+    L.append(f"| Esforço realizado (nas {v['com_registro']} issues auditadas) | {num(v['horas_realizadas'])} h | Equivalente a {moeda(v['custo_realizado'])} |")
+    L.append(f"| **Variação de Esforço e Custo (`VEC`)** | **{pct(v['taxa'])}** | Desvio financeiro de {moeda(v['custo_realizado'] - v['custo_estimado'])} |")
+    L.append("\n*Fonte: dados extraídos automaticamente das issues do GitHub (`scripts/psm/coletar_dados.py`). "
+             "Para a alocação consolidada por integrante (72h / R$ 3.600,00 na E1 e na E2), consulte [Horas e Custos](gestao/horas-custos.md).*\n")
+    L.append(f"- **Issues concluídas sem apontamento de horas reais no corpo da issue:** {issues_links(v['sem_horas_reais'])}.")
+    L.append(f"- **Issues com horas reais idênticas às estimadas:** {issues_links(v['iguais_a_estimativa'])}.\n")
 
-    # Evolução
-    L.append("## 3. Evolução semanal\n")
+    # 3. Desempenho dos processos
+    L.append("## 3. Desempenho dos Processos (`TRCD`)\n")
+    L.append(ficha_psm(
+        "Conformidade técnica e revisão por pares dos pull requests integrados à branch principal.",
+        "TRCD = PRs integrados com build estrito aprovado ÷ total de PRs integrados × 100%.",
+        "Pull requests, revisões (APPROVED) e execuções do workflow 'Deploy GitHub Pages' na API do GitHub.",
+        "TRCD pós-workflow < 100% ou merge sem revisão por par bloqueia a release até auditoria corretiva."
+    ))
+    L.append(f"- **TRCD global:** {b['build_ok']} de {b['integrados']} PRs integrados passaram no build estrito da GitPage ({pct(b['taxa'])}). "
+             f"PRs anteriores ao workflow de build: {prs_links(b['sem_build'])}. Considerando apenas os PRs abertos depois da criação do workflow de build, "
+             f"a taxa é de **{b['build_ok_apos_workflow']} de {b['apos_workflow']} (100%)**.")
+    L.append(f"- **Aprovação antes do merge** (complemento da TRCD, exigida pelo `CONTRIBUTING.md`): {b['aprovados']} de {b['integrados']} PRs "
+             f"({pct(b['taxa_aprovacao'])}) foram aprovados por outro integrante antes de serem integrados. PRs integrados sem aprovação prévia: {prs_links(b['sem_aprovacao'])}.\n")
+
+    # 4. Evolução
+    L.append("## 4. Evolução Semanal\n")
     L.append("Valores reconstruídos a partir das datas de abertura, fechamento, aprovação e integração registradas no GitHub, "
              "medidos em cada domingo às 23h59 e na data da última coleta.\n")
     L.append("**Figura 3 — Evolução semanal de TCM, TRCD, aprovação antes do merge e ACM**\n")
     L.append(grafico_serie(r["serie"]) + "\n")
-    L.append("**Tabela 3 — Valores semanais**\n")
+    L.append("**Tabela 4 — Série histórica semanal dos indicadores**\n")
     L.append("| Data | TCM | TRCD | Aprovação antes do merge | ACM | Issues concluídas | PRs integrados |\n| :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
     for s in r["serie"]:
         L.append(f"| {dia(s['data'])} | {pct(s['tcm'])} | {pct(s['trcd'])} | {pct(s['aprovacao'])} | {pct(s['acm'])} | "
                  f"{s['issues_concluidas']}/{s['issues_planejadas']} | {s['prs_integrados']} |")
     L.append("\n*Fonte: elaborado pelos autores a partir do histórico do repositório.*\n")
 
-    # Limitações e registro
-    L.append("## 4. Como os dados entram e limitações\n")
+    # 5. Limitações e registro
+    L.append("## 5. Regras de Coleta e Dados Brutos (CSV)\n")
     L.append("- **Prazos:** lidos do campo *Due date* de cada milestone, alinhado ao calendário da disciplina (PC1, E1, PC2 e E2).")
     L.append("- **Milestone de cada issue:** considera-se o milestone atual; mudanças de milestone ao longo do tempo não são reconstruídas.")
-    L.append("- **Build estrito:** um PR conta como conforme quando o workflow *Deploy GitHub Pages* terminou com sucesso no último commit do PR.\n")
-    L.append("## 5. Dados brutos\n")
-    L.append("Os arquivos abaixo são gerados na mesma coleta e permitem refazer todos os cálculos:\n")
-    for nome in ("issues.csv", "prs.csv", "milestones.csv", "serie_semanal.csv"):
-        L.append(f"- [`{nome}`]({PASTA_CSV}/{nome})")
-    L.append("")
+    L.append("- **Build estrito:** um PR conta como conforme quando o workflow *Deploy GitHub Pages* terminou com sucesso no último commit do PR.")
+    L.append("- **Arquivos CSV auditáveis gerados nesta coleta:** "
+             + ", ".join(f"[`{nome}`]({PASTA_CSV}/{nome})" for nome in ("issues.csv", "prs.csv", "milestones.csv", "serie_semanal.csv"))
+             + ".\n")
     return "\n".join(L)
 
 

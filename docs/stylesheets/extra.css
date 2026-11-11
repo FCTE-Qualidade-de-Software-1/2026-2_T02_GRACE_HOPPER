@@ -36,10 +36,168 @@
   background: #173b55;
 }
 
+/* ==========================================================================
+   Menu Lateral Esquerdo (Navegação Principal)
+   ========================================================================== */
+
+/* Largura e borda divisória da barra lateral em desktop */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary {
+    width: 16.5rem;
+    border-right: 1px solid rgba(23, 50, 77, 0.08);
+  }
+
+  [data-md-color-scheme="slate"] .md-sidebar--primary {
+    border-right-color: rgba(255, 255, 255, 0.08);
+  }
+
+  [dir="ltr"] .md-sidebar--primary:not([hidden]) ~ .md-content > .md-content__inner {
+    margin-left: 1.6rem;
+  }
+}
+
+/* Scrollbar fina e moderna */
+.md-sidebar--primary .md-sidebar__scrollwrap {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(23, 50, 77, 0.20) transparent;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-sidebar__scrollwrap {
+  scrollbar-color: rgba(255, 255, 255, 0.20) transparent;
+}
+
+.md-sidebar--primary .md-sidebar__scrollwrap::-webkit-scrollbar {
+  width: 4px;
+}
+
+.md-sidebar--primary .md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
+  background: rgba(23, 50, 77, 0.20);
+  border-radius: 4px;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.20);
+}
+
+/* Cabeçalhos de seção de nível superior (Fase 1, Fase 2, Gestão, Sobre, etc.) */
+.md-sidebar--primary .md-nav__item--section > .md-nav__link,
+.md-sidebar--primary .md-nav__item--section > .md-nav__container {
+  margin-top: 1.15rem;
+  margin-bottom: 0.35rem;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #17324d;
+  background: rgba(23, 50, 77, 0.05);
+  border-radius: 0.45rem;
+  border-left: 3px solid #0f8b83;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item--section > .md-nav__link,
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item--section > .md-nav__container {
+  color: #8ee8dc;
+  background: rgba(255, 255, 255, 0.05);
+  border-left-color: #54d6c5;
+}
+
+/* Links de navegação */
+.md-sidebar--primary .md-nav__link {
+  display: flex;
+  align-items: center;
+  padding: 0.32rem 0.6rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  border-radius: 0.38rem;
+  color: #2e445a;
+  transition: all 0.15s ease-in-out;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link {
+  color: #cbd5e1;
+}
+
+/* Hover nos links */
+.md-sidebar--primary .md-nav__link:hover:not(.md-nav__link--active) {
+  background: rgba(15, 139, 131, 0.08);
+  color: #0f8b83;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link:hover:not(.md-nav__link--active) {
+  background: rgba(84, 214, 197, 0.10);
+  color: #54d6c5;
+}
+
+/* Item ativo (página atual selecionada) */
+.md-sidebar--primary .md-nav__item--active > .md-nav__link--active,
+.md-sidebar--primary .md-nav__item--active > .md-nav__container .md-nav__link--active {
+  background: rgba(15, 139, 131, 0.12);
+  color: #0b6b64 !important;
+  font-weight: 650;
+  box-shadow: inset 3.5px 0 0 #0f8b83;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item--active > .md-nav__link--active,
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item--active > .md-nav__container .md-nav__link--active {
+  background: rgba(84, 214, 197, 0.14);
+  color: #54d6c5 !important;
+  box-shadow: inset 3.5px 0 0 #54d6c5;
+}
+
+/* Guias visuais verticais para níveis aninhados */
+.md-sidebar--primary .md-nav[data-md-level="1"] > .md-nav__list,
+.md-sidebar--primary .md-nav[data-md-level="2"] > .md-nav__list {
+  position: relative;
+  margin-left: 0.7rem;
+  padding-left: 0.55rem;
+  border-left: 1.5px solid rgba(23, 50, 77, 0.10);
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav[data-md-level="1"] > .md-nav__list,
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav[data-md-level="2"] > .md-nav__list {
+  border-left-color: rgba(255, 255, 255, 0.10);
+}
+
+/* Ícones de expansão (setas) */
+.md-sidebar--primary .md-nav__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* Breadcrumbs (navigation.path) */
+.md-path {
+  font-size: 0.72rem;
+  margin-bottom: 0.65rem;
+  color: #627d98;
+}
+
+[data-md-color-scheme="slate"] .md-path {
+  color: #94a3b8;
+}
+
 .md-nav__link--active,
 .md-nav__link:focus,
 .md-nav__link:hover {
   color: var(--md-accent-fg-color);
+}
+
+/* Ocultação da barra lateral direita (Índice / TOC) */
+.md-sidebar--secondary {
+  display: none !important;
+}
+
+@media screen and (min-width: 60em) {
+  .md-sidebar--secondary {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 76.25em) {
+  [dir="ltr"] .md-sidebar--secondary ~ .md-content > .md-content__inner,
+  [dir="ltr"] .md-sidebar--secondary:not([hidden]) ~ .md-content > .md-content__inner {
+    margin-right: 0 !important;
+  }
 }
 
 .md-content__inner {
@@ -822,7 +980,7 @@ div.arithmatex mjx-container[display="true"] {
 
 .psm-cartoes {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.8rem;
   margin: 1.2rem 0 1.6rem;
 }
@@ -831,15 +989,272 @@ div.arithmatex mjx-container[display="true"] {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
-  padding: 0.9rem 1rem;
-  border-radius: 0.6rem;
+  padding: 0.95rem 1.05rem;
+  border: 1px solid rgba(23, 50, 77, 0.10);
+  border-radius: 0.7rem;
   background: var(--md-default-bg-color);
-  box-shadow: 0 1px 4px rgba(16, 37, 58, 0.12);
+  box-shadow: 0 2px 8px rgba(16, 37, 58, 0.06);
 }
 
 [data-md-color-scheme="slate"] .psm-cartao {
-  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
   box-shadow: none;
+}
+
+.psm-ficha {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.85rem 1.1rem;
+  border-left: 4px solid var(--md-accent-fg-color);
+  border-radius: 0.5rem;
+  background: rgba(15, 139, 131, 0.06);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+[data-md-color-scheme="slate"] .psm-ficha {
+  background: rgba(84, 214, 197, 0.08);
+}
+
+/* ==========================================================================
+   Layout Grace Hopper
+   ========================================================================== */
+
+.md-header__button.md-logo img {
+  width: 2.05rem;
+  height: 2.05rem;
+  border-radius: 0.45rem;
+}
+
+.md-header__topic:first-child .md-ellipsis::after {
+  display: block;
+  margin-top: 0.12rem;
+  color: rgba(245, 251, 255, 0.72);
+  content: "GRACE HOPPER  /  QSW 2026.2 · T02";
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+}
+
+.gh-hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(14rem, 19.5rem);
+  gap: 2.2rem;
+  align-items: center;
+  margin: 0.5rem 0 2.2rem;
+  padding: clamp(1.6rem, 3.8vw, 2.6rem);
+  border: 1px solid rgba(23, 50, 77, 0.12);
+  border-radius: 1.1rem;
+  background:
+    radial-gradient(ellipse at 88% 12%, rgba(84, 214, 197, 0.20), transparent 40%),
+    linear-gradient(125deg, #0f253a 0%, #173f58 100%);
+  box-shadow: 0 0.85rem 2.2rem rgba(15, 37, 58, 0.14);
+  color: #f5fbff;
+}
+
+[data-md-color-scheme="slate"] .gh-hero-split {
+  border-color: rgba(84, 214, 197, 0.22);
+  box-shadow: 0 0.85rem 2.2rem rgba(0, 0, 0, 0.28);
+}
+
+.gh-hero-split__eyebrow {
+  margin: 0 0 0.65rem;
+  color: #8ee8dc;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.gh-hero-split__title,
+.gh-hero-split h1 {
+  margin: 0 0 0.75rem !important;
+  color: #ffffff !important;
+  font-size: clamp(1.75rem, 3.4vw, 2.45rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.gh-hero-split__title span,
+.gh-hero-split h1 span {
+  color: #6fe7d8;
+}
+
+.gh-hero-split__lead {
+  margin: 0 0 1.25rem;
+  color: rgba(245, 251, 255, 0.92);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.gh-hero-split__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1.15rem;
+}
+
+.gh-transparencia {
+  margin: 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(245, 251, 255, 0.78);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.gh-transparencia a {
+  color: #8ee8dc !important;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.gh-retrato {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.85rem;
+  background: rgba(10, 25, 41, 0.55);
+  box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.25);
+}
+
+.gh-retrato img {
+  display: block;
+  width: 100%;
+  height: 17.5rem;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+.gh-retrato figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.65rem 0.85rem;
+  color: #e6f4f1;
+  font-size: 0.68rem;
+  line-height: 1.35;
+}
+
+.gh-retrato figcaption strong {
+  color: #ffffff;
+  font-size: 0.76rem;
+}
+
+.gh-retrato figcaption a {
+  color: #8ee8dc !important;
+  text-decoration: none;
+}
+
+.gh-retrato figcaption a:hover {
+  text-decoration: underline;
+}
+
+/* Grade de 3 colunas (estilo painel limpo) */
+.gh-colunas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.15rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.gh-coluna {
+  display: flex;
+  flex-direction: column;
+}
+
+.gh-secao {
+  margin: 0 0 0.6rem !important;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+}
+
+.gh-secao span {
+  display: inline-block;
+  padding-bottom: 0.2rem;
+  border-bottom: 2px solid var(--md-accent-fg-color);
+}
+
+.gh-painel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  flex: 1;
+}
+
+.md-typeset a.gh-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(23, 50, 77, 0.12);
+  border-radius: 0.7rem;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(16, 37, 58, 0.04);
+  color: var(--md-default-fg-color);
+  text-decoration: none;
+  transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+
+[data-md-color-scheme="slate"] .md-typeset a.gh-item {
+  border-color: rgba(255, 255, 255, 0.11);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: none;
+}
+
+.md-typeset a.gh-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 6px 16px rgba(15, 139, 131, 0.12);
+}
+
+.gh-item small {
+  color: var(--md-accent-fg-color);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.gh-item span {
+  color: var(--md-default-fg-color);
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.gh-identidade-nota {
+  margin-top: 2rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(23, 50, 77, 0.12);
+  color: var(--md-default-fg-color--light);
+  font-size: 0.73rem;
+}
+
+[data-md-color-scheme="slate"] .gh-identidade-nota {
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+@media screen and (max-width: 60em) {
+  .gh-hero-split {
+    grid-template-columns: 1fr;
+  }
+  .gh-retrato {
+    max-width: 19rem;
+    margin: 0 auto;
+  }
+  .gh-colunas {
+    grid-template-columns: 1fr;
+  }
+  .psm-cartoes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .psm-sigla { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; color: var(--md-accent-fg-color); }
