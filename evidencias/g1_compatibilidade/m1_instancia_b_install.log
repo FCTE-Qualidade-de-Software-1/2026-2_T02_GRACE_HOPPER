@@ -1,0 +1,17 @@
+### Instancia B: instalacao (mesmo procedimento da A, COMPOSER_NO_SECURITY_BLOCKING=1)
+2026-11-11T16:20:05-03:00
+122 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+> @php -r "file_exists('.env') || copy('.env.example', '.env');"
+    - league/flysystem-aws-s3-v3 3.35.3 requires aws/aws-sdk-php ^3.371.5 -> satisfiable by aws/aws-sdk-php[3.401.1].
+
+  [37;44m INFO [39;49m Application key set successfully.  
+
+  [37;44m INFO [39;49m The [1m[public/modules][22m link has been connected to [1m[ieducar/modules][22m.  
+
+  2026_10_02_150000_change_ids_type_in_school_notices_table ..... 36.51ms DONE
+  2026_10_06_223947_move_menu_quadro_de_horarios ................ 13.13ms DONE
+
+migrate exit=0
+  Database\Seeders\DefaultPortalFuncionarioVinculoTableSeeder ..... 34 ms DONE  
+

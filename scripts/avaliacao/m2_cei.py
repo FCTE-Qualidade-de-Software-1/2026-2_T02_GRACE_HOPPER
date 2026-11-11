@@ -29,7 +29,8 @@ SECRET_KEY = "ieducar-secret-key"
 
 
 def sha256(caminho):
-    return hashlib.sha256(caminho.read_bytes()).hexdigest()
+    # normaliza fim de linha para o hash independer de core.autocrlf
+    return hashlib.sha256(caminho.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def conferir_congelamento():

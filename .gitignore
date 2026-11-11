@@ -15,6 +15,7 @@ Thumbs.db
 
 # Arquivos Temporários e Logs
 *.log
+!evidencias/**/*.log
 /tmp/
 __pycache__/
 *.pyc

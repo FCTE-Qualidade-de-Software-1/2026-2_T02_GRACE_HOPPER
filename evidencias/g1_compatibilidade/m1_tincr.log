@@ -1,0 +1,98 @@
+2026-11-11T16:36:00-03:00
+
+=================== R1 container_name e R2 portas publicadas (docker ps) ===================
+
+$ docker ps --format table {{.Names}}\t{{.Ports}}\t{{.Status}}
+NAMES                PORTS                                                                                STATUS
+ieducar-b-nginx      0.0.0.0:8081->80/tcp, [::]:8081->80/tcp, 0.0.0.0:8444->443/tcp, [::]:8444->443/tcp   Up About a minute
+ieducar-a-nginx      0.0.0.0:8080->80/tcp, [::]:8080->80/tcp, 0.0.0.0:8443->443/tcp, [::]:8443->443/tcp   Up About a minute
+ieducar-a-fpm        9000/tcp                                                                             Up About a minute
+ieducar-a-php        9000/tcp                                                                             Up About a minute
+ieducar-b-fpm        9000/tcp                                                                             Up 16 minutes
+ieducar-b-redis      0.0.0.0:6380->6379/tcp, [::]:6380->6379/tcp                                          Up 16 minutes
+ieducar-b-postgres   0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp                                          Up 16 minutes (healthy)
+ieducar-b-php        9000/tcp                                                                             Up 16 minutes
+ieducar-a-postgres   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp                                          Up 34 minutes (healthy)
+ieducar-a-redis      0.0.0.0:6379->6379/tcp, [::]:6379->6379/tcp                                          Up 34 minutes
+
+=================== R3 imagem (tag) por instancia ===================
+
+$ docker images --format {{.Repository}}:{{.Tag}} --filter reference=ieducar-*-php
+ieducar-a-php:8.5
+ieducar-b-php:8.5
+
+=================== R4 servicos HTTP independentes (versao da API em cada porta) ===================
+
+$ python -c 
+import urllib.request as u
+for n,p in (('A',8080),('B',8081)):
+    r=u.urlopen(f'http://localhost:{p}/api/version',timeout=60)
+    print(n,p,r.status,r.headers.get('Content-Type'),r.read().decode())
+
+A 8080 200 application/json {"entity":"i-Educar","version":"2.12.0","build":""}
+B 8081 200 application/json {"entity":"i-Educar","version":"2.12.0","build":""}
+
+=================== R5 banco de dados: DB_DATABASE e DB_USERNAME de cada instancia ===================
+
+$ docker compose --env-file config/instancia-a.env exec -T postgres psql -U ieducar -d ieducar -Atc select current_database(), current_user, (select count(*) from pg_database where datname='ieducar_b')
+ieducar|ieducar|0
+
+$ docker compose --env-file config/instancia-b.env exec -T postgres psql -U ieducar_b -d ieducar_b -Atc select current_database(), current_user, (select count(*) from pg_database where datname='ieducar')
+ieducar_b|ieducar_b|0
+
+=================== R5b isolamento de dados: marcador gravado em B nao aparece em A ===================
+
+$ docker compose --env-file config/instancia-b.env exec -T postgres psql -U ieducar_b -d ieducar_b -Atc create table if not exists m1_marcador(origem text); insert into m1_marcador values ('instancia-b'); select count(*) from m1_marcador
+CREATE TABLE
+INSERT 0 1
+1
+
+$ docker compose --env-file config/instancia-a.env exec -T postgres psql -U ieducar -d ieducar -Atc select to_regclass('public.m1_marcador') is null as ausente_em_a
+t
+
+$ docker compose --env-file config/instancia-b.env exec -T postgres psql -U ieducar_b -d ieducar_b -Atc drop table m1_marcador
+DROP TABLE
+
+=================== R6 Redis: prefixo de chaves REDIS_PREFIX (cache gravado pela aplicacao em cada instancia) ===================
+
+$ docker compose --env-file config/instancia-a.env exec -T php php artisan tinker --execute=Cache::put('m1_probe','A',60); echo config('database.redis.options.prefix');
+ieducar-a-
+
+$ docker compose --env-file config/instancia-b.env exec -T php php artisan tinker --execute=Cache::put('m1_probe','B',60); echo config('database.redis.options.prefix');
+ieducar-b-
+
+$ docker compose --env-file config/instancia-a.env exec -T redis redis-cli -n 1 --scan --pattern *m1_probe*
+ieducar-a-ieducarm1_probe
+
+$ docker compose --env-file config/instancia-b.env exec -T redis redis-cli -n 1 --scan --pattern *m1_probe*
+ieducar-b-ieducarm1_probe
+
+=================== R7 Redis compartilhado hipotetico: colisao so ocorre sem prefixo distinto (A e B usam instancias Redis proprias) ===================
+
+$ docker compose --env-file config/instancia-a.env exec -T redis redis-cli info keyspace
+# Keyspace
+db1:keys=5,expires=5,avg_ttl=156163,subexpiry=0
+
+$ docker compose --env-file config/instancia-b.env exec -T redis redis-cli info keyspace
+# Keyspace
+db1:keys=3,expires=3,avg_ttl=167532,subexpiry=0
+
+=================== R8 volume nomeado do PostgreSQL e R9 rede (escopo do projeto compose) ===================
+
+$ docker volume ls --format {{.Name}} --filter name=ieducar-
+ieducar-a_postgres
+ieducar-b_postgres
+
+$ docker network ls --format {{.Name}} --filter name=ieducar-
+ieducar-a_default
+ieducar-b_default
+
+=================== R10 diretorio de armazenamento (bind mount do checkout, inclui storage/ e .env) ===================
+
+$ docker inspect ieducar-a-fpm --format {{range .Mounts}}{{.Source}} -> {{.Destination}}{{"\n"}}{{end}}
+C:\Estudos\_work\i-educar -> /var/www/ieducar
+
+
+$ docker inspect ieducar-b-fpm --format {{range .Mounts}}{{.Source}} -> {{.Destination}}{{"\n"}}{{end}}
+C:\Estudos\_work\i-educar-b -> /var/www/ieducar
+
