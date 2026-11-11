@@ -5,8 +5,7 @@
 
 <p class="gh-hero-split__eyebrow">Identidade da Equipe · Pioneiros da Engenharia e Qualidade de Software</p>
 
-# Grace Brewster Murray <span>Hopper</span>
-{ .gh-hero-split__title }
+<h1 class="gh-hero-split__title">Grace Brewster Murray <span>Hopper</span></h1>
 
 <p class="gh-hero-split__lead">Matemática, cientista da computação e Contra-Almirante da Marinha dos Estados Unidos. Criadora do primeiro compilador da história (<code>A-0</code>), idealizadora da programação independente de máquina que deu origem ao <code>COBOL</code> e pioneira da verificação e padronização de software.</p>
 

@@ -9,8 +9,7 @@ hide:
 
 <p class="gh-hero-split__eyebrow">FGA0315 · Qualidade de Software 1 · 2026.2 · Turma 02 · Equipe Grace Hopper</p>
 
-# Avaliação de Qualidade de Software — <span>i-Educar</span>
-{ .gh-hero-split__title }
+<h1 class="gh-hero-split__title">Avaliação de Qualidade de Software — <span>i-Educar</span></h1>
 
 <p class="gh-hero-split__lead">Avaliação sistemática da <strong>Compatibilidade</strong>, <strong>Confiabilidade</strong>, <strong>Manutenibilidade</strong> e <strong>Capacidade de Interação</strong> dos módulos de Matrícula e Lançamento de Notas do <strong>i-Educar 2.12</strong>, fundamentada nas normas ISO/IEC 25010:2023, ISO/IEC 25019:2023, ISO/IEC 25040:2024 e no método GQM.</p>
 

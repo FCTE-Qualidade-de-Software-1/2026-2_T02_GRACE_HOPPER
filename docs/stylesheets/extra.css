@@ -1068,7 +1068,8 @@ div.arithmatex mjx-container[display="true"] {
   text-transform: uppercase;
 }
 
-.gh-hero-split__title {
+.gh-hero-split__title,
+.gh-hero-split h1 {
   margin: 0 0 0.75rem !important;
   color: #ffffff !important;
   font-size: clamp(1.75rem, 3.4vw, 2.45rem) !important;
@@ -1077,7 +1078,8 @@ div.arithmatex mjx-container[display="true"] {
   letter-spacing: -0.03em !important;
 }
 
-.gh-hero-split__title span {
+.gh-hero-split__title span,
+.gh-hero-split h1 span {
   color: #6fe7d8;
 }
 
