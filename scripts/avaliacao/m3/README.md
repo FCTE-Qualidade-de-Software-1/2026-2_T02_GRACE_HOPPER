@@ -47,7 +47,7 @@ python3 scripts/avaliacao/m3/run.py \
   --output evidencias/g2_confiabilidade/m3/rodada-001
 ```
 
-Cada rodada exige uma pasta de saída nova. A suíte injeta arquivos de teste no checkout isolado e remove seus próprios arquivos temporários ao terminar; uma cópia do instrumento usado fica em `instrument/` nas evidências. Preparação completa, limitações e critérios estão em [Medição M3](../../../docs/medicao_m3_dcnm.md).
+Cada rodada exige uma pasta de saída nova. A suíte injeta arquivos de teste no checkout isolado e remove seus próprios arquivos temporários ao terminar; uma cópia do instrumento usado fica em `instrument/` nas evidências. Preparação completa, limitações e critérios estão em [Medição M3](../../../docs/fase-4/medicao_m3_dcnm.md).
 
 ## Evidências
 

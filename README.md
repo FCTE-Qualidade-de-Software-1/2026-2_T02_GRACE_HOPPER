@@ -192,6 +192,6 @@ As sugestões foram revisadas e adaptadas pela equipe ao contexto do trabalho. O
 
 ### Medição M3 — Notas e menções (Entrega 2)
 
-A coleta oficial da [issue #40](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/40) obteve **DCNM = 30/30 × 100% = 100%**, 457 asserções e **gate M3 APROVADO**. Consulte o [relatório](docs/medicao_m3_dcnm.md) e as [evidências oficiais](evidencias/g2_confiabilidade/m3/oficial-001/summary.json). Os dez casos legados complementares registraram erro de pré-requisito de enturmação, relatado separadamente.
+A coleta oficial da [issue #40](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/40) obteve **DCNM = 30/30 × 100% = 100%**, 457 asserções e **gate M3 APROVADO**. Consulte o [relatório](docs/fase-4/medicao_m3_dcnm.md) e as [evidências oficiais](evidencias/g2_confiabilidade/m3/oficial-001/summary.json). Os dez casos legados complementares registraram erro de pré-requisito de enturmação, relatado separadamente.
 
 Com o Docker local preparado, a repetição diagnóstica é iniciada por `python3 scripts/avaliacao/m3/run_local.py`. O [guia do instrumento](scripts/avaliacao/m3/README.md) descreve a preparação e a execução oficial.

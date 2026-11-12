@@ -602,7 +602,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
     - **Tests:** `bash scripts/docs/check_site.sh`.
     - **Risk:** none.
 
-- **Resultado técnico:** coleta oficial `oficial-001`, DCNM = 30/30 × 100% = **100%**, 457 asserções; gate **APROVADO**. [Relatório M3](medicao_m3_dcnm.md). Esforço confirmado pelo responsável: 6h a R$ 50,00/h, total de R$ 300,00. A revisão por pares permanece pendente.
+- **Resultado técnico:** coleta oficial `oficial-001`, DCNM = 30/30 × 100% = **100%**, 457 asserções; gate **APROVADO**. [Relatório M3](fase-4/medicao_m3_dcnm.md). Esforço confirmado pelo responsável: 6h a R$ 50,00/h, total de R$ 300,00. A revisão por pares permanece pendente.
 
 #### Issue #41 — Manifesto de Operações Compostas, Injeção de Falhas Transacionais (Gate M4 — ITAE) e Triagem de M5 (DDOM)
 

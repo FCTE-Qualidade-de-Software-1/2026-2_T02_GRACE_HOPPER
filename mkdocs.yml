@@ -112,7 +112,7 @@ nav:
       - Plano de medição e testes: plano_medicao_testes.md
   - Fases 4 e 5:
       - fase-4/index.md
-      - M3 — Notas e Menções: medicao_m3_dcnm.md
+      - M3 — Notas e Menções: fase-4/medicao_m3_dcnm.md
   - Gestão do projeto:
       - gestao/index.md
       - Planejar:

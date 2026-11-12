@@ -14,7 +14,7 @@ As evidências oficiais estão em `evidencias/g2_confiabilidade/m3/oficial-001/`
 
 ## Objetivo e universo
 
-Esta entrega da issue #40 responde à Q2.1 e à H2.1 do [framework GQM](gqm_evaluation_framework.md#m3-determinismo-no-calculo-de-notas-e-mencoes-dcnm-gate-binario). O oráculo é uma regra pedagógica explícita e seu resultado previamente calculado, independente da implementação avaliada.
+Esta entrega da issue #40 responde à Q2.1 e à H2.1 do [framework GQM](../gqm_evaluation_framework.md#m3-determinismo-no-calculo-de-notas-e-mencoes-dcnm-gate-binario). O oráculo é uma regra pedagógica explícita e seu resultado previamente calculado, independente da implementação avaliada.
 
 O manifesto v1.0 contém **30 IDs**, fixados antes da execução oficial, para o commit `7903a3efc7689942ee700007f86ed581023aad27` do i-Educar. Manifesto, suíte Pest e executor estão em `scripts/avaliacao/m3/` no repositório. O JSON é a fonte das entradas e saídas esperadas; não se recalcula o esperado usando funções do produto.
 
@@ -86,9 +86,9 @@ O responsável deve anexar também o inventário real do banco e do ambiente, o 
 As gravações da Figura 1 mostram a preparação do ambiente e uma repetição diagnóstica dos 30 cenários. Clique em um card para ampliar a animação.
 
 <div class="m3-recordings">
-  <a class="m3-recording-card" href="../assets/images/m3/preparando-ambiente.gif" data-recording-title="Preparando o ambiente de testes" data-recording-caption="Inicialização e conferência dos serviços PHP, PostgreSQL e Redis no ambiente isolado da M3." aria-haspopup="dialog" aria-controls="m3-recording-dialog">
+  <a class="m3-recording-card" href="../../assets/images/m3/preparando-ambiente.gif" data-recording-title="Preparando o ambiente de testes" data-recording-caption="Inicialização e conferência dos serviços PHP, PostgreSQL e Redis no ambiente isolado da M3." aria-haspopup="dialog" aria-controls="m3-recording-dialog">
     <span class="m3-recording-preview">
-      <img src="../assets/images/m3/preparando-ambiente.gif" alt="Gravação do terminal preparando o ambiente Docker e conferindo os três serviços ativos." width="1609" height="814" loading="lazy" decoding="async">
+      <img src="../../assets/images/m3/preparando-ambiente.gif" alt="Gravação do terminal preparando o ambiente Docker e conferindo os três serviços ativos." width="1609" height="814" loading="lazy" decoding="async">
       <span class="m3-recording-expand" aria-hidden="true">Ampliar GIF ↗</span>
     </span>
     <span class="m3-recording-body">
@@ -97,9 +97,9 @@ As gravações da Figura 1 mostram a preparação do ambiente e uma repetição 
       <span>Inicialização e conferência dos três serviços do laboratório.</span>
     </span>
   </a>
-  <a class="m3-recording-card" href="../assets/images/m3/execucao-testes.gif" data-recording-title="Demonstração dos 30 cenários da M3" data-recording-caption="Este GIF demonstra o comportamento do script em modo diagnóstico. Nesse modo, gate=BLOQUEADO impede o aceite oficial, mesmo com 30/30 cenários conformes e technical_gate=APROVADO. A coleta oficial em oficial-001/ registrou DCNM=100% e gate=APROVADO." aria-haspopup="dialog" aria-controls="m3-recording-dialog">
+  <a class="m3-recording-card" href="../../assets/images/m3/execucao-testes.gif" data-recording-title="Demonstração dos 30 cenários da M3" data-recording-caption="Este GIF demonstra o comportamento do script em modo diagnóstico. Nesse modo, gate=BLOQUEADO impede o aceite oficial, mesmo com 30/30 cenários conformes e technical_gate=APROVADO. A coleta oficial em oficial-001/ registrou DCNM=100% e gate=APROVADO." aria-haspopup="dialog" aria-controls="m3-recording-dialog">
     <span class="m3-recording-preview">
-      <img src="../assets/images/m3/execucao-testes.gif" alt="Gravação do terminal executando os cenários M3 e mostrando os valores esperados e obtidos." width="1609" height="814" loading="lazy" decoding="async">
+      <img src="../../assets/images/m3/execucao-testes.gif" alt="Gravação do terminal executando os cenários M3 e mostrando os valores esperados e obtidos." width="1609" height="814" loading="lazy" decoding="async">
       <span class="m3-recording-expand" aria-hidden="true">Ampliar GIF ↗</span>
     </span>
     <span class="m3-recording-body">

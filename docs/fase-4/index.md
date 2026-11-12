@@ -37,4 +37,4 @@ Ao concluir as coletas da Fase 4, esta seção será atualizada com:
 
 ## 3. Coletas disponíveis — M3 (issue #40)
 
-A [medição oficial de notas e menções](../medicao_m3_dcnm.md) obteve **DCNM = 30/30 × 100% = 100%**, com **gate M3 APROVADO** e 457 asserções. O relatório delimita os cenários avaliados e os erros de fixture encontrados nos testes legados complementares. Os demais gates e o julgamento global continuam dependendo de suas próprias coletas.
+A [medição oficial de notas e menções](medicao_m3_dcnm.md) obteve **DCNM = 30/30 × 100% = 100%**, com **gate M3 APROVADO** e 457 asserções. O relatório delimita os cenários avaliados e os erros de fixture encontrados nos testes legados complementares. Os demais gates e o julgamento global continuam dependendo de suas próprias coletas.
