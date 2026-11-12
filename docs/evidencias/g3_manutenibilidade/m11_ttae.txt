@@ -1,0 +1,50 @@
+RELATÓRIO DE EXECUÇÃO E APURAÇÃO DE TESTES ATIVOS (M11 - TTAE)
+Data: 2026-11-12T01:37:19+00:00
+Commit: 7903a3efc7689942ee700007f86ed581023aad27
+Total Casos Declarados: 158
+Total Testes Suprimidos (markTestSkipped): 39
+Total Testes Ativos com Asserção: 119
+Taxa TTAE: 75.32%
+Situação: Regular (S=2)
+Hipótese H3.5: Confirmada
+
+Lista de Testes Suprimidos (markTestSkipped):
+  - tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php (linha 30): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php (linha 99): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php (linha 258): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaComponenteTest.php (linha 17): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaComponenteTest.php (linha 64): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaComponenteTest.php (linha 132): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaComponenteTest.php (linha 192): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php (linha 10): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php (linha 29): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php (linha 71): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaGeralTest.php (linha 21): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaGeralTest.php (linha 47): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaGeralTest.php (linha 110): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/FaltaGeralTest.php (linha 166): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/InicializacaoTest.php (linha 17): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #1)
+  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #2)
+  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #3)
+  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #4)
+  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #5)
+  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #1)
+  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #2)
+  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #3)
+  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #4)
+  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #5)
+  - tests/Unit/Modules/Service/NotaRecuperacaoTest.php (linha 6): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/NotaRecuperacaoTest.php (linha 126): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/NotaTest.php (linha 27): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/NotaTest.php (linha 75): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/NotaTest.php (linha 177): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php (linha 99): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php (linha 118): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php (linha 123): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php (linha 142): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php (linha 67): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php (linha 81): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php (linha 107): $this->markTestSkipped();
+  - tests/Unit/Modules/Service/UtilityTest.php (linha 96): $this->markTestSkipped();
+  - tests/Api/DiarioRecuperaBoletimTest.php (linha 11): $this->markTestSkipped('Pacote de boletim instalado, o render em teste unitário não esta disponível');

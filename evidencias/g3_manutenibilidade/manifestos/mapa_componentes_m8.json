@@ -1,0 +1,84 @@
+{
+  "versao": "1.0.0",
+  "data_congelamento": "2026-11-12T01:30:00+00:00",
+  "descricao": "Mapa congelado de componentes e caminhos de arquivo para cálculo da Distância da Sequência Principal de Martin (M8 — DSPM)",
+  "componentes": {
+    "C1_Matricula_Services": {
+      "nome": "Serviços Modernos de Matrícula e Diário (Laravel)",
+      "camada": "app/Services",
+      "arquivos": [
+        "app/Services/RegistrationService.php",
+        "app/Services/EnrollmentService.php",
+        "app/Services/DiarioControllerService.php"
+      ]
+    },
+    "C2_Matricula_Controllers": {
+      "nome": "Controladores HTTP Modernos e Ponte de Integração",
+      "camada": "app/Http/Controllers",
+      "arquivos": [
+        "app/Http/Controllers/EnrollmentController.php",
+        "app/Http/Controllers/DiarioController.php",
+        "app/Http/Controllers/LegacyController.php"
+      ]
+    },
+    "C3_Dominio_Models": {
+      "nome": "Modelos Eloquent de Domínio (Matrícula, Notas e Regras)",
+      "camada": "app/Models",
+      "arquivos": [
+        "app/Models/LegacyRegistration.php",
+        "app/Models/LegacyEnrollment.php",
+        "app/Models/LegacyEvaluationRule.php",
+        "app/Models/LegacyRoundingTable.php",
+        "app/Models/LegacyValueRoundingTable.php",
+        "app/Models/LegacyDisciplineScore.php",
+        "app/Models/LegacyStudentScore.php",
+        "app/Models/LegacyRegistrationScore.php",
+        "app/Models/LegacyStudentAbsence.php",
+        "app/Models/LegacyScoreExam.php",
+        "app/Models/RegistrationStatus.php"
+      ]
+    },
+    "C4_Avaliacao_Service_Legado": {
+      "nome": "Serviços e Modelos Procedurais do Módulo de Avaliação (Legado)",
+      "camada": "ieducar/modules/Avaliacao/Service e Model",
+      "arquivos": [
+        "ieducar/modules/Avaliacao/Service/Boletim.php",
+        "ieducar/modules/Avaliacao/Service/Boletim/RegraAvaliacao.php",
+        "ieducar/modules/Avaliacao/Service/Boletim/FaltaAluno.php",
+        "ieducar/modules/Avaliacao/Service/Boletim/NotaAluno.php",
+        "ieducar/modules/Avaliacao/Service/Boletim/Acessores.php",
+        "ieducar/modules/Avaliacao/Service/Boletim/ParecerDescritivoAluno.php",
+        "ieducar/modules/Avaliacao/Service/Boletim/Validators.php",
+        "ieducar/modules/Avaliacao/Service/Boletim/Avaliacao.php",
+        "ieducar/modules/Avaliacao/Model/NotaComponente.php",
+        "ieducar/modules/Avaliacao/Model/NotaComponenteMedia.php",
+        "ieducar/modules/Avaliacao/Model/NotaAluno.php",
+        "ieducar/modules/Avaliacao/Model/NotaGeral.php",
+        "ieducar/modules/Avaliacao/Model/FaltaAbstract.php",
+        "ieducar/modules/Avaliacao/Model/FaltaComponente.php",
+        "ieducar/modules/Avaliacao/Model/FaltaGeral.php",
+        "ieducar/modules/Avaliacao/Model/FaltaAluno.php",
+        "ieducar/modules/Avaliacao/Model/MediaGeral.php",
+        "ieducar/modules/Avaliacao/Model/ParecerDescritivoAbstract.php",
+        "ieducar/modules/Avaliacao/Model/ParecerDescritivoComponente.php",
+        "ieducar/modules/Avaliacao/Model/ParecerDescritivoGeral.php",
+        "ieducar/modules/Avaliacao/Model/ParecerDescritivoAluno.php",
+        "ieducar/modules/Avaliacao/Model/Etapa.php"
+      ]
+    },
+    "C5_Avaliacao_Views_Api_Legado": {
+      "nome": "Controladores e Views de API do Núcleo Legado",
+      "camada": "ieducar/modules/Avaliacao/Views e Api/Views",
+      "arquivos": [
+        "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+        "ieducar/modules/Avaliacao/Views/DiarioController.php",
+        "ieducar/modules/Avaliacao/Views/NotaController.php",
+        "ieducar/modules/Avaliacao/Views/FaltaController.php",
+        "ieducar/modules/Avaliacao/Views/ParecerController.php",
+        "ieducar/modules/Avaliacao/Views/PromocaoApiController.php",
+        "ieducar/modules/Avaliacao/Views/PromocaoController.php",
+        "ieducar/modules/Api/Views/MatriculaController.php"
+      ]
+    }
+  }
+}

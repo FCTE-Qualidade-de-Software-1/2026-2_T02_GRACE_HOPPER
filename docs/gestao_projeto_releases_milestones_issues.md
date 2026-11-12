@@ -670,19 +670,19 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Atribuição Individual:**
     - **Responsável:** `Ítalo Alves Sampaio de Oliveira` *(Trilha D)*
     - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `[Aberto]` | **Custo:** `[A consolidar]`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h` | **Custo:** `R$ 300,00`
 - **Goal:** Congelar os manifestos de componentes e modelos `Legacy*`, medir a Distância da Sequência Principal de Martin (M8 — DSPM), o Índice de Fricção de Dados (M9 — IFDL) e a Taxa de Testes Ativos com Asserção (M11 — TTAE).
 - **Depends on:** Issue #43.
 - **Scope:** Componentes de Matrícula e Notas em `app/` e `ieducar/`, modelos `app/Models/Legacy*.php` e suíte de testes PHPUnit/Pest dos domínios avaliados.
-- [ ] **Task:** Coletar métricas estruturais M8 (DSPM) e M9 (IFDL) e executar runner de testes para apurar M11 (TTAE)
-    - **Files:** `scripts/evaluate-quality.php`, `docs/plano_medicao_testes.md`
+- [x] **Task:** Coletar métricas estruturais M8 (DSPM) e M9 (IFDL) e executar runner de testes para apurar M11 (TTAE)
+    - **Files:** `scripts/evaluate-quality.php`, `scripts/tests/evaluate_quality_test.php`, `docs/fase-4/manutenibilidade-m8-m9-m11.md`, `evidencias/g3_manutenibilidade/`
     - **Change:** Congelar mapa caminho -> componente para calcular $C_a, C_e, N_a, N_c, A, I, D$ (M8); auditar adaptações defensivas nos modelos `Legacy*` (M9); executar PHPUnit/Pest nos diretórios de teste do manifesto para contar casos declarados, ativos com asserção e *skipped* (`markTestSkipped()`) (M11).
     - **Covers:** Questões Q3.2, Q3.3 e Q3.5, Hipóteses H3.2, H3.3 e H3.5, e Métricas M8 (DSPM), M9 (IFDL) e M11 (TTAE).
     - **Acceptance criteria:**
-        - Tabela por componente com $C_a, C_e, A, I, D_p$ e média $\text{DSPM}$ (M8).
-        - Manifesto dos modelos `Legacy*` com localização (arquivo/linha/categoria) de cada adaptação defensiva e cálculo de $\text{IFDL}$ (M9).
-        - Relatório de execução do runner Pest/PHPUnit comprovando $N_{\text{declarados}}$, $N_{\text{ativos com asserção}}$, contagem de `markTestSkipped()` e valor final de $\text{TTAE}$ (M11).
-    - **Tests:** `php scripts/evaluate-quality.php && bash scripts/docs/check_site.sh`.
+        - Tabela por componente com $C_a, C_e, A, I, D_p$ e média $\text{DSPM}$ (M8: 0,4214, Regular $S=2$, H3.2 confirmada).
+        - Manifesto dos modelos `Legacy*` com localização (arquivo/linha/categoria) de cada adaptação defensiva e cálculo de $\text{IFDL}$ (M9: 4,5556, Crítico $S=1$, H3.3 refutada).
+        - Relatório de execução do runner Pest/PHPUnit comprovando $N_{\text{declarados}}$, $N_{\text{ativos com asserção}}$, contagem de `markTestSkipped()` e valor final de $\text{TTAE}$ (M11: 75,32%, Regular $S=2$, H3.5 confirmada).
+    - **Tests:** `php scripts/evaluate-quality.php && php scripts/tests/evaluate_quality_test.php && bash scripts/docs/check_site.sh`.
     - **Risk:** none.
 
 #### Issue #45 — Testes de Proteção contra Erros do Usuário (Gate M12 — IPPE) e Auditoria de Mensagens (M13 — ADMV)

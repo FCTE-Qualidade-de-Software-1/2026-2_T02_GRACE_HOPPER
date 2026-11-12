@@ -1,0 +1,422 @@
+{
+    "instrumento": {
+        "nome": "scripts/evaluate-quality.php",
+        "versao": "3.0.0",
+        "php": "8.2.17",
+        "tokenizador": "token_get_all (TOKEN_PARSE)"
+    },
+    "timestamp": "2026-11-12T01:37:19+00:00",
+    "commit": "7903a3efc7689942ee700007f86ed581023aad27",
+    "status": "executado",
+    "manifesto": [
+        "app/Services/RegistrationService.php",
+        "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+        "ieducar/modules/Avaliacao/Views/DiarioController.php",
+        "ieducar/modules/Avaliacao/Service/Boletim.php"
+    ],
+    "excluidos": [],
+    "regras": {
+        "ttae": "TTAE = (N_ativos_com_assercao / N_declarados) * 100 nos testes de domínio."
+    },
+    "M11_TTAE": {
+        "name": "Taxa de Testes Ativos com Asserção",
+        "symbol": "TTAE",
+        "value": 75.32,
+        "threshold_excellent": ">= 95.0%",
+        "threshold_critical": "< 70.0%",
+        "status": "Coletado (Fase 4)",
+        "unit": "%",
+        "S": 2,
+        "faixa": "Regular",
+        "hipotese": {
+            "id": "H3.5",
+            "criterio": "70% <= TTAE < 95%",
+            "resultado": "Confirmada"
+        }
+    },
+    "detalhes": {
+        "ttae": 75.32,
+        "total_declarados": 158,
+        "total_skips": 39,
+        "ativos_com_assercao": 119,
+        "skips_detalhes": [
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
+                "linha": 30,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
+                "linha": 99,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
+                "linha": 258,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
+                "linha": 17,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
+                "linha": 64,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
+                "linha": 132,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
+                "linha": 192,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php",
+                "linha": 10,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php",
+                "linha": 29,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php",
+                "linha": 71,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
+                "linha": 21,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
+                "linha": 47,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
+                "linha": 110,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
+                "linha": 166,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/InicializacaoTest.php",
+                "linha": 17,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+                "linha": 0,
+                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #1)"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+                "linha": 0,
+                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #2)"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+                "linha": 0,
+                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #3)"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+                "linha": 0,
+                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #4)"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+                "linha": 0,
+                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #5)"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+                "linha": 0,
+                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #1)"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+                "linha": 0,
+                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #2)"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+                "linha": 0,
+                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #3)"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+                "linha": 0,
+                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #4)"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+                "linha": 0,
+                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #5)"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaRecuperacaoTest.php",
+                "linha": 6,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaRecuperacaoTest.php",
+                "linha": 126,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaTest.php",
+                "linha": 27,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaTest.php",
+                "linha": 75,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaTest.php",
+                "linha": 177,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
+                "linha": 99,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
+                "linha": 118,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
+                "linha": 123,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
+                "linha": 142,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
+                "linha": 67,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
+                "linha": 81,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php",
+                "linha": 107,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/UtilityTest.php",
+                "linha": 96,
+                "detalhe": "$this->markTestSkipped();"
+            },
+            {
+                "arquivo": "tests/Api/DiarioRecuperaBoletimTest.php",
+                "linha": 11,
+                "detalhe": "$this->markTestSkipped('Pacote de boletim instalado, o render em teste unitário não esta disponível');"
+            }
+        ],
+        "arquivos": {
+            "tests/Unit/Modules/Service/AvaliacaoServiceSituacaoTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/AvaliacaoServiceSituacaoTest.php",
+                "casos_declarados": 1,
+                "skips": 0,
+                "ativos": 1
+            },
+            "tests/Unit/Modules/Service/FaltaAlunoTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/FaltaAlunoTest.php",
+                "casos_declarados": 1,
+                "skips": 0,
+                "ativos": 1
+            },
+            "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
+                "casos_declarados": 4,
+                "skips": 3,
+                "ativos": 1
+            },
+            "tests/Unit/Modules/Service/FaltaComponenteTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
+                "casos_declarados": 3,
+                "skips": 4,
+                "ativos": 0
+            },
+            "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php",
+                "casos_declarados": 3,
+                "skips": 3,
+                "ativos": 0
+            },
+            "tests/Unit/Modules/Service/FaltaGeralTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
+                "casos_declarados": 3,
+                "skips": 4,
+                "ativos": 0
+            },
+            "tests/Unit/Modules/Service/InicializacaoTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/InicializacaoTest.php",
+                "casos_declarados": 4,
+                "skips": 1,
+                "ativos": 3
+            },
+            "tests/Unit/Modules/Service/NotaAlunoTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/NotaAlunoTest.php",
+                "casos_declarados": 1,
+                "skips": 0,
+                "ativos": 1
+            },
+            "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+                "casos_declarados": 5,
+                "skips": 5,
+                "ativos": 0
+            },
+            "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+                "casos_declarados": 5,
+                "skips": 5,
+                "ativos": 0
+            },
+            "tests/Unit/Modules/Service/NotaRecuperacaoTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/NotaRecuperacaoTest.php",
+                "casos_declarados": 2,
+                "skips": 2,
+                "ativos": 0
+            },
+            "tests/Unit/Modules/Service/NotaTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/NotaTest.php",
+                "casos_declarados": 4,
+                "skips": 3,
+                "ativos": 1
+            },
+            "tests/Unit/Modules/Service/ParecerDescritivoAlunoTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoAlunoTest.php",
+                "casos_declarados": 1,
+                "skips": 0,
+                "ativos": 1
+            },
+            "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
+                "casos_declarados": 1,
+                "skips": 2,
+                "ativos": 0
+            },
+            "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
+                "casos_declarados": 1,
+                "skips": 2,
+                "ativos": 0
+            },
+            "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
+                "casos_declarados": 1,
+                "skips": 2,
+                "ativos": 0
+            },
+            "tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php",
+                "casos_declarados": 1,
+                "skips": 1,
+                "ativos": 0
+            },
+            "tests/Unit/Modules/Service/PromocaoAlunoTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/PromocaoAlunoTest.php",
+                "casos_declarados": 9,
+                "skips": 0,
+                "ativos": 9
+            },
+            "tests/Unit/Modules/Service/UtilityTest.php": {
+                "arquivo": "tests/Unit/Modules/Service/UtilityTest.php",
+                "casos_declarados": 4,
+                "skips": 1,
+                "ativos": 3
+            },
+            "tests/Unit/Exceptions/Registration/MissingEvaluationRuleForCurrentYearTest.php": {
+                "arquivo": "tests/Unit/Exceptions/Registration/MissingEvaluationRuleForCurrentYearTest.php",
+                "casos_declarados": 1,
+                "skips": 0,
+                "ativos": 1
+            },
+            "tests/Unit/Exceptions/Enrollment/ExistsActiveEnrollmentSameTimeExceptionTest.php": {
+                "arquivo": "tests/Unit/Exceptions/Enrollment/ExistsActiveEnrollmentSameTimeExceptionTest.php",
+                "casos_declarados": 1,
+                "skips": 0,
+                "ativos": 1
+            },
+            "tests/Unit/Exceptions/Enrollment/PreviousEnrollCancellationDateExceptionTest.php": {
+                "arquivo": "tests/Unit/Exceptions/Enrollment/PreviousEnrollCancellationDateExceptionTest.php",
+                "casos_declarados": 1,
+                "skips": 0,
+                "ativos": 1
+            },
+            "tests/Unit/Exceptions/Enrollment/PreviousEnrollRegistrationDateExceptionTest.php": {
+                "arquivo": "tests/Unit/Exceptions/Enrollment/PreviousEnrollRegistrationDateExceptionTest.php",
+                "casos_declarados": 1,
+                "skips": 0,
+                "ativos": 1
+            },
+            "tests/Unit/Enum/RegistrationStatusTest.php": {
+                "arquivo": "tests/Unit/Enum/RegistrationStatusTest.php",
+                "casos_declarados": 3,
+                "skips": 0,
+                "ativos": 3
+            },
+            "tests/Feature/Services/EnrollmentServiceTest.php": {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "casos_declarados": 27,
+                "skips": 0,
+                "ativos": 27
+            },
+            "tests/Feature/Commands/RegistrationReorderCommandTest.php": {
+                "arquivo": "tests/Feature/Commands/RegistrationReorderCommandTest.php",
+                "casos_declarados": 2,
+                "skips": 0,
+                "ativos": 2
+            },
+            "tests/Feature/Api/V2/NotasTest.php": {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "casos_declarados": 32,
+                "skips": 0,
+                "ativos": 32
+            },
+            "tests/Feature/Api/V2/FaltasComponenteTest.php": {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "casos_declarados": 21,
+                "skips": 0,
+                "ativos": 21
+            },
+            "tests/Feature/Api/V2/FaltasGeralTest.php": {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "casos_declarados": 14,
+                "skips": 0,
+                "ativos": 14
+            },
+            "tests/Api/DiarioRecuperaBoletimTest.php": {
+                "arquivo": "tests/Api/DiarioRecuperaBoletimTest.php",
+                "casos_declarados": 1,
+                "skips": 1,
+                "ativos": 0
+            }
+        }
+    }
+}

@@ -23,3 +23,6 @@ __pycache__/
 site/
 .cache/
 .venv-docs/
+
+# Repositórios clonados para análise estática / dinâmica
+i-educar-src/

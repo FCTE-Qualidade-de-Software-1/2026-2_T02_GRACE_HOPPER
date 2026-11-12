@@ -1,0 +1,679 @@
+{
+    "instrumento": {
+        "nome": "scripts/evaluate-quality.php",
+        "versao": "3.0.0",
+        "php": "8.2.17",
+        "tokenizador": "token_get_all (TOKEN_PARSE)"
+    },
+    "timestamp": "2026-11-12T01:37:19+00:00",
+    "commit": "7903a3efc7689942ee700007f86ed581023aad27",
+    "status": "executado",
+    "manifesto": [
+        "app/Services/RegistrationService.php",
+        "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+        "ieducar/modules/Avaliacao/Views/DiarioController.php",
+        "ieducar/modules/Avaliacao/Service/Boletim.php"
+    ],
+    "excluidos": [],
+    "regras": {
+        "ifdl": "IFDL = sum(A_defensivos) / M_modelos nos modelos Legacy*.php."
+    },
+    "M9_IFDL": {
+        "name": "Índice de Fricção de Dados Legado-Moderno",
+        "symbol": "IFDL",
+        "value": 4.5556,
+        "threshold_excellent": "<= 1.0",
+        "threshold_critical": "> 4.0",
+        "status": "Coletado (Fase 4)",
+        "S": 1,
+        "faixa": "Crítico",
+        "hipotese": {
+            "id": "H3.3",
+            "criterio": "1.0 < IFDL <= 2.5",
+            "resultado": "Refutada"
+        }
+    },
+    "detalhes": {
+        "ifdl": 4.5556,
+        "total_modelos": 18,
+        "total_adaptadores": 82,
+        "modelos": {
+            "LegacyRegistration": {
+                "classe": "LegacyRegistration",
+                "caminho": "app/Models/LegacyRegistration.php",
+                "tabela": "pmieducar.matricula",
+                "total_adaptadores": 14,
+                "adaptadores": [
+                    {
+                        "linha": 51,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'pmieducar.matricula'"
+                    },
+                    {
+                        "linha": 53,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "timestamp_legado",
+                        "detalhe": "const CREATED_AT = 'data_cadastro'"
+                    },
+                    {
+                        "linha": 57,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "chave_primaria_legada",
+                        "detalhe": "$primaryKey = 'cod_matricula'"
+                    },
+                    {
+                        "linha": 82,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "cast_explicito",
+                        "detalhe": "$casts (3 campos tipados)"
+                    },
+                    {
+                        "linha": 91,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "mapa_atributos_legados",
+                        "detalhe": "array $legacy mapping"
+                    },
+                    {
+                        "linha": 96,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 103,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 115,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 122,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 129,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 301,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 308,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 315,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 379,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    }
+                ]
+            },
+            "LegacyEnrollment": {
+                "classe": "LegacyEnrollment",
+                "caminho": "app/Models/LegacyEnrollment.php",
+                "tabela": "pmieducar.matricula_turma",
+                "total_adaptadores": 8,
+                "adaptadores": [
+                    {
+                        "linha": 38,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "timestamp_legado",
+                        "detalhe": "const CREATED_AT = 'data_cadastro'"
+                    },
+                    {
+                        "linha": 42,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'pmieducar.matricula_turma'"
+                    },
+                    {
+                        "linha": 73,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "cast_explicito",
+                        "detalhe": "$casts (11 campos tipados)"
+                    },
+                    {
+                        "linha": 87,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 94,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 101,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 108,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 115,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    }
+                ]
+            },
+            "LegacyEvaluationRule": {
+                "classe": "LegacyEvaluationRule",
+                "caminho": "app/Models/LegacyEvaluationRule.php",
+                "tabela": "modules.regra_avaliacao",
+                "total_adaptadores": 4,
+                "adaptadores": [
+                    {
+                        "linha": 43,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'modules.regra_avaliacao'"
+                    },
+                    {
+                        "linha": 45,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "cast_explicito",
+                        "detalhe": "$casts (1 campos tipados)"
+                    },
+                    {
+                        "linha": 51,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "mapa_atributos_legados",
+                        "detalhe": "array $legacy mapping"
+                    },
+                    {
+                        "linha": 146,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    }
+                ]
+            },
+            "LegacyRoundingTable": {
+                "classe": "LegacyRoundingTable",
+                "caminho": "app/Models/LegacyRoundingTable.php",
+                "tabela": "modules.tabela_arredondamento",
+                "total_adaptadores": 1,
+                "adaptadores": [
+                    {
+                        "linha": 13,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'modules.tabela_arredondamento'"
+                    }
+                ]
+            },
+            "LegacyValueRoundingTable": {
+                "classe": "LegacyValueRoundingTable",
+                "caminho": "app/Models/LegacyValueRoundingTable.php",
+                "tabela": "modules.tabela_arredondamento_valor",
+                "total_adaptadores": 2,
+                "adaptadores": [
+                    {
+                        "linha": 13,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'modules.tabela_arredondamento_valor'"
+                    },
+                    {
+                        "linha": 32,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "cast_explicito",
+                        "detalhe": "$casts (2 campos tipados)"
+                    }
+                ]
+            },
+            "LegacyDisciplineScore": {
+                "classe": "LegacyDisciplineScore",
+                "caminho": "app/Models/LegacyDisciplineScore.php",
+                "tabela": "modules.nota_componente_curricular",
+                "total_adaptadores": 1,
+                "adaptadores": [
+                    {
+                        "linha": 15,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'modules.nota_componente_curricular'"
+                    }
+                ]
+            },
+            "LegacyStudentScore": {
+                "classe": "LegacyStudentScore",
+                "caminho": "app/Models/LegacyStudentScore.php",
+                "tabela": "modules.nota_aluno",
+                "total_adaptadores": 1,
+                "adaptadores": [
+                    {
+                        "linha": 14,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'modules.nota_aluno'"
+                    }
+                ]
+            },
+            "LegacyRegistrationScore": {
+                "classe": "LegacyRegistrationScore",
+                "caminho": "app/Models/LegacyRegistrationScore.php",
+                "tabela": "modules.nota_aluno",
+                "total_adaptadores": 1,
+                "adaptadores": [
+                    {
+                        "linha": 14,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'modules.nota_aluno'"
+                    }
+                ]
+            },
+            "LegacyStudentAbsence": {
+                "classe": "LegacyStudentAbsence",
+                "caminho": "app/Models/LegacyStudentAbsence.php",
+                "tabela": "modules.falta_aluno",
+                "total_adaptadores": 1,
+                "adaptadores": [
+                    {
+                        "linha": 18,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'modules.falta_aluno'"
+                    }
+                ]
+            },
+            "LegacyScoreExam": {
+                "classe": "LegacyScoreExam",
+                "caminho": "app/Models/LegacyScoreExam.php",
+                "tabela": "modules.nota_exame",
+                "total_adaptadores": 2,
+                "adaptadores": [
+                    {
+                        "linha": 13,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'modules.nota_exame'"
+                    },
+                    {
+                        "linha": 15,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "chave_primaria_legada",
+                        "detalhe": "$primaryKey = 'ref_cod_matricula'"
+                    }
+                ]
+            },
+            "LegacyDiscipline": {
+                "classe": "LegacyDiscipline",
+                "caminho": "app/Models/LegacyDiscipline.php",
+                "tabela": "modules.componente_curricular",
+                "total_adaptadores": 9,
+                "adaptadores": [
+                    {
+                        "linha": 24,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'modules.componente_curricular'"
+                    },
+                    {
+                        "linha": 40,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "mapa_atributos_legados",
+                        "detalhe": "array $legacy mapping"
+                    },
+                    {
+                        "linha": 50,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 65,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 72,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 79,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 86,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 93,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 100,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    }
+                ]
+            },
+            "LegacySchoolClass": {
+                "classe": "LegacySchoolClass",
+                "caminho": "app/Models/LegacySchoolClass.php",
+                "tabela": "pmieducar.turma",
+                "total_adaptadores": 18,
+                "adaptadores": [
+                    {
+                        "linha": 64,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'pmieducar.turma'"
+                    },
+                    {
+                        "linha": 66,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "timestamp_legado",
+                        "detalhe": "const CREATED_AT = 'data_cadastro'"
+                    },
+                    {
+                        "linha": 68,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "chave_primaria_legada",
+                        "detalhe": "$primaryKey = 'cod_turma'"
+                    },
+                    {
+                        "linha": 80,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "mapa_atributos_legados",
+                        "detalhe": "array $legacy mapping"
+                    },
+                    {
+                        "linha": 165,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 172,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 185,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 192,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 199,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 206,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 213,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 220,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 227,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 247,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 254,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 278,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 292,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 299,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    }
+                ]
+            },
+            "LegacyStudent": {
+                "classe": "LegacyStudent",
+                "caminho": "app/Models/LegacyStudent.php",
+                "tabela": "pmieducar.aluno",
+                "total_adaptadores": 11,
+                "adaptadores": [
+                    {
+                        "linha": 38,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "timestamp_legado",
+                        "detalhe": "const CREATED_AT = 'data_cadastro'"
+                    },
+                    {
+                        "linha": 42,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'pmieducar.aluno'"
+                    },
+                    {
+                        "linha": 44,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "chave_primaria_legada",
+                        "detalhe": "$primaryKey = 'cod_aluno'"
+                    },
+                    {
+                        "linha": 61,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "mapa_atributos_legados",
+                        "detalhe": "array $legacy mapping"
+                    },
+                    {
+                        "linha": 82,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 89,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 96,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 103,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 172,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 243,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    },
+                    {
+                        "linha": 250,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "accessor_mutator_attribute",
+                        "detalhe": "Attribute::make accessor/mutator"
+                    }
+                ]
+            },
+            "LegacyAcademicYearStage": {
+                "classe": "LegacyAcademicYearStage",
+                "caminho": "app/Models/LegacyAcademicYearStage.php",
+                "tabela": "pmieducar.ano_letivo_modulo",
+                "total_adaptadores": 2,
+                "adaptadores": [
+                    {
+                        "linha": 17,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'pmieducar.ano_letivo_modulo'"
+                    },
+                    {
+                        "linha": 24,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "cast_explicito",
+                        "detalhe": "$casts (2 campos tipados)"
+                    }
+                ]
+            },
+            "LegacySchoolYearLock": {
+                "classe": "LegacySchoolYearLock",
+                "caminho": "app/Models/LegacySchoolYearLock.php",
+                "tabela": "pmieducar.bloqueio_ano_letivo",
+                "total_adaptadores": 1,
+                "adaptadores": [
+                    {
+                        "linha": 19,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'pmieducar.bloqueio_ano_letivo'"
+                    }
+                ]
+            },
+            "LegacyRemedialRule": {
+                "classe": "LegacyRemedialRule",
+                "caminho": "app/Models/LegacyRemedialRule.php",
+                "tabela": "modules.regra_recuperacao",
+                "total_adaptadores": 2,
+                "adaptadores": [
+                    {
+                        "linha": 14,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'modules.regra_avaliacao_recuperacao'"
+                    },
+                    {
+                        "linha": 18,
+                        "categoria": "TYPE_CAST_NULL_FILTER",
+                        "tipo": "cast_explicito",
+                        "detalhe": "$casts (1 campos tipados)"
+                    }
+                ]
+            },
+            "LegacyAverageFormula": {
+                "classe": "LegacyAverageFormula",
+                "caminho": "app/Models/LegacyAverageFormula.php",
+                "tabela": "modules.formula_media",
+                "total_adaptadores": 2,
+                "adaptadores": [
+                    {
+                        "linha": 7,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'modules.formula_media'"
+                    },
+                    {
+                        "linha": 19,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "mapa_atributos_legados",
+                        "detalhe": "array $legacy mapping"
+                    }
+                ]
+            },
+            "LegacyDisciplineScoreAverage": {
+                "classe": "LegacyDisciplineScoreAverage",
+                "caminho": "app/Models/LegacyDisciplineScoreAverage.php",
+                "tabela": "modules.nota_componente_curricular_media",
+                "total_adaptadores": 2,
+                "adaptadores": [
+                    {
+                        "linha": 14,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "tabela_qualificada_legada",
+                        "detalhe": "$table = 'modules.nota_componente_curricular_media'"
+                    },
+                    {
+                        "linha": 16,
+                        "categoria": "LEGADO_SCHEMA_MAP",
+                        "tipo": "chave_primaria_legada",
+                        "detalhe": "$primaryKey = 'nota_aluno_id'"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -29,7 +29,8 @@ A execução empírica sobre o commit congelado `7903a3efc7689942ee700007f86ed58
 
 ### 1.1 Resultados e roteiros por métrica
 
-- [Manutenibilidade (M7a, M7b e M10)](manutenibilidade-m7-m10.md): resultado da execução do motor estático sobre o commit congelado.
+- [Manutenibilidade (M7a, M7b e M10)](manutenibilidade-m7-m10.md): resultado da execução do motor estático sobre o commit congelado (complexidade ciclomática e índice de manutenibilidade).
+- [Manutenibilidade (M8, M9 e M11)](manutenibilidade-m8-m9-m11.md): distância da sequência principal de Martin (M8), atrito legado-moderno (M9) e taxa de testes ativos com asserção (M11).
 - [Qualidade em uso (M14a, M14b e M15)](qualidade-em-uso-m14-m15.md): roteiro das sessões, fichas de registro e cálculo; coleta pendente.
 
 ---

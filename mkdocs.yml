@@ -21,6 +21,7 @@ theme:
     - navigation.path
     - navigation.top
     - navigation.footer
+    - toc.follow
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -44,9 +45,6 @@ plugins:
       scripts:
         - scripts/docs/gen_pages.py
         - scripts/docs/gen_indicadores.py
-
-hooks:
-  - scripts/docs/hide_toc.py
 
 markdown_extensions:
   - tables
@@ -112,6 +110,7 @@ nav:
   - Fases 4 e 5:
       - fase-4/index.md
       - Manutenibilidade (M7a, M7b e M10): fase-4/manutenibilidade-m7-m10.md
+      - Manutenibilidade (M8, M9 e M11): fase-4/manutenibilidade-m8-m9-m11.md
       - Qualidade em uso (M14a, M14b e M15): fase-4/qualidade-em-uso-m14-m15.md
   - Gestão do projeto:
       - gestao/index.md

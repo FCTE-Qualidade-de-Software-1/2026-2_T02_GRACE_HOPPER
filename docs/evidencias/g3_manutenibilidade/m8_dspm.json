@@ -1,0 +1,163 @@
+{
+    "instrumento": {
+        "nome": "scripts/evaluate-quality.php",
+        "versao": "3.0.0",
+        "php": "8.2.17",
+        "tokenizador": "token_get_all (TOKEN_PARSE)"
+    },
+    "timestamp": "2026-11-12T01:37:19+00:00",
+    "commit": "7903a3efc7689942ee700007f86ed581023aad27",
+    "status": "executado",
+    "manifesto": [
+        "app/Services/RegistrationService.php",
+        "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+        "ieducar/modules/Avaliacao/Views/DiarioController.php",
+        "ieducar/modules/Avaliacao/Service/Boletim.php"
+    ],
+    "excluidos": [],
+    "regras": {
+        "dspm": "Martin Sequence: I = Ce / (Ca + Ce), A = Na / Nc, D = |A + I - 1|, DSPM = sum(D) / P."
+    },
+    "M8_DSPM": {
+        "name": "Distância da Sequência Principal de Martin",
+        "symbol": "DSPM",
+        "value": 0.4214,
+        "threshold_excellent": "<= 0.20",
+        "threshold_critical": "> 0.50",
+        "status": "Coletado (Fase 4)",
+        "S": 2,
+        "faixa": "Regular",
+        "hipotese": {
+            "id": "H3.2",
+            "criterio": "0.20 < DSPM <= 0.50",
+            "resultado": "Confirmada"
+        }
+    },
+    "detalhes": {
+        "dspm": 0.4214,
+        "total_componentes": 5,
+        "componentes": {
+            "C1_Matricula_Services": {
+                "componente": "C1_Matricula_Services",
+                "nome": "Serviços Modernos de Matrícula e Diário (Laravel)",
+                "nc": 3,
+                "na": 0,
+                "a": 0,
+                "ca": 4,
+                "ce": 4,
+                "i": 0.5,
+                "d": 0.5,
+                "tipos": [
+                    "RegistrationService",
+                    "EnrollmentService",
+                    "DiarioControllerService"
+                ],
+                "tipos_abstratos": []
+            },
+            "C2_Matricula_Controllers": {
+                "componente": "C2_Matricula_Controllers",
+                "nome": "Controladores HTTP Modernos e Ponte de Integração",
+                "nc": 3,
+                "na": 0,
+                "a": 0,
+                "ca": 0,
+                "ce": 4,
+                "i": 1,
+                "d": 0,
+                "tipos": [
+                    "EnrollmentController",
+                    "DiarioController",
+                    "LegacyController"
+                ],
+                "tipos_abstratos": []
+            },
+            "C3_Dominio_Models": {
+                "componente": "C3_Dominio_Models",
+                "nome": "Modelos Eloquent de Domínio (Matrícula, Notas e Regras)",
+                "nc": 11,
+                "na": 0,
+                "a": 0,
+                "ca": 11,
+                "ce": 0,
+                "i": 0,
+                "d": 1,
+                "tipos": [
+                    "LegacyRegistration",
+                    "LegacyEnrollment",
+                    "LegacyEvaluationRule",
+                    "LegacyRoundingTable",
+                    "LegacyValueRoundingTable",
+                    "LegacyDisciplineScore",
+                    "LegacyStudentScore",
+                    "LegacyRegistrationScore",
+                    "LegacyStudentAbsence",
+                    "LegacyScoreExam",
+                    "RegistrationStatus"
+                ],
+                "tipos_abstratos": []
+            },
+            "C4_Avaliacao_Service_Legado": {
+                "componente": "C4_Avaliacao_Service_Legado",
+                "nome": "Serviços e Modelos Procedurais do Módulo de Avaliação (Legado)",
+                "nc": 22,
+                "na": 3,
+                "a": 0.1364,
+                "ca": 8,
+                "ce": 4,
+                "i": 0.3333,
+                "d": 0.5303,
+                "tipos": [
+                    "Avaliacao_Service_Boletim",
+                    "Avaliacao_Service_Boletim_RegraAvaliacao",
+                    "Avaliacao_Service_Boletim_FaltaAluno",
+                    "Avaliacao_Service_Boletim_NotaAluno",
+                    "Avaliacao_Service_Boletim_Acessores",
+                    "Avaliacao_Service_Boletim_ParecerDescritivoAluno",
+                    "Avaliacao_Service_Boletim_Validators",
+                    "Avaliacao_Service_Boletim_Avaliacao",
+                    "Avaliacao_Model_NotaComponente",
+                    "Avaliacao_Model_NotaComponenteMedia",
+                    "Avaliacao_Model_NotaAluno",
+                    "Avaliacao_Model_NotaGeral",
+                    "Avaliacao_Model_FaltaAbstract",
+                    "Avaliacao_Model_FaltaComponente",
+                    "Avaliacao_Model_FaltaGeral",
+                    "Avaliacao_Model_FaltaAluno",
+                    "Avaliacao_Model_MediaGeral",
+                    "Avaliacao_Model_ParecerDescritivoAbstract",
+                    "Avaliacao_Model_ParecerDescritivoComponente",
+                    "Avaliacao_Model_ParecerDescritivoGeral",
+                    "Avaliacao_Model_ParecerDescritivoAluno",
+                    "Avaliacao_Model_Etapa"
+                ],
+                "tipos_abstratos": [
+                    "Avaliacao_Model_FaltaAbstract",
+                    "Avaliacao_Model_ParecerDescritivoAbstract",
+                    "Avaliacao_Model_Etapa"
+                ]
+            },
+            "C5_Avaliacao_Views_Api_Legado": {
+                "componente": "C5_Avaliacao_Views_Api_Legado",
+                "nome": "Controladores e Views de API do Núcleo Legado",
+                "nc": 8,
+                "na": 0,
+                "a": 0,
+                "ca": 1,
+                "ce": 12,
+                "i": 0.9231,
+                "d": 0.0769,
+                "tipos": [
+                    "DiarioApiController",
+                    "DiarioController",
+                    "NotaController",
+                    "FaltaController",
+                    "ParecerController",
+                    "PromocaoApiController",
+                    "PromocaoController",
+                    "MatriculaController"
+                ],
+                "tipos_abstratos": []
+            }
+        }
+    }
+}
