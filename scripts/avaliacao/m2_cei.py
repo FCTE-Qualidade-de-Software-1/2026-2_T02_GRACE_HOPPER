@@ -5,7 +5,7 @@ Le o manifesto e os JSON Schemas congelados em evidencias/g1_compatibilidade/m2_
 confere o hash SHA-256 registrado em manifesto.sha256 (congelamento previo) e grava o
 relatorio em evidencias/g1_compatibilidade/m2_cei_report.json.
 
-Uso: python scripts/avaliacao/m2_cei.py [--base-url URL] [--token TOKEN_SANCTUM]
+Uso: python3 scripts/avaliacao/m2_cei.py [--base-url URL] [--token TOKEN_SANCTUM]
 Requer: jsonschema (pip install jsonschema).
 """
 import argparse

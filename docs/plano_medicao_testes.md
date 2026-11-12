@@ -283,6 +283,6 @@ $$
 
 ```bash
 bash scripts/avaliacao/m1_coexistencia.sh > evidencias/g1_compatibilidade/m1_tincr.log
-python -m venv .venv-m2 && .venv-m2/bin/pip install jsonschema
+python3 -m venv .venv-m2 && .venv-m2/bin/pip install jsonschema
 .venv-m2/bin/python scripts/avaliacao/m2_cei.py --token "$TOKEN_SANCTUM_LAB"
 ```

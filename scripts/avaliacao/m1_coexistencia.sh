@@ -18,7 +18,7 @@ sec "R3 imagem (tag) por instancia"
 run docker images --format '{{.Repository}}:{{.Tag}}' --filter 'reference=ieducar-*-php'
 
 sec "R4 servicos HTTP independentes (versao da API em cada porta)"
-run python -c "
+run python3 -c "
 import urllib.request as u
 for n,p in (('A',8080),('B',8081)):
     r=u.urlopen(f'http://localhost:{p}/api/version',timeout=60)
