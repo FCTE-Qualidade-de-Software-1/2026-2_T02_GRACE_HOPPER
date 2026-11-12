@@ -1,5 +1,17 @@
 # Plano de medição — M3: Notas e Menções (DCNM)
 
+## Resultado oficial — issue #40
+
+A rodada `oficial-001`, executada em 11/11/2026 às 21:27 (America/Sao_Paulo; início UTC `2026-11-12T00:27:56`), validou os **30 cenários do manifesto: 30 conformes, zero não conformes, 457 asserções, zero erros, falhas ou skips, saída zero**.
+
+$$
+\mathrm{DCNM} = \frac{30}{30} \times 100\% = 100\%
+$$
+
+**Gate M3: APROVADO. H2.1: confirmada no universo do manifesto.** O instrumento estava versionado e limpo no commit `fcd93dfff05c13b14cdac26cbbb9f186a43a8f74`; o produto estava no commit `7903a3efc7689942ee700007f86ed581023aad27`. O manifesto preserva o hash registrado antes das execuções.
+
+As evidências oficiais estão em `evidencias/g2_confiabilidade/m3/oficial-001/`: `summary.json` registra `execution_mode=official` e `official_acceptance=true`; `results.csv` contém esperado/obtido por ID; `junit.xml` registra as 457 asserções; `environment.json` contém commits e hashes. A aprovação do gate se limita aos 30 cenários e não equivale à certificação do produto ou à aprovação dos testes legados complementares. A revisão do PR e a validação final do responsável permanecem etapas de entrega; o registro de esforço será feito após essa validação.
+
 ## Objetivo e universo
 
 Esta entrega da issue #40 responde à Q2.1 e à H2.1 do [framework GQM](gqm_evaluation_framework.md#m3-determinismo-no-calculo-de-notas-e-mencoes-dcnm-gate-binario). O oráculo é uma regra pedagógica explícita e seu resultado previamente calculado, independente da implementação avaliada.
@@ -90,6 +102,8 @@ A Tabela 2 conserva o histórico das tentativas e diagnósticos.
 | `diagnostico-002/` | 29/30 conformes | C10 recebeu zero etapas da fixture, embora seu manifesto declare quatro. Configuração incompleta da suíte. |
 | `diagnostico-003/` | **30/30 conformes, 100%, 457 asserções** | Precisão configurada no modelo e quatro etapas fornecidas conforme o manifesto. Gate técnico aprovado; **sem aceite oficial**, pois o instrumento corrigido ainda não foi versionado. |
 | `diagnostico-004/` | **30/30 conformes, 100%, 457 asserções** | Repetição pelo atalho `run_local.py`, com saída ao vivo e limpeza dos arquivos temporários. Resultado técnico confirmado; sem aceite oficial. |
+| `diagnostico-005/` | **30/30 conformes, 100%, 457 asserções** | Conferência de hashes no runtime e classificação estruturada dos dez erros de pré-requisito do legado. |
+| `oficial-001/` | **30/30 conformes, 100%, 457 asserções** | Instrumento versionado e limpo; gate **APROVADO** na coleta oficial. |
 
 *Fonte: logs e relatórios em `evidencias/g2_confiabilidade/m3/`.*
 
@@ -101,7 +115,7 @@ Para acompanhar a repetição no terminal do VS Code, executar na raiz deste rep
 python3 scripts/avaliacao/m3/run_local.py
 ```
 
-O atalho sempre usa modo diagnóstico, aceita alterações locais sem commit e cria uma pasta nova por execução. `technical_gate` registra o resultado técnico; `official_acceptance` permanece falso e `gate` permanece bloqueado. A coleta oficial exige posterior versionamento dos instrumentos e nova execução sem `--diagnostic`; nenhum novo commit é necessário para repetir o diagnóstico.
+O atalho sempre usa modo diagnóstico, aceita alterações locais sem commit e cria uma pasta nova por execução. `technical_gate` registra o resultado técnico; `official_acceptance` permanece falso e `gate` permanece bloqueado. A coleta oficial já realizada em `oficial-001/` usou o instrumento versionado sem `--diagnostic`. O atalho continua diagnóstico para permitir exploração local sem substituir o registro oficial.
 
 A implementação deve ser validada com:
 
@@ -112,4 +126,4 @@ bash scripts/docs/check_site.sh
 
 Os testes do consolidador cobrem aprovação integral, falha, skip, erro, casos ausentes, IDs duplicados/desconhecidos, universo vazio e processo com saída não zero. Eles não substituem a suíte pedagógica.
 
-O aceite final exige execução real dos 30 IDs no commit obrigatório, ambiente inventariado, oráculo versionado antes da rodada, evidência completa, cálculo do DCNM e veredito explícito. Registrar na issue horas efetivas, custo, datas, commit da entrega e caminhos das evidências. Corrigir o produto é uma entrega separada: a medição pode ser concluída com gate bloqueado quando evidenciar falhas reais.
+A coleta oficial atende à execução dos 30 IDs no commit obrigatório, com ambiente inventariado, oráculo versionado antes da rodada, evidência completa, cálculo do DCNM e veredito explícito. Registrar horas efetivas e custo somente após a validação do responsável; datas, commits e evidências técnicas podem ser auditados desde já. Corrigir o produto é uma entrega separada: a medição pode ser concluída com gate bloqueado quando evidenciar falhas reais.

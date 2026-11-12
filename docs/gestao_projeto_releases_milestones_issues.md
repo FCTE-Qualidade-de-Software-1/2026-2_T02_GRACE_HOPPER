@@ -590,7 +590,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Goal:** Construir o manifesto congelado de casos de oráculo para cálculo de médias e conversão de menções, executar a suíte automatizada sobre `Avaliacao_Service_Boletim` e aferir o Gate Binário M3 (DCNM).
 - **Depends on:** Issue #38.
 - **Scope:** `ieducar/modules/Avaliacao/Service/Boletim.php`, `LegacyEvaluationRule`, `LegacyValueRoundingTable`, `RegraAvaliacao_Model_Nota_TipoValor` e suíte `NotaSituacaoCommon.php`.
-- [ ] **Task:** Congelar manifesto de casos de oráculo pedagógico e executar bateria de testes determinísticos em Boletim.php
+- [x] **Task:** Congelar manifesto de casos de oráculo pedagógico e executar bateria de testes determinísticos em Boletim.php
     - **Files:** `docs/plano_medicao_testes.md`
     - **Change:** Definir universo não vazio de casos de teste (média aritmética, média ponderada, recuperação paralela, exame final e arredondamento numérico/conceitual), inspecionar/reativar casos de `NotaSituacaoCommon.php` e registrar resultado de cada ID frente ao oráculo.
     - **Covers:** Questão Q2.1, Hipótese H2.1 (DCNM = 100%) e Gate Binário M3 (DCNM).
@@ -600,6 +600,8 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
         - Cálculo exato de $\text{DCNM}$ e veredito explícito do Gate Binário M3 (Aprovado = 100% ou Bloqueado < 100%).
     - **Tests:** `bash scripts/docs/check_site.sh`.
     - **Risk:** none.
+
+- **Resultado técnico:** coleta oficial `oficial-001`, DCNM = 30/30 × 100% = **100%**, 457 asserções; gate **APROVADO**. [Relatório M3](medicao_m3_dcnm.md). A revisão da entrega e o registro de esforço permanecem pendentes de validação do responsável; horas realizadas e custo não foram preenchidos.
 
 #### Issue #41 — Manifesto de Operações Compostas, Injeção de Falhas Transacionais (Gate M4 — ITAE) e Triagem de M5 (DDOM)
 

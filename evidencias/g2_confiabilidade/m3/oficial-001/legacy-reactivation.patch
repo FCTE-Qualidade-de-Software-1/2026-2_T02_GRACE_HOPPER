@@ -1,0 +1,47 @@
+--- a/tests/Unit/Modules/Service/NotaSituacaoCommon.php
++++ b/tests/Unit/Modules/Service/NotaSituacaoCommon.php
+@@ -28,7 +28,7 @@
+          * fórmula de recuperação. Quatro médias lançadas, 3 aprovadas.
+          */
+         test('situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados', function () {
+-            $this->markTestSkipped();
++            
+             // Expectativa
+             $expected = new stdClass;
+             $expected->situacao = App_Model_MatriculaSituacao::EM_EXAME;
+@@ -90,7 +90,7 @@
+         });
+ 
+         test('situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento', function () {
+-            $this->markTestSkipped();
++            
+             // Expectativa
+             $expected = new stdClass;
+             $expected->situacao = App_Model_MatriculaSituacao::EM_ANDAMENTO;
+@@ -152,7 +152,7 @@
+         });
+ 
+         test('situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados', function () {
+-            $this->markTestSkipped();
++            
+             // Expectativa
+             $expected = new stdClass;
+             $expected->situacao = App_Model_MatriculaSituacao::EM_EXAME;
+@@ -214,7 +214,7 @@
+         });
+ 
+         test('situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado', function () {
+-            $this->markTestSkipped();
++            
+             // Expectativa
+             $expected = new stdClass;
+             $expected->situacao = App_Model_MatriculaSituacao::EM_EXAME;
+@@ -280,7 +280,7 @@
+          * lançadas, 3 aprovadas.
+          */
+         test('situacao componentes curriculares um componente lancado reprovado um componente abaixo da media', function () {
+-            $this->markTestSkipped();
++            
+             $this->_setRegraOption('formulaRecuperacao', null);
+ 
+             // Expectativa
