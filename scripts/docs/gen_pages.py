@@ -45,13 +45,15 @@ def rewrite_links(text: str) -> str:
 
 
 def generate_pages() -> None:
-    """Lê README.md e CONTRIBUTING.md e grava virtualmente no mkdocs-gen-files."""
+    """Lê CONTRIBUTING.md (e README.md como fallback caso docs/index.md não exista) para o mkdocs-gen-files."""
     import mkdocs_gen_files
 
     root_dir = Path(__file__).resolve().parents[2]
+    docs_dir = root_dir / "docs"
 
+    index_file = docs_dir / "index.md"
     readme_file = root_dir / "README.md"
-    if readme_file.exists():
+    if not index_file.exists() and readme_file.exists():
         content = readme_file.read_text(encoding="utf-8")
         with mkdocs_gen_files.open("index.md", "w", encoding="utf-8") as f:
             f.write(rewrite_links(content))

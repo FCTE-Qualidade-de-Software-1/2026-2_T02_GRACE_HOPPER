@@ -1,16 +1,26 @@
-site_name: Grace Hopper I-Educar
+site_name: Grace Hopper · Qualidade de Software
+site_description: FGA0315 Qualidade de Software 1 - 2026.2 - T02 - Equipe Grace Hopper (Avaliação do i-Educar)
+site_author: Equipe Grace Hopper
 site_url: https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/
 repo_url: https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER
 repo_name: 2026-2_T02_GRACE_HOPPER
-copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA) · Release E1 (v1.0.0-pc1) · Última atualização: Outubro de 2026"
+copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA · 2026.2 · T02) · Release E1 (v1.0.0-pc1)"
 
 theme:
   name: material
   language: pt-BR
+  logo: assets/images/grace-hopper-logo.svg
+  favicon: assets/images/grace-hopper-logo.svg
+  font:
+    text: Inter
+    code: JetBrains Mono
   features:
+    - navigation.tracking
     - navigation.sections
+    - navigation.indexes
+    - navigation.path
     - navigation.top
-    - toc.follow
+    - navigation.footer
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -33,16 +43,23 @@ plugins:
   - gen-files:
       scripts:
         - scripts/docs/gen_pages.py
+        - scripts/docs/gen_indicadores.py
+
+hooks:
+  - scripts/docs/hide_toc.py
 
 markdown_extensions:
   - tables
   - attr_list
   - md_in_html
   - def_list
+  - footnotes
   - toc:
       permalink: true
   - admonition
   - pymdownx.details
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.superfences:
@@ -56,20 +73,66 @@ extra_css:
 
 extra_javascript:
   - javascripts/mathjax.js
+  - javascripts/painel.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
-# Mantém os arquivos do artigo no repositório, fora do site gerado.
+# Mantém os fontes LaTeX e rascunhos internos fora da compilação de páginas Markdown,
+# preservando o PDF compilado (docs/artigo/main.pdf) acessível para download.
 exclude_docs: |
-  /artigo/
+  /artigo/*.md
+  /artigo/*.tex
+  /artigo/model/
+  /Retrospectiva/
 
 nav:
   - Início: index.md
-  - GQM: gqm_evaluation_framework.md
-  - Medição M3 — Notas e Menções: medicao_m3_dcnm.md
-  - Gestão de Releases: gestao_projeto_releases_milestones_issues.md
-  - Relatório PC1: relatorio_de_planejamento_ponto_de_controle_1_i_educar.md
-  - Protocolo Ético (TCLE): termo_consentimento_livre_esclarecido.md
-  - Contexto do Produto:
-      - Visão do Produto: agents/project_overview.md
-      - Arquitetura: agents/architecture.md
-  - Contribuição: contributing.md
+  - Metodologia: metodologia/index.md
+  - Fase 1:
+      - fase-1/index.md
+      - Propósito da avaliação: fase-1/proposito.md
+      - Requisitante e partes interessadas: fase-1/partes-interessadas.md
+      - Produto e componentes avaliados: fase-1/produto.md
+      - Modelo de qualidade e priorização: fase-1/modelo-qualidade.md
+      - Escopo e profundidade: fase-1/escopo.md
+      - ODS relacionados: fase-1/ods.md
+      - Contexto detalhado do produto:
+          - Visão do Produto: agents/project_overview.md
+          - Arquitetura: agents/architecture.md
+  - Fase 2:
+      - fase-2/index.md
+      - Objetivos, questões e hipóteses: fase-2/objetivos-questoes-hipoteses.md
+      - Métricas e Gates Binários: fase-2/metricas.md
+      - Níveis de pontuação e julgamento: fase-2/niveis-julgamento.md
+      - Diagrama GQM e rastreabilidade: fase-2/rastreabilidade.md
+      - Especificação GQM completa: gqm_evaluation_framework.md
+  - Fase 3:
+      - fase-3/index.md
+      - Ambiente Docker e instrumentos: fase-3/ambiente.md
+      - Plano de medição e testes: plano_medicao_testes.md
+  - Fases 4 e 5:
+      - fase-4/index.md
+      - M3 — Notas e Menções: medicao_m3_dcnm.md
+  - Gestão do projeto:
+      - gestao/index.md
+      - Planejar:
+          - Planejamento de marcos e sprints: gestao/planejamento.md
+          - Plano de medição (PSM): gestao/plano-de-medicao.md
+          - Catálogo detalhado de issues: gestao_projeto_releases_milestones_issues.md
+      - Medir:
+          - Painel de indicadores PSM/CID: indicadores_psm.md
+          - Horas, custos e esforço: gestao/horas-custos.md
+          - Painel em tempo real: painel_projeto.md
+      - Avaliar e decidir:
+          - Registro de medições e decisões: gestao/registro-de-medicoes.md
+  - Sobre:
+      - sobre/index.md
+      - Grace Hopper: sobre/grace-hopper.md
+      - Equipe: sobre/equipe.md
+      - Declaração de uso de IA: sobre/uso-de-ia.md
+      - Retrospectiva (Entrega 1): sobre/retrospectiva-1.md
+      - Protocolo ético (TCLE): termo_consentimento_livre_esclarecido.md
+      - Referências: sobre/referencias.md
+      - Guia de contribuição: contributing.md
+  - Entregáveis:
+      - entregaveis/index.md
+      - Relatório consolidado PC1: relatorio_de_planejamento_ponto_de_controle_1_i_educar.md

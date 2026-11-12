@@ -21,4 +21,5 @@ __pycache__/
 
 # Documentação MkDocs
 site/
+.cache/
 .venv-docs/
