@@ -43,6 +43,8 @@ O planejamento da Entrega 2 estrutura **12 issues atômicas de 6 horas cada (72 
 
 *Fonte: Elaborado pelos autores. A distribuição nominal acima reflete a trilha sugerida por especialidade, sujeita a confirmação de auto-atribuição no GitHub.*
 
+> **Atualização de auto-atribuição (M5):** no GitHub, `@ItaloSamP` assumiu as issues [#38](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/38) (M1 — TINCR, Trilha A) e [#39](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/39) (M2 — CEI, Trilha B), com 6h e R$ 300,00 cada (R$ 600,00 no total, 16,67% do esforço da Entrega 2), em vez das issues #43 e #44 sugeridas na linha acima. A atribuição registrada no GitHub prevalece sobre a trilha sugerida.
+
 ---
 
 ## 2. Estrutura de Marcos do Projeto (Milestones M0 a M6)
@@ -542,13 +544,13 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M5: Instrumentação e Execução das Medições (Fase 4 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Arthur Soares Parente` *(Trilha A)*
-    - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `[Aberto]` | **Custo:** `[A consolidar]`
+    - **Responsável:** `Ítalo Alves Sampaio de Oliveira` *(Trilha A, auto-atribuição no GitHub)*
+    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** 6h (padrão da equipe) | **Custo:** R$ 300,00
 - **Goal:** Provisionar o checkout oficial do i-Educar 2.12 (commit `7903a3efc7689942ee700007f86ed581023aad27`) com banco populado e medir a Taxa de Isolamento e Não-Colisão de Recursos (M1 — TINCR).
 - **Depends on:** Issue #10.
 - **Scope:** Configuração de ambiente Docker (`docker-compose.yml`, `.env.example`, `config/`), carga de seeds pedagógicos e teste de subida simultânea de 2ª instância para apurar M1 (TINCR).
-- [ ] **Task:** Inventariar recursos compartilháveis, executar teste de coexistência em host único e calcular M1 (TINCR)
+- [x] **Task:** Inventariar recursos compartilháveis, executar teste de coexistência em host único e calcular M1 (TINCR)
     - **Files:** `docs/plano_medicao_testes.md`, `docker-compose.yml`
     - **Change:** Congelar inventário de recursos compartilháveis (portas HTTP/PostgreSQL/Redis, container_name, DB_DATABASE, REDIS_PREFIX), testar subida de segunda instância parametrizada via .env e registrar valor bruto e pontuação de M1.
     - **Covers:** Questão Q1.1, Hipótese H1.1 (TINCR $\ge 85\%$) e Métrica M1 (TINCR).
@@ -563,13 +565,13 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M5: Instrumentação e Execução das Medições (Fase 4 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Gabriel Barbaceli` *(Trilha B)*
-    - **Matrícula UnB:** `21/1045122` | **GitHub:** `@Nibaacriba`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `[Aberto]` | **Custo:** `[A consolidar]`
+    - **Responsável:** `Ítalo Alves Sampaio de Oliveira` *(Trilha B, auto-atribuição no GitHub)*
+    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** 6h (padrão da equipe) | **Custo:** R$ 300,00
 - **Goal:** Formalizar os contratos JSON Schema dos endpoints REST de Matrícula e Notas/Diário e executar a bateria de testes de contrato para medir M2 (CEI).
 - **Depends on:** Issue #38.
 - **Scope:** Rotas e controladores em `ieducar/modules/Api/` e `routes/api*.php` vinculados aos módulos de Matrícula e Lançamento de Notas/Menções.
-- [ ] **Task:** Congelar contratos JSON Schema pré-execução e validar respostas válidas/inválidas dos endpoints REST
+- [x] **Task:** Congelar contratos JSON Schema pré-execução e validar respostas válidas/inválidas dos endpoints REST
     - **Files:** `docs/plano_medicao_testes.md`
     - **Change:** Registrar manifesto de endpoints avaliados e seus JSON Schemas antes da coleta; executar os 3 casos obrigatórios por endpoint (requisição válida HTTP+Content-Type, validação de campos/tipos e requisição inválida sem erro 500/HTML) e apurar M2 (CEI).
     - **Covers:** Questão Q1.2, Hipótese H1.2 (CEI $\ge 85\%$) e Métrica M2 (CEI).

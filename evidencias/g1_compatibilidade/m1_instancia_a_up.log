@@ -1,0 +1,33 @@
+### Instancia A: docker compose --env-file config/instancia-a.env up -d --build
+2026-11-11T16:01:00-03:00
+ Network ieducar-a_default Creating 
+ Volume ieducar-a_postgres Created 
+ Volume ieducar-a_postgres Created 
+ Network ieducar-a_default Created 
+ Network ieducar-a_default Created 
+ Container ieducar-a-redis Creating 
+ Container ieducar-a-postgres Creating 
+ Container ieducar-a-php Creating 
+ Container ieducar-a-postgres Created 
+ Container ieducar-a-redis Created 
+ Container ieducar-a-fpm Creating 
+ Container ieducar-a-php Created 
+ Container ieducar-a-fpm Created 
+ Container ieducar-a-nginx Creating 
+ Container ieducar-a-nginx Created 
+ Container ieducar-a-php Starting 
+ Container ieducar-a-redis Starting 
+ Container ieducar-a-postgres Starting 
+ Container ieducar-a-php Started 
+ Container ieducar-a-redis Started 
+ Container ieducar-a-postgres Started 
+ Container ieducar-a-fpm Starting 
+ Container ieducar-a-fpm Started 
+ Container ieducar-a-nginx Starting 
+ Container ieducar-a-nginx Started 
+NAME                 IMAGE                COMMAND                  SERVICE    CREATED         STATUS                           PORTS
+ieducar-a-fpm        ieducar-a-php:8.5    "docker-php-entrypoi…"   fpm        3 seconds ago   Up 1 second                      9000/tcp
+ieducar-a-nginx      nginx:1.30-alpine    "/docker-entrypoint.…"   nginx      3 seconds ago   Up Less than a second            0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
+ieducar-a-php        ieducar-a-php:8.5    "docker-php-entrypoi…"   php        4 seconds ago   Up 2 seconds                     9000/tcp
+ieducar-a-postgres   postgres:18-alpine   "docker-entrypoint.s…"   postgres   4 seconds ago   Up 1 second (health: starting)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+ieducar-a-redis      redis:8-alpine       "docker-entrypoint.s…"   redis      4 seconds ago   Up 1 second                      0.0.0.0:6379->6379/tcp, [::]:6379->6379/tcp

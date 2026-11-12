@@ -1,0 +1,30 @@
+### Instancia B (simultanea, A continua no ar): docker compose --env-file config/instancia-b.env up -d --build
+2026-11-11T16:19:45-03:00
+ Container ieducar-b-redis Created 
+ Container ieducar-b-postgres Created 
+ Container ieducar-b-fpm Creating 
+ Container ieducar-b-fpm Created 
+ Container ieducar-b-nginx Creating 
+ Container ieducar-b-nginx Created 
+ Container ieducar-b-postgres Starting 
+ Container ieducar-b-php Starting 
+ Container ieducar-b-redis Starting 
+ Container ieducar-b-postgres Started 
+ Container ieducar-b-php Started 
+ Container ieducar-b-redis Started 
+ Container ieducar-b-fpm Starting 
+ Container ieducar-b-fpm Started 
+ Container ieducar-b-nginx Starting 
+ Container ieducar-b-nginx Started 
+exit=0
+NAMES                PORTS                                         STATUS
+ieducar-b-nginx      0.0.0.0:8081->80/tcp, [::]:8081->80/tcp       Up Less than a second
+ieducar-b-fpm        9000/tcp                                      Up 1 second
+ieducar-b-redis      0.0.0.0:6380->6379/tcp, [::]:6380->6379/tcp   Up 1 second
+ieducar-b-postgres   0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp   Up 2 seconds (health: starting)
+ieducar-b-php        9000/tcp                                      Up 1 second
+ieducar-a-nginx      0.0.0.0:8080->80/tcp, [::]:8080->80/tcp       Up 18 minutes
+ieducar-a-fpm        9000/tcp                                      Up 18 minutes
+ieducar-a-php        9000/tcp                                      Up 18 minutes
+ieducar-a-postgres   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp   Up 18 minutes (healthy)
+ieducar-a-redis      0.0.0.0:6379->6379/tcp, [::]:6379->6379/tcp   Up 18 minutes
