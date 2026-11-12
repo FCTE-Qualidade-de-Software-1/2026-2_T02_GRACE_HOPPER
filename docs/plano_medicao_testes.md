@@ -96,7 +96,7 @@ A Tabela 3 estabelece o roteiro operacional para a extração das métricas est�
 
 *Fonte: Elaborado pelos autores conforme ISO/IEC 25010:2023 e Framework GQM.*
 
-A execução de M7a, M7b e M10 sobre o commit congelado e os resultados por callable estão em [Manutenibilidade (M7a, M7b e M10)](fase-4/manutenibilidade-m7-m10.md).
+A execução de M7a, M7b e M10 sobre o commit congelado e os resultados por callable estão em [Manutenibilidade (M7a, M7b e M10)](fase-4/manutenibilidade-m7-m10.md). A avaliação de acoplamento de Martin (M8), atrito legado-moderno (M9) e testes ativos (M11) está documentada em [Manutenibilidade (M8, M9 e M11)](fase-4/manutenibilidade-m8-m9-m11.md).
 
 ---
 
@@ -115,7 +115,7 @@ A Tabela 4 sintetiza o roteiro para o Gate M12, a auditoria de mensagens M13 e o
 
 *Fonte: Elaborado pelos autores conforme ISO/IEC 25010:2023, ISO/IEC 25019:2023 e Framework GQM.*
 
-O roteiro detalhado das sessões de M14a, M14b e M15, as fichas de registro e o script de cálculo estão em [Qualidade em uso (M14a, M14b e M15)](fase-4/qualidade-em-uso-m14-m15.md).
+Os resultados da execução do Gate M12 (IPPE) e da auditoria por pares de autodescritividade de mensagens (M13) estão detalhados em [Capacidade de interação (Gate M12 e M13)](fase-4/interacao-m12-m13.md). O roteiro detalhado das sessões de M14a, M14b e M15, as fichas de registro e o script de cálculo estão em [Qualidade em uso (M14a, M14b e M15)](fase-4/qualidade-em-uso-m14-m15.md).
 
 ---
 

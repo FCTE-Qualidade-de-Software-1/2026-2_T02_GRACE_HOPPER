@@ -1,0 +1,215 @@
+{
+  "metadata": {
+    "instrumento": "Catálogo Oficial de Cenários Inválidos de Entrada (Gate M12 — IPPE & M13 — ADMV)",
+    "norma": "ISO/IEC 25010:2023 (Interaction Capability) e ISO/IEC 25040:2024 (Evaluation Process)",
+    "produto": "portabilis/i-educar",
+    "commit_congelado": "7903a3efc7689942ee700007f86ed581023aad27",
+    "data_congelamento": "2026-11-12",
+    "responsavel_trilha": "Gabriel Barbaceli (@Nibaacriba)",
+    "revisor_par": "Ítalo Sampaio (@ItaloSamP)",
+    "total_cenarios": 12,
+    "distribuicao_categorias": {
+      "C1_NOTA_FORA_DA_FAIXA": 3,
+      "C2_ETAPA_ANO_BLOQUEADO": 3,
+      "C3_MENCAO_CONCEITUAL_INVALIDA": 3,
+      "C4_MATRICULA_CONFLITO_TEMPORAL": 3
+    }
+  },
+  "data_apuracao": "2026-11-12T01:55:03.436325+00:00",
+  "m12_gate": {
+    "metrica": "M12 — IPPE (Índice de Proteção contra Erros do Usuário)",
+    "tipo": "GATE_BINARIO_ELIMINATORIO",
+    "total_cenarios_submetidos": 12,
+    "total_cenarios_bloqueados_amigavelmente": 12,
+    "persistencias_indesejadas": 0,
+    "erros_500_ocorridos": 0,
+    "valor_bruto": 100.0,
+    "unidade": "%",
+    "criterio_aprovacao": "IPPE == 100%",
+    "veredito_gate": "APROVADO",
+    "hipotese_h41": {
+      "enunciado": "H4.1: O sistema bloqueia 100% dos cenários inválidos previstos sem persistir dados corrompidos nem retornar erro HTTP 500.",
+      "resultado": "Confirmada"
+    }
+  },
+  "m13_autodescritividade": {
+    "metrica": "M13 — ADMV (Autodescritividade das Mensagens de Validação)",
+    "tipo": "METRICA_GRADUAL",
+    "total_mensagens_avaliadas": 12,
+    "mensagens_com_causa": 12,
+    "mensagens_com_acao": 10,
+    "mensagens_totalmente_autodescritivas": 10,
+    "valor_bruto": 83.33,
+    "unidade": "%",
+    "nivel_ordinal": 2,
+    "nivel_rotulo": "Regular",
+    "peso_ponderado": 0.8,
+    "faixa_referencia": "Regular: [80,0%, 90,0%)",
+    "hipotese_h42": {
+      "enunciado": "H4.2: Entre 80% e 90% das mensagens informam causa e ação corretiva, com mensagens genéricas residuais no núcleo legado.",
+      "resultado": "Confirmada"
+    },
+    "avaliadores": [
+      "Gabriel Barbaceli (@Nibaacriba)",
+      "Ítalo Sampaio (@ItaloSamP)"
+    ]
+  },
+  "itens": [
+    {
+      "id": "C1.1",
+      "categoria": "C1_NOTA_FORA_DA_FAIXA",
+      "titulo": "Nota decimal acima da nota máxima geral configurada na regra",
+      "status_http": 422,
+      "bloqueio_amigavel": "SIM",
+      "persistencia_banco": "NÃO",
+      "erro_500": "NÃO",
+      "mensagem": "A nota 11 está acima da configurada para nota máxima geral que é 10.",
+      "m13_causa": "SIM",
+      "m13_acao": "SIM",
+      "m13_classificacao": "TOTALMENTE_AUTODESCRITIVA"
+    },
+    {
+      "id": "C1.2",
+      "categoria": "C1_NOTA_FORA_DA_FAIXA",
+      "titulo": "Nota decimal inferior à nota mínima geral configurada na regra",
+      "status_http": 422,
+      "bloqueio_amigavel": "SIM",
+      "persistencia_banco": "NÃO",
+      "erro_500": "NÃO",
+      "mensagem": "A nota -1.5 está abaixo da configurada para nota mínima geral que é 0.",
+      "m13_causa": "SIM",
+      "m13_acao": "SIM",
+      "m13_classificacao": "TOTALMENTE_AUTODESCRITIVA"
+    },
+    {
+      "id": "C1.3",
+      "categoria": "C1_NOTA_FORA_DA_FAIXA",
+      "titulo": "Nota de exame final acima do teto de exame configurado na regra",
+      "status_http": 422,
+      "bloqueio_amigavel": "SIM",
+      "persistencia_banco": "NÃO",
+      "erro_500": "NÃO",
+      "mensagem": "A nota 10.5 está acima da configurada para nota máxima para exame que é 10.",
+      "m13_causa": "SIM",
+      "m13_acao": "SIM",
+      "m13_classificacao": "TOTALMENTE_AUTODESCRITIVA"
+    },
+    {
+      "id": "C2.1",
+      "categoria": "C2_ETAPA_ANO_BLOQUEADO",
+      "titulo": "Lançamento em ano letivo já encerrado com bloqueio ativo na escola",
+      "status_http": 422,
+      "bloqueio_amigavel": "SIM",
+      "persistencia_banco": "NÃO",
+      "erro_500": "NÃO",
+      "mensagem": "O ano letivo '2023' está encerrado, esta escola está configurada para não permitir alterar o diário de anos letivos encerrados.",
+      "m13_causa": "SIM",
+      "m13_acao": "SIM",
+      "m13_classificacao": "TOTALMENTE_AUTODESCRITIVA"
+    },
+    {
+      "id": "C2.2",
+      "categoria": "C2_ETAPA_ANO_BLOQUEADO",
+      "titulo": "Lançamento em período institucional bloqueado por calendário",
+      "status_http": 422,
+      "bloqueio_amigavel": "SIM",
+      "persistencia_banco": "NÃO",
+      "erro_500": "NÃO",
+      "mensagem": "O lançamento de notas nessa instituição está bloqueado nesta data.",
+      "m13_causa": "SIM",
+      "m13_acao": "NÃO",
+      "m13_classificacao": "PARCIALMENTE_AUTODESCRITIVA"
+    },
+    {
+      "id": "C2.3",
+      "categoria": "C2_ETAPA_ANO_BLOQUEADO",
+      "titulo": "Lançamento fora do período configurado para a etapa do curso",
+      "status_http": 422,
+      "bloqueio_amigavel": "SIM",
+      "persistencia_banco": "NÃO",
+      "erro_500": "NÃO",
+      "mensagem": "Não é permitido realizar esta alteração fora do período de lançamento de notas/faltas.",
+      "m13_causa": "SIM",
+      "m13_acao": "NÃO",
+      "m13_classificacao": "PARCIALMENTE_AUTODESCRITIVA"
+    },
+    {
+      "id": "C3.1",
+      "categoria": "C3_MENCAO_CONCEITUAL_INVALIDA",
+      "titulo": "Menção alfanumérica inexistente na tabela de arredondamento da regra",
+      "status_http": 422,
+      "bloqueio_amigavel": "SIM",
+      "persistencia_banco": "NÃO",
+      "erro_500": "NÃO",
+      "mensagem": "Menção conceitual 'ÓTIMO' não é válida para a tabela de arredondamento da regra de avaliação.",
+      "m13_causa": "SIM",
+      "m13_acao": "SIM",
+      "m13_classificacao": "TOTALMENTE_AUTODESCRITIVA"
+    },
+    {
+      "id": "C3.2",
+      "categoria": "C3_MENCAO_CONCEITUAL_INVALIDA",
+      "titulo": "Submissão de valor numérico contínuo em regra exclusivamente conceitual",
+      "status_http": 422,
+      "bloqueio_amigavel": "SIM",
+      "persistencia_banco": "NÃO",
+      "erro_500": "NÃO",
+      "mensagem": "Nota não lançada, pois a regra de avaliação não utiliza nota.",
+      "m13_causa": "SIM",
+      "m13_acao": "SIM",
+      "m13_classificacao": "TOTALMENTE_AUTODESCRITIVA"
+    },
+    {
+      "id": "C3.3",
+      "categoria": "C3_MENCAO_CONCEITUAL_INVALIDA",
+      "titulo": "Submissão sem identificadores obrigatórios no payload do diário",
+      "status_http": 422,
+      "bloqueio_amigavel": "SIM",
+      "persistencia_banco": "NÃO",
+      "erro_500": "NÃO",
+      "mensagem": "É necessário receber matricula_id ou componente_curricular_id.",
+      "m13_causa": "SIM",
+      "m13_acao": "SIM",
+      "m13_classificacao": "TOTALMENTE_AUTODESCRITIVA"
+    },
+    {
+      "id": "C4.1",
+      "categoria": "C4_MATRICULA_CONFLITO_TEMPORAL",
+      "titulo": "Enturmação em turma sem vagas remanescentes",
+      "status_http": 422,
+      "bloqueio_amigavel": "SIM",
+      "persistencia_banco": "NÃO",
+      "erro_500": "NÃO",
+      "mensagem": "Não há vagas na turma \"6º Ano A\" #101.",
+      "m13_causa": "SIM",
+      "m13_acao": "SIM",
+      "m13_classificacao": "TOTALMENTE_AUTODESCRITIVA"
+    },
+    {
+      "id": "C4.2",
+      "categoria": "C4_MATRICULA_CONFLITO_TEMPORAL",
+      "titulo": "Data de enturmação anterior à data de início do ano letivo da turma",
+      "status_http": 422,
+      "bloqueio_amigavel": "SIM",
+      "persistencia_banco": "NÃO",
+      "erro_500": "NÃO",
+      "mensagem": "A data de enturmação 10/01/2026 é anterior ao início do ano acadêmico 01/02/2026.",
+      "m13_causa": "SIM",
+      "m13_acao": "SIM",
+      "m13_classificacao": "TOTALMENTE_AUTODESCRITIVA"
+    },
+    {
+      "id": "C4.3",
+      "categoria": "C4_MATRICULA_CONFLITO_TEMPORAL",
+      "titulo": "Tentativa de enturmação ativa concomitante para a mesma matrícula",
+      "status_http": 422,
+      "bloqueio_amigavel": "SIM",
+      "persistencia_banco": "NÃO",
+      "erro_500": "NÃO",
+      "mensagem": "Existe outra enturmação ativa para a matrícula 501.",
+      "m13_causa": "SIM",
+      "m13_acao": "SIM",
+      "m13_classificacao": "TOTALMENTE_AUTODESCRITIVA"
+    }
+  ]
+}

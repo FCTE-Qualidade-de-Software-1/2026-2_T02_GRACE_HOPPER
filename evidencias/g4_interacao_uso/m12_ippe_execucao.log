@@ -1,0 +1,65 @@
+================================================================================
+RELATÓRIO DE EXECUÇÃO DO GATE M12 (IPPE) E AUDITORIA M13 (ADMV)
+================================================================================
+Data de apuração: 2026-11-12T01:55:03.436325+00:00
+Commit analisado: 7903a3efc7689942ee700007f86ed581023aad27
+Responsável: Gabriel Barbaceli (@Nibaacriba)
+Revisor por pares: Ítalo Sampaio (@ItaloSamP)
+--------------------------------------------------------------------------------
+RESULTADOS DOS GATES E MÉTRICAS:
+  • Gate M12 (IPPE): 100.0% -> APROVADO
+  • Hipótese H4.1: Confirmada
+  • M13 (ADMV): 83.33% -> Nível Regular (S=2)
+  • Hipótese H4.2: Confirmada
+--------------------------------------------------------------------------------
+DETALHAMENTO DOS 12 CENÁRIOS SUBMETIDOS:
+[C1.1] C1_NOTA_FORA_DA_FAIXA - Nota decimal acima da nota máxima geral configurada na regra
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      Mensagem: "A nota 11 está acima da configurada para nota máxima geral que é 10."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA
+[C1.2] C1_NOTA_FORA_DA_FAIXA - Nota decimal inferior à nota mínima geral configurada na regra
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      Mensagem: "A nota -1.5 está abaixo da configurada para nota mínima geral que é 0."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA
+[C1.3] C1_NOTA_FORA_DA_FAIXA - Nota de exame final acima do teto de exame configurado na regra
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      Mensagem: "A nota 10.5 está acima da configurada para nota máxima para exame que é 10."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA
+[C2.1] C2_ETAPA_ANO_BLOQUEADO - Lançamento em ano letivo já encerrado com bloqueio ativo na escola
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      Mensagem: "O ano letivo '2023' está encerrado, esta escola está configurada para não permitir alterar o diário de anos letivos encerrados."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA
+[C2.2] C2_ETAPA_ANO_BLOQUEADO - Lançamento em período institucional bloqueado por calendário
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      Mensagem: "O lançamento de notas nessa instituição está bloqueado nesta data."
+      Auditoria M13: Causa=SIM | Ação=NÃO | Classificação=PARCIALMENTE_AUTODESCRITIVA
+[C2.3] C2_ETAPA_ANO_BLOQUEADO - Lançamento fora do período configurado para a etapa do curso
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      Mensagem: "Não é permitido realizar esta alteração fora do período de lançamento de notas/faltas."
+      Auditoria M13: Causa=SIM | Ação=NÃO | Classificação=PARCIALMENTE_AUTODESCRITIVA
+[C3.1] C3_MENCAO_CONCEITUAL_INVALIDA - Menção alfanumérica inexistente na tabela de arredondamento da regra
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      Mensagem: "Menção conceitual 'ÓTIMO' não é válida para a tabela de arredondamento da regra de avaliação."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA
+[C3.2] C3_MENCAO_CONCEITUAL_INVALIDA - Submissão de valor numérico contínuo em regra exclusivamente conceitual
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      Mensagem: "Nota não lançada, pois a regra de avaliação não utiliza nota."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA
+[C3.3] C3_MENCAO_CONCEITUAL_INVALIDA - Submissão sem identificadores obrigatórios no payload do diário
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      Mensagem: "É necessário receber matricula_id ou componente_curricular_id."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA
+[C4.1] C4_MATRICULA_CONFLITO_TEMPORAL - Enturmação em turma sem vagas remanescentes
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      Mensagem: "Não há vagas na turma "6º Ano A" #101."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA
+[C4.2] C4_MATRICULA_CONFLITO_TEMPORAL - Data de enturmação anterior à data de início do ano letivo da turma
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      Mensagem: "A data de enturmação 10/01/2026 é anterior ao início do ano acadêmico 01/02/2026."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA
+[C4.3] C4_MATRICULA_CONFLITO_TEMPORAL - Tentativa de enturmação ativa concomitante para a mesma matrícula
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      Mensagem: "Existe outra enturmação ativa para a matrícula 501."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA
+================================================================================
+FIM DO RELATÓRIO DE EVIDÊNCIA M12 / M13
