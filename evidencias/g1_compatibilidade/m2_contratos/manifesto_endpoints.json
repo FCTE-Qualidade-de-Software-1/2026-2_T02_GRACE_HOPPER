@@ -1,0 +1,34 @@
+{
+  "$comment": "Manifesto de endpoints de M2 (CEI) congelado ANTES da execucao. Universo: endpoints REST/JSON de leitura dos modulos de Matricula/Enturmacao e Diario (lancamento de notas) do i-Educar 2.12 (commit 7903a3efc7689942ee700007f86ed581023aad27). Endpoints de escrita (POST/DELETE) ficam fora do universo para nao alterar a base de homologacao; essa limitacao e declarada no plano de medicao.",
+  "regras_pre_registradas": {
+    "C1": "Requisicao valida retorna HTTP 200 e Content-Type iniciando com application/json.",
+    "C2": "O corpo da resposta valida e JSON valido e satisfaz o JSON Schema do endpoint (campos obrigatorios e tipos).",
+    "C3": "Cada requisicao invalida (P1: parametro obrigatorio ausente; P2: credencial incorreta ou ausente) retorna status < 500, Content-Type application/json e corpo que satisfaz o schema de erro estruturado (erro_legacy ou erro_laravel). Resposta HTML ou erro 5xx reprova C3.",
+    "conforme": "Endpoint conforme somente se C1, C2 e C3 forem aprovados.",
+    "CEI": "100 * N_conformes / N_testados. Conjunto vazio => nao mensuravel."
+  },
+  "ambiente": {"base_url": "http://localhost:8080", "instancia": "ieducar-a", "credenciais_laboratorio": "access_key/secret_key padrao da tabela settings (populate_settings_table), usuario admin do seed e token Sanctum de laboratorio"},
+  "endpoints": [
+    {"id": "E01", "modulo": "Matricula", "metodo": "GET", "path": "/module/Api/Matricula", "auth": "access_key",
+     "query": {"oper": "get", "resource": "matricula", "id": "3"}, "obrigatorios": ["id"], "schema": "legacy_matricula", "erro": "erro_legacy"},
+    {"id": "E02", "modulo": "Matricula", "metodo": "GET", "path": "/module/Api/Matricula", "auth": "access_key",
+     "query": {"oper": "get", "resource": "matriculas", "aluno_id": "3", "escola_id": "2"}, "obrigatorios": ["aluno_id", "escola_id"], "schema": "legacy_matriculas_aluno", "erro": "erro_legacy"},
+    {"id": "E03", "modulo": "Matricula", "metodo": "GET", "path": "/module/Api/Matricula", "auth": "access_key",
+     "query": {"oper": "get", "resource": "matriculas-escola", "ano": "2026", "escola": "2"}, "obrigatorios": ["ano", "escola"], "schema": "legacy_matriculas_escola", "erro": "erro_legacy"},
+    {"id": "E04", "modulo": "Matricula", "metodo": "GET", "path": "/module/Api/Matricula", "auth": "access_key",
+     "query": {"oper": "get", "resource": "frequencia", "id": "3"}, "obrigatorios": ["id"], "schema": "legacy_frequencia", "erro": "erro_legacy"},
+    {"id": "E05", "modulo": "Matricula", "metodo": "GET", "path": "/module/Api/Matricula", "auth": "access_key",
+     "query": {"oper": "get", "resource": "matricula-search", "query": "3", "escola_id": "2", "ano": "2026"}, "obrigatorios": ["query"], "schema": "legacy_matricula_search", "erro": "erro_legacy"},
+    {"id": "E06", "modulo": "Matricula", "metodo": "GET", "path": "/module/Api/Matricula", "auth": "access_key",
+     "query": {"oper": "get", "resource": "movimentacao-enturmacao", "ano": "2026", "escola": "2"}, "obrigatorios": ["ano"], "schema": "legacy_movimentacao_enturmacao", "erro": "erro_legacy"},
+    {"id": "E07", "modulo": "Matricula", "metodo": "GET", "path": "/module/Api/Matricula", "auth": "access_key",
+     "query": {"oper": "get", "resource": "matriculas-dependencia", "ano": "2026", "escola": "2"}, "obrigatorios": ["ano", "escola"], "schema": "legacy_matriculas_dependencia", "erro": "erro_legacy"},
+    {"id": "E08", "modulo": "Diario/Notas", "metodo": "GET", "path": "/module/Avaliacao/DiarioApi", "auth": "sessao",
+     "query": {"oper": "get", "resource": "matriculas", "instituicao_id": "1", "escola_id": "2", "curso_id": "3", "serie_id": "6", "turma_id": "3", "ano": "2026", "etapa": "1", "matricula_id": "3"},
+     "obrigatorios": ["instituicao_id", "escola_id", "curso_id", "serie_id", "turma_id", "ano", "etapa"], "schema": "legacy_diario_matriculas", "erro": "erro_legacy"},
+    {"id": "E09", "modulo": "Matricula (REST Laravel)", "metodo": "GET", "path": "/api/registration", "auth": "bearer",
+     "query": {}, "obrigatorios": [], "schema": "rest_registration", "erro": "erro_laravel"},
+    {"id": "E10", "modulo": "Matricula (REST Laravel)", "metodo": "GET", "path": "/api/situation", "auth": "bearer",
+     "query": {}, "obrigatorios": [], "schema": "rest_situation", "erro": "erro_laravel"}
+  ]
+}

@@ -15,6 +15,7 @@ Thumbs.db
 
 # Arquivos Temporários e Logs
 *.log
+!evidencias/**/*.log
 /tmp/
 __pycache__/
 *.pyc
@@ -23,3 +24,6 @@ __pycache__/
 site/
 .cache/
 .venv-docs/
+# Checkout oficial do i-Educar e ambientes locais de medicao (Issues #38/#39)
+i-educar-src/
+.venv-m2/

@@ -1,0 +1,15 @@
+# Execucao de M2 (CEI) - 2026-11-11T16:45:56-03:00
+# comando: python scripts/avaliacao/m2_cei.py --base-url http://localhost:8080 --token <token Sanctum de laboratorio>
+E01 /module/Api/Matricula matricula: C1=True C2=True C3=True -> CONFORME
+E02 /module/Api/Matricula matriculas: C1=True C2=True C3=True -> CONFORME
+E03 /module/Api/Matricula matriculas-escola: C1=True C2=True C3=True -> CONFORME
+E04 /module/Api/Matricula frequencia: C1=True C2=True C3=True -> CONFORME
+E05 /module/Api/Matricula matricula-search: C1=True C2=True C3=True -> CONFORME
+E06 /module/Api/Matricula movimentacao-enturmacao: C1=True C2=True C3=True -> CONFORME
+E07 /module/Api/Matricula matriculas-dependencia: C1=True C2=True C3=True -> CONFORME
+E08 /module/Avaliacao/DiarioApi matriculas: C1=True C2=True C3=False -> NAO CONFORME
+E09 /api/registration : C1=True C2=True C3=True -> CONFORME
+E10 /api/situation : C1=True C2=True C3=True -> CONFORME
+
+N_testados=10 N_conformes=9 CEI=90.0%  -> C:\Estudos\2026-2_T02_GRACE_HOPPER\evidencias\g1_compatibilidade\m2_cei_report.json
+exit=0

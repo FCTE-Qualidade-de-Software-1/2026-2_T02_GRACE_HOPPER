@@ -1,0 +1,40 @@
+### BASELINE: compose oficial do i-Educar sem parametrizacao; instancia 1 (-p base1)
+2026-11-11T15:57:25-03:00
+ Volume base1_postgres Creating 
+ Volume base1_postgres Creating 
+ Network base1_default Creating 
+ Volume base1_postgres Created 
+ Volume base1_postgres Created 
+ Network base1_default Created 
+ Network base1_default Created 
+ Container ieducar-redis Creating 
+ Container ieducar-postgres Creating 
+ Container ieducar-redis Created 
+ Container ieducar-postgres Created 
+ Container ieducar-redis Starting 
+ Container ieducar-postgres Starting 
+ Container ieducar-redis Started 
+ Container ieducar-postgres Started 
+
+### BASELINE: instancia 2 (-p base2), mesmos valores padrao
+ Network base2_default Creating 
+ Volume base2_postgres Creating 
+ Volume base2_postgres Creating 
+ Network base2_default Creating 
+ Volume base2_postgres Created 
+ Volume base2_postgres Created 
+ Network base2_default Created 
+ Network base2_default Created 
+ Container ieducar-redis Creating 
+ Container ieducar-postgres Creating 
+ service:redis:1 Error response from daemon: Conflict. The container name "/ieducar-redis" is already in use by container "43f1679965bb3521138327f2406ba97bd767766b354501568f346508cff7cb80". You have to remove (or rename) that container to be able to reuse that name. 
+Error response from daemon: Conflict. The container name "/ieducar-redis" is already in use by container "43f1679965bb3521138327f2406ba97bd767766b354501568f346508cff7cb80". You have to remove (or rename) that container to be able to reuse that name.
+
+### BASELINE: instancia 2 alterando apenas portas por variavel (container_name continua fixo)
+ Container ieducar-redis Creating 
+ Container ieducar-postgres Creating 
+ service:redis:1 Error response from daemon: Conflict. The container name "/ieducar-redis" is already in use by container "43f1679965bb3521138327f2406ba97bd767766b354501568f346508cff7cb80". You have to remove (or rename) that container to be able to reuse that name. 
+Error response from daemon: Conflict. The container name "/ieducar-redis" is already in use by container "43f1679965bb3521138327f2406ba97bd767766b354501568f346508cff7cb80". You have to remove (or rename) that container to be able to reuse that name.
+
+ieducar-postgres	0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp	Up 3 seconds
+ieducar-redis	0.0.0.0:6379->6379/tcp, [::]:6379->6379/tcp	Up 3 seconds
