@@ -8,7 +8,6 @@ copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA
 
 theme:
   name: material
-  custom_dir: overrides
   language: pt-BR
   logo: assets/images/grace-hopper-logo.svg
   favicon: assets/images/grace-hopper-logo.svg
@@ -16,15 +15,12 @@ theme:
     text: Inter
     code: JetBrains Mono
   features:
-    - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.tracking
     - navigation.sections
     - navigation.indexes
     - navigation.path
     - navigation.top
     - navigation.footer
-    - toc.follow
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -48,6 +44,9 @@ plugins:
       scripts:
         - scripts/docs/gen_pages.py
         - scripts/docs/gen_indicadores.py
+
+hooks:
+  - scripts/docs/hide_toc.py
 
 markdown_extensions:
   - tables
