@@ -291,6 +291,8 @@ python3 -m venv .venv-m2 && .venv-m2/bin/pip install jsonschema
 
 ## 7. Resultado da medição M3 — DCNM (issue #40)
 
+Consulte o [resultado oficial da M3 na Fase 4](fase-4/medicao_m3_dcnm.md#resultado-oficial-issue-40).
+
 A coleta oficial `oficial-001` executou os 30 cenários do oráculo no commit `7903a3efc7689942ee700007f86ed581023aad27`: **30 conformes / 30 planejados × 100% = 100%**, 457 asserções e código de saída zero. **Gate M3 APROVADO; H2.1 confirmada no recorte avaliado.**
 
 O [relatório específico da M3](fase-4/medicao_m3_dcnm.md) apresenta casos, procedimento, rastreabilidade, cálculo e limites. As evidências estão em `evidencias/g2_confiabilidade/m3/oficial-001/`. Os dez testes legados complementares foram reativados e registraram erro de pré-requisito de enturmação; estão classificados separadamente e não integram o denominador do DCNM. A aprovação da M3 não antecipa o julgamento de M4, M12 ou do índice global.
