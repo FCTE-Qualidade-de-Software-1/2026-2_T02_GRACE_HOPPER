@@ -586,7 +586,8 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Atribuição Individual:**
     - **Responsável:** `Gustavo Silva Rodrigues` *(Trilha C)*
     - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `[Aberto]` | **Custo:** `[A consolidar]`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h` | **Custo:** R$ `300,00`
+- **Período de execução:** início em `2026-11-10`; conclusão em `2026-11-11`.
 - **Goal:** Construir o manifesto congelado de casos de oráculo para cálculo de médias e conversão de menções, executar a suíte automatizada sobre `Avaliacao_Service_Boletim` e aferir o Gate Binário M3 (DCNM).
 - **Depends on:** Issue #38.
 - **Scope:** `ieducar/modules/Avaliacao/Service/Boletim.php`, `LegacyEvaluationRule`, `LegacyValueRoundingTable`, `RegraAvaliacao_Model_Nota_TipoValor` e suíte `NotaSituacaoCommon.php`.
@@ -601,7 +602,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
     - **Tests:** `bash scripts/docs/check_site.sh`.
     - **Risk:** none.
 
-- **Resultado técnico:** coleta oficial `oficial-001`, DCNM = 30/30 × 100% = **100%**, 457 asserções; gate **APROVADO**. [Relatório M3](medicao_m3_dcnm.md). A revisão da entrega e o registro de esforço permanecem pendentes de validação do responsável; horas realizadas e custo não foram preenchidos.
+- **Resultado técnico:** coleta oficial `oficial-001`, DCNM = 30/30 × 100% = **100%**, 457 asserções; gate **APROVADO**. [Relatório M3](medicao_m3_dcnm.md). Esforço confirmado pelo responsável: 6h a R$ 50,00/h, total de R$ 300,00. A revisão por pares permanece pendente.
 
 #### Issue #41 — Manifesto de Operações Compostas, Injeção de Falhas Transacionais (Gate M4 — ITAE) e Triagem de M5 (DDOM)
 

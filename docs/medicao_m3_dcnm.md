@@ -10,7 +10,7 @@ $$
 
 **Gate M3: APROVADO. H2.1: confirmada no universo do manifesto.** O instrumento estava versionado e limpo no commit `fcd93dfff05c13b14cdac26cbbb9f186a43a8f74`; o produto estava no commit `7903a3efc7689942ee700007f86ed581023aad27`. O manifesto preserva o hash registrado antes das execuções.
 
-As evidências oficiais estão em `evidencias/g2_confiabilidade/m3/oficial-001/`: `summary.json` registra `execution_mode=official` e `official_acceptance=true`; `results.csv` contém esperado/obtido por ID; `junit.xml` registra as 457 asserções; `environment.json` contém commits e hashes. A aprovação do gate se limita aos 30 cenários e não equivale à certificação do produto ou à aprovação dos testes legados complementares. A revisão do PR e a validação final do responsável permanecem etapas de entrega; o registro de esforço será feito após essa validação.
+As evidências oficiais estão em `evidencias/g2_confiabilidade/m3/oficial-001/`: `summary.json` registra `execution_mode=official` e `official_acceptance=true`; `results.csv` contém esperado/obtido por ID; `junit.xml` registra as 457 asserções; `environment.json` contém commits e hashes. A aprovação do gate se limita aos 30 cenários e não equivale à certificação do produto ou à aprovação dos testes legados complementares. O responsável confirmou 6h de esforço a R$ 50,00/h, total de R$ 300,00, com início em 10/11/2026 e conclusão em 11/11/2026. A revisão por pares do PR permanece uma etapa de entrega.
 
 ## Objetivo e universo
 
@@ -182,4 +182,4 @@ bash scripts/docs/check_site.sh
 
 Os testes do consolidador cobrem aprovação integral, falha, skip, erro, casos ausentes, IDs duplicados/desconhecidos, universo vazio e processo com saída não zero. Eles não substituem a suíte pedagógica.
 
-A coleta oficial atende à execução dos 30 IDs no commit obrigatório, com ambiente inventariado, oráculo versionado antes da rodada, evidência completa, cálculo do DCNM e veredito explícito. Registrar horas efetivas e custo somente após a validação do responsável; datas, commits e evidências técnicas podem ser auditados desde já. Corrigir o produto é uma entrega separada: a medição pode ser concluída com gate bloqueado quando evidenciar falhas reais.
+A coleta oficial atende à execução dos 30 IDs no commit obrigatório, com ambiente inventariado, oráculo versionado antes da rodada, evidência completa, cálculo do DCNM e veredito explícito. O esforço efetivo confirmado é de 6h, com custo de R$ 300,00; datas, commits e evidências técnicas estão registrados para auditoria. Corrigir o produto é uma entrega separada: a medição pode ser concluída com gate bloqueado quando evidenciar falhas reais.
