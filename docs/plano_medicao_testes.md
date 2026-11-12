@@ -179,7 +179,7 @@ Cada integrante deve seguir o procedimento abaixo para manter a rastreabilidade 
    - Anexe os arquivos de evidência na pasta `evidencias/`.
 
 
-## 6. Resultado da medição M3 — DCNM (issue #40)
+## 7. Resultado da medição M3 — DCNM (issue #40)
 
 A coleta oficial `oficial-001` executou os 30 cenários do oráculo no commit `7903a3efc7689942ee700007f86ed581023aad27`: **30 conformes / 30 planejados × 100% = 100%**, 457 asserções e código de saída zero. **Gate M3 APROVADO; H2.1 confirmada no recorte avaliado.**
 

@@ -70,7 +70,7 @@ Exemplo: 29/30 corresponde exatamente a `290/3%`, aproximadamente 96,6667%, e bl
 5. Executar na raiz deste repositório, com um nome de pasta novo:
 
 ```bash
-python scripts/avaliacao/m3/run.py --product /caminho/ieducar-isolado --output evidencias/g2_confiabilidade/m3/rodada-001
+python3 scripts/avaliacao/m3/run.py --product /caminho/ieducar-isolado --output evidencias/g2_confiabilidade/m3/rodada-001
 ```
 
 Se PHP estiver no contêiner, informar sua invocação, por exemplo `--php-command 'docker compose exec -T php php'`, ajustando o nome do serviço ao ambiente preparado. O serviço precisa acessar o diretório do produto. O executor injeta dois arquivos novos de teste na worktree e remove esses arquivos e o JUnit temporário ao terminar. A worktree precisa estar limpa no início de cada rodada; as evidências e uma cópia do instrumento usado ficam preservadas fora dela.
@@ -176,7 +176,7 @@ O atalho sempre usa modo diagnóstico, aceita alterações locais sem commit e c
 A implementação deve ser validada com:
 
 ```bash
-python -m unittest discover -s scripts/avaliacao/m3 -p 'test_*.py'
+python3 -m unittest discover -s scripts/avaliacao/m3 -p 'test_*.py'
 bash scripts/docs/check_site.sh
 ```
 
