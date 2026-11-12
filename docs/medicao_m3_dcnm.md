@@ -81,6 +81,62 @@ Antes da suíte, o executor compara os hashes do Boletim, do lockfile, da suíte
 
 O responsável deve anexar também o inventário real do banco e do ambiente, o comando de migração e a identificação das fixtures. Não publicar credenciais, dados pessoais ou arquivos `.env`.
 
+## Demonstração da execução local
+
+As gravações da Figura 1 mostram a preparação do ambiente e uma repetição diagnóstica dos 30 cenários. Clique em um card para ampliar a animação.
+
+<div class="m3-recordings">
+  <a class="m3-recording-card" href="../assets/images/m3/preparando-ambiente.gif" data-recording-title="Preparando o ambiente de testes" data-recording-caption="Inicialização e conferência dos serviços PHP, PostgreSQL e Redis no ambiente isolado da M3." aria-haspopup="dialog" aria-controls="m3-recording-dialog">
+    <span class="m3-recording-preview">
+      <img src="../assets/images/m3/preparando-ambiente.gif" alt="Gravação do terminal preparando o ambiente Docker e conferindo os três serviços ativos." width="1609" height="814" loading="lazy" decoding="async">
+      <span class="m3-recording-expand" aria-hidden="true">Ampliar GIF ↗</span>
+    </span>
+    <span class="m3-recording-body">
+      <span class="m3-recording-step">01 · Ambiente Docker · 17 s</span>
+      <strong>Preparando o ambiente de testes</strong>
+      <span>Inicialização e conferência dos três serviços do laboratório.</span>
+    </span>
+  </a>
+  <a class="m3-recording-card" href="../assets/images/m3/execucao-testes.gif" data-recording-title="Demonstração dos 30 cenários da M3" data-recording-caption="Este GIF demonstra o comportamento do script em modo diagnóstico. Nesse modo, gate=BLOQUEADO impede o aceite oficial, mesmo com 30/30 cenários conformes e technical_gate=APROVADO. A coleta oficial em oficial-001/ registrou DCNM=100% e gate=APROVADO." aria-haspopup="dialog" aria-controls="m3-recording-dialog">
+    <span class="m3-recording-preview">
+      <img src="../assets/images/m3/execucao-testes.gif" alt="Gravação do terminal executando os cenários M3 e mostrando os valores esperados e obtidos." width="1609" height="814" loading="lazy" decoding="async">
+      <span class="m3-recording-expand" aria-hidden="true">Ampliar GIF ↗</span>
+    </span>
+    <span class="m3-recording-body">
+      <span class="m3-recording-step">02 · Demonstração diagnóstica · 13 s</span>
+      <strong>Executando os 30 cenários</strong>
+      <span>Demonstração do script: o gate aparece BLOQUEADO por estar em modo diagnóstico, mesmo com os 30 cenários conformes.</span>
+    </span>
+  </a>
+</div>
+
+<p class="m3-recording-source"><strong>Figura 1 — Preparação e execução local da M3.</strong> Fonte: gravações de Gustavo Silva Rodrigues, convertidas de WebM para GIF, com duração e resolução preservadas e amostragem de 10 quadros por segundo.</p>
+
+<div class="m3-gate-note" markdown="1">
+
+??? info "Por que o GIF mostra o gate BLOQUEADO?"
+    O GIF de execução foi gravado para **demonstrar o comportamento do script em modo diagnóstico**, usando `run_local.py`. Nesse modo, o executor mantém `gate: BLOQUEADO` e `official_acceptance: false` para impedir que uma demonstração conceda aceite oficial, mesmo com **30/30 cenários conformes** e `technical_gate: APROVADO`.
+
+    O bloqueio exibido nessa demonstração decorre do modo de execução. A coleta oficial, registrada em `oficial-001/`, obteve **DCNM = 100%, gate APROVADO e official_acceptance: true**.
+
+</div>
+
+<div class="m3-recording-modal-container">
+<dialog id="m3-recording-dialog" class="m3-recording-dialog" aria-labelledby="m3-recording-title" aria-describedby="m3-recording-caption">
+  <div class="m3-recording-dialog-header">
+    <h2 id="m3-recording-title">Demonstração da M3</h2>
+    <button type="button" class="m3-recording-close" aria-label="Fechar demonstração" autofocus>Fechar <span aria-hidden="true">×</span></button>
+  </div>
+  <div class="m3-recording-dialog-media"></div>
+  <div class="m3-recording-dialog-footer">
+    <p id="m3-recording-caption"></p>
+    <a class="m3-recording-original" target="_blank" rel="noopener">Abrir GIF original em nova aba ↗</a>
+  </div>
+</dialog>
+</div>
+
+Para repetir no seu terminal, execute `python3 scripts/avaliacao/m3/run_local.py`. Essa execução gera evidências diagnósticas; a coleta oficial continua registrada em `oficial-001/`. Avisos `DEPR` indicam recursos depreciados dos helpers legados e não equivalem a falhas nos cenários.
+
 ## Inspeção complementar do legado
 
 No commit fixado, `NotaSituacaoCommon.php` registra cinco cenários Pest, todos com `markTestSkipped()`. São cenários de situação escolar com médias previamente fornecidas, não suficientes para provar o cálculo das médias.
