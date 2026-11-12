@@ -10,7 +10,8 @@ foreach ($manifest['cases'] as $case) {
     test('M3 ' . $case['id'], function () use ($case, $manifest) {
         $input = $case['inputs'];
         $family = $case['family'];
-        $this->_setRegraOption('qtdCasasDecimais', 1);
+        // This valid model attribute is absent from the legacy helper defaults.
+        $this->_regraOptions['qtdCasasDecimais'] = $manifest['numeric_precision'];
         // Only persistence is mocked: table selection and conversion remain real.
         $makeTable = function ($concept, $rows, $normalize = false) {
             $mapper = $this->getCleanMock('TabelaArredondamento_Model_TabelaValorDataMapper');
@@ -80,6 +81,16 @@ foreach ($manifest['cases'] as $case) {
             }
             $service = $this->_getServiceInstance();
             $component = $this->componentes->first()->id;
+            if ($input['normalize'] ?? false) {
+                // Supply the stage count declared by the oracle, rather than
+                // the unrelated academic-year fixture's default stage count.
+                fwrite(STDOUT, "\nM3_SETUP " . json_encode([
+                    'id' => $case['id'], 'fixture_stages' => $service->getOption('etapas'),
+                    'declared_stages' => $input['stages'],
+                ]) . "\n");
+                $service->setOption('etapas', $input['stages']);
+                $this->assertSame($input['stages'], $service->getOption('etapas'));
+            }
             if ($family === 'concept') {
                 $this->mockDbPreparedQuery([['tipo_nota' => ComponenteSerie_Model_TipoNota::CONCEITUAL]]);
             }

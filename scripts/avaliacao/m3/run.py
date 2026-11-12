@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Execute a frozen M3 manifest and reconcile results against planned IDs."""
 import argparse
+import difflib
 from datetime import datetime, timezone
 from fractions import Fraction
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import shlex
@@ -61,11 +63,36 @@ def consolidate(manifest, xml_path, exit_code):
             'cases': rows, 'anomalies': anomalies, 'exit_code': exit_code}
 
 
+def consolidate_legacy(xml_path, exit_code):
+    """Report reactivated upstream tests separately from the frozen M3 universe."""
+    report = {'exit_code': exit_code, 'included_in_dcnm': False, 'cases': []}
+    if not xml_path.exists():
+        report['error'] = 'Legacy JUnit not produced; outcomes not verified'
+        return report
+    for case in ET.parse(xml_path).iter('testcase'):
+        row = {'name': case.get('name'), 'class': case.get('class'), 'status': 'passed'}
+        for tag in ('failure', 'error', 'skipped'):
+            detail = case.find(tag)
+            if detail is not None:
+                row.update(status=tag, exception=detail.get('type'), detail=(detail.text or '').strip())
+        if (row.get('exception') or '').split('\\')[-1] in (
+                'StudentNotEnrolledInSchoolClass', 'EvaluationRuleNotDefinedInLevel'):
+            row['classification'] = 'fixture_prerequisite_missing'
+        elif row['status'] != 'passed':
+            row['classification'] = 'requires_investigation'
+        report['cases'].append(row)
+    report['total'] = len(report['cases'])
+    report['passed'] = sum(c['status'] == 'passed' for c in report['cases'])
+    report['fixture_blocked'] = sum(c.get('classification') == 'fixture_prerequisite_missing' for c in report['cases'])
+    return report
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--product', type=Path, required=True, help='Isolated clean checkout at the required commit')
     parser.add_argument('--output', type=Path, required=True, help='New evidence directory')
     parser.add_argument('--php-command', default='php', help='PHP invocation, e.g. docker compose exec -T php php')
+    parser.add_argument('--diagnostic', action='store_true', help='Allow uncommitted instruments; cannot grant official acceptance')
     args = parser.parse_args()
     product = args.product.resolve()
     output = args.output.resolve()
@@ -74,6 +101,8 @@ def main():
     metadata = {'started_utc': datetime.now(timezone.utc).isoformat(), 'product_commit_required': manifest['product_commit']}
     failure = None
     code = 2
+    injected = []
+    runtime_env = dict(os.environ, M3_PRODUCT_DIR=str(product))
     try:
         metadata['manifest_reference_sha256'] = verify_manifest()
         commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=product, text=True).strip()
@@ -83,13 +112,20 @@ def main():
         if subprocess.check_output(['git', 'status', '--porcelain'], cwd=product, text=True).strip():
             raise RuntimeError('Product checkout must be clean before injection')
         metadata['instrument_commit'] = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=HERE, text=True).strip()
-        if subprocess.check_output(['git', 'status', '--porcelain', '--', str(HERE)], cwd=HERE, text=True).strip():
+        metadata['instrument_dirty'] = bool(subprocess.check_output(
+            ['git', 'status', '--porcelain', '--', str(HERE)], cwd=HERE, text=True).strip())
+        metadata['execution_mode'] = 'diagnostic' if args.diagnostic else 'official'
+        if metadata['instrument_dirty'] and not args.diagnostic:
             raise RuntimeError('Version the instrument and manifest before official execution')
         for name in ('manifest.json', 'M3OracleTest.php', 'run.py'):
             metadata[name + '_sha256'] = hashlib.sha256((HERE / name).read_bytes()).hexdigest()
+        snapshot = output / 'instrument'
+        snapshot.mkdir()
+        for name in ('manifest.json', 'manifest.sha256', 'M3OracleTest.php', 'run.py', 'run_local.py', 'compose.yml', 'php.sh'):
+            shutil.copyfile(HERE / name, snapshot / name)
         metadata['composer_lock_sha256'] = hashlib.sha256((product / 'composer.lock').read_bytes()).hexdigest()
         php = shlex.split(args.php_command)
-        version = subprocess.run(php + ['-v'], cwd=product, capture_output=True, text=True)
+        version = subprocess.run(php + ['-v'], cwd=product, env=runtime_env, capture_output=True, text=True)
         metadata['php_version'] = version.stdout + version.stderr
         if version.returncode or not re.search(r'PHP 8\.5\.', version.stdout):
             raise RuntimeError('PHP 8.5 required')
@@ -98,15 +134,30 @@ def main():
         if any(t.exists() for t in targets):
             raise RuntimeError('Injected filenames already exist; use a fresh isolated checkout')
         shutil.copyfile(HERE / 'M3OracleTest.php', targets[0])
+        injected.append(targets[0])
         shutil.copyfile(HERE / 'manifest.json', targets[1])
+        injected.append(targets[1])
+        # Verify the container is reading the same checkout and instrument as the host.
+        checked_paths = ['composer.lock', 'ieducar/modules/Avaliacao/Service/Boletim.php',
+                         'tests/Unit/Modules/Service/M3OracleTest.php',
+                         'tests/Unit/Modules/Service/m3-manifest.json']
+        fingerprint_code = '$r=[]; foreach (json_decode($argv[1],true) as $p) {$r[$p]=hash_file("sha256",$p);} echo json_encode($r);'
+        runtime_hashes = json.loads(subprocess.check_output(
+            php + ['-r', fingerprint_code, json.dumps(checked_paths)], cwd=product,
+            env=runtime_env, text=True))
+        host_hashes = {name: hashlib.sha256((product / name).read_bytes()).hexdigest() for name in checked_paths}
+        metadata['runtime_file_sha256'] = runtime_hashes
+        if runtime_hashes != host_hashes:
+            raise RuntimeError('Runtime checkout differs from host checkout; no suite executed')
         # A path inside the product also works when PHP runs in its container.
         junit = product / 'm3-junit.xml'
         if junit.exists():
             raise RuntimeError('Existing JUnit output would risk stale evidence')
+        injected.append(junit)
         command = php + ['vendor/bin/pest', 'tests/Unit/Modules/Service/M3OracleTest.php', '--colors=never', '--log-junit=m3-junit.xml']
         metadata['command'] = command
         with (output / 'execution.txt').open('w') as log:
-            with subprocess.Popen(command, cwd=product, stdout=subprocess.PIPE,
+            with subprocess.Popen(command, cwd=product, env=runtime_env, stdout=subprocess.PIPE,
                                   stderr=subprocess.STDOUT, text=True) as process:
                 for line in process.stdout:
                     log.write(line)
@@ -118,22 +169,40 @@ def main():
         # Complementary legacy scenarios: activate only in this disposable checkout.
         legacy = destination / 'NotaSituacaoCommon.php'
         original = legacy.read_text()
+        metadata['legacy_original_sha256'] = hashlib.sha256(legacy.read_bytes()).hexdigest()
         metadata['legacy_skips_removed'] = original.count('$this->markTestSkipped();')
+        legacy_junit = product / 'm3-legacy-junit.xml'
+        if legacy_junit.exists():
+            raise RuntimeError('Existing legacy JUnit output would risk stale evidence')
+        injected.append(legacy_junit)
         try:
-            legacy.write_text(original.replace('$this->markTestSkipped();', ''))
+            reactivated = original.replace('$this->markTestSkipped();', '')
+            legacy.write_text(reactivated)
+            (output / 'legacy-reactivation.patch').write_text(''.join(difflib.unified_diff(
+                original.splitlines(keepends=True), reactivated.splitlines(keepends=True),
+                fromfile='a/tests/Unit/Modules/Service/NotaSituacaoCommon.php',
+                tofile='b/tests/Unit/Modules/Service/NotaSituacaoCommon.php')))
             legacy_command = php + ['vendor/bin/pest',
                 'tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php',
-                'tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php', '--colors=never']
+                'tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php', '--colors=never',
+                '--log-junit=m3-legacy-junit.xml']
             metadata['legacy_command'] = legacy_command
             with (output / 'legacy.txt').open('w') as log:
-                metadata['legacy_exit_code'] = subprocess.run(legacy_command, cwd=product,
+                metadata['legacy_exit_code'] = subprocess.run(legacy_command, cwd=product, env=runtime_env,
                     stdout=log, stderr=subprocess.STDOUT).returncode
+            if legacy_junit.exists():
+                shutil.copyfile(legacy_junit, output / 'legacy-junit.xml')
+            (output / 'legacy-summary.json').write_text(json.dumps(consolidate_legacy(
+                output / 'legacy-junit.xml', metadata['legacy_exit_code']), indent=2) + '\n')
         finally:
             legacy.write_text(original)
     except (OSError, RuntimeError, subprocess.SubprocessError) as exc:
         failure = str(exc)
         with (output / 'execution.txt').open('a') as log:
             log.write('\nExecutor error: ' + failure + '\n')
+    finally:
+        for path in injected:
+            path.unlink(missing_ok=True)
     metadata['preflight_error'] = failure
     metadata['finished_utc'] = datetime.now(timezone.utc).isoformat()
     (output / 'environment.json').write_text(json.dumps(metadata, indent=2) + '\n')
@@ -165,10 +234,17 @@ def main():
     summary['percent'] = good * 100 / total if total else None
     if good != total or failure:
         summary['gate'] = 'BLOQUEADO'
+    summary['technical_gate'] = summary['gate']
+    summary['execution_mode'] = 'diagnostic' if args.diagnostic else 'official'
+    summary['official_acceptance'] = summary['gate'] == 'APROVADO' and not args.diagnostic
+    if args.diagnostic:
+        summary['gate'] = 'BLOQUEADO'
     (output / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
     (output / 'results.csv').write_text('id,status,expected,actual\n' + ''.join(f"{r['id']},{r['status']},{r['expected']},{r['actual']}\n" for r in summary['cases']))
-    print(json.dumps({'gate': summary['gate'], 'fraction': summary['fraction'], 'preflight_error': failure}, ensure_ascii=False))
-    return 0 if summary['gate'] == 'APROVADO' else 1
+    print(json.dumps({k: summary[k] for k in (
+        'gate', 'technical_gate', 'execution_mode', 'official_acceptance', 'fraction', 'preflight_error'
+    )}, ensure_ascii=False))
+    return 0 if summary['technical_gate'] == 'APROVADO' else 1
 
 
 if __name__ == '__main__':

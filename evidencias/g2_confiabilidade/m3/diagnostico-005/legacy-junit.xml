@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="CLI Arguments" tests="10" assertions="150" errors="10" failures="0" skipped="0" time="1.423062">
+    <testsuite name="Tests\Unit\Modules\Service\NotaNumericaSituacaoTest" file="tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php" tests="5" assertions="75" errors="5" failures="0" skipped="0" time="0.793861">
+      <testcase name="situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados" file="tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php::situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados" class="Tests\Unit\Modules\Service\NotaNumericaSituacaoTest" classname="Tests.Unit.Modules.Service.NotaNumericaSituacaoTest" assertions="15" time="0.299914">
+        <error type="iEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass">situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovadosiEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass: Aluno não enturmado.
+at ieducar/lib/App/Model/IedFinder.php:827
+at ieducar/lib/App/Model/IedFinder.php:959
+at ieducar/modules/Avaliacao/Service/Boletim.php:950
+at ieducar/modules/Avaliacao/Service/Boletim.php:1549
+at tests/Unit/Modules/Service/NotaSituacaoCommon.php:89</error>
+      </testcase>
+      <testcase name="situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento" file="tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php::situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento" class="Tests\Unit\Modules\Service\NotaNumericaSituacaoTest" classname="Tests.Unit.Modules.Service.NotaNumericaSituacaoTest" assertions="15" time="0.125868">
+        <error type="iEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass">situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamentoiEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass: Aluno não enturmado.
+at ieducar/lib/App/Model/IedFinder.php:827
+at ieducar/lib/App/Model/IedFinder.php:959
+at ieducar/modules/Avaliacao/Service/Boletim.php:950
+at ieducar/modules/Avaliacao/Service/Boletim.php:1549
+at tests/Unit/Modules/Service/NotaSituacaoCommon.php:151</error>
+      </testcase>
+      <testcase name="situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados" file="tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php::situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados" class="Tests\Unit\Modules\Service\NotaNumericaSituacaoTest" classname="Tests.Unit.Modules.Service.NotaNumericaSituacaoTest" assertions="15" time="0.123513">
+        <error type="iEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass">situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovadosiEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass: Aluno não enturmado.
+at ieducar/lib/App/Model/IedFinder.php:827
+at ieducar/lib/App/Model/IedFinder.php:959
+at ieducar/modules/Avaliacao/Service/Boletim.php:950
+at ieducar/modules/Avaliacao/Service/Boletim.php:1549
+at tests/Unit/Modules/Service/NotaSituacaoCommon.php:213</error>
+      </testcase>
+      <testcase name="situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado" file="tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php::situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado" class="Tests\Unit\Modules\Service\NotaNumericaSituacaoTest" classname="Tests.Unit.Modules.Service.NotaNumericaSituacaoTest" assertions="15" time="0.121029">
+        <error type="iEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass">situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovadoiEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass: Aluno não enturmado.
+at ieducar/lib/App/Model/IedFinder.php:827
+at ieducar/lib/App/Model/IedFinder.php:959
+at ieducar/modules/Avaliacao/Service/Boletim.php:950
+at ieducar/modules/Avaliacao/Service/Boletim.php:1549
+at tests/Unit/Modules/Service/NotaSituacaoCommon.php:275</error>
+      </testcase>
+      <testcase name="situacao componentes curriculares um componente lancado reprovado um componente abaixo da media" file="tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php::situacao componentes curriculares um componente lancado reprovado um componente abaixo da media" class="Tests\Unit\Modules\Service\NotaNumericaSituacaoTest" classname="Tests.Unit.Modules.Service.NotaNumericaSituacaoTest" assertions="15" time="0.123538">
+        <error type="iEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass">situacao componentes curriculares um componente lancado reprovado um componente abaixo da mediaiEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass: Aluno não enturmado.
+at ieducar/lib/App/Model/IedFinder.php:827
+at ieducar/lib/App/Model/IedFinder.php:959
+at ieducar/modules/Avaliacao/Service/Boletim.php:950
+at ieducar/modules/Avaliacao/Service/Boletim.php:1549
+at tests/Unit/Modules/Service/NotaSituacaoCommon.php:343</error>
+      </testcase>
+    </testsuite>
+    <testsuite name="Tests\Unit\Modules\Service\NotaConceitualSituacaoTest" file="tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php" tests="5" assertions="75" errors="5" failures="0" skipped="0" time="0.629201">
+      <testcase name="situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados" file="tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php::situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados" class="Tests\Unit\Modules\Service\NotaConceitualSituacaoTest" classname="Tests.Unit.Modules.Service.NotaConceitualSituacaoTest" assertions="15" time="0.132415">
+        <error type="iEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass">situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovadosiEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass: Aluno não enturmado.
+at ieducar/lib/App/Model/IedFinder.php:827
+at ieducar/lib/App/Model/IedFinder.php:959
+at ieducar/modules/Avaliacao/Service/Boletim.php:950
+at ieducar/modules/Avaliacao/Service/Boletim.php:1549
+at tests/Unit/Modules/Service/NotaSituacaoCommon.php:89</error>
+      </testcase>
+      <testcase name="situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento" file="tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php::situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento" class="Tests\Unit\Modules\Service\NotaConceitualSituacaoTest" classname="Tests.Unit.Modules.Service.NotaConceitualSituacaoTest" assertions="15" time="0.124710">
+        <error type="iEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass">situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamentoiEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass: Aluno não enturmado.
+at ieducar/lib/App/Model/IedFinder.php:827
+at ieducar/lib/App/Model/IedFinder.php:959
+at ieducar/modules/Avaliacao/Service/Boletim.php:950
+at ieducar/modules/Avaliacao/Service/Boletim.php:1549
+at tests/Unit/Modules/Service/NotaSituacaoCommon.php:151</error>
+      </testcase>
+      <testcase name="situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados" file="tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php::situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados" class="Tests\Unit\Modules\Service\NotaConceitualSituacaoTest" classname="Tests.Unit.Modules.Service.NotaConceitualSituacaoTest" assertions="15" time="0.125405">
+        <error type="iEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass">situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovadosiEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass: Aluno não enturmado.
+at ieducar/lib/App/Model/IedFinder.php:827
+at ieducar/lib/App/Model/IedFinder.php:959
+at ieducar/modules/Avaliacao/Service/Boletim.php:950
+at ieducar/modules/Avaliacao/Service/Boletim.php:1549
+at tests/Unit/Modules/Service/NotaSituacaoCommon.php:213</error>
+      </testcase>
+      <testcase name="situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado" file="tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php::situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado" class="Tests\Unit\Modules\Service\NotaConceitualSituacaoTest" classname="Tests.Unit.Modules.Service.NotaConceitualSituacaoTest" assertions="15" time="0.123367">
+        <error type="iEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass">situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovadoiEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass: Aluno não enturmado.
+at ieducar/lib/App/Model/IedFinder.php:827
+at ieducar/lib/App/Model/IedFinder.php:959
+at ieducar/modules/Avaliacao/Service/Boletim.php:950
+at ieducar/modules/Avaliacao/Service/Boletim.php:1549
+at tests/Unit/Modules/Service/NotaSituacaoCommon.php:275</error>
+      </testcase>
+      <testcase name="situacao componentes curriculares um componente lancado reprovado um componente abaixo da media" file="tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php::situacao componentes curriculares um componente lancado reprovado um componente abaixo da media" class="Tests\Unit\Modules\Service\NotaConceitualSituacaoTest" classname="Tests.Unit.Modules.Service.NotaConceitualSituacaoTest" assertions="15" time="0.123305">
+        <error type="iEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass">situacao componentes curriculares um componente lancado reprovado um componente abaixo da mediaiEducar\Modules\Enrollments\Exceptions\StudentNotEnrolledInSchoolClass: Aluno não enturmado.
+at ieducar/lib/App/Model/IedFinder.php:827
+at ieducar/lib/App/Model/IedFinder.php:959
+at ieducar/modules/Avaliacao/Service/Boletim.php:950
+at ieducar/modules/Avaliacao/Service/Boletim.php:1549
+at tests/Unit/Modules/Service/NotaSituacaoCommon.php:343</error>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testsuites>

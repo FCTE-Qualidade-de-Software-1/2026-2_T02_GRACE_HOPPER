@@ -65,6 +65,7 @@ exclude_docs: |
 nav:
   - Início: index.md
   - GQM: gqm_evaluation_framework.md
+  - Medição M3 — Notas e Menções: medicao_m3_dcnm.md
   - Gestão de Releases: gestao_projeto_releases_milestones_issues.md
   - Relatório PC1: relatorio_de_planejamento_ponto_de_controle_1_i_educar.md
   - Protocolo Ético (TCLE): termo_consentimento_livre_esclarecido.md

@@ -1,0 +1,198 @@
+{
+  "planned": 30,
+  "conforming": 30,
+  "nonconforming": 0,
+  "fraction": "30/30",
+  "percent_exact": "100",
+  "percent": 100.0,
+  "gate": "BLOQUEADO",
+  "cases": [
+    {
+      "id": "A01",
+      "status": "passed",
+      "expected": 0,
+      "actual": 0
+    },
+    {
+      "id": "A02",
+      "status": "passed",
+      "expected": 10,
+      "actual": 10
+    },
+    {
+      "id": "A03",
+      "status": "passed",
+      "expected": 7.5,
+      "actual": 7.5
+    },
+    {
+      "id": "A04",
+      "status": "passed",
+      "expected": 6,
+      "actual": 6
+    },
+    {
+      "id": "P01",
+      "status": "passed",
+      "expected": 7,
+      "actual": 7
+    },
+    {
+      "id": "P02",
+      "status": "passed",
+      "expected": 5,
+      "actual": 5
+    },
+    {
+      "id": "P03",
+      "status": "passed",
+      "expected": 6,
+      "actual": 6
+    },
+    {
+      "id": "R01",
+      "status": "passed",
+      "expected": 8,
+      "actual": 8
+    },
+    {
+      "id": "R02",
+      "status": "passed",
+      "expected": 7,
+      "actual": 7
+    },
+    {
+      "id": "R03",
+      "status": "passed",
+      "expected": 6,
+      "actual": 6
+    },
+    {
+      "id": "R04",
+      "status": "passed",
+      "expected": 7,
+      "actual": 7
+    },
+    {
+      "id": "R05",
+      "status": "passed",
+      "expected": 6,
+      "actual": 6
+    },
+    {
+      "id": "R06",
+      "status": "passed",
+      "expected": 8,
+      "actual": 8
+    },
+    {
+      "id": "E01",
+      "status": "passed",
+      "expected": 4,
+      "actual": 4
+    },
+    {
+      "id": "E02",
+      "status": "passed",
+      "expected": 6,
+      "actual": 6
+    },
+    {
+      "id": "E03",
+      "status": "passed",
+      "expected": 7,
+      "actual": 7
+    },
+    {
+      "id": "N01",
+      "status": "passed",
+      "expected": 5,
+      "actual": 5
+    },
+    {
+      "id": "N02",
+      "status": "passed",
+      "expected": 6,
+      "actual": 6
+    },
+    {
+      "id": "N03",
+      "status": "passed",
+      "expected": 5.5,
+      "actual": 5.5
+    },
+    {
+      "id": "N04",
+      "status": "passed",
+      "expected": 5.9,
+      "actual": 5.9
+    },
+    {
+      "id": "C01",
+      "status": "passed",
+      "expected": "I",
+      "actual": "I"
+    },
+    {
+      "id": "C02",
+      "status": "passed",
+      "expected": "I",
+      "actual": "I"
+    },
+    {
+      "id": "C03",
+      "status": "passed",
+      "expected": "I",
+      "actual": "I"
+    },
+    {
+      "id": "C04",
+      "status": "passed",
+      "expected": "S",
+      "actual": "S"
+    },
+    {
+      "id": "C05",
+      "status": "passed",
+      "expected": "S",
+      "actual": "S"
+    },
+    {
+      "id": "C06",
+      "status": "passed",
+      "expected": "S",
+      "actual": "S"
+    },
+    {
+      "id": "C07",
+      "status": "passed",
+      "expected": "O",
+      "actual": "O"
+    },
+    {
+      "id": "C08",
+      "status": "passed",
+      "expected": "O",
+      "actual": "O"
+    },
+    {
+      "id": "C09",
+      "status": "passed",
+      "expected": "O",
+      "actual": "O"
+    },
+    {
+      "id": "C10",
+      "status": "passed",
+      "expected": "S",
+      "actual": "S"
+    }
+  ],
+  "anomalies": [],
+  "exit_code": 0,
+  "execution_attempted": true,
+  "preflight_error": null,
+  "technical_gate": "APROVADO",
+  "execution_mode": "diagnostic",
+  "official_acceptance": false
+}

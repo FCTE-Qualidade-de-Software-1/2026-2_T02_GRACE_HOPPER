@@ -1,0 +1,7 @@
+{
+  "started_utc": "2026-11-10T00:41:09.804116+00:00",
+  "product_commit_required": "7903a3efc7689942ee700007f86ed581023aad27",
+  "product_commit_actual": "a9a217d198807b84919075d163f46d276eff3856",
+  "preflight_error": "Product commit differs from manifest; no suite executed",
+  "finished_utc": "2026-11-10T00:41:09.807406+00:00"
+}

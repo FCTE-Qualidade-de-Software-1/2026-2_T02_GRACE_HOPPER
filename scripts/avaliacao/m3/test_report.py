@@ -2,7 +2,7 @@ import tempfile
 from pathlib import Path
 import unittest
 from unittest.mock import patch
-from run import consolidate, verify_manifest
+from run import consolidate, consolidate_legacy, verify_manifest
 
 class ReportTests(unittest.TestCase):
     def result(self, xml, ids=('A01', 'A02'), code=0):
@@ -44,6 +44,24 @@ class ReportTests(unittest.TestCase):
             with patch('run.HERE', root):
                 with self.assertRaisesRegex(RuntimeError, 'Manifest differs'):
                     verify_manifest()
+
+    def test_legacy_prerequisite_error_is_separate_from_assertion_failure(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            report = Path(tmp) / 'legacy.xml'
+            report.write_text('<testsuite><testcase name="blocked"><error '
+                              'type="StudentNotEnrolledInSchoolClass">Aluno não enturmado.</error>'
+                              '</testcase><testcase name="mismatch"><failure '
+                              'type="AssertionFailedError">Different</failure></testcase></testsuite>')
+            result = consolidate_legacy(report, 2)
+            self.assertFalse(result['included_in_dcnm'])
+            self.assertEqual(1, result['fixture_blocked'])
+            self.assertEqual('requires_investigation', result['cases'][1]['classification'])
+
+    def test_missing_legacy_report_is_not_approval(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            result = consolidate_legacy(Path(tmp) / 'missing.xml', 2)
+            self.assertIn('error', result)
+            self.assertEqual([], result['cases'])
 
 if __name__ == '__main__':
     unittest.main()

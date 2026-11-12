@@ -1,0 +1,661 @@
+
+   INFO  Preparing database.  
+
+  Creating migration table ...................................... 15.46ms DONE
+
+   INFO  Running migrations.  
+
+  2014_10_12_000000_create_users_table ........................... 7.27ms DONE
+  2014_10_12_100000_create_password_resets_table ................. 3.61ms DONE
+  2019_12_01_100000_create_audit_table ........................... 5.60ms DONE
+  2019_12_14_000001_create_personal_access_tokens_table .......... 7.81ms DONE
+  2020_01_01_000000_create_schemas ............................... 2.51ms DONE
+  2020_01_01_000001_create_extensions ............................ 9.37ms DONE
+  2020_01_01_000003_add_function_public_commacat_ignore_nulls .... 3.72ms DONE
+  2020_01_01_000003_audit_functions .............................. 4.02ms DONE
+  2020_01_01_000004_create_aggregates ............................ 2.83ms DONE
+  2020_01_01_110000_create_cadastro_codigo_cartorio_inep_table ... 4.76ms DONE
+  2020_01_01_110000_create_cadastro_deficiencia_excluidos_table .. 3.89ms DONE
+  2020_01_01_110000_create_cadastro_deficiencia_table ............ 4.47ms DONE
+  2020_01_01_110000_create_cadastro_documento_table .............. 5.54ms DONE
+  2020_01_01_110000_create_cadastro_escolaridade_table ........... 3.51ms DONE
+  2020_01_01_110000_create_cadastro_estado_civil_table ........... 2.87ms DONE
+  2020_01_01_110000_create_cadastro_fisica_deficiencia_table ..... 3.51ms DONE
+  2020_01_01_110000_create_cadastro_fisica_foto_table ............ 3.52ms DONE
+  2020_01_01_110000_create_cadastro_fisica_raca_table ............ 3.49ms DONE
+  2020_01_01_110000_create_cadastro_fisica_table ................. 5.43ms DONE
+  2020_01_01_110000_create_cadastro_fone_pessoa_table ............ 4.54ms DONE
+  2020_01_01_110000_create_cadastro_juridica_table ............... 5.30ms DONE
+  2020_01_01_110000_create_cadastro_orgao_emissor_rg_table ....... 4.44ms DONE
+  2020_01_01_110000_create_cadastro_pessoa_table ................. 5.35ms DONE
+  2020_01_01_110000_create_cadastro_raca_table ................... 4.35ms DONE
+  2020_01_01_110000_create_cities_table .......................... 4.10ms DONE
+  2020_01_01_110000_create_countries_table ....................... 4.54ms DONE
+  2020_01_01_110000_create_districts_table ....................... 4.63ms DONE
+  2020_01_01_110000_create_educacenso_imports_table .............. 4.39ms DONE
+  2020_01_01_110000_create_employee_graduation_disciplines_table . 3.83ms DONE
+  2020_01_01_110000_create_employee_graduations_table ............ 4.01ms DONE
+  2020_01_01_110000_create_log_unification_old_data_table ........ 5.22ms DONE
+  2020_01_01_110000_create_log_unifications_table ................ 6.04ms DONE
+  2020_01_01_110000_create_manager_access_criterias_table ........ 3.89ms DONE
+  2020_01_01_110000_create_manager_link_types_table .............. 3.60ms DONE
+  2020_01_01_110000_create_manager_roles_table ................... 3.71ms DONE
+  2020_01_01_110000_create_menus_table ........................... 5.29ms DONE
+  2020_01_01_110000_create_modules_area_conhecimento_excluidos_table  2.72ms DONE
+  2020_01_01_110000_create_modules_area_conhecimento_table ....... 4.87ms DONE
+  2020_01_01_110000_create_modules_auditoria_table ............... 3.11ms DONE
+  2020_01_01_110000_create_modules_calendario_turma_table ........ 4.38ms DONE
+  2020_01_01_110000_create_modules_componente_curricular_ano_escolar_excluidos_table  10.43ms DONE
+  2020_01_01_110000_create_modules_componente_curricular_ano_escolar_table  4.55ms DONE
+  2020_01_01_110000_create_modules_componente_curricular_table ... 6.70ms DONE
+  2020_01_01_110000_create_modules_componente_curricular_turma_excluidos_table  3.05ms DONE
+  2020_01_01_110000_create_modules_componente_curricular_turma_table  5.33ms DONE
+  2020_01_01_110000_create_modules_config_movimento_geral_table .. 3.62ms DONE
+  2020_01_01_110000_create_modules_educacenso_cod_aluno_table .... 4.45ms DONE
+  2020_01_01_110000_create_modules_educacenso_cod_docente_table .. 4.55ms DONE
+  2020_01_01_110000_create_modules_educacenso_cod_escola_table ... 4.73ms DONE
+  2020_01_01_110000_create_modules_educacenso_cod_turma_table .... 3.84ms DONE
+  2020_01_01_110000_create_modules_educacenso_curso_superior_table  4.36ms DONE
+  2020_01_01_110000_create_modules_educacenso_ies_table .......... 4.81ms DONE
+  2020_01_01_110000_create_modules_educacenso_orgao_regional_table  3.84ms DONE
+  2020_01_01_110000_create_modules_etapas_curso_educacenso_table . 3.75ms DONE
+  2020_01_01_110000_create_modules_etapas_educacenso_table ....... 3.59ms DONE
+  2020_01_01_110000_create_modules_falta_aluno_table ............. 6.14ms DONE
+  2020_01_01_110000_create_modules_falta_componente_curricular_table  4.60ms DONE
+  2020_01_01_110000_create_modules_falta_geral_table ............. 4.71ms DONE
+  2020_01_01_110000_create_modules_ficha_medica_aluno_table ...... 5.08ms DONE
+  2020_01_01_110000_create_modules_formula_media_table ........... 4.61ms DONE
+  2020_01_01_110000_create_modules_lingua_indigena_educacenso_table  2.86ms DONE
+  2020_01_01_110000_create_modules_media_geral_table ............. 3.38ms DONE
+  2020_01_01_110000_create_modules_moradia_aluno_table ........... 3.96ms DONE
+  2020_01_01_110000_create_modules_nota_aluno_table .............. 6.36ms DONE
+  2020_01_01_110000_create_modules_nota_componente_curricular_media_table  4.18ms DONE
+  2020_01_01_110000_create_modules_nota_componente_curricular_table  4.54ms DONE
+  2020_01_01_110000_create_modules_nota_exame_table .............. 2.79ms DONE
+  2020_01_01_110000_create_modules_nota_geral_table .............. 4.05ms DONE
+  2020_01_01_110000_create_modules_parecer_aluno_table ........... 4.64ms DONE
+  2020_01_01_110000_create_modules_parecer_componente_curricular_table  5.29ms DONE
+  2020_01_01_110000_create_modules_parecer_geral_table ........... 5.56ms DONE
+  2020_01_01_110000_create_modules_professor_turma_disciplina_table  3.58ms DONE
+  2020_01_01_110000_create_modules_professor_turma_excluidos_table  3.16ms DONE
+  2020_01_01_110000_create_modules_professor_turma_table ......... 4.45ms DONE
+  2020_01_01_110000_create_modules_regra_avaliacao_recuperacao_excluidos_table  3.11ms DONE
+  2020_01_01_110000_create_modules_regra_avaliacao_recuperacao_table  4.23ms DONE
+  2020_01_01_110000_create_modules_regra_avaliacao_serie_ano_excluidos_table  4.24ms DONE
+  2020_01_01_110000_create_modules_regra_avaliacao_serie_ano_table  3.96ms DONE
+  2020_01_01_110000_create_modules_regra_avaliacao_table ......... 6.54ms DONE
+  2020_01_01_110000_create_modules_tabela_arredondamento_table ... 5.46ms DONE
+  2020_01_01_110000_create_modules_tabela_arredondamento_valor_table  4.22ms DONE
+  2020_01_01_110000_create_notifications_table ................... 4.60ms DONE
+  2020_01_01_110000_create_person_has_place_table ................ 5.95ms DONE
+  2020_01_01_110000_create_places_table .......................... 5.18ms DONE
+  2020_01_01_110000_create_pmieducar_abandono_tipo_table ......... 3.92ms DONE
+  2020_01_01_110000_create_pmieducar_aluno_aluno_beneficio_table . 3.33ms DONE
+  2020_01_01_110000_create_pmieducar_aluno_beneficio_table ....... 6.78ms DONE
+  2020_01_01_110000_create_pmieducar_aluno_excluidos_table ....... 5.01ms DONE
+  2020_01_01_110000_create_pmieducar_aluno_historico_altura_peso_table  2.41ms DONE
+  2020_01_01_110000_create_pmieducar_aluno_table ................. 7.67ms DONE
+  2020_01_01_110000_create_pmieducar_ano_letivo_modulo_table ..... 3.45ms DONE
+  2020_01_01_110000_create_pmieducar_avaliacao_desempenho_table .. 4.65ms DONE
+  2020_01_01_110000_create_pmieducar_bloqueio_ano_letivo_table ... 3.64ms DONE
+  2020_01_01_110000_create_pmieducar_bloqueio_lancamento_faltas_notas_table  3.92ms DONE
+  2020_01_01_110000_create_pmieducar_calendario_ano_letivo_table . 6.08ms DONE
+  2020_01_01_110000_create_pmieducar_calendario_anotacao_table ... 5.55ms DONE
+  2020_01_01_110000_create_pmieducar_calendario_dia_anotacao_table  3.93ms DONE
+  2020_01_01_110000_create_pmieducar_calendario_dia_motivo_table . 7.88ms DONE
+  2020_01_01_110000_create_pmieducar_calendario_dia_table ........ 7.75ms DONE
+  2020_01_01_110000_create_pmieducar_configuracoes_gerais_table .. 6.30ms DONE
+  2020_01_01_110000_create_pmieducar_curso_table ................ 11.37ms DONE
+  2020_01_01_110000_create_pmieducar_disciplina_dependencia_excluidos_table  3.49ms DONE
+  2020_01_01_110000_create_pmieducar_disciplina_dependencia_table  4.73ms DONE
+  2020_01_01_110000_create_pmieducar_disciplina_serie_table ...... 3.89ms DONE
+  2020_01_01_110000_create_pmieducar_dispensa_disciplina_excluidos_table  5.02ms DONE
+  2020_01_01_110000_create_pmieducar_dispensa_disciplina_table ... 6.37ms DONE
+  2020_01_01_110000_create_pmieducar_dispensa_etapa_table ........ 2.09ms DONE
+  2020_01_01_110000_create_pmieducar_distribuicao_uniforme_table . 4.85ms DONE
+  2020_01_01_110000_create_pmieducar_escola_ano_letivo_table ..... 4.06ms DONE
+  2020_01_01_110000_create_pmieducar_escola_curso_table .......... 5.85ms DONE
+  2020_01_01_110000_create_pmieducar_escola_localizacao_table .... 6.59ms DONE
+  2020_01_01_110000_create_pmieducar_escola_serie_disciplina_excluidos_table  5.79ms DONE
+  2020_01_01_110000_create_pmieducar_escola_serie_disciplina_table  6.26ms DONE
+  2020_01_01_110000_create_pmieducar_escola_serie_table .......... 7.38ms DONE
+  2020_01_01_110000_create_pmieducar_escola_table ............... 11.82ms DONE
+  2020_01_01_110000_create_pmieducar_escola_usuario_table ........ 4.46ms DONE
+  2020_01_01_110000_create_pmieducar_falta_atraso_compensado_table  6.35ms DONE
+  2020_01_01_110000_create_pmieducar_falta_atraso_table .......... 5.57ms DONE
+  2020_01_01_110000_create_pmieducar_funcao_table ................ 6.60ms DONE
+  2020_01_01_110000_create_pmieducar_historico_disciplinas_table . 6.01ms DONE
+  2020_01_01_110000_create_pmieducar_historico_escolar_table .... 10.64ms DONE
+  2020_01_01_110000_create_pmieducar_historico_grade_curso_table . 4.10ms DONE
+  2020_01_01_110000_create_pmieducar_instituicao_documentacao_table  5.43ms DONE
+  2020_01_01_110000_create_pmieducar_instituicao_table ........... 7.57ms DONE
+  2020_01_01_110000_create_pmieducar_matricula_ocorrencia_disciplinar_table  5.96ms DONE
+  2020_01_01_110000_create_pmieducar_matricula_table ............. 8.60ms DONE
+  2020_01_01_110000_create_pmieducar_matricula_turma_excluidos_table  5.67ms DONE
+  2020_01_01_110000_create_pmieducar_matricula_turma_table ....... 7.29ms DONE
+  2020_01_01_110000_create_pmieducar_menu_tipo_usuario_table ..... 5.43ms DONE
+  2020_01_01_110000_create_pmieducar_modulo_table ................ 5.26ms DONE
+  2020_01_01_110000_create_pmieducar_motivo_afastamento_table .... 5.13ms DONE
+  2020_01_01_110000_create_pmieducar_nivel_ensino_table .......... 5.23ms DONE
+  2020_01_01_110000_create_pmieducar_projeto_aluno_table ......... 3.19ms DONE
+  2020_01_01_110000_create_pmieducar_projeto_table ............... 3.75ms DONE
+  2020_01_01_110000_create_pmieducar_quadro_horario_horarios_aux_table  5.21ms DONE
+  2020_01_01_110000_create_pmieducar_quadro_horario_horarios_table  5.19ms DONE
+  2020_01_01_110000_create_pmieducar_quadro_horario_table ........ 4.22ms DONE
+  2020_01_01_110000_create_pmieducar_religiao_table .............. 3.93ms DONE
+  2020_01_01_110000_create_pmieducar_reserva_vaga_table .......... 4.17ms DONE
+  2020_01_01_110000_create_pmieducar_sequencia_serie_table ....... 4.11ms DONE
+  2020_01_01_110000_create_pmieducar_serie_table ................. 6.85ms DONE
+  2020_01_01_110000_create_pmieducar_servidor_afastamento_table .. 4.37ms DONE
+  2020_01_01_110000_create_pmieducar_servidor_alocacao_table ..... 5.61ms DONE
+  2020_01_01_110000_create_pmieducar_servidor_curso_ministra_table  3.19ms DONE
+  2020_01_01_110000_create_pmieducar_servidor_disciplina_table ... 3.30ms DONE
+  2020_01_01_110000_create_pmieducar_servidor_funcao_table ....... 4.98ms DONE
+  2020_01_01_110000_create_pmieducar_servidor_table .............. 7.27ms DONE
+  2020_01_01_110000_create_pmieducar_tipo_autor_table ............ 2.61ms DONE
+  2020_01_01_110000_create_pmieducar_tipo_dispensa_table ......... 4.80ms DONE
+  2020_01_01_110000_create_pmieducar_tipo_ensino_table ........... 4.13ms DONE
+  2020_01_01_110000_create_pmieducar_tipo_ocorrencia_disciplinar_table  18.03ms DONE
+  2020_01_01_110000_create_pmieducar_tipo_regime_table ........... 4.62ms DONE
+  2020_01_01_110000_create_pmieducar_tipo_usuario_table .......... 4.93ms DONE
+  2020_01_01_110000_create_pmieducar_transferencia_solicitacao_table  4.88ms DONE
+  2020_01_01_110000_create_pmieducar_transferencia_tipo_table .... 4.90ms DONE
+  2020_01_01_110000_create_pmieducar_turma_modulo_table .......... 5.42ms DONE
+  2020_01_01_110000_create_pmieducar_turma_table ................. 7.40ms DONE
+  2020_01_01_110000_create_pmieducar_turma_tipo_table ............ 4.15ms DONE
+  2020_01_01_110000_create_pmieducar_turma_turno_table ........... 4.18ms DONE
+  2020_01_01_110000_create_pmieducar_usuario_table ............... 3.97ms DONE
+  2020_01_01_110000_create_portal_acesso_table ................... 5.03ms DONE
+  2020_01_01_110000_create_portal_agenda_compromisso_table ....... 5.47ms DONE
+  2020_01_01_110000_create_portal_agenda_responsavel_table ....... 3.14ms DONE
+  2020_01_01_110000_create_portal_agenda_table ................... 5.71ms DONE
+  2020_01_01_110000_create_portal_funcionario_table .............. 5.12ms DONE
+  2020_01_01_110000_create_portal_funcionario_vinculo_table ...... 4.26ms DONE
+  2020_01_01_110000_create_public_setor_bai_table ................ 3.97ms DONE
+  2020_01_01_110000_create_relatorio_situacao_matricula_table .... 3.92ms DONE
+  2020_01_01_110000_create_school_managers_table ................. 4.88ms DONE
+  2020_01_01_110000_create_settings_table ........................ 6.52ms DONE
+  2020_01_01_110000_create_states_table .......................... 4.42ms DONE
+  2020_01_01_120000_add_foreign_keys_in_cadastro_documento_table  10.96ms DONE
+  2020_01_01_120000_add_foreign_keys_in_cadastro_fisica_deficiencia_table  4.65ms DONE
+  2020_01_01_120000_add_foreign_keys_in_cadastro_fisica_foto_table  4.26ms DONE
+  2020_01_01_120000_add_foreign_keys_in_cadastro_fisica_raca_table  5.16ms DONE
+  2020_01_01_120000_add_foreign_keys_in_cadastro_fisica_table ... 14.71ms DONE
+  2020_01_01_120000_add_foreign_keys_in_cadastro_fone_pessoa_table  5.52ms DONE
+  2020_01_01_120000_add_foreign_keys_in_cadastro_juridica_table .. 6.07ms DONE
+  2020_01_01_120000_add_foreign_keys_in_cadastro_pessoa_table .... 4.04ms DONE
+  2020_01_01_120000_add_foreign_keys_in_cities_table ............. 4.47ms DONE
+  2020_01_01_120000_add_foreign_keys_in_districts_table .......... 3.86ms DONE
+  2020_01_01_120000_add_foreign_keys_in_employee_graduations_table  6.67ms DONE
+  2020_01_01_120000_add_foreign_keys_in_log_unification_old_data_table  3.72ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_calendario_turma_table  4.75ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_componente_curricular_ano_escolar_table  3.97ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_componente_curricular_table  5.48ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_componente_curricular_turma_table  5.28ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_config_movimento_geral_table  3.95ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_educacenso_cod_aluno_table  3.83ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_educacenso_cod_escola_table  4.55ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_educacenso_cod_turma_table  4.47ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_etapas_curso_educacenso_table  6.02ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_falta_componente_curricular_table  3.77ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_falta_geral_table  3.61ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_ficha_medica_aluno_table  3.53ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_media_geral_table  4.37ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_moradia_aluno_table  4.01ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_nota_componente_curricular_media_table  3.76ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_nota_componente_curricular_table  3.75ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_nota_exame_table . 3.57ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_nota_geral_table . 3.39ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_parecer_componente_curricular_table  4.02ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_parecer_geral_table  4.24ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_professor_turma_disciplina_table  5.14ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_professor_turma_table  6.47ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_regra_avaliacao_recuperacao_table  3.78ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_regra_avaliacao_serie_ano_table  6.13ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_regra_avaliacao_table  7.51ms DONE
+  2020_01_01_120000_add_foreign_keys_in_modules_tabela_arredondamento_valor_table  4.35ms DONE
+  2020_01_01_120000_add_foreign_keys_in_person_has_place_table ... 5.41ms DONE
+  2020_01_01_120000_add_foreign_keys_in_places_table ............. 3.12ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_abandono_tipo_table  3.43ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_aluno_aluno_beneficio_table  5.38ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_aluno_historico_altura_peso_table  3.19ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_aluno_table .... 4.44ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_ano_letivo_modulo_table  6.58ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_avaliacao_desempenho_table  3.91ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_bloqueio_ano_letivo_table  3.42ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_bloqueio_lancamento_faltas_notas_table  3.69ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_calendario_ano_letivo_table  4.41ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_calendario_dia_anotacao_table  5.56ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_calendario_dia_motivo_table  4.37ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_calendario_dia_table  4.59ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_curso_table .... 7.78ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_disciplina_dependencia_table  5.02ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_disciplina_serie_table  3.30ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_dispensa_disciplina_table  5.31ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_dispensa_etapa_table  3.14ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_distribuicao_uniforme_table  4.78ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_escola_ano_letivo_table  3.88ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_escola_curso_table  5.43ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_escola_localizacao_table  3.70ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_escola_serie_disciplina_table  6.51ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_escola_serie_table  5.54ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_escola_table .. 10.75ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_escola_usuario_table  4.61ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_falta_atraso_compensado_table  4.57ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_falta_atraso_table  5.13ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_funcao_table ... 4.33ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_historico_disciplinas_table  4.26ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_historico_escolar_table  6.85ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_instituicao_documentacao_table  3.64ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_matricula_ocorrencia_disciplinar_table  4.92ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_matricula_table  8.54ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_matricula_turma_table  5.18ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_menu_tipo_usuario_table  5.16ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_modulo_table ... 3.19ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_motivo_afastamento_table  3.98ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_nivel_ensino_table  3.44ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_projeto_aluno_table  4.36ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_quadro_horario_horarios_aux_table  6.15ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_quadro_horario_horarios_table  6.52ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_quadro_horario_table  3.85ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_reserva_vaga_table  5.01ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_sequencia_serie_table  5.02ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_serie_table .... 5.77ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_servidor_afastamento_table  5.14ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_servidor_alocacao_table  4.91ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_servidor_curso_ministra_table  4.33ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_servidor_disciplina_table  4.81ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_servidor_funcao_table  4.46ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_servidor_table  13.40ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_tipo_dispensa_table  3.70ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_tipo_ensino_table  3.75ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_tipo_ocorrencia_disciplinar_table  3.65ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_tipo_regime_table  3.15ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_tipo_usuario_table  4.71ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_transferencia_solicitacao_table  5.65ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_transferencia_tipo_table  3.82ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_turma_modulo_table  4.84ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_turma_table ... 12.66ms DONE
+  2020_01_01_120000_add_foreign_keys_in_pmieducar_usuario_table .. 7.43ms DONE
+  2020_01_01_120000_add_foreign_keys_in_portal_agenda_compromisso_table  4.44ms DONE
+  2020_01_01_120000_add_foreign_keys_in_portal_agenda_responsavel_table  4.76ms DONE
+  2020_01_01_120000_add_foreign_keys_in_portal_agenda_table ...... 5.54ms DONE
+  2020_01_01_120000_add_foreign_keys_in_portal_funcionario_table . 4.16ms DONE
+  2020_01_01_120000_add_foreign_keys_in_school_managers_table .... 7.33ms DONE
+  2020_01_01_120000_add_foreign_keys_in_states_table ............. 3.42ms DONE
+  2020_01_01_130000_add_function_cadastro_fcn_aft_documento ...... 2.38ms DONE
+  2020_01_01_130000_add_function_cadastro_fcn_aft_documento_provisorio  2.63ms DONE
+  2020_01_01_130000_add_function_modules_frequencia_da_matricula . 3.06ms DONE
+  2020_01_01_130000_add_function_modules_frequencia_por_componente  2.88ms DONE
+  2020_01_01_130000_add_function_pmieducar_copiaanosletivos ...... 2.89ms DONE
+  2020_01_01_130000_add_function_pmieducar_delete_matricula_turma  2.21ms DONE
+  2020_01_01_130000_add_function_pmieducar_updated_at_matricula .. 2.09ms DONE
+  2020_01_01_130000_add_function_pmieducar_updated_at_matricula_turma  2.08ms DONE
+  2020_01_01_130000_add_function_public_count_weekdays ........... 2.35ms DONE
+  2020_01_01_130000_add_function_public_data_para_extenso ........ 2.57ms DONE
+  2020_01_01_130000_add_function_public_f_unaccent ............... 2.13ms DONE
+  2020_01_01_130000_add_function_public_fcn_upper ................ 2.15ms DONE
+  2020_01_01_130000_add_function_public_fcn_upper_nrm ............ 2.56ms DONE
+  2020_01_01_130000_add_function_public_formata_cpf .............. 2.09ms DONE
+  2020_01_01_130000_add_function_public_isnumeric ................ 2.32ms DONE
+  2020_01_01_130000_add_function_public_retira_data_cancel_matricula_fun  2.54ms DONE
+  2020_01_01_130000_add_function_public_update_updated_at ........ 2.09ms DONE
+  2020_01_01_130000_add_function_public_verifica_existe_matricula_posterior_mesma_turma  2.29ms DONE
+  2020_01_01_130000_add_function_public_verifica_existe_matricula_posterior_mesma_turma_sequencial  2.19ms DONE
+  2020_01_01_130000_add_function_relatorio_count_weekdays ........ 2.20ms DONE
+  2020_01_01_130000_add_function_relatorio_exibe_aluno_conforme_parametro_alunos_diferenciados  2.60ms DONE
+  2020_01_01_130000_add_function_relatorio_get_nome_escola ....... 4.78ms DONE
+  2020_01_01_130000_add_function_relatorio_get_nome_modulo ....... 3.48ms DONE
+  2020_01_01_130000_add_function_relatorio_get_qtde_modulo ....... 2.41ms DONE
+  2020_01_01_130000_add_function_relatorio_get_situacao_componente  2.75ms DONE
+  2020_01_01_130000_add_function_relatorio_get_texto_sem_caracter_especial  2.81ms DONE
+  2020_01_01_130000_add_function_relatorio_get_total_faltas ...... 2.25ms DONE
+  2020_01_01_140000_add_trigger_deleted_at_in_cadastro_deficiencia_excluidos_table  2.47ms DONE
+  2020_01_01_140000_add_trigger_deleted_at_in_modules_area_conhecimento_excluidos_table  2.51ms DONE
+  2020_01_01_140000_add_trigger_deleted_at_in_modules_componente_curricular_ano_escolar_excluidos_table  2.34ms DONE
+  2020_01_01_140000_add_trigger_deleted_at_in_modules_componente_curricular_turma_excluidos_table  2.83ms DONE
+  2020_01_01_140000_add_trigger_deleted_at_in_modules_professor_turma_excluidos_table  3.13ms DONE
+  2020_01_01_140000_add_trigger_deleted_at_in_modules_regra_avaliacao_recuperacao_excluidos_table  3.19ms DONE
+  2020_01_01_140000_add_trigger_deleted_at_in_modules_regra_avaliacao_serie_ano_excluidos_table  2.88ms DONE
+  2020_01_01_140000_add_trigger_deleted_at_in_pmieducar_aluno_excluidos_table  2.34ms DONE
+  2020_01_01_140000_add_trigger_deleted_at_in_pmieducar_disciplina_dependencia_excluidos_table  2.83ms DONE
+  2020_01_01_140000_add_trigger_deleted_at_in_pmieducar_dispensa_disciplina_excluidos_table  2.69ms DONE
+  2020_01_01_140000_add_trigger_deleted_at_in_pmieducar_escola_serie_disciplina_excluidos_table  2.45ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_cadastro_deficiencia_table  2.69ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_cadastro_fisica_foto_table  2.13ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_modules_area_conhecimento_table  2.14ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_modules_componente_curricular_ano_escolar_table  2.46ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_modules_componente_curricular_table  2.13ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_modules_regra_avaliacao_recuperacao_table  2.15ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_modules_regra_avaliacao_serie_ano_table  2.53ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_modules_regra_avaliacao_table  2.09ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_modules_tabela_arredondamento_table  2.12ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_pmieducar_aluno_table  2.45ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_pmieducar_curso_table  1.99ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_pmieducar_disciplina_dependencia_table  2.65ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_pmieducar_dispensa_disciplina_table  2.31ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_pmieducar_escola_curso_table  2.16ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_pmieducar_escola_serie_table  2.08ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_pmieducar_escola_table  2.10ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_pmieducar_matricula_ocorrencia_disciplinar_table  2.24ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_pmieducar_serie_table  2.12ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_pmieducar_servidor_table  2.58ms DONE
+  2020_01_01_140000_add_trigger_updated_at_in_pmieducar_turma_table  2.33ms DONE
+  2020_01_01_140000_add_triggers ................................. 3.48ms DONE
+  2020_01_01_160000_search_path .................................. 2.86ms DONE
+  2020_01_09_100000_drop_some_foreign_keys_in_cadastro_documento_table  80.82ms DONE
+  2020_02_19_095248_create_notification_type_table ............... 4.68ms DONE
+  2020_02_19_095658_insert_notification_type_transferencia ....... 3.52ms DONE
+  2020_02_21_092348_insert_notification_type_other ............... 2.18ms DONE
+  2020_03_17_145618_adiciona_coluna_vice_diretor_e_orientador .... 3.02ms DONE
+  2020_04_01_110000_create_public_export_table ................... 5.22ms DONE
+  2020_04_02_110000_create_failed_jobs_table ..................... 6.72ms DONE
+  2020_04_03_100000_add_export_notification_type ................. 2.53ms DONE
+  2020_04_06_090159_create_table_migrated_disciplines ............ 7.42ms DONE
+  2020_04_14_000000_add_slug_name_in_cadastro_pessoa ............. 4.62ms DONE
+  2020_04_14_160000_remove_duplicated_library_menu ............... 4.61ms DONE
+  2020_04_15_154117_altera_tipo_vinculo_professor_turma_excluidos  3.02ms DONE
+  2020_04_22_113505_create_etapa_educacenso ...................... 4.57ms DONE
+  2020_04_22_113510_insert_data_in_etapa_educacenso .............. 3.02ms DONE
+  2020_05_06_104131_change_person_unification_menu ............... 0.75ms DONE
+  2020_05_06_110716_add_duplicates_name_in_log_unifications ...... 3.80ms DONE
+  2020_05_07_142652_adiciona_coluna_de_recursos_tecnologicos_disponiveis_para_aluno  3.46ms DONE
+  2020_05_08_144917_remove_colunas_nao_utilizadas_da_tabela_moradia_aluno  3.16ms DONE
+  2020_05_12_165710_create_function_get_date_in_year ............. 2.72ms DONE
+  2020_05_13_165320_alter_name_etapa_educacenso .................. 2.69ms DONE
+  2020_05_14_091914_add_force_reset_password_employee ............ 2.96ms DONE
+  2020_05_15_142915_update_duplicate_college_educacenso ......... 19.13ms DONE
+  2020_05_15_144457_remove_duplicate_college_educacenso .......... 1.07ms DONE
+  2020_05_15_164527_update_college_name_educacenso .............. 31.79ms DONE
+  2020_05_15_171529_add_college_educacenso ....................... 5.84ms DONE
+  2020_05_19_114824_change_media_to_decimal ...................... 4.09ms DONE
+  2020_05_25_161625_drop_table_educacenso_etapa_turma ............ 4.47ms DONE
+  2020_05_27_102030_new_educacenso_degree_2020 ................. 736.59ms DONE
+  2020_06_24_110847_adiciona_campo_exigir_laudo_medico_em_deficiencia  2.97ms DONE
+  2020_06_24_165820_change_menu_release_lock ..................... 0.59ms DONE
+  2020_06_24_170355_create_release_periods_table ................. 4.83ms DONE
+  2020_06_24_170449_create_release_period_schools_table .......... 5.63ms DONE
+  2020_06_24_170500_create_release_period_dates_table ............ 5.05ms DONE
+  2020_06_29_151248_create_files_table ........................... 5.22ms DONE
+  2020_06_29_151302_create_files_relations_table ................. 5.58ms DONE
+  2020_07_02_184809_remove_primary_key_servidor_afastamento ...... 3.18ms DONE
+  2020_07_02_185747_cria_chave_primaria_servidor_afastamento ..... 5.67ms DONE
+  2020_07_02_190453_cria_indice_unico_servidor_afastamento ....... 2.92ms DONE
+  2020_07_14_093931_grant_permission_educacenso_consult .......... 0.88ms DONE
+  2020_07_24_111000_remove_student_benefit_primary_key ........... 2.54ms DONE
+  2020_07_24_112002_create_student_benefit_primary_key ........... 6.06ms DONE
+  2020_07_25_152618_change_menu_post_out_period .................. 0.83ms DONE
+  2020_08_03_150015_create_settings_categories_table ............. 4.53ms DONE
+  2020_08_03_151235_populate_settings_categories_table ........... 2.80ms DONE
+  2020_08_03_163703_add_foreign_key_in_settings_table ............ 5.10ms DONE
+  2020_08_09_104844_cria_campo_importar_curso_pre_matricula ...... 2.94ms DONE
+  2020_08_09_171250_cria_campo_para_importacao_de_serie_no_pre_matricula  12.43ms DONE
+  2020_08_10_141803_create_student_benefit_unique ................ 3.46ms DONE
+  2020_08_20_110531_add_group_descriptors_column ................. 2.81ms DONE
+  2020_08_20_135030_add_group_descriptors_column_in_exclusions_table  2.70ms DONE
+  2020_08_20_135110_alter_trigger_deleted_at_in_modules_area_conhecimento_excluidos_table  3.03ms DONE
+  2020_08_31_000000_add_index_in_falta_componente_curricular_table  3.34ms DONE
+  2020_08_31_000000_add_index_in_falta_geral_table ............... 3.81ms DONE
+  2020_08_31_000000_add_index_in_nota_componente_curricular_media_table  4.36ms DONE
+  2020_08_31_000000_add_index_in_nota_componente_curricular_table  2.69ms DONE
+  2020_08_31_000000_add_index_in_nota_exame_table ................ 3.37ms DONE
+  2020_08_31_000000_add_index_in_nota_geral_table ................ 3.51ms DONE
+  2020_08_31_000000_add_index_in_parecer_componente_curricular_table  2.69ms DONE
+  2020_08_31_000000_add_index_in_parecer_geral_table ............. 3.93ms DONE
+  2020_09_15_100344_update_component_name ........................ 0.82ms DONE
+  2020_09_18_100825_update_update_schoolclass_report_card_menu ... 0.54ms DONE
+  2020_09_23_172034_add_batch_column_in_exemption ................ 2.93ms DONE
+  2020_10_06_114058_add_column_data_entrada_matricula_in_educacenso_imports  2.42ms DONE
+  2020_10_12_232901_adiciona_campo_hint_configuracoes ............ 2.40ms DONE
+  2020_10_15_094136_change_server_table_function ................. 2.39ms DONE
+  2020_11_06_102543_add_columns_medical_record_student ........... 4.12ms DONE
+  2020_11_06_113925_drop_columns_medical_record_student .......... 3.71ms DONE
+  2020_11_20_161148_adiciona_coluna_para_desconsiderar_componentes_na_progressao  2.71ms DONE
+  2020_12_04_000000_add_column_desconsiderar_lancamento_frequencia  3.05ms DONE
+  2020_12_17_000000_adiciona_estado_civil_nao_informado .......... 3.26ms DONE
+  2020_12_19_000000_add_uuid_in_failed_jobs_table ................ 2.42ms DONE
+  2020_12_19_100000_generate_uuid_in_failed_jobs_table ........... 2.20ms DONE
+  2021_01_01_000000_populate_settings_table ..................... 55.53ms DONE
+  2021_01_01_000004_audit_triggers ............................. 359.30ms DONE
+  2021_01_01_110000_update_categories_in_settings ............... 56.10ms DONE
+  2021_01_01_111000_atualiza_nomenclatura_dos_campos_da_tela_de_configuracoes  5.16ms DONE
+  2021_01_01_111100_atualiza_tipo_dos_campos_da_tela_de_configuracoes  5.89ms DONE
+  2021_01_04_173326_change_historical_note_to_text ............... 4.26ms DONE
+  2021_02_03_141926_create_turma_serie_table ..................... 7.54ms DONE
+  2021_02_04_081043_insere_series_multi_inexistentes_nas_escolas . 1.77ms DONE
+  2021_02_04_112110_migra_turmas_multisseriadas_para_nova_estrutura  0.91ms DONE
+  2021_02_16_172831_update_pmieducar_turma_character_invalid ..... 0.81ms DONE
+  2021_03_04_153610_clean_old_field_mult ......................... 0.41ms DONE
+  2021_03_31_000000_add_observacoes_column_in_matricula_table .... 2.96ms DONE
+  2021_04_15_113428_add_modalidade_ensino_in_matricula ........... 3.85ms DONE
+  2021_04_20_173233_update_servidor_disciplina_ref_cod_funcao .... 1.32ms DONE
+  2021_05_11_113201_remove_required_cnpj_for_juridica ............ 2.98ms DONE
+  2021_05_20_111038_atualiza_curso_superior ...................... 3.06ms DONE
+  2021_05_20_115305_migra_cursos_de_educacao_profissional ........ 0.54ms DONE
+  2021_05_21_150551_update_educacenso_eis ........................ 4.62ms DONE
+  2021_05_21_152808_remove_educacenso_eis ........................ 9.68ms DONE
+  2021_05_21_160635_add_educacenso_eis ........................... 8.81ms DONE
+  2021_05_21_161344_update_nome_instituicao_educacenso_eis ....... 3.77ms DONE
+  2021_05_27_101031_create_pmieducar_busca_ativa_table ........... 6.86ms DONE
+  2021_06_02_175251_add_column_descricao_on_curso_table .......... 3.04ms DONE
+  2021_06_02_175312_add_column_descricao_on_serie_table .......... 2.70ms DONE
+  2021_06_23_171544_add_setting_max_days_without_login_to_disable_user  3.87ms DONE
+  2021_06_25_153934_change_description_hint_default_password_expiration_period_settings  4.45ms DONE
+  2021_06_26_094053_add_fields_max_min_abesences ................. 4.22ms DONE
+  2021_06_29_104528_corrige_funcao_do_servidor_disciplinas ....... 0.64ms DONE
+  2021_06_29_105513_cria_chave_para_servidor_disciplinas ......... 3.16ms DONE
+  2021_08_23_101322_atualiza_nomenclatura_de_configuracoes ....... 4.82ms DONE
+  2021_08_23_102320_atualiza_nomenclatura_de_categorias .......... 2.94ms DONE
+  2021_08_27_233435_update_abandono_tipo ......................... 0.90ms DONE
+  2021_08_31_105843_add_funcao_servidor_em_falta_atraso .......... 3.76ms DONE
+  2021_09_01_115409_add_field_mesma_turma ........................ 3.20ms DONE
+  2021_09_01_185112_fix_active_students_with_exclusion_date ...... 2.57ms DONE
+  2021_09_29_185143_fix_raca_sequencial .......................... 0.85ms DONE
+  2021_12_15_160641_cadastro_fisica .............................. 3.07ms DONE
+  2021_12_16_171735_create_field_block_change_status ............. 2.95ms DONE
+  2022_02_09_110650_public_citie ................................. 1.47ms DONE
+  2022_02_25_150356_create_job_batches_table ..................... 5.40ms DONE
+  2022_03_24_090800_remove_servidor_disciplina_funcao_is_null .... 0.84ms DONE
+  2022_03_24_092359_alter_table_servidor_disciplina_set_funcao_not_null  2.69ms DONE
+  2022_03_24_232645_update_constaint_servidor_disciplina ......... 4.38ms DONE
+  2022_03_25_110526_add_timestamps_to_user_type .................. 2.97ms DONE
+  2022_03_25_110736_fill_timestamps_to_user_type ................. 0.94ms DONE
+  2022_03_30_171350_alter_table_turma_add_estrutura_curricular_field  2.78ms DONE
+  2022_03_31_084332_alter_table_turma_add_formas_organizacao_turma  2.85ms DONE
+  2022_03_31_155554_alter_table_turma_add_unidade_curricular ..... 3.16ms DONE
+  2022_04_12_100809_alter_table_escola_add_poder_publico_parceria_convenio  2.47ms DONE
+  2022_04_20_073535_alter_table_escola_add_formas_contratacao_adm_publica_e_outras_instituicoes  2.57ms DONE
+  2022_04_28_174108_alter_table_escola_add_nao_ha_funcionarios_para_funcoes  3.47ms DONE
+  2022_05_05_142627_create_employee_posgraduate_table ............ 4.46ms DONE
+  2022_05_05_144849_add_foreing_key_in_employee_posgraduate_table  3.44ms DONE
+  2022_05_05_161848_populate_employee_posgraduate ................ 1.48ms DONE
+  2022_05_10_141254_alter_table_escola_add_campos_de_quantidade_de_matriculas_por_convenio  21.38ms DONE
+  2022_05_16_100510_add_itinerary_columns_in_erollments_table .... 3.59ms DONE
+  2022_05_18_111759_alter_table_professor_turma_add_unidade_curriculares  3.23ms DONE
+  2022_05_24_172836_alter_table_pmieducar_turma_update_atividades_complementares  1.26ms DONE
+  2022_05_31_190142_fix_migration_populate_posgraduate ........... 1.20ms DONE
+  2022_06_29_133818_update_cities ............................... 38.57ms DONE
+  2022_07_06_102852_change_orgao_regional_column_type ............ 7.00ms DONE
+  2022_07_15_134759_change_places_remove_address_constraint ...... 4.46ms DONE
+  2022_07_26_000000_tipo_usuario_sequence ........................ 0.54ms DONE
+  2022_07_26_000000_turma_turno_sequence ......................... 0.65ms DONE
+  2022_07_26_1522626_add_in_student_transport_responsible ........ 2.85ms DONE
+  2022_07_26_1522727_migrate_student_transport_responsable_information  0.65ms DONE
+  2022_08_01_133650_create_index_in_notifications ................ 4.04ms DONE
+  2022_08_16_113130_drop_primary_key_in_projeto_aluno_table ..... 11.13ms DONE
+  2022_08_16_113923_add_id_in_pmieducar_projeto_aluno ............ 6.24ms DONE
+  2022_08_18_101044_update_field_observacao_in_projeto_table ..... 4.02ms DONE
+  2022_08_19_133301_drop_primary_key_in_matricula_ocorrencia_disciplinar_table  11.36ms DONE
+  2022_08_19_141446_add_primary_key_in_matricula_ocorrencia_disciplinar_table  4.24ms DONE
+  2022_08_22_112116_alter_table_servidor_add_column_complementacao_pedagodica  2.53ms DONE
+  2022_08_29_163235_remove_itens_infraestrutura_menus ............ 1.38ms DONE
+  2022_08_29_171219_update_date_exclusion ........................ 1.56ms DONE
+  2022_08_31_173853_delete_itens_escola_localizacao_menus ........ 0.82ms DONE
+  2022_09_06_115338_update_religion_table ........................ 5.94ms DONE
+  2022_09_12_153523_remove_itens_rede_ensino_menus ............... 1.34ms DONE
+  2022_09_19_112155_move_fields_custom_labels_to_public_settings . 1.10ms DONE
+  2022_09_19_160645_delete_itens_custom_labels_menu .............. 0.86ms DONE
+  2022_09_20_102901_adiciona_campo_maxlength_configuracoes ....... 2.50ms DONE
+  2022_10_17_115025_create_table_failed_jobs ..................... 0.80ms DONE
+  2022_10_17_172229_remove_nives_servidor_menus .................. 0.97ms DONE
+  2022_10_24_092357_corrige_sequence_notication_type ............. 2.54ms DONE
+  2022_10_24_094415_add_index_in_serie ........................... 4.20ms DONE
+  2022_10_24_094515_add_index_in_turma ........................... 4.97ms DONE
+  2022_12_14_161600_rename_table_distribuicao_uniforme_to_uniform_distributions  2.34ms DONE
+  2022_12_14_161603_move_table_uniform_distributions_to_public ... 2.64ms DONE
+  2022_12_14_161605_change_and_rename_columns_in_table_uniform_distributions  14.37ms DONE
+  2022_12_14_161608_add_columns_in_table_uniform_distributions ... 4.75ms DONE
+  2022_12_15_182858_add_fields_in_escola_ano_letivo .............. 4.01ms DONE
+  2023_02_07_100105_optimize_database ........................... 51.52ms DONE
+  2023_02_13_092530_create_extension_fuzzystrmatch ............... 4.94ms DONE
+  2023_02_20_150159_add_falta_hora_in_escola_serie_disciplina_and_escola_serie  3.12ms DONE
+  2023_02_20_150161_alter_falta_hora_in_escola_serie_disciplina_and_escola_serie  9.25ms DONE
+  2023_02_23_114411_organiza_tabela_aluno_historico_altura_peso .. 8.18ms DONE
+  2023_02_23_123320_add_obrigar_cpf_in_instituicao ............... 3.60ms DONE
+  2023_02_23_131207_move_dados_ficha_medica_para_historico_peso_altura  1.31ms DONE
+  2023_02_23_144425_remove_campos_peso_altura_ficha_medica ....... 2.67ms DONE
+  2023_02_28_192352_update_table_pmieducar_calendario_dia ....... 19.88ms DONE
+  2023_03_01_123320_update_obrigar_cpf_false_in_instituicao ...... 5.76ms DONE
+  2023_03_06_000000_add_hora_falta_por_componente_function ....... 2.77ms DONE
+  2023_03_06_100423_update_title_menu_deficiency ................. 1.16ms DONE
+  2023_03_06_100425_create_deficiency_type ....................... 4.09ms DONE
+  2023_03_06_170414_remove_menu_serie_vaga ....................... 1.53ms DONE
+  2023_03_08_135718_remove_menu_habilitacao ...................... 1.34ms DONE
+  2023_03_14_142609_remove_table_cadastro_ocupacao ............... 2.51ms DONE
+  2023_03_27_104812_organiza_primary_key_table_modules_area_conhecimento  6.42ms DONE
+  2023_03_27_150904_organiza_primary_key_table_modules_componente_curricular  3.87ms DONE
+  2023_03_27_165100_organiza_primary_key_table_modules_educacenso_cod_aluno  8.08ms DONE
+  2023_03_27_201102_organiza_primary_key_table_modules_educacenso_cod_docente  9.53ms DONE
+  2023_03_27_202938_organiza_primary_key_table_modules_educacenso_cod_escola  8.15ms DONE
+  2023_03_27_205103_organiza_primary_key_table_modules_educacenso_cod_turma  8.48ms DONE
+  2023_03_29_203533_update_table_pmieducar_avaliacao_desempenho . 15.43ms DONE
+  2023_03_29_211246_rename_table_pmieducar_avaliacao_desempenho .. 3.42ms DONE
+  2023_04_11_104812_organiza_primary_key_table_pmieducar_sequencia_serie  6.79ms DONE
+  2023_04_17_161801_create_report_counts_table ................... 7.35ms DONE
+  2023_04_19_102212_create_permissao_dispensa_componente ......... 0.88ms DONE
+  2023_04_26_145618_adiciona_coluna_tradutor_interprete_libras_outro_ambiente  2.68ms DONE
+  2023_04_27_100809_alter_table_escola_add_formas_contratacao_parceria_escola_secretaria  2.61ms DONE
+  2023_04_27_150017_add_field_in_table_pmieducar_matricula_turma . 2.66ms DONE
+  2023_05_04_100809_alter_table_escola_rename_formas_contratacao_parceria_escola_secretaria  2.60ms DONE
+  2023_05_04_100810_alter_table_escola_add_formas_contratacao_parceria_escola_secretaria_municipal  2.57ms DONE
+  2023_05_08_174757_alter_table_turma_add_outras_unidades_curriculares_and_classe_com_lingua  3.51ms DONE
+  2023_05_08_221446_add_field_in_table_pmieducar_modules_professor_turma  2.84ms DONE
+  2023_05_22_142218_audit_triggers .............................. 90.38ms DONE
+  2023_06_06_101020_update_column_in_table_modules_professor_turma  3.17ms DONE
+  2023_07_28_073655_update_menu_educacenso_situation ............. 1.18ms DONE
+  2023_09_29_105202_add_field_in_table_personal_access_tokens .... 3.82ms DONE
+  2023_10_02_220402_change_files_relations_type .................. 3.23ms DONE
+  2024_01_04_134430_remove_field_ref_cof_reserva_vaga ............ 2.85ms DONE
+  2024_01_04_134437_remove_table_reservavaga ..................... 6.94ms DONE
+  2024_01_05_110000_create_file_export_table ..................... 5.32ms DONE
+  2024_01_16_103253_create_permission_movement_registration ..... 21.75ms DONE
+  2024_02_15_170725_create_educacenso_matricula_table ............ 6.28ms DONE
+  2024_02_21_165642_add_field_in_table_matricula_turma ........... 4.58ms DONE
+  2024_03_12_105643_alter_table_alunos_add_rota_transporte ....... 2.88ms DONE
+  2024_04_05_195833_create_school_spaces_table ................... 6.37ms DONE
+  2024_04_08_113439_adiciona_campos_educacenso_escola ............ 4.10ms DONE
+  2024_04_18_092847_add_field_in_table_pmieducar_aluno ........... 3.47ms DONE
+  2024_04_30_185815_add_motivo_in_funcionario_table .............. 2.49ms DONE
+  2024_05_07_092847_add_field_in_table_pmieducar_serie ........... 3.27ms DONE
+  2024_05_20_092847_add_field_in_table_pmieducar_turma ........... 5.27ms DONE
+  2024_05_20_092947_add_field_in_table_modules_educacenso_cod_turma  2.37ms DONE
+  2024_06_29_201325_update_funcionario_add_data_inicial .......... 2.84ms DONE
+  2024_08_12_223334_create_announcements_table .................. 15.64ms DONE
+  2024_09_09_090701_add_fields_in_table_uniform_distributions .... 4.62ms DONE
+  2024_09_26_094053_add_fields_aprovar_pela_frequencia_apos_exame  3.40ms DONE
+  2024_10_07_115646_add_passport_config .......................... 7.17ms DONE
+  2024_12_15_204053_add_field_reprovar_apos_dependencias ......... 3.00ms DONE
+  2025_01_01_130000_modify_function_public_formata_cpf ........... 2.14ms DONE
+  2025_01_12_212333_create_school_notices_table .................. 9.81ms DONE
+  2025_01_13_212333_create_school_notices_menu ................... 0.77ms DONE
+  2025_01_31_160502_update_escola_table .......................... 3.75ms DONE
+  2025_02_03_090000_audit_triggers .............................. 99.05ms DONE
+  2025_02_12_172833_update_matricula_table ....................... 3.57ms DONE
+  2025_02_19_160502_update_escola_add_lei_conclusao_ensino_medio . 2.58ms DONE
+  2025_04_01_220000_remove_audit_trigger_notifications ........... 2.38ms DONE
+  2025_04_14_185113_add_pontos_in_table_regra_avaliacao .......... 2.59ms DONE
+  2025_04_29_020054_create_timeline_table ........................ 7.27ms DONE
+  2025_05_05_113912_add_field_in_table_escola .................... 3.31ms DONE
+  2025_05_13_113912_add_field_in_table_curso ..................... 2.90ms DONE
+  2025_05_13_141052_add_table_povo_indigena ...................... 3.89ms DONE
+  2025_05_13_153052_update_values_povo_indigena ................ 250.48ms DONE
+  2025_05_13_155152_add_filed_povo_indigena_in_fisica ............ 4.03ms DONE
+  2025_05_14_113417_add_field_in_deficiencias .................... 2.60ms DONE
+  2025_05_22_000000_app_url ...................................... 3.80ms DONE
+  2025_06_02_101417_add_field_in_turmas .......................... 9.15ms DONE
+  2025_06_02_111417_populate_field_etapa_agregada ................ 3.01ms DONE
+  2025_06_03_124100_update_turma_table ........................... 8.97ms DONE
+  2025_06_04_151417_add_field_formacao_alternancia ............... 2.92ms DONE
+  2025_06_10_102845_drop_not_null_numero_salas_cantinho_leitura . 13.76ms DONE
+  2025_06_11_034447_rename_estrutura_curricular_to_organizacao_curricular_and_update_educacenso  2.45ms DONE
+  2025_06_13_094253_adiciona_intinerario_formativo_turma ......... 3.30ms DONE
+  2025_06_16_083512_add_dates_in_professor_turma ................. 2.78ms DONE
+  2025_06_17_094253_adiciona_itinerario_formativo_professor_turma  2.83ms DONE
+  2025_06_20_202557_add_aulas_por_semana_to_escola_serie_disciplina  2.51ms DONE
+  2025_06_26_221803_update_enturmacao_permissions_order ......... 11.53ms DONE
+  2025_07_17_183821_add_aluno_incluso_programa_evasao_in_table_busca_ativa  2.99ms DONE
+  2025_07_18_220410_create_messages_table ........................ 8.28ms DONE
+  2025_07_21_164446_add_copia_turmas_field_in_escola_ano_letivo .. 2.91ms DONE
+  2025_12_23_120000_add_normalizar_media_to_tabela_arredondamento  2.76ms DONE
+  2026_01_01_000000_cleanup ...................................... 0.50ms DONE
+  2026_01_01_150000_create_phones_view ........................... 3.66ms DONE
+  2026_01_01_150001_create_people_view ........................... 3.11ms DONE
+  2026_01_01_150002_create_individuals_view ...................... 4.00ms DONE
+  2026_02_24_120000_create_component_batch_manager ............... 7.09ms DONE
+  2026_03_05_120000_add_backup_to_component_batch_operations ..... 2.37ms DONE
+  2026_03_09_104926_add_field_in_table_componente_curricular ..... 2.84ms DONE
+  2026_03_10_000000_add_id_professor_turma_disciplina ............ 6.98ms DONE
+  2026_03_10_000001_optimize_historico_tables .................... 8.96ms DONE
+  2026_03_10_171545_organiza_index_historico_disciplinas ......... 3.81ms DONE
+  2026_03_10_181959_remove_relatorio_functions ................... 2.49ms DONE
+  2026_03_11_111958_set_color_for_subject ........................ 1.41ms DONE
+  2026_03_19_121018_remove_table_pmieducar_backup ................ 2.76ms DONE
+  2026_04_27_095042_organize_table_transferencia_solicitacao ..... 3.41ms DONE
+  2026_04_27_101907_organize_table_dispensa_etapa ................ 2.77ms DONE
+  2026_04_28_104053_add_field_in_table_aluno_beneficio ........... 3.59ms DONE
+  2026_05_01_000000_create_relatorio_view_situacao_relatorios_view  8.56ms DONE
+  2026_05_01_150000_create_relatorio_view_situacao_view .......... 3.60ms DONE
+  2026_05_13_093653_adiciona_coluna_assistente_social ............ 2.97ms DONE
+  2026_05_19_201808_create_regional_types_table .................. 4.58ms DONE
+  2026_05_19_210701_add_field_in_table_escola .................... 2.90ms DONE
+  2026_05_20_101907_organize_index ............................... 3.38ms DONE
+  2026_05_20_163426_adiciona_carga_horaria_total_turma ........... 2.94ms DONE
+  2026_05_26_110204_alter_date_educacenso_2026 ................... 0.76ms DONE
+  2026_05_29_154447_update_linguas_indigenas .................... 10.08ms DONE
+  2026_06_01_000000_create_addresses_view ........................ 3.41ms DONE
+  2026_06_01_000000_create_educacenso_records_view .............. 57.78ms DONE
+  2026_06_01_000000_create_exporter_database_view ............... 88.36ms DONE
+  2026_06_01_000000_create_exporter_stages_view ................. 14.57ms DONE
+  2026_06_01_000000_create_info_enrollment_view .................. 4.32ms DONE
+  2026_06_01_000000_create_public_exporter_phones_view ........... 3.41ms DONE
+  2026_06_01_000000_create_registrations_view .................... 3.11ms DONE
+  2026_06_01_000000_create_students_view ......................... 3.22ms DONE
+  2026_06_01_000000_create_view_componente_curricular_view ....... 6.40ms DONE
+  2026_06_01_000001_create_view_dados_escola_view ............... 10.26ms DONE
+  2026_06_02_141836_adiciona_cod_eixo_curso_profissional_turma ... 2.64ms DONE
+  2026_06_04_000000_add_restrictions_columns_in_cadastro_fisica_table  4.87ms DONE
+  2026_06_04_000000_remove_legacy_settings ....................... 0.77ms DONE
+  2026_06_04_051824_remove_table_bloqueio_lancamento_faltas_notas  6.34ms DONE
+  2026_06_09_120000_add_proibir_reclassificacao_in_instituicao ... 3.18ms DONE
+  2026_06_09_134125_adiciona_carga_horaria_integralizada_matricula_turma  2.43ms DONE
+  2026_06_16_172307_alter_record20_view_carga_horaria_total ..... 21.69ms DONE
+  2026_06_17_134125_update_view_educacenso_record_20 ............ 20.52ms DONE
+  2026_06_17_174125_update_view_educacenso_record_60 ............ 24.79ms DONE
+  2026_06_18_185440_organize_index_in_table_nota_componente_curricular  3.01ms DONE
+  2026_06_22_135554_alter_table_settings_enable_educacenso_export  2.78ms DONE
+  2026_07_02_203915_alter_cnpj_columns_to_varchar ............... 15.89ms DONE
+  2026_07_09_184046_modify_function_modules_frequencia_da_matricula  3.05ms DONE
+  2026_07_23_174034_recreate_function_relatorio_get_nome_escola .. 2.70ms DONE
+  2026_07_27_174034_add_field_in_table_files_relations ........... 2.40ms DONE
+  2026_07_29_095633_organize_upload_field_laudos ................. 1.29ms DONE
+  2026_08_14_000001_optimize_audit_functions ..................... 2.71ms DONE
+  2026_08_18_101611_drop_redundant_index_nota_componente_curricular  0.50ms DONE
+  2026_08_19_102102_add_index_in_table_files_relations ........... 3.62ms DONE
+  2026_09_02_014250_create_document_absence_reasons_table ........ 4.76ms DONE
+  2026_09_10_064837_add_document_absence_columns_in_cadastro_fisica_table  4.41ms DONE
+  2026_09_10_124454_add_possui_cpf_in_cadastro_fisica_table ...... 2.92ms DONE
+  2026_09_17_000001_recreate_exporter_social_assistance ......... 21.03ms DONE
+  2026_09_24_180622_remove_possui_cpf_from_cadastro_fisica_table . 3.49ms DONE
+  2026_10_02_000001_recreate_view_dados_escola .................. 13.69ms DONE
+  2026_10_02_150000_change_ids_type_in_school_notices_table ..... 14.42ms DONE
+
