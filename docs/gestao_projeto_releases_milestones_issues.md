@@ -647,13 +647,13 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M5: Instrumentação e Execução das Medições (Fase 4 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Ítalo Alves Sampaio de Oliveira` *(Trilha D)*
-    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `[Aberto]` | **Custo:** `[A consolidar]`
+    - **Responsável:** `Gabriel Barbaceli` *(Trilha D)*
+    - **Matrícula UnB:** `21/1045122` | **GitHub:** `@Nibaacriba`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h` | **Custo:** R$ `300,00`
 - **Goal:** Implementar a extração real por método no script `scripts/evaluate-quality.php` e executá-lo sobre o checkout oficial do i-Educar 2.12 para coletar M7a (CC-P90), M7b (CC-MAX) e M10 (MI).
 - **Depends on:** Issue #11.
 - **Scope:** Arquivos em escopo declarado: `app/Services/RegistrationService.php`, `ieducar/modules/Avaliacao/Views/DiarioApiController.php`, `ieducar/modules/Avaliacao/Views/DiarioController.php` e `ieducar/modules/Avaliacao/Service/Boletim.php`.
-- [ ] **Task:** Evoluir parser de callables em scripts/evaluate-quality.php e extrair CC P90, CC Max e MI no código do i-Educar
+- [x] **Task:** Evoluir parser de callables em scripts/evaluate-quality.php e extrair CC P90, CC Max e MI no código do i-Educar
     - **Files:** `scripts/evaluate-quality.php`, `docs/plano_medicao_testes.md`
     - **Change:** Implementar extração de métodos concretos ($n$), cálculo de $v(G)$ por método, ordenação para percentil 90 (*nearest rank* $r=\lceil 0{,}90n \rceil$), máximo $\text{CC}_{\max}$, volume de Halstead ($HV_m$), $LOC_m$ e $\text{MI}_m$ normalizado $[0, 100]$.
     - **Covers:** Questões Q3.1 e Q3.4, Hipóteses H3.1 e H3.4, e Métricas M7a (CC-P90), M7b (CC-MAX) e M10 (MI).
@@ -714,11 +714,12 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M6: Análise, Julgamento, Artigo v2 e Release E2 (Fase 5 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Ricardo Lucas Winchello Vieira Branco` *(Trilha E)*
-    - **Matrícula UnB:** `22/1008409` | **GitHub:** `@ChickRicks`
+    - **Responsável:** `Gabriel Barbaceli` *(Trilha E)*
+    - **Matrícula UnB:** `21/1045122` | **GitHub:** `@Nibaacriba`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `[Aberto]` | **Custo:** `[A consolidar]`
 - **Goal:** Realizar as 3 execuções de referência ($T_{\text{ref}}$) e conduzir as sessões supervisionadas com no mínimo 5 participantes iniciantes (sob TCLE e anonimização P01..P05) nas tarefas T1 e T2 para medir M14a, M14b e M15.
 - **Depends on:** Issue #12 e Issue #38.
+- **Decisão (12/11/2026):** antes de qualquer coleta, M14a, M14b e M15 foram declaradas não mensuráveis por não caberem no cronograma da Entrega 2; o $\text{IQC}_{\text{Interação}}$ é renormalizado com M12 e M13 (Plano de medição, seção 3.4).
 - **Scope:** Tarefa T1 (Matrícula e Enturmação de aluno) e Tarefa T2 (Lançamento de notas para turma de 10 alunos no Diário), conforme protocolo da ISO/IEC 25019:2023.
 - [ ] **Task:** Coletar tempos de referência e aplicar protocolo experimental com participantes P01..P05 nas tarefas T1 e T2
     - **Files:** `docs/plano_medicao_testes.md`, `docs/termo_consentimento_livre_esclarecido.md`
