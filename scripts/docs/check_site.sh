@@ -76,10 +76,50 @@ if [ ! -f "$PAINEL_HTML" ] || ! grep -q 'id="painel-projeto"' "$PAINEL_HTML" || 
     exit 1
 fi
 
-echo "Verificando a página de indicadores PSM/CID..."
+echo "Verificando a página de indicadores PSM/CID e CSVs exportados..."
 PSM_HTML="site/indicadores_psm/index.html"
 if [ ! -f "$PSM_HTML" ]; then
     echo "Erro: página $PSM_HTML não encontrada!" >&2
+    exit 1
+fi
+
+for csv_file in "issues.csv" "prs.csv" "milestones.csv" "serie_semanal.csv" "contribuicao.csv" "medicoes.csv"; do
+    if [ ! -f "site/indicadores_psm/$csv_file" ]; then
+        echo "Erro: arquivo CSV de evidência 'site/indicadores_psm/$csv_file' não foi gerado!" >&2
+        exit 1
+    fi
+done
+
+echo "Verificando gráficos e tabelas no painel de indicadores PSM/CID..."
+if ! grep -q "Matriz de contribuição individual" "$PSM_HTML"; then
+    echo "Erro: tabela de contribuição individual não encontrada em $PSM_HTML!" >&2
+    exit 1
+fi
+
+if ! grep -q "Tempo de ciclo" "$PSM_HTML"; then
+    echo "Erro: seção de tempo de ciclo não encontrada em $PSM_HTML!" >&2
+    exit 1
+fi
+
+if ! grep -q "Registro cronológico de medições" "$PSM_HTML"; then
+    echo "Erro: histórico de medições não encontrado em $PSM_HTML!" >&2
+    exit 1
+fi
+
+echo "Verificando barra de navegação no header (abas e dropdowns) em site/index.html..."
+if ! grep -q 'class="md-tabs"' site/index.html; then
+    echo "Erro: barra de abas no header (class=\"md-tabs\") não encontrada em site/index.html!" >&2
+    exit 1
+fi
+
+if ! grep -q 'class="gh-tab-dropdown"' site/index.html; then
+    echo "Erro: menus dropdown do header (class=\"gh-tab-dropdown\") não encontrados em site/index.html!" >&2
+    exit 1
+fi
+
+echo "Verificando o índice lateral direito (TOC) nas páginas de conteúdo..."
+if ! grep -q 'class="md-sidebar md-sidebar--secondary"' "$PSM_HTML"; then
+    echo "Erro: índice lateral direito (md-sidebar--secondary) ausente em $PSM_HTML!" >&2
     exit 1
 fi
 

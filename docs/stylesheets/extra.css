@@ -34,64 +34,240 @@
 
 .md-tabs {
   background: #173b55;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(15, 139, 131, 0.25);
 }
 
 /* ==========================================================================
-   Menu Lateral Esquerdo (Navegação Principal)
+   Navegação Principal no Header (Abas + Menus Dropdown no Desktop)
    ========================================================================== */
 
-/* Largura e borda divisória da barra lateral em desktop */
 @media screen and (min-width: 76.25em) {
+  /* Oculta a barra lateral esquerda em telas desktop (navegação fica no header) */
   .md-sidebar--primary {
-    width: 16.5rem;
-    border-right: 1px solid rgba(23, 50, 77, 0.08);
+    display: none !important;
   }
 
-  [data-md-color-scheme="slate"] .md-sidebar--primary {
-    border-right-color: rgba(255, 255, 255, 0.08);
+  /* Garante respiro lateral elegante e espaçamento equilibrado no desktop */
+  .md-content {
+    flex-grow: 1;
+    min-width: 0;
+    padding-left: clamp(2rem, 4vw, 3.75rem);
+    padding-right: clamp(1.5rem, 3vw, 2.75rem);
   }
 
-  [dir="ltr"] .md-sidebar--primary:not([hidden]) ~ .md-content > .md-content__inner {
-    margin-left: 1.6rem;
+  .md-content__inner {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100%;
+  }
+
+  .md-path {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-top: 1.25rem;
+  }
+
+  /* Desbloqueia overflow para permitir menus dropdown flutuantes */
+  .md-tabs {
+    overflow: visible !important;
+  }
+
+  .md-tabs__list {
+    contain: none !important;
+    overflow: visible !important;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 0.15rem;
+    margin-left: 0 !important;
+  }
+
+  .md-tabs__item {
+    position: relative;
+    height: auto;
+    padding: 0;
+  }
+
+  .md-tabs__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0;
+    padding: 0.65rem 0.78rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: rgba(245, 251, 255, 0.82);
+    opacity: 1;
+    border-bottom: 2.5px solid transparent;
+    transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+  }
+
+  .md-tabs__item:hover > .md-tabs__link,
+  .md-tabs__item:focus-within > .md-tabs__link,
+  .md-tabs__link:hover,
+  .md-tabs__link:focus {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .md-tabs__item--active > .md-tabs__link {
+    color: #8ee8dc;
+    font-weight: 700;
+    border-bottom-color: #54d6c5;
+  }
+
+  .gh-tab-caret {
+    font-size: 0.68rem;
+    line-height: 1;
+    opacity: 0.75;
+    transition: transform 160ms ease, opacity 160ms ease;
+  }
+
+  .md-tabs__item--has-dropdown:hover .gh-tab-caret,
+  .md-tabs__item--has-dropdown:focus-within .gh-tab-caret {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  /* Painel Dropdown */
+  .gh-tab-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 40;
+    min-width: 17.5rem;
+    max-width: 22rem;
+    padding: 0.45rem;
+    border: 1px solid rgba(23, 50, 77, 0.14);
+    border-radius: 0.65rem;
+    background: #ffffff;
+    box-shadow: 0 12px 32px rgba(10, 25, 41, 0.18), 0 2px 6px rgba(10, 25, 41, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(6px);
+    transition: opacity 150ms ease, transform 150ms ease, visibility 150ms ease;
+  }
+
+  [data-md-color-scheme="slate"] .gh-tab-dropdown {
+    border-color: rgba(84, 214, 197, 0.22);
+    background: #142232;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.48);
+  }
+
+  /* Alinha à direita nos últimos itens para evitar estouro lateral */
+  .md-tabs__item--has-dropdown:nth-last-child(-n+2) .gh-tab-dropdown {
+    left: auto;
+    right: 0;
+  }
+
+  .md-tabs__item--has-dropdown:hover > .gh-tab-dropdown,
+  .md-tabs__item--has-dropdown:focus-within > .gh-tab-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .gh-dropdown__link {
+    display: flex;
+    align-items: center;
+    padding: 0.45rem 0.7rem;
+    border-radius: 0.42rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: #243548 !important;
+    text-decoration: none !important;
+    white-space: normal;
+    transition: background-color 120ms ease, color 120ms ease;
+  }
+
+  [data-md-color-scheme="slate"] .gh-dropdown__link {
+    color: #d8e2ee !important;
+  }
+
+  .gh-dropdown__link:hover,
+  .gh-dropdown__link:focus-visible {
+    background: rgba(15, 139, 131, 0.10);
+    color: #0b6b64 !important;
+  }
+
+  [data-md-color-scheme="slate"] .gh-dropdown__link:hover,
+  [data-md-color-scheme="slate"] .gh-dropdown__link:focus-visible {
+    background: rgba(84, 214, 197, 0.14);
+    color: #54d6c5 !important;
+  }
+
+  .gh-dropdown__link--index {
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(23, 50, 77, 0.10);
+    border-radius: 0.42rem 0.42rem 0 0;
+    font-weight: 700;
+    color: #17324d !important;
+  }
+
+  [data-md-color-scheme="slate"] .gh-dropdown__link--index {
+    border-bottom-color: rgba(255, 255, 255, 0.10);
+    color: #9be8dc !important;
+  }
+
+  .gh-dropdown__link--active {
+    background: rgba(15, 139, 131, 0.14);
+    color: #0b6b64 !important;
+    font-weight: 700;
+    box-shadow: inset 3px 0 0 #0f8b83;
+  }
+
+  [data-md-color-scheme="slate"] .gh-dropdown__link--active {
+    background: rgba(84, 214, 197, 0.16);
+    color: #54d6c5 !important;
+    box-shadow: inset 3px 0 0 #54d6c5;
+  }
+
+  .gh-dropdown__group {
+    margin-top: 0.35rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid rgba(23, 50, 77, 0.08);
+  }
+
+  [data-md-color-scheme="slate"] .gh-dropdown__group {
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .gh-dropdown__group-title {
+    padding: 0.25rem 0.7rem 0.15rem;
+    font-size: 0.64rem;
+    font-weight: 750;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #526a82;
+  }
+
+  [data-md-color-scheme="slate"] .gh-dropdown__group-title {
+    color: #8ee8dc;
   }
 }
 
-/* Scrollbar fina e moderna */
-.md-sidebar--primary .md-sidebar__scrollwrap {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(23, 50, 77, 0.20) transparent;
-}
+/* ==========================================================================
+   Menu Gaveta Mobile/Tablet (Drawer .md-sidebar--primary < 76.25em)
+   ========================================================================== */
 
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-sidebar__scrollwrap {
-  scrollbar-color: rgba(255, 255, 255, 0.20) transparent;
-}
-
-.md-sidebar--primary .md-sidebar__scrollwrap::-webkit-scrollbar {
-  width: 4px;
-}
-
-.md-sidebar--primary .md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
-  background: rgba(23, 50, 77, 0.20);
-  border-radius: 4px;
-}
-
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.20);
-}
-
-/* Cabeçalhos de seção de nível superior (Fase 1, Fase 2, Gestão, Sobre, etc.) */
 .md-sidebar--primary .md-nav__item--section > .md-nav__link,
 .md-sidebar--primary .md-nav__item--section > .md-nav__container {
-  margin-top: 1.15rem;
-  margin-bottom: 0.35rem;
-  padding: 0.4rem 0.6rem;
-  font-size: 0.72rem;
+  margin-top: 0.85rem;
+  margin-bottom: 0.25rem;
+  padding: 0.35rem 0.55rem;
+  font-size: 0.7rem;
   font-weight: 750;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #17324d;
   background: rgba(23, 50, 77, 0.05);
-  border-radius: 0.45rem;
+  border-radius: 0.4rem;
   border-left: 3px solid #0f8b83;
 }
 
@@ -102,67 +278,28 @@
   border-left-color: #54d6c5;
 }
 
-/* Links de navegação */
 .md-sidebar--primary .md-nav__link {
   display: flex;
   align-items: center;
-  padding: 0.32rem 0.6rem;
-  font-size: 0.78rem;
+  padding: 0.3rem 0.55rem;
+  font-size: 0.76rem;
   line-height: 1.35;
-  border-radius: 0.38rem;
-  color: #2e445a;
-  transition: all 0.15s ease-in-out;
+  border-radius: 0.35rem;
 }
 
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link {
-  color: #cbd5e1;
-}
-
-/* Hover nos links */
-.md-sidebar--primary .md-nav__link:hover:not(.md-nav__link--active) {
-  background: rgba(15, 139, 131, 0.08);
-  color: #0f8b83;
-}
-
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__link:hover:not(.md-nav__link--active) {
-  background: rgba(84, 214, 197, 0.10);
-  color: #54d6c5;
-}
-
-/* Item ativo (página atual selecionada) */
 .md-sidebar--primary .md-nav__item--active > .md-nav__link--active,
 .md-sidebar--primary .md-nav__item--active > .md-nav__container .md-nav__link--active {
   background: rgba(15, 139, 131, 0.12);
   color: #0b6b64 !important;
   font-weight: 650;
-  box-shadow: inset 3.5px 0 0 #0f8b83;
+  box-shadow: inset 3px 0 0 #0f8b83;
 }
 
 [data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item--active > .md-nav__link--active,
 [data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item--active > .md-nav__container .md-nav__link--active {
   background: rgba(84, 214, 197, 0.14);
   color: #54d6c5 !important;
-  box-shadow: inset 3.5px 0 0 #54d6c5;
-}
-
-/* Guias visuais verticais para níveis aninhados */
-.md-sidebar--primary .md-nav[data-md-level="1"] > .md-nav__list,
-.md-sidebar--primary .md-nav[data-md-level="2"] > .md-nav__list {
-  position: relative;
-  margin-left: 0.7rem;
-  padding-left: 0.55rem;
-  border-left: 1.5px solid rgba(23, 50, 77, 0.10);
-}
-
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav[data-md-level="1"] > .md-nav__list,
-[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav[data-md-level="2"] > .md-nav__list {
-  border-left-color: rgba(255, 255, 255, 0.10);
-}
-
-/* Ícones de expansão (setas) */
-.md-sidebar--primary .md-nav__icon {
-  width: 1.15rem;
-  height: 1.15rem;
+  box-shadow: inset 3px 0 0 #54d6c5;
 }
 
 /* Breadcrumbs (navigation.path) */
@@ -182,22 +319,83 @@
   color: var(--md-accent-fg-color);
 }
 
-/* Ocultação da barra lateral direita (Índice / TOC) */
+/* ==========================================================================
+   Barra Lateral Direita (Índice de Conteúdo da Página / TOC)
+   ========================================================================== */
 .md-sidebar--secondary {
-  display: none !important;
-}
-
-@media screen and (min-width: 60em) {
-  .md-sidebar--secondary {
-    display: none !important;
-  }
+  border-left: 1px solid rgba(23, 50, 77, 0.08);
 }
 
 @media screen and (min-width: 76.25em) {
-  [dir="ltr"] .md-sidebar--secondary ~ .md-content > .md-content__inner,
-  [dir="ltr"] .md-sidebar--secondary:not([hidden]) ~ .md-content > .md-content__inner {
-    margin-right: 0 !important;
+  .md-sidebar--secondary {
+    width: 14rem;
   }
+}
+
+@media screen and (max-width: 76.24em) {
+  .md-content {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--secondary {
+  border-left-color: rgba(255, 255, 255, 0.08);
+}
+
+.md-nav--secondary .md-nav__title {
+  padding: 0.65rem 0.65rem 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #17324d;
+}
+
+[data-md-color-scheme="slate"] .md-nav--secondary .md-nav__title {
+  color: #8ee8dc;
+}
+
+.md-nav--secondary .md-nav__link {
+  display: block;
+  padding: 0.28rem 0.65rem;
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: #3b5066;
+  border-radius: 0.35rem;
+  transition: color 140ms ease, background-color 140ms ease, padding-left 140ms ease;
+}
+
+[data-md-color-scheme="slate"] .md-nav--secondary .md-nav__link {
+  color: #a3b8cc;
+}
+
+.md-nav--secondary .md-nav__link:hover,
+.md-nav--secondary .md-nav__link:focus-visible {
+  color: #0b6b64;
+  background: rgba(15, 139, 131, 0.08);
+  padding-left: 0.8rem;
+}
+
+[data-md-color-scheme="slate"] .md-nav--secondary .md-nav__link:hover,
+[data-md-color-scheme="slate"] .md-nav--secondary .md-nav__link:focus-visible {
+  color: #54d6c5;
+  background: rgba(84, 214, 197, 0.12);
+}
+
+.md-nav--secondary .md-nav__item--active > .md-nav__link,
+.md-nav--secondary .md-nav__link--active {
+  color: #0b6b64 !important;
+  font-weight: 700;
+  background: rgba(15, 139, 131, 0.10);
+  box-shadow: inset 3px 0 0 #0f8b83;
+}
+
+[data-md-color-scheme="slate"] .md-nav--secondary .md-nav__item--active > .md-nav__link,
+[data-md-color-scheme="slate"] .md-nav--secondary .md-nav__link--active {
+  color: #54d6c5 !important;
+  background: rgba(84, 214, 197, 0.14);
+  box-shadow: inset 3px 0 0 #54d6c5;
 }
 
 .md-content__inner {
@@ -1026,16 +1224,6 @@ div.arithmatex mjx-container[display="true"] {
   width: 2.05rem;
   height: 2.05rem;
   border-radius: 0.45rem;
-}
-
-.md-header__topic:first-child .md-ellipsis::after {
-  display: block;
-  margin-top: 0.12rem;
-  color: rgba(245, 251, 255, 0.72);
-  content: "GRACE HOPPER  /  QSW 2026.2 · T02";
-  font-size: 0.52rem;
-  font-weight: 600;
-  letter-spacing: 0.09em;
 }
 
 .gh-hero-split {
