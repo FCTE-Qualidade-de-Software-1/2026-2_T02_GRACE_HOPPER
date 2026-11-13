@@ -27,6 +27,13 @@ A execução empírica sobre o commit congelado `7903a3efc7689942ee700007f86ed58
 
 ---
 
+### 1.1 Resultados e roteiros por métrica
+
+- [Manutenibilidade (M7a, M7b e M10)](manutenibilidade-m7-m10.md): resultado da execução do motor estático sobre o commit congelado.
+- [Qualidade em uso (M14a, M14b e M15)](qualidade-em-uso-m14-m15.md): métricas declaradas não mensuráveis antes da coleta e renormalização do $\text{IQC}_{\text{Interação}}$.
+
+---
+
 ## 2. Estrutura do Julgamento na Fase 5
 
 Ao concluir as coletas da Fase 4, esta seção será atualizada com:
