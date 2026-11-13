@@ -1,0 +1,34 @@
+{
+  "started_utc": "2026-11-11T23:35:44.861844+00:00",
+  "product_commit_required": "7903a3efc7689942ee700007f86ed581023aad27",
+  "manifest_reference_sha256": "8e5193fae876df70b8ae5f3c9b994676cbbb24e8084766dd3b26e41f2d91298a",
+  "product_commit_actual": "7903a3efc7689942ee700007f86ed581023aad27",
+  "instrument_commit": "434cf17f7175d7dc1ce8680a1df5ec34456a22a9",
+  "instrument_dirty": true,
+  "execution_mode": "diagnostic",
+  "manifest.json_sha256": "8e5193fae876df70b8ae5f3c9b994676cbbb24e8084766dd3b26e41f2d91298a",
+  "M3OracleTest.php_sha256": "46a3f74602b48a2d8ff1f67bc7e347c003045c8c752984595ca309f0403f287d",
+  "run.py_sha256": "9521a96d2c31ce2dc8f35a3321898237157cb6100c0b965327421f22865a7345",
+  "composer_lock_sha256": "b7f30ccdd53e43a00756afbb50222bc8d498e73fee188a7bea847e89cda462bc",
+  "php_version": "PHP 8.5.12 (cli) (built: Nov  5 2026 18:58:31) (NTS)\nCopyright (c) The PHP Group\nBuilt by https://github.com/docker-library/php\nZend Engine v4.5.12, Copyright (c) Zend Technologies\n    with Xdebug v3.5.3, Copyright (c) 2002-2026, by Derick Rethans\n    with Zend OPcache v8.5.12, Copyright (c), by Zend Technologies\n",
+  "command": [
+    "bash",
+    "/home/gustavorodrigues/Documents/07_UnB_7Sem/QSFW/2026-2_T02_GRACE_HOPPER/scripts/avaliacao/m3/php.sh",
+    "vendor/bin/pest",
+    "tests/Unit/Modules/Service/M3OracleTest.php",
+    "--colors=never",
+    "--log-junit=m3-junit.xml"
+  ],
+  "legacy_skips_removed": 5,
+  "legacy_command": [
+    "bash",
+    "/home/gustavorodrigues/Documents/07_UnB_7Sem/QSFW/2026-2_T02_GRACE_HOPPER/scripts/avaliacao/m3/php.sh",
+    "vendor/bin/pest",
+    "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+    "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+    "--colors=never"
+  ],
+  "legacy_exit_code": 2,
+  "preflight_error": null,
+  "finished_utc": "2026-11-11T23:35:51.564622+00:00"
+}

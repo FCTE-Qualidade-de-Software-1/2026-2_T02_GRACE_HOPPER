@@ -1,0 +1,576 @@
+
+   FAIL  Tests\Unit\Modules\Service\M3OracleTest
+  ⨯ M3 A01                                                               0.27s  
+  ⨯ M3 A02                                                               0.11s  
+  ⨯ M3 A03                                                               0.10s  
+  ⨯ M3 A04                                                               0.10s  
+  ⨯ M3 P01                                                               0.10s  
+  ⨯ M3 P02                                                               0.11s  
+  ⨯ M3 P03                                                               0.11s  
+  ⨯ M3 R01                                                               0.10s  
+  ⨯ M3 R02                                                               0.10s  
+  ⨯ M3 R03                                                               0.10s  
+  ⨯ M3 R04                                                               0.11s  
+  ⨯ M3 R05                                                               0.10s  
+  ⨯ M3 R06                                                               0.10s  
+  ⨯ M3 E01                                                               0.11s  
+  ⨯ M3 E02                                                               0.10s  
+  ⨯ M3 E03                                                               0.11s  
+  ⨯ M3 N01                                                               0.14s  
+  ⨯ M3 N02                                                               0.14s  
+  ⨯ M3 N03                                                               0.12s  
+  ⨯ M3 N04                                                               0.12s  
+  ⨯ M3 C01                                                               0.11s  
+  ⨯ M3 C02                                                               0.14s  
+  ⨯ M3 C03                                                               0.10s  
+  ⨯ M3 C04                                                               0.10s  
+  ⨯ M3 C05                                                               0.11s  
+  ⨯ M3 C06                                                               0.11s  
+  ⨯ M3 C07                                                               0.10s  
+  ⨯ M3 C08                                                               0.10s  
+  ⨯ M3 C09                                                               0.13s  
+  ⨯ M3 C10                                                               0.12s  
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Se…  CoreExt_Exception_InvalidArgumentException   
+  regraOption:qtdCasasDecimais
+
+  at tests/Unit/Modules/Service/TestCommon.php:752
+    748▕      */
+    749▕     protected function _setRegraOption($key, $value)
+    750▕     {
+    751▕         if (!array_key_exists($key, $this->_regraOptions)) {
+  ➜ 752▕             throw new CoreExt_Exception_InvalidArgumentException('regraOption:' . $key);
+    753▕         }
+    754▕ 
+    755▕         $this->_regraOptions[$key] = $value;
+    756▕
+
+  1   tests/Unit/Modules/Service/TestCommon.php:752
+  2   tests/Unit/Modules/Service/M3OracleTest.php:13
+
+
+  Tests:    30 failed (0 assertions)
+  Duration: 3.58s
+

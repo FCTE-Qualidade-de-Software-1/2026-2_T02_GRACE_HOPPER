@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\Unit\Modules\Service\M3OracleTest" file="tests/Unit/Modules/Service/M3OracleTest.php" tests="30" assertions="457" errors="0" failures="0" skipped="0" time="4.566552">
+    <testcase name="M3 A01" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 A01" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.302440"/>
+    <testcase name="M3 A02" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 A02" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.140325"/>
+    <testcase name="M3 A03" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 A03" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.151190"/>
+    <testcase name="M3 A04" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 A04" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.136545"/>
+    <testcase name="M3 P01" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 P01" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.128001"/>
+    <testcase name="M3 P02" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 P02" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.148296"/>
+    <testcase name="M3 P03" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 P03" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.136639"/>
+    <testcase name="M3 R01" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 R01" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.136686"/>
+    <testcase name="M3 R02" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 R02" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.140201"/>
+    <testcase name="M3 R03" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 R03" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.159663"/>
+    <testcase name="M3 R04" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 R04" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.152910"/>
+    <testcase name="M3 R05" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 R05" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.157172"/>
+    <testcase name="M3 R06" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 R06" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.154831"/>
+    <testcase name="M3 E01" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 E01" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.159357"/>
+    <testcase name="M3 E02" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 E02" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.156476"/>
+    <testcase name="M3 E03" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 E03" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="16" time="0.142525"/>
+    <testcase name="M3 N01" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 N01" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="15" time="0.147705"/>
+    <testcase name="M3 N02" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 N02" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="15" time="0.137019"/>
+    <testcase name="M3 N03" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 N03" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="15" time="0.158280"/>
+    <testcase name="M3 N04" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 N04" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="15" time="0.135113"/>
+    <testcase name="M3 C01" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C01" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="14" time="0.138956"/>
+    <testcase name="M3 C02" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C02" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="14" time="0.129863"/>
+    <testcase name="M3 C03" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C03" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="14" time="0.140518"/>
+    <testcase name="M3 C04" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C04" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="14" time="0.142342"/>
+    <testcase name="M3 C05" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C05" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="14" time="0.151880"/>
+    <testcase name="M3 C06" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C06" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="14" time="0.143492"/>
+    <testcase name="M3 C07" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C07" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="14" time="0.155924"/>
+    <testcase name="M3 C08" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C08" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="14" time="0.155085"/>
+    <testcase name="M3 C09" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C09" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="14" time="0.157733"/>
+    <testcase name="M3 C10" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C10" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="15" time="0.169386"/>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\Unit\Modules\Service\M3OracleTest" file="tests/Unit/Modules/Service/M3OracleTest.php" tests="30" assertions="0" errors="30" failures="0" skipped="0" time="3.487993">
+    <testcase name="M3 A01" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 A01" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.268383">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 A01CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 A02" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 A02" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.105703">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 A02CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 A03" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 A03" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.102813">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 A03CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 A04" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 A04" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.104342">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 A04CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 P01" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 P01" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.103236">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 P01CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 P02" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 P02" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.107227">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 P02CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 P03" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 P03" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.105271">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 P03CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 R01" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 R01" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.103905">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 R01CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 R02" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 R02" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.101807">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 R02CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 R03" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 R03" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.103327">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 R03CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 R04" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 R04" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.105635">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 R04CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 R05" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 R05" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.102471">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 R05CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 R06" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 R06" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.102406">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 R06CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 E01" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 E01" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.107009">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 E01CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 E02" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 E02" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.103047">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 E02CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 E03" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 E03" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.113706">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 E03CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 N01" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 N01" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.137724">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 N01CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 N02" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 N02" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.137460">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 N02CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 N03" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 N03" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.118322">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 N03CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 N04" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 N04" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.116573">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 N04CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 C01" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C01" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.111361">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 C01CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 C02" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C02" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.138969">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 C02CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 C03" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C03" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.104423">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 C03CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 C04" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C04" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.103686">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 C04CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 C05" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C05" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.106809">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 C05CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 C06" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C06" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.110288">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 C06CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 C07" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C07" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.104480">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 C07CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 C08" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C08" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.104871">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 C08CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 C09" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C09" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.128618">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 C09CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+    <testcase name="M3 C10" file="tests/Unit/Modules/Service/M3OracleTest.php::M3 C10" class="Tests\Unit\Modules\Service\M3OracleTest" classname="Tests.Unit.Modules.Service.M3OracleTest" assertions="0" time="0.124120">
+      <error type="CoreExt_Exception_InvalidArgumentException">M3 C10CoreExt_Exception_InvalidArgumentException: regraOption:qtdCasasDecimais
+at tests/Unit/Modules/Service/TestCommon.php:752
+at tests/Unit/Modules/Service/M3OracleTest.php:13</error>
+    </testcase>
+  </testsuite>
+</testsuites>

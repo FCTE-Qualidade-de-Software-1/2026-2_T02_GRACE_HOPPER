@@ -1,0 +1,195 @@
+{
+  "planned": 30,
+  "conforming": 0,
+  "nonconforming": 30,
+  "fraction": "0/30",
+  "percent_exact": "0",
+  "percent": 0.0,
+  "gate": "BLOQUEADO",
+  "cases": [
+    {
+      "id": "A01",
+      "status": "error",
+      "expected": 0,
+      "actual": null
+    },
+    {
+      "id": "A02",
+      "status": "error",
+      "expected": 10,
+      "actual": null
+    },
+    {
+      "id": "A03",
+      "status": "error",
+      "expected": 7.5,
+      "actual": null
+    },
+    {
+      "id": "A04",
+      "status": "error",
+      "expected": 6,
+      "actual": null
+    },
+    {
+      "id": "P01",
+      "status": "error",
+      "expected": 7,
+      "actual": null
+    },
+    {
+      "id": "P02",
+      "status": "error",
+      "expected": 5,
+      "actual": null
+    },
+    {
+      "id": "P03",
+      "status": "error",
+      "expected": 6,
+      "actual": null
+    },
+    {
+      "id": "R01",
+      "status": "error",
+      "expected": 8,
+      "actual": null
+    },
+    {
+      "id": "R02",
+      "status": "error",
+      "expected": 7,
+      "actual": null
+    },
+    {
+      "id": "R03",
+      "status": "error",
+      "expected": 6,
+      "actual": null
+    },
+    {
+      "id": "R04",
+      "status": "error",
+      "expected": 7,
+      "actual": null
+    },
+    {
+      "id": "R05",
+      "status": "error",
+      "expected": 6,
+      "actual": null
+    },
+    {
+      "id": "R06",
+      "status": "error",
+      "expected": 8,
+      "actual": null
+    },
+    {
+      "id": "E01",
+      "status": "error",
+      "expected": 4,
+      "actual": null
+    },
+    {
+      "id": "E02",
+      "status": "error",
+      "expected": 6,
+      "actual": null
+    },
+    {
+      "id": "E03",
+      "status": "error",
+      "expected": 7,
+      "actual": null
+    },
+    {
+      "id": "N01",
+      "status": "error",
+      "expected": 5,
+      "actual": null
+    },
+    {
+      "id": "N02",
+      "status": "error",
+      "expected": 6,
+      "actual": null
+    },
+    {
+      "id": "N03",
+      "status": "error",
+      "expected": 5.5,
+      "actual": null
+    },
+    {
+      "id": "N04",
+      "status": "error",
+      "expected": 5.9,
+      "actual": null
+    },
+    {
+      "id": "C01",
+      "status": "error",
+      "expected": "I",
+      "actual": null
+    },
+    {
+      "id": "C02",
+      "status": "error",
+      "expected": "I",
+      "actual": null
+    },
+    {
+      "id": "C03",
+      "status": "error",
+      "expected": "I",
+      "actual": null
+    },
+    {
+      "id": "C04",
+      "status": "error",
+      "expected": "S",
+      "actual": null
+    },
+    {
+      "id": "C05",
+      "status": "error",
+      "expected": "S",
+      "actual": null
+    },
+    {
+      "id": "C06",
+      "status": "error",
+      "expected": "S",
+      "actual": null
+    },
+    {
+      "id": "C07",
+      "status": "error",
+      "expected": "O",
+      "actual": null
+    },
+    {
+      "id": "C08",
+      "status": "error",
+      "expected": "O",
+      "actual": null
+    },
+    {
+      "id": "C09",
+      "status": "error",
+      "expected": "O",
+      "actual": null
+    },
+    {
+      "id": "C10",
+      "status": "error",
+      "expected": "S",
+      "actual": null
+    }
+  ],
+  "anomalies": [],
+  "exit_code": 2,
+  "execution_attempted": true,
+  "preflight_error": null
+}
