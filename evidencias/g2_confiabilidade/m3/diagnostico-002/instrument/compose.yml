@@ -1,0 +1,57 @@
+name: ieducar-m3
+
+services:
+  php:
+    build:
+      context: ${M3_PRODUCT_DIR:?Defina M3_PRODUCT_DIR com o caminho da worktree}/docker/php
+      args:
+        PHP_VERSION: "8.5"
+        COMPOSER_VERSION: "2.10"
+        HOST_UID: ${M3_HOST_UID:-1000}
+        HOST_GID: ${M3_HOST_GID:-1000}
+    image: ieducar-m3-php:8.5
+    working_dir: /var/www/ieducar
+    command: ["tail", "-f", "/dev/null"]
+    volumes:
+      - ${M3_PRODUCT_DIR}:/var/www/ieducar:z
+    environment:
+      APP_ENV: testing
+      APP_DEBUG: "false"
+      DB_CONNECTION: pgsql
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_DATABASE: testing
+      DB_USERNAME: ieducar_m3
+      DB_PASSWORD: m3_local_only
+      LEGACY_SEED_DATA: "false"
+      CACHE_STORE: array
+      CACHE_DRIVER: array
+      SESSION_DRIVER: array
+      QUEUE_CONNECTION: sync
+      REDIS_HOST: redis
+      XDEBUG_MODE: "off"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  postgres:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_DB: testing
+      POSTGRES_USER: ieducar_m3
+      POSTGRES_PASSWORD: m3_local_only
+    volumes:
+      - postgres:/var/lib/postgresql/18/docker
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ieducar_m3 -d testing"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:8-alpine
+
+volumes:
+  postgres:

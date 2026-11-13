@@ -1,0 +1,355 @@
+{
+  "metrica": "M2 - CEI",
+  "executado_em": "2026-11-11T16:46:39-03:00",
+  "commit_ieducar": "7903a3efc7689942ee700007f86ed581023aad27",
+  "hashes_congelados": {
+    "manifesto_endpoints.json": "58b18cf48aac560f0a0f7db28d5a95b6810e2cf1197dc74f05bb2621c91a7caa",
+    "contratos_json_schema.json": "ba9f388004720cda315e19830762fceea4a1265f29751b290035b82ab3b69fda"
+  },
+  "endpoints": [
+    {
+      "id": "E01",
+      "modulo": "Matricula",
+      "metodo": "GET",
+      "path": "/module/Api/Matricula",
+      "casos": {
+        "C1_valida_http_json": {
+          "ok": true,
+          "status": 200,
+          "content_type": "application/json; charset=UTF-8"
+        },
+        "C2_aderencia_schema": {
+          "ok": true,
+          "schema": "legacy_matricula",
+          "erros": [],
+          "amostra": "{\"id\":3,\"aluno_id\":3,\"ano\":2026,\"instituicao_id\":1,\"escola_id\":2,\"curso_id\":3,\"serie_id\":6,\"turma_id\":3,\"oper\":\"get\",\"resource\":\"matricula\",\"msgs\":[],\"any_error_msg\":false}"
+        },
+        "C3_erro_estruturado": {
+          "P1_parametro_ausente": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"oper\":\"get\",\"resource\":\"matricula\",\"msgs\":[{\"msg\":\"\\u00c9 necess\\u00e1rio receber uma variavel 'id'\",\"type\":\"error\"}],\"any_error_msg\":true}"
+          },
+          "P2_credencial_incorreta": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"oper\":\"get\",\"resource\":\"matricula\",\"msgs\":[{\"msg\":\"Chave de acesso inv\\u00e1lida!\",\"type\":\"error\"}],\"any_error_msg\":true}"
+          },
+          "ok": true
+        }
+      },
+      "conforme": true
+    },
+    {
+      "id": "E02",
+      "modulo": "Matricula",
+      "metodo": "GET",
+      "path": "/module/Api/Matricula",
+      "casos": {
+        "C1_valida_http_json": {
+          "ok": true,
+          "status": 200,
+          "content_type": "application/json; charset=UTF-8"
+        },
+        "C2_aderencia_schema": {
+          "ok": true,
+          "schema": "legacy_matriculas_aluno",
+          "erros": [],
+          "amostra": "{\"matriculas\":[{\"id\":3,\"ano\":2026,\"instituicao_id\":1,\"escola_id\":2,\"curso_id\":3,\"serie_id\":6,\"aprovado\":3,\"nome_curso\":\"Ensino Fundamental\",\"nome_escola\":\"Escola de Ensino Fundamental\",\"nome_serie\":\"1"
+        },
+        "C3_erro_estruturado": {
+          "P1_parametro_ausente": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"oper\":\"get\",\"resource\":\"matriculas\",\"msgs\":[{\"msg\":\"\\u00c9 necess\\u00e1rio receber uma variavel 'escola_id'\",\"type\":\"error\"}],\"any_error_msg\":true}"
+          },
+          "P2_credencial_incorreta": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"oper\":\"get\",\"resource\":\"matriculas\",\"msgs\":[{\"msg\":\"Chave de acesso inv\\u00e1lida!\",\"type\":\"error\"}],\"any_error_msg\":true}"
+          },
+          "ok": true
+        }
+      },
+      "conforme": true
+    },
+    {
+      "id": "E03",
+      "modulo": "Matricula",
+      "metodo": "GET",
+      "path": "/module/Api/Matricula",
+      "casos": {
+        "C1_valida_http_json": {
+          "ok": true,
+          "status": 200,
+          "content_type": "application/json; charset=UTF-8"
+        },
+        "C2_aderencia_schema": {
+          "ok": true,
+          "schema": "legacy_matriculas_escola",
+          "erros": [],
+          "amostra": "{\"matriculas\":[{\"aluno_id\":3,\"matricula_id\":3,\"escola_id\":2,\"situacao\":3,\"ativo\":1,\"updated_at\":\"2026-11-11 19:18:31\",\"deleted_at\":null},{\"aluno_id\":4,\"matricula_id\":4,\"escola_id\":2,\"situacao\":3,\"ativ"
+        },
+        "C3_erro_estruturado": {
+          "P1_parametro_ausente": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"oper\":\"get\",\"resource\":\"matriculas-escola\",\"msgs\":[{\"msg\":\"\\u00c9 necess\\u00e1rio receber uma variavel 'ano'\",\"type\":\"error\"}],\"any_error_msg\":true}"
+          },
+          "P2_credencial_incorreta": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"oper\":\"get\",\"resource\":\"matriculas-escola\",\"msgs\":[{\"msg\":\"Chave de acesso inv\\u00e1lida!\",\"type\":\"error\"}],\"any_error_msg\":true}"
+          },
+          "ok": true
+        }
+      },
+      "conforme": true
+    },
+    {
+      "id": "E04",
+      "modulo": "Matricula",
+      "metodo": "GET",
+      "path": "/module/Api/Matricula",
+      "casos": {
+        "C1_valida_http_json": {
+          "ok": true,
+          "status": 200,
+          "content_type": "application/json; charset=UTF-8"
+        },
+        "C2_aderencia_schema": {
+          "ok": true,
+          "schema": "legacy_frequencia",
+          "erros": [],
+          "amostra": "{\"frequencia\":null,\"oper\":\"get\",\"resource\":\"frequencia\",\"msgs\":[],\"any_error_msg\":false}"
+        },
+        "C3_erro_estruturado": {
+          "P1_parametro_ausente": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"oper\":\"get\",\"resource\":\"frequencia\",\"msgs\":[{\"msg\":\"Exception: SQLSTATE[42883]: Undefined function: 7 ERROR:  function modules.frequencia_da_matricula() does "
+          },
+          "P2_credencial_incorreta": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"oper\":\"get\",\"resource\":\"frequencia\",\"msgs\":[{\"msg\":\"Chave de acesso inv\\u00e1lida!\",\"type\":\"error\"}],\"any_error_msg\":true}"
+          },
+          "ok": true
+        }
+      },
+      "conforme": true
+    },
+    {
+      "id": "E05",
+      "modulo": "Matricula",
+      "metodo": "GET",
+      "path": "/module/Api/Matricula",
+      "casos": {
+        "C1_valida_http_json": {
+          "ok": true,
+          "status": 200,
+          "content_type": "application/json; charset=UTF-8"
+        },
+        "C2_aderencia_schema": {
+          "ok": true,
+          "schema": "legacy_matricula_search",
+          "erros": [],
+          "amostra": "{\"result\":{\"3\":\"3 - (3) Maya\",\"30\":\"30 - (30) Sheila\",\"31\":\"31 - (31) Hosana\",\"32\":\"32 - (32) Luna\",\"33\":\"33 - (33) Gabriela\",\"34\":\"34 - (34) Melinda\",\"35\":\"35 - (35) Luna\",\"36\":\"36 - (36) Isabel\",\"37"
+        },
+        "C3_erro_estruturado": {
+          "P1_parametro_ausente": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"result\":{\"\":\"Sem resultados.\"},\"oper\":\"get\",\"resource\":\"matricula-search\",\"msgs\":[{\"msg\":\"\\u00c9 necess\\u00e1rio receber uma variavel 'query'\",\"type\":\"error\"}"
+          },
+          "P2_credencial_incorreta": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"oper\":\"get\",\"resource\":\"matricula-search\",\"msgs\":[{\"msg\":\"Chave de acesso inv\\u00e1lida!\",\"type\":\"error\"}],\"any_error_msg\":true}"
+          },
+          "ok": true
+        }
+      },
+      "conforme": true
+    },
+    {
+      "id": "E06",
+      "modulo": "Matricula",
+      "metodo": "GET",
+      "path": "/module/Api/Matricula",
+      "casos": {
+        "C1_valida_http_json": {
+          "ok": true,
+          "status": 200,
+          "content_type": "application/json; charset=UTF-8"
+        },
+        "C2_aderencia_schema": {
+          "ok": true,
+          "schema": "legacy_movimentacao_enturmacao",
+          "erros": [],
+          "amostra": "{\"enturmacoes\":[{\"id\":1,\"turma_id\":3,\"matricula_id\":3,\"sequencial\":1,\"remanejado_mesma_turma\":false,\"sequencial_fechamento\":0,\"data_entrada\":\"2026-11-11\",\"data_saida\":\"\",\"apresentar_fora_da_data\":fals"
+        },
+        "C3_erro_estruturado": {
+          "P1_parametro_ausente": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"oper\":\"get\",\"resource\":\"movimentacao-enturmacao\",\"msgs\":[{\"msg\":\"\\u00c9 necess\\u00e1rio receber uma variavel 'ano'\",\"type\":\"error\"}],\"any_error_msg\":true}"
+          },
+          "P2_credencial_incorreta": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"oper\":\"get\",\"resource\":\"movimentacao-enturmacao\",\"msgs\":[{\"msg\":\"Chave de acesso inv\\u00e1lida!\",\"type\":\"error\"}],\"any_error_msg\":true}"
+          },
+          "ok": true
+        }
+      },
+      "conforme": true
+    },
+    {
+      "id": "E07",
+      "modulo": "Matricula",
+      "metodo": "GET",
+      "path": "/module/Api/Matricula",
+      "casos": {
+        "C1_valida_http_json": {
+          "ok": true,
+          "status": 200,
+          "content_type": "application/json; charset=UTF-8"
+        },
+        "C2_aderencia_schema": {
+          "ok": true,
+          "schema": "legacy_matriculas_dependencia",
+          "erros": [],
+          "amostra": "{\"matriculas\":[],\"oper\":\"get\",\"resource\":\"matriculas-dependencia\",\"msgs\":[],\"any_error_msg\":false}"
+        },
+        "C3_erro_estruturado": {
+          "P1_parametro_ausente": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"0\":\"\",\"oper\":\"get\",\"resource\":\"matriculas-dependencia\",\"msgs\":[{\"msg\":\"\\u00c9 necess\\u00e1rio receber uma variavel 'ano'\",\"type\":\"error\"}],\"any_error_msg\":tru"
+          },
+          "P2_credencial_incorreta": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"oper\":\"get\",\"resource\":\"matriculas-dependencia\",\"msgs\":[{\"msg\":\"Chave de acesso inv\\u00e1lida!\",\"type\":\"error\"}],\"any_error_msg\":true}"
+          },
+          "ok": true
+        }
+      },
+      "conforme": true
+    },
+    {
+      "id": "E08",
+      "modulo": "Diario/Notas",
+      "metodo": "GET",
+      "path": "/module/Avaliacao/DiarioApi",
+      "casos": {
+        "C1_valida_http_json": {
+          "ok": true,
+          "status": 200,
+          "content_type": "application/json; charset=UTF-8"
+        },
+        "C2_aderencia_schema": {
+          "ok": true,
+          "schema": "legacy_diario_matriculas",
+          "erros": [],
+          "amostra": "{\"matricula_id\":\"3\",\"matriculas\":[],\"navegacao_tab\":null,\"can_change\":true,\"locked\":false,\"oper\":\"get\",\"resource\":\"matriculas\",\"msgs\":[],\"any_error_msg\":false}"
+        },
+        "C3_erro_estruturado": {
+          "P1_parametro_ausente": {
+            "ok": true,
+            "status": 200,
+            "content_type": "application/json; charset=UTF-8",
+            "amostra": "{\"matricula_id\":\"3\",\"matriculas\":[],\"navegacao_tab\":null,\"can_change\":true,\"locked\":false,\"oper\":\"get\",\"resource\":\"matriculas\",\"msgs\":[{\"msg\":\"\\u00c9 necess\\u00"
+          },
+          "P2_credencial_incorreta": {
+            "ok": false,
+            "status": 401,
+            "content_type": "application/json",
+            "amostra": "{\"message\":\"Unauthenticated.\"}"
+          },
+          "ok": false
+        }
+      },
+      "conforme": false
+    },
+    {
+      "id": "E09",
+      "modulo": "Matricula (REST Laravel)",
+      "metodo": "GET",
+      "path": "/api/registration",
+      "casos": {
+        "C1_valida_http_json": {
+          "ok": true,
+          "status": 200,
+          "content_type": "application/json"
+        },
+        "C2_aderencia_schema": {
+          "ok": true,
+          "schema": "rest_registration",
+          "erros": [],
+          "amostra": "{\"data\":[{\"id\":77,\"ref_ref_cod_escola\":2,\"ref_ref_cod_serie\":13,\"ref_usuario_exc\":1,\"ref_usuario_cad\":1,\"student_id\":77,\"aprovado\":3,\"created_at\":\"2026-11-11T19:18:35.000000Z\",\"data_exclusao\":null,\"at"
+        },
+        "C3_erro_estruturado": {
+          "P2_credencial_incorreta": {
+            "ok": true,
+            "status": 401,
+            "content_type": "application/json",
+            "amostra": "{\"message\":\"Unauthenticated.\"}"
+          },
+          "ok": true
+        }
+      },
+      "conforme": true
+    },
+    {
+      "id": "E10",
+      "modulo": "Matricula (REST Laravel)",
+      "metodo": "GET",
+      "path": "/api/situation",
+      "casos": {
+        "C1_valida_http_json": {
+          "ok": true,
+          "status": 200,
+          "content_type": "application/json"
+        },
+        "C2_aderencia_schema": {
+          "ok": true,
+          "schema": "rest_situation",
+          "erros": [],
+          "amostra": "{\"data\":{\"1\":\"Aprovado\",\"2\":\"Reprovado\",\"3\":\"Cursando\",\"4\":\"Transferido\",\"5\":\"Reclassificado\",\"6\":\"Deixou de Frequentar\",\"9\":\"Exceto Transferidos\\/Deixou de Frequentar\",\"10\":\"Todas\",\"12\":\"Aprovado com"
+        },
+        "C3_erro_estruturado": {
+          "P2_credencial_incorreta": {
+            "ok": true,
+            "status": 401,
+            "content_type": "application/json",
+            "amostra": "{\"message\":\"Unauthenticated.\"}"
+          },
+          "ok": true
+        }
+      },
+      "conforme": true
+    }
+  ],
+  "resumo": {
+    "N_testados": 10,
+    "N_conformes": 9,
+    "CEI_percentual": 90.0,
+    "H1_2_confirmada_CEI_ge_85": true
+  }
+}

@@ -1476,3 +1476,161 @@ div.arithmatex mjx-container[display="true"] {
 .psm-leg.psm-s4 { fill: var(--psm-s4); }
 .psm-atraso { fill: var(--psm-atraso); }
 .psm-adiantado { fill: var(--psm-s2); }
+
+/* Gravações da execução local da M3. */
+.md-typeset .m3-gate-note > details {
+  overflow: hidden;
+  border-radius: 0.65rem;
+}
+
+.md-typeset .m3-gate-note > details > summary::after {
+  transform: rotate(90deg);
+}
+
+.md-typeset .m3-gate-note > details[open] > summary::after {
+  transform: rotate(270deg);
+}
+
+.m3-recordings {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.2rem 0;
+}
+
+.md-typeset .m3-recording-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--md-default-fg-color);
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.65rem;
+  box-shadow: 0 0.2rem 0.7rem rgb(0 0 0 / 5%);
+  text-decoration: none;
+  transition: border-color 150ms, box-shadow 150ms;
+}
+
+.md-typeset .m3-recording-card:hover,
+.md-typeset .m3-recording-card:focus-visible {
+  color: var(--md-default-fg-color);
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 0.2rem 0.8rem rgb(0 0 0 / 12%);
+}
+
+.m3-recording-card:focus-visible,
+.m3-recording-close:focus-visible,
+.m3-recording-original:focus-visible {
+  outline: 3px solid var(--md-accent-fg-color);
+  outline-offset: 3px;
+}
+
+.m3-recording-preview {
+  position: relative;
+  display: block;
+  aspect-ratio: 1609 / 814;
+  background: #000;
+}
+
+.m3-recording-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.m3-recording-expand {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  color: #fff;
+  background: rgb(16 37 58 / 92%);
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 0.25rem;
+  font-size: 0.6rem;
+}
+
+.m3-recording-body {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.9rem;
+  font-size: 0.72rem;
+}
+
+.m3-recording-body strong { font-size: 0.88rem; }
+.m3-recording-step { color: var(--md-default-fg-color--light); font-size: 0.62rem; }
+.md-typeset .m3-recording-source { color: var(--md-default-fg-color--light); font-size: 0.65rem; }
+
+.m3-recording-dialog {
+  width: min(96vw, 1609px, calc(70dvh * 1609 / 814));
+  max-width: none;
+  max-height: 94dvh;
+  padding: 0;
+  color: var(--md-default-fg-color);
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.65rem;
+  box-shadow: 0 1rem 4rem rgb(0 0 0 / 35%);
+}
+
+.m3-recording-dialog[open] { display: flex; flex-direction: column; }
+.m3-recording-dialog::backdrop { background: rgb(5 15 26 / 82%); }
+.m3-recording-open { overflow: hidden; }
+
+.m3-recording-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0.8rem;
+}
+
+.md-typeset .m3-recording-dialog-header h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+.m3-recording-close {
+  flex-shrink: 0;
+  padding: 0.4rem 0.65rem;
+  color: var(--md-default-fg-color);
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.3rem;
+  font: inherit;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.m3-recording-dialog-media {
+  min-height: 0;
+  overflow: hidden;
+  background: #000;
+  border-radius: 0.65rem;
+}
+.m3-recording-dialog-media img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  object-fit: contain;
+  border-radius: inherit;
+}
+
+.m3-recording-dialog-footer { padding: 0.65rem 1rem; font-size: 0.7rem; }
+.m3-recording-dialog-footer p { margin: 0 0 0.4rem; line-height: 1.5; }
+.m3-recording-original { color: var(--md-accent-fg-color); }
+
+@media (max-width: 640px) {
+  .m3-recordings { grid-template-columns: 1fr; }
+  .m3-recording-dialog-header { gap: 0.5rem; padding: 0.6rem; }
+  .md-typeset .m3-recording-dialog-header h2 { font-size: 0.8rem; }
+  .m3-recording-dialog-footer { padding: 0.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .md-typeset .m3-recording-card { transition: none; }
+}

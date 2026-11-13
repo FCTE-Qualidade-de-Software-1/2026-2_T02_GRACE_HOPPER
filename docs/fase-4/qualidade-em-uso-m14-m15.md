@@ -1,76 +1,46 @@
-# Qualidade em uso: sessões supervisionadas (M14a, M14b e M15)
+# Qualidade em uso: M14a, M14b e M15 não mensuráveis
 
-Roteiro operacional, ficha de observação e cálculo das métricas de qualidade em uso da [Issue #46](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/46). As fórmulas e faixas são as do [Framework GQM](../gqm_evaluation_framework.md) (M14 e M15) e o protocolo ético é o [TCLE](../termo_consentimento_livre_esclarecido.md).
+Registro da decisão da equipe sobre a [Issue #46](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/46). As definições das métricas estão no [Framework GQM](../gqm_evaluation_framework.md) (M14 e M15) e a política de cálculo está na seção 3.4 do [Plano de medição e testes](../plano_medicao_testes.md).
 
-!!! info "Situação da coleta"
-    Instrumentos prontos. As sessões dependem do ambiente Docker com dados fictícios da Issue #38 e ainda não foram realizadas; por isso M14a, M14b e M15 estão **não mensuráveis** até o preenchimento das fichas.
+## 1. Decisão
 
-## 1. Preparação
+**Tabela 1 — Situação das métricas de qualidade em uso na Entrega 2**
 
-1. Subir o ambiente Docker do i-Educar 2.12 (commit `7903a3e`) com a base fictícia da Issue #38 e restaurar o mesmo estado da base antes de cada sessão.
-2. Definir e imprimir os dados das tarefas: para T1, um aluno já cadastrado e a turma de destino; para T2, a turma de 10 alunos, o componente curricular, a etapa e as 10 notas a lançar.
-3. Preparar a gravação de tela (com áudio, se autorizada no TCLE) e um cronômetro.
-4. Atribuir a cada participante um código sequencial (`P01`, `P02`...). O nome aparece apenas no TCLE assinado, que fica fora do repositório.
-
-## 2. Tempo de referência
-
-Um integrante treinado executa cada tarefa 3 vezes, com a base restaurada entre as execuções. $T_{\text{ref},T}$ é a média das 3 execuções. Os tempos são registrados em `m14_tempo_referencia.csv`.
-
-## 3. Roteiro da sessão
-
-**Tabela 1 — Roteiro de cada sessão supervisionada**
-
-| Etapa | O que o avaliador faz |
-| :--- | :--- |
-| 1. Consentimento | Lê o TCLE com o participante, colhe a assinatura e marca `tcle_assinado = sim`. Sem TCLE assinado, a sessão não acontece. |
-| 2. Instrução | Lê a instrução padronizada: "Você vai realizar duas tarefas no sistema usando os dados desta ficha. Não posso ajudar durante as tarefas. Avise quando terminar." |
-| 3. Tarefa T1 | Entrega a ficha de T1. Inicia o cronômetro quando o participante começa a ler a tarefa e para na confirmação de gravação da enturmação. |
-| 4. Tarefa T2 | Entrega a ficha de T2. Inicia o cronômetro na leitura e para na confirmação de gravação das 10 notas. |
-| 5. Conferência | Consulta o banco para verificar se a matrícula, a enturmação e as notas gravadas correspondem à ficha. |
-| 6. Registro | Preenche as fichas em `m14_tmet.csv` e `m15_tspt.csv`, sem dados pessoais. |
-
-*Fonte: elaborado pelos autores a partir do protocolo do Framework GQM.*
-
-**Critérios de registro:**
-
-- **Concluiu a tarefa:** o dado esperado foi gravado ao final, mesmo após erros. Só quem concluiu entra no TMET.
-- **Sucesso na 1ª submissão (M15):** a primeira submissão gravou o dado correto, sem erro de validação, recarga da página, perda do que foi digitado nem ajuda do avaliador.
-- **Desistência:** se o participante desistir, a tarefa é registrada como não concluída e o motivo vai em `observacoes`.
-
-## 4. Fichas de registro
-
-As fichas ficam em `docs/evidencias/g4_interacao_uso/` e já estão no repositório apenas com o cabeçalho, para serem preenchidas durante as sessões.
-
-**Tabela 2 — Estrutura das fichas de registro**
-
-| Arquivo | Colunas | Uma linha por |
-| :--- | :--- | :--- |
-| [`m14_tempo_referencia.csv`](../evidencias/g4_interacao_uso/m14_tempo_referencia.csv) | `tarefa`, `execucao`, `executor`, `tempo_min` | execução de referência (3 por tarefa) |
-| [`m14_tmet.csv`](../evidencias/g4_interacao_uso/m14_tmet.csv) | `participante`, `tcle_assinado`, `tarefa`, `concluiu`, `tempo_min`, `observacoes` | participante e tarefa |
-| [`m15_tspt.csv`](../evidencias/g4_interacao_uso/m15_tspt.csv) | `participante`, `tarefa`, `sucesso_1a_submissao`, `motivo_falha`, `conferencia_banco` | participante e tarefa |
+| Métrica | Situação | Hipótese | Situação da hipótese |
+| :--- | :--- | :--- | :--- |
+| **M14a** — $R_{\text{tempo},T1}$ (matrícula) | Não mensurável | H4.3: $1{,}5 < R_{\text{tempo}} \le 2{,}5$ em T1 e em T2 | Não testada |
+| **M14b** — $R_{\text{tempo},T2}$ (diário) | Não mensurável | H4.3 (mesma hipótese) | Não testada |
+| **M15** — TSPT | Não mensurável | H4.4: $\text{TSPT} \in [70\%, 90\%)$ | Não testada |
 
 *Fonte: elaborado pelos autores.*
 
-Os tempos são registrados em minutos com decimais (por exemplo, `3,5`), e os campos de sim ou não usam `sim` e `nao`. Em `executor`, usa-se o código do integrante, não o nome.
+As três métricas dependem de sessões supervisionadas com no mínimo 5 participantes que nunca usaram o i-Educar, com TCLE assinado, cronometragem das tarefas T1 e T2, três execuções de referência por um integrante treinado e restauração do banco entre as sessões. Em 12/11/2026, **antes de qualquer coleta**, a equipe avaliou que essas sessões não cabem no cronograma da Entrega 2 e declarou as métricas não mensuráveis. Nenhum dado foi coletado, estimado ou substituído.
 
-## 5. Cálculo
+## 2. Impacto no julgamento
 
-```bash
-python3 scripts/uso/calcular_m14_m15.py
-```
+- M14a, M14b e M15 não recebem nota zero nem nota substituta.
+- O $\text{IQC}_{\text{Interação}}$ é calculado apenas com M12 ($w = 2{,}0$) e M13 ($w = 0{,}8$), conforme a política pré-declarada da seção 3.4 do plano:
 
-O script aplica as fórmulas do Framework GQM e só reporta valores quando o protocolo é atendido: pelo menos 5 participantes com código válido e TCLE registrado, e 3 execuções de referência por tarefa. Caso contrário, lista as pendências e mantém as métricas como não mensuráveis.
+$$
+\text{IQC}_{\text{Interação}} = \dfrac{S_{\text{M12}} \times 2{,}0 + S_{\text{M13}} \times 0{,}8}{2{,}8}
+$$
 
-**Tabela 3 — Métricas, faixas e hipóteses de G4 em uso**
+- O peso de 20% de G4 no $\text{IQM}$ não muda. O resultado de G4 passa a representar apenas a capacidade de interação do produto (ISO/IEC 25010:2023).
+- A qualidade em uso (ISO/IEC 25019:2023), ou seja, a eficiência e a eficácia de usuários iniciantes nas tarefas de matrícula e de lançamento de notas, fica **sem resultado nesta avaliação** e deve ser registrada como limitação no artigo.
 
-| Métrica | Fórmula | Excelente | Bom | Regular | Crítico | Hipótese |
-| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **M14a** — $R_{\text{tempo},T1}$ | $\text{TMET}_{T1} / T_{\text{ref},T1}$ | $\le 1{,}5$ | $(1{,}5, 2{,}0]$ | $(2{,}0, 3{,}0]$ | $> 3{,}0$ | H4.3: $1{,}5 < R_{\text{tempo}} \le 2{,}5$ em T1 e em T2 |
-| **M14b** — $R_{\text{tempo},T2}$ | $\text{TMET}_{T2} / T_{\text{ref},T2}$ | $\le 1{,}5$ | $(1{,}5, 2{,}0]$ | $(2{,}0, 3{,}0]$ | $> 3{,}0$ | H4.3 (mesma hipótese) |
-| **M15** — TSPT | execuções corretas na 1ª submissão ÷ execuções totais | $\ge 90\%$ | $[70\%, 90\%)$ | $[50\%, 70\%)$ | $< 50\%$ | H4.4: $\text{TSPT} \in [70\%, 90\%)$ |
+## 3. Protocolo previsto para trabalho futuro
 
-*Fonte: Framework GQM, Tabela 4 e Tabela H4.*
+O protocolo abaixo não foi executado. Ele fica registrado para quem quiser medir M14 e M15 sobre o mesmo commit do produto.
 
-## 6. Resultados
+**Tabela 2 — Roteiro previsto das sessões supervisionadas**
 
-Pendentes até a realização das sessões. Após a coleta, esta seção recebe a tabela de tempos por participante, os valores de $T_{\text{ref}}$, $\text{TMET}$, $R_{\text{tempo}}$ e TSPT, o nível de cada métrica e o resultado das hipóteses H4.3 e H4.4.
+| Etapa | Procedimento |
+| :--- | :--- |
+| 1. Ambiente | Subir o i-Educar 2.12 (commit `7903a3e`) no Docker com dados fictícios e restaurar o mesmo estado do banco antes de cada sessão. |
+| 2. Referência | Um integrante treinado executa T1 e T2 três vezes cada; $T_{\text{ref},T}$ é a média das três execuções. |
+| 3. Consentimento | Cada participante assina o TCLE e recebe um código (`P01`, `P02`...); nenhum nome entra nos registros. |
+| 4. Tarefas | T1: matricular e enturmar um aluno já cadastrado. T2: lançar as notas de um componente para uma turma de 10 alunos. O avaliador cronometra da leitura da tarefa até a confirmação de gravação e não ajuda o participante. |
+| 5. Conferência | Consultar o banco após cada tarefa para verificar se os dados gravados correspondem à ficha. |
+| 6. Cálculo | $\text{TMET}_T$ é a média dos tempos de quem concluiu a tarefa; $R_{\text{tempo},T} = \text{TMET}_T / T_{\text{ref},T}$; $\text{TSPT}$ é a razão entre execuções corretas na primeira submissão e execuções totais. |
+
+*Fonte: elaborado pelos autores a partir do protocolo do Framework GQM.*

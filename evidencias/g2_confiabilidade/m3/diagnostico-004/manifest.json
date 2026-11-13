@@ -1,0 +1,381 @@
+{
+  "version": "1.0",
+  "product_commit": "7903a3efc7689942ee700007f86ed581023aad27",
+  "numeric_precision": 1,
+  "concept_precision": 2,
+  "concept_table": [
+    [
+      "I",
+      0,
+      5.5
+    ],
+    [
+      "S",
+      5.51,
+      8
+    ],
+    [
+      "O",
+      8.01,
+      10
+    ]
+  ],
+  "cases": [
+    {
+      "id": "A01",
+      "family": "arithmetic",
+      "inputs": {
+        "scores": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": 0,
+      "rule": "Se / Et"
+    },
+    {
+      "id": "A02",
+      "family": "arithmetic",
+      "inputs": {
+        "scores": [
+          10,
+          10,
+          10,
+          10
+        ]
+      },
+      "expected": 10,
+      "rule": "Se / Et"
+    },
+    {
+      "id": "A03",
+      "family": "arithmetic",
+      "inputs": {
+        "scores": [
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "expected": 7.5,
+      "rule": "Se / Et"
+    },
+    {
+      "id": "A04",
+      "family": "arithmetic",
+      "inputs": {
+        "scores": [
+          5,
+          6,
+          6,
+          7
+        ]
+      },
+      "expected": 6,
+      "rule": "Se / Et"
+    },
+    {
+      "id": "P01",
+      "family": "weighted",
+      "inputs": {
+        "scores": [
+          4,
+          8
+        ],
+        "weights": [
+          1,
+          3
+        ]
+      },
+      "expected": 7,
+      "rule": "(E1 * 1 + E2 * 3) / 4"
+    },
+    {
+      "id": "P02",
+      "family": "weighted",
+      "inputs": {
+        "scores": [
+          4,
+          8
+        ],
+        "weights": [
+          3,
+          1
+        ]
+      },
+      "expected": 5,
+      "rule": "(E1 * 3 + E2 * 1) / 4"
+    },
+    {
+      "id": "P03",
+      "family": "weighted",
+      "inputs": {
+        "scores": [
+          6,
+          6
+        ],
+        "weights": [
+          1,
+          3
+        ]
+      },
+      "expected": 6,
+      "rule": "(E1 * 1 + E2 * 3) / 4"
+    },
+    {
+      "id": "R01",
+      "family": "remedial",
+      "inputs": {
+        "mode": "max",
+        "score": 4,
+        "remedial": 8
+      },
+      "expected": 8,
+      "rule": "max"
+    },
+    {
+      "id": "R02",
+      "family": "remedial",
+      "inputs": {
+        "mode": "max",
+        "score": 7,
+        "remedial": 3
+      },
+      "expected": 7,
+      "rule": "max"
+    },
+    {
+      "id": "R03",
+      "family": "remedial",
+      "inputs": {
+        "mode": "average",
+        "score": 4,
+        "remedial": 8
+      },
+      "expected": 6,
+      "rule": "average"
+    },
+    {
+      "id": "R04",
+      "family": "remedial",
+      "inputs": {
+        "mode": "average",
+        "score": 7,
+        "remedial": 3
+      },
+      "expected": 7,
+      "rule": "average"
+    },
+    {
+      "id": "R05",
+      "family": "remedial",
+      "inputs": {
+        "mode": "sum",
+        "score": 4,
+        "remedial": 2
+      },
+      "expected": 6,
+      "rule": "sum"
+    },
+    {
+      "id": "R06",
+      "family": "remedial",
+      "inputs": {
+        "mode": "sum",
+        "score": 4,
+        "remedial": null
+      },
+      "expected": 8,
+      "rule": "sum"
+    },
+    {
+      "id": "E01",
+      "family": "exam",
+      "inputs": {
+        "scores": [
+          4,
+          4,
+          4,
+          4
+        ],
+        "exam": 4
+      },
+      "expected": 4,
+      "rule": "(Se / Et * 0.6) + (Rc * 0.4)"
+    },
+    {
+      "id": "E02",
+      "family": "exam",
+      "inputs": {
+        "scores": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "exam": 7.5
+      },
+      "expected": 6,
+      "rule": "(Se / Et * 0.6) + (Rc * 0.4)"
+    },
+    {
+      "id": "E03",
+      "family": "exam",
+      "inputs": {
+        "scores": [
+          5,
+          5,
+          5,
+          5
+        ],
+        "exam": 10
+      },
+      "expected": 7,
+      "rule": "(Se / Et * 0.6) + (Rc * 0.4)"
+    },
+    {
+      "id": "N01",
+      "family": "numeric",
+      "inputs": {
+        "value": 5.4,
+        "action": "floor"
+      },
+      "expected": 5,
+      "rule": "floor"
+    },
+    {
+      "id": "N02",
+      "family": "numeric",
+      "inputs": {
+        "value": 5.5,
+        "action": "ceil"
+      },
+      "expected": 6,
+      "rule": "ceil"
+    },
+    {
+      "id": "N03",
+      "family": "numeric",
+      "inputs": {
+        "value": 5.8,
+        "action": "specific"
+      },
+      "expected": 5.5,
+      "rule": "specific"
+    },
+    {
+      "id": "N04",
+      "family": "numeric",
+      "inputs": {
+        "value": 5.99,
+        "action": "none"
+      },
+      "expected": 5.9,
+      "rule": "none"
+    },
+    {
+      "id": "C01",
+      "family": "concept",
+      "inputs": {
+        "value": 0,
+        "normalize": false
+      },
+      "expected": "I",
+      "rule": "concept-table-v1"
+    },
+    {
+      "id": "C02",
+      "family": "concept",
+      "inputs": {
+        "value": 5.49,
+        "normalize": false
+      },
+      "expected": "I",
+      "rule": "concept-table-v1"
+    },
+    {
+      "id": "C03",
+      "family": "concept",
+      "inputs": {
+        "value": 5.5,
+        "normalize": false
+      },
+      "expected": "I",
+      "rule": "concept-table-v1"
+    },
+    {
+      "id": "C04",
+      "family": "concept",
+      "inputs": {
+        "value": 5.51,
+        "normalize": false
+      },
+      "expected": "S",
+      "rule": "concept-table-v1"
+    },
+    {
+      "id": "C05",
+      "family": "concept",
+      "inputs": {
+        "value": 6.5,
+        "normalize": false
+      },
+      "expected": "S",
+      "rule": "concept-table-v1"
+    },
+    {
+      "id": "C06",
+      "family": "concept",
+      "inputs": {
+        "value": 8,
+        "normalize": false
+      },
+      "expected": "S",
+      "rule": "concept-table-v1"
+    },
+    {
+      "id": "C07",
+      "family": "concept",
+      "inputs": {
+        "value": 8.01,
+        "normalize": false
+      },
+      "expected": "O",
+      "rule": "concept-table-v1"
+    },
+    {
+      "id": "C08",
+      "family": "concept",
+      "inputs": {
+        "value": 9.15,
+        "normalize": false
+      },
+      "expected": "O",
+      "rule": "concept-table-v1"
+    },
+    {
+      "id": "C09",
+      "family": "concept",
+      "inputs": {
+        "value": 10,
+        "normalize": false
+      },
+      "expected": "O",
+      "rule": "concept-table-v1"
+    },
+    {
+      "id": "C10",
+      "family": "concept",
+      "inputs": {
+        "value": 26,
+        "normalize": true,
+        "stages": 4
+      },
+      "expected": "S",
+      "rule": "concept-table-v1"
+    }
+  ]
+}

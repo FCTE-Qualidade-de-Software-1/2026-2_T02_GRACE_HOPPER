@@ -26,5 +26,6 @@ site/
 .cache/
 .venv-docs/
 
-# Repositórios clonados para análise estática / dinâmica
+# Checkout oficial do i-Educar e ambientes locais de medicao (Issues #38/#39)
 i-educar-src/
+.venv-m2/

@@ -43,6 +43,8 @@ O planejamento da Entrega 2 estrutura **12 issues atômicas de 6 horas cada (72 
 
 *Fonte: Elaborado pelos autores. A distribuição nominal acima reflete a trilha sugerida por especialidade, sujeita a confirmação de auto-atribuição no GitHub.*
 
+> **Atualização de auto-atribuição (M5):** no GitHub, `@ItaloSamP` assumiu as issues [#38](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/38) (M1 — TINCR, Trilha A) e [#39](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/39) (M2 — CEI, Trilha B), com 6h e R$ 300,00 cada (R$ 600,00 no total, 16,67% do esforço da Entrega 2), em vez das issues #43 e #44 sugeridas na linha acima. A atribuição registrada no GitHub prevalece sobre a trilha sugerida.
+
 ---
 
 ## 2. Estrutura de Marcos do Projeto (Milestones M0 a M6)
@@ -542,13 +544,13 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M5: Instrumentação e Execução das Medições (Fase 4 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Arthur Soares Parente` *(Trilha A)*
-    - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `[Aberto]` | **Custo:** `[A consolidar]`
+    - **Responsável:** `Ítalo Alves Sampaio de Oliveira` *(Trilha A, auto-atribuição no GitHub)*
+    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** 6h (padrão da equipe) | **Custo:** R$ 300,00
 - **Goal:** Provisionar o checkout oficial do i-Educar 2.12 (commit `7903a3efc7689942ee700007f86ed581023aad27`) com banco populado e medir a Taxa de Isolamento e Não-Colisão de Recursos (M1 — TINCR).
 - **Depends on:** Issue #10.
 - **Scope:** Configuração de ambiente Docker (`docker-compose.yml`, `.env.example`, `config/`), carga de seeds pedagógicos e teste de subida simultânea de 2ª instância para apurar M1 (TINCR).
-- [ ] **Task:** Inventariar recursos compartilháveis, executar teste de coexistência em host único e calcular M1 (TINCR)
+- [x] **Task:** Inventariar recursos compartilháveis, executar teste de coexistência em host único e calcular M1 (TINCR)
     - **Files:** `docs/plano_medicao_testes.md`, `docker-compose.yml`
     - **Change:** Congelar inventário de recursos compartilháveis (portas HTTP/PostgreSQL/Redis, container_name, DB_DATABASE, REDIS_PREFIX), testar subida de segunda instância parametrizada via .env e registrar valor bruto e pontuação de M1.
     - **Covers:** Questão Q1.1, Hipótese H1.1 (TINCR $\ge 85\%$) e Métrica M1 (TINCR).
@@ -563,13 +565,13 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M5: Instrumentação e Execução das Medições (Fase 4 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Gabriel Barbaceli` *(Trilha B)*
-    - **Matrícula UnB:** `21/1045122` | **GitHub:** `@Nibaacriba`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `[Aberto]` | **Custo:** `[A consolidar]`
+    - **Responsável:** `Ítalo Alves Sampaio de Oliveira` *(Trilha B, auto-atribuição no GitHub)*
+    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** 6h (padrão da equipe) | **Custo:** R$ 300,00
 - **Goal:** Formalizar os contratos JSON Schema dos endpoints REST de Matrícula e Notas/Diário e executar a bateria de testes de contrato para medir M2 (CEI).
 - **Depends on:** Issue #38.
 - **Scope:** Rotas e controladores em `ieducar/modules/Api/` e `routes/api*.php` vinculados aos módulos de Matrícula e Lançamento de Notas/Menções.
-- [ ] **Task:** Congelar contratos JSON Schema pré-execução e validar respostas válidas/inválidas dos endpoints REST
+- [x] **Task:** Congelar contratos JSON Schema pré-execução e validar respostas válidas/inválidas dos endpoints REST
     - **Files:** `docs/plano_medicao_testes.md`
     - **Change:** Registrar manifesto de endpoints avaliados e seus JSON Schemas antes da coleta; executar os 3 casos obrigatórios por endpoint (requisição válida HTTP+Content-Type, validação de campos/tipos e requisição inválida sem erro 500/HTML) e apurar M2 (CEI).
     - **Covers:** Questão Q1.2, Hipótese H1.2 (CEI $\ge 85\%$) e Métrica M2 (CEI).
@@ -586,11 +588,12 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Atribuição Individual:**
     - **Responsável:** `Gustavo Silva Rodrigues` *(Trilha C)*
     - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `[Aberto]` | **Custo:** `[A consolidar]`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h` | **Custo:** R$ `300,00`
+- **Período de execução:** início em `2026-11-10`; conclusão em `2026-11-11`.
 - **Goal:** Construir o manifesto congelado de casos de oráculo para cálculo de médias e conversão de menções, executar a suíte automatizada sobre `Avaliacao_Service_Boletim` e aferir o Gate Binário M3 (DCNM).
 - **Depends on:** Issue #38.
 - **Scope:** `ieducar/modules/Avaliacao/Service/Boletim.php`, `LegacyEvaluationRule`, `LegacyValueRoundingTable`, `RegraAvaliacao_Model_Nota_TipoValor` e suíte `NotaSituacaoCommon.php`.
-- [ ] **Task:** Congelar manifesto de casos de oráculo pedagógico e executar bateria de testes determinísticos em Boletim.php
+- [x] **Task:** Congelar manifesto de casos de oráculo pedagógico e executar bateria de testes determinísticos em Boletim.php
     - **Files:** `docs/plano_medicao_testes.md`
     - **Change:** Definir universo não vazio de casos de teste (média aritmética, média ponderada, recuperação paralela, exame final e arredondamento numérico/conceitual), inspecionar/reativar casos de `NotaSituacaoCommon.php` e registrar resultado de cada ID frente ao oráculo.
     - **Covers:** Questão Q2.1, Hipótese H2.1 (DCNM = 100%) e Gate Binário M3 (DCNM).
@@ -600,6 +603,8 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
         - Cálculo exato de $\text{DCNM}$ e veredito explícito do Gate Binário M3 (Aprovado = 100% ou Bloqueado < 100%).
     - **Tests:** `bash scripts/docs/check_site.sh`.
     - **Risk:** none.
+
+- **Resultado técnico:** coleta oficial `oficial-001`, DCNM = 30/30 × 100% = **100%**, 457 asserções; gate **APROVADO**. [Relatório M3](fase-4/medicao_m3_dcnm.md). Esforço confirmado pelo responsável: 6h a R$ 50,00/h, total de R$ 300,00. A revisão por pares permanece pendente.
 
 #### Issue #41 — Manifesto de Operações Compostas, Injeção de Falhas Transacionais (Gate M4 — ITAE) e Triagem de M5 (DDOM)
 
@@ -647,13 +652,13 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M5: Instrumentação e Execução das Medições (Fase 4 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Ítalo Alves Sampaio de Oliveira` *(Trilha D)*
-    - **Matrícula UnB:** `23/2037937` | **GitHub:** `@ItaloSamP`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `[Aberto]` | **Custo:** `[A consolidar]`
+    - **Responsável:** `Gabriel Barbaceli` *(Trilha D)*
+    - **Matrícula UnB:** `21/1045122` | **GitHub:** `@Nibaacriba`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h` | **Custo:** R$ `300,00`
 - **Goal:** Implementar a extração real por método no script `scripts/evaluate-quality.php` e executá-lo sobre o checkout oficial do i-Educar 2.12 para coletar M7a (CC-P90), M7b (CC-MAX) e M10 (MI).
 - **Depends on:** Issue #11.
 - **Scope:** Arquivos em escopo declarado: `app/Services/RegistrationService.php`, `ieducar/modules/Avaliacao/Views/DiarioApiController.php`, `ieducar/modules/Avaliacao/Views/DiarioController.php` e `ieducar/modules/Avaliacao/Service/Boletim.php`.
-- [ ] **Task:** Evoluir parser de callables em scripts/evaluate-quality.php e extrair CC P90, CC Max e MI no código do i-Educar
+- [x] **Task:** Evoluir parser de callables em scripts/evaluate-quality.php e extrair CC P90, CC Max e MI no código do i-Educar
     - **Files:** `scripts/evaluate-quality.php`, `docs/plano_medicao_testes.md`
     - **Change:** Implementar extração de métodos concretos ($n$), cálculo de $v(G)$ por método, ordenação para percentil 90 (*nearest rank* $r=\lceil 0{,}90n \rceil$), máximo $\text{CC}_{\max}$, volume de Halstead ($HV_m$), $LOC_m$ e $\text{MI}_m$ normalizado $[0, 100]$.
     - **Covers:** Questões Q3.1 e Q3.4, Hipóteses H3.1 e H3.4, e Métricas M7a (CC-P90), M7b (CC-MAX) e M10 (MI).
@@ -714,11 +719,12 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M6: Análise, Julgamento, Artigo v2 e Release E2 (Fase 5 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Ricardo Lucas Winchello Vieira Branco` *(Trilha E)*
-    - **Matrícula UnB:** `22/1008409` | **GitHub:** `@ChickRicks`
+    - **Responsável:** `Gabriel Barbaceli` *(Trilha E)*
+    - **Matrícula UnB:** `21/1045122` | **GitHub:** `@Nibaacriba`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `[Aberto]` | **Custo:** `[A consolidar]`
 - **Goal:** Realizar as 3 execuções de referência ($T_{\text{ref}}$) e conduzir as sessões supervisionadas com no mínimo 5 participantes iniciantes (sob TCLE e anonimização P01..P05) nas tarefas T1 e T2 para medir M14a, M14b e M15.
 - **Depends on:** Issue #12 e Issue #38.
+- **Decisão (12/11/2026):** antes de qualquer coleta, M14a, M14b e M15 foram declaradas não mensuráveis por não caberem no cronograma da Entrega 2; o $\text{IQC}_{\text{Interação}}$ é renormalizado com M12 e M13 (Plano de medição, seção 3.4).
 - **Scope:** Tarefa T1 (Matrícula e Enturmação de aluno) e Tarefa T2 (Lançamento de notas para turma de 10 alunos no Diário), conforme protocolo da ISO/IEC 25019:2023.
 - [ ] **Task:** Coletar tempos de referência e aplicar protocolo experimental com participantes P01..P05 nas tarefas T1 e T2
     - **Files:** `docs/plano_medicao_testes.md`, `docs/termo_consentimento_livre_esclarecido.md`

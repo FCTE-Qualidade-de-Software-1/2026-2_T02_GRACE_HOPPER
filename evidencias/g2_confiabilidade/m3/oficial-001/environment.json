@@ -1,0 +1,42 @@
+{
+  "started_utc": "2026-11-12T00:27:56.645856+00:00",
+  "product_commit_required": "7903a3efc7689942ee700007f86ed581023aad27",
+  "manifest_reference_sha256": "8e5193fae876df70b8ae5f3c9b994676cbbb24e8084766dd3b26e41f2d91298a",
+  "product_commit_actual": "7903a3efc7689942ee700007f86ed581023aad27",
+  "instrument_commit": "fcd93dfff05c13b14cdac26cbbb9f186a43a8f74",
+  "instrument_dirty": false,
+  "execution_mode": "official",
+  "manifest.json_sha256": "8e5193fae876df70b8ae5f3c9b994676cbbb24e8084766dd3b26e41f2d91298a",
+  "M3OracleTest.php_sha256": "e1998725159382fc2caebc0084b7866455eded2fbe410afa304fe3e18398ea47",
+  "run.py_sha256": "846e6128516c247ca5edd89358be01575288e2228c27b77edeb7f37b27017ceb",
+  "composer_lock_sha256": "b7f30ccdd53e43a00756afbb50222bc8d498e73fee188a7bea847e89cda462bc",
+  "php_version": "PHP 8.5.12 (cli) (built: Nov  5 2026 18:58:31) (NTS)\nCopyright (c) The PHP Group\nBuilt by https://github.com/docker-library/php\nZend Engine v4.5.12, Copyright (c) Zend Technologies\n    with Xdebug v3.5.3, Copyright (c) 2002-2026, by Derick Rethans\n    with Zend OPcache v8.5.12, Copyright (c), by Zend Technologies\n",
+  "runtime_file_sha256": {
+    "composer.lock": "b7f30ccdd53e43a00756afbb50222bc8d498e73fee188a7bea847e89cda462bc",
+    "ieducar/modules/Avaliacao/Service/Boletim.php": "727e63d58832adf08753ac9742786888dbd6f5068a086a841e72028dd4d1a314",
+    "tests/Unit/Modules/Service/M3OracleTest.php": "e1998725159382fc2caebc0084b7866455eded2fbe410afa304fe3e18398ea47",
+    "tests/Unit/Modules/Service/m3-manifest.json": "8e5193fae876df70b8ae5f3c9b994676cbbb24e8084766dd3b26e41f2d91298a"
+  },
+  "command": [
+    "bash",
+    "/home/gustavorodrigues/Documents/07_UnB_7Sem/QSFW/2026-2_T02_GRACE_HOPPER/scripts/avaliacao/m3/php.sh",
+    "vendor/bin/pest",
+    "tests/Unit/Modules/Service/M3OracleTest.php",
+    "--colors=never",
+    "--log-junit=m3-junit.xml"
+  ],
+  "legacy_original_sha256": "14591e58e30d21a2a4c42bd72e252b2a9e7f67e9c5f5815979fd5d21577aa609",
+  "legacy_skips_removed": 5,
+  "legacy_command": [
+    "bash",
+    "/home/gustavorodrigues/Documents/07_UnB_7Sem/QSFW/2026-2_T02_GRACE_HOPPER/scripts/avaliacao/m3/php.sh",
+    "vendor/bin/pest",
+    "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+    "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+    "--colors=never",
+    "--log-junit=m3-legacy-junit.xml"
+  ],
+  "legacy_exit_code": 2,
+  "preflight_error": null,
+  "finished_utc": "2026-11-12T00:28:03.139726+00:00"
+}

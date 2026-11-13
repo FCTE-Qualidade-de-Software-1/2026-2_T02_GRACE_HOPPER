@@ -1,0 +1,98 @@
+
+M3_RESULT {"id":"A01","expected":0,"actual":0}
+
+M3_RESULT {"id":"A02","expected":10,"actual":10}
+
+M3_RESULT {"id":"A03","expected":7.5,"actual":7.5}
+
+M3_RESULT {"id":"A04","expected":6,"actual":6}
+
+M3_RESULT {"id":"P01","expected":7,"actual":7}
+
+M3_RESULT {"id":"P02","expected":5,"actual":5}
+
+M3_RESULT {"id":"P03","expected":6,"actual":6}
+
+M3_RESULT {"id":"R01","expected":8,"actual":8}
+
+M3_RESULT {"id":"R02","expected":7,"actual":7}
+
+M3_RESULT {"id":"R03","expected":6,"actual":6}
+
+M3_RESULT {"id":"R04","expected":7,"actual":7}
+
+M3_RESULT {"id":"R05","expected":6,"actual":6}
+
+M3_RESULT {"id":"R06","expected":8,"actual":8}
+
+M3_RESULT {"id":"E01","expected":4,"actual":4}
+
+M3_RESULT {"id":"E02","expected":6,"actual":6}
+
+M3_RESULT {"id":"E03","expected":7,"actual":7}
+
+M3_RESULT {"id":"N01","expected":5,"actual":5}
+
+M3_RESULT {"id":"N02","expected":6,"actual":6}
+
+M3_RESULT {"id":"N03","expected":5.5,"actual":5.5}
+
+M3_RESULT {"id":"N04","expected":5.9,"actual":5.9}
+
+M3_RESULT {"id":"C01","expected":"I","actual":"I"}
+
+M3_RESULT {"id":"C02","expected":"I","actual":"I"}
+
+M3_RESULT {"id":"C03","expected":"I","actual":"I"}
+
+M3_RESULT {"id":"C04","expected":"S","actual":"S"}
+
+M3_RESULT {"id":"C05","expected":"S","actual":"S"}
+
+M3_RESULT {"id":"C06","expected":"S","actual":"S"}
+
+M3_RESULT {"id":"C07","expected":"O","actual":"O"}
+
+M3_RESULT {"id":"C08","expected":"O","actual":"O"}
+
+M3_RESULT {"id":"C09","expected":"O","actual":"O"}
+
+M3_SETUP {"id":"C10","fixture_stages":0,"declared_stages":4}
+
+M3_RESULT {"id":"C10","expected":"S","actual":"S"}
+
+   DEPR  Tests\Unit\Modules\Service\M3OracleTest
+  ! M3 A01 → The any() invoked count expectation is deprecated and will… 0.33s  
+  ! M3 A02 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 A03 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 A04 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 P01 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 P02 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 P03 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 R01 → The any() invoked count expectation is deprecated and will… 0.14s  
+  ! M3 R02 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 R03 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 R04 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 R05 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 R06 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 E01 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 E02 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 E03 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 N01 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 N02 → The any() invoked count expectation is deprecated and will… 0.12s  
+  ! M3 N03 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 N04 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 C01 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 C02 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 C03 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 C04 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 C05 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 C06 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 C07 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 C08 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 C09 → The any() invoked count expectation is deprecated and will… 0.13s  
+  ! M3 C10 → The any() invoked count expectation is deprecated and will… 0.13s  
+
+  Tests:    30 deprecated (457 assertions)
+  Duration: 4.18s
+

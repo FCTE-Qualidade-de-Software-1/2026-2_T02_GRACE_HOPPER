@@ -75,6 +75,7 @@ extra_css:
 extra_javascript:
   - javascripts/mathjax.js
   - javascripts/painel.js
+  - javascripts/m3-recordings.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 # Mantém os fontes LaTeX e rascunhos internos fora da compilação de páginas Markdown,
@@ -112,6 +113,7 @@ nav:
       - Plano de medição e testes: plano_medicao_testes.md
   - Fases 4 e 5:
       - fase-4/index.md
+      - M3 — Notas e Menções: fase-4/medicao_m3_dcnm.md
       - Manutenibilidade (M7a, M7b e M10): fase-4/manutenibilidade-m7-m10.md
       - Manutenibilidade (M8, M9 e M11): fase-4/manutenibilidade-m8-m9-m11.md
       - Capacidade de Interação (Gate M12 e M13): fase-4/interacao-m12-m13.md

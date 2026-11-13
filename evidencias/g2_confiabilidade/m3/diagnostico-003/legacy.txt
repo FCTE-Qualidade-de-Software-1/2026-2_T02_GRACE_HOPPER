@@ -1,0 +1,198 @@
+
+   FAIL  Tests\Unit\Modules\Service\NotaNumericaSituacaoTest
+  ⨯ situacao componentes curriculares um componente lancado em exame de… 0.33s  
+  ⨯ situacao componentes curriculares um componente lancado em exame de… 0.14s  
+  ⨯ situacao componentes curriculares um componente lancado em exame de… 0.13s  
+  ⨯ situacao componentes curriculares um componente lancado em exame de… 0.13s  
+  ⨯ situacao componentes curriculares um componente lancado reprovado u… 0.14s  
+
+   FAIL  Tests\Unit\Modules\Service\NotaConceitualSituacaoTest
+  ⨯ situacao componentes curriculares um componente lancado em exame de… 0.14s  
+  ⨯ situacao componentes curriculares um componente lancado em exame de… 0.13s  
+  ⨯ situacao componentes curriculares um componente lancado em exame de… 0.13s  
+  ⨯ situacao componentes curriculares um componente lancado em exame de… 0.13s  
+  ⨯ situacao componentes curriculares um componente lancado reprovado u… 0.13s  
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Service\NotaN…  StudentNotEnrolledInSchoolClass   
+  Aluno não enturmado.
+
+  at ieducar/lib/App/Model/IedFinder.php:827
+    823▕ 
+    824▕         $matricula = Portabilis_Utils_Database::selectRow($sql, ['params' => [$codMatricula, $codTurma]]);
+    825▕ 
+    826▕         if (!$matricula) {
+  ➜ 827▕             throw new StudentNotEnrolledInSchoolClass($codMatricula);
+    828▕         } elseif (empty($matricula['serie_regra_avaliacao_id'])) {
+    829▕             throw new EvaluationRuleNotDefinedInLevel($matricula['ref_ref_cod_serie']);
+    830▕         }
+    831▕
+
+  1   ieducar/lib/App/Model/IedFinder.php:827
+  2   ieducar/lib/App/Model/IedFinder.php:959
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Service\NotaN…  StudentNotEnrolledInSchoolClass   
+  Aluno não enturmado.
+
+  at ieducar/lib/App/Model/IedFinder.php:827
+    823▕ 
+    824▕         $matricula = Portabilis_Utils_Database::selectRow($sql, ['params' => [$codMatricula, $codTurma]]);
+    825▕ 
+    826▕         if (!$matricula) {
+  ➜ 827▕             throw new StudentNotEnrolledInSchoolClass($codMatricula);
+    828▕         } elseif (empty($matricula['serie_regra_avaliacao_id'])) {
+    829▕             throw new EvaluationRuleNotDefinedInLevel($matricula['ref_ref_cod_serie']);
+    830▕         }
+    831▕
+
+  1   ieducar/lib/App/Model/IedFinder.php:827
+  2   ieducar/lib/App/Model/IedFinder.php:959
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Service\NotaN…  StudentNotEnrolledInSchoolClass   
+  Aluno não enturmado.
+
+  at ieducar/lib/App/Model/IedFinder.php:827
+    823▕ 
+    824▕         $matricula = Portabilis_Utils_Database::selectRow($sql, ['params' => [$codMatricula, $codTurma]]);
+    825▕ 
+    826▕         if (!$matricula) {
+  ➜ 827▕             throw new StudentNotEnrolledInSchoolClass($codMatricula);
+    828▕         } elseif (empty($matricula['serie_regra_avaliacao_id'])) {
+    829▕             throw new EvaluationRuleNotDefinedInLevel($matricula['ref_ref_cod_serie']);
+    830▕         }
+    831▕
+
+  1   ieducar/lib/App/Model/IedFinder.php:827
+  2   ieducar/lib/App/Model/IedFinder.php:959
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Service\NotaN…  StudentNotEnrolledInSchoolClass   
+  Aluno não enturmado.
+
+  at ieducar/lib/App/Model/IedFinder.php:827
+    823▕ 
+    824▕         $matricula = Portabilis_Utils_Database::selectRow($sql, ['params' => [$codMatricula, $codTurma]]);
+    825▕ 
+    826▕         if (!$matricula) {
+  ➜ 827▕             throw new StudentNotEnrolledInSchoolClass($codMatricula);
+    828▕         } elseif (empty($matricula['serie_regra_avaliacao_id'])) {
+    829▕             throw new EvaluationRuleNotDefinedInLevel($matricula['ref_ref_cod_serie']);
+    830▕         }
+    831▕
+
+  1   ieducar/lib/App/Model/IedFinder.php:827
+  2   ieducar/lib/App/Model/IedFinder.php:959
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Service\NotaN…  StudentNotEnrolledInSchoolClass   
+  Aluno não enturmado.
+
+  at ieducar/lib/App/Model/IedFinder.php:827
+    823▕ 
+    824▕         $matricula = Portabilis_Utils_Database::selectRow($sql, ['params' => [$codMatricula, $codTurma]]);
+    825▕ 
+    826▕         if (!$matricula) {
+  ➜ 827▕             throw new StudentNotEnrolledInSchoolClass($codMatricula);
+    828▕         } elseif (empty($matricula['serie_regra_avaliacao_id'])) {
+    829▕             throw new EvaluationRuleNotDefinedInLevel($matricula['ref_ref_cod_serie']);
+    830▕         }
+    831▕
+
+  1   ieducar/lib/App/Model/IedFinder.php:827
+  2   ieducar/lib/App/Model/IedFinder.php:959
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Service\NotaC…  StudentNotEnrolledInSchoolClass   
+  Aluno não enturmado.
+
+  at ieducar/lib/App/Model/IedFinder.php:827
+    823▕ 
+    824▕         $matricula = Portabilis_Utils_Database::selectRow($sql, ['params' => [$codMatricula, $codTurma]]);
+    825▕ 
+    826▕         if (!$matricula) {
+  ➜ 827▕             throw new StudentNotEnrolledInSchoolClass($codMatricula);
+    828▕         } elseif (empty($matricula['serie_regra_avaliacao_id'])) {
+    829▕             throw new EvaluationRuleNotDefinedInLevel($matricula['ref_ref_cod_serie']);
+    830▕         }
+    831▕
+
+  1   ieducar/lib/App/Model/IedFinder.php:827
+  2   ieducar/lib/App/Model/IedFinder.php:959
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Service\NotaC…  StudentNotEnrolledInSchoolClass   
+  Aluno não enturmado.
+
+  at ieducar/lib/App/Model/IedFinder.php:827
+    823▕ 
+    824▕         $matricula = Portabilis_Utils_Database::selectRow($sql, ['params' => [$codMatricula, $codTurma]]);
+    825▕ 
+    826▕         if (!$matricula) {
+  ➜ 827▕             throw new StudentNotEnrolledInSchoolClass($codMatricula);
+    828▕         } elseif (empty($matricula['serie_regra_avaliacao_id'])) {
+    829▕             throw new EvaluationRuleNotDefinedInLevel($matricula['ref_ref_cod_serie']);
+    830▕         }
+    831▕
+
+  1   ieducar/lib/App/Model/IedFinder.php:827
+  2   ieducar/lib/App/Model/IedFinder.php:959
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Service\NotaC…  StudentNotEnrolledInSchoolClass   
+  Aluno não enturmado.
+
+  at ieducar/lib/App/Model/IedFinder.php:827
+    823▕ 
+    824▕         $matricula = Portabilis_Utils_Database::selectRow($sql, ['params' => [$codMatricula, $codTurma]]);
+    825▕ 
+    826▕         if (!$matricula) {
+  ➜ 827▕             throw new StudentNotEnrolledInSchoolClass($codMatricula);
+    828▕         } elseif (empty($matricula['serie_regra_avaliacao_id'])) {
+    829▕             throw new EvaluationRuleNotDefinedInLevel($matricula['ref_ref_cod_serie']);
+    830▕         }
+    831▕
+
+  1   ieducar/lib/App/Model/IedFinder.php:827
+  2   ieducar/lib/App/Model/IedFinder.php:959
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Service\NotaC…  StudentNotEnrolledInSchoolClass   
+  Aluno não enturmado.
+
+  at ieducar/lib/App/Model/IedFinder.php:827
+    823▕ 
+    824▕         $matricula = Portabilis_Utils_Database::selectRow($sql, ['params' => [$codMatricula, $codTurma]]);
+    825▕ 
+    826▕         if (!$matricula) {
+  ➜ 827▕             throw new StudentNotEnrolledInSchoolClass($codMatricula);
+    828▕         } elseif (empty($matricula['serie_regra_avaliacao_id'])) {
+    829▕             throw new EvaluationRuleNotDefinedInLevel($matricula['ref_ref_cod_serie']);
+    830▕         }
+    831▕
+
+  1   ieducar/lib/App/Model/IedFinder.php:827
+  2   ieducar/lib/App/Model/IedFinder.php:959
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Unit\Modules\Service\NotaC…  StudentNotEnrolledInSchoolClass   
+  Aluno não enturmado.
+
+  at ieducar/lib/App/Model/IedFinder.php:827
+    823▕ 
+    824▕         $matricula = Portabilis_Utils_Database::selectRow($sql, ['params' => [$codMatricula, $codTurma]]);
+    825▕ 
+    826▕         if (!$matricula) {
+  ➜ 827▕             throw new StudentNotEnrolledInSchoolClass($codMatricula);
+    828▕         } elseif (empty($matricula['serie_regra_avaliacao_id'])) {
+    829▕             throw new EvaluationRuleNotDefinedInLevel($matricula['ref_ref_cod_serie']);
+    830▕         }
+    831▕
+
+  1   ieducar/lib/App/Model/IedFinder.php:827
+  2   ieducar/lib/App/Model/IedFinder.php:959
+
+
+  Tests:    10 failed (150 assertions)
+  Duration: 1.61s
+

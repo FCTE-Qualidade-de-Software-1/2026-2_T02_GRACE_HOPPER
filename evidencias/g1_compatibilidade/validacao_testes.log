@@ -1,0 +1,19 @@
+$ docker compose config -q
+exit=0
+$ bash scripts/docs/check_site.sh
+ \u2502  Try it alongside MkDocs with your existing mkdocs.yml:
+ \u2502  https://zensical.org/docs/compatibility/mkdocs/migration/
+
+  To disable this warning, set NO_MKDOCS_2_WARNING=1.
+
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: C:\Estudos\2026-2_T02_GRACE_HOPPER\site
+INFO    -  Doc file 'gestao/horas-custos.md' contains a link '../indicadores_psm.md#2-recursos-e-custos-vec', but the doc 'indicadores_psm.md' does not contain an anchor '#2-recursos-e-custos-vec'.
+INFO    -  Documentation built in 4.56 seconds
+Validando site/index.html...
+Verificando se restaram links com href="docs/" ou href="file:///" no HTML...
+Verificando fórmulas arithmatex (display e inline) na página GQM...
+Verificando renderização de diagramas Mermaid...
+Verificando a página de indicadores PSM/CID...
+Todas as verificações passaram com sucesso!
+exit=0

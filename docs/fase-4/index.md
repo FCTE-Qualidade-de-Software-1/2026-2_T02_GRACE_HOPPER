@@ -32,7 +32,7 @@ A execução empírica sobre o commit congelado `7903a3efc7689942ee700007f86ed58
 - [Manutenibilidade (M7a, M7b e M10)](manutenibilidade-m7-m10.md): resultado da execução do motor estático sobre o commit congelado (complexidade ciclomática e índice de manutenibilidade).
 - [Manutenibilidade (M8, M9 e M11)](manutenibilidade-m8-m9-m11.md): distância da sequência principal de Martin (M8), atrito legado-moderno (M9) e taxa de testes ativos com asserção (M11).
 - [Capacidade de interação (Gate M12 e M13)](interacao-m12-m13.md): testes de proteção contra erros do usuário (Gate M12) e auditoria por pares das mensagens de validação (M13).
-- [Qualidade em uso (M14a, M14b e M15)](qualidade-em-uso-m14-m15.md): roteiro das sessões, fichas de registro e cálculo; coleta pendente.
+- [Qualidade em uso (M14a, M14b e M15)](qualidade-em-uso-m14-m15.md): métricas declaradas não mensuráveis antes da coleta e renormalização do $\text{IQC}_{\text{Interação}}$.
 
 ---
 
@@ -43,3 +43,7 @@ Ao concluir as coletas da Fase 4, esta seção será atualizada com:
 1. **Veredito dos 3 Gates Binários Eliminatórios:** `Gate M3` (`DCNM`), `Gate M4` (`ITAE`) e `Gate M12` (`IPPE`).
 2. **Tabela Consolidada das 17 Linhas Operacionais:** Valor bruto medido, enquadramento no nível $S_i \in \{1, 2, 3, 4\}$ e avaliação de cada hipótese (`H1.1` a `H4.4`: *Confirmada* ou *Refutada*).
 3. **Cálculo dos Índices $\text{IQC}_k$ e $\text{IQM}$:** Enquadramento final na **Classe A**, **Classe B** ou **Classe C** e recomendações práticas por parte interessada.
+
+## 3. Coletas disponíveis — M3 (issue #40)
+
+A [medição oficial de notas e menções](medicao_m3_dcnm.md) obteve **DCNM = 30/30 × 100% = 100%**, com **gate M3 APROVADO** e 457 asserções. O relatório delimita os cenários avaliados e os erros de fixture encontrados nos testes legados complementares. Os demais gates e o julgamento global continuam dependendo de suas próprias coletas.
