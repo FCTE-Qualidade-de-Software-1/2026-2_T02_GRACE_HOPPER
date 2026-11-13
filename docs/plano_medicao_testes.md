@@ -96,6 +96,8 @@ A Tabela 3 estabelece o roteiro operacional para a extração das métricas est�
 
 *Fonte: Elaborado pelos autores conforme ISO/IEC 25010:2023 e Framework GQM.*
 
+A execução de M7a, M7b e M10 sobre o commit congelado e os resultados por callable estão em [Manutenibilidade (M7a, M7b e M10)](fase-4/manutenibilidade-m7-m10.md).
+
 ---
 
 ### 2.4 Característica 4 — Capacidade de Interação e Qualidade em Uso (G4)
@@ -112,6 +114,8 @@ A Tabela 4 sintetiza o roteiro para o Gate M12, a auditoria de mensagens M13 e o
 | **M15 — TSPT** | Eficácia em Uso (ISO 25019) | Mesmas sessões supervisionadas das tarefas T1 e T2. | 1. Observar se o participante conclui a tarefa na primeira submissão.<br>2. Registrar ocorrência de erro de validação, perda de dados ou necessidade de ajuda.<br>3. Verificar integridade do dado gravado no banco após submissão.<br>4. Calcular $\text{TSPT} = (N_{\text{sucessos na 1ª tentativa}} / N_{\text{execuções totais}}) \times 100\%$. | Ficha de observação de teste de usabilidade | Relatório de eficácia por participante em `evidencias/g4_interacao_uso/m15_tspt.csv`. | Excelente: $\ge 90{,}0\%$<br>Bom: $[70{,}0\%, 90{,}0\%)$<br>Regular: $[50{,}0\%, 70{,}0\%)$<br>Crítico: $< 50{,}0\%$ |
 
 *Fonte: Elaborado pelos autores conforme ISO/IEC 25010:2023, ISO/IEC 25019:2023 e Framework GQM.*
+
+Na Entrega 2, M14a, M14b e M15 foram declaradas não mensuráveis antes de qualquer coleta (seção 3.4). O protocolo previsto está em [Qualidade em uso (M14a, M14b e M15)](fase-4/qualidade-em-uso-m14-m15.md).
 
 ---
 
@@ -143,6 +147,20 @@ Para assegurar que qualquer combinação possível de $\text{IQM}$ e $\text{IQC}
 - **Classe B (Aprovado com Ressalvas):** Todos os Gates aprovados ($100\%$) e:
   - $\text{IQM} \ge 2{,}75$ com todos os $\text{IQC}_k \ge 2{,}5$ (abrangendo casos em que $\text{IQM} \ge 3{,}25$ mas alguma característica situa-se no intervalo $[2{,}5, 3{,}0)$ ou possui métrica residual em nível 1).
 - **Classe C (Reprovado / Bloqueado):** Falha em qualquer um dos Gates (M3, M4 ou M12 $< 100\%$), **OU** $\text{IQM} < 2{,}75$, **OU** qualquer característica com $\text{IQC}_k < 2{,}5$.
+
+### 3.4 Política Prévia para as Métricas de Qualidade em Uso (M14a, M14b e M15)
+As métricas **M14a, M14b (TMET)** e **M15 (TSPT)** dependem de sessões supervisionadas com no mínimo 5 participantes iniciantes, TCLE assinado, ambiente Docker com dados fictícios e restauração do banco entre as sessões. Em 12/11/2026, **antes de qualquer coleta**, a equipe decidiu que essas sessões não cabem no cronograma da Entrega 2. As três métricas são declaradas **não mensuráveis**: não recebem nota zero nem nota substituta, e as hipóteses `H4.3` e `H4.4` ficam **não testadas**.
+
+Para permitir o cálculo do $\text{IQC}_{\text{Interação}}$ e do $\text{IQM}$ sem média parcial arbitrária, adota-se a seguinte **política de renormalização pré-declarada**, nos mesmos moldes da política de M5:
+- Os pesos de M14a ($w=0{,}8$), M14b ($w=1{,}0$) e M15 ($w=1{,}0$) são excluídos do denominador da característica.
+- O $\text{IQC}_{\text{Interação}}$ é computado apenas com as métricas de produto da característica: M12 ($w=2{,}0$) e M13 ($w=0{,}8$), com soma de pesos igual a $2{,}8$:
+
+$$
+\text{IQC}_{\text{Interação}} = \dfrac{S_{\text{M12}} \times 2{,}0 + S_{\text{M13}} \times 0{,}8}{2{,}0 + 0{,}8}
+$$
+
+- O peso de 20% da característica no $\text{IQM}$ não muda. Com isso, o resultado de G4 passa a refletir apenas a **capacidade de interação do produto** (ISO/IEC 25010:2023); a **qualidade em uso** (ISO/IEC 25019:2023) fica sem resultado nesta avaliação e é registrada como limitação no artigo.
+- O protocolo das sessões permanece documentado em [Qualidade em uso (M14a, M14b e M15)](fase-4/qualidade-em-uso-m14-m15.md) para execução em trabalho futuro.
 
 ---
 

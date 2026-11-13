@@ -602,6 +602,9 @@ $$
 - **Instrumento de Coleta**: Capturas das mensagens obtidas na execução de M12, complementadas pela inspeção do catálogo de mensagens (`src/Support/Exceptions/Error.php` e chamadas `$this->messenger->append()`).
 
 #### Protocolo das sessões de uso (M14 e M15)
+
+!!! warning "M14a, M14b e M15 não mensuráveis na Entrega 2"
+    Em 12/11/2026, antes de qualquer coleta, a equipe declarou M14a, M14b e M15 não mensuráveis, porque as sessões com participantes não cabem no cronograma da Entrega 2. As hipóteses H4.3 e H4.4 ficam não testadas, e o $\text{IQC}_{\text{Interação}}$ é renormalizado com M12 e M13, conforme a seção 3.4 do [Plano de medição e testes](plano_medicao_testes.md). O protocolo abaixo fica registrado para trabalho futuro.
 - **Participantes**: no mínimo 5 pessoas sem experiência prévia no i-Educar, recrutadas voluntariamente; todas assinam o Termo de Consentimento Livre e Esclarecido (TCLE) e os dados são anonimizados (identificação por códigos P01, P02, P03 etc.).
 - **Tarefas padronizadas** (executadas na mesma ordem, com dados fornecidos em ficha impressa):
     - **T1 — Matrícula:** matricular um aluno já cadastrado em uma turma e realizar a enturmação.

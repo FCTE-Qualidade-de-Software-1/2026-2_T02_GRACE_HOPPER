@@ -89,7 +89,7 @@ A Tabela 2 relaciona os tipos semânticos admitidos no repositório, sua finalid
 2. **Revisão por Pares**: Todo PR exige a revisão e aprovação de pelo menos **um colega de equipe** antes do merge em `develop`.
 3. **Critérios de Validação Pré-Merge**:
     - Os testes existentes continuam passando: `vendor/bin/pest` ou scripts locais.
-    - Quando executado, o motor próprio de avaliação executa sem erro: `php scripts/evaluate-quality.php`. O script constitui o instrumento de planejamento da equipe (Fase 3), retornando status pendente até a execução no checkout versionado do produto na Fase 4; não considerar sua execução isolada um gate concluído até a validação definitiva.
+    - O motor próprio de avaliação passa nos testes e executa sem erro: `php scripts/tests/evaluate_quality_test.php` e `php scripts/evaluate-quality.php --path=<checkout do i-Educar>`. Sem `--path` apontando para o checkout do commit congelado, o script não encontra o manifesto e reporta M7a, M7b e M10 como não mensuráveis.
     - A documentação e links compilam sem erro em modo estrito: `bash scripts/docs/check_site.sh` ou `mkdocs build --strict`.
     - Nenhum emoji foi introduzido em arquivos formais da disciplina (Critério AG-C3).
     - As tabelas e figuras adicionadas possuem numeração, legenda e fonte citada (Critérios AG-C2 e AG-C4).
