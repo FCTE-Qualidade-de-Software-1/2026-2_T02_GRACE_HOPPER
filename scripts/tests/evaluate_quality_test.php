@@ -173,33 +173,118 @@ rmdir($dirDummy);
 verificar('M9 adaptadores detectados no DummyModel', $m9Res['total_adaptadores'], 6);
 verificar('M9 ifdl calculado no DummyModel', $m9Res['ifdl'], 6.0);
 
-// Teste de AnalisadorTestesM11 em arquivo de teste sintético
-$testCodigo = <<<'PHP'
-<?php
-test('caso um ativo', function () {
-    $this->assertTrue(true);
-});
-test('caso dois skipped', function () {
-    $this->markTestSkipped();
-});
-public function testMetodoAtivo() {
-    $this->assertEquals(1, 1);
-}
-PHP;
+// Teste de AnalisadorTestesM11 via JUnit XML real do runner (sem regressão para regex estática)
 $dirTestDummy = sys_get_temp_dir() . '/m11_test_' . uniqid();
 mkdir($dirTestDummy . '/tests', 0777, true);
-file_put_contents($dirTestDummy . '/tests/DummyTest.php', $testCodigo);
-$m11Res = (new AnalisadorTestesM11())->analisar($dirTestDummy, [
+$m11SemJunit = (new AnalisadorTestesM11())->analisar($dirTestDummy, [
     'arquivos_teste' => ['tests/DummyTest.php']
 ]);
-unlink($dirTestDummy . '/tests/DummyTest.php');
+verificar('M11 sem JUnit retorna nao_mensuravel', $m11SemJunit['status'], 'nao_mensuravel');
+verificar('M11 sem JUnit retorna ttae null', $m11SemJunit['ttae'], null);
+
+$junitXmlDummy = <<<'XML'
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\DummyTest" file="tests/DummyTest.php" tests="6" assertions="11" errors="0" failures="1" skipped="2">
+    <testcase name="caso um ativo" file="tests/DummyTest.php::caso um ativo" class="Tests\DummyTest" assertions="3" time="0.01"/>
+    <testcase name="caso dois skipped" file="tests/DummyTest.php::caso dois skipped" class="Tests\DummyTest" assertions="0" time="0.01"><skipped/></testcase>
+    <testcase name="caso tres skip apos assercao" file="tests/DummyTest.php::caso tres skip apos assercao" class="Tests\DummyTest" assertions="5" time="0.01"><skipped/></testcase>
+    <testcase name="caso quatro vazio" file="tests/DummyTest.php::caso quatro vazio" class="Tests\DummyTest" assertions="0" time="0.01"/>
+    <testcase name="caso cinco falha" file="tests/DummyTest.php::caso cinco falha" class="Tests\DummyTest" assertions="1" time="0.01"><failure>fail</failure></testcase>
+    <testcase name="caso seis outro ativo" file="tests/DummyTest.php::caso seis outro ativo" class="Tests\DummyTest" assertions="2" time="0.01"/>
+  </testsuite>
+</testsuites>
+XML;
+$junitDummyPath = $dirTestDummy . '/junit.xml';
+file_put_contents($junitDummyPath, $junitXmlDummy);
+$m11Res = (new AnalisadorTestesM11())->analisar($dirTestDummy, [
+    'arquivos_teste' => ['tests/DummyTest.php']
+], $junitDummyPath);
+unlink($junitDummyPath);
 rmdir($dirTestDummy . '/tests');
 rmdir($dirTestDummy);
 
-verificar('M11 total declarados no DummyTest', $m11Res['total_declarados'], 3);
-verificar('M11 total skips no DummyTest', $m11Res['total_skips'], 1);
+verificar('M11 total descobertos no DummyTest', $m11Res['total_declarados'], 6);
+verificar('M11 total skips no DummyTest', $m11Res['total_skips'], 2);
+verificar('M11 ativos sem asserção (teste vazio) excluídos no DummyTest', $m11Res['ativos_sem_assercao'], 1);
+verificar('M11 total falhas no DummyTest', $m11Res['total_falhas'], 1);
 verificar('M11 ativos com asserção no DummyTest', $m11Res['ativos_com_assercao'], 2);
-verificar('M11 ttae no DummyTest', $m11Res['ttae'], 66.67);
+verificar('M11 ttae no DummyTest exclui skipped, vazios e falhas', $m11Res['ttae'], 33.33);
+
+// Teste de AnalisadorComponentesM8: duas classes consumidoras da mesma classe + aliases/namespaces
+$dirM8 = sys_get_temp_dir() . '/m8_test_' . uniqid();
+mkdir($dirM8 . '/app/Consumers', 0777, true);
+mkdir($dirM8 . '/app/Domain', 0777, true);
+mkdir($dirM8 . '/legacy', 0777, true);
+
+file_put_contents($dirM8 . '/app/Domain/Target.php', <<<'PHP'
+<?php
+namespace App\Domain;
+class Target {}
+PHP);
+file_put_contents($dirM8 . '/app/Consumers/ConsumerOne.php', <<<'PHP'
+<?php
+namespace App\Consumers;
+use App\Domain\Target as AliasedTarget;
+class ConsumerOne {
+    public function run(AliasedTarget $t): void {}
+}
+PHP);
+file_put_contents($dirM8 . '/app/Consumers/ConsumerTwo.php', <<<'PHP'
+<?php
+namespace App\Consumers;
+use App\Domain;
+class ConsumerTwo {
+    public function run(): Domain\Target {
+        return new \App\Domain\Target();
+    }
+}
+PHP);
+// Classe com mesmo nome curto em namespace distinto não deve colidir
+file_put_contents($dirM8 . '/app/Consumers/SharedController.php', <<<'PHP'
+<?php
+namespace App\Consumers;
+class SharedController {}
+PHP);
+file_put_contents($dirM8 . '/legacy/SharedController.php', <<<'PHP'
+<?php
+class SharedController {}
+PHP);
+
+$m8Res = (new AnalisadorComponentesM8())->analisar($dirM8, [
+    'componentes' => [
+        'CompA' => [
+            'nome' => 'Consumidores',
+            'arquivos' => [
+                'app/Consumers/ConsumerOne.php',
+                'app/Consumers/ConsumerTwo.php',
+                'app/Consumers/SharedController.php',
+            ],
+        ],
+        'CompB' => [
+            'nome' => 'Alvo',
+            'arquivos' => [
+                'app/Domain/Target.php',
+                'legacy/SharedController.php',
+            ],
+        ],
+    ],
+]);
+
+foreach (['/app/Consumers/ConsumerOne.php', '/app/Consumers/ConsumerTwo.php', '/app/Consumers/SharedController.php', '/app/Domain/Target.php', '/legacy/SharedController.php'] as $f) {
+    unlink($dirM8 . $f);
+}
+rmdir($dirM8 . '/app/Consumers');
+rmdir($dirM8 . '/app/Domain');
+rmdir($dirM8 . '/app');
+rmdir($dirM8 . '/legacy');
+rmdir($dirM8);
+
+verificar('M8 duas consumidoras geram Ca=2 no componente alvo', $m8Res['componentes']['CompB']['ca'], 2);
+verificar('M8 componente consumidor consome 1 tipo externo (Ce=1)', $m8Res['componentes']['CompA']['ce'], 1);
+verificar('M8 total de pares distintos preservando classe de origem', $m8Res['total_pares_dependencia'], 2);
+verificar('M8 sem colisão entre SharedController namespaced e global', $m8Res['componentes']['CompA']['ca'], 0);
+verificar('M8 DSPM com pares distintos', $m8Res['dspm'], 0.5);
 
 echo $falhas === 0 ? 'Todos os testes passaram.' . PHP_EOL : "$falhas teste(s) falharam." . PHP_EOL;
 exit($falhas === 0 ? 0 : 1);

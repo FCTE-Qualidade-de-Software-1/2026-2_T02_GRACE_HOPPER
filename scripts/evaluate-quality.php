@@ -324,6 +324,8 @@ final class AnalisadorCallables
 /**
  * Analisa os componentes congelados e calcula métricas de acoplamento de Martin:
  * Ca, Ce, Na, Nc, A = Na/Nc, I = Ce/(Ca+Ce) e D = |A + I - 1|, apurando M8 (DSPM).
+ * Resolve namespaces, aliases de importação (`use ... as ...`) e preserva os pares
+ * completos (tipo_origem, tipo_destino) entre componentes distintos.
  */
 final class AnalisadorComponentesM8
 {
@@ -331,10 +333,10 @@ final class AnalisadorComponentesM8
     {
         $compTypes = [];
         $compAbstractTypes = [];
-        $typeToComp = [];
+        $fqnLowerToComp = [];
         $componentes = $mapaComponentes['componentes'] ?? [];
 
-        // 1. Identificar tipos e abstrações de cada componente
+        // 1. Identificar tipos (com FQN) e abstrações de cada componente
         foreach ($componentes as $cName => $cData) {
             $compTypes[$cName] = [];
             $compAbstractTypes[$cName] = [];
@@ -345,51 +347,54 @@ final class AnalisadorComponentesM8
                 }
                 $tokens = token_get_all((string) file_get_contents($fullPath));
                 $total = count($tokens);
+                $namespace = '';
                 for ($i = 0; $i < $total; $i++) {
-                    $id = is_array($tokens[$i]) ? $tokens[$i][0] : null;
+                    $t = $tokens[$i];
+                    if (!is_array($t)) {
+                        continue;
+                    }
+                    $id = $t[0];
+                    if ($id === T_NAMESPACE) {
+                        $nxt = $this->proximoSignificativo($tokens, $i);
+                        if (is_array($nxt) && in_array($nxt[0], [T_STRING, T_NAME_QUALIFIED], true)) {
+                            $namespace = $nxt[1];
+                        } elseif ($nxt === '{') {
+                            $namespace = '';
+                        }
+                        continue;
+                    }
                     if (in_array($id, [T_CLASS, T_INTERFACE, T_TRAIT, T_ENUM], true)
                         && !$this->anteriorSignificativo($tokens, $i, [T_DOUBLE_COLON, T_NEW])) {
-                        $isAbstract = $this->anteriorSignificativo($tokens, $i, [T_ABSTRACT]);
+                        $nxt = $this->proximoSignificativo($tokens, $i);
+                        if (!is_array($nxt) || $nxt[0] !== T_STRING) {
+                            continue;
+                        }
+                        $isAbstract = $this->temModificadorAbstrato($tokens, $i);
                         $isInterface = ($id === T_INTERFACE);
-                        for ($j = $i + 1; $j < $total; $j++) {
-                            if (is_array($tokens[$j]) && $tokens[$j][0] === T_STRING) {
-                                $name = $tokens[$j][1];
-                                $compTypes[$cName][] = $name;
-                                $typeToComp[$name] = $cName;
-                                if ($isAbstract || $isInterface) {
-                                    $compAbstractTypes[$cName][] = $name;
-                                }
-                                break;
-                            }
+                        $shortName = $nxt[1];
+                        $fqn = $namespace !== '' ? $namespace . '\\' . $shortName : $shortName;
+                        $compTypes[$cName][] = $fqn;
+                        $fqnLowerToComp[strtolower($fqn)] = ['comp' => $cName, 'fqn' => $fqn];
+                        if ($isAbstract || $isInterface) {
+                            $compAbstractTypes[$cName][] = $fqn;
                         }
                     }
                 }
             }
         }
 
-        // 2. Extrair acoplamentos eferentes e aferentes entre componentes
-        $couplings = [];
+        // 2. Extrair pares de tipos (origem FQN -> destino FQN) resolvendo namespaces e aliases
+        $pares = [];
         foreach ($componentes as $cName => $cData) {
-            $couplings[$cName] = [];
             foreach ($cData['arquivos'] as $f) {
                 $fullPath = $targetPath . '/' . $f;
                 if (!file_exists($fullPath)) {
                     continue;
                 }
-                $tokens = token_get_all((string) file_get_contents($fullPath));
-                foreach ($tokens as $t) {
-                    if (is_array($t) && in_array($t[0], [T_STRING, T_NAME_QUALIFIED, T_NAME_FULLY_QUALIFIED], true)) {
-                        $ident = basename(str_replace('\\', '/', $t[1]));
-                        if (isset($typeToComp[$ident])) {
-                            $targetComp = $typeToComp[$ident];
-                            if ($targetComp !== $cName) {
-                                $couplings[$cName][$targetComp][$ident] = true;
-                            }
-                        }
-                    }
-                }
+                $this->coletarParesArquivo($fullPath, $cName, $fqnLowerToComp, $pares);
             }
         }
+        ksort($pares);
 
         // 3. Calcular A, I, D por componente e média global
         $tabela = [];
@@ -399,24 +404,18 @@ final class AnalisadorComponentesM8
             $na = count($compAbstractTypes[$cName]);
             $a = $nc > 0 ? $na / $nc : 0.0;
 
-            $ceTypes = [];
-            foreach ($couplings[$cName] as $tgt => $tList) {
-                foreach ($tList as $tName => $_) {
-                    $ceTypes[$tgt . '::' . $tName] = true;
+            $eferentes = [];
+            $aferentes = [];
+            foreach ($pares as $par) {
+                if ($par['componente_origem'] === $cName) {
+                    $eferentes[$par['destino']] = $par['destino'];
+                }
+                if ($par['componente_destino'] === $cName) {
+                    $aferentes[$par['origem']] = $par['origem'];
                 }
             }
-            $ce = count($ceTypes);
-
-            $caTypes = [];
-            foreach ($componentes as $otherComp => $_) {
-                if ($otherComp === $cName) continue;
-                if (isset($couplings[$otherComp][$cName])) {
-                    foreach ($couplings[$otherComp][$cName] as $tName => $_) {
-                        $caTypes[$otherComp . '::' . $tName] = true;
-                    }
-                }
-            }
-            $ca = count($caTypes);
+            $ce = count($eferentes);
+            $ca = count($aferentes);
 
             $i = ($ca + $ce) > 0 ? $ce / ($ca + $ce) : 0.0;
             $d = abs($a + $i - 1.0);
@@ -434,6 +433,8 @@ final class AnalisadorComponentesM8
                 'd' => round($d, 4),
                 'tipos' => $compTypes[$cName],
                 'tipos_abstratos' => $compAbstractTypes[$cName],
+                'dependencias_aferentes' => array_values($aferentes),
+                'dependencias_eferentes' => array_values($eferentes),
             ];
         }
 
@@ -443,8 +444,254 @@ final class AnalisadorComponentesM8
         return [
             'dspm' => $dspm,
             'total_componentes' => $p,
+            'total_pares_dependencia' => count($pares),
             'componentes' => $tabela,
+            'pares_dependencia' => array_values($pares),
         ];
+    }
+
+    private function coletarParesArquivo(string $fullPath, string $cName, array $fqnLowerToComp, array &$pares): void
+    {
+        $tokens = token_get_all((string) file_get_contents($fullPath));
+        $total = count($tokens);
+        $namespace = '';
+        $uses = [];
+        $braceDepth = 0;
+        $classBodyDepth = null;
+        $awaitingClassBrace = false;
+        $currentClass = null;
+
+        for ($i = 0; $i < $total; $i++) {
+            $t = $tokens[$i];
+            if ($t === '{' || (is_array($t) && in_array($t[0], [T_CURLY_OPEN, T_DOLLAR_OPEN_CURLY_BRACES], true))) {
+                $braceDepth++;
+                if ($awaitingClassBrace) {
+                    $classBodyDepth = $braceDepth;
+                    $awaitingClassBrace = false;
+                }
+                continue;
+            }
+            if ($t === '}') {
+                $braceDepth--;
+                if ($classBodyDepth !== null && $braceDepth < $classBodyDepth) {
+                    $classBodyDepth = null;
+                    $currentClass = null;
+                }
+                continue;
+            }
+            if (!is_array($t)) {
+                continue;
+            }
+
+            $id = $t[0];
+            if ($id === T_NAMESPACE) {
+                $nxt = $this->proximoSignificativo($tokens, $i);
+                if (is_array($nxt) && in_array($nxt[0], [T_STRING, T_NAME_QUALIFIED], true)) {
+                    $namespace = $nxt[1];
+                    $uses = [];
+                } elseif ($nxt === '{') {
+                    $namespace = '';
+                    $uses = [];
+                }
+                continue;
+            }
+
+            if ($id === T_USE && $classBodyDepth === null && !$awaitingClassBrace) {
+                $i = $this->processarImportUse($tokens, $i, $uses);
+                continue;
+            }
+
+            if (in_array($id, [T_CLASS, T_INTERFACE, T_TRAIT, T_ENUM], true)
+                && !$this->anteriorSignificativo($tokens, $i, [T_DOUBLE_COLON, T_NEW])) {
+                $nxt = $this->proximoSignificativo($tokens, $i);
+                if (is_array($nxt) && $nxt[0] === T_STRING) {
+                    $currentClass = $namespace !== '' ? $namespace . '\\' . $nxt[1] : $nxt[1];
+                    $awaitingClassBrace = true;
+                    // Avança além do nome declarado para não auto-referenciar a própria declaração
+                    $i = $this->indiceProximoSignificativo($tokens, $i) ?? $i;
+                }
+                continue;
+            }
+
+            if ($currentClass === null || !in_array($id, [T_STRING, T_NAME_QUALIFIED, T_NAME_FULLY_QUALIFIED, T_NAME_RELATIVE], true)) {
+                continue;
+            }
+
+            if ($this->anteriorSignificativo($tokens, $i, [
+                T_OBJECT_OPERATOR,
+                T_NULLSAFE_OBJECT_OPERATOR,
+                T_DOUBLE_COLON,
+                T_FUNCTION,
+                T_CONST,
+            ])) {
+                continue;
+            }
+
+            $nxt = $this->proximoSignificativo($tokens, $i);
+            if ($id === T_STRING && $nxt === '(' && !$this->anteriorSignificativo($tokens, $i, [T_NEW, T_ATTRIBUTE])) {
+                continue;
+            }
+            if ($id === T_STRING && $nxt === ':' && $this->anteriorSignificativo($tokens, $i, ['(', ','])) {
+                continue;
+            }
+
+            $resolved = $this->resolverFqn($id, $t[1], $namespace, $uses);
+            $key = strtolower($resolved);
+            if (isset($fqnLowerToComp[$key]) && $fqnLowerToComp[$key]['comp'] !== $cName) {
+                $dst = $fqnLowerToComp[$key];
+                $pairKey = $currentClass . ' -> ' . $dst['fqn'];
+                $pares[$pairKey] = [
+                    'origem' => $currentClass,
+                    'componente_origem' => $cName,
+                    'destino' => $dst['fqn'],
+                    'componente_destino' => $dst['comp'],
+                ];
+            }
+        }
+    }
+
+    private function processarImportUse(array $tokens, int $startIdx, array &$uses): int
+    {
+        $total = count($tokens);
+        $baseKind = 'class';
+        $itemKind = null;
+        $prefix = '';
+        $inGroup = false;
+        $curName = '';
+        $curAlias = null;
+        $expectAlias = false;
+
+        for ($j = $startIdx + 1; $j < $total; $j++) {
+            $tk = $tokens[$j];
+            if ($tk === ';') {
+                $effectiveKind = $itemKind ?? $baseKind;
+                if ($effectiveKind === 'class' && $curName !== '') {
+                    $full = ltrim(($inGroup ? $prefix : '') . $curName, '\\');
+                    $alias = $curAlias ?? basename(str_replace('\\', '/', $full));
+                    $uses[strtolower($alias)] = $full;
+                }
+                return $j;
+            }
+            if ($tk === '(') {
+                // Closure use ($var)
+                return $j;
+            }
+            if ($tk === '{') {
+                $prefix = ltrim($curName, '\\');
+                $inGroup = true;
+                $curName = '';
+                $curAlias = null;
+                $expectAlias = false;
+                $itemKind = null;
+                continue;
+            }
+            if ($tk === '}' || $tk === ',') {
+                $effectiveKind = $itemKind ?? $baseKind;
+                if ($effectiveKind === 'class' && $curName !== '') {
+                    $full = ltrim(($inGroup ? $prefix : '') . $curName, '\\');
+                    $alias = $curAlias ?? basename(str_replace('\\', '/', $full));
+                    $uses[strtolower($alias)] = $full;
+                }
+                $curName = '';
+                $curAlias = null;
+                $expectAlias = false;
+                $itemKind = null;
+                continue;
+            }
+            if (!is_array($tk)) {
+                continue;
+            }
+            if (in_array($tk[0], [T_WHITESPACE, T_COMMENT, T_DOC_COMMENT], true)) {
+                continue;
+            }
+            if (in_array($tk[0], [T_FUNCTION, T_CONST], true)) {
+                if ($inGroup) {
+                    $itemKind = 'other';
+                } else {
+                    $baseKind = 'other';
+                }
+                continue;
+            }
+            if ($tk[0] === T_AS) {
+                $expectAlias = true;
+                continue;
+            }
+            if ($tk[0] === T_NS_SEPARATOR) {
+                $curName .= '\\';
+                continue;
+            }
+            if (in_array($tk[0], [T_STRING, T_NAME_QUALIFIED, T_NAME_FULLY_QUALIFIED], true)) {
+                if ($expectAlias) {
+                    $curAlias = $tk[1];
+                    $expectAlias = false;
+                } else {
+                    $curName .= $tk[1];
+                }
+            }
+        }
+        return $total - 1;
+    }
+
+    private function resolverFqn(int $tokenId, string $raw, string $namespace, array $uses): string
+    {
+        if ($tokenId === T_NAME_FULLY_QUALIFIED) {
+            return ltrim($raw, '\\');
+        }
+        if ($tokenId === T_NAME_RELATIVE) {
+            $rel = substr($raw, strlen('namespace\\'));
+            return $namespace !== '' ? $namespace . '\\' . $rel : $rel;
+        }
+        if ($tokenId === T_NAME_QUALIFIED) {
+            $parts = explode('\\', $raw, 2);
+            $firstLower = strtolower($parts[0]);
+            if (isset($uses[$firstLower])) {
+                return $uses[$firstLower] . '\\' . $parts[1];
+            }
+            return $namespace !== '' ? $namespace . '\\' . $raw : $raw;
+        }
+        $rawLower = strtolower($raw);
+        if (isset($uses[$rawLower])) {
+            return $uses[$rawLower];
+        }
+        return $namespace !== '' ? $namespace . '\\' . $raw : $raw;
+    }
+
+    private function temModificadorAbstrato(array $tokens, int $i): bool
+    {
+        for ($j = $i - 1; $j >= 0; $j--) {
+            $t = $tokens[$j];
+            if (is_array($t) && in_array($t[0], [T_WHITESPACE, T_COMMENT, T_DOC_COMMENT], true)) {
+                continue;
+            }
+            if (is_array($t) && $t[0] === T_ABSTRACT) {
+                return true;
+            }
+            if (is_array($t) && in_array($t[0], [T_FINAL, T_READONLY], true)) {
+                continue;
+            }
+            break;
+        }
+        return false;
+    }
+
+    private function indiceProximoSignificativo(array $tokens, int $i): ?int
+    {
+        $total = count($tokens);
+        for ($j = $i + 1; $j < $total; $j++) {
+            $t = $tokens[$j];
+            $id = is_array($t) ? $t[0] : null;
+            if (in_array($id, [T_WHITESPACE, T_COMMENT, T_DOC_COMMENT], true)) {
+                continue;
+            }
+            return $j;
+        }
+        return null;
+    }
+
+    private function proximoSignificativo(array $tokens, int $i): mixed
+    {
+        $j = $this->indiceProximoSignificativo($tokens, $i);
+        return $j !== null ? $tokens[$j] : null;
     }
 
     private function anteriorSignificativo(array $tokens, int $i, array $esperados): bool
@@ -597,82 +844,262 @@ final class AnalisadorFriccaoLegadoM9
  */
 final class AnalisadorTestesM11
 {
-    public function analisar(string $targetPath, array $manifestoTestes): array
+    public function analisar(string $targetPath, array $manifestoTestes, ?string $junitPath = null): array
     {
         $arquivos = $manifestoTestes['arquivos_teste'] ?? [];
-        $totalDeclarados = 0;
-        $totalSkips = 0;
-        $detalhesArquivos = [];
-        $skipsEncontrados = [];
+        $manifestoSet = array_flip($arquivos);
+        $resolvedJunit = $this->resolverJunitPath($targetPath, $junitPath);
 
-        foreach ($arquivos as $f) {
-            $fullPath = $targetPath . '/' . $f;
-            if (!file_exists($fullPath)) {
-                continue;
-            }
-
-            $content = (string) file_get_contents($fullPath);
-            preg_match_all("/\\b(test|it)\\s*\\(\\s*['\"]([^'\"]+)['\"]/", $content, $m1);
-            preg_match_all('/public\\s+function\\s+(test[A-Za-z0-9_]+)\\s*\\(/', $content, $m2);
-
-            $casosDeclarados = count($m1[0]) + count($m2[0]);
-
-            // Trata inclusão dinâmica de testes em NotaSituacaoCommon e ParecerDescritivoCommon
-            if (str_contains($content, 'Avaliacao_Service_NotaSituacaoCommon::registerNotaSituacaoTests()')) {
-                $casosDeclarados += 5; // 5 testes registrados dinamicamente
-            }
-            if (str_contains($f, 'ParecerDescritivoGeralEtapaTest.php') && $casosDeclarados === 0) {
-                $casosDeclarados = 1; // 1 teste legado registrado
-            }
-
-            // Identifica chamadas a markTestSkipped com linha
-            $lines = explode("\n", $content);
-            $skipsNoArquivo = 0;
-            foreach ($lines as $idx => $line) {
-                if (str_contains($line, 'markTestSkipped')) {
-                    $skipsNoArquivo++;
-                    $skipsEncontrados[] = [
-                        'arquivo' => $f,
-                        'linha' => $idx + 1,
-                        'detalhe' => trim($line),
-                    ];
-                }
-            }
-
-            // Trata inclusão dinâmica de skips de NotaSituacaoCommon
-            if (str_contains($content, 'Avaliacao_Service_NotaSituacaoCommon::registerNotaSituacaoTests()')) {
-                $skipsNoArquivo += 5;
-                for ($s = 1; $s <= 5; $s++) {
-                    $skipsEncontrados[] = [
-                        'arquivo' => $f,
-                        'linha' => 0,
-                        'detalhe' => "\$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #$s)",
-                    ];
-                }
-            }
-
-            $totalDeclarados += $casosDeclarados;
-            $totalSkips += $skipsNoArquivo;
-
-            $detalhesArquivos[$f] = [
-                'arquivo' => $f,
-                'casos_declarados' => $casosDeclarados,
-                'skips' => $skipsNoArquivo,
-                'ativos' => max(0, $casosDeclarados - $skipsNoArquivo),
+        if ($resolvedJunit === null || !is_file($resolvedJunit)) {
+            return [
+                'status' => 'nao_mensuravel',
+                'ttae' => null,
+                'total_declarados' => 0,
+                'total_skips' => 0,
+                'total_ativos' => 0,
+                'ativos_sem_assercao' => 0,
+                'total_falhas' => 0,
+                'ativos_com_assercao' => 0,
+                'total_assercoes_runner' => 0,
+                'assercoes_em_casos_ativos' => 0,
+                'fonte_execucao' => null,
+                'skips_detalhes' => [],
+                'sem_assercao_detalhes' => [],
+                'falhas_detalhes' => [],
+                'arquivos_ausentes_no_junit' => $arquivos,
+                'arquivos' => [],
+                'casos' => [],
+                'erro' => 'Relatório JUnit de execução real do runner não encontrado; forneça --m11-junit=<arquivo.xml>.',
             ];
         }
 
-        $ativosComAssercao = max(0, $totalDeclarados - $totalSkips);
+        $prevUseErrors = libxml_use_internal_errors(true);
+        $xml = simplexml_load_file($resolvedJunit);
+        libxml_clear_errors();
+        libxml_use_internal_errors($prevUseErrors);
+
+        if (!$xml instanceof SimpleXMLElement) {
+            throw new RuntimeException("Falha ao interpretar relatório JUnit em: {$resolvedJunit}");
+        }
+
+        $detalhesArquivos = [];
+        foreach ($arquivos as $f) {
+            $detalhesArquivos[$f] = [
+                'arquivo' => $f,
+                'casos_declarados' => 0,
+                'skips' => 0,
+                'ativos' => 0,
+                'ativos_sem_assercao' => 0,
+                'falhas' => 0,
+                'ativos_com_assercao' => 0,
+                'assercoes' => 0,
+            ];
+        }
+
+        $totalDeclarados = 0;
+        $totalSkips = 0;
+        $totalAtivos = 0;
+        $ativosSemAssercao = 0;
+        $totalFalhas = 0;
+        $ativosComAssercao = 0;
+        $totalAssercoesRunner = 0;
+        $assercoesAtivos = 0;
+        $skipsEncontrados = [];
+        $semAssercaoDetalhes = [];
+        $falhasDetalhes = [];
+        $casos = [];
+
+        $coletados = [];
+        $this->coletarCasosJunit($xml, '', $coletados);
+
+        foreach ($coletados as [$suiteFile, $tc]) {
+            $rawFile = (string) ($tc['file'] ?? '');
+            if ($rawFile === '') {
+                $rawFile = $suiteFile;
+            }
+            $relFile = $this->normalizarCaminhoTeste($rawFile, $targetPath, $arquivos);
+            if ($manifestoSet !== [] && !isset($manifestoSet[$relFile])) {
+                continue;
+            }
+            if (!isset($detalhesArquivos[$relFile])) {
+                $detalhesArquivos[$relFile] = [
+                    'arquivo' => $relFile,
+                    'casos_declarados' => 0,
+                    'skips' => 0,
+                    'ativos' => 0,
+                    'ativos_sem_assercao' => 0,
+                    'falhas' => 0,
+                    'ativos_com_assercao' => 0,
+                    'assercoes' => 0,
+                ];
+            }
+
+            $nomeCaso = (string) ($tc['name'] ?? '');
+            $classe = (string) ($tc['class'] ?? $tc['classname'] ?? '');
+            $assertions = (int) ($tc['assertions'] ?? 0);
+            $time = (float) ($tc['time'] ?? 0.0);
+
+            if (isset($tc->skipped)) {
+                $status = 'skipped';
+            } elseif (isset($tc->failure)) {
+                $status = 'failed';
+            } elseif (isset($tc->error)) {
+                $status = 'error';
+            } else {
+                $status = 'passed';
+            }
+
+            $contabilizadoTtae = ($status === 'passed' && $assertions > 0);
+            $totalDeclarados++;
+            $totalAssercoesRunner += $assertions;
+            $detalhesArquivos[$relFile]['casos_declarados']++;
+            $detalhesArquivos[$relFile]['assercoes'] += $assertions;
+
+            if ($status === 'skipped') {
+                $totalSkips++;
+                $detalhesArquivos[$relFile]['skips']++;
+                $skipsEncontrados[] = [
+                    'arquivo' => $relFile,
+                    'caso' => $nomeCaso,
+                    'classe' => $classe,
+                    'status' => $status,
+                    'assertions' => $assertions,
+                    'detalhe' => sprintf('%s :: %s (<skipped/> no JUnit, assertions=%d)', $classe !== '' ? $classe : $relFile, $nomeCaso, $assertions),
+                ];
+            } else {
+                $totalAtivos++;
+                $assercoesAtivos += $assertions;
+                $detalhesArquivos[$relFile]['ativos']++;
+                if ($status === 'passed') {
+                    if ($assertions > 0) {
+                        $ativosComAssercao++;
+                        $detalhesArquivos[$relFile]['ativos_com_assercao']++;
+                    } else {
+                        $ativosSemAssercao++;
+                        $detalhesArquivos[$relFile]['ativos_sem_assercao']++;
+                        $semAssercaoDetalhes[] = [
+                            'arquivo' => $relFile,
+                            'caso' => $nomeCaso,
+                            'classe' => $classe,
+                            'status' => $status,
+                            'assertions' => 0,
+                        ];
+                    }
+                } else {
+                    $totalFalhas++;
+                    $detalhesArquivos[$relFile]['falhas']++;
+                    $falhasDetalhes[] = [
+                        'arquivo' => $relFile,
+                        'caso' => $nomeCaso,
+                        'classe' => $classe,
+                        'status' => $status,
+                        'assertions' => $assertions,
+                    ];
+                }
+            }
+
+            $casos[] = [
+                'arquivo' => $relFile,
+                'caso' => $nomeCaso,
+                'classe' => $classe,
+                'status' => $status,
+                'assertions' => $assertions,
+                'time' => round($time, 6),
+                'contabilizado_ttae' => $contabilizadoTtae,
+            ];
+        }
+
+        $arquivosAusentes = array_values(array_filter(
+            $arquivos,
+            fn (string $arq): bool => ($detalhesArquivos[$arq]['casos_declarados'] ?? 0) === 0
+        ));
+
         $ttae = $totalDeclarados > 0 ? round(($ativosComAssercao / $totalDeclarados) * 100.0, 2) : 0.0;
+        $repoRoot = dirname(__DIR__);
+        $junitExibicao = str_starts_with((string) realpath($resolvedJunit), $repoRoot . DIRECTORY_SEPARATOR)
+            ? ltrim(substr((string) realpath($resolvedJunit), strlen($repoRoot)), DIRECTORY_SEPARATOR)
+            : $resolvedJunit;
 
         return [
+            'status' => 'executado',
             'ttae' => $ttae,
             'total_declarados' => $totalDeclarados,
             'total_skips' => $totalSkips,
+            'total_ativos' => $totalAtivos,
+            'ativos_sem_assercao' => $ativosSemAssercao,
+            'total_falhas' => $totalFalhas,
             'ativos_com_assercao' => $ativosComAssercao,
+            'total_assercoes_runner' => $totalAssercoesRunner,
+            'assercoes_em_casos_ativos' => $assercoesAtivos,
+            'fonte_execucao' => [
+                'tipo' => 'junit_xml',
+                'runner' => 'Pest / PHPUnit (--log-junit)',
+                'arquivo' => str_replace('\\', '/', $junitExibicao),
+                'sha256' => hash_file('sha256', $resolvedJunit) ?: null,
+            ],
             'skips_detalhes' => $skipsEncontrados,
+            'sem_assercao_detalhes' => $semAssercaoDetalhes,
+            'falhas_detalhes' => $falhasDetalhes,
+            'arquivos_ausentes_no_junit' => $arquivosAusentes,
             'arquivos' => $detalhesArquivos,
+            'casos' => $casos,
         ];
+    }
+
+    private function resolverJunitPath(string $targetPath, ?string $junitPath): ?string
+    {
+        if ($junitPath !== null && $junitPath !== '') {
+            return $junitPath;
+        }
+        $localCandidate = rtrim($targetPath, '/\\') . '/m11_runner_junit.xml';
+        if (is_file($localCandidate)) {
+            return $localCandidate;
+        }
+        $targetReal = realpath($targetPath);
+        $defaultSrc = realpath(dirname(__DIR__) . '/i-educar-src');
+        if ($targetReal !== false && $defaultSrc !== false && $targetReal === $defaultSrc) {
+            $repoJunit = dirname(__DIR__) . '/evidencias/g3_manutenibilidade/m11_runner_junit.xml';
+            if (is_file($repoJunit)) {
+                return $repoJunit;
+            }
+        }
+        return null;
+    }
+
+    private function coletarCasosJunit(SimpleXMLElement $node, string $currentSuiteFile, array &$out): void
+    {
+        $suiteFile = (string) ($node['file'] ?? $currentSuiteFile);
+        foreach ($node->testcase as $tc) {
+            $out[] = [$suiteFile, $tc];
+        }
+        foreach ($node->testsuite as $childSuite) {
+            $this->coletarCasosJunit($childSuite, $suiteFile, $out);
+        }
+    }
+
+    private function normalizarCaminhoTeste(string $rawFile, string $targetPath, array $arquivosManifesto): string
+    {
+        $semCaso = explode('::', $rawFile, 2)[0];
+        $norm = str_replace('\\', '/', $semCaso);
+        if (in_array($norm, $arquivosManifesto, true)) {
+            return $norm;
+        }
+        foreach ($arquivosManifesto as $arq) {
+            if (str_ends_with($norm, '/' . $arq)) {
+                return $arq;
+            }
+        }
+        $prefixos = array_filter([
+            rtrim(str_replace('\\', '/', $targetPath), '/'),
+            realpath($targetPath) !== false ? rtrim(str_replace('\\', '/', (string) realpath($targetPath)), '/') : null,
+            '/var/www/ieducar',
+        ]);
+        foreach ($prefixos as $pfx) {
+            if ($pfx !== '' && str_starts_with($norm, $pfx . '/')) {
+                return substr($norm, strlen($pfx) + 1);
+            }
+        }
+        return ltrim($norm, '/');
     }
 }
 
@@ -682,6 +1109,7 @@ final class QualityEvaluator
         private string $targetPath = '.',
         private string $format = 'table',
         private ?string $commit = null,
+        private ?string $m11JunitPath = null,
     ) {
         $this->targetPath = rtrim($targetPath, '/');
     }
@@ -795,21 +1223,25 @@ final class QualityEvaluator
             if (file_exists($manifestoM11Path)) {
                 $manifestoM11 = json_decode((string) file_get_contents($manifestoM11Path), true);
                 $analisadorM11 = new AnalisadorTestesM11();
-                $dadosM11 = $analisadorM11->analisar($this->targetPath, $manifestoM11);
-                $valM11 = $dadosM11['ttae'];
-                $nivelM11 = self::nivel('M11', $valM11);
-                $metricas['M11_TTAE'] = array_merge($metricas['M11_TTAE'], [
-                    'value' => $valM11,
-                    'unit' => '%',
-                    'S' => $nivelM11['S'],
-                    'faixa' => $nivelM11['faixa'],
-                    'status' => 'Coletado (Fase 4)',
-                    'hipotese' => [
-                        'id' => 'H3.5',
-                        'criterio' => '70% <= TTAE < 95%',
-                        'resultado' => ($valM11 >= 70.0 && $valM11 < 95.0) ? 'Confirmada' : 'Refutada',
-                    ],
-                ]);
+                $dadosM11 = $analisadorM11->analisar($this->targetPath, $manifestoM11, $this->m11JunitPath);
+                if (($dadosM11['ttae'] ?? null) !== null) {
+                    $valM11 = $dadosM11['ttae'];
+                    $nivelM11 = self::nivel('M11', $valM11);
+                    $metricas['M11_TTAE'] = array_merge($metricas['M11_TTAE'], [
+                        'value' => $valM11,
+                        'unit' => '%',
+                        'S' => $nivelM11['S'],
+                        'faixa' => $nivelM11['faixa'],
+                        'status' => 'Coletado (Fase 4 — Runner JUnit)',
+                        'hipotese' => [
+                            'id' => 'H3.5',
+                            'criterio' => '70% <= TTAE < 95%',
+                            'resultado' => ($valM11 >= 70.0 && $valM11 < 95.0) ? 'Confirmada' : 'Refutada',
+                        ],
+                    ]);
+                } else {
+                    $metricas['M11_TTAE']['status'] = $dadosM11['erro'] ?? 'Não mensurável (JUnit ausente)';
+                }
             }
         }
 
@@ -982,26 +1414,34 @@ final class QualityEvaluator
         }
 
         // M11 (TTAE)
-        if (isset($data['detalhes_m11'])) {
+        if (isset($data['detalhes_m11']) && ($data['detalhes_m11']['ttae'] ?? null) !== null) {
+            $m11Data = $data['detalhes_m11'];
             $m11 = $base + [
                 'regras' => ['ttae' => $data['regras']['ttae']],
                 'M11_TTAE' => $data['metrics']['M11_TTAE'],
-                'detalhes' => $data['detalhes_m11'],
+                'detalhes' => $m11Data,
             ];
             file_put_contents("$dir/m11_ttae.json", json_encode($m11, $opcoes) . PHP_EOL);
 
             $txt = "RELATÓRIO DE EXECUÇÃO E APURAÇÃO DE TESTES ATIVOS (M11 - TTAE)\n";
             $txt .= "Data: " . $data['timestamp'] . "\n";
             $txt .= "Commit: " . ($data['commit'] ?? 'não identificado') . "\n";
-            $txt .= sprintf("Total Casos Declarados: %d\n", $data['detalhes_m11']['total_declarados']);
-            $txt .= sprintf("Total Testes Suprimidos (markTestSkipped): %d\n", $data['detalhes_m11']['total_skips']);
-            $txt .= sprintf("Total Testes Ativos com Asserção: %d\n", $data['detalhes_m11']['ativos_com_assercao']);
-            $txt .= sprintf("Taxa TTAE: %.2f%%\n", $data['detalhes_m11']['ttae']);
+            if (!empty($m11Data['fonte_execucao'])) {
+                $txt .= sprintf("Fonte JUnit: %s (SHA-256: %s)\n", $m11Data['fonte_execucao']['arquivo'], $m11Data['fonte_execucao']['sha256'] ?? 'n/d');
+            }
+            $txt .= sprintf("Total Casos Descobertos pelo Runner: %d\n", $m11Data['total_declarados']);
+            $txt .= sprintf("Total Testes Suprimidos (<skipped/>): %d\n", $m11Data['total_skips']);
+            $txt .= sprintf("Total Testes Ativos Executados: %d\n", $m11Data['total_ativos']);
+            $txt .= sprintf("Total Testes Ativos com 0 Asserções: %d\n", $m11Data['ativos_sem_assercao']);
+            $txt .= sprintf("Total Testes com Falha/Erro: %d\n", $m11Data['total_falhas']);
+            $txt .= sprintf("Total Testes Ativos com Asserção: %d\n", $m11Data['ativos_com_assercao']);
+            $txt .= sprintf("Total de Asserções no Runner: %d (em casos ativos: %d)\n", $m11Data['total_assercoes_runner'], $m11Data['assercoes_em_casos_ativos']);
+            $txt .= sprintf("Taxa TTAE: %.2f%%\n", $m11Data['ttae']);
             $txt .= sprintf("Situação: %s (S=%d)\n", $data['metrics']['M11_TTAE']['faixa'], $data['metrics']['M11_TTAE']['S']);
             $txt .= sprintf("Hipótese H3.5: %s\n\n", $data['metrics']['M11_TTAE']['hipotese']['resultado']);
-            $txt .= "Lista de Testes Suprimidos (markTestSkipped):\n";
-            foreach ($data['detalhes_m11']['skips_detalhes'] as $sk) {
-                $txt .= sprintf("  - %s (linha %d): %s\n", $sk['arquivo'], $sk['linha'], $sk['detalhe']);
+            $txt .= "Lista de Testes Suprimidos (<skipped/>):\n";
+            foreach ($m11Data['skips_detalhes'] as $sk) {
+                $txt .= sprintf("  - %s :: %s (%s, assertions=%d)\n", $sk['arquivo'], $sk['caso'], $sk['status'], $sk['assertions']);
             }
             file_put_contents("$dir/m11_ttae.txt", $txt);
         }
@@ -1054,9 +1494,18 @@ final class QualityEvaluator
         }
 
         if (isset($data['detalhes_m11'])) {
-            printf("Taxa de Testes Ativos (M11 — TTAE): %d ativos com asserção / %d declarados (%d skipped) = %.2f%%\n",
-                $data['detalhes_m11']['ativos_com_assercao'], $data['detalhes_m11']['total_declarados'], $data['detalhes_m11']['total_skips'], $data['detalhes_m11']['ttae']
-            );
+            if (($data['detalhes_m11']['ttae'] ?? null) !== null) {
+                printf("Taxa de Testes Ativos (M11 — TTAE): %d ativos com asserção / %d descobertos (%d skipped, %d sem asserção, %d falhas) = %.2f%%\n",
+                    $data['detalhes_m11']['ativos_com_assercao'],
+                    $data['detalhes_m11']['total_declarados'],
+                    $data['detalhes_m11']['total_skips'],
+                    $data['detalhes_m11']['ativos_sem_assercao'],
+                    $data['detalhes_m11']['total_falhas'],
+                    $data['detalhes_m11']['ttae']
+                );
+            } else {
+                printf("Taxa de Testes Ativos (M11 — TTAE): %s\n", $data['detalhes_m11']['erro'] ?? 'não mensurável');
+            }
             echo $traco;
         }
 
@@ -1080,6 +1529,7 @@ if (PHP_SAPI === 'cli' && realpath($argv[0] ?? '') === __FILE__) {
     $path = '.';
     $commit = null;
     $evidencias = null;
+    $m11Junit = null;
 
     foreach (array_slice($argv, 1) as $arg) {
         if ($arg === '--json' || $arg === '--format=json') {
@@ -1090,10 +1540,12 @@ if (PHP_SAPI === 'cli' && realpath($argv[0] ?? '') === __FILE__) {
             $commit = substr($arg, 9);
         } elseif (str_starts_with($arg, '--evidence-dir=')) {
             $evidencias = substr($arg, 15);
+        } elseif (str_starts_with($arg, '--m11-junit=')) {
+            $m11Junit = substr($arg, 12);
         }
     }
 
-    $evaluator = new QualityEvaluator($path, $format, $commit);
+    $evaluator = new QualityEvaluator($path, $format, $commit, $m11Junit);
     $data = $evaluator->run();
     if ($evidencias !== null && $data['status'] === 'executado') {
         $evaluator->gravarEvidencias($data, $evidencias);

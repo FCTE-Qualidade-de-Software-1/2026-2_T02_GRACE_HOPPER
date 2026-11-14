@@ -24,6 +24,7 @@ import argparse
 import csv
 import hashlib
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -53,8 +54,128 @@ def nivel_m13(admv: float) -> int:
     return 1
 
 
-def avaliar_cenarios(catalogo_path: Path, src_path: Path | None = None) -> dict:
-    """Carrega o catálogo, valida os cenários e calcula as métricas M12 e M13."""
+def _validar_produto_alvo(src_path: Path | None, cenarios: list[dict]) -> Path:
+    """Valida a existência real do repositório i-Educar e dos arquivos-alvo citados."""
+    if src_path is None or not src_path.exists() or not (src_path / "app").is_dir():
+        raise FileNotFoundError(
+            f"Diretório-alvo do produto inválido ou ausente: {src_path}. "
+            "A auditoria M12/M13 exige o código-fonte real do i-Educar."
+        )
+    for c in cenarios:
+        camada = str(c.get("camada_alvo", ""))
+        for rel in re.findall(r"[A-Za-z0-9_./-]+\.php", camada):
+            if not (src_path / rel).is_file():
+                raise FileNotFoundError(
+                    f"Arquivo-alvo citado no cenário {c.get('id')} não encontrado em {src_path}: {rel}"
+                )
+    return src_path
+
+
+def _validar_captura_cenario(
+    cenario: dict,
+    capturas_dir: Path,
+) -> tuple[bool, dict]:
+    """Valida a captura HTTP/SQL bruta do cenário e sua ligação com a mensagem de M13."""
+    cid = cenario["id"]
+    retorno = cenario["retorno_observado"]
+    evidencia = cenario.get("evidencia_execucao", {})
+    m13_origem = cenario.get("auditoria_m13", {}).get("evidencia_origem", {})
+
+    rel_cap = evidencia.get("captura_arquivo") or f"capturas_m12/{cid}.json"
+    cap_path = capturas_dir / Path(rel_cap).name
+    if not cap_path.is_file():
+        return False, {"erro": f"Captura bruta ausente: {cap_path}", "captura_arquivo": str(rel_cap)}
+
+    cap = json.loads(cap_path.read_text(encoding="utf-8"))
+    if cap.get("cenario_id") != cid:
+        return False, {"erro": f"cenario_id divergente na captura {cap_path.name}", "captura_arquivo": str(rel_cap)}
+
+    resp = cap.get("resposta", {})
+    body_raw = resp.get("body_raw")
+    sha_esperado = resp.get("sha256_body", "")
+    if not isinstance(body_raw, str) or not sha_esperado:
+        return False, {"erro": f"Corpo HTTP bruto ou sha256_body ausente em {cap_path.name}", "captura_arquivo": str(rel_cap)}
+
+    sha_calc = hashlib.sha256(body_raw.encode("utf-8")).hexdigest()
+    if sha_calc != sha_esperado:
+        return False, {"erro": f"SHA-256 divergente no corpo HTTP de {cap_path.name}", "captura_arquivo": str(rel_cap)}
+
+    if evidencia.get("sha256_corpo_resposta") and evidencia["sha256_corpo_resposta"] != sha_calc:
+        return False, {"erro": f"sha256_corpo_resposta do catálogo diverge da captura {cap_path.name}", "captura_arquivo": str(rel_cap)}
+
+    sql = cap.get("sql_verificacao", {})
+    antes = sql.get("contagem_antes")
+    depois = sql.get("contagem_depois")
+    if not isinstance(antes, int) or not isinstance(depois, int):
+        return False, {"erro": f"Consulta SQL antes/depois ausente em {cap_path.name}", "captura_arquivo": str(rel_cap)}
+
+    persistencia_real = (depois != antes) or bool(sql.get("persistencia_indesejada", False)) or bool(retorno.get("persistencia_indesejada", False))
+    status_http = int(resp.get("status_http", 0))
+    erro500_real = (status_http >= 500) or bool(retorno.get("erro_500_ocorreu", False))
+    msg_cap = cap.get("mensagem_capturada")
+
+    # Validação de bloqueio amigável conforme o endpoint real executado
+    bloqueio_http_ok = False
+    if isinstance(msg_cap, str) and msg_cap.strip() != "":
+        if status_http in (400, 422):
+            bloqueio_http_ok = True
+        elif status_http == 200:
+            try:
+                body_json = json.loads(body_raw)
+                bloqueio_http_ok = bool(body_json.get("any_error_msg") is True and body_json.get("msgs"))
+            except json.JSONDecodeError:
+                bloqueio_http_ok = False
+        elif status_http == 302:
+            bloqueio_http_ok = bool(resp.get("redirect_location")) and resp.get("redirect_follow_status") == 200
+
+    msg_catalogo = retorno.get("mensagem_exibida")
+    status_catalogo = int(retorno.get("status_http", 0))
+    consistencia_catalogo = (msg_cap == msg_catalogo) and (status_http == status_catalogo)
+
+    # Vínculo obrigatório M13 -> captura bruta
+    msg_sha = hashlib.sha256((msg_cap or "").encode("utf-8")).hexdigest()
+    vinculo_m13_ok = (
+        bool(m13_origem)
+        and Path(str(m13_origem.get("captura_arquivo", ""))).name == cap_path.name
+        and m13_origem.get("mensagem_capturada") == msg_cap
+        and m13_origem.get("mensagem_sha256") == msg_sha
+    )
+
+    bloqueio_ok = (
+        bool(retorno.get("bloqueio_amigavel", False))
+        and bloqueio_http_ok
+        and consistencia_catalogo
+        and vinculo_m13_ok
+        and not persistencia_real
+        and not erro500_real
+    )
+
+    cap_sha = hashlib.sha256(cap_path.read_bytes()).hexdigest()
+    req = cap.get("requisicao", {})
+    return bloqueio_ok, {
+        "captura_arquivo": str(rel_cap),
+        "captura_sha256": cap_sha,
+        "requisicao_http": f"{req.get('method', '')} {req.get('url', '')}".strip(),
+        "status_http": status_http,
+        "sha256_corpo_resposta": sha_calc,
+        "mensagem_sha256": msg_sha,
+        "vinculo_m13_valido": vinculo_m13_ok,
+        "sql_tabela": sql.get("tabela", retorno.get("tabela_banco_conferida", "")),
+        "sql_contagem_antes": antes,
+        "sql_contagem_depois": depois,
+        "sql_delta": depois - antes,
+        "persistencia_real": persistencia_real,
+        "erro500_real": erro500_real,
+        "erro": None if bloqueio_ok else "Falha na verificação de bloqueio amigável, SQL, status HTTP ou vínculo M13",
+    }
+
+
+def avaliar_cenarios(
+    catalogo_path: Path,
+    src_path: Path | None = Path("./i-educar-src"),
+    capturas_dir: Path | None = None,
+) -> dict:
+    """Carrega o catálogo, valida produto/capturas reais e calcula M12 e M13."""
     if not catalogo_path.exists():
         raise FileNotFoundError(f"Catálogo não encontrado em {catalogo_path}")
 
@@ -65,10 +186,15 @@ def avaliar_cenarios(catalogo_path: Path, src_path: Path | None = None) -> dict:
     if len(cenarios) < 12:
         raise ValueError(f"O catálogo deve conter ao menos 12 cenários; encontrados {len(cenarios)}.")
 
+    alvo_validado = _validar_produto_alvo(src_path, cenarios)
+    if capturas_dir is None:
+        capturas_dir = catalogo_path.parent.parent / "capturas_m12"
+
     total_submetidos = len(cenarios)
     total_bloqueados = 0
     erros_500 = 0
     persistencias_indesejadas = 0
+    capturas_validas = 0
 
     mensagens_com_causa = 0
     mensagens_com_acao = 0
@@ -82,20 +208,22 @@ def avaliar_cenarios(catalogo_path: Path, src_path: Path | None = None) -> dict:
         retorno = c["retorno_observado"]
         auditoria = c["auditoria_m13"]["consenso"]
 
-        bloqueio_ok = retorno.get("bloqueio_amigavel", False)
-        persistencia = retorno.get("persistencia_indesejada", False)
-        erro500 = retorno.get("erro_500_ocorreu", False)
-        status_http = retorno.get("status_http", 0)
+        bloqueio_efetivo, ev = _validar_captura_cenario(c, capturas_dir)
+        persistencia = bool(ev.get("persistencia_real", retorno.get("persistencia_indesejada", False)))
+        erro500 = bool(ev.get("erro500_real", retorno.get("erro_500_ocorreu", False)))
+        status_http = int(ev.get("status_http", retorno.get("status_http", 0)))
 
+        if ev.get("erro") is None:
+            capturas_validas += 1
         if erro500:
             erros_500 += 1
         if persistencia:
             persistencias_indesejadas += 1
-        if bloqueio_ok and not persistencia and not erro500 and status_http == 422:
+        if bloqueio_efetivo:
             total_bloqueados += 1
 
-        causa_ok = auditoria.get("informa_causa", False)
-        acao_ok = auditoria.get("indica_acao_corretiva", False)
+        causa_ok = bool(auditoria.get("informa_causa", False))
+        acao_ok = bool(auditoria.get("indica_acao_corretiva", False))
 
         if causa_ok:
             mensagens_com_causa += 1
@@ -108,14 +236,27 @@ def avaliar_cenarios(catalogo_path: Path, src_path: Path | None = None) -> dict:
             "id": cid,
             "categoria": cat,
             "titulo": c.get("titulo", ""),
+            "requisicao_http": ev.get("requisicao_http", ""),
             "status_http": status_http,
-            "bloqueio_amigavel": "SIM" if bloqueio_ok else "NÃO",
+            "bloqueio_amigavel": "SIM" if bloqueio_efetivo else "NÃO",
             "persistencia_banco": "SIM" if persistencia else "NÃO",
             "erro_500": "SIM" if erro500 else "NÃO",
             "mensagem": retorno.get("mensagem_exibida", ""),
             "m13_causa": "SIM" if causa_ok else "NÃO",
             "m13_acao": "SIM" if acao_ok else "NÃO",
             "m13_classificacao": auditoria.get("classificacao", "INDEFINIDO"),
+            "captura_arquivo": ev.get("captura_arquivo", ""),
+            "captura_sha256": ev.get("captura_sha256", ""),
+            "sha256_corpo_resposta": ev.get("sha256_corpo_resposta", ""),
+            "mensagem_sha256": ev.get("mensagem_sha256", ""),
+            "vinculo_m13_valido": bool(ev.get("vinculo_m13_valido", False)),
+            "sql_verificacao": {
+                "tabela": ev.get("sql_tabela", ""),
+                "contagem_antes": ev.get("sql_contagem_antes"),
+                "contagem_depois": ev.get("sql_contagem_depois"),
+                "delta": ev.get("sql_delta"),
+            },
+            "validacao_captura_erro": ev.get("erro"),
         })
 
     ippe = (total_bloqueados / total_submetidos) * 100.0
@@ -129,6 +270,9 @@ def avaliar_cenarios(catalogo_path: Path, src_path: Path | None = None) -> dict:
     resultado = {
         "metadata": dados.get("metadata", {}),
         "data_apuracao": datetime.now(timezone.utc).isoformat(),
+        "alvo_produto": str(alvo_validado),
+        "capturas_dir": str(capturas_dir),
+        "capturas_verificadas": capturas_validas,
         "m12_gate": {
             "metrica": "M12 — IPPE (Índice de Proteção contra Erros do Usuário)",
             "tipo": "GATE_BINARIO_ELIMINATORIO",
@@ -186,24 +330,39 @@ def exportar_evidencias(resultado: dict, out_dirs: list[Path]) -> None:
                 "id_cenario",
                 "categoria",
                 "titulo",
+                "requisicao_http",
                 "status_http",
                 "bloqueio_amigavel",
+                "sql_tabela",
+                "sql_contagem_antes",
+                "sql_contagem_depois",
+                "sql_delta",
                 "persistencia_banco",
                 "erro_500",
+                "captura_arquivo",
+                "sha256_corpo_resposta",
                 "mensagem_exibida",
                 "m13_causa",
                 "m13_acao",
                 "m13_classificacao",
             ])
             for it in resultado["itens"]:
+                sql = it.get("sql_verificacao", {})
                 writer.writerow([
                     it["id"],
                     it["categoria"],
                     it["titulo"],
+                    it.get("requisicao_http", ""),
                     it["status_http"],
                     it["bloqueio_amigavel"],
+                    sql.get("tabela", ""),
+                    sql.get("contagem_antes", ""),
+                    sql.get("contagem_depois", ""),
+                    sql.get("delta", ""),
                     it["persistencia_banco"],
                     it["erro_500"],
+                    it.get("captura_arquivo", ""),
+                    it.get("sha256_corpo_resposta", ""),
                     it["mensagem"],
                     it["m13_causa"],
                     it["m13_acao"],
@@ -216,6 +375,9 @@ def exportar_evidencias(resultado: dict, out_dirs: list[Path]) -> None:
             + "RELATÓRIO DE EXECUÇÃO DO GATE M12 (IPPE) E AUDITORIA M13 (ADMV)\n"
             + "=" * 80 + "\n"
             + f"Data de apuração: {resultado['data_apuracao']}\n"
+            + f"Alvo do produto: {resultado.get('alvo_produto', 'N/A')}\n"
+            + f"Diretório de capturas: {resultado.get('capturas_dir', 'N/A')}\n"
+            + f"Capturas verificadas: {resultado.get('capturas_verificadas', 0)}/{resultado['m12_gate']['total_cenarios_submetidos']}\n"
             + f"Commit analisado: {resultado['metadata'].get('commit_congelado', 'N/A')}\n"
             + f"Responsável: {resultado['metadata'].get('responsavel_trilha', 'N/A')}\n"
             + f"Revisor por pares: {resultado['metadata'].get('revisor_par', 'N/A')}\n"
@@ -229,11 +391,15 @@ def exportar_evidencias(resultado: dict, out_dirs: list[Path]) -> None:
             + "DETALHAMENTO DOS 12 CENÁRIOS SUBMETIDOS:\n"
         )
         for it in resultado["itens"]:
+            sql = it.get("sql_verificacao", {})
             log_content += (
                 f"[{it['id']}] {it['categoria']} - {it['titulo']}\n"
+                f"      Requisição: {it.get('requisicao_http', 'N/A')}\n"
                 f"      Status: HTTP {it['status_http']} | Bloqueio amigável: {it['bloqueio_amigavel']} | Persistência indesejada: {it['persistencia_banco']} | Erro 500: {it['erro_500']}\n"
+                f"      SQL ({sql.get('tabela', 'N/A')}): antes={sql.get('contagem_antes')} depois={sql.get('contagem_depois')} delta={sql.get('delta')}\n"
+                f"      Captura: {it.get('captura_arquivo', '')} (SHA-256 body={it.get('sha256_corpo_resposta', '')})\n"
                 f"      Mensagem: \"{it['mensagem']}\"\n"
-                f"      Auditoria M13: Causa={it['m13_causa']} | Ação={it['m13_acao']} | Classificação={it['m13_classificacao']}\n"
+                f"      Auditoria M13: Causa={it['m13_causa']} | Ação={it['m13_acao']} | Classificação={it['m13_classificacao']} | Vínculo={it.get('vinculo_m13_valido')}\n"
             )
         log_content += "=" * 80 + "\nFIM DO RELATÓRIO DE EVIDÊNCIA M12 / M13\n"
 
@@ -267,6 +433,12 @@ def main() -> int:
         help="Caminho do repositório i-Educar clonado",
     )
     parser.add_argument(
+        "--capturas-dir",
+        type=Path,
+        default=Path("evidencias/g4_interacao_uso/capturas_m12"),
+        help="Diretório das capturas HTTP/SQL brutas dos 12 cenários",
+    )
+    parser.add_argument(
         "--output-dir",
         type=Path,
         default=Path("docs/evidencias/g4_interacao_uso"),
@@ -280,8 +452,12 @@ def main() -> int:
         return 1
     print(f"ok   Integridade criptográfica SHA-256 confirmada para {args.catalogo.name}")
 
-    # 2. Avaliar cenários e calcular métricas
-    resultado = avaliar_cenarios(args.catalogo, args.path)
+    # 2. Avaliar cenários e calcular métricas (exige produto real e capturas brutas válidas)
+    try:
+        resultado = avaliar_cenarios(args.catalogo, args.path, args.capturas_dir)
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"ERRO: {exc}", file=sys.stderr)
+        return 2
 
     # 3. Exportar evidências para pasta docs/evidencias e evidencias/
     dirs_saida = [args.output_dir, Path("evidencias/g4_interacao_uso")]

@@ -1,50 +1,55 @@
 RELATÓRIO DE EXECUÇÃO E APURAÇÃO DE TESTES ATIVOS (M11 - TTAE)
-Data: 2026-11-12T01:37:19+00:00
+Data: 2026-11-14T18:50:59+00:00
 Commit: 7903a3efc7689942ee700007f86ed581023aad27
-Total Casos Declarados: 158
-Total Testes Suprimidos (markTestSkipped): 39
-Total Testes Ativos com Asserção: 119
-Taxa TTAE: 75.32%
+Fonte JUnit: evidencias/g3_manutenibilidade/m11_runner_junit.xml (SHA-256: 96d190074b6b21c0e64fed6058eca0b55e7e1c6146fc5bd69e2544612e828f31)
+Total Casos Descobertos pelo Runner: 185
+Total Testes Suprimidos (<skipped/>): 39
+Total Testes Ativos Executados: 146
+Total Testes Ativos com 0 Asserções: 0
+Total Testes com Falha/Erro: 0
+Total Testes Ativos com Asserção: 146
+Total de Asserções no Runner: 1038 (em casos ativos: 938)
+Taxa TTAE: 78.92%
 Situação: Regular (S=2)
 Hipótese H3.5: Confirmada
 
-Lista de Testes Suprimidos (markTestSkipped):
-  - tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php (linha 30): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php (linha 99): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php (linha 258): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaComponenteTest.php (linha 17): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaComponenteTest.php (linha 64): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaComponenteTest.php (linha 132): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaComponenteTest.php (linha 192): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php (linha 10): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php (linha 29): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php (linha 71): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaGeralTest.php (linha 21): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaGeralTest.php (linha 47): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaGeralTest.php (linha 110): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/FaltaGeralTest.php (linha 166): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/InicializacaoTest.php (linha 17): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #1)
-  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #2)
-  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #3)
-  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #4)
-  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #5)
-  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #1)
-  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #2)
-  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #3)
-  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #4)
-  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php (linha 0): $this->markTestSkipped() (herdado de NotaSituacaoCommon caso #5)
-  - tests/Unit/Modules/Service/NotaRecuperacaoTest.php (linha 6): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/NotaRecuperacaoTest.php (linha 126): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/NotaTest.php (linha 27): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/NotaTest.php (linha 75): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/NotaTest.php (linha 177): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php (linha 99): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php (linha 118): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php (linha 123): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php (linha 142): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php (linha 67): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php (linha 81): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php (linha 107): $this->markTestSkipped();
-  - tests/Unit/Modules/Service/UtilityTest.php (linha 96): $this->markTestSkipped();
-  - tests/Api/DiarioRecuperaBoletimTest.php (linha 11): $this->markTestSkipped('Pacote de boletim instalado, o render em teste unitário não esta disponível');
+Lista de Testes Suprimidos (<skipped/>):
+  - tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php :: situacao faltas em andamento um componente aprovado de quatro totais (skipped, assertions=0)
+  - tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php :: situacao faltas aprovado (skipped, assertions=0)
+  - tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php :: situacao faltas reprovado (skipped, assertions=0)
+  - tests/Unit/Modules/Service/FaltaComponenteTest.php :: adiciona falta no boletim (skipped, assertions=13)
+  - tests/Unit/Modules/Service/FaltaComponenteTest.php :: salvar faltas de um componente curricular no boletim (skipped, assertions=0)
+  - tests/Unit/Modules/Service/FaltaComponenteTest.php :: salvas faltas de um componente com etapas lancadas (skipped, assertions=0)
+  - tests/Unit/Modules/Service/FaltaComponenteTest.php :: salvas faltas de um componente e atualizada etapa da ultima instancia adicionada no boletim com etapas lancadas (skipped, assertions=0)
+  - tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php :: situacao faltas em andamento (skipped, assertions=0)
+  - tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php :: situacao faltas aprovado (skipped, assertions=0)
+  - tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php :: situacao faltas reprovado (skipped, assertions=0)
+  - tests/Unit/Modules/Service/FaltaGeralTest.php :: adiciona falta no boletim (skipped, assertions=15)
+  - tests/Unit/Modules/Service/FaltaGeralTest.php :: salvar faltas no boletim (skipped, assertions=0)
+  - tests/Unit/Modules/Service/FaltaGeralTest.php :: salvas faltas no boletim com etapas lancadas (skipped, assertions=0)
+  - tests/Unit/Modules/Service/FaltaGeralTest.php :: salvas faltas atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (skipped, assertions=0)
+  - tests/Unit/Modules/Service/InicializacaoTest.php :: dados de matricula inicializados (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php :: situacao componentes curriculares um componente lancado reprovado um componente abaixo da media (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php :: situacao componentes curriculares um componente lancado reprovado um componente abaixo da media (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaRecuperacaoTest.php :: salvar notas de um componente curricular no boletim em recuperacao (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaRecuperacaoTest.php :: salvar notas de um componente curricular no boletim em recuperacao com notas lancadas (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaTest.php :: adiciona nota no boletim (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaTest.php :: salvar notas de um componente curricular no boletim (skipped, assertions=0)
+  - tests/Unit/Modules/Service/NotaTest.php :: salvas notas de um componente com etapas lancadas (skipped, assertions=0)
+  - tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php :: adiciona parecer no boletim (skipped, assertions=18)
+  - tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php :: salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (teste do próprio arquivo) (skipped, assertions=0)
+  - tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php :: adiciona parecer no boletim (skipped, assertions=18)
+  - tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php :: salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (teste do próprio arquivo) (skipped, assertions=0)
+  - tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php :: adiciona parecer no boletim (skipped, assertions=18)
+  - tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php :: salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (skipped, assertions=0)
+  - tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php :: salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (teste do próprio arquivo) (skipped, assertions=0)
+  - tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php :: adiciona parecer no boletim (skipped, assertions=18)
+  - tests/Unit/Modules/Service/UtilityTest.php :: prever nota para recuperacao (skipped, assertions=0)

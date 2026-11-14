@@ -5,7 +5,7 @@
         "php": "8.2.17",
         "tokenizador": "token_get_all (TOKEN_PARSE)"
     },
-    "timestamp": "2026-11-12T01:37:19+00:00",
+    "timestamp": "2026-11-14T18:50:59+00:00",
     "commit": "7903a3efc7689942ee700007f86ed581023aad27",
     "status": "executado",
     "manifesto": [
@@ -21,10 +21,10 @@
     "M11_TTAE": {
         "name": "Taxa de Testes Ativos com Asserção",
         "symbol": "TTAE",
-        "value": 75.32,
+        "value": 78.92,
         "threshold_excellent": ">= 95.0%",
         "threshold_critical": "< 70.0%",
-        "status": "Coletado (Fase 4)",
+        "status": "Coletado (Fase 4 — Runner JUnit)",
         "unit": "%",
         "S": 2,
         "faixa": "Regular",
@@ -35,388 +35,2307 @@
         }
     },
     "detalhes": {
-        "ttae": 75.32,
-        "total_declarados": 158,
+        "status": "executado",
+        "ttae": 78.92,
+        "total_declarados": 185,
         "total_skips": 39,
-        "ativos_com_assercao": 119,
+        "total_ativos": 146,
+        "ativos_sem_assercao": 0,
+        "total_falhas": 0,
+        "ativos_com_assercao": 146,
+        "total_assercoes_runner": 1038,
+        "assercoes_em_casos_ativos": 938,
+        "fonte_execucao": {
+            "tipo": "junit_xml",
+            "runner": "Pest / PHPUnit (--log-junit)",
+            "arquivo": "evidencias/g3_manutenibilidade/m11_runner_junit.xml",
+            "sha256": "96d190074b6b21c0e64fed6058eca0b55e7e1c6146fc5bd69e2544612e828f31"
+        },
         "skips_detalhes": [
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
-                "linha": 30,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "situacao faltas em andamento um componente aprovado de quatro totais",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteSituacaoTest :: situacao faltas em andamento um componente aprovado de quatro totais (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
-                "linha": 99,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "situacao faltas aprovado",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteSituacaoTest :: situacao faltas aprovado (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
-                "linha": 258,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "situacao faltas reprovado",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteSituacaoTest :: situacao faltas reprovado (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
-                "linha": 17,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "adiciona falta no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest",
+                "status": "skipped",
+                "assertions": 13,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest :: adiciona falta no boletim (<skipped/> no JUnit, assertions=13)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
-                "linha": 64,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvar faltas de um componente curricular no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest :: salvar faltas de um componente curricular no boletim (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
-                "linha": 132,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvas faltas de um componente com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest :: salvas faltas de um componente com etapas lancadas (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
-                "linha": 192,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvas faltas de um componente e atualizada etapa da ultima instancia adicionada no boletim com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest :: salvas faltas de um componente e atualizada etapa da ultima instancia adicionada no boletim com etapas lancadas (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php",
-                "linha": 10,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "situacao faltas em andamento",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaGeralSituacaoTest :: situacao faltas em andamento (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php",
-                "linha": 29,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "situacao faltas aprovado",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaGeralSituacaoTest :: situacao faltas aprovado (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php",
-                "linha": 71,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "situacao faltas reprovado",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaGeralSituacaoTest :: situacao faltas reprovado (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
-                "linha": 21,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "adiciona falta no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest",
+                "status": "skipped",
+                "assertions": 15,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest :: adiciona falta no boletim (<skipped/> no JUnit, assertions=15)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
-                "linha": 47,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvar faltas no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest :: salvar faltas no boletim (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
-                "linha": 110,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvas faltas no boletim com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest :: salvas faltas no boletim com etapas lancadas (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
-                "linha": 166,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvas faltas atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest :: salvas faltas atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/InicializacaoTest.php",
-                "linha": 17,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "dados de matricula inicializados",
+                "classe": "Tests\\Unit\\Modules\\Service\\InicializacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\InicializacaoTest :: dados de matricula inicializados (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
-                "linha": 0,
-                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #1)"
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
-                "linha": 0,
-                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #2)"
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
-                "linha": 0,
-                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #3)"
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
-                "linha": 0,
-                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #4)"
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
-                "linha": 0,
-                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #5)"
+                "caso": "situacao componentes curriculares um componente lancado reprovado um componente abaixo da media",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest :: situacao componentes curriculares um componente lancado reprovado um componente abaixo da media (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
-                "linha": 0,
-                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #1)"
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
-                "linha": 0,
-                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #2)"
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
-                "linha": 0,
-                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #3)"
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
-                "linha": 0,
-                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #4)"
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest :: situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
-                "linha": 0,
-                "detalhe": "$this->markTestSkipped() (herdado de NotaSituacaoCommon caso #5)"
+                "caso": "situacao componentes curriculares um componente lancado reprovado um componente abaixo da media",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest :: situacao componentes curriculares um componente lancado reprovado um componente abaixo da media (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaRecuperacaoTest.php",
-                "linha": 6,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvar notas de um componente curricular no boletim em recuperacao",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaRecuperacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaRecuperacaoTest :: salvar notas de um componente curricular no boletim em recuperacao (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaRecuperacaoTest.php",
-                "linha": 126,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvar notas de um componente curricular no boletim em recuperacao com notas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaRecuperacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaRecuperacaoTest :: salvar notas de um componente curricular no boletim em recuperacao com notas lancadas (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaTest.php",
-                "linha": 27,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "adiciona nota no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaTest :: adiciona nota no boletim (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaTest.php",
-                "linha": 75,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvar notas de um componente curricular no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaTest :: salvar notas de um componente curricular no boletim (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/NotaTest.php",
-                "linha": 177,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvas notas de um componente com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\NotaTest :: salvas notas de um componente com etapas lancadas (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
-                "linha": 99,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "adiciona parecer no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteAnualTest",
+                "status": "skipped",
+                "assertions": 18,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteAnualTest :: adiciona parecer no boletim (<skipped/> no JUnit, assertions=18)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
-                "linha": 118,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (teste do próprio arquivo)",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteAnualTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteAnualTest :: salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (teste do próprio arquivo) (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
-                "linha": 123,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "adiciona parecer no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteEtapaTest",
+                "status": "skipped",
+                "assertions": 18,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteEtapaTest :: adiciona parecer no boletim (<skipped/> no JUnit, assertions=18)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
-                "linha": 142,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (teste do próprio arquivo)",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteEtapaTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteEtapaTest :: salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (teste do próprio arquivo) (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
-                "linha": 67,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "adiciona parecer no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralAnualTest",
+                "status": "skipped",
+                "assertions": 18,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralAnualTest :: adiciona parecer no boletim (<skipped/> no JUnit, assertions=18)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
-                "linha": 81,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralAnualTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralAnualTest :: salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (<skipped/> no JUnit, assertions=0)"
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
+                "caso": "salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (teste do próprio arquivo)",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralAnualTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralAnualTest :: salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (teste do próprio arquivo) (<skipped/> no JUnit, assertions=0)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php",
-                "linha": 107,
-                "detalhe": "$this->markTestSkipped();"
+                "caso": "adiciona parecer no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralEtapaTest",
+                "status": "skipped",
+                "assertions": 18,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralEtapaTest :: adiciona parecer no boletim (<skipped/> no JUnit, assertions=18)"
             },
             {
                 "arquivo": "tests/Unit/Modules/Service/UtilityTest.php",
-                "linha": 96,
-                "detalhe": "$this->markTestSkipped();"
-            },
-            {
-                "arquivo": "tests/Api/DiarioRecuperaBoletimTest.php",
-                "linha": 11,
-                "detalhe": "$this->markTestSkipped('Pacote de boletim instalado, o render em teste unitário não esta disponível');"
+                "caso": "prever nota para recuperacao",
+                "classe": "Tests\\Unit\\Modules\\Service\\UtilityTest",
+                "status": "skipped",
+                "assertions": 0,
+                "detalhe": "Tests\\Unit\\Modules\\Service\\UtilityTest :: prever nota para recuperacao (<skipped/> no JUnit, assertions=0)"
             }
         ],
+        "sem_assercao_detalhes": [],
+        "falhas_detalhes": [],
+        "arquivos_ausentes_no_junit": [],
         "arquivos": {
             "tests/Unit/Modules/Service/AvaliacaoServiceSituacaoTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/AvaliacaoServiceSituacaoTest.php",
                 "casos_declarados": 1,
                 "skips": 0,
-                "ativos": 1
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 75
             },
             "tests/Unit/Modules/Service/FaltaAlunoTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/FaltaAlunoTest.php",
                 "casos_declarados": 1,
                 "skips": 0,
-                "ativos": 1
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 14
             },
             "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
                 "casos_declarados": 4,
                 "skips": 3,
-                "ativos": 1
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 17
             },
             "tests/Unit/Modules/Service/FaltaComponenteTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
-                "casos_declarados": 3,
+                "casos_declarados": 5,
                 "skips": 4,
-                "ativos": 0
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 28
             },
             "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php",
                 "casos_declarados": 3,
                 "skips": 3,
-                "ativos": 0
+                "ativos": 0,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 0,
+                "assercoes": 0
             },
             "tests/Unit/Modules/Service/FaltaGeralTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
-                "casos_declarados": 3,
+                "casos_declarados": 5,
                 "skips": 4,
-                "ativos": 0
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 30
             },
             "tests/Unit/Modules/Service/InicializacaoTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/InicializacaoTest.php",
                 "casos_declarados": 4,
                 "skips": 1,
-                "ativos": 3
+                "ativos": 3,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 3,
+                "assercoes": 17
             },
             "tests/Unit/Modules/Service/NotaAlunoTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/NotaAlunoTest.php",
                 "casos_declarados": 1,
                 "skips": 0,
-                "ativos": 1
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 14
             },
             "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
                 "casos_declarados": 5,
                 "skips": 5,
-                "ativos": 0
+                "ativos": 0,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 0,
+                "assercoes": 0
             },
             "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
                 "casos_declarados": 5,
                 "skips": 5,
-                "ativos": 0
+                "ativos": 0,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 0,
+                "assercoes": 0
             },
             "tests/Unit/Modules/Service/NotaRecuperacaoTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/NotaRecuperacaoTest.php",
                 "casos_declarados": 2,
                 "skips": 2,
-                "ativos": 0
+                "ativos": 0,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 0,
+                "assercoes": 0
             },
             "tests/Unit/Modules/Service/NotaTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/NotaTest.php",
                 "casos_declarados": 4,
                 "skips": 3,
-                "ativos": 1
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 15
             },
             "tests/Unit/Modules/Service/ParecerDescritivoAlunoTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoAlunoTest.php",
                 "casos_declarados": 1,
                 "skips": 0,
-                "ativos": 1
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 19
             },
             "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
-                "casos_declarados": 1,
+                "casos_declarados": 6,
                 "skips": 2,
-                "ativos": 0
+                "ativos": 4,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 4,
+                "assercoes": 103
             },
             "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
-                "casos_declarados": 1,
+                "casos_declarados": 6,
                 "skips": 2,
-                "ativos": 0
+                "ativos": 4,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 4,
+                "assercoes": 103
             },
             "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
-                "casos_declarados": 1,
-                "skips": 2,
-                "ativos": 0
+                "casos_declarados": 6,
+                "skips": 3,
+                "ativos": 3,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 3,
+                "assercoes": 78
             },
             "tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php",
-                "casos_declarados": 1,
+                "casos_declarados": 5,
                 "skips": 1,
-                "ativos": 0
+                "ativos": 4,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 4,
+                "assercoes": 103
             },
             "tests/Unit/Modules/Service/PromocaoAlunoTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/PromocaoAlunoTest.php",
                 "casos_declarados": 9,
                 "skips": 0,
-                "ativos": 9
+                "ativos": 9,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 9,
+                "assercoes": 26
             },
             "tests/Unit/Modules/Service/UtilityTest.php": {
                 "arquivo": "tests/Unit/Modules/Service/UtilityTest.php",
                 "casos_declarados": 4,
                 "skips": 1,
-                "ativos": 3
+                "ativos": 3,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 3,
+                "assercoes": 45
             },
             "tests/Unit/Exceptions/Registration/MissingEvaluationRuleForCurrentYearTest.php": {
                 "arquivo": "tests/Unit/Exceptions/Registration/MissingEvaluationRuleForCurrentYearTest.php",
                 "casos_declarados": 1,
                 "skips": 0,
-                "ativos": 1
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 2
             },
             "tests/Unit/Exceptions/Enrollment/ExistsActiveEnrollmentSameTimeExceptionTest.php": {
                 "arquivo": "tests/Unit/Exceptions/Enrollment/ExistsActiveEnrollmentSameTimeExceptionTest.php",
                 "casos_declarados": 1,
                 "skips": 0,
-                "ativos": 1
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 1
             },
             "tests/Unit/Exceptions/Enrollment/PreviousEnrollCancellationDateExceptionTest.php": {
                 "arquivo": "tests/Unit/Exceptions/Enrollment/PreviousEnrollCancellationDateExceptionTest.php",
                 "casos_declarados": 1,
                 "skips": 0,
-                "ativos": 1
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 1
             },
             "tests/Unit/Exceptions/Enrollment/PreviousEnrollRegistrationDateExceptionTest.php": {
                 "arquivo": "tests/Unit/Exceptions/Enrollment/PreviousEnrollRegistrationDateExceptionTest.php",
                 "casos_declarados": 1,
                 "skips": 0,
-                "ativos": 1
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 1
             },
             "tests/Unit/Enum/RegistrationStatusTest.php": {
                 "arquivo": "tests/Unit/Enum/RegistrationStatusTest.php",
                 "casos_declarados": 3,
                 "skips": 0,
-                "ativos": 3
+                "ativos": 3,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 3,
+                "assercoes": 8
             },
             "tests/Feature/Services/EnrollmentServiceTest.php": {
                 "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
                 "casos_declarados": 27,
                 "skips": 0,
-                "ativos": 27
+                "ativos": 27,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 27,
+                "assercoes": 77
             },
             "tests/Feature/Commands/RegistrationReorderCommandTest.php": {
                 "arquivo": "tests/Feature/Commands/RegistrationReorderCommandTest.php",
                 "casos_declarados": 2,
                 "skips": 0,
-                "ativos": 2
+                "ativos": 2,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 2,
+                "assercoes": 5
             },
             "tests/Feature/Api/V2/NotasTest.php": {
                 "arquivo": "tests/Feature/Api/V2/NotasTest.php",
-                "casos_declarados": 32,
+                "casos_declarados": 36,
                 "skips": 0,
-                "ativos": 32
+                "ativos": 36,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 36,
+                "assercoes": 126
             },
             "tests/Feature/Api/V2/FaltasComponenteTest.php": {
                 "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
                 "casos_declarados": 21,
                 "skips": 0,
-                "ativos": 21
+                "ativos": 21,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 21,
+                "assercoes": 74
             },
             "tests/Feature/Api/V2/FaltasGeralTest.php": {
                 "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
                 "casos_declarados": 14,
                 "skips": 0,
-                "ativos": 14
+                "ativos": 14,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 14,
+                "assercoes": 49
             },
             "tests/Api/DiarioRecuperaBoletimTest.php": {
                 "arquivo": "tests/Api/DiarioRecuperaBoletimTest.php",
                 "casos_declarados": 1,
-                "skips": 1,
-                "ativos": 0
+                "skips": 0,
+                "ativos": 1,
+                "ativos_sem_assercao": 0,
+                "falhas": 0,
+                "ativos_com_assercao": 1,
+                "assercoes": 7
             }
-        }
+        },
+        "casos": [
+            {
+                "arquivo": "tests/Unit/Modules/Service/AvaliacaoServiceSituacaoTest.php",
+                "caso": "situacao aluno",
+                "classe": "Tests\\Unit\\Modules\\Service\\AvaliacaoServiceSituacaoTest",
+                "status": "passed",
+                "assertions": 75,
+                "time": 0.238482,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaAlunoTest.php",
+                "caso": "cria nova instancia de falta aluno",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaAlunoTest",
+                "status": "passed",
+                "assertions": 14,
+                "time": 0.08909,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
+                "caso": "situacao faltas em andamento",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteSituacaoTest",
+                "status": "passed",
+                "assertions": 17,
+                "time": 0.066879,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
+                "caso": "situacao faltas em andamento um componente aprovado de quatro totais",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.053453,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
+                "caso": "situacao faltas aprovado",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.052356,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
+                "caso": "situacao faltas reprovado",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.052841,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
+                "caso": "instancia de falta e registrada apenas uma vez no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest",
+                "status": "passed",
+                "assertions": 15,
+                "time": 0.068513,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
+                "caso": "adiciona falta no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest",
+                "status": "skipped",
+                "assertions": 13,
+                "time": 0.063954,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
+                "caso": "salvar faltas de um componente curricular no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.054755,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
+                "caso": "salvas faltas de um componente com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.052475,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaComponenteTest.php",
+                "caso": "salvas faltas de um componente e atualizada etapa da ultima instancia adicionada no boletim com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaComponenteTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.05323,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php",
+                "caso": "situacao faltas em andamento",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.057944,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php",
+                "caso": "situacao faltas aprovado",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.053673,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php",
+                "caso": "situacao faltas reprovado",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.053447,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
+                "caso": "instancia de falta e registrada apenas uma vez no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest",
+                "status": "passed",
+                "assertions": 15,
+                "time": 0.068256,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
+                "caso": "adiciona falta no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest",
+                "status": "skipped",
+                "assertions": 15,
+                "time": 0.066493,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
+                "caso": "salvar faltas no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.053135,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
+                "caso": "salvas faltas no boletim com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.053465,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/FaltaGeralTest.php",
+                "caso": "salvas faltas atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\FaltaGeralTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.058282,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/InicializacaoTest.php",
+                "caso": "instancia lanca excecao caso codigo de matricula nao seja informado",
+                "classe": "Tests\\Unit\\Modules\\Service\\InicializacaoTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.058883,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/InicializacaoTest.php",
+                "caso": "instancia lanca excecao com opcao nao aceita pela classe",
+                "classe": "Tests\\Unit\\Modules\\Service\\InicializacaoTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.054079,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/InicializacaoTest.php",
+                "caso": "dados de matricula inicializados",
+                "classe": "Tests\\Unit\\Modules\\Service\\InicializacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.053682,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/InicializacaoTest.php",
+                "caso": "instancia regra de avaliacao atraves de um numero de matricula",
+                "classe": "Tests\\Unit\\Modules\\Service\\InicializacaoTest",
+                "status": "passed",
+                "assertions": 15,
+                "time": 0.065723,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaAlunoTest.php",
+                "caso": "cria nova instancia de nota aluno",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaAlunoTest",
+                "status": "passed",
+                "assertions": 14,
+                "time": 0.070979,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.055816,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.054439,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.055907,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.054552,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+                "caso": "situacao componentes curriculares um componente lancado reprovado um componente abaixo da media",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaConceitualSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.055851,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados aprovados",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.073608,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados dois aprovados um andamento",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.057424,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame e dois aprovados",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.056277,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+                "caso": "situacao componentes curriculares um componente lancado em exame de quatro componentes totais lancados um aprovado apos exame um reprovado e outro aprovado",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.05703,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+                "caso": "situacao componentes curriculares um componente lancado reprovado um componente abaixo da media",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaNumericaSituacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.053538,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaRecuperacaoTest.php",
+                "caso": "salvar notas de um componente curricular no boletim em recuperacao",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaRecuperacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.057902,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaRecuperacaoTest.php",
+                "caso": "salvar notas de um componente curricular no boletim em recuperacao com notas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaRecuperacaoTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.05542,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaTest.php",
+                "caso": "instancia de nota componente e registrada apenas uma vez no boletiom",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaTest",
+                "status": "passed",
+                "assertions": 15,
+                "time": 0.066873,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaTest.php",
+                "caso": "adiciona nota no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.052392,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaTest.php",
+                "caso": "salvar notas de um componente curricular no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.053309,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/NotaTest.php",
+                "caso": "salvas notas de um componente com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\NotaTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.052985,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoAlunoTest.php",
+                "caso": "cria nova instancia de parecer descritivo aluno",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoAlunoTest",
+                "status": "passed",
+                "assertions": 19,
+                "time": 0.070666,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
+                "caso": "instancia de parecer e registrada apenas uma vez no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteAnualTest",
+                "status": "passed",
+                "assertions": 20,
+                "time": 0.067646,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
+                "caso": "adiciona parecer no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteAnualTest",
+                "status": "skipped",
+                "assertions": 18,
+                "time": 0.066047,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
+                "caso": "salvar pareceres no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteAnualTest",
+                "status": "passed",
+                "assertions": 23,
+                "time": 0.066897,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
+                "caso": "salvar pareceres no boletim com etapas ja lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteAnualTest",
+                "status": "passed",
+                "assertions": 21,
+                "time": 0.064542,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
+                "caso": "salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteAnualTest",
+                "status": "passed",
+                "assertions": 21,
+                "time": 0.066912,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
+                "caso": "salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (teste do próprio arquivo)",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteAnualTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.053552,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
+                "caso": "instancia de parecer e registrada apenas uma vez no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteEtapaTest",
+                "status": "passed",
+                "assertions": 20,
+                "time": 0.069509,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
+                "caso": "adiciona parecer no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteEtapaTest",
+                "status": "skipped",
+                "assertions": 18,
+                "time": 0.065837,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
+                "caso": "salvar pareceres no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteEtapaTest",
+                "status": "passed",
+                "assertions": 23,
+                "time": 0.068543,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
+                "caso": "salvar pareceres no boletim com etapas ja lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteEtapaTest",
+                "status": "passed",
+                "assertions": 21,
+                "time": 0.066239,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
+                "caso": "salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteEtapaTest",
+                "status": "passed",
+                "assertions": 21,
+                "time": 0.068326,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
+                "caso": "salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (teste do próprio arquivo)",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoComponenteEtapaTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.054034,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
+                "caso": "instancia de parecer e registrada apenas uma vez no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralAnualTest",
+                "status": "passed",
+                "assertions": 20,
+                "time": 0.070389,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
+                "caso": "adiciona parecer no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralAnualTest",
+                "status": "skipped",
+                "assertions": 18,
+                "time": 0.064589,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
+                "caso": "salvar pareceres no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralAnualTest",
+                "status": "passed",
+                "assertions": 20,
+                "time": 0.066632,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
+                "caso": "salvar pareceres no boletim com etapas ja lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralAnualTest",
+                "status": "passed",
+                "assertions": 20,
+                "time": 0.065254,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
+                "caso": "salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralAnualTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.054345,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
+                "caso": "salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas (teste do próprio arquivo)",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralAnualTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.053555,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php",
+                "caso": "instancia de parecer e registrada apenas uma vez no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralEtapaTest",
+                "status": "passed",
+                "assertions": 20,
+                "time": 0.071738,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php",
+                "caso": "adiciona parecer no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralEtapaTest",
+                "status": "skipped",
+                "assertions": 18,
+                "time": 0.066045,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php",
+                "caso": "salvar pareceres no boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralEtapaTest",
+                "status": "passed",
+                "assertions": 23,
+                "time": 0.067584,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php",
+                "caso": "salvar pareceres no boletim com etapas ja lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralEtapaTest",
+                "status": "passed",
+                "assertions": 21,
+                "time": 0.065777,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php",
+                "caso": "salvas pareceres atualizando etapa da ultima instancia adicionada no boletim com etapas lancadas",
+                "classe": "Tests\\Unit\\Modules\\Service\\ParecerDescritivoGeralEtapaTest",
+                "status": "passed",
+                "assertions": 21,
+                "time": 0.064755,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/PromocaoAlunoTest.php",
+                "caso": "promover aluno lanca excecao caso situacao esteja em andamento",
+                "classe": "Tests\\Unit\\Modules\\Service\\PromocaoAlunoTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.064198,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/PromocaoAlunoTest.php",
+                "caso": "promover aluno automaticamente progressao continuada",
+                "classe": "Tests\\Unit\\Modules\\Service\\PromocaoAlunoTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.056858,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/PromocaoAlunoTest.php",
+                "caso": "promover aluno automaticamente progressao nao continuada auto media presenca",
+                "classe": "Tests\\Unit\\Modules\\Service\\PromocaoAlunoTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.057942,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/PromocaoAlunoTest.php",
+                "caso": "reprovar aluno automaticamente progressao nao continuada auto media presenca",
+                "classe": "Tests\\Unit\\Modules\\Service\\PromocaoAlunoTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.061963,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/PromocaoAlunoTest.php",
+                "caso": "promover aluno automaticamente progressao nao continuada auto media",
+                "classe": "Tests\\Unit\\Modules\\Service\\PromocaoAlunoTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.057618,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/PromocaoAlunoTest.php",
+                "caso": "promover aluno manualmente progressao nao continuada",
+                "classe": "Tests\\Unit\\Modules\\Service\\PromocaoAlunoTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.057462,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/PromocaoAlunoTest.php",
+                "caso": "reprovar aluno manualmente progressao nao continuada",
+                "classe": "Tests\\Unit\\Modules\\Service\\PromocaoAlunoTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.059206,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/PromocaoAlunoTest.php",
+                "caso": "save boletim",
+                "classe": "Tests\\Unit\\Modules\\Service\\PromocaoAlunoTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.057407,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/PromocaoAlunoTest.php",
+                "caso": "integracao matricula promover aluno",
+                "classe": "Tests\\Unit\\Modules\\Service\\PromocaoAlunoTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.05801,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/UtilityTest.php",
+                "caso": "arredonda nota lanca excecao se parametro nao for numerico",
+                "classe": "Tests\\Unit\\Modules\\Service\\UtilityTest",
+                "status": "passed",
+                "assertions": 15,
+                "time": 0.074686,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/UtilityTest.php",
+                "caso": "arredonda nota numerica",
+                "classe": "Tests\\Unit\\Modules\\Service\\UtilityTest",
+                "status": "passed",
+                "assertions": 14,
+                "time": 0.066119,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/UtilityTest.php",
+                "caso": "arredonda nota conceitual",
+                "classe": "Tests\\Unit\\Modules\\Service\\UtilityTest",
+                "status": "passed",
+                "assertions": 16,
+                "time": 0.06946,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Modules/Service/UtilityTest.php",
+                "caso": "prever nota para recuperacao",
+                "classe": "Tests\\Unit\\Modules\\Service\\UtilityTest",
+                "status": "skipped",
+                "assertions": 0,
+                "time": 0.054011,
+                "contabilizado_ttae": false
+            },
+            {
+                "arquivo": "tests/Unit/Exceptions/Registration/MissingEvaluationRuleForCurrentYearTest.php",
+                "caso": "is a registration exception with a fixed message",
+                "classe": "Tests\\Unit\\Exceptions\\Registration\\MissingEvaluationRuleForCurrentYearTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.017826,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Exceptions/Enrollment/ExistsActiveEnrollmentSameTimeExceptionTest.php",
+                "caso": "message names the registration",
+                "classe": "Tests\\Unit\\Exceptions\\Enrollment\\ExistsActiveEnrollmentSameTimeExceptionTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.012876,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Exceptions/Enrollment/PreviousEnrollCancellationDateExceptionTest.php",
+                "caso": "message compares the exit date with the registration date",
+                "classe": "Tests\\Unit\\Exceptions\\Enrollment\\PreviousEnrollCancellationDateExceptionTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.015774,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Exceptions/Enrollment/PreviousEnrollRegistrationDateExceptionTest.php",
+                "caso": "message compares the enrollment date with the registration date",
+                "classe": "Tests\\Unit\\Exceptions\\Enrollment\\PreviousEnrollRegistrationDateExceptionTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.015532,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Enum/RegistrationStatusTest.php",
+                "caso": "descriptive values",
+                "classe": "Tests\\Unit\\Enum\\RegistrationStatusTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.013142,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Enum/RegistrationStatusTest.php",
+                "caso": "inactive statuses",
+                "classe": "Tests\\Unit\\Enum\\RegistrationStatusTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.011608,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Unit/Enum/RegistrationStatusTest.php",
+                "caso": "registration and enrollment status calls the retained student reproved",
+                "classe": "Tests\\Unit\\Enum\\RegistrationStatusTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.011511,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "cancel enrollment",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.091314,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "cancelamento que falha ao gravar desfaz e devolve falso",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.075089,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "cancellation date before academic year exception",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.072113,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "cancellation date after academic year exception",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.068901,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "previous cancellation date exception",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.068548,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "enroll",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.074988,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "no vacancy exception",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.071734,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "exists active enrollment exception",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.077432,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "enroll date before academic year exception",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.087464,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "enroll date before academic year allowed",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.077001,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "enroll date after academic year exception",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.073165,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "previous enroll date exception",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.072199,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "get previous enrollment withou relocation date",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.070521,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "get previous enrollment with relocation date before departed date",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.070688,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "get previous enrollment with relocation date after departed date",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.070683,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "reorder",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.071357,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "find find all is enrolled and another classroom enrollments",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 6,
+                "time": 0.092709,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "cancel before the registration date exception",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.069073,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "enroll before the registration date exception",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.074538,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "create from screen",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 6,
+                "time": 0.082595,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "update from screen",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 18,
+                "time": 0.08186,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "register departures ignore invalid ids and reclassification closes everything",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 7,
+                "time": 0.069338,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "marks each situation",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 9,
+                "time": 0.07291,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "previous enrollment is null without enrollments",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.067587,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "reorder school class renumbers the valid enrollments and sends the given one to the end",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 5,
+                "time": 0.098282,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "update exit date",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.08943,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Services/EnrollmentServiceTest.php",
+                "caso": "exists active enrollment same time exception",
+                "classe": "Tests\\Feature\\Services\\EnrollmentServiceTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.092589,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Commands/RegistrationReorderCommandTest.php",
+                "caso": "reordena os sequenciais das enturmações da matrícula",
+                "classe": "Tests\\Feature\\Commands\\RegistrationReorderCommandTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.137075,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Commands/RegistrationReorderCommandTest.php",
+                "caso": "avisa quando a matrícula não existe",
+                "classe": "Tests\\Feature\\Commands\\RegistrationReorderCommandTest",
+                "status": "passed",
+                "assertions": 1,
+                "time": 0.032402,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects request without token",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.098644,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects request with invalid token",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.077934,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "stores discipline score",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 5,
+                "time": 0.149067,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "updates the score when posting the same stage twice",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 5,
+                "time": 0.170922,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects score above the rule maximum",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.101219,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "accepts score equal to the rule maximum",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.127771,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects remedial score that raises the score above the maximum",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.099695,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "accepts score above the maximum when rule sums the remedial score",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.127462,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects score below the rule minimum",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.100007,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects exam score above the exam maximum",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.103649,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "exam score is not limited by the general maximum",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.127861,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "does not store when previous stages have no scores",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 5,
+                "time": 0.109015,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "stores score when previous stages have scores",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.168164,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "does not store when registration is not found",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.079973,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "does not store when discipline does not belong to school class",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.087442,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects request without discipline",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.077715,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "stores score with more than four decimal places truncated",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.126923,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects stage in an invalid format",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.079586,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "stores scores in stages above four when the school calendar has them",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 8,
+                "time": 0.330469,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "stores score of a discipline partially exempted and removes its exam score",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.137883,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "calculates the discipline average without the exempted stages",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.136134,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "ignores exempted stages outside the school calendar when calculating the average",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.133154,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "discounts the exempted stage from the specific stages of the discipline",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.131237,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects score in a stage exempted for the registration",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 5,
+                "time": 0.151827,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects exam score of a discipline exempted in every stage",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.106092,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "stores exam score of a discipline exempted only in some stages",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.175726,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects exam score of a discipline exempted in every specific stage",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.113731,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects score of a discipline outside the dependency of the registration",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.113296,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "unexpected failure answers 500 with the reason",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.088258,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects score in scientific notation with data set \"('nota')\"",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.080194,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects score in scientific notation with data set \"('recuperacao')\"",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.079111,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects stage greater than the school class stages with data set \"dataset \"etapa 4 com a 3ª etapa sem nota\"\"",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 5,
+                "time": 0.185448,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects stage greater than the school class stages with data set \"dataset \"etapa 99 com a 3ª etapa sem nota\"\"",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 5,
+                "time": 0.18313,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects stage greater than the school class stages with data set \"dataset \"etapa 4 com todas as etapas lançadas\"\"",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 6,
+                "time": 0.228061,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects score in a stage outside the specific stages of the discipline with data set \"dataset \"etapas específicas na turma\"\"",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.111689,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/NotasTest.php",
+                "caso": "rejects score in a stage outside the specific stages of the discipline with data set \"dataset \"etapas específicas na série da escola\"\"",
+                "classe": "Tests\\Feature\\Api\\V2\\NotasTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.109835,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "rejects request without token",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.033301,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "rejects request with invalid token",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.023793,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "requires mandatory fields",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 7,
+                "time": 0.036477,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "rejects negative absences",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.033608,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "rejects stage lower than one",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.028418,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "rejects non integer knowledge area",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.0268,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "does not store when registration is not found",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.026791,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "stores discipline absence when rule is by component",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 7,
+                "time": 0.103446,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "accepts zero absences",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.098797,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "updates the amount when posting the same stage twice",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 5,
+                "time": 0.119436,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "does not allow discipline absence when rule is general",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.084726,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "does not store when discipline does not belong to school class",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.085318,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "distributes absences among grouped disciplines of the knowledge area",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 5,
+                "time": 0.115374,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "does not store when knowledge area has no grouped disciplines in school class",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.081791,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "distributes absences by knowledge area without informing the discipline",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.104557,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "requires the discipline when knowledge area is not informed",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.074331,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "rejects stage outside the school calendar",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.09906,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "stores absence in stages above four when the school calendar has them",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.103592,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "stores absence of each grade in a multigrade school class",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 5,
+                "time": 0.148257,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "rejects discipline of another grade in a multigrade school class",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.113716,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasComponenteTest.php",
+                "caso": "unexpected failure answers 500 with the reason",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasComponenteTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.087968,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "rejects request without token",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.03358,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "rejects request with invalid token",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.025349,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "requires mandatory fields",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 6,
+                "time": 0.026003,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "rejects negative absences",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.027766,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "rejects stage lower than one",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.026389,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "stores general absence when rule is general attendance",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 7,
+                "time": 0.106571,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "accepts zero absences",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.101494,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "updates the amount when posting the same stage twice",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 5,
+                "time": 0.125673,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "does not allow general absence when rule is by component",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.079152,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "does not store when registration is not found",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.026732,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "rejects stage outside the school calendar",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 3,
+                "time": 0.143344,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "stores absence in stages above four when the school calendar has them",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.124542,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "unexpected failure answers 500 with the reason",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 2,
+                "time": 0.095003,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Feature/Api/V2/FaltasGeralTest.php",
+                "caso": "rejects registration whose enrollment is in an inactive school class",
+                "classe": "Tests\\Feature\\Api\\V2\\FaltasGeralTest",
+                "status": "passed",
+                "assertions": 4,
+                "time": 0.082124,
+                "contabilizado_ttae": true
+            },
+            {
+                "arquivo": "tests/Api/DiarioRecuperaBoletimTest.php",
+                "caso": "recupera boletim estrutura",
+                "classe": "Tests\\Api\\DiarioRecuperaBoletimTest",
+                "status": "passed",
+                "assertions": 7,
+                "time": 0.088588,
+                "contabilizado_ttae": true
+            }
+        ]
     }
 }

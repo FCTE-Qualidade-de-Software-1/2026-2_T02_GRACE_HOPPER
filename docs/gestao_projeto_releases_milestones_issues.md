@@ -684,10 +684,10 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
     - **Change:** Congelar mapa caminho -> componente para calcular $C_a, C_e, N_a, N_c, A, I, D$ (M8); auditar adaptações defensivas nos modelos `Legacy*` (M9); executar PHPUnit/Pest nos diretórios de teste do manifesto para contar casos declarados, ativos com asserção e *skipped* (`markTestSkipped()`) (M11).
     - **Covers:** Questões Q3.2, Q3.3 e Q3.5, Hipóteses H3.2, H3.3 e H3.5, e Métricas M8 (DSPM), M9 (IFDL) e M11 (TTAE).
     - **Acceptance criteria:**
-        - Tabela por componente com $C_a, C_e, A, I, D_p$ e média $\text{DSPM}$ (M8: 0,4214, Regular $S=2$, H3.2 confirmada).
+        - Tabela por componente com $C_a, C_e, A, I, D_p$ e média $\text{DSPM}$ (M8: 0,3784, Regular $S=2$, H3.2 confirmada).
         - Manifesto dos modelos `Legacy*` com localização (arquivo/linha/categoria) de cada adaptação defensiva e cálculo de $\text{IFDL}$ (M9: 4,5556, Crítico $S=1$, H3.3 refutada).
-        - Relatório de execução do runner Pest/PHPUnit comprovando $N_{\text{declarados}}$, $N_{\text{ativos com asserção}}$, contagem de `markTestSkipped()` e valor final de $\text{TTAE}$ (M11: 75,32%, Regular $S=2$, H3.5 confirmada).
-    - **Tests:** `php scripts/evaluate-quality.php && php scripts/tests/evaluate_quality_test.php && bash scripts/docs/check_site.sh`.
+        - Relatório de execução real do runner Pest/PHPUnit (JUnit XML) comprovando 185 casos descobertos, 146 ativos com asserção (`0` sem asserção, `0` falhas), 39 `<skipped/>` e valor final de $\text{TTAE}$ (M11: 78,92%, Regular $S=2$, H3.5 confirmada).
+    - **Tests:** `php scripts/evaluate-quality.php --path=./i-educar-src --m11-junit=evidencias/g3_manutenibilidade/m11_runner_junit.xml && php scripts/tests/evaluate_quality_test.php && bash scripts/docs/check_site.sh`.
     - **Risk:** none.
 
 #### Issue #45 — Testes de Proteção contra Erros do Usuário (Gate M12 — IPPE) e Auditoria de Mensagens (M13 — ADMV)
@@ -701,14 +701,14 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Depends on:** Issue #38.
 - **Scope:** Fluxos de Matrícula e Diário de Classe, validações `validatesCanChangeDiarioForAno`, `validatesPeriodoLancamentoFaltasNotas`, `Portabilis_Messenger` e `src/Support/Exceptions/Error.php`.
 - [x] **Task:** Submeter catálogo de cenários inválidos (M12) e classificar mensagens de erro com revisão por pares (M13)
-    - **Files:** `scripts/uso/avaliar_m12_m13.py`, `scripts/uso/test_avaliar_m12_m13.py`, `evidencias/g4_interacao_uso/m12_catalogo/`, `docs/evidencias/g4_interacao_uso/`, `docs/fase-4/interacao-m12-m13.md`
-    - **Change:** Executar no mínimo 12 cenários inválidos (3 por categoria: nota fora da faixa, etapa encerrada/bloqueada, menção inexistente e matrícula com conflito temporal), conferindo no banco ausência de gravação e ausência de erro 500 (M12); classificar cada mensagem por 2 avaliadores independentes quanto a causa + ação corretiva (M13).
+    - **Files:** `scripts/uso/avaliar_m12_m13.py`, `scripts/uso/test_avaliar_m12_m13.py`, `evidencias/g4_interacao_uso/m12_catalogo/`, `evidencias/g4_interacao_uso/capturas_m12/`, `docs/evidencias/g4_interacao_uso/`, `docs/fase-4/interacao-m12-m13.md`
+    - **Change:** Executar no mínimo 12 cenários inválidos (3 por categoria: nota fora da faixa, etapa encerrada/bloqueada, menção inexistente e matrícula com conflito temporal) contra o produto em execução, capturando HTTP bruto e conferência SQL antes/depois (M12); classificar cada mensagem por 2 avaliadores independentes quanto a causa + ação corretiva (M13).
     - **Covers:** Questões Q4.1 e Q4.2, Hipóteses H4.1 e H4.2, Gate Binário M12 (IPPE) e Métrica M13 (ADMV).
     - **Acceptance criteria:**
-        - Catálogo de 12 cenários inválidos congelado com SHA-256 e executado com evidência de status HTTP 422, bloqueio amigável e ausência de gravação no banco ($\text{IPPE} = 100{,}0\%$, Gate M12 Aprovado, H4.1 confirmada).
-        - Planilha/tabela de classificação dupla independente das mensagens exibidas (causa identificada + ação corretiva indicada) com resolução de consenso ($\text{ADMV} = 83{,}33\%$, Regular $S=2$, H4.2 confirmada).
+        - Catálogo de 12 cenários inválidos congelado com SHA-256 e executado em runtime contra i-Educar + PostgreSQL com capturas HTTP/SQL brutas (`422` API v2, `200 any_error_msg` API legada, `302 -> 200` web flash error), bloqueio amigável e `delta = 0` no banco ($\text{IPPE} = 100{,}0\%$, Gate M12 Aprovado, H4.1 confirmada).
+        - Planilha/tabela de classificação dupla independente das mensagens exibidas (causa identificada + ação corretiva indicada, vinculadas via `mensagem_sha256` às capturas reais) com resolução de consenso ($\text{ADMV} = 75{,}00\%$, Crítico $S=1$, H4.2 refutada).
         - Cálculo final de $\text{IPPE}$ (Gate M12) e $\text{ADMV}$ (M13) documentados na GitPage e validados em script reproduzível.
-    - **Tests:** `python3 -m unittest scripts/uso/test_avaliar_m12_m13.py && python3 scripts/uso/avaliar_m12_m13.py && bash scripts/docs/check_site.sh`.
+    - **Tests:** `python3 -m unittest -v scripts/uso/test_avaliar_m12_m13.py && python3 scripts/uso/avaliar_m12_m13.py --path=./i-educar-src --capturas-dir=evidencias/g4_interacao_uso/capturas_m12 && bash scripts/docs/check_site.sh`.
     - **Risk:** none.
 
 ---
