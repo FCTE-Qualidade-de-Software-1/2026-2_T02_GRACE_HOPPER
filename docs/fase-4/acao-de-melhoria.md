@@ -1,6 +1,6 @@
 # Ação de melhoria: refatoração de `getSituacaoNotas`
 
-Ação de melhoria da Entrega 2, escolhida a partir dos resultados de manutenibilidade da [Fase 4](manutenibilidade-m7-m10.md). A melhoria é uma refatoração do método `Avaliacao_Service_Boletim::getSituacaoNotas` do i-Educar, entregue como *patch* sobre o commit avaliado, com teste de equivalência de comportamento e nova medição pelo motor estático da equipe.
+Ação de melhoria da Entrega 2 ([Issue #56](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/56)), escolhida a partir dos resultados de manutenibilidade da [Fase 4](manutenibilidade-m7-m10.md). A melhoria é uma refatoração do método `Avaliacao_Service_Boletim::getSituacaoNotas` do i-Educar, entregue como *patch* sobre o commit avaliado, com teste de equivalência de comportamento e nova medição pelo motor estático da equipe.
 
 ## 1. Justificativa
 
