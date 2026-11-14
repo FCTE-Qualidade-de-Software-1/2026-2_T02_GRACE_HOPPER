@@ -147,6 +147,41 @@ def coletar(cli: Cliente) -> dict:
             "build_ok": builds_ok.get(sha, False),
         })
 
+    contribuidores: dict[str, int] = {}
+    try:
+        contrib_api = cli.todos("/contributors?per_page=100")
+        for c in contrib_api:
+            if c.get("login"):
+                contribuidores[c["login"]] = c.get("contributions", 0)
+    except Exception:
+        pass
+
+    import subprocess
+    try:
+        out = subprocess.check_output(["git", "shortlog", "-sn", "--all"], text=True)
+        alias_map = {
+            "arthur parente": "ArthurDevWorks",
+            "arthurdevworks": "ArthurDevWorks",
+            "gustavo rodrigues": "g-srodrigues",
+            "italo alves": "ItaloSamP",
+            "ítalo alves": "ItaloSamP",
+            "gabriel barbaceli": "Nibaacriba",
+            "fabio": "fabiofonteles1",
+            "fabio araujo": "fabiofonteles1",
+        }
+        git_counts: dict[str, int] = {}
+        for linha in out.strip().splitlines():
+            partes = linha.strip().split("\t")
+            if len(partes) == 2:
+                qtd, nome = int(partes[0].strip()), partes[1].strip().lower()
+                login = alias_map.get(nome)
+                if login:
+                    git_counts[login] = git_counts.get(login, 0) + qtd
+        for l, q in git_counts.items():
+            contribuidores[l] = max(contribuidores.get(l, 0), q)
+    except Exception:
+        pass
+
     return {
         "repositorio": cli.repo,
         "coletado_em": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -159,6 +194,7 @@ def coletar(cli: Cliente) -> dict:
         } for m in milestones],
         "issues": issues,
         "prs": prs,
+        "contribuidores": contribuidores,
         "workflow_criado_em": min((r["created_at"] for r in execucoes if r.get("name") == WORKFLOW_BUILD), default=None),
     }
 

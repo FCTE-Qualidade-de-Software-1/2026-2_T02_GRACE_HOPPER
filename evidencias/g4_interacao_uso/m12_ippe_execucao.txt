@@ -1,0 +1,104 @@
+================================================================================
+RELATÓRIO DE EXECUÇÃO DO GATE M12 (IPPE) E AUDITORIA M13 (ADMV)
+================================================================================
+Data de apuração: 2026-11-14T19:05:54.139859+00:00
+Alvo do produto: i-educar-src
+Diretório de capturas: evidencias/g4_interacao_uso/capturas_m12
+Capturas verificadas: 12/12
+Commit analisado: 7903a3efc7689942ee700007f86ed581023aad27
+Responsável: Gabriel Barbaceli (@Nibaacriba)
+Revisor por pares: Ítalo Sampaio (@ItaloSamP)
+--------------------------------------------------------------------------------
+RESULTADOS DOS GATES E MÉTRICAS:
+  • Gate M12 (IPPE): 100.0% -> APROVADO
+  • Hipótese H4.1: Confirmada
+  • M13 (ADMV): 75.0% -> Nível Crítico (S=1)
+  • Hipótese H4.2: Refutada
+--------------------------------------------------------------------------------
+DETALHAMENTO DOS 12 CENÁRIOS SUBMETIDOS:
+[C1.1] C1_NOTA_FORA_DA_FAIXA - Nota decimal acima da nota máxima geral configurada na regra
+      Requisição: POST /api/v2/notas
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      SQL (modules.nota_componente_curricular): antes=2 depois=2 delta=0
+      Captura: capturas_m12/C1.1.json (SHA-256 body=da052d59d05be39e72bcf8c27ce90e61e837a98051408d97483b1a961e415f6b)
+      Mensagem: "A nota 11 está acima da configurada para nota máxima geral que é 10."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA | Vínculo=True
+[C1.2] C1_NOTA_FORA_DA_FAIXA - Nota decimal inferior à nota mínima geral configurada na regra
+      Requisição: POST /api/v2/notas
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      SQL (modules.nota_componente_curricular): antes=2 depois=2 delta=0
+      Captura: capturas_m12/C1.2.json (SHA-256 body=77dfcbecea4b5958f53fc38dc5d798ab1e092fbfe3cc84a1f7678f085870d9cb)
+      Mensagem: "A nota -1.5 está abaixo da configurada para nota mínima geral que é 0."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA | Vínculo=True
+[C1.3] C1_NOTA_FORA_DA_FAIXA - Nota de exame final acima do teto de exame configurado na regra
+      Requisição: POST /api/v2/notas
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      SQL (modules.nota_exame): antes=0 depois=0 delta=0
+      Captura: capturas_m12/C1.3.json (SHA-256 body=9476bce8437e651bcf0542de9d6093667886486a229316238ee7090645b781db)
+      Mensagem: "A nota 10.5 está acima da configurada para nota máxima para exame que é 10."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA | Vínculo=True
+[C2.1] C2_ETAPA_ANO_BLOQUEADO - Lançamento em ano letivo já encerrado com bloqueio ativo na escola
+      Requisição: GET /module/Avaliacao/diarioApi?resource=matriculas&oper=get&instituicao_id=192&escola_id=414&curso_id=337&serie_id=283&turma_id=132&ano=2023&etapa=1&matricula_id=208&componente_curricular_id=410
+      Status: HTTP 200 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      SQL (modules.nota_aluno): antes=8 depois=8 delta=0
+      Captura: capturas_m12/C2.1.json (SHA-256 body=884a1227f59681a6d6f310ec85ae1a08e61f01e61e4af514db2ee1abf2e17213)
+      Mensagem: "O ano letivo '2023' está encerrado, esta escola está configurada para não permitir alterar o diário de anos letivos encerrados."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA | Vínculo=True
+[C2.2] C2_ETAPA_ANO_BLOQUEADO - Lançamento em período institucional bloqueado por calendário
+      Requisição: GET /module/Avaliacao/diarioApi?resource=matriculas&oper=get&instituicao_id=192&escola_id=419&curso_id=338&serie_id=284&turma_id=133&ano=2026&etapa=1&matricula_id=209&componente_curricular_id=411
+      Status: HTTP 200 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      SQL (modules.nota_aluno): antes=8 depois=8 delta=0
+      Captura: capturas_m12/C2.2.json (SHA-256 body=cf66d59bccc0085d96eb5a1b58c5ef38815b3b3f895d454b1cd73fb44eb4ad64)
+      Mensagem: "O lançamento de notas nessa instituição está bloqueado nesta data."
+      Auditoria M13: Causa=SIM | Ação=NÃO | Classificação=PARCIALMENTE_AUTODESCRITIVA | Vínculo=True
+[C2.3] C2_ETAPA_ANO_BLOQUEADO - Lançamento fora do período configurado para a etapa do curso
+      Requisição: GET /module/Avaliacao/diarioApi?resource=nota&oper=post&instituicao_id=192&escola_id=424&curso_id=339&serie_id=285&turma_id=134&ano=2026&ano_escolar=2026&etapa=1&matricula_id=210&componente_curricular_id=412&att_value=8.0
+      Status: HTTP 200 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      SQL (modules.nota_componente_curricular): antes=2 depois=2 delta=0
+      Captura: capturas_m12/C2.3.json (SHA-256 body=e38e82e2b4dd49b8ad7f248ec27cc942bb57e5a2bfd7fe2295810e7fff294480)
+      Mensagem: "Não é permitido realizar esta alteração fora do período de lançamento de notas/faltas."
+      Auditoria M13: Causa=SIM | Ação=NÃO | Classificação=PARCIALMENTE_AUTODESCRITIVA | Vínculo=True
+[C3.1] C3_MENCAO_CONCEITUAL_INVALIDA - Submissão de menção textual ('ÓTIMO') em endpoint numérico /api/v2/notas
+      Requisição: POST /api/v2/notas
+      Status: HTTP 422 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      SQL (modules.nota_componente_curricular): antes=2 depois=2 delta=0
+      Captura: capturas_m12/C3.1.json (SHA-256 body=23c30f1a8530a4ed746d6f39832767c6cf03eb5c17b7794c496c4e3f442ac1f7)
+      Mensagem: "O campo nota deve ser um número. (e mais 1 erro)"
+      Auditoria M13: Causa=SIM | Ação=NÃO | Classificação=PARCIALMENTE_AUTODESCRITIVA | Vínculo=True
+[C3.2] C3_MENCAO_CONCEITUAL_INVALIDA - Submissão de valor numérico contínuo em regra exclusivamente conceitual
+      Requisição: GET /module/Avaliacao/diarioApi?resource=nota&oper=post&instituicao_id=192&escola_id=434&curso_id=341&serie_id=287&turma_id=136&ano=2026&ano_escolar=2026&etapa=1&matricula_id=212&componente_curricular_id=414&att_value=8.5
+      Status: HTTP 200 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      SQL (modules.nota_componente_curricular): antes=2 depois=2 delta=0
+      Captura: capturas_m12/C3.2.json (SHA-256 body=9264b99efb96b7036966db477de80f10dfa4dcb084501a21b580b1ca62e94d5d)
+      Mensagem: "Nota não lançada, pois a regra de avaliação não utiliza nota."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA | Vínculo=True
+[C3.3] C3_MENCAO_CONCEITUAL_INVALIDA - Submissão sem identificadores obrigatórios no payload do diário
+      Requisição: GET /module/Avaliacao/diarioApi?resource=matriculas&oper=get&instituicao_id=192&escola_id=409&curso_id=336&serie_id=282&turma_id=131&ano=2026&etapa=1
+      Status: HTTP 200 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      SQL (modules.nota_aluno): antes=10 depois=10 delta=0
+      Captura: capturas_m12/C3.3.json (SHA-256 body=2a0c7a5eb9bed9207a98f56e5cc61b4bbe8d125a7ccb382641d168c363dc513b)
+      Mensagem: "É necessário receber matricula_id ou componente_curricular_id."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA | Vínculo=True
+[C4.1] C4_MATRICULA_CONFLITO_TEMPORAL - Enturmação em turma sem vagas remanescentes
+      Requisição: POST /matricula/214/enturmar/137
+      Status: HTTP 302 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      SQL (pmieducar.matricula_turma): antes=35 depois=35 delta=0
+      Captura: capturas_m12/C4.1.json (SHA-256 body=6851f518655793f945260478f22ed3055cef1dd7735961f7b331399224a8812b)
+      Mensagem: "Não há vagas na turma "6º Ano A (2026)" #137."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA | Vínculo=True
+[C4.2] C4_MATRICULA_CONFLITO_TEMPORAL - Data de enturmação anterior à data de início do ano letivo da turma
+      Requisição: POST /matricula/215/enturmar/138
+      Status: HTTP 302 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      SQL (pmieducar.matricula_turma): antes=35 depois=35 delta=0
+      Captura: capturas_m12/C4.2.json (SHA-256 body=f4a877208d6d617a1506b4675829733a52993342fa68e853f34313d2a9aa6fad)
+      Mensagem: "A data de enturmação 10/01/2026 é anterior ao início do ano acadêmico 01/02/2026."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA | Vínculo=True
+[C4.3] C4_MATRICULA_CONFLITO_TEMPORAL - Tentativa de enturmação ativa concomitante para a mesma matrícula
+      Requisição: POST /matricula/216/enturmar/139
+      Status: HTTP 302 | Bloqueio amigável: SIM | Persistência indesejada: NÃO | Erro 500: NÃO
+      SQL (pmieducar.matricula_turma): antes=36 depois=36 delta=0
+      Captura: capturas_m12/C4.3.json (SHA-256 body=578ab70ed55eac9e236b386b1101a9bf8770e268771a7f584b9308986bbf3b97)
+      Mensagem: "Existe outra enturmação ativa para a matrícula 216."
+      Auditoria M13: Causa=SIM | Ação=SIM | Classificação=TOTALMENTE_AUTODESCRITIVA | Vínculo=True
+================================================================================
+FIM DO RELATÓRIO DE EVIDÊNCIA M12 / M13

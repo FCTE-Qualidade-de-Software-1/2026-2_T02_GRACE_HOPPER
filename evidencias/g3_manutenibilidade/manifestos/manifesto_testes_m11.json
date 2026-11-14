@@ -1,0 +1,53 @@
+{
+  "versao": "1.0.0",
+  "data_congelamento": "2026-11-12T01:30:00+00:00",
+  "descricao": "Manifesto congelado dos arquivos de teste dos domínios de Matrícula e Notas/Diário para apuração da Taxa de Testes Ativos com Asserção (M11 — TTAE)",
+  "diretorios_escopo": [
+    "tests/Unit/Modules/Service",
+    "tests/Unit/Exceptions/Registration",
+    "tests/Unit/Exceptions/Enrollment",
+    "tests/Unit/Enum",
+    "tests/Feature/Services",
+    "tests/Feature/Commands",
+    "tests/Feature/Api/V2",
+    "tests/Api"
+  ],
+  "arquivos_teste": [
+    "tests/Unit/Modules/Service/AvaliacaoServiceSituacaoTest.php",
+    "tests/Unit/Modules/Service/FaltaAlunoTest.php",
+    "tests/Unit/Modules/Service/FaltaComponenteSituacaoTest.php",
+    "tests/Unit/Modules/Service/FaltaComponenteTest.php",
+    "tests/Unit/Modules/Service/FaltaGeralSituacaoTest.php",
+    "tests/Unit/Modules/Service/FaltaGeralTest.php",
+    "tests/Unit/Modules/Service/InicializacaoTest.php",
+    "tests/Unit/Modules/Service/NotaAlunoTest.php",
+    "tests/Unit/Modules/Service/NotaConceitualSituacaoTest.php",
+    "tests/Unit/Modules/Service/NotaNumericaSituacaoTest.php",
+    "tests/Unit/Modules/Service/NotaRecuperacaoTest.php",
+    "tests/Unit/Modules/Service/NotaTest.php",
+    "tests/Unit/Modules/Service/ParecerDescritivoAlunoTest.php",
+    "tests/Unit/Modules/Service/ParecerDescritivoComponenteAnualTest.php",
+    "tests/Unit/Modules/Service/ParecerDescritivoComponenteEtapaTest.php",
+    "tests/Unit/Modules/Service/ParecerDescritivoGeralAnualTest.php",
+    "tests/Unit/Modules/Service/ParecerDescritivoGeralEtapaTest.php",
+    "tests/Unit/Modules/Service/PromocaoAlunoTest.php",
+    "tests/Unit/Modules/Service/UtilityTest.php",
+    "tests/Unit/Exceptions/Registration/MissingEvaluationRuleForCurrentYearTest.php",
+    "tests/Unit/Exceptions/Enrollment/ExistsActiveEnrollmentSameTimeExceptionTest.php",
+    "tests/Unit/Exceptions/Enrollment/PreviousEnrollCancellationDateExceptionTest.php",
+    "tests/Unit/Exceptions/Enrollment/PreviousEnrollRegistrationDateExceptionTest.php",
+    "tests/Unit/Enum/RegistrationStatusTest.php",
+    "tests/Feature/Services/EnrollmentServiceTest.php",
+    "tests/Feature/Commands/RegistrationReorderCommandTest.php",
+    "tests/Feature/Api/V2/NotasTest.php",
+    "tests/Feature/Api/V2/FaltasComponenteTest.php",
+    "tests/Feature/Api/V2/FaltasGeralTest.php",
+    "tests/Api/DiarioRecuperaBoletimTest.php"
+  ],
+  "regras_contabilizacao": {
+    "declarados": "Total de casos de teste declarados e registrados nos arquivos do manifesto",
+    "ativos": "Casos de teste executados pelo runner que não foram suprimidos por markTestSkipped()",
+    "com_assercao": "Casos de teste ativos que executam ao menos uma asserção de teste",
+    "ttae_formula": "TTAE = (N_ativos_com_assercao / N_declarados) * 100"
+  }
+}

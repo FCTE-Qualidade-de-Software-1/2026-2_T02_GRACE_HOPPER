@@ -1,0 +1,1544 @@
+{
+    "instrumento": {
+        "nome": "scripts/evaluate-quality.php",
+        "versao": "3.0.0",
+        "php": "8.2.17",
+        "tokenizador": "token_get_all (TOKEN_PARSE)"
+    },
+    "timestamp": "2026-11-14T18:50:59+00:00",
+    "commit": "7903a3efc7689942ee700007f86ed581023aad27",
+    "status": "executado",
+    "manifesto": [
+        "app/Services/RegistrationService.php",
+        "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+        "ieducar/modules/Avaliacao/Views/DiarioController.php",
+        "ieducar/modules/Avaliacao/Service/Boletim.php"
+    ],
+    "excluidos": [],
+    "regras": {
+        "unidade": "Callable concreto com corpo (método de classe, trait ou enum, ou função nomeada). Declarações abstratas e de interface são excluídas e listadas. Closures e funções anônimas são contadas dentro do callable que as contém.",
+        "cc": "v(G) = 1 + pontos de decisão no corpo: if, elseif, for, foreach, while, case, braço de match (exceto default), catch, &&, ||, and, or, ?? e ternário (?). \"else if\" conta pelo if. \"?\" logo após \"(\", \",\" ou \":\" é tipo anulável e não conta.",
+        "p90": "Nearest rank: r = ceil(0,90 n), P90 = x_(r), sem interpolação."
+    },
+    "M7a_CC_P90": {
+        "name": "Complexidade Ciclomática P90",
+        "symbol": "CC_P90",
+        "value": 8,
+        "threshold_excellent": "<= 10",
+        "threshold_critical": "> 20",
+        "status": "Coletado (Fase 4)",
+        "n": 213,
+        "posto": 192,
+        "S": 4,
+        "faixa": "Excelente",
+        "hipotese": {
+            "id": "H3.1",
+            "criterio": "10 < CC_P90 <= 20 e CC_max > 30",
+            "resultado": "Refutada"
+        }
+    },
+    "M7b_CC_MAX": {
+        "name": "Complexidade Ciclomática Máxima",
+        "symbol": "CC_max",
+        "value": 72,
+        "threshold_excellent": "<= 15",
+        "threshold_critical": "> 50",
+        "status": "Coletado (Fase 4)",
+        "n": 213,
+        "S": 1,
+        "faixa": "Crítico"
+    },
+    "inventario": [
+        {
+            "cc": 1,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::__construct",
+            "linha_inicio": 28,
+            "linha_fim": 31
+        },
+        {
+            "cc": 1,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::findAll",
+            "linha_inicio": 36,
+            "linha_fim": 41
+        },
+        {
+            "cc": 2,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::getRegistrationsNotEnrolled",
+            "linha_inicio": 47,
+            "linha_fim": 79
+        },
+        {
+            "cc": 1,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::updateStatus",
+            "linha_inicio": 86,
+            "linha_fim": 94
+        },
+        {
+            "cc": 5,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::checkUpdatedStatusAction",
+            "linha_inicio": 99,
+            "linha_fim": 141
+        },
+        {
+            "cc": 2,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::processDisciplineScoreSituation",
+            "linha_inicio": 143,
+            "linha_fim": 150
+        },
+        {
+            "cc": 2,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::markEnrollmentsAsTransferred",
+            "linha_inicio": 152,
+            "linha_fim": 157
+        },
+        {
+            "cc": 2,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::markEnrollmentsAsReclassified",
+            "linha_inicio": 159,
+            "linha_fim": 164
+        },
+        {
+            "cc": 2,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::markEnrollmentsAsAbandoned",
+            "linha_inicio": 166,
+            "linha_fim": 171
+        },
+        {
+            "cc": 2,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::markEnrollmentsAsDeceased",
+            "linha_inicio": 173,
+            "linha_fim": 178
+        },
+        {
+            "cc": 1,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::getActiveEnrollments",
+            "linha_inicio": 183,
+            "linha_fim": 186
+        },
+        {
+            "cc": 1,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::createTransferRequest",
+            "linha_inicio": 194,
+            "linha_fim": 205
+        },
+        {
+            "cc": 1,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::updateRegistrationDate",
+            "linha_inicio": 210,
+            "linha_fim": 218
+        },
+        {
+            "cc": 4,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::updateEnrollmentsDate",
+            "linha_inicio": 223,
+            "linha_fim": 238
+        },
+        {
+            "cc": 1,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::processEnrollmentsDates",
+            "linha_inicio": 240,
+            "linha_fim": 254
+        },
+        {
+            "cc": 5,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::updateNextEnrollmentsRegistrationDate",
+            "linha_inicio": 256,
+            "linha_fim": 271
+        },
+        {
+            "cc": 5,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::updatePreviousEnrollmentsRegistrationDate",
+            "linha_inicio": 273,
+            "linha_fim": 287
+        },
+        {
+            "cc": 1,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::updateCancelDate",
+            "linha_inicio": 295,
+            "linha_fim": 303
+        },
+        {
+            "cc": 3,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::cancelRegistration",
+            "linha_inicio": 315,
+            "linha_fim": 336
+        },
+        {
+            "cc": 2,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::reorderSchoolClassesForRegistrations",
+            "linha_inicio": 349,
+            "linha_fim": 368
+        },
+        {
+            "cc": 3,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::deactivateEnrollments",
+            "linha_inicio": 378,
+            "linha_fim": 397
+        },
+        {
+            "cc": 2,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::reactivateTransferRequest",
+            "linha_inicio": 405,
+            "linha_fim": 423
+        },
+        {
+            "cc": 4,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::reflagPreviousGradeRegistration",
+            "linha_inicio": 429,
+            "linha_fim": 467
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::__construct",
+            "linha_inicio": 31,
+            "linha_fim": 35
+        },
+        {
+            "cc": 8,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesCanChangeDiarioForAno",
+            "linha_inicio": 37,
+            "linha_fim": 72
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesRegraAvaliacaoHasNota",
+            "linha_inicio": 74,
+            "linha_fim": 83
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesRegraAvaliacaoHasFormulaRecuperacao",
+            "linha_inicio": 85,
+            "linha_fim": 95
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesRegraAvaliacaoHasFormulaRecuperacaoWithTypeRecuperacao",
+            "linha_inicio": 97,
+            "linha_fim": 108
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesPreviousNotasHasBeenSet",
+            "linha_inicio": 110,
+            "linha_fim": 133
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesPreviousFaltasHasBeenSet",
+            "linha_inicio": 135,
+            "linha_fim": 151
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesEtapaParecer",
+            "linha_inicio": 155,
+            "linha_fim": 177
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesPresenceOfComponenteCurricularIdIfParecerComponente",
+            "linha_inicio": 179,
+            "linha_fim": 190
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesRegraAvaliacaoHasParecer",
+            "linha_inicio": 194,
+            "linha_fim": 204
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesInexistenceOfNotaExame",
+            "linha_inicio": 208,
+            "linha_fim": 222
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesInexistenceNotasInNextEtapas",
+            "linha_inicio": 224,
+            "linha_fim": 248
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesInexistenceFaltasInNextEtapas",
+            "linha_inicio": 252,
+            "linha_fim": 274
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesPresenceOfMatriculaIdOrComponenteCurricularId",
+            "linha_inicio": 276,
+            "linha_fim": 285
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesPeriodoLancamentoFaltasNotas",
+            "linha_inicio": 287,
+            "linha_fim": 309
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canAcceptRequest",
+            "linha_inicio": 313,
+            "linha_fim": 317
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesAccessToRequestedSchool",
+            "linha_inicio": 319,
+            "linha_fim": 332
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canGetMatriculas",
+            "linha_inicio": 334,
+            "linha_fim": 347
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPost",
+            "linha_inicio": 349,
+            "linha_fim": 355
+        },
+        {
+            "cc": 6,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPostNota",
+            "linha_inicio": 357,
+            "linha_fim": 365
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPostNotaGeral",
+            "linha_inicio": 367,
+            "linha_fim": 370
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPostFalta",
+            "linha_inicio": 372,
+            "linha_fim": 376
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPostParecer",
+            "linha_inicio": 378,
+            "linha_fim": 385
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canDelete",
+            "linha_inicio": 387,
+            "linha_fim": 391
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesAuthorizationToChangeDiario",
+            "linha_inicio": 393,
+            "linha_fim": 402
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canDeleteNota",
+            "linha_inicio": 404,
+            "linha_fim": 411
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canDeleteFalta",
+            "linha_inicio": 413,
+            "linha_fim": 418
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canDeleteParecer",
+            "linha_inicio": 420,
+            "linha_fim": 425
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postNota",
+            "linha_inicio": 433,
+            "linha_fim": 481
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postNotaGeral",
+            "linha_inicio": 483,
+            "linha_fim": 502
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postMedia",
+            "linha_inicio": 504,
+            "linha_fim": 522
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postMediaDesbloqueia",
+            "linha_inicio": 524,
+            "linha_fim": 535
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteMedia",
+            "linha_inicio": 537,
+            "linha_fim": 554
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPostMedia",
+            "linha_inicio": 556,
+            "linha_fim": 559
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canDeleteMedia",
+            "linha_inicio": 561,
+            "linha_fim": 564
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postNotaRecuperacaoParalela",
+            "linha_inicio": 569,
+            "linha_fim": 609
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postNotaRecuperacaoEspecifica",
+            "linha_inicio": 611,
+            "linha_fim": 643
+        },
+        {
+            "cc": 6,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postFalta",
+            "linha_inicio": 646,
+            "linha_fim": 669
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postParecer",
+            "linha_inicio": 671,
+            "linha_fim": 692
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteNota",
+            "linha_inicio": 696,
+            "linha_fim": 715
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteNotaRecuperacaoParalela",
+            "linha_inicio": 717,
+            "linha_fim": 741
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteNotaRecuperacaoEspecifica",
+            "linha_inicio": 743,
+            "linha_fim": 767
+        },
+        {
+            "cc": 6,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteFalta",
+            "linha_inicio": 769,
+            "linha_fim": 793
+        },
+        {
+            "cc": 6,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteParecer",
+            "linha_inicio": 795,
+            "linha_fim": 821
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteNotaGeral",
+            "linha_inicio": 823,
+            "linha_fim": 834
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getRelocationDate",
+            "linha_inicio": 838,
+            "linha_fim": 844
+        },
+        {
+            "cc": 21,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getMatriculas",
+            "linha_inicio": 846,
+            "linha_fim": 1028
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::parecerGeral",
+            "linha_inicio": 1033,
+            "linha_fim": 1039
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::setCurrentMatriculaId",
+            "linha_inicio": 1041,
+            "linha_fim": 1044
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getCurrentMatriculaId",
+            "linha_inicio": 1046,
+            "linha_fim": 1058
+        },
+        {
+            "cc": 6,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::serviceBoletim",
+            "linha_inicio": 1066,
+            "linha_fim": 1095
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::trySaveServiceBoletim",
+            "linha_inicio": 1097,
+            "linha_fim": 1105
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::trySaveServiceBoletimFaltas",
+            "linha_inicio": 1107,
+            "linha_fim": 1114
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getQuantidadeFalta",
+            "linha_inicio": 1118,
+            "linha_fim": 1127
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getFaltaGeral",
+            "linha_inicio": 1129,
+            "linha_fim": 1135
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getFaltaComponente",
+            "linha_inicio": 1137,
+            "linha_fim": 1144
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getParecerComponente",
+            "linha_inicio": 1148,
+            "linha_fim": 1155
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getParecerGeral",
+            "linha_inicio": 1157,
+            "linha_fim": 1163
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getSituacaoComponente",
+            "linha_inicio": 1167,
+            "linha_fim": 1185
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getSituacaoComponentes",
+            "linha_inicio": 1187,
+            "linha_fim": 1203
+        },
+        {
+            "cc": 10,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::loadComponentesCurricularesForMatricula",
+            "linha_inicio": 1207,
+            "linha_fim": 1305
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getAreaConhecimento",
+            "linha_inicio": 1307,
+            "linha_fim": 1334
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::createOrUpdateNotaExame",
+            "linha_inicio": 1336,
+            "linha_fim": 1346
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteNotaExame",
+            "linha_inicio": 1348,
+            "linha_fim": 1358
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaAtual",
+            "linha_inicio": 1364,
+            "linha_fim": 1383
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaGeral",
+            "linha_inicio": 1385,
+            "linha_fim": 1394
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getMediaAtual",
+            "linha_inicio": 1396,
+            "linha_fim": 1413
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getMediaArredondadaAtual",
+            "linha_inicio": 1415,
+            "linha_fim": 1432
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getMediaBloqueada",
+            "linha_inicio": 1434,
+            "linha_fim": 1449
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaRecuperacaoParalelaAtual",
+            "linha_inicio": 1451,
+            "linha_fim": 1471
+        },
+        {
+            "cc": 11,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::shouldShowRecuperacaoEspecifica",
+            "linha_inicio": 1473,
+            "linha_fim": 1529
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaRecuperacaoEspecificaAtual",
+            "linha_inicio": 1531,
+            "linha_fim": 1551
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaOriginal",
+            "linha_inicio": 1553,
+            "linha_fim": 1578
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaExame",
+            "linha_inicio": 1580,
+            "linha_fim": 1597
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaNecessariaExame",
+            "linha_inicio": 1599,
+            "linha_fim": 1612
+        },
+        {
+            "cc": 6,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getFaltaAtual",
+            "linha_inicio": 1618,
+            "linha_fim": 1640
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getEtapaParecer",
+            "linha_inicio": 1642,
+            "linha_fim": 1649
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getParecerAtual",
+            "linha_inicio": 1651,
+            "linha_fim": 1675
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getRoundingValues",
+            "linha_inicio": 1677,
+            "linha_fim": 1699
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNavegacaoTab",
+            "linha_inicio": 1701,
+            "linha_fim": 1704
+        },
+        {
+            "cc": 21,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getEvaluationRule",
+            "linha_inicio": 1713,
+            "linha_fim": 1826
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::inserirAuditoriaNotas",
+            "linha_inicio": 1828,
+            "linha_fim": 1852
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::extrairValorNota",
+            "linha_inicio": 1854,
+            "linha_fim": 1857
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::determinarOperacaoAuditoria",
+            "linha_inicio": 1859,
+            "linha_fim": 1866
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::sqlAuditoriaNotas",
+            "linha_inicio": 1868,
+            "linha_fim": 1914
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canChange",
+            "linha_inicio": 1916,
+            "linha_fim": 1923
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postSituacao",
+            "linha_inicio": 1925,
+            "linha_fim": 1946
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::changeRegistrationLockStatus",
+            "linha_inicio": 1948,
+            "linha_fim": 1973
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPostSituacaoAndNota",
+            "linha_inicio": 1975,
+            "linha_fim": 1980
+        },
+        {
+            "cc": 21,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::Gerar",
+            "linha_inicio": 1982,
+            "linha_fim": 2026
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioController.php",
+            "simbolo": "DiarioController::Gerar",
+            "linha_inicio": 9,
+            "linha_fim": 37
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioController.php",
+            "simbolo": "DiarioController::_preRender",
+            "linha_inicio": 39,
+            "linha_fim": 44
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::__construct",
+            "linha_inicio": 59,
+            "linha_fim": 66
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getExemptedStages",
+            "linha_inicio": 73,
+            "linha_fim": 80
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getNotaComponente",
+            "linha_inicio": 89,
+            "linha_fim": 106
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getMediaComponente",
+            "linha_inicio": 111,
+            "linha_fim": 122
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getNotaGeral",
+            "linha_inicio": 130,
+            "linha_fim": 141
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getFalta",
+            "linha_inicio": 150,
+            "linha_fim": 171
+        },
+        {
+            "cc": 6,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getParecerDescritivo",
+            "linha_inicio": 180,
+            "linha_fim": 215
+        },
+        {
+            "cc": 8,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_setMatriculaInfo",
+            "linha_inicio": 224,
+            "linha_fim": 280
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_loadNotas",
+            "linha_inicio": 290,
+            "linha_fim": 332
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_loadMedias",
+            "linha_inicio": 341,
+            "linha_fim": 368
+        },
+        {
+            "cc": 10,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_loadFalta",
+            "linha_inicio": 378,
+            "linha_fim": 430
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getFaltasLancadas",
+            "linha_inicio": 438,
+            "linha_fim": 452
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::retornaFaltasCiclo",
+            "linha_inicio": 462,
+            "linha_fim": 483
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getComponentesRegimeCiclico",
+            "linha_inicio": 493,
+            "linha_fim": 508
+        },
+        {
+            "cc": 7,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_loadParecerDescritivo",
+            "linha_inicio": 517,
+            "linha_fim": 566
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::hasNotaAluno",
+            "linha_inicio": 573,
+            "linha_fim": 580
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getQtdComponentes",
+            "linha_inicio": 582,
+            "linha_fim": 621
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getSituacaoNotaFalta",
+            "linha_inicio": 626,
+            "linha_fim": 635
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::montaObjetoSituacao",
+            "linha_inicio": 640,
+            "linha_fim": 651
+        },
+        {
+            "cc": 15,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::verificaSituacao",
+            "linha_inicio": 656,
+            "linha_fim": 710
+        },
+        {
+            "cc": 6,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::processaSituacaoDaNota",
+            "linha_inicio": 715,
+            "linha_fim": 752
+        },
+        {
+            "cc": 7,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::processaSituacaoFalta",
+            "linha_inicio": 757,
+            "linha_fim": 802
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getSituacaoAluno",
+            "linha_inicio": 830,
+            "linha_fim": 844
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getLastStage",
+            "linha_inicio": 851,
+            "linha_fim": 867
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::deleteNotaComponenteCurricularMediaWithoutNotas",
+            "linha_inicio": 872,
+            "linha_fim": 888
+        },
+        {
+            "cc": 72,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getSituacaoNotas",
+            "linha_inicio": 937,
+            "linha_fim": 1167
+        },
+        {
+            "cc": 30,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getSituacaoFaltas",
+            "linha_inicio": 1215,
+            "linha_fim": 1434
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::regraNaoPermiteReprovarFalta",
+            "linha_inicio": 1442,
+            "linha_fim": 1446
+        },
+        {
+            "cc": 7,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::calculaEtapaNotasAglutinada",
+            "linha_inicio": 1451,
+            "linha_fim": 1471
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::exibeSituacao",
+            "linha_inicio": 1473,
+            "linha_fim": 1476
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::exibeNotaNecessariaExame",
+            "linha_inicio": 1478,
+            "linha_fim": 1483
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::valorMediaSituacao",
+            "linha_inicio": 1491,
+            "linha_fim": 1497
+        },
+        {
+            "cc": 8,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getSituacaoComponentesCurriculares",
+            "linha_inicio": 1542,
+            "linha_fim": 1583
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getCurricularComponentSituation",
+            "linha_inicio": 1593,
+            "linha_fim": 1596
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_situacaoPrioritaria",
+            "linha_inicio": 1605,
+            "linha_fim": 1608
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_createNotaAluno",
+            "linha_inicio": 1617,
+            "linha_fim": 1623
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasNotaComponente",
+            "linha_inicio": 1632,
+            "linha_fim": 1641
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasNotaGeral",
+            "linha_inicio": 1649,
+            "linha_fim": 1658
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_getNotaIdEtapa",
+            "linha_inicio": 1667,
+            "linha_fim": 1684
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_getNotaGeralIdEtapa",
+            "linha_inicio": 1689,
+            "linha_fim": 1700
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::hasFaltaAluno",
+            "linha_inicio": 1707,
+            "linha_fim": 1714
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_createFaltaAluno",
+            "linha_inicio": 1723,
+            "linha_fim": 1730
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasFaltaGeral",
+            "linha_inicio": 1738,
+            "linha_fim": 1747
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasFaltaComponente",
+            "linha_inicio": 1756,
+            "linha_fim": 1765
+        },
+        {
+            "cc": 9,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_getFaltaIdEtapa",
+            "linha_inicio": 1774,
+            "linha_fim": 1806
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::hasParecerDescritivoAluno",
+            "linha_inicio": 1813,
+            "linha_fim": 1820
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_createParecerDescritivoAluno",
+            "linha_inicio": 1829,
+            "linha_fim": 1836
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addNotas",
+            "linha_inicio": 1844,
+            "linha_fim": 1851
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasParecerComponente",
+            "linha_inicio": 1860,
+            "linha_fim": 1869
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasParecerGeral",
+            "linha_inicio": 1877,
+            "linha_fim": 1884
+        },
+        {
+            "cc": 7,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_getParecerIdEtapa",
+            "linha_inicio": 1893,
+            "linha_fim": 1927
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addNota",
+            "linha_inicio": 1935,
+            "linha_fim": 1945
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addNotaGeral",
+            "linha_inicio": 1950,
+            "linha_fim": 1959
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addFaltas",
+            "linha_inicio": 1967,
+            "linha_fim": 1974
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addFalta",
+            "linha_inicio": 1982,
+            "linha_fim": 1991
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addPareceres",
+            "linha_inicio": 2000,
+            "linha_fim": 2007
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addParecer",
+            "linha_inicio": 2016,
+            "linha_fim": 2024
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_addValidators",
+            "linha_inicio": 2038,
+            "linha_fim": 2071
+        },
+        {
+            "cc": 6,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_addParecerValidators",
+            "linha_inicio": 2083,
+            "linha_fim": 2137
+        },
+        {
+            "cc": 11,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_updateEtapa",
+            "linha_inicio": 2145,
+            "linha_fim": 2194
+        },
+        {
+            "cc": 11,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_updateParecerEtapa",
+            "linha_inicio": 2203,
+            "linha_fim": 2276
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::arredondaNota",
+            "linha_inicio": 2286,
+            "linha_fim": 2306
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::regraUsaTipoNotaNumericaConceitual",
+            "linha_inicio": 2311,
+            "linha_fim": 2318
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::componenteUsaNotaConceitual",
+            "linha_inicio": 2323,
+            "linha_fim": 2333
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::usaTabelaArredondamentoConceitual",
+            "linha_inicio": 2338,
+            "linha_fim": 2341
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::arredondaMedia",
+            "linha_inicio": 2349,
+            "linha_fim": 2379
+        },
+        {
+            "cc": 12,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::preverNotaRecuperacao",
+            "linha_inicio": 2388,
+            "linha_fim": 2456
+        },
+        {
+            "cc": 16,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_calculateNotasRecuperacoesEspecificas",
+            "linha_inicio": 2464,
+            "linha_fim": 2534
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_calculateHoraFalta",
+            "linha_inicio": 2541,
+            "linha_fim": 2544
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_calculatePorcentagem",
+            "linha_inicio": 2555,
+            "linha_fim": 2567
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_calculaMedia",
+            "linha_inicio": 2576,
+            "linha_fim": 2585
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::save",
+            "linha_inicio": 2597,
+            "linha_fim": 2609
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::saveNotas",
+            "linha_inicio": 2618,
+            "linha_fim": 2645
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::saveFaltas",
+            "linha_inicio": 2655,
+            "linha_fim": 2676
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::savePareceres",
+            "linha_inicio": 2685,
+            "linha_fim": 2697
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::reloadComponentes",
+            "linha_inicio": 2702,
+            "linha_fim": 2717
+        },
+        {
+            "cc": 28,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::promover",
+            "linha_inicio": 2731,
+            "linha_fim": 2821
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::unlockMediaComponente",
+            "linha_inicio": 2826,
+            "linha_fim": 2841
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::updateMediaComponente",
+            "linha_inicio": 2847,
+            "linha_fim": 2889
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::updateMediaGeral",
+            "linha_inicio": 2894,
+            "linha_fim": 2915
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::alterarSituacao",
+            "linha_inicio": 2920,
+            "linha_fim": 2923
+        },
+        {
+            "cc": 26,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_updateNotaComponenteMedia",
+            "linha_inicio": 2928,
+            "linha_fim": 3113
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_updateMatricula",
+            "linha_inicio": 3125,
+            "linha_fim": 3128
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::deleteNota",
+            "linha_inicio": 3135,
+            "linha_fim": 3148
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::deleteFalta",
+            "linha_inicio": 3155,
+            "linha_fim": 3161
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::deleteParecer",
+            "linha_inicio": 3168,
+            "linha_fim": 3174
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::deleteNotaGeral",
+            "linha_inicio": 3181,
+            "linha_fim": 3189
+        },
+        {
+            "cc": 16,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::verificaNotasLancadasNasEtapasAnteriores",
+            "linha_inicio": 3202,
+            "linha_fim": 3303
+        },
+        {
+            "cc": 8,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::verificaFaltasLancadasNasEtapasAnteriores",
+            "linha_inicio": 3315,
+            "linha_fim": 3350
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getNotaAtual",
+            "linha_inicio": 3359,
+            "linha_fim": 3365
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getFaltaAtual",
+            "linha_inicio": 3375,
+            "linha_fim": 3389
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getRegrasRecuperacao",
+            "linha_inicio": 3399,
+            "linha_fim": 3402
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getEvaluationRule",
+            "linha_inicio": 3407,
+            "linha_fim": 3416
+        },
+        {
+            "cc": 5,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::calculateStageScore",
+            "linha_inicio": 3424,
+            "linha_fim": 3447
+        },
+        {
+            "cc": 9,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::allowsApproveWithDependence",
+            "linha_inicio": 3457,
+            "linha_fim": 3499
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getCargaHoraria",
+            "linha_inicio": 3501,
+            "linha_fim": 3517
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getDiasLetivos",
+            "linha_inicio": 3519,
+            "linha_fim": 3535
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getHoraFalta",
+            "linha_inicio": 3540,
+            "linha_fim": 3570
+        }
+    ]
+}

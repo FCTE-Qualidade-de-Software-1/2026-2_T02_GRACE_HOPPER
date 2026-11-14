@@ -1,13 +1,6 @@
-"""Hook do MkDocs para ocultar o índice lateral direito (TOC) em todas as páginas."""
+"""Hook do MkDocs para preservação de metadados de página (no-op)."""
 
 def on_page_markdown(markdown, page, config, files):
-    if not hasattr(page, "meta") or page.meta is None:
-        page.meta = {}
-    hide = page.meta.get("hide", [])
-    if isinstance(hide, list):
-        if "toc" not in hide:
-            hide.append("toc")
-        page.meta["hide"] = hide
-    elif isinstance(hide, str):
-        page.meta["hide"] = [hide, "toc"]
+    # O índice lateral direito (TOC) é gerenciado nativamente pelo Material for MkDocs
+    # e pode ser ocultado individualmente via frontmatter (ex: hide: - toc em index.md).
     return markdown

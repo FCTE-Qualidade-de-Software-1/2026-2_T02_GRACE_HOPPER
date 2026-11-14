@@ -1,0 +1,6 @@
+componente,nome,nc,na,a,ca,ce,i,d
+C1_Matricula_Services,"Serviços Modernos de Matrícula e Diário (Laravel)",3,0,0.0000,3,4,0.5714,0.4286
+C2_Matricula_Controllers,"Controladores HTTP Modernos e Ponte de Integração",3,0,0.0000,0,3,1.0000,0.0000
+C3_Dominio_Models,"Modelos Eloquent de Domínio (Matrícula, Notas e Regras)",11,0,0.0000,8,0,0.0000,1.0000
+C4_Avaliacao_Service_Legado,"Serviços e Modelos Procedurais do Módulo de Avaliação (Legado)",22,3,0.1364,6,4,0.4000,0.4636
+C5_Avaliacao_Views_Api_Legado,"Controladores e Views de API do Núcleo Legado",8,0,0.0000,0,12,1.0000,0.0000

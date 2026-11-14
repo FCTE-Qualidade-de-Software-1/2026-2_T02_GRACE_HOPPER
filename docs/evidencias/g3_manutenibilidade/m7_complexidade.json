@@ -1,11 +1,11 @@
 {
     "instrumento": {
         "nome": "scripts/evaluate-quality.php",
-        "versao": "2.0.0",
-        "php": "8.3.6",
+        "versao": "3.0.0",
+        "php": "8.2.17",
         "tokenizador": "token_get_all (TOKEN_PARSE)"
     },
-    "timestamp": "2026-11-11T20:38:40+00:00",
+    "timestamp": "2026-11-14T18:50:59+00:00",
     "commit": "7903a3efc7689942ee700007f86ed581023aad27",
     "status": "executado",
     "manifesto": [
@@ -45,9 +45,6 @@
         "threshold_critical": "> 50",
         "status": "Coletado (Fase 4)",
         "n": 213,
-        "simbolos_no_maximo": [
-            "ieducar/modules/Avaliacao/Service/Boletim.php :: Avaliacao_Service_Boletim::getSituacaoNotas"
-        ],
         "S": 1,
         "faixa": "Crítico"
     },

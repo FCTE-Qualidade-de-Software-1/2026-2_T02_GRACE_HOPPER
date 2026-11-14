@@ -1,0 +1,47 @@
+{
+    "cenario_id": "C4.3",
+    "timestamp_execucao": "2026-11-14T19:01:27+00:00",
+    "ambiente": {
+        "php_version": "8.5.11",
+        "banco": "PostgreSQL (testing)",
+        "base_url": "http://127.0.0.1:8099"
+    },
+    "requisicao": {
+        "method": "POST",
+        "url": "/matricula/216/enturmar/139",
+        "payload": {
+            "enrollment_date": "10/03/2026"
+        }
+    },
+    "resposta": {
+        "status_http": 302,
+        "headers": [
+            "HTTP/1.1 302 Found",
+            "Host: 127.0.0.1:8099",
+            "Connection: close",
+            "X-Powered-By: PHP/8.5.11",
+            "Cache-Control: no-cache, private",
+            "Date: Sat, 14 Nov 2026 19:01:27 GMT",
+            "Location: http://127.0.0.1:8099/matricula/216/enturmar/139",
+            "Content-Type: text/html; charset=utf-8",
+            "X-XSS-Protection: 0",
+            "X-Frame-Options: SAMEORIGIN",
+            "Content-Security-Policy: frame-ancestors 'self'",
+            "Set-Cookie: i_educar_session=79FSdziGB6XhFBU79BmUtsUroJWiBeFN5S9PSfPR; expires=Sat, 14 Nov 2026 21:01:27 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+        ],
+        "body_raw": "<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta http-equiv=\"refresh\" content=\"0;url='http://127.0.0.1:8099/matricula/216/enturmar/139'\" />\n\n        <title>Redirecting to http://127.0.0.1:8099/matricula/216/enturmar/139</title>\n    </head>\n    <body>\n        Redirecting to <a href=\"http://127.0.0.1:8099/matricula/216/enturmar/139\">http://127.0.0.1:8099/matricula/216/enturmar/139</a>.\n    </body>\n</html>",
+        "sha256_body": "578ab70ed55eac9e236b386b1101a9bf8770e268771a7f584b9308986bbf3b97",
+        "redirect_location": "http://127.0.0.1:8099/matricula/216/enturmar/139",
+        "redirect_follow_status": 200
+    },
+    "mensagem_capturada": "Existe outra enturmação ativa para a matrícula 216.",
+    "codigo_erro": null,
+    "sql_verificacao": {
+        "tabela": "pmieducar.matricula_turma",
+        "query": "SELECT COUNT(*) FROM pmieducar.matricula_turma",
+        "contagem_antes": 36,
+        "contagem_depois": 36,
+        "delta": 0,
+        "persistencia_indesejada": false
+    }
+}

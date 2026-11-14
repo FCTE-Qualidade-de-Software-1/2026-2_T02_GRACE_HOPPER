@@ -1,0 +1,806 @@
+{
+  "metadata": {
+    "instrumento": "Catálogo Oficial de Cenários Inválidos de Entrada (Gate M12 — IPPE & M13 — ADMV)",
+    "norma": "ISO/IEC 25010:2023 (Interaction Capability) e ISO/IEC 25040:2024 (Evaluation Process)",
+    "produto": "portabilis/i-educar",
+    "commit_congelado": "7903a3efc7689942ee700007f86ed581023aad27",
+    "data_congelamento": "2026-11-12",
+    "responsavel_trilha": "Gabriel Barbaceli (@Nibaacriba)",
+    "revisor_par": "Ítalo Sampaio (@ItaloSamP)",
+    "total_cenarios": 12,
+    "distribuicao_categorias": {
+      "C1_NOTA_FORA_DA_FAIXA": 3,
+      "C2_ETAPA_ANO_BLOQUEADO": 3,
+      "C3_MENCAO_CONCEITUAL_INVALIDA": 3,
+      "C4_MATRICULA_CONFLITO_TEMPORAL": 3
+    },
+    "versao_catalogo": "2.0.0-reexecucao-real",
+    "data_reexecucao_real": "2026-11-14",
+    "evidencias_brutas_dir": "evidencias/g4_interacao_uso/capturas_m12"
+  },
+  "cenarios": [
+    {
+      "id": "C1.1",
+      "categoria": "C1_NOTA_FORA_DA_FAIXA",
+      "titulo": "Nota decimal acima da nota máxima geral configurada na regra",
+      "descricao": "Submissão de nota numérica (11.0) que excede o limite máximo permitido na regra de avaliação (10.0) em etapa regular.",
+      "camada_alvo": "app/Http/Controllers/NotasController.php & src/Modules/EvaluationRules/Exceptions/ScoreGreaterThanMaxAllowed.php",
+      "simulacao_payload": {
+        "aluno_id": 208,
+        "turma_id": 131,
+        "componente_id": 409,
+        "etapa": "1",
+        "nota": 11
+      },
+      "retorno_observado": {
+        "status_http": 422,
+        "codigo_erro": 1003,
+        "mensagem_exibida": "A nota 11 está acima da configurada para nota máxima geral que é 10.",
+        "bloqueio_amigavel": true,
+        "persistencia_indesejada": false,
+        "tabela_banco_conferida": "modules.nota_componente_curricular",
+        "erro_500_ocorreu": false
+      },
+      "auditoria_m13": {
+        "avaliador_1": {
+          "avaliador": "Gabriel Barbaceli (@Nibaacriba)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Informa claramente o valor excessivo e especifica a nota máxima (10), orientando o valor admissível."
+        },
+        "avaliador_2": {
+          "avaliador": "Ítalo Sampaio (@ItaloSamP)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Descritiva, expressando causa e limite paramétrico de correção."
+        },
+        "consenso": {
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "classificacao": "TOTALMENTE_AUTODESCRITIVA"
+        },
+        "evidencia_origem": {
+          "captura_arquivo": "capturas_m12/C1.1.json",
+          "mensagem_capturada": "A nota 11 está acima da configurada para nota máxima geral que é 10.",
+          "mensagem_sha256": "e644ec9ee2a668f360f224033c5abdbb46ce056f1d7b51a50e8ce487ff997f92"
+        }
+      },
+      "evidencia_execucao": {
+        "captura_arquivo": "capturas_m12/C1.1.json",
+        "captura_arquivo_sha256": "92d0bc06a326d26fc48fc350869059dfac366c5a3c0dfeeb506fee4fa9166373",
+        "timestamp_execucao": "2026-11-14T19:01:26+00:00",
+        "requisicao_http": "POST /api/v2/notas",
+        "status_http_capturado": 422,
+        "sha256_corpo_resposta": "da052d59d05be39e72bcf8c27ce90e61e837a98051408d97483b1a961e415f6b",
+        "sql_verificacao": {
+          "tabela": "modules.nota_componente_curricular",
+          "query": "SELECT COUNT(*) FROM modules.nota_componente_curricular",
+          "contagem_antes": 2,
+          "contagem_depois": 2,
+          "delta": 0,
+          "persistencia_indesejada": false
+        }
+      }
+    },
+    {
+      "id": "C1.2",
+      "categoria": "C1_NOTA_FORA_DA_FAIXA",
+      "titulo": "Nota decimal inferior à nota mínima geral configurada na regra",
+      "descricao": "Submissão de valor negativo (-1.5) abaixo do limiar mínimo geral (0.0) configurado na regra de avaliação.",
+      "camada_alvo": "app/Http/Controllers/NotasController.php & src/Modules/EvaluationRules/Exceptions/ScoreLesserThanMinAllowed.php",
+      "simulacao_payload": {
+        "aluno_id": 208,
+        "turma_id": 131,
+        "componente_id": 409,
+        "etapa": "1",
+        "nota": -1.5
+      },
+      "retorno_observado": {
+        "status_http": 422,
+        "codigo_erro": 1004,
+        "mensagem_exibida": "A nota -1.5 está abaixo da configurada para nota mínima geral que é 0.",
+        "bloqueio_amigavel": true,
+        "persistencia_indesejada": false,
+        "tabela_banco_conferida": "modules.nota_componente_curricular",
+        "erro_500_ocorreu": false
+      },
+      "auditoria_m13": {
+        "avaliador_1": {
+          "avaliador": "Gabriel Barbaceli (@Nibaacriba)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Informa a nota negativa e o limiar inferior zero, permitindo correção imediata."
+        },
+        "avaliador_2": {
+          "avaliador": "Ítalo Sampaio (@ItaloSamP)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Causa explícita e limite mínimo demarcado."
+        },
+        "consenso": {
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "classificacao": "TOTALMENTE_AUTODESCRITIVA"
+        },
+        "evidencia_origem": {
+          "captura_arquivo": "capturas_m12/C1.2.json",
+          "mensagem_capturada": "A nota -1.5 está abaixo da configurada para nota mínima geral que é 0.",
+          "mensagem_sha256": "37d9e981b5ce597e24ea62ec9f05355718129b121001e92401337a62d867166e"
+        }
+      },
+      "evidencia_execucao": {
+        "captura_arquivo": "capturas_m12/C1.2.json",
+        "captura_arquivo_sha256": "732dfbf886434a877b0d2ff0b9fedea310798f96ea4b17ee3b485fbb18905be9",
+        "timestamp_execucao": "2026-11-14T19:01:26+00:00",
+        "requisicao_http": "POST /api/v2/notas",
+        "status_http_capturado": 422,
+        "sha256_corpo_resposta": "77dfcbecea4b5958f53fc38dc5d798ab1e092fbfe3cc84a1f7678f085870d9cb",
+        "sql_verificacao": {
+          "tabela": "modules.nota_componente_curricular",
+          "query": "SELECT COUNT(*) FROM modules.nota_componente_curricular",
+          "contagem_antes": 2,
+          "contagem_depois": 2,
+          "delta": 0,
+          "persistencia_indesejada": false
+        }
+      }
+    },
+    {
+      "id": "C1.3",
+      "categoria": "C1_NOTA_FORA_DA_FAIXA",
+      "titulo": "Nota de exame final acima do teto de exame configurado na regra",
+      "descricao": "Submissão de nota de recuperação/exame final (10.5) acima do limite fixado para o exame final (10.0) na etapa Rc.",
+      "camada_alvo": "app/Http/Controllers/NotasController.php & src/Modules/EvaluationRules/Exceptions/ExamScoreGreaterThanMaxAllowed.php",
+      "simulacao_payload": {
+        "aluno_id": 208,
+        "turma_id": 131,
+        "componente_id": 409,
+        "etapa": "Rc",
+        "nota": 10.5
+      },
+      "retorno_observado": {
+        "status_http": 422,
+        "codigo_erro": 1005,
+        "mensagem_exibida": "A nota 10.5 está acima da configurada para nota máxima para exame que é 10.",
+        "bloqueio_amigavel": true,
+        "persistencia_indesejada": false,
+        "tabela_banco_conferida": "modules.nota_exame",
+        "erro_500_ocorreu": false
+      },
+      "auditoria_m13": {
+        "avaliador_1": {
+          "avaliador": "Gabriel Barbaceli (@Nibaacriba)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Discrimina que se trata de exame final e fornece o valor teto para preenchimento."
+        },
+        "avaliador_2": {
+          "avaliador": "Ítalo Sampaio (@ItaloSamP)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Autodescritiva para o contexto de exame final."
+        },
+        "consenso": {
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "classificacao": "TOTALMENTE_AUTODESCRITIVA"
+        },
+        "evidencia_origem": {
+          "captura_arquivo": "capturas_m12/C1.3.json",
+          "mensagem_capturada": "A nota 10.5 está acima da configurada para nota máxima para exame que é 10.",
+          "mensagem_sha256": "dc6e736f74cf9a785f9c5f93e14567680c1bc18815cf9058aa2980431d692ed6"
+        }
+      },
+      "evidencia_execucao": {
+        "captura_arquivo": "capturas_m12/C1.3.json",
+        "captura_arquivo_sha256": "9ee2a31e2ef00895d9052f377b3ed1241841794eb04bdd79ff317aac221a757d",
+        "timestamp_execucao": "2026-11-14T19:01:26+00:00",
+        "requisicao_http": "POST /api/v2/notas",
+        "status_http_capturado": 422,
+        "sha256_corpo_resposta": "9476bce8437e651bcf0542de9d6093667886486a229316238ee7090645b781db",
+        "sql_verificacao": {
+          "tabela": "modules.nota_exame",
+          "query": "SELECT COUNT(*) FROM modules.nota_exame",
+          "contagem_antes": 0,
+          "contagem_depois": 0,
+          "delta": 0,
+          "persistencia_indesejada": false
+        }
+      }
+    },
+    {
+      "id": "C2.1",
+      "categoria": "C2_ETAPA_ANO_BLOQUEADO",
+      "titulo": "Lançamento em ano letivo já encerrado com bloqueio ativo na escola",
+      "descricao": "Tentativa de alteração de dados do diário de classe para ano letivo com status encerrado (andamento=2), em escola com bloqueio ativado.",
+      "camada_alvo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php:validatesCanChangeDiarioForAno",
+      "simulacao_payload": {
+        "resource": "matriculas",
+        "oper": "get",
+        "instituicao_id": 192,
+        "escola_id": 414,
+        "curso_id": 337,
+        "serie_id": 283,
+        "turma_id": 132,
+        "ano": 2023,
+        "etapa": "1",
+        "matricula_id": 208,
+        "componente_curricular_id": 410
+      },
+      "retorno_observado": {
+        "status_http": 200,
+        "codigo_erro": null,
+        "mensagem_exibida": "O ano letivo '2023' está encerrado, esta escola está configurada para não permitir alterar o diário de anos letivos encerrados.",
+        "bloqueio_amigavel": true,
+        "persistencia_indesejada": false,
+        "tabela_banco_conferida": "modules.nota_aluno",
+        "erro_500_ocorreu": false
+      },
+      "auditoria_m13": {
+        "avaliador_1": {
+          "avaliador": "Gabriel Barbaceli (@Nibaacriba)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Informa a causa (ano encerrado) e explicita a regra da escola, delimitando que a providência requer selecionar o ano vigente ou ajuste administrativo."
+        },
+        "avaliador_2": {
+          "avaliador": "Ítalo Sampaio (@ItaloSamP)",
+          "informa_causa": true,
+          "indica_acao_corretiva": false,
+          "justificativa": "Causa clara, mas sem link ou prescrição direta de contato no texto."
+        },
+        "consenso": {
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "classificacao": "TOTALMENTE_AUTODESCRITIVA",
+          "justificativa_consenso": "Em deliberação colegiada, os pares acordaram que a individualização do ano '2023' e da política de encerramento da unidade escolar instrui adequadamente o operador quanto à providência de negócio cabível."
+        },
+        "evidencia_origem": {
+          "captura_arquivo": "capturas_m12/C2.1.json",
+          "mensagem_capturada": "O ano letivo '2023' está encerrado, esta escola está configurada para não permitir alterar o diário de anos letivos encerrados.",
+          "mensagem_sha256": "9d29d9d9d3a22a0b60308d209ab8d5f046755dc3a8532a5997b0836623d00d0e"
+        }
+      },
+      "evidencia_execucao": {
+        "captura_arquivo": "capturas_m12/C2.1.json",
+        "captura_arquivo_sha256": "a7ee5fb6be8d3f04f4a26942f7e5555be6f92711011fae5f2517e1e83fe3ed71",
+        "timestamp_execucao": "2026-11-14T19:01:26+00:00",
+        "requisicao_http": "GET /module/Avaliacao/diarioApi?resource=matriculas&oper=get&instituicao_id=192&escola_id=414&curso_id=337&serie_id=283&turma_id=132&ano=2023&etapa=1&matricula_id=208&componente_curricular_id=410",
+        "status_http_capturado": 200,
+        "sha256_corpo_resposta": "884a1227f59681a6d6f310ec85ae1a08e61f01e61e4af514db2ee1abf2e17213",
+        "sql_verificacao": {
+          "tabela": "modules.nota_aluno",
+          "query": "SELECT COUNT(*) FROM modules.nota_aluno",
+          "contagem_antes": 8,
+          "contagem_depois": 8,
+          "delta": 0,
+          "persistencia_indesejada": false
+        }
+      }
+    },
+    {
+      "id": "C2.2",
+      "categoria": "C2_ETAPA_ANO_BLOQUEADO",
+      "titulo": "Lançamento em período institucional bloqueado por calendário",
+      "descricao": "Tentativa de lançamento fora do período de abertura institucional cadastrado em LegacySchoolYearLock (data atual fora da janela de liberação).",
+      "camada_alvo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php:validatesCanChangeDiarioForAno",
+      "simulacao_payload": {
+        "resource": "matriculas",
+        "oper": "get",
+        "instituicao_id": 192,
+        "escola_id": 419,
+        "curso_id": 338,
+        "serie_id": 284,
+        "turma_id": 133,
+        "ano": 2026,
+        "etapa": "1",
+        "matricula_id": 209,
+        "componente_curricular_id": 411
+      },
+      "retorno_observado": {
+        "status_http": 200,
+        "codigo_erro": null,
+        "mensagem_exibida": "O lançamento de notas nessa instituição está bloqueado nesta data.",
+        "bloqueio_amigavel": true,
+        "persistencia_indesejada": false,
+        "tabela_banco_conferida": "modules.nota_aluno",
+        "erro_500_ocorreu": false
+      },
+      "auditoria_m13": {
+        "avaliador_1": {
+          "avaliador": "Gabriel Barbaceli (@Nibaacriba)",
+          "informa_causa": true,
+          "indica_acao_corretiva": false,
+          "justificativa": "Mensagem sucinta do núcleo legado: afirma o bloqueio na data, mas omite o período válido de abertura."
+        },
+        "avaliador_2": {
+          "avaliador": "Ítalo Sampaio (@ItaloSamP)",
+          "informa_causa": true,
+          "indica_acao_corretiva": false,
+          "justificativa": "Sem indicação da janela temporal autorizada para submissão."
+        },
+        "consenso": {
+          "informa_causa": true,
+          "indica_acao_corretiva": false,
+          "classificacao": "PARCIALMENTE_AUTODESCRITIVA"
+        },
+        "evidencia_origem": {
+          "captura_arquivo": "capturas_m12/C2.2.json",
+          "mensagem_capturada": "O lançamento de notas nessa instituição está bloqueado nesta data.",
+          "mensagem_sha256": "0ddca8a0fdeb7531aff56337a499ce17d54e064c1d907ad335662140add9245e"
+        }
+      },
+      "evidencia_execucao": {
+        "captura_arquivo": "capturas_m12/C2.2.json",
+        "captura_arquivo_sha256": "17de05631988cd2ef2df7a8bd629b0fadcab5a887cb919eaa4897f8237cbe44e",
+        "timestamp_execucao": "2026-11-14T19:01:26+00:00",
+        "requisicao_http": "GET /module/Avaliacao/diarioApi?resource=matriculas&oper=get&instituicao_id=192&escola_id=419&curso_id=338&serie_id=284&turma_id=133&ano=2026&etapa=1&matricula_id=209&componente_curricular_id=411",
+        "status_http_capturado": 200,
+        "sha256_corpo_resposta": "cf66d59bccc0085d96eb5a1b58c5ef38815b3b3f895d454b1cd73fb44eb4ad64",
+        "sql_verificacao": {
+          "tabela": "modules.nota_aluno",
+          "query": "SELECT COUNT(*) FROM modules.nota_aluno",
+          "contagem_antes": 8,
+          "contagem_depois": 8,
+          "delta": 0,
+          "persistencia_indesejada": false
+        }
+      }
+    },
+    {
+      "id": "C2.3",
+      "categoria": "C2_ETAPA_ANO_BLOQUEADO",
+      "titulo": "Lançamento fora do período configurado para a etapa do curso",
+      "descricao": "Submissão de notas em etapa cujo prazo de lançamento expirou no calendário escolar (ReleasePeriodService->canPostNow() == false).",
+      "camada_alvo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php:validatesPeriodoLancamentoFaltasNotas",
+      "simulacao_payload": {
+        "resource": "nota",
+        "oper": "post",
+        "instituicao_id": 192,
+        "escola_id": 424,
+        "curso_id": 339,
+        "serie_id": 285,
+        "turma_id": 134,
+        "ano": 2026,
+        "ano_escolar": 2026,
+        "etapa": "1",
+        "matricula_id": 210,
+        "componente_curricular_id": 412,
+        "att_value": "8.0"
+      },
+      "retorno_observado": {
+        "status_http": 200,
+        "codigo_erro": null,
+        "mensagem_exibida": "Não é permitido realizar esta alteração fora do período de lançamento de notas/faltas.",
+        "bloqueio_amigavel": true,
+        "persistencia_indesejada": false,
+        "tabela_banco_conferida": "modules.nota_componente_curricular",
+        "erro_500_ocorreu": false
+      },
+      "auditoria_m13": {
+        "avaliador_1": {
+          "avaliador": "Gabriel Barbaceli (@Nibaacriba)",
+          "informa_causa": true,
+          "indica_acao_corretiva": false,
+          "justificativa": "Identifica que está fora do período, mas não exibe os prazos vigentes nem instrui pedido de prorrogação."
+        },
+        "avaliador_2": {
+          "avaliador": "Ítalo Sampaio (@ItaloSamP)",
+          "informa_causa": true,
+          "indica_acao_corretiva": false,
+          "justificativa": "Causa clara de prazo expirado, porém sem apontar período oficial ou ação de contato."
+        },
+        "consenso": {
+          "informa_causa": true,
+          "indica_acao_corretiva": false,
+          "classificacao": "PARCIALMENTE_AUTODESCRITIVA"
+        },
+        "evidencia_origem": {
+          "captura_arquivo": "capturas_m12/C2.3.json",
+          "mensagem_capturada": "Não é permitido realizar esta alteração fora do período de lançamento de notas/faltas.",
+          "mensagem_sha256": "4452f197ee25ee2b97667d75033e68f9ef94032a47cc4d9adab7a4501a8ec15e"
+        }
+      },
+      "evidencia_execucao": {
+        "captura_arquivo": "capturas_m12/C2.3.json",
+        "captura_arquivo_sha256": "07b5c9a8c2ebd64da0c96923575c1630c4c3659e6af377a1177fdc214bb38ad0",
+        "timestamp_execucao": "2026-11-14T19:01:26+00:00",
+        "requisicao_http": "GET /module/Avaliacao/diarioApi?resource=nota&oper=post&instituicao_id=192&escola_id=424&curso_id=339&serie_id=285&turma_id=134&ano=2026&ano_escolar=2026&etapa=1&matricula_id=210&componente_curricular_id=412&att_value=8.0",
+        "status_http_capturado": 200,
+        "sha256_corpo_resposta": "e38e82e2b4dd49b8ad7f248ec27cc942bb57e5a2bfd7fe2295810e7fff294480",
+        "sql_verificacao": {
+          "tabela": "modules.nota_componente_curricular",
+          "query": "SELECT COUNT(*) FROM modules.nota_componente_curricular",
+          "contagem_antes": 2,
+          "contagem_depois": 2,
+          "delta": 0,
+          "persistencia_indesejada": false
+        }
+      }
+    },
+    {
+      "id": "C3.1",
+      "categoria": "C3_MENCAO_CONCEITUAL_INVALIDA",
+      "titulo": "Submissão de menção textual ('ÓTIMO') em endpoint numérico /api/v2/notas",
+      "descricao": "Tentativa de envio da menção alfanumérica 'ÓTIMO' no campo 'nota' do endpoint POST /api/v2/notas para regra avaliativa conceitual, rejeitada pela validação PostNotasRequest antes da persistência.",
+      "camada_alvo": "app/Http/Requests/PostNotasRequest.php & app/Http/Controllers/NotasController.php",
+      "simulacao_payload": {
+        "aluno_id": 212,
+        "turma_id": 135,
+        "componente_id": 413,
+        "etapa": "1",
+        "nota": "ÓTIMO"
+      },
+      "retorno_observado": {
+        "status_http": 422,
+        "codigo_erro": null,
+        "mensagem_exibida": "O campo nota deve ser um número. (e mais 1 erro)",
+        "bloqueio_amigavel": true,
+        "persistencia_indesejada": false,
+        "tabela_banco_conferida": "modules.nota_componente_curricular",
+        "erro_500_ocorreu": false
+      },
+      "auditoria_m13": {
+        "avaliador_1": {
+          "avaliador": "Gabriel Barbaceli (@Nibaacriba)",
+          "informa_causa": true,
+          "indica_acao_corretiva": false,
+          "justificativa": "Informa que o campo 'nota' precisa ser numérico e rejeita formato inválido, mas não orienta o usuário sobre a escala numérica associada às menções conceituais A/B/C/D da tabela de arredondamento."
+        },
+        "avaliador_2": {
+          "avaliador": "Ítalo Sampaio (@ItaloSamP)",
+          "informa_causa": true,
+          "indica_acao_corretiva": false,
+          "justificativa": "Validação genérica de tipo do FormRequest indica a causa sintática sem contextualizar os valores numéricos admissíveis na tabela conceitual."
+        },
+        "consenso": {
+          "informa_causa": true,
+          "indica_acao_corretiva": false,
+          "classificacao": "PARCIALMENTE_AUTODESCRITIVA"
+        },
+        "evidencia_origem": {
+          "captura_arquivo": "capturas_m12/C3.1.json",
+          "mensagem_capturada": "O campo nota deve ser um número. (e mais 1 erro)",
+          "mensagem_sha256": "070047f033d01bbd5aeccfcb5e7daf75ce719683b185fa2d442e583b33f62680"
+        }
+      },
+      "evidencia_execucao": {
+        "captura_arquivo": "capturas_m12/C3.1.json",
+        "captura_arquivo_sha256": "f509c56062625b9eab1c623f3e7df0ea43f13e440462ee70bf4b73288b6f7b9f",
+        "timestamp_execucao": "2026-11-14T19:01:26+00:00",
+        "requisicao_http": "POST /api/v2/notas",
+        "status_http_capturado": 422,
+        "sha256_corpo_resposta": "23c30f1a8530a4ed746d6f39832767c6cf03eb5c17b7794c496c4e3f442ac1f7",
+        "sql_verificacao": {
+          "tabela": "modules.nota_componente_curricular",
+          "query": "SELECT COUNT(*) FROM modules.nota_componente_curricular",
+          "contagem_antes": 2,
+          "contagem_depois": 2,
+          "delta": 0,
+          "persistencia_indesejada": false
+        }
+      }
+    },
+    {
+      "id": "C3.2",
+      "categoria": "C3_MENCAO_CONCEITUAL_INVALIDA",
+      "titulo": "Submissão de valor numérico contínuo em regra exclusivamente conceitual",
+      "descricao": "Tentativa de enviar nota numérica (8.5) para disciplina com regra configurada sem nota numérica (tipoNota = NENHUM / CONCEITUAL puro).",
+      "camada_alvo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php:validatesRegraAvaliacaoHasNota",
+      "simulacao_payload": {
+        "resource": "nota",
+        "oper": "post",
+        "instituicao_id": 192,
+        "escola_id": 434,
+        "curso_id": 341,
+        "serie_id": 287,
+        "turma_id": 136,
+        "ano": 2026,
+        "ano_escolar": 2026,
+        "etapa": "1",
+        "matricula_id": 212,
+        "componente_curricular_id": 414,
+        "att_value": "8.5"
+      },
+      "retorno_observado": {
+        "status_http": 200,
+        "codigo_erro": null,
+        "mensagem_exibida": "Nota não lançada, pois a regra de avaliação não utiliza nota.",
+        "bloqueio_amigavel": true,
+        "persistencia_indesejada": false,
+        "tabela_banco_conferida": "modules.nota_componente_curricular",
+        "erro_500_ocorreu": false
+      },
+      "auditoria_m13": {
+        "avaliador_1": {
+          "avaliador": "Gabriel Barbaceli (@Nibaacriba)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Explica o motivo da recusa e instrui o usuário a não preencher notas numéricas nessa modalidade."
+        },
+        "avaliador_2": {
+          "avaliador": "Ítalo Sampaio (@ItaloSamP)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Causa evidente e ação implícita de usar a via conceitual/parecer."
+        },
+        "consenso": {
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "classificacao": "TOTALMENTE_AUTODESCRITIVA"
+        },
+        "evidencia_origem": {
+          "captura_arquivo": "capturas_m12/C3.2.json",
+          "mensagem_capturada": "Nota não lançada, pois a regra de avaliação não utiliza nota.",
+          "mensagem_sha256": "18220049566af9a47ab7c1e8a0bfbb1a38feda22087205f681a74ac05489f2a7"
+        }
+      },
+      "evidencia_execucao": {
+        "captura_arquivo": "capturas_m12/C3.2.json",
+        "captura_arquivo_sha256": "4298d4af7546dc6ac86759f15c4a2def44f4bb2e0d46f5b556dca28b7c77226a",
+        "timestamp_execucao": "2026-11-14T19:01:26+00:00",
+        "requisicao_http": "GET /module/Avaliacao/diarioApi?resource=nota&oper=post&instituicao_id=192&escola_id=434&curso_id=341&serie_id=287&turma_id=136&ano=2026&ano_escolar=2026&etapa=1&matricula_id=212&componente_curricular_id=414&att_value=8.5",
+        "status_http_capturado": 200,
+        "sha256_corpo_resposta": "9264b99efb96b7036966db477de80f10dfa4dcb084501a21b580b1ca62e94d5d",
+        "sql_verificacao": {
+          "tabela": "modules.nota_componente_curricular",
+          "query": "SELECT COUNT(*) FROM modules.nota_componente_curricular",
+          "contagem_antes": 2,
+          "contagem_depois": 2,
+          "delta": 0,
+          "persistencia_indesejada": false
+        }
+      }
+    },
+    {
+      "id": "C3.3",
+      "categoria": "C3_MENCAO_CONCEITUAL_INVALIDA",
+      "titulo": "Submissão sem identificadores obrigatórios no payload do diário",
+      "descricao": "Requisição enviada sem os parâmetros matricula_id e componente_curricular_id, violando a presença mínima requerida para processamento.",
+      "camada_alvo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php:validatesPresenceOfMatriculaIdOrComponenteCurricularId",
+      "simulacao_payload": {
+        "resource": "matriculas",
+        "oper": "get",
+        "instituicao_id": 192,
+        "escola_id": 409,
+        "curso_id": 336,
+        "serie_id": 282,
+        "turma_id": 131,
+        "ano": 2026,
+        "etapa": "1"
+      },
+      "retorno_observado": {
+        "status_http": 200,
+        "codigo_erro": null,
+        "mensagem_exibida": "É necessário receber matricula_id ou componente_curricular_id.",
+        "bloqueio_amigavel": true,
+        "persistencia_indesejada": false,
+        "tabela_banco_conferida": "modules.nota_aluno",
+        "erro_500_ocorreu": false
+      },
+      "auditoria_m13": {
+        "avaliador_1": {
+          "avaliador": "Gabriel Barbaceli (@Nibaacriba)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Aponta exatamente a ausência e nomeia os dois campos que solucionam a pendência."
+        },
+        "avaliador_2": {
+          "avaliador": "Ítalo Sampaio (@ItaloSamP)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Direta, objetiva e orientada à correção imediata do payload."
+        },
+        "consenso": {
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "classificacao": "TOTALMENTE_AUTODESCRITIVA"
+        },
+        "evidencia_origem": {
+          "captura_arquivo": "capturas_m12/C3.3.json",
+          "mensagem_capturada": "É necessário receber matricula_id ou componente_curricular_id.",
+          "mensagem_sha256": "985f7127e22720884eeaef1bb3a37846aca413842456d2e2dc47835c38b92d15"
+        }
+      },
+      "evidencia_execucao": {
+        "captura_arquivo": "capturas_m12/C3.3.json",
+        "captura_arquivo_sha256": "6d9c34fde0041c5f04dcfa68cffcfd4576ce39041c0f077fa84c365899d458e8",
+        "timestamp_execucao": "2026-11-14T19:01:26+00:00",
+        "requisicao_http": "GET /module/Avaliacao/diarioApi?resource=matriculas&oper=get&instituicao_id=192&escola_id=409&curso_id=336&serie_id=282&turma_id=131&ano=2026&etapa=1",
+        "status_http_capturado": 200,
+        "sha256_corpo_resposta": "2a0c7a5eb9bed9207a98f56e5cc61b4bbe8d125a7ccb382641d168c363dc513b",
+        "sql_verificacao": {
+          "tabela": "modules.nota_aluno",
+          "query": "SELECT COUNT(*) FROM modules.nota_aluno",
+          "contagem_antes": 10,
+          "contagem_depois": 10,
+          "delta": 0,
+          "persistencia_indesejada": false
+        }
+      }
+    },
+    {
+      "id": "C4.1",
+      "categoria": "C4_MATRICULA_CONFLITO_TEMPORAL",
+      "titulo": "Enturmação em turma sem vagas remanescentes",
+      "descricao": "Tentativa de alocação de aluno em turma cuja capacidade máxima de atendimento foi atingida (vagas_disponiveis = 0).",
+      "camada_alvo": "app/Services/EnrollmentService.php & app/Exceptions/Enrollment/NoVacancyException.php",
+      "simulacao_payload": {
+        "enrollment_date": "10/03/2026"
+      },
+      "retorno_observado": {
+        "status_http": 302,
+        "codigo_erro": null,
+        "mensagem_exibida": "Não há vagas na turma \"6º Ano A (2026)\" #137.",
+        "bloqueio_amigavel": true,
+        "persistencia_indesejada": false,
+        "tabela_banco_conferida": "pmieducar.matricula_turma",
+        "erro_500_ocorreu": false,
+        "redirect_location": "http://127.0.0.1:8099/matricula/214/enturmar/137",
+        "redirect_follow_status": 200
+      },
+      "auditoria_m13": {
+        "avaliador_1": {
+          "avaliador": "Gabriel Barbaceli (@Nibaacriba)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Indica a ausência de vagas e individualiza a turma (#101), permitindo escolher outra turma disponível."
+        },
+        "avaliador_2": {
+          "avaliador": "Ítalo Sampaio (@ItaloSamP)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Causa clara com identificação da turma para redirecionamento."
+        },
+        "consenso": {
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "classificacao": "TOTALMENTE_AUTODESCRITIVA"
+        },
+        "evidencia_origem": {
+          "captura_arquivo": "capturas_m12/C4.1.json",
+          "mensagem_capturada": "Não há vagas na turma \"6º Ano A (2026)\" #137.",
+          "mensagem_sha256": "fd82733087ee3ffb3eea49d6a02b07bd0c7a191eefcf2ea3209ab582f4c3b02b"
+        }
+      },
+      "evidencia_execucao": {
+        "captura_arquivo": "capturas_m12/C4.1.json",
+        "captura_arquivo_sha256": "9b432dc7fe3f45ef68b3e717565fb0334a65060e010bb3b4849dc14bb3b72f1e",
+        "timestamp_execucao": "2026-11-14T19:01:27+00:00",
+        "requisicao_http": "POST /matricula/214/enturmar/137",
+        "status_http_capturado": 302,
+        "sha256_corpo_resposta": "6851f518655793f945260478f22ed3055cef1dd7735961f7b331399224a8812b",
+        "sql_verificacao": {
+          "tabela": "pmieducar.matricula_turma",
+          "query": "SELECT COUNT(*) FROM pmieducar.matricula_turma",
+          "contagem_antes": 35,
+          "contagem_depois": 35,
+          "delta": 0,
+          "persistencia_indesejada": false
+        }
+      }
+    },
+    {
+      "id": "C4.2",
+      "categoria": "C4_MATRICULA_CONFLITO_TEMPORAL",
+      "titulo": "Data de enturmação anterior à data de início do ano letivo da turma",
+      "descricao": "Submissão de enturmação com data retroativa anterior à abertura do ano acadêmico configurada na turma.",
+      "camada_alvo": "app/Services/EnrollmentService.php & app/Exceptions/Enrollment/EnrollDateBeforeAcademicYearException.php",
+      "simulacao_payload": {
+        "enrollment_date": "10/01/2026"
+      },
+      "retorno_observado": {
+        "status_http": 302,
+        "codigo_erro": null,
+        "mensagem_exibida": "A data de enturmação 10/01/2026 é anterior ao início do ano acadêmico 01/02/2026.",
+        "bloqueio_amigavel": true,
+        "persistencia_indesejada": false,
+        "tabela_banco_conferida": "pmieducar.matricula_turma",
+        "erro_500_ocorreu": false,
+        "redirect_location": "http://127.0.0.1:8099/matricula/215/enturmar/138",
+        "redirect_follow_status": 200
+      },
+      "auditoria_m13": {
+        "avaliador_1": {
+          "avaliador": "Gabriel Barbaceli (@Nibaacriba)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Contrasta as duas datas (10/01 e 01/02), fornecendo o marco temporal a partir do qual a enturmação pode ser realizada."
+        },
+        "avaliador_2": {
+          "avaliador": "Ítalo Sampaio (@ItaloSamP)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Altamente descritiva, trazendo a data mínima exata para a ação corretiva."
+        },
+        "consenso": {
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "classificacao": "TOTALMENTE_AUTODESCRITIVA"
+        },
+        "evidencia_origem": {
+          "captura_arquivo": "capturas_m12/C4.2.json",
+          "mensagem_capturada": "A data de enturmação 10/01/2026 é anterior ao início do ano acadêmico 01/02/2026.",
+          "mensagem_sha256": "8fb87fe055b23069a6de0055fa036bd9b1cdb2cebb306e408e8e6de97669aa51"
+        }
+      },
+      "evidencia_execucao": {
+        "captura_arquivo": "capturas_m12/C4.2.json",
+        "captura_arquivo_sha256": "5c3803c3f45a194162e3b1977382e9274b7c76b650d38d693ba7a3184282bf71",
+        "timestamp_execucao": "2026-11-14T19:01:27+00:00",
+        "requisicao_http": "POST /matricula/215/enturmar/138",
+        "status_http_capturado": 302,
+        "sha256_corpo_resposta": "f4a877208d6d617a1506b4675829733a52993342fa68e853f34313d2a9aa6fad",
+        "sql_verificacao": {
+          "tabela": "pmieducar.matricula_turma",
+          "query": "SELECT COUNT(*) FROM pmieducar.matricula_turma",
+          "contagem_antes": 35,
+          "contagem_depois": 35,
+          "delta": 0,
+          "persistencia_indesejada": false
+        }
+      }
+    },
+    {
+      "id": "C4.3",
+      "categoria": "C4_MATRICULA_CONFLITO_TEMPORAL",
+      "titulo": "Tentativa de enturmação ativa concomitante para a mesma matrícula",
+      "descricao": "Tentativa de criar uma segunda enturmação ativa para a mesma matrícula sem cancelamento prévio da enturmação anterior.",
+      "camada_alvo": "app/Services/EnrollmentService.php & app/Exceptions/Enrollment/ExistsActiveEnrollmentException.php",
+      "simulacao_payload": {
+        "enrollment_date": "10/03/2026"
+      },
+      "retorno_observado": {
+        "status_http": 302,
+        "codigo_erro": null,
+        "mensagem_exibida": "Existe outra enturmação ativa para a matrícula 216.",
+        "bloqueio_amigavel": true,
+        "persistencia_indesejada": false,
+        "tabela_banco_conferida": "pmieducar.matricula_turma",
+        "erro_500_ocorreu": false,
+        "redirect_location": "http://127.0.0.1:8099/matricula/216/enturmar/139",
+        "redirect_follow_status": 200
+      },
+      "auditoria_m13": {
+        "avaliador_1": {
+          "avaliador": "Gabriel Barbaceli (@Nibaacriba)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Informa o conflito existente na matrícula 501, instruindo o operador a cancelar a anterior antes de enturmar."
+        },
+        "avaliador_2": {
+          "avaliador": "Ítalo Sampaio (@ItaloSamP)",
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "justificativa": "Causa explícita e identificador da matrícula para remanejamento."
+        },
+        "consenso": {
+          "informa_causa": true,
+          "indica_acao_corretiva": true,
+          "classificacao": "TOTALMENTE_AUTODESCRITIVA"
+        },
+        "evidencia_origem": {
+          "captura_arquivo": "capturas_m12/C4.3.json",
+          "mensagem_capturada": "Existe outra enturmação ativa para a matrícula 216.",
+          "mensagem_sha256": "4411f6a20e0a9e53a736bb3ed5906e978c8fecb985ea82d5c109e26127e3dbbc"
+        }
+      },
+      "evidencia_execucao": {
+        "captura_arquivo": "capturas_m12/C4.3.json",
+        "captura_arquivo_sha256": "f0ca80fac04ba1a7fbd0331f4e1afdfa0e64ae2208b7b2076251574b597b3648",
+        "timestamp_execucao": "2026-11-14T19:01:27+00:00",
+        "requisicao_http": "POST /matricula/216/enturmar/139",
+        "status_http_capturado": 302,
+        "sha256_corpo_resposta": "578ab70ed55eac9e236b386b1101a9bf8770e268771a7f584b9308986bbf3b97",
+        "sql_verificacao": {
+          "tabela": "pmieducar.matricula_turma",
+          "query": "SELECT COUNT(*) FROM pmieducar.matricula_turma",
+          "contagem_antes": 36,
+          "contagem_depois": 36,
+          "delta": 0,
+          "persistencia_indesejada": false
+        }
+      }
+    }
+  ]
+}

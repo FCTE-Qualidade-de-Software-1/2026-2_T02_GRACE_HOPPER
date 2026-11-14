@@ -1,0 +1,54 @@
+{
+    "cenario_id": "C3.1",
+    "timestamp_execucao": "2026-11-14T19:01:26+00:00",
+    "ambiente": {
+        "php_version": "8.5.11",
+        "banco": "PostgreSQL (testing)",
+        "base_url": "http://127.0.0.1:8099"
+    },
+    "requisicao": {
+        "method": "POST",
+        "url": "/api/v2/notas",
+        "headers": {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "token": "***REDACTED***"
+        },
+        "payload": {
+            "aluno_id": 212,
+            "turma_id": 135,
+            "componente_id": 413,
+            "etapa": "1",
+            "nota": "ÓTIMO"
+        }
+    },
+    "resposta": {
+        "status_http": 422,
+        "headers": [
+            "HTTP/1.1 422 Unprocessable Content",
+            "Host: 127.0.0.1:8099",
+            "Connection: close",
+            "X-Powered-By: PHP/8.5.11",
+            "Cache-Control: no-cache, private",
+            "Date: Sat, 14 Nov 2026 19:01:26 GMT",
+            "Content-Type: application/json",
+            "X-RateLimit-Limit: 60",
+            "X-RateLimit-Remaining: 56",
+            "Access-Control-Allow-Origin: *"
+        ],
+        "body_raw": "{\"message\":\"O campo nota deve ser um n\\u00famero. (e mais 1 erro)\",\"errors\":{\"nota\":[\"O campo nota deve ser um n\\u00famero.\",\"O campo nota tem um formato inv\\u00e1lido.\"]}}",
+        "sha256_body": "23c30f1a8530a4ed746d6f39832767c6cf03eb5c17b7794c496c4e3f442ac1f7",
+        "redirect_location": null,
+        "redirect_follow_status": null
+    },
+    "mensagem_capturada": "O campo nota deve ser um número. (e mais 1 erro)",
+    "codigo_erro": null,
+    "sql_verificacao": {
+        "tabela": "modules.nota_componente_curricular",
+        "query": "SELECT COUNT(*) FROM modules.nota_componente_curricular",
+        "contagem_antes": 2,
+        "contagem_depois": 2,
+        "delta": 0,
+        "persistencia_indesejada": false
+    }
+}

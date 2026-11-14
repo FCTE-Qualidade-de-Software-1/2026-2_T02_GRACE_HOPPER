@@ -1,0 +1,475 @@
+{
+    "instrumento": {
+        "nome": "scripts/evaluate-quality.php",
+        "versao": "3.0.0",
+        "php": "8.2.17",
+        "tokenizador": "token_get_all (TOKEN_PARSE)"
+    },
+    "timestamp": "2026-11-14T18:50:59+00:00",
+    "commit": "7903a3efc7689942ee700007f86ed581023aad27",
+    "status": "executado",
+    "manifesto": [
+        "app/Services/RegistrationService.php",
+        "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+        "ieducar/modules/Avaliacao/Views/DiarioController.php",
+        "ieducar/modules/Avaliacao/Service/Boletim.php"
+    ],
+    "excluidos": [],
+    "regras": {
+        "dspm": "Martin Sequence: I = Ce / (Ca + Ce), A = Na / Nc, D = |A + I - 1|, DSPM = sum(D) / P."
+    },
+    "M8_DSPM": {
+        "name": "Distância da Sequência Principal de Martin",
+        "symbol": "DSPM",
+        "value": 0.3784,
+        "threshold_excellent": "<= 0.20",
+        "threshold_critical": "> 0.50",
+        "status": "Coletado (Fase 4)",
+        "S": 2,
+        "faixa": "Regular",
+        "hipotese": {
+            "id": "H3.2",
+            "criterio": "0.20 < DSPM <= 0.50",
+            "resultado": "Confirmada"
+        }
+    },
+    "detalhes": {
+        "dspm": 0.3784,
+        "total_componentes": 5,
+        "total_pares_dependencia": 42,
+        "componentes": {
+            "C1_Matricula_Services": {
+                "componente": "C1_Matricula_Services",
+                "nome": "Serviços Modernos de Matrícula e Diário (Laravel)",
+                "nc": 3,
+                "na": 0,
+                "a": 0,
+                "ca": 3,
+                "ce": 4,
+                "i": 0.5714,
+                "d": 0.4286,
+                "tipos": [
+                    "App\\Services\\RegistrationService",
+                    "App\\Services\\EnrollmentService",
+                    "App\\Services\\DiarioControllerService"
+                ],
+                "tipos_abstratos": [],
+                "dependencias_aferentes": [
+                    "App\\Http\\Controllers\\DiarioController",
+                    "App\\Http\\Controllers\\EnrollmentController",
+                    "MatriculaController"
+                ],
+                "dependencias_eferentes": [
+                    "App\\Models\\LegacyRegistration",
+                    "App\\Models\\RegistrationStatus",
+                    "Avaliacao_Service_Boletim",
+                    "App\\Models\\LegacyEnrollment"
+                ]
+            },
+            "C2_Matricula_Controllers": {
+                "componente": "C2_Matricula_Controllers",
+                "nome": "Controladores HTTP Modernos e Ponte de Integração",
+                "nc": 3,
+                "na": 0,
+                "a": 0,
+                "ca": 0,
+                "ce": 3,
+                "i": 1,
+                "d": 0,
+                "tipos": [
+                    "App\\Http\\Controllers\\EnrollmentController",
+                    "App\\Http\\Controllers\\DiarioController",
+                    "App\\Http\\Controllers\\LegacyController"
+                ],
+                "tipos_abstratos": [],
+                "dependencias_aferentes": [],
+                "dependencias_eferentes": [
+                    "App\\Services\\DiarioControllerService",
+                    "App\\Models\\LegacyRegistration",
+                    "App\\Services\\EnrollmentService"
+                ]
+            },
+            "C3_Dominio_Models": {
+                "componente": "C3_Dominio_Models",
+                "nome": "Modelos Eloquent de Domínio (Matrícula, Notas e Regras)",
+                "nc": 11,
+                "na": 0,
+                "a": 0,
+                "ca": 8,
+                "ce": 0,
+                "i": 0,
+                "d": 1,
+                "tipos": [
+                    "App\\Models\\LegacyRegistration",
+                    "App\\Models\\LegacyEnrollment",
+                    "App\\Models\\LegacyEvaluationRule",
+                    "App\\Models\\LegacyRoundingTable",
+                    "App\\Models\\LegacyValueRoundingTable",
+                    "App\\Models\\LegacyDisciplineScore",
+                    "App\\Models\\LegacyStudentScore",
+                    "App\\Models\\LegacyRegistrationScore",
+                    "App\\Models\\LegacyStudentAbsence",
+                    "App\\Models\\LegacyScoreExam",
+                    "App\\Models\\RegistrationStatus"
+                ],
+                "tipos_abstratos": [],
+                "dependencias_aferentes": [
+                    "App\\Http\\Controllers\\EnrollmentController",
+                    "App\\Services\\DiarioControllerService",
+                    "App\\Services\\EnrollmentService",
+                    "App\\Services\\RegistrationService",
+                    "Avaliacao_Service_Boletim",
+                    "DiarioApiController",
+                    "MatriculaController",
+                    "PromocaoApiController"
+                ],
+                "dependencias_eferentes": []
+            },
+            "C4_Avaliacao_Service_Legado": {
+                "componente": "C4_Avaliacao_Service_Legado",
+                "nome": "Serviços e Modelos Procedurais do Módulo de Avaliação (Legado)",
+                "nc": 22,
+                "na": 3,
+                "a": 0.1364,
+                "ca": 6,
+                "ce": 4,
+                "i": 0.4,
+                "d": 0.4636,
+                "tipos": [
+                    "Avaliacao_Service_Boletim",
+                    "Avaliacao_Service_Boletim_RegraAvaliacao",
+                    "Avaliacao_Service_Boletim_FaltaAluno",
+                    "Avaliacao_Service_Boletim_NotaAluno",
+                    "Avaliacao_Service_Boletim_Acessores",
+                    "Avaliacao_Service_Boletim_ParecerDescritivoAluno",
+                    "Avaliacao_Service_Boletim_Validators",
+                    "Avaliacao_Service_Boletim_Avaliacao",
+                    "Avaliacao_Model_NotaComponente",
+                    "Avaliacao_Model_NotaComponenteMedia",
+                    "Avaliacao_Model_NotaAluno",
+                    "Avaliacao_Model_NotaGeral",
+                    "Avaliacao_Model_FaltaAbstract",
+                    "Avaliacao_Model_FaltaComponente",
+                    "Avaliacao_Model_FaltaGeral",
+                    "Avaliacao_Model_FaltaAluno",
+                    "Avaliacao_Model_MediaGeral",
+                    "Avaliacao_Model_ParecerDescritivoAbstract",
+                    "Avaliacao_Model_ParecerDescritivoComponente",
+                    "Avaliacao_Model_ParecerDescritivoGeral",
+                    "Avaliacao_Model_ParecerDescritivoAluno",
+                    "Avaliacao_Model_Etapa"
+                ],
+                "tipos_abstratos": [
+                    "Avaliacao_Model_FaltaAbstract",
+                    "Avaliacao_Model_ParecerDescritivoAbstract",
+                    "Avaliacao_Model_Etapa"
+                ],
+                "dependencias_aferentes": [
+                    "App\\Services\\DiarioControllerService",
+                    "DiarioApiController",
+                    "FaltaController",
+                    "NotaController",
+                    "ParecerController",
+                    "PromocaoApiController"
+                ],
+                "dependencias_eferentes": [
+                    "App\\Models\\LegacyDisciplineScore",
+                    "App\\Models\\LegacyEvaluationRule",
+                    "App\\Models\\LegacyRegistration",
+                    "App\\Models\\LegacyStudentAbsence"
+                ]
+            },
+            "C5_Avaliacao_Views_Api_Legado": {
+                "componente": "C5_Avaliacao_Views_Api_Legado",
+                "nome": "Controladores e Views de API do Núcleo Legado",
+                "nc": 8,
+                "na": 0,
+                "a": 0,
+                "ca": 0,
+                "ce": 12,
+                "i": 1,
+                "d": 0,
+                "tipos": [
+                    "DiarioApiController",
+                    "DiarioController",
+                    "NotaController",
+                    "FaltaController",
+                    "ParecerController",
+                    "PromocaoApiController",
+                    "PromocaoController",
+                    "MatriculaController"
+                ],
+                "tipos_abstratos": [],
+                "dependencias_aferentes": [],
+                "dependencias_eferentes": [
+                    "App\\Models\\LegacyRegistration",
+                    "Avaliacao_Model_FaltaComponente",
+                    "Avaliacao_Model_FaltaGeral",
+                    "Avaliacao_Model_NotaComponente",
+                    "Avaliacao_Model_NotaGeral",
+                    "Avaliacao_Model_ParecerDescritivoComponente",
+                    "Avaliacao_Model_ParecerDescritivoGeral",
+                    "Avaliacao_Service_Boletim",
+                    "App\\Models\\LegacyEnrollment",
+                    "App\\Services\\EnrollmentService",
+                    "App\\Services\\RegistrationService",
+                    "App\\Models\\LegacyEvaluationRule"
+                ]
+            }
+        },
+        "pares_dependencia": [
+            {
+                "origem": "App\\Http\\Controllers\\DiarioController",
+                "componente_origem": "C2_Matricula_Controllers",
+                "destino": "App\\Services\\DiarioControllerService",
+                "componente_destino": "C1_Matricula_Services"
+            },
+            {
+                "origem": "App\\Http\\Controllers\\EnrollmentController",
+                "componente_origem": "C2_Matricula_Controllers",
+                "destino": "App\\Models\\LegacyRegistration",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "App\\Http\\Controllers\\EnrollmentController",
+                "componente_origem": "C2_Matricula_Controllers",
+                "destino": "App\\Services\\EnrollmentService",
+                "componente_destino": "C1_Matricula_Services"
+            },
+            {
+                "origem": "App\\Services\\DiarioControllerService",
+                "componente_origem": "C1_Matricula_Services",
+                "destino": "App\\Models\\LegacyRegistration",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "App\\Services\\DiarioControllerService",
+                "componente_origem": "C1_Matricula_Services",
+                "destino": "App\\Models\\RegistrationStatus",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "App\\Services\\DiarioControllerService",
+                "componente_origem": "C1_Matricula_Services",
+                "destino": "Avaliacao_Service_Boletim",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "App\\Services\\EnrollmentService",
+                "componente_origem": "C1_Matricula_Services",
+                "destino": "App\\Models\\LegacyEnrollment",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "App\\Services\\EnrollmentService",
+                "componente_origem": "C1_Matricula_Services",
+                "destino": "App\\Models\\LegacyRegistration",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "App\\Services\\RegistrationService",
+                "componente_origem": "C1_Matricula_Services",
+                "destino": "App\\Models\\LegacyEnrollment",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "App\\Services\\RegistrationService",
+                "componente_origem": "C1_Matricula_Services",
+                "destino": "App\\Models\\LegacyRegistration",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "Avaliacao_Service_Boletim",
+                "componente_origem": "C4_Avaliacao_Service_Legado",
+                "destino": "App\\Models\\LegacyDisciplineScore",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "Avaliacao_Service_Boletim",
+                "componente_origem": "C4_Avaliacao_Service_Legado",
+                "destino": "App\\Models\\LegacyEvaluationRule",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "Avaliacao_Service_Boletim",
+                "componente_origem": "C4_Avaliacao_Service_Legado",
+                "destino": "App\\Models\\LegacyRegistration",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "Avaliacao_Service_Boletim",
+                "componente_origem": "C4_Avaliacao_Service_Legado",
+                "destino": "App\\Models\\LegacyStudentAbsence",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "DiarioApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "App\\Models\\LegacyRegistration",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "DiarioApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_FaltaComponente",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "DiarioApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_FaltaGeral",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "DiarioApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_NotaComponente",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "DiarioApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_NotaGeral",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "DiarioApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_ParecerDescritivoComponente",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "DiarioApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_ParecerDescritivoGeral",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "DiarioApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Service_Boletim",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "FaltaController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_FaltaComponente",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "FaltaController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_FaltaGeral",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "FaltaController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_ParecerDescritivoComponente",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "FaltaController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Service_Boletim",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "MatriculaController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "App\\Models\\LegacyEnrollment",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "MatriculaController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "App\\Models\\LegacyRegistration",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "MatriculaController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "App\\Services\\EnrollmentService",
+                "componente_destino": "C1_Matricula_Services"
+            },
+            {
+                "origem": "MatriculaController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "App\\Services\\RegistrationService",
+                "componente_destino": "C1_Matricula_Services"
+            },
+            {
+                "origem": "NotaController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_FaltaComponente",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "NotaController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_NotaComponente",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "NotaController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_ParecerDescritivoComponente",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "NotaController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Service_Boletim",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "ParecerController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_ParecerDescritivoComponente",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "ParecerController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_ParecerDescritivoGeral",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "ParecerController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Service_Boletim",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "PromocaoApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "App\\Models\\LegacyEvaluationRule",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "PromocaoApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "App\\Models\\LegacyRegistration",
+                "componente_destino": "C3_Dominio_Models"
+            },
+            {
+                "origem": "PromocaoApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_FaltaComponente",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "PromocaoApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Model_FaltaGeral",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            },
+            {
+                "origem": "PromocaoApiController",
+                "componente_origem": "C5_Avaliacao_Views_Api_Legado",
+                "destino": "Avaliacao_Service_Boletim",
+                "componente_destino": "C4_Avaliacao_Service_Legado"
+            }
+        ]
+    }
+}

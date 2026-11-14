@@ -75,6 +75,27 @@ class TestIndicadores(unittest.TestCase):
         self.assertIsNone(extrair_horas(corpo, RE_REALIZADA))
         self.assertEqual(extrair_horas("- **Esforço Efetivo Realizado**: 3,5h", RE_REALIZADA), 3.5)
 
+    def test_tempo_ciclo(self):
+        tc = ind.tempo_ciclo(base())
+        self.assertEqual(tc["total_concluidas"], 2)
+        self.assertGreater(tc["media_dias"], 0)
+        self.assertEqual(len(tc["issues"]), 2)
+
+    def test_contribuicoes(self):
+        dados = base()
+        dados["contribuidores"] = {"ArthurDevWorks": 10}
+        dados["issues"][0]["responsaveis"] = ["ArthurDevWorks"]
+        c = ind.contribuicoes(dados)
+        self.assertEqual(len(c["membros"]), 6)
+        arthur = next(m for m in c["membros"] if m["login"] == "ArthurDevWorks")
+        self.assertEqual(arthur["commits"], 10)
+        self.assertEqual(arthur["issues_fechadas"], 1)
+
+    def test_historico_medicoes(self):
+        h = ind.historico_medicoes(base())
+        self.assertGreaterEqual(len(h), 5)
+        self.assertTrue(any(x["id"] == "CP-1" for x in h))
+
 
 if __name__ == "__main__":
     unittest.main()
