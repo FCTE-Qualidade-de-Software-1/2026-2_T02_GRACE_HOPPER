@@ -31,6 +31,7 @@ A execução empírica sobre o commit congelado `7903a3efc7689942ee700007f86ed58
 
 - [Manutenibilidade (M7a, M7b e M10)](manutenibilidade-m7-m10.md): resultado da execução do motor estático sobre o commit congelado.
 - [Qualidade em uso (M14a, M14b e M15)](qualidade-em-uso-m14-m15.md): métricas declaradas não mensuráveis antes da coleta e renormalização do $\text{IQC}_{\text{Interação}}$.
+- [Ação de melhoria](acao-de-melhoria.md): refatoração de `getSituacaoNotas` ($v(G)$ de 72 para 15), com teste de equivalência de comportamento e nova medição de M7a, M7b e M10.
 
 ---
 
