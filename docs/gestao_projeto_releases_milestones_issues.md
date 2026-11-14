@@ -806,7 +806,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Atribuição Individual:**
     - **Responsável:** `Gabriel Barbaceli`
     - **Matrícula UnB:** `21/1045122` | **GitHub:** `@Nibaacriba`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `[Aberto]` | **Custo:** `[A consolidar]`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `4h` | **Custo:** `R$ 200,00`
 - **Goal:** Executar a ação de melhoria da Entrega 2 sobre o pior resultado de G3: o método `Avaliacao_Service_Boletim::getSituacaoNotas`, com $v(G) = 72$ (M7b Crítico).
 - **Depends on:** Issue #43.
 - **Scope:** Patch sobre `ieducar/modules/Avaliacao/Service/Boletim.php` no commit `7903a3e`, sem mudar o comportamento do produto; o julgamento da Fase 5 continua sobre o commit congelado.
