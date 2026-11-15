@@ -59,7 +59,33 @@
     "M3_PRODUCT_DIR": "/home/ricardol/Projeto/i-educar-m3",
     "COMPOSER_NO_SECURITY_BLOCKING": "1"
   },
-  "commands": [],
+  "commands": [
+    {
+      "step": "baseline_restore",
+      "cmd": "pg_restore --clean --if-exists /tmp/baseline.dump",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T21:20:00-03:00"
+    },
+    {
+      "step": "op01_happy_before",
+      "cmd": "psql < /tmp/op01_before.sql",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T21:22:00-03:00"
+    },
+    {
+      "step": "op01_happy_execute",
+      "cmd": "tinker --execute=require /tmp/happy_path_op01.php",
+      "exit_code": 0,
+      "expected_failure": false,
+      "timestamp": "2026-11-15T21:24:00-03:00"
+    },
+    {
+      "step": "op01_happy_after",
+      "cmd": "psql < /tmp/op01_before.sql",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T21:25:00-03:00"
+    }
+  ],
   "impediments": [
     {
       "id": "IMP-01",
@@ -82,12 +108,38 @@
       "description": "environment.json truncado para 0-byte e comitado em 351b5e6 antes de 17:10",
       "source": "padrao jq|tee|mv sem && (erro de execucao, nao do ambiente)",
       "impact": "regenerado via comando jq inline; hashes e contagens conferem com o tee original das 16:50"
+    },
+    {
+      "id": "IMP-05",
+      "description": "componente_curricular_turma vazia; fallback getEscolaSerieDisciplina (escola 2, serie 6) retornou 9 componentes (IDs 8-16)",
+      "source": "IedFinder::getComponentesTurma linha 562+ (fallback quando count == 0)",
+      "impact": "nenhum — happy path executavel sem fixture"
+    },
+    {
+      "id": "IMP-06",
+      "description": "Warnings DEPRECATED em runtime legado (CoreExt) com PHP 8.5: pg_escape_string e trim(null)",
+      "source": "ieducar/lib/CoreExt/DataMapper.php:326,274,369,417,425 + Entity.php:208",
+      "impact": "Nao grava nada; polui stdout. Log salvo com 2>&1 preserva warnings para evidencia"
+    },
+    {
+      "id": "IMP-07",
+      "description": "promover() lanca CoreExt_Service_Exception quando situacao nao muda; excecao engolida por DiarioApiController::trySaveServiceBoletim",
+      "source": "Boletim.php:2817 + DiarioApiController.php:1097-1104",
+      "impact": "No harness a excecao sobe mas as 3 escritas anteriores ja comitaram; em producao o usuario nao ve erro. Evidencia de nao-atomicidade"
     }
   ],
   "gate_context": {
     "M4_ITAE": {
-      "status": "pending",
-      "value": null
+      "status": "partially_measured",
+      "value": null,
+      "pending_reason": "caminho feliz confirmado; injeção determinística pendente (Etapa C)",
+      "happy_path_observed": {
+        "nota_aluno": "0 -> 1",
+        "nota_componente_curricular": "0 -> 1",
+        "falta_aluno": "0 -> 1",
+        "falta_componente_curricular": "0 -> 1",
+        "matricula_aprovado": "3 -> 3 (promover lancou CoreExt_Service_Exception de alerta)"
+      }
     },
     "M5_DDOM": {
       "status": "pending",

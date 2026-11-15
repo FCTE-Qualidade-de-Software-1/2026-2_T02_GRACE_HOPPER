@@ -1,0 +1,15 @@
+     t      | id | matricula_id | componente_curricular_id | etapa |  nota  
+------------+----+--------------+--------------------------+-------+--------
+ nota_aluno |  3 |            3 |                        8 | 1     | 8.5000
+(1 row)
+
+      t      | id | matricula_id | componente_curricular_id | etapa | quantidade 
+-------------+----+--------------+--------------------------+-------+------------
+ falta_aluno |  3 |            3 |                        8 | 1     |          2
+(1 row)
+
+      t      | cod_matricula | aprovado | ativo 
+-------------+---------------+----------+-------
+ matricula_3 |             3 |        3 |     1
+(1 row)
+

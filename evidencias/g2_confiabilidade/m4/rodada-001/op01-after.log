@@ -1,0 +1,25 @@
+     t      | count 
+------------+-------
+ nota_aluno |     0
+(1 row)
+
+             t              | count 
+----------------------------+-------
+ nota_componente_curricular |     0
+(1 row)
+
+      t      | count 
+-------------+-------
+ falta_aluno |     0
+(1 row)
+
+       t       | count 
+---------------+-------
+ parecer_aluno |     0
+(1 row)
+
+      t      | cod_matricula | aprovado | ativo 
+-------------+---------------+----------+-------
+ matricula_3 |             3 |        3 |     1
+(1 row)
+

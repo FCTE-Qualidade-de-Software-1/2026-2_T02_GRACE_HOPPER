@@ -377,10 +377,11 @@ flowchart LR
         CENARIO["Análise de Sensibilidade (Cenário Hipotético):<br/>Com Patch #56 + Merge PR #55 + Aprovação M4/M6<br/>→ Potencial transição para CLASSE B"]
         VEREDITO -.-> CENARIO
     end
-
+    
     ETAPA1 --> VEREDITO
     ETAPA2 --> VEREDITO
 ```
+
 
 ### 9.1 Etapa 1: Verificação dos 3 Gates Binários Eliminatórios
 

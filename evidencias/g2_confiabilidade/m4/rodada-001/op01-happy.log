@@ -1,0 +1,101 @@
+
+=== OP-01 HAPPY PATH ===
+matricula=3 componente=8 etapa=1
+
+BEFORE:
+  nota_aluno = 0
+  nota_componente = 0
+  falta_aluno = 0
+  parecer_aluno = 0
+  matricula_aprovado = 3
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 326.
+  <warning> DEPRECATED </warning> trim(): Passing null to parameter #1 ($string) of type string is deprecated in ieducar/lib/CoreExt/Entity.php on line 208.
+  <warning> DEPRECATED </warning> trim(): Passing null to parameter #1 ($string) of type string is deprecated in ieducar/lib/CoreExt/Entity.php on line 208.
+  <warning> DEPRECATED </warning> trim(): Passing null to parameter #1 ($string) of type string is deprecated in ieducar/lib/CoreExt/Entity.php on line 208.
+  <warning> DEPRECATED </warning> trim(): Passing null to parameter #1 ($string) of type string is deprecated in ieducar/lib/CoreExt/Entity.php on line 208.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+
+[1] Boletim instanciado
+  etapaAtual = NULL
+  etapas     = 4
+  ref_cod_turma = 3
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 326.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+
+[2] Nota adicionada (componente 8, etapa 1, nota 8.5)
+[3] Falta adicionada (componente 8, etapa 1, 2 faltas)
+  <warning> DEPRECATED </warning> trim(): Passing null to parameter #1 ($string) of type string is deprecated in ieducar/lib/CoreExt/Entity.php on line 208.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> trim(): Passing null to parameter #1 ($string) of type string is deprecated in ieducar/lib/CoreExt/Entity.php on line 208.
+  <warning> DEPRECATED </warning> trim(): Passing null to parameter #1 ($string) of type string is deprecated in ieducar/lib/CoreExt/Entity.php on line 208.
+  <warning> DEPRECATED </warning> trim(): Passing null to parameter #1 ($string) of type string is deprecated in ieducar/lib/CoreExt/Entity.php on line 208.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 326.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 326.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 326.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 326.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 326.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> trim(): Passing null to parameter #1 ($string) of type string is deprecated in ieducar/lib/CoreExt/Entity.php on line 208.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 326.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 326.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 417.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 417.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 417.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 417.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 417.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 425.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 425.
+  <warning> DEPRECATED </warning> trim(): Passing null to parameter #1 ($string) of type string is deprecated in ieducar/lib/CoreExt/Entity.php on line 208.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 369.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+  <warning> DEPRECATED </warning> pg_escape_string(): Automatic fetching of PostgreSQL connection is deprecated in ieducar/lib/CoreExt/DataMapper.php on line 274.
+
+[ERRO] CoreExt_Service_Exception: Matrícula (3) não precisou ser promovida, pois a nova situação continua a mesma da anterior (3)
+  em /var/www/ieducar/ieducar/modules/Avaliacao/Service/Boletim.php:2817
+
+AFTER:
+  nota_aluno = 1
+  nota_componente = 1
+  falta_aluno = 1
+  parecer_aluno = 0
+  matricula_aprovado = 3
+
+DIFF:
+  nota_aluno: 0 → 1 (Δ 1)
+  nota_componente: 0 → 1 (Δ 1)
+  falta_aluno: 0 → 1 (Δ 1)
+
+=== FIM ===
