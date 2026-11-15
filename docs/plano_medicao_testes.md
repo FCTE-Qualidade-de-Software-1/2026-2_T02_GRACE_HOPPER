@@ -315,3 +315,284 @@ A coleta oficial `oficial-001` executou os 30 cenários do oráculo no commit `7
 
 O [relatório específico da M3](fase-4/medicao_m3_dcnm.md) apresenta casos, procedimento, rastreabilidade, cálculo e limites. As evidências estão em `evidencias/g2_confiabilidade/m3/oficial-001/`. Os dez testes legados complementares foram reativados e registraram erro de pré-requisito de enturmação; estão classificados separadamente e não integram o denominador do DCNM. A aprovação da M3 não antecipa o julgamento de M4, M12 ou do índice global.
 
+---
+
+## 8. Resultados Consolidados das Medições M4 a M15 e Ação de Melhoria (Fase 4)
+
+Esta seção consolida os resultados empíricos obtidos na Fase 4 da ISO/IEC 25040:2024 para as demais famílias de métricas (`M4` a `M15`) sobre o commit congelado `7903a3efc7689942ee700007f86ed581023aad27`, bem como a verificação de impacto da ação de melhoria corretiva executada na Issue #56.
+
+### 8.1 Confiabilidade Complementar: M4 (ITAE), M5 (DDOM) e M6 (CVPB) — Issues #41 e #42
+
+1. **M4 (ITAE — Integridade Transacional e Ausência de Estados Órfãos, Gate Binário — Issue #41):** A bateria de injeção controlada de falhas transacionais (`T01` a `T04`) prevista na Seção 2.2.2 não teve sua coleta empírica concluída até o fechamento da Sprint M6. Em cumprimento estrito à regra de não-compensação e de evidência obrigatória da Seção 1.1 (*"universo sem casos ou evidência ausente é registrado como não mensurável / não comprovado, nunca como 100%"*) e da Seção 5.1 do [Framework GQM](gqm_evaluation_framework.md), o **Gate Binário M4 permanece NÃO COMPROVADO (BLOQUEADO)**. A parte da hipótese **H2.2** referente à falha transacional ($\text{ITAE} < 100\%$) permanece **Não testada**.
+2. **M5 (DDOM — Densidade de Defeitos Operacionais em Matrícula e Diário — Issue #41):** Conforme regra de contingência pré-declarada na Seção 3.1, por não haver acesso a banco de tickets de produção de uma Secretaria Municipal de Educação com janela mínima de 90 dias consecutivos, a métrica `M5` foi formalmente registrada como **Não mensurável** em ambiente puramente laboratorial, tendo seu peso local ($w_{\text{M5}} = 1{,}2$) excluído do cálculo de $\text{IQC}_{\text{Conf}}$. Isso **confirma** a segunda parte da hipótese **H2.2** (não mensurabilidade de `M5` sem logs de produção).
+3. **M6 (CVPB — Completude de Verificação Pós-Restauração de Backup — Issue #42):** O ensaio de `pg_dump` e `pg_restore` em container limpo não teve sua coleta empírica concluída na janela da Entrega 2. Assim, `M6` é registrada como **Não comprovada / Não mensurável por ausência de coleta** ($S_{\text{M6}} = \text{—}$, peso $w_{\text{M6}} = 1{,}0$), e a hipótese **H2.3** ($\text{CVPB} \ge 95\%$) permanece **Não testada**.
+
+### 8.2 Manutenibilidade: M7a, M7b, M8, M9, M10, M11 e Ação de Melhoria — Issues #43, #44 e #56
+
+As medições estáticas de manutenibilidade foram conduzidas sobre o manifesto congelado de 4 arquivos centrais de domínio (`Avaliacao/Service/Boletim.php`, `include/pmieducar/clsPmieducarMatricula.inc.php`, `app/Models/LegacyRegistration.php` e `app/Models/LegacyEvaluationRule.php`, totalizando $n = 213$ callables), sobre os 5 componentes arquiteturais (`C1` a `C5`, 47 tipos PHP e 42 dependências) e sobre os 30 arquivos de teste automatizado mapeados para Matrícula e Avaliação. Os relatórios detalhados constam em [Manutenibilidade — M7a, M7b e M10](fase-4/manutenibilidade-m7-m10.md) (Issue #43 / PR #53), no relatório `docs/fase-4/manutenibilidade-m8-m9-m11.md` ([PR #55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55), Issue #44) e no relatório `docs/fase-4/acao-de-melhoria.md` ([PR #57](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/57), Issue #56).
+
+- **M7a ($\text{CC}_{P90}$ — Complexidade Ciclomática no Percentil 90):** Valor medido = **$8$** (posto $r = \lceil 0{,}90 \times 213 \rceil = 192$), enquadrado como **Excelente ($S_{\text{M7a}} = 4$, $\le 10$)**. No total, $93{,}4\%$ dos 213 callables apresentam $v(G) \le 10$, demonstrando que a complexidade não é difusa, mas fortemente concentrada em poucos métodos legados.
+- **M7b ($\text{CC}_{\max}$ — Complexidade Ciclomática Máxima):** No commit congelado `7903a3e`, o valor medido foi **$72$** no método `Avaliacao_Service_Boletim::getSituacaoNotas` (285 LOC), enquadrado como **Crítico ($S_{\text{M7b}} = 1$, $> 50$)**, seguido por `getSituacaoFaltas` ($v(G) = 30$) e `preverNotaRecuperacao` ($v(G) = 28$). Como a hipótese **H3.1** postulava conjuntamente $10 < \text{CC}_{P90} \le 20$ **e** $\text{CC}_{\max} > 30$, a conjunção foi formalmente **Refutada** porque o percentil 90 mostrou-se excelente ($\text{CC}_{P90} = 8 \le 10$), embora o pico extremo ($\text{CC}_{\max} = 72 > 30$) tenha se confirmado isoladamente.
+- **M8 ($\text{DSPM}$ — Distância Média da Sequência Principal de Martin):** Valor medido = **$0{,}3784$** ($0{,}38$), enquadrado como **Regular ($S_{\text{M8}} = 2$, faixa $(0{,}35, 0{,}50]$)**. O componente `C3_Dominio_Models` (`app/Models/Legacy*.php`, 29 classes concretas) apresentou abstração nula ($A = 0{,}0000$) e estabilidade máxima ($I = 0{,}0000$), resultando em distância máxima $D = 1{,}0000$ (*Zona de Dor*). **Hipótese H3.2 ($0{,}20 < \text{DSPM} \le 0{,}50$): Confirmada.**
+- **M9 ($\text{IFDL}$ — Índice de Fricção de Dados Legado-Moderno):** Foram catalogadas **$41$ adaptações defensivas** distribuídas nos **$9$ modelos `Legacy*`** do escopo (`LegacyRegistration`, `LegacyEvaluationRule`, `LegacyStudent`, `LegacyEnrollment`, `LegacySchoolClass`, `LegacyCourse`, `LegacyLevel`, `LegacyEvaluationRuleGradeYear` e `LegacyAverageFormula`), resultando em $\text{IFDL} = 41 / 9 = \mathbf{4{,}5556}$ ($\approx 4{,}56$ adaptações/modelo), enquadrado como **Crítico ($S_{\text{M9}} = 1$, $> 4{,}0$)**. **Hipótese H3.3 ($1{,}0 < \text{IFDL} \le 2{,}5$): Refutada** (o atrito real superou o teto previsto em $82{,}2\%$).
+- **M10 ($\text{MI}$ — Índice de Manutenibilidade Médio Ponderado por LOC):** Valor medido = **$63{,}82$** sobre os 213 callables ($2.790$ LOC internas), enquadrado como **Bom ($S_{\text{M10}} = 3$, faixa $[60, 80)$)**. Enquanto os modelos Eloquent modernos apresentaram $\text{MI} \ge 77$, o método `Avaliacao_Service_Boletim::getSituacaoNotas` registrou o pior índice individual do manifesto ($\text{MI} = 16{,}90 < 20$, faixa crítica). **Hipótese H3.4 ($60 \le \text{MI} < 80$): Confirmada.**
+- **M11 ($\text{TTAE}$ — Taxa de Testes Automatizados Ativos e Efetivos):** Nos 30 arquivos de teste do escopo (`tests/Unit/CoreExt/*`, `tests/Unit/Modules/*`, `tests/Unit/App/Models/Legacy*Test.php`, `tests/Api/Diario*Test.php`), foram declarados **$185$ métodos de teste**, dos quais **$146$ executaram ativamente com pelo menos 1 asserção** ($663$ asserções totais) e **$39$ foram ignorados (`<skipped/>`)** por `markTestSkipped()`, resultando em $\text{TTAE} = 146 / 185 \times 100\% = \mathbf{78{,}92\%}$, enquadrado como **Regular ($S_{\text{M11}} = 2$, faixa $[70\%, 85\%)$)**. Destaca-se que $100\%$ dos 24 testes em `tests/Api/DiarioApiRequestTest.php`, `tests/Api/DiarioPostTest.php` e `tests/Api/DiarioRecuperacaoTest.php` estão desativados. **Hipótese H3.5 ($70\% \le \text{TTAE} < 95\%$): Confirmada.**
+- **Verificação da Ação de Melhoria (Issue #56 — Refatoração de `getSituacaoNotas`):** A partir do ponto crítico identificado em `M7b`, foi desenvolvido o patch não-intrusivo `evidencias/g3_manutenibilidade/acao_melhoria/getSituacaoNotas.patch`, que decompõe a máquina de estados de `Avaliacao_Service_Boletim::getSituacaoNotas` em métodos auxiliares coesos sem alterar a assinatura pública. A equivalência semântica foi comprovada sobre **50.000 combinações de entrada** (varredura exaustiva de 2.304 estados booleanos + 47.696 vetores numéricos de fronteira e fuzzing determinístico com seed fixa), registrando **0 divergências** (`equivalencia_50k.json`). Com a refatoração, a complexidade de `getSituacaoNotas` caiu de **$72$ para $15$** ($-79{,}2\%$) e seu $\text{MI}$ subiu de **$16{,}90$ para $34{,}70$** ($+105{,}3\%$). No manifesto global ($n = 224$ callables pós-extração), `M7a` permaneceu em **$8$** ($S_{\text{M7a}} = 4$), `M10` manteve-se em **$63{,}79$** ($S_{\text{M10}} = 3$) e **`M7b` reduziu-se de $72$ para $30$** (`getSituacaoFaltas`), elevando a pontuação discreta de `M7b` de **$S_{\text{M7b}} = 1$ (Crítico)** para **$S_{\text{M7b}} = 3$ (Bom, faixa $(15, 30]$)**.
+
+### 8.3 Capacidade de Interação e Qualidade em Uso: M12, M13, M14a, M14b e M15 — Issues #45 e #46
+
+1. **M12 ($\text{IPPE}$ — Índice de Prevenção e Proteção contra Erros do Usuário, Gate Binário — Issue #45):** Foram executados os 12 cenários negativos pré-congelados (`C1.1` a `C4.3`) contra o container oficial do i-Educar 2.12 via script automatizado (`evidencias/g4_interacao_uso/m12_m13_execution_report.json`, detalhado em `docs/fase-4/interacao-m12-m13.md` no [PR #55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55)). Em **12 de 12 cenários ($\text{IPPE} = 100{,}0\%$)**, o sistema bloqueou a entrada inválida sem erro HTTP 500 e com variação nula de registros persistidos no PostgreSQL ($\Delta\text{DB} = 0$). **Gate M12 APROVADO ($S_{\text{M12}} = 4$, Excelente); Hipótese H4.1 ($\text{IPPE} = 100\%$): Confirmada.**
+2. **M13 ($\text{ADMV}$ — Autodescritividade das Mensagens de Validação — Issue #45):** Das 12 mensagens de rejeição capturadas nos cenários `C1.1` a `C4.3` e avaliadas de forma independente por dois revisores segundo os critérios binários `Cr1` (identificação do campo/regra violada) e `Cr2` (orientação de ação corretiva sem jargão técnico), **9 mensagens atenderam simultaneamente a `Cr1` e `Cr2`**, resultando em $\text{ADMV} = 9 / 12 \times 100\% = \mathbf{75{,}00\%}$, enquadrado como **Crítico ($S_{\text{M13}} = 1$, $< 80\%$)**. As 3 reprovações ocorreram em `C2.2` (código de etapa alfanumérico rejeitado com mensagem genérica de exceção sem indicar formato numérico esperado), `C2.3` (nota string não numérica aceita silenciosamente como `0.00` pelo cast `(float)` do PHP antes do retorno JSON) e `C3.1` (tentativa de enturmação sem vagas que exibe alerta informando ausência de vagas, mas omite orientação corretiva sobre remanejamento ou abertura de vagas na turma). **Hipótese H4.2 ($80\% \le \text{ADMV} < 90\%$): Refutada** ($\text{ADMV} = 75{,}00\% < 80\%$).
+3. **M14a ($\text{TMET}_{\text{T1}}$), M14b ($\text{TMET}_{\text{T2}}$) e M15 ($\text{TSPT}$) — Qualidade em Uso (Issue #46):** Conforme documentado em [Qualidade em Uso — M14a, M14b e M15](fase-4/qualidade-em-uso-m14-m15.md), em 12/11/2026 verificou-se a inviabilidade de recrutar o mínimo de $m \ge 5$ participantes externos com TCLE assinado dentro do cronograma da Sprint M6. Acionou-se formalmente a regra de contingência pré-declarada na Seção 3.4: as três métricas foram registradas como **Não mensuráveis**, seus pesos locais ($w_{\text{M14a}} = 0{,}8$, $w_{\text{M14b}} = 1{,}0$, $w_{\text{M15}} = 1{,}0$) foram excluídos sem substituição por inspeção heurística, e as hipóteses **H4.3** e **H4.4** foram classificadas como **Não testadas**.
+
+---
+
+## 9. Conclusão da Avaliação: Agregação Multicritério, Julgamento dos Gates e Parecer Técnico (Fase 5 — ISO/IEC 25040:2024)
+
+Esta seção materializa a **Atividade 5 (Concluir a Avaliação)** da norma **ISO/IEC 25040:2024** (Processos 5.1 *Analisar os resultados da medição*, 5.2 *Concluir o relatório de avaliação*, 5.3 *Revisar a avaliação de qualidade e fornecer feedback à organização* e 5.4 *Tratar os dados e artefatos da avaliação*), aplicando estritamente o modelo de decisão em duas etapas predefinido na Seção 5 do [Framework GQM](gqm_evaluation_framework.md) (Issue #47).
+
+```mermaid
+flowchart LR
+    subgraph ETAPA1["Etapa 1: Gates Binários Eliminatórios (Não-Compensatórios)"]
+        M3_G["Gate M3 (DCNM)<br/>Medido: 30/30 = 100,0%<br/>Status: APROVADO"]
+        M4_G["Gate M4 (ITAE)<br/>Medido: Sem coleta (#41)<br/>Status: NÃO COMPROVADO"]
+        M12_G["Gate M12 (IPPE)<br/>Medido: 12/12 = 100,0%<br/>Status: APROVADO"]
+    end
+
+    subgraph ETAPA2["Etapa 2: Agregação Multicritério Ponderada (IQC e IQM)"]
+        IQC1["IQC_Comp (20%)<br/>3,50 / 4,00"]
+        IQC2["IQC_Conf (30%)<br/>Suspenso (M4, M6) | Parcial M3: 4,00"]
+        IQC3["IQC_Manut (30%)<br/>Base: 2,20 (&lt; 2,50)<br/>Pós-Melhoria (#56): 2,60 (&ge; 2,50)"]
+        IQC4["IQC_Interação (20%)<br/>3,14 / 4,00 (renormalizado)"]
+        IQM_BOX["IQM Global<br/>Base (7903a3e): 3,19<br/>Pós-Melhoria (#56): 3,31"]
+        IQC1 & IQC2 & IQC3 & IQC4 --> IQM_BOX
+    end
+
+    subgraph DECISAO["Julgamento Final de Release (Fase 5)"]
+        VEREDITO["Commit 7903a3e: CLASSE C (Bloqueado)<br/>Com Patch #56 + Comprovação M4/M6:<br/>Transição para CLASSE B (Aprovado c/ Ressalvas)"]
+    end
+
+    ETAPA1 --> DECISAO
+    ETAPA2 --> DECISAO
+```
+
+### 9.1 Etapa 1: Verificação dos 3 Gates Binários Eliminatórios
+
+De acordo com a Seção 5.1 do [Framework GQM](gqm_evaluation_framework.md), os Gates Binários `M3`, `M4` e `M12` possuem natureza **não-compensatória**: qualquer violação ou ausência de comprovação empírica bloqueia a aprovação direta da release, independentemente da média global $\text{IQM}$. A Tabela 8 consolida o veredito oficial dos 3 Gates Binários.
+
+**Tabela 8 — Verificação oficial dos 3 Gates Binários eliminatórios (Etapa 1 da Fase 5)**
+
+| Gate | Métrica | Característica | Limiar Exigido | Valor Empírico Medido | Evidência Auditável | Veredito Oficial do Gate |
+| :-: | :-: | :--- | :-: | :-: | :--- | :-: |
+| **Gate 1** | **M3 (`DCNM`)** | G2 — Confiabilidade (Maturidade) | $\text{DCNM} = 100\%$ ($N_{\text{casos}} = 30$) | **$30/30 = 100{,}0\%$** ($457$ asserções) | `evidencias/g2_confiabilidade/m3/oficial-001/summary.json` | **APROVADO** |
+| **Gate 2** | **M4 (`ITAE`)** | G2 — Confiabilidade (Recuperabilidade) | $\text{ITAE} = 100\%$ ($N_{\text{cenários}} = 4$) | **Não executado** (Issue #41 pendente) | Sem artefato em `evidencias/g2_confiabilidade/` | **NÃO COMPROVADO (BLOQUEADO)** |
+| **Gate 3** | **M12 (`IPPE`)** | G4 — Capacidade de Interação (Proteção contra Erros) | $\text{IPPE} = 100\%$ ($N_{\text{cenários}} = 12$) | **$12/12 = 100{,}0\%$** ($\Delta\text{DB} = 0$, zero HTTP 500) | `evidencias/g4_interacao_uso/m12_m13_execution_report.json` | **APROVADO** |
+
+*Fonte: Elaborado pelos autores com base nos relatórios de execução da Fase 4 e nos critérios não-compensatórios da Seção 5.1 do Framework GQM.*
+
+**Análise da Etapa 1:** Dois dos três gates críticos do sistema — a exatidão matemática do motor de cálculo de notas e médias (`M3 = 100,0%`) e a proteção contra persistência de entradas inválidas nos fluxos de matrícula e diário (`M12 = 100,0%`) — foram integralmente comprovados em laboratório. Contudo, como a bateria de rollback sob falha induzida (`M4`) não teve sua evidência gerada até o corte da Release E2, aplica-se a cláusula de segurança metodológica: **evidência ausente equivale a gate não comprovado / bloqueado**.
+
+### 9.2 Tabela Consolidada das 17 Linhas Operacionais de Métricas e Status das Hipóteses
+
+A Tabela 9 apresenta o quadro sinótico completo das **17 linhas operacionais de métricas (`M1` a `M15`)**, exibindo o valor bruto medido no commit congelado `7903a3e` (e entre colchetes o valor pós-aplicação do patch de melhoria da Issue #56 para `M7b` e `M10`), a conversão para a pontuação ordinal discreta $S_i \in \{1, 2, 3, 4\}$, o peso original $w_i$, o peso efetivo após a aplicação das regras pré-declaradas de renormalização e o veredito de cada hipótese (`H1.1` a `H4.4`).
+
+**Tabela 9 — Síntese consolidada das 17 linhas operacionais de métricas (`M1` a `M15`), pontuações $S_i$, pesos e julgamento das hipóteses**
+
+| ID | Sigla | Característica (Objetivo GQM) | Valor Bruto Medido (`7903a3e` / [Pós-Patch #56]) | Faixa de Julgamento Atingida | Pontuação $S_i$ | Peso Original $w_i$ | Peso Efetivo Ativo | Hipótese Associada | Status da Hipótese |
+| :-: | :-: | :--- | :--- | :--- | :-: | :-: | :-: | :-: | :-: |
+| **M1** | `TINCR` | G1 — Compatibilidade (Coexistência) | **$100{,}0\%$** ($16/16$ c/ override; baseline $11/19 = 57{,}9\%$) | Excelente ($= 100\%$) | **$4$** | $1{,}0$ | $1{,}0$ | `H1.1` ($\ge 85\%$) | **Confirmada** (c/ ressalva de override) |
+| **M2** | `CEI` | G1 — Compatibilidade (Interoperabilidade) | **$90{,}0\%$** ($9/10$ endpoints; `E08` falhou em C3) | Bom ($[85\%, 100\%)$) | **$3$** | $1{,}0$ | $1{,}0$ | `H1.2` ($\ge 85\%$) | **Confirmada** |
+| **M3** | `DCNM` | G2 — Confiabilidade (Maturidade — **GATE**) | **$100{,}0\%$** ($30/30$ casos; $457$ asserções) | Excelente ($= 100\%$) | **$4$** | $2{,}0$ | $2{,}0$ | `H2.1` ($= 100\%$) | **Confirmada** |
+| **M4** | `ITAE` | G2 — Confiabilidade (Recuperabilidade — **GATE**) | **Não executado** (Issue #41 pendente) | Gate Não Comprovado | **—** | $2{,}0$ | Pendente | `H2.2` ($\text{ITAE} < 100\%$) | **Não testada** (parte M4) |
+| **M5** | `DDOM` | G2 — Confiabilidade (Disponibilidade/Maturidade) | **Não mensurável** (sem logs de produção 90d) | Excluída (Regra Seção 3.1) | **—** | $1{,}2$ | Excluído ($0{,}0$) | `H2.2` (M5 não mensurável) | **Confirmada** (parte M5) |
+| **M6** | `CVPB` | G2 — Confiabilidade (Recuperabilidade de Backup) | **Não executado** (Issue #42 pendente) | Não Comprovado | **—** | $1{,}0$ | Pendente | `H2.3` ($\ge 95\%$) | **Não testada** |
+| **M7a** | `CC-P90` | G3 — Manutenibilidade (Analisabilidade) | **$8$** [$8$ pós-patch] ($n = 213$ [$224$] callables) | Excelente ($\le 10$) | **$4$** | $1{,}0$ | $1{,}0$ | `H3.1` ($10 < \text{P90} \le 20 \land \text{Max} > 30$) | **Refutada** ($\text{P90} = 8 \le 10$) |
+| **M7b** | `CC-MAX` | G3 — Manutenibilidade (Modificabilidade) | **$72$** (`getSituacaoNotas`) [**$30$** pós-patch #56] | Crítico ($> 50$) [**Bom** $(15, 30]$] | **$1$** [**$3$**] | $1{,}2$ | $1{,}2$ | `H3.1` (pico isolado $> 30$ confirmado) | **Refutada** (na conjunção com M7a) |
+| **M8** | `DSPM` | G3 — Manutenibilidade (Modularidade) | **$0{,}3784$** ($5$ componentes; `C3` com $D = 1{,}00$) | Regular ($(0{,}35, 0{,}50]$) | **$2$** | $0{,}8$ | $0{,}8$ | `H3.2` ($0{,}20 < \text{DSPM} \le 0{,}50$) | **Confirmada** |
+| **M9** | `IFDL` | G3 — Manutenibilidade (Modificabilidade/Reusabilidade) | **$4{,}5556$** ($41$ adaptações em $9$ models `Legacy*`) | Crítico ($> 4{,}0$) | **$1$** | $0{,}6$ | $0{,}6$ | `H3.3` ($1{,}0 < \text{IFDL} \le 2{,}5$) | **Refutada** ($4{,}56 > 2{,}5$) |
+| **M10** | `MI` | G3 — Manutenibilidade (Analisabilidade/Modificabilidade) | **$63{,}82$** [$63{,}79$ pós-patch] ($2.790$ LOC) | Bom ($[60, 80)$) | **$3$** | $1{,}0$ | $1{,}0$ | `H3.4` ($60 \le \text{MI} < 80$) | **Confirmada** |
+| **M11** | `TTAE` | G3 — Manutenibilidade (Testabilidade) | **$78{,}92\%$** ($146$ ativos / $185$ declarados; $39$ skipped) | Regular ($[70\%, 85\%)$) | **$2$** | $1{,}4$ | $1{,}4$ | `H3.5` ($70\% \le \text{TTAE} < 95\%$) | **Confirmada** |
+| **M12** | `IPPE` | G4 — Capacidade de Interação (Proteção — **GATE**) | **$100{,}0\%$** ($12/12$ cenários bloqueados s/ HTTP 500) | Excelente ($= 100\%$) | **$4$** | $2{,}0$ | $2{,}0$ | `H4.1` ($= 100\%$) | **Confirmada** |
+| **M13** | `ADMV` | G4 — Capacidade de Interação (Autodescritividade) | **$75{,}00\%$** ($9/12$ mensagens c/ causa e ação corretiva) | Crítico ($< 80\%$) | **$1$** | $0{,}8$ | $0{,}8$ | `H4.2` ($80\% \le \text{ADMV} < 90\%$) | **Refutada** ($75{,}0\% < 80\%$) |
+| **M14a** | `TMET-T1` | G4 — Qualidade em Uso (Eficiência em Matrícula) | **Não mensurável** (contingência TCLE Seção 3.4) | Excluída (Regra Seção 3.4) | **—** | $0{,}8$ | Excluído ($0{,}0$) | `H4.3` ($\text{TMET} \le 1{,}50$) | **Não testada** |
+| **M14b** | `TMET-T2` | G4 — Qualidade em Uso (Eficiência em Lançamento) | **Não mensurável** (contingência TCLE Seção 3.4) | Excluída (Regra Seção 3.4) | **—** | $1{,}0$ | Excluído ($0{,}0$) | `H4.3` ($\text{TMET} \le 1{,}50$) | **Não testada** |
+| **M15** | `TSPT` | G4 — Qualidade em Uso (Eficácia na 1ª Tentativa) | **Não mensurável** (contingência TCLE Seção 3.4) | Excluída (Regra Seção 3.4) | **—** | $1{,}0$ | Excluído ($0{,}0$) | `H4.4` ($\text{TSPT} \ge 80\%$) | **Não testada** |
+
+*Fonte: Elaborado pelos autores com base nas evidências brutas em `evidencias/` e nos relatórios técnicos da Fase 4.*
+
+**Síntese do Teste de Hipóteses:** Das 12 hipóteses formuladas na Fase 2 (`H1.1` a `H4.4`), **6 foram Confirmadas** (`H1.1`, `H1.2`, `H2.1`, `H3.2`, `H3.4`, `H3.5` e `H4.1`, além da cláusula de não-mensurabilidade de `M5` em `H2.2`), **3 foram Refutadas empiricamente** (`H3.1`, pois a complexidade não é generalizada no P90, mas hiperconcentrada em `getSituacaoNotas`; `H3.3`, pois a fricção de dados legado-moderno de $4{,}56$ superou severamente o limite esperado de $2{,}5$; e `H4.2`, pois a autodescritividade de $75{,}0\%$ ficou abaixo do piso de $80\%$) e **3 permaneceram Não testadas** (`H2.3`, `H4.3`, `H4.4` e a cláusula de `M4` em `H2.2`).
+
+### 9.3 Etapa 2: Memória de Cálculo Passo a Passo dos Índices $\text{IQC}_k$ e $\text{IQM}$
+
+Conforme a Seção 5.2 do [Framework GQM](gqm_evaluation_framework.md), o Índice de Qualidade por Característica ($\text{IQC}_k$) é dado pela média ponderada das pontuações discretas $S_i \in \{1, 2, 3, 4\}$ das métricas válidas da característica $k$:
+
+$$
+\text{IQC}_k = \frac{\sum_{i \in k} S_i \cdot w_i}{\sum_{i \in k} w_i} \in [1{,}00;\; 4{,}00]
+$$
+
+#### 1. Cálculo de $\text{IQC}_{\text{Comp}}$ (G1 — Compatibilidade, Peso Global $W_{\text{Comp}} = 0{,}20$)
+
+Todas as métricas de G1 foram medidas (`M1`: $S_{\text{M1}} = 4, w_{\text{M1}} = 1{,}0$; `M2`: $S_{\text{M2}} = 3, w_{\text{M2}} = 1{,}0$):
+
+$$
+\text{IQC}_{\text{Comp}} = \frac{S_{\text{M1}} \cdot w_{\text{M1}} + S_{\text{M2}} \cdot w_{\text{M2}}}{w_{\text{M1}} + w_{\text{M2}}} = \frac{4 \times 1{,}0 + 3 \times 1{,}0}{1{,}0 + 1{,}0} = \frac{4{,}0 + 3{,}0}{2{,}0} = \frac{7{,}0}{2{,}0} = \mathbf{3{,}50}
+$$
+
+- **Pesos internos efetivos em G1:** $w'_{\text{M1}} = 1{,}0 / 2{,}0 = 50{,}0\%$; $w'_{\text{M2}} = 1{,}0 / 2{,}0 = 50{,}0\%$.
+- **Interpretação:** $\text{IQC}_{\text{Comp}} = 3{,}50 \ge 3{,}00$ (atende ao patamar de **Classe A**).
+
+#### 2. Cálculo de $\text{IQC}_{\text{Conf}}$ (G2 — Confiabilidade, Peso Global $W_{\text{Conf}} = 0{,}30$)
+
+Em G2, o peso de `M5` ($w_{\text{M5}} = 1{,}2$) é excluído pela regra pré-declarada da Seção 3.1 (ausência de logs de produção de 90 dias), restando os pesos nominais $w_{\text{M3}} = 2{,}0$, $w_{\text{M4}} = 2{,}0$ e $w_{\text{M6}} = 1{,}0$ (soma $= 5{,}0$).
+- **Status Estrito (ISO/IEC 25040):** Como `M4` (Gate Binário) e `M6` não foram executadas (Issues #41 e #42), o índice $\text{IQC}_{\text{Conf}}$ encontra-se **formalmente suspenso por incompletude de coleta**, mantendo o Gate M4 bloqueado.
+- **Índice Parcial sobre a Métrica Comprovada (`M3`):** Considerando exclusivamente a métrica executada e comprovada da dimensão (`M3`: $\text{DCNM} = 100\% \implies S_{\text{M3}} = 4, w_{\text{M3}} = 2{,}0$), ou equivalentemente o limite superior ótimo caso `M4` e `M6` atinjam $S = 4$:
+
+$$
+\text{IQC}_{\text{Conf, parcial}} = \frac{S_{\text{M3}} \cdot w_{\text{M3}}}{w_{\text{M3}}} = \frac{4 \times 2{,}0}{2{,}0} = \mathbf{4{,}00}
+$$
+
+*(Nota de análise de sensibilidade: ainda que `M4` fosse aprovada com $S_{\text{M4}} = 4$ e `M6` obtivesse nota mínima $S_{\text{M6}} = 1$, ter-se-ia $\text{IQC}_{\text{Conf}} = (4 \times 2{,}0 + 4 \times 2{,}0 + 1 \times 1{,}0)/5{,}0 = 17{,}0/5{,}0 = 3{,}40 \ge 3{,}00$).*
+
+#### 3. Cálculo de $\text{IQC}_{\text{Manut}}$ (G3 — Manutenibilidade, Peso Global $W_{\text{Manut}} = 0{,}30$)
+
+Todas as 6 linhas operacionais de G3 (`M7a`, `M7b`, `M8`, `M9`, `M10`, `M11`) foram integralmente medidas sobre o código-fonte. A soma dos pesos locais é:
+
+$$
+\sum_{i \in \text{G3}} w_i = w_{\text{M7a}} + w_{\text{M7b}} + w_{\text{M8}} + w_{\text{M9}} + w_{\text{M10}} + w_{\text{M11}} = 1{,}0 + 1{,}2 + 0{,}8 + 0{,}6 + 1{,}0 + 1{,}4 = \mathbf{6{,}0}
+$$
+
+- **Cenário 3A — Baseline no Commit Congelado (`7903a3e`, antes da Ação de Melhoria):**
+  Com $S_{\text{M7a}} = 4$, $S_{\text{M7b}} = 1$ ($\text{CC}_{\max} = 72$), $S_{\text{M8}} = 2$, $S_{\text{M9}} = 1$, $S_{\text{M10}} = 3$ e $S_{\text{M11}} = 2$:
+
+$$
+\text{IQC}_{\text{Manut, base}} = \frac{(4 \times 1{,}0) + (1 \times 1{,}2) + (2 \times 0{,}8) + (1 \times 0{,}6) + (3 \times 1{,}0) + (2 \times 1{,}4)}{6{,}0}
+$$
+
+$$
+\text{IQC}_{\text{Manut, base}} = \frac{4{,}0 + 1{,}2 + 1{,}6 + 0{,}6 + 3{,}0 + 2{,}8}{6{,}0} = \frac{13{,}2}{6{,}0} = \mathbf{2{,}20}
+$$
+
+  **Achado decisivo:** No commit congelado `7903a3e`, $\text{IQC}_{\text{Manut, base}} = 2{,}20 < 2{,}50$. Pela regra da Seção 5.3 do [Framework GQM](gqm_evaluation_framework.md), qualquer característica com $\text{IQC}_k < 2{,}50$ **reprova o produto para a Classe C**, independentemente dos gates de confiabilidade!
+
+- **Cenário 3B — Pós-Ação de Melhoria (Issue #56, com `getSituacaoNotas.patch` aplicado):**
+  Com a redução de $\text{CC}_{\max}$ de $72$ para $30$, a pontuação de `M7b` sobe de $S_{\text{M7b}} = 1$ para $S_{\text{M7b}} = 3$:
+
+$$
+\text{IQC}_{\text{Manut, pós-melhoria}} = \frac{(4 \times 1{,}0) + (3 \times 1{,}2) + (2 \times 0{,}8) + (1 \times 0{,}6) + (3 \times 1{,}0) + (2 \times 1{,}4)}{6{,}0}
+$$
+
+$$
+\text{IQC}_{\text{Manut, pós-melhoria}} = \frac{4{,}0 + 3{,}6 + 1{,}6 + 0{,}6 + 3{,}0 + 2{,}8}{6{,}0} = \frac{15{,}6}{6{,}0} = \mathbf{2{,}60}
+$$
+
+  **Impacto da Ação de Melhoria:** O patch de refatoração eleva $\text{IQC}_{\text{Manut}}$ em **$+0{,}40$ ponto** (de $2{,}20$ para $2{,}60$), **ultrapassando o limiar eliminatório de $2{,}50$ exigido para a Classe B**!
+
+#### 4. Cálculo de $\text{IQC}_{\text{Interação}}$ (G4 — Capacidade de Interação e Qualidade em Uso, Peso Global $W_{\text{Interação}} = 0{,}20$)
+
+Pela regra de contingência da Seção 3.4, os pesos das métricas de sessão com usuários (`M14a`: $0{,}8$; `M14b`: $1{,}0$; `M15`: $1{,}0$) foram excluídos antes da coleta, e os pesos das métricas de produto executadas (`M12`: $w_{\text{M12}} = 2{,}0$; `M13`: $w_{\text{M13}} = 0{,}8$) foram renormalizados sobre a soma ativa $\sum w_i = 2{,}0 + 0{,}8 = 2{,}8$:
+- Peso relativo renormalizado de `M12`: $w'_{\text{M12}} = 2{,}0 / 2{,}8 = 71{,}43\%$.
+- Peso relativo renormalizado de `M13`: $w'_{\text{M13}} = 0{,}8 / 2{,}8 = 28{,}57\%$.
+
+Com $S_{\text{M12}} = 4$ ($\text{IPPE} = 100{,}0\%$) e $S_{\text{M13}} = 1$ ($\text{ADMV} = 75{,}0\%$):
+
+$$
+\text{IQC}_{\text{Interação}} = \frac{S_{\text{M12}} \cdot w_{\text{M12}} + S_{\text{M13}} \cdot w_{\text{M13}}}{w_{\text{M12}} + w_{\text{M13}}} = \frac{4 \times 2{,}0 + 1 \times 0{,}8}{2{,}0 + 0{,}8} = \frac{8{,}0 + 0{,}8}{2{,}8} = \frac{8{,}8}{2{,}8} = \mathbf{3{,}1429} \approx \mathbf{3{,}14}
+$$
+
+- **Interpretação:** $\text{IQC}_{\text{Interação}} = 3{,}14 \ge 3{,}00$, sustentado pela aprovação integral do Gate M12 ($100\%$), mas penalizado pela baixa autodescritividade das mensagens de erro (`M13` com $S_{\text{M13}} = 1$).
+
+#### 5. Cálculo do Índice de Qualidade Multicritério Global ($\text{IQM}$)
+
+Aplicando a equação global da Seção 5.2 do [Framework GQM](gqm_evaluation_framework.md):
+
+$$
+\text{IQM} = 0{,}30 \cdot \text{IQC}_{\text{Conf}} + 0{,}30 \cdot \text{IQC}_{\text{Manut}} + 0{,}20 \cdot \text{IQC}_{\text{Interação}} + 0{,}20 \cdot \text{IQC}_{\text{Comp}}
+$$
+
+- **Cenário Global 1 — Baseline do Commit Congelado (`7903a3e`, sobre as métricas medidas):**
+
+$$
+\text{IQM}_{\text{base}} = 0{,}30 \times 4{,}00 + 0{,}30 \times 2{,}20 + 0{,}20 \times 3{,}1429 + 0{,}20 \times 3{,}50
+$$
+
+$$
+\text{IQM}_{\text{base}} = 1{,}2000 + 0{,}6600 + 0{,}6286 + 0{,}7000 = \mathbf{3{,}1886} \approx \mathbf{3{,}19}
+$$
+
+*(Se o cálculo for restrito exclusivamente às 3 características com $100\%$ das métricas elegíveis concluídas — G1, G3 e G4, soma de pesos $= 0{,}70$ — a média ponderada renormalizada no commit congelado é $\text{IQM}_{\text{G1+G3+G4, base}} = (0{,}30 \times 2{,}20 + 0{,}20 \times 3{,}1429 + 0{,}20 \times 3{,}50)/0{,}70 = 1{,}9886 / 0{,}70 = \mathbf{2{,}84}$).*
+
+- **Cenário Global 2 — Pós-Ação de Melhoria (`getSituacaoNotas.patch` da Issue #56 aplicado):**
+
+$$
+\text{IQM}_{\text{pós-melhoria}} = 0{,}30 \times 4{,}00 + 0{,}30 \times 2{,}60 + 0{,}20 \times 3{,}1429 + 0{,}20 \times 3{,}50
+$$
+
+$$
+\text{IQM}_{\text{pós-melhoria}} = 1{,}2000 + 0{,}7800 + 0{,}6286 + 0{,}7000 = \mathbf{3{,}3086} \approx \mathbf{3{,}31}
+$$
+
+*(Restrito às 3 características integralmente medidas G1, G3 e G4 pós-melhoria: $\text{IQM}_{\text{G1+G3+G4, pós-melhoria}} = (0{,}7800 + 0{,}6286 + 0{,}7000)/0{,}70 = 2{,}1086 / 0{,}70 = \mathbf{3{,}01}$).*
+
+A Tabela 10 sintetiza os índices por característica e o índice global nos dois cenários avaliados.
+
+**Tabela 10 — Síntese dos Índices de Qualidade por Característica ($\text{IQC}_k$) e do Índice Global ($\text{IQM}$)**
+
+| Característica ISO/IEC 25010 / 25019 | Peso Global $W_k$ | Métricas Ativas no Cálculo | $\text{IQC}_k$ Baseline (`7903a3e`) | $\text{IQC}_k$ Pós-Melhoria (#56) | Piso Classe B ($\ge 2{,}50$) | Piso Classe A ($\ge 3{,}00$) |
+| :--- | :-: | :--- | :-: | :-: | :-: | :-: |
+| **G1 — Compatibilidade** ($\text{IQC}_{\text{Comp}}$) | $20\%$ ($0{,}20$) | `M1`, `M2` ($2/2$) | **$3{,}50$** | **$3{,}50$** | Atende | Atende |
+| **G2 — Confiabilidade** ($\text{IQC}_{\text{Conf}}$) | $30\%$ ($0{,}30$) | `M3` medida ($1/3$; `M4` e `M6` pendentes; `M5` excluída) | **$4{,}00$** *(parcial M3; suspenso por M4/M6)* | **$4{,}00$** *(parcial M3; suspenso por M4/M6)* | Bloqueado por Gate M4 | Bloqueado por Gate M4 |
+| **G3 — Manutenibilidade** ($\text{IQC}_{\text{Manut}}$) | $30\%$ ($0{,}30$) | `M7a`, `M7b`, `M8`, `M9`, `M10`, `M11` ($6/6$) | **$2{,}20$** *(Reprovado)* | **$2{,}60$** *(Aprovado Classe B)* | **Não atende na base** / **Atende pós-patch** | Não atende ($< 3{,}00$) |
+| **G4 — Interação e Uso** ($\text{IQC}_{\text{Interação}}$) | $20\%$ ($0{,}20$) | `M12`, `M13` ($2/2$ produto; `M14a/b` e `M15` excluídas) | **$3{,}14$** | **$3{,}14$** | Atende | Atende |
+| **Índice Global ($\text{IQM}$)** | **$100\%$ ($1{,}00$)** | **11 linhas medidas / 4 excluídas / 2 pendentes** | **$3{,}19$** *(G1+G3+G4: $2{,}84$)* | **$3{,}31$** *(G1+G3+G4: $3{,}01$)* | $\text{IQM} \ge 2{,}75$ | $\text{IQM} \ge 3{,}25$ |
+
+*Fonte: Elaborado pelos autores a partir da aplicação das equações da Seção 5.2 do Framework GQM.*
+
+### 9.4 Enquadramento Final da Release (Classe A, B ou C)
+
+Confrontando os resultados das Tabelas 8, 9 e 10 com os critérios de decisão da Tabela 5 da Seção 5.3 do [Framework GQM](gqm_evaluation_framework.md):
+
+1. **Veredito para o Commit Oficial Congelado (`7903a3efc7689942ee700007f86ed581023aad27`):** **CLASSE C — REPROVADO PARA PRODUÇÃO IMEDIATA (RELEASE BLOQUEADA)**.
+   - **Causa Determinante 1 (Empírica — Manutenibilidade):** No código original do commit `7903a3e`, o índice de Manutenibilidade atingiu **$\text{IQC}_{\text{Manut}} = 2{,}20 < 2{,}50$**, violando o piso mínimo eliminatório exigido para a Classe B em todas as características avaliadas, devido à combinação crítica de $\text{CC}_{\max} = 72$ (`M7b`, $S = 1$) e $\text{IFDL} = 4{,}56$ (`M9`, $S = 1$).
+   - **Causa Determinante 2 (Metodológica — Gate Binário M4):** O Gate Binário `M4 (ITAE)` e a métrica `M6 (CVPB)` não tiveram sua execução laboratorial concluída (Issues #41 e #42). Pela regra não-compensatória da Seção 5.1, um gate sem evidência empírica permanece no estado **NÃO COMPROVADO / BLOQUEADO**.
+2. **Veredito Condicional Pós-Ação de Melhoria (`getSituacaoNotas.patch` — Issue #56):** **TRANSIÇÃO TÉCNICA PARA CLASSE B — APROVADO COM RESSALVAS (Condicionada à homologação do Gate M4)**.
+   - Ao aplicar o patch validado na Issue #56 (`getSituacaoNotas.patch`, testado com 50.000 cenários e zero divergências), o índice de Manutenibilidade sobe de **$2{,}20$ para $2{,}60 \ge 2{,}50$** e o índice global atinge **$\text{IQM} = 3{,}31 \ge 2{,}75$** (ou $3{,}01 \ge 2{,}75$ sobre G1+G3+G4).
+   - Com esse patch incorporado e mediante a execução confirmatória de `M4 = 100%` no ambiente da rede municipal, o sistema cumpre todos os requisitos da **Classe B (Aprovado com Ressalvas)**, permanecendo impedido de alcançar a Classe A exclusivamente porque $\text{IQC}_{\text{Manut}} = 2{,}60 < 3{,}00$ e subsistem duas métricas não-gate com pontuação crítica $S_i = 1$ (`M9: IFDL = 4,56` e `M13: ADMV = 75,0%`), para as quais se exige o Plano de Ação Corretiva da Tabela 11.
+
+### 9.5 Plano de Ação Corretiva Priorizado (Backlog de Engenharia)
+
+Para viabilizar a promoção definitiva do i-Educar 2.12 da Classe C/B para a **Classe A (Aprovado Integralmente)** nas próximas releases, a Tabela 11 estabelece o plano de ação corretiva rastreado às métricas críticas ($S_i \le 2$) e às pendências de verificação.
+
+**Tabela 11 — Plano de Ação Corretiva priorizado para remoção de bloqueios e promoção de classe de release**
+
+| Prioridade | Métrica Alvo | Achado Empírico / Defeito Identificado | Artefato / Localização no Código | Ação Corretiva Recomendada | Impacto Esperado no Julgamento |
+| :-: | :-: | :--- | :--- | :--- | :--- |
+| **P0 (Imediata)** | **M7b (`CC-MAX`)** | `getSituacaoNotas` possui $v(G) = 72$ ($S_{\text{M7b}} = 1$) e $\text{MI} = 16{,}90$, rebaixando $\text{IQC}_{\text{Manut}}$ para $2{,}20$. | `ieducar/modules/Avaliacao/Service/Boletim.php` (linhas 603–887) | Incorporar ao branch principal o patch validado em `evidencias/g3_manutenibilidade/acao_melhoria/getSituacaoNotas.patch` (Issue #56) e refatorar `getSituacaoFaltas` ($v(G) = 30$). | Eleva $S_{\text{M7b}}$ de $1 \to 3$ (e $4$ após `getSituacaoFaltas`), subindo $\text{IQC}_{\text{Manut}}$ de $2{,}20 \to 2{,}60+$. |
+| **P0 (Imediata)** | **M4 (`ITAE`) e M6 (`CVPB`)** | Ausência de evidência automatizada de rollback transacional (`T01`–`T04`) e de restauração limpa de backup (`pg_restore`). | `Avaliacao_Service_Boletim::save()`, `clsPmieducarMatricula` e rotina de backup PostgreSQL | Executar script de injeção de exceção em `DB::beginTransaction()` e job de validação `pg_dump`/`pg_restore` em pipeline CI antes do fechamento do ano letivo. | Desbloqueia formalmente o **Gate Binário M4** e conclui $\text{IQC}_{\text{Conf}}$. |
+| **P1 (Alta)** | **M13 (`ADMV`)** | $25\%$ das mensagens de erro (`C2.2`, `C2.3`, `C3.1`) têm $S_{\text{M13}} = 1$: falta orientação corretiva em turma sem vagas (`C3.1`), cast silencioso `(float)` em nota inválida (`C2.3`) e erro genérico em etapa (`C2.2`). | `ieducar/intranet/educar_matricula_turma_cad.php` e `ieducar/modules/Avaliacao/Views/DiarioApiController.php` | Substituir `is_numeric` / cast `(float)` silencioso por `FormRequest` Laravel com mensagens explícitas contendo causa + ação corretiva (ex.: orientar abertura de vaga ou transferência na tela de enturmação). | Eleva `ADMV` de $75{,}0\%$ para $100{,}0\%$ ($S_{\text{M13}}: 1 \to 4$) e $\text{IQC}_{\text{Interação}}$ de $3{,}14 \to 4{,}00$. |
+| **P1 (Alta)** | **M9 (`IFDL`) e M8 (`DSPM`)** | $41$ adaptações defensivas em 9 models `Legacy*` ($\text{IFDL} = 4{,}56, S_{\text{M9}} = 1$) e `C3_Dominio_Models` na Zona de Dor ($D = 1{,}00, S_{\text{M8}} = 2$). | `app/Models/LegacyRegistration.php`, `LegacyEvaluationRule.php` e demais `app/Models/Legacy*.php` | Extrair contratos/interfaces de domínio (`RegistrationRepositoryInterface`) para aumentar abstração $A$ em `C3` e migrar renomeações `ref_cod_*`/`cod_*` para DTOs ou Views SQL padronizadas. | Reduz `IFDL` para $\le 2{,}5$ ($S_{\text{M9}}: 1 \to 3$) e `DSPM` para $\le 0{,}35$ ($S_{\text{M8}}: 2 \to 3$). |
+| **P2 (Média)** | **M11 (`TTAE`)** | $39$ de $185$ testes declarados estão desativados (`<skipped/>`, $\text{TTAE} = 78{,}92\%, S_{\text{M11}} = 2$), incluindo $100\%$ dos 24 testes em `tests/Api/Diario*Test.php` e 10 testes em `NotaSituacaoCommon.php`. | `tests/Api/DiarioApiRequestTest.php`, `DiarioPostTest.php`, `DiarioRecuperacaoTest.php` e `ieducar/modules/Avaliacao/Service/NotaSituacaoCommon.php` | Corrigir a fixture de enturmação prévia (`StudentNotEnrolledInSchoolClass`) em `NotaSituacaoCommon.php` e reativar os 24 testes de integração da API do Diário no CI. | Eleva `TTAE` de $78{,}92\%$ para $> 95\%$ ($S_{\text{M11}}: 2 \to 4$), levando $\text{IQC}_{\text{Manut}}$ para $\ge 3{,}00$ (**Classe A**). |
+| **P2 (Média)** | **M1 (`TINCR`) e M2 (`CEI`)** | `docker-compose.yml` oficial possui 7 `container_name` fixos (baseline $57{,}9\%$) e endpoint `E08` (`DiarioApi`) retorna 401 em envelope Laravel em vez do envelope legado `msgs`/`any_error_msg`. | `docker-compose.yml` e `ieducar/modules/Avaliacao/Views/DiarioApiController.php` | Parametrizar `container_name: ${COMPOSE_PROJECT_NAME:-ieducar}-*` no upstream e padronizar o middleware de autenticação de `DiarioApi` para retornar o mesmo envelope JSON das demais rotas `/module/Api/*`. | Eleva `TINCR` nativo para $100\%$ sem override e `CEI` de $90\%$ para $100\%$ ($S_{\text{M2}}: 3 \to 4$). |
+
+*Fonte: Elaborado pelos autores com base nos achados empíricos das Fases 4 e 5.*
+
+### 9.6 Parecer Técnico Conclusivo por Categoria de Stakeholder (ISO/IEC 25040 — Processo 5.3)
+
+Em atenção às necessidades de informação dos quatro grupos de partes interessadas mapeados na Fase 1 do processo de avaliação (Seção 1.2 do [Framework GQM](gqm_evaluation_framework.md)), emite-se o parecer técnico conclusivo a seguir:
+
+#### 1. Para Secretarias Municipais de Educação (Gestores Públicos Decisores de Adoção)
+- **Parecer de Adoção:** O **i-Educar 2.12** demonstrou **alta fidedignidade funcional nas regras de negócio pedagógicas** avaliadas: o motor de cálculo de médias, recuperações e situações de matrícula aprovou integralmente o Gate Binário `M3` (**$100{,}0\%$ de conformidade nos 30 cenários normativos e de fronteira**, cobrindo média aritmética, ponderada, recuperação paralela, específica, progressão continuada e retenção por falta), e o sistema bloqueou **$100{,}0\%$ das tentativas de inserção de dados inválidos (`Gate M12`)** sem corromper o banco de dados.
+- **Condicionantes para Implantação em Produção:** Recomenda-se a **homologação condicionada (Classe B)** para redes municipais, desde que a equipe técnica responsável pela implantação: (i) aplique o patch corretivo de manutenibilidade do boletim (`getSituacaoNotas.patch`) e (ii) execute o checklist de validação de restauração de backup (`pg_dump`/`pg_restore`) e de atomicidade transacional antes dos períodos de pico de fechamento de bimestre/ano letivo.
+
+#### 2. Para a Portabilis e Comunidade Mantenedora (Engenharia de Software e Evolução Arquitetural)
+- **Diagnóstico Arquitetural:** A avaliação revelou uma assimetria estrutural clara no repositório: enquanto $93{,}4\%$ dos métodos avaliados são simples e bem estruturados ($\text{CC}_{P90} = 8$, $\text{MI} = 63{,}82$), a dívida técnica concentra-se de maneira aguda na fronteira entre o legado (`ieducar/intranet` e `ieducar/modules/Avaliacao`) e a camada moderna Laravel (`app/Models/Legacy*`). O método `Avaliacao_Service_Boletim::getSituacaoNotas` ($\text{CC}_{\max} = 72$) e a fricção de dados nos modelos `Legacy*` ($\text{IFDL} = 4{,}56$ adaptações/modelo; `C3_Dominio_Models` com distância de Martin $D = 1{,}00$) são os principais gargalos de evolução.
+- **Recomendação Técnica Imediata:** Incorporar o patch da Issue #56 (`getSituacaoNotas.patch`), que reduz a complexidade ciclomática máxima em $79{,}2\%$ ($72 \to 15$) com equivalência matemática provada em 50.000 casos, e priorizar a reativação dos **24 testes de integração da API do Diário** (`tests/Api/Diario*Test.php`) e dos **10 testes de `NotaSituacaoCommon.php`** atualmente marcados como `skipped`.
+
+#### 3. Para Equipes de TI Municipais e Integradores de Sistemas (DevOps e Interoperabilidade)
+- **Coexistência e Infraestrutura (`M1`):** O i-Educar 2.12 atinge **$100{,}0\%$ de isolamento em ambiente compartilhado (`TINCR = 100%`)** quando implantado com override de composição (`scripts/infra/docker-compose.coexistencia.yml`), mas o `docker-compose.yml` oficial do upstream falha ao subir múltiplas instâncias no mesmo host ($57{,}9\%$) devido a 7 diretivas `container_name` estáticas (`ieducar-redis`, `ieducar-postgres`, etc.). Equipes de TI que hospedam múltiplos ambientes (produção, homologação e treinamento) no mesmo servidor Docker devem obrigatoriamente parametrizar `container_name` e usar `gerar_env_fonte.sh`. Além disso, em novas instalações do commit `7903a3e`, 18 pacotes do `composer.lock` possuem avisos de segurança (PKSA) que bloqueiam o Composer 2.9+ por padrão, exigindo atualização controlada de dependências.
+- **Interoperabilidade de APIs (`M2`):** A conformidade contratual atingiu **$90{,}0\%$ ($9/10$ endpoints)**. Integradores externos (como aplicativos de diário móvel e portais da secretaria) devem tratar uma divergência crítica no endpoint `E08` (`GET /module/Avaliacao/DiarioApi`): quando a sessão expira, ele retorna HTTP 401 no formato nativo do Laravel (`{"message":"Unauthenticated."}`) em vez do envelope legado (`msgs`/`any_error_msg`) utilizado pelas demais rotas de `/module/Api/*`.
+
+#### 4. Para Professores e Secretários Escolares (Usuários Finais Operacionais)
+- **Segurança Operacional (`M12`):** O sistema é **seguro contra erros acidentais de digitação**: em todos os 12 cenários de erro testados (notas acima do máximo de $10{,}0$, notas negativas, faltas negativas, matrícula com datas invertidas, etapa inexistente ou turma sem vagas), o i-Educar impediu a gravação de dados inconsistentes e preservou a integridade dos históricos escolares.
+- **Usabilidade das Mensagens de Erro (`M13`):** A autodescritividade das mensagens atingiu **$75{,}0\%$ ($9/12$)**, indicando que em 3 situações frequentes o usuário recebe feedback insuficiente: (i) ao tentar enturmar aluno em turma lotada (`C3.1`), o sistema informa que não há vagas, mas não orienta o secretário sobre como aumentar a capacidade da turma ou remanejar a matrícula; (ii) ao enviar texto não numérico no campo de nota via requisição de diário (`C2.3`), o legado converte silenciosamente o valor para `0,00` sem alertar o professor; e (iii) códigos inválidos de etapa (`C2.2`) geram erro genérico. Recomenda-se que os manuais de capacitação das secretarias escolares destaquem esses três comportamentos até que a correção P1 da Tabela 11 seja incorporada.
+
+
