@@ -49,7 +49,7 @@ O **Índice Global de Qualidade dos Módulos ($\text{IQM} \in [1, 4]$)** combina
 
 $$\text{IQM} = 0{,}20 \cdot \text{IQC}_{\text{Comp}} + 0{,}30 \cdot \text{IQC}_{\text{Conf}} + 0{,}30 \cdot \text{IQC}_{\text{Manut}} + 0{,}20 \cdot \text{IQC}_{\text{Inter/Uso}}$$
 
-> **Resultados Executados na Fase 5:** Consulte a memória de cálculo completa ($\text{IQC}_{\text{Comp}} = 3{,}50$, $\text{IQC}_{\text{Conf, parcial}} = 4{,}00$, $\text{IQC}_{\text{Manut}} = 2{,}20 \to 2{,}60$, $\text{IQC}_{\text{Interação}} = 3{,}14$ e $\text{IQM} = 3{,}19 \to 3{,}31$) na [Seção 9 do Plano Operacional de Medição e Testes](../plano_medicao_testes.md#9-conclusao-da-avaliacao-agregacao-multicriterio-julgamento-dos-gates-e-parecer-tecnico-fase-5-isoiec-250402024).
+> **Resultados Executados na Fase 5:** Consulte a memória de cálculo completa ($\text{IQC}_{\text{Comp}} = 3{,}50$, $\text{IQC}_{\text{Conf}} = \text{SUSPENSO}$, $\text{IQC}_{\text{Manut}} = 2{,}20$ [cenário pós-patch `#56`: $2{,}60$], $\text{IQC}_{\text{Interação}} = 3{,}14$ e $\text{IQM} = \text{NÃO CALCULÁVEL / SUSPENSO}$, Veredito **Classe C**, com análise de sensibilidade $2{,}84 \to 3{,}01$ e $3{,}19 \to 3{,}31$) na [Seção 9 do Plano Operacional de Medição e Testes](../plano_medicao_testes.md#9-conclusao-da-avaliacao-agregacao-multicriterio-julgamento-dos-gates-e-parecer-tecnico-fase-5-isoiec-250402024).
 
 ---
 

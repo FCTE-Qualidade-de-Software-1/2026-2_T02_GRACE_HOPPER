@@ -52,9 +52,9 @@ hide:
 <a class="gh-item" href="gestao/"><small>Ciclo Planejar · Medir · Avaliar e Decidir</small><span>Visão geral da gestão</span></a>
 <a class="gh-item" href="gestao/planejamento/"><small>Milestones M0 a M6 · Trilhas A–F</small><span>Planejamento de marcos e sprints</span></a>
 <a class="gh-item" href="gestao/plano-de-medicao/"><small>Fichas do Modelo de Informação (Aula 09)</small><span>Plano de medição do PSM</span></a>
-<a class="gh-item" href="indicadores_psm/"><small>TCM · ACM · VEC · TRCD automatizados</small><span>Painel de indicadores PSM/CID</span></a>
-<a class="gh-item" href="gestao/horas-custos/"><small>Critério AG-C5 · E1+E2 (144h plan. / 124h apontadas)</small><span>Horas, custos e esforço</span></a>
-<a class="gh-item" href="gestao/registro-de-medicoes/"><small>Medições 1, 2 e 3 (Fechamento Release E2)</small><span>Registro de medições e decisões</span></a>
+<a class="gh-item" href="indicadores_psm/"><small>TCM · ACM · TRCD automatizados</small><span>Painel de indicadores PSM/CID</span></a>
+<a class="gh-item" href="gestao/horas-custos/"><small>Critério AG-C5 · E1+E2 (144h plan. / 126h realizadas)</small><span>Horas, custos e esforço</span></a>
+<a class="gh-item" href="gestao/registro-de-medicoes/"><small>Medições 1, 2 e 3 (Auditoria Entrega 2)</small><span>Registro de medições e decisões</span></a>
 </div>
 </div>
 

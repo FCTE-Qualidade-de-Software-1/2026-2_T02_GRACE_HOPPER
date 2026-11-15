@@ -33,13 +33,13 @@ O planejamento da Entrega 2 estruturou **12 issues atômicas de 6 horas cada (72
 
 | Integrante (Nome e Matrícula) | Usuário GitHub | Entregas Executadas / Atribuídas (Entrega 2) | Issues no GitHub | Horas Planejadas (Realizadas) | Valor / Hora (R$) | Custo Planejado (Realizado) | % Esforço (AG-C5) | Status |
 | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Arthur Soares Parente**<br>Matrícula: `23/2036770` | `@ArthurDevWorks` | **Arquitetura e Interação:** `M8` (`DSPM`), `M9` (`IFDL`), `M11` (`TTAE`), `Gate M12` (`IPPE`) e `M13` (`ADMV`) | [#44](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/44), [#45](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/45) | 12h (`12,0h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,67%** | [x] Concluído (PR #55) |
-| **Fábio Santos Araujo**<br>Matrícula: `22/2022082` | `@fabiofonteles1` | **Julgamento Fase 5 e Release E2:** Agregação `IQC`/`IQM`, Parecer Técnico, Slides PC2, Auditoria PSM/CID e Tag `v2.0.0-pc2` | [#47](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/47), [#49](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/49) | 12h (`12,0h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,67%** | [x] Concluído |
+| **Arthur Soares Parente**<br>Matrícula: `23/2036770` | `@ArthurDevWorks` | **Arquitetura e Interação:** `M8` (`DSPM`), `M9` (`IFDL`), `M11` (`TTAE`), `Gate M12` (`IPPE`) e `M13` (`ADMV`) | [#44](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/44), [#45](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/45) | 12h (`12,0h`*) | R$ 50,00 | R$ 600,00 (`R$ 600,00`*) | **16,67%** | Em revisão (PR #55) |
+| **Fábio Santos Araujo**<br>Matrícula: `22/2022082` | `@fabiofonteles1` | **Julgamento Fase 5 e Release E2:** Agregação `IQC`/`IQM`, Parecer Técnico, Slides PC2, Auditoria PSM/CID e Prep. `v2.0.0-pc2` | [#47](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/47), [#49](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/49) | 12h (`12,0h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,67%** | [x] Concluído (PR #58) |
 | **Gabriel Barbaceli**<br>Matrícula: `21/1045122` | `@Nibaacriba` | **Motor Estático e Melhoria:** `M7a`, `M7b`, `M10`, Contingência `M14`/`M15` e Patch `getSituacaoNotas` | [#43](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/43), [#46](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/46), [#56](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/56) | 12h (`12,0h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,67%** | [x] Concluído (PRs #53 e #57) |
 | **Gustavo Silva Rodrigues**<br>Matrícula: `23/2036887` | `@g-srodrigues` | **Confiabilidade e Artigo v2:** Oráculo Pedagógico (`Gate M3 — DCNM = 100%`) e Consolidação Científica IEEE | [#40](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/40), [#48](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/48) | 12h (`6,0h` em `#40`) | R$ 50,00 | R$ 600,00 (`R$ 300,00`) | **16,67%** | `#40` Concluída (PR #54) · `#48` Aberta |
 | **Ítalo Alves Sampaio de Oliveira**<br>Matrícula: `23/2037937` | `@ItaloSamP` | **Compatibilidade (G1):** Provisionamento Docker, Coexistência (`M1 — TINCR = 100%`) e Contratos REST (`M2 — CEI = 90%`) | [#38](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/38), [#39](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/39) | 12h (`12,0h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,66%** | [x] Concluído (PR #52) |
 | **Ricardo Lucas Winchello Vieira Branco**<br>Matrícula: `22/1008409` | `@ChickRicks` | **Transações e Backup (G2):** Atomicidade (`Gate M4 — ITAE`), Triagem `M5` e Restauração (`M6 — CVPB`) | [#41](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/41), [#42](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/42) | 12h (`0,0h`) | R$ 50,00 | R$ 600,00 (`R$ 0,00`) | **16,66%** | Aberto (`#41`, `#42`) |
-| **TOTAIS CONSOLIDADOS (PC2)** | — | **13 Issues Mapeadas — Fases 4 e 5 ISO/IEC 25040:2024** | `#38` a `#49` e `#56` | **72h (`54,0h` apontadas)** | Média: R$ 50,00/h | **R$ 3.600,00 (`R$ 2.700,00`)** | **100%** | **10/13 Concluídas/PR** |
+| **TOTAIS CONSOLIDADOS (PC2)** | — | **13 Issues Mapeadas — Fases 4 e 5 ISO/IEC 25040:2024** | `#38` a `#49` e `#56` | **72h (`54,0h`: `42h` concl. + `*12h` PR #55)** | Média: R$ 50,00/h | **R$ 3.600,00 (`R$ 2.700,00`)** | **100%** | **8 Concl. + 2 PR #55 + 3 Abertas** |
 
 *Fonte: Elaborado pelos autores com base na auditoria PSM/CID sobre o GitHub em 15/11/2026.*
 
@@ -671,20 +671,20 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M5: Instrumentação e Execução das Medições (Fase 4 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Arthur Soares Parente` *(auto-atribuição no GitHub, PR #55)*
+    - **Responsável:** `Arthur Soares Parente` *(auto-atribuição no GitHub, PR #55 em revisão)*
     - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h` | **Custo:** R$ `300,00`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h (submetidas no PR #55)` | **Custo:** R$ `300,00`
 - **Goal:** Congelar os manifestos de componentes e modelos `Legacy*`, medir a Distância da Sequência Principal de Martin (M8 — DSPM), o Índice de Fricção de Dados (M9 — IFDL) e a Taxa de Testes Ativos com Asserção (M11 — TTAE).
 - **Depends on:** Issue #43.
 - **Scope:** Componentes de Matrícula e Notas em `app/` e `ieducar/`, modelos `app/Models/Legacy*.php` e suíte de testes PHPUnit/Pest dos domínios avaliados.
-- [x] **Task:** Coletar métricas estruturais M8 (DSPM) e M9 (IFDL) e executar runner de testes para apurar M11 (TTAE)
-    - **Files:** `scripts/evaluate-quality.php`, `docs/plano_medicao_testes.md`
-    - **Change:** Congelar mapa caminho -> componente para calcular $C_a, C_e, N_a, N_c, A, I, D$ ($\text{DSPM} = 0{,}3784$, M8); auditar 41 adaptações defensivas nos 9 modelos `Legacy*` ($\text{IFDL} = 4{,}5556$, M9); executar PHPUnit/Pest nos 30 arquivos de teste do manifesto para contar 185 casos declarados, 146 ativos com asserção e 39 *skipped* ($\text{TTAE} = 78{,}92\%$, M11).
+- [x] **Task:** Coletar métricas estruturais M8 (DSPM) e M9 (IFDL) e executar runner de testes para apurar M11 (TTAE) *(Submetida no PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55), em revisão)*
+    - **Files:** `scripts/evaluate-quality.php`, `docs/plano_medicao_testes.md`, `evidencias/g3_manutenibilidade/`
+    - **Change:** Congelar mapa caminho -> componente para calcular $C_a, C_e, N_a, N_c, A, I, D$ ($\text{DSPM} = 0{,}3784$, M8, com `C3_Dominio_Models` em $D = 1{,}000$ sobre $11$ classes concretas); auditar $82$ adaptações defensivas nos $18$ modelos `Legacy*` ($\text{IFDL} = 82 / 18 = 4{,}5556$, M9); executar `vendor/bin/pest --log-junit` nos $30$ arquivos de teste do manifesto para contar $185$ casos declarados, $146$ ativos com asserção ($938$ asserções) e $39$ *skipped* ($\text{TTAE} = 78{,}92\%$, M11).
     - **Covers:** Questões Q3.2, Q3.3 e Q3.5, Hipóteses H3.2, H3.3 e H3.5, e Métricas M8 (DSPM), M9 (IFDL) e M11 (TTAE).
     - **Acceptance criteria:**
         - Tabela por componente com $C_a, C_e, A, I, D_p$ e média $\text{DSPM} = 0{,}3784$ (M8, Regular $S=2$, H3.2 confirmada).
-        - Manifesto dos 9 modelos `Legacy*` com localização de cada uma das 41 adaptações defensivas e cálculo de $\text{IFDL} = 4{,}5556$ (M9, Crítico $S=1$, H3.3 refutada).
-        - Relatório de execução do runner Pest/PHPUnit comprovando $185$ declarados, $146$ ativos com asserção, $39$ `markTestSkipped()` e $\text{TTAE} = 78{,}92\%$ (M11, Regular $S=2$, H3.5 confirmada).
+        - Manifesto dos $18$ modelos `Legacy*` com localização das $82$ adaptações defensivas e cálculo de $\text{IFDL} = 4{,}5556$ (M9, Crítico $S=1$, H3.3 refutada).
+        - Relatório de execução do runner Pest/PHPUnit (`m11_runner_junit.xml`) comprovando $185$ declarados, $146$ ativos com asserção, $39$ `<skipped/>` e $\text{TTAE} = 78{,}92\%$ (M11, Regular $S=2$, H3.5 confirmada).
     - **Tests:** `php scripts/evaluate-quality.php && bash scripts/docs/check_site.sh`.
     - **Risk:** none.
 
@@ -692,19 +692,19 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M5: Instrumentação e Execução das Medições (Fase 4 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Arthur Soares Parente` *(auto-atribuição no GitHub, PR #55)*
+    - **Responsável:** `Arthur Soares Parente` *(auto-atribuição no GitHub, PR #55 em revisão)*
     - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h` | **Custo:** R$ `300,00`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h (submetidas no PR #55)` | **Custo:** R$ `300,00`
 - **Goal:** Executar o catálogo de entradas inválidas na interface e API para aferir o Gate Binário M12 (IPPE) e avaliar a autodescritividade das mensagens de validação para medir M13 (ADMV).
 - **Depends on:** Issue #38.
 - **Scope:** Fluxos de Matrícula e Diário de Classe, validações `validatesCanChangeDiarioForAno`, `validatesPeriodoLancamentoFaltasNotas`, `Portabilis_Messenger` e `src/Support/Exceptions/Error.php`.
-- [x] **Task:** Submeter catálogo de cenários inválidos (M12) e classificar mensagens de erro com revisão por pares (M13)
-    - **Files:** `docs/plano_medicao_testes.md`
-    - **Change:** Executar 12 cenários inválidos (`C1.1` a `C4.3`), conferindo no banco ausência de gravação ($\Delta\text{DB} = 0$) e ausência de erro 500 ($\text{IPPE} = 12/12 = 100{,}0\%$, Gate M12 Aprovado); classificar cada mensagem por 2 avaliadores independentes quanto a causa + ação corretiva ($\text{ADMV} = 9/12 = 75{,}00\%$, M13).
+- [x] **Task:** Submeter catálogo de cenários inválidos (M12) e classificar mensagens de erro com revisão por pares (M13) *(Submetida no PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55), em revisão)*
+    - **Files:** `docs/plano_medicao_testes.md`, `evidencias/g4_interacao_uso/m12_ippe.csv`, `evidencias/g4_interacao_uso/capturas_m12/`, `evidencias/g4_interacao_uso/m13_admv.json`
+    - **Change:** Executar 12 cenários inválidos (`C1.1` a `C4.3`), conferindo no banco ausência de gravação ($\Delta\text{DB} = 0$) e ausência de erro 500 ($\text{IPPE} = 12/12 = 100{,}0\%$, Gate M12 Aprovado); classificar cada mensagem por 2 avaliadores independentes quanto a causa + ação corretiva ($\text{ADMV} = 9/12 = 75{,}00\%$, M13, com falhas de ação corretiva em `C2.2`, `C2.3` e `C3.1`).
     - **Covers:** Questões Q4.1 e Q4.2, Hipóteses H4.1 e H4.2, Gate Binário M12 (IPPE) e Métrica M13 (ADMV).
     - **Acceptance criteria:**
-        - Catálogo de 12 cenários inválidos executado com evidência de requisição/tela, status HTTP e consulta SQL pós-submissão comprovando bloqueio amigável ($\text{IPPE} = 100{,}0\%$, Gate M12 Aprovado, H4.1 confirmada).
-        - Tabela de classificação dupla independente das 12 mensagens exibidas com resolução de consenso ($\text{ADMV} = 75{,}00\%$, Crítico $S=1$, H4.2 refutada).
+        - Catálogo de 12 cenários inválidos executado (`m12_ippe.csv` e `capturas_m12/`) com evidência de requisição/tela, status HTTP e consulta SQL pós-submissão comprovando bloqueio amigável ($\text{IPPE} = 100{,}0\%$, Gate M12 Aprovado, H4.1 confirmada).
+        - Tabela de classificação dupla independente das 12 mensagens exibidas (`m13_admv.json`) com resolução de consenso ($\text{ADMV} = 75{,}00\%$, Crítico $S=1$, H4.2 refutada).
         - Cálculo final de $\text{IPPE}$ (Gate M12) e $\text{ADMV}$ (M13) documentados na GitPage.
     - **Tests:** `bash scripts/docs/check_site.sh`.
     - **Risk:** none.
@@ -744,13 +744,13 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Goal:** Consolidar todas as medições de M1 a M15, aplicar as regras dos 3 Gates Binários, calcular os Índices de Qualidade por Característica ($\text{IQC}_k$) e o Índice Global ($\text{IQM}$), e emitir o Parecer Técnico Conclusivo da Fase 5.
 - **Depends on:** Issues #38 a #46.
 - **Scope:** Atividade 5 da ISO/IEC 25040:2024 (Conclusão da Avaliação), `docs/gqm_evaluation_framework.md`, `docs/plano_medicao_testes.md` e `docs/fase-4/index.md`.
-- [x] **Task:** Calcular IQC_k e IQM, julgar hipóteses H1.1 a H4.4 e redigir parecer conclusivo por stakeholder
+- [x] **Task:** Calcular IQC_k e IQM, julgar as 14 hipóteses H1.1 a H4.4 e redigir parecer conclusivo por stakeholder
     - **Files:** `docs/plano_medicao_testes.md`, `docs/gqm_evaluation_framework.md`, `docs/fase-4/index.md`, `docs/fase-2/niveis-julgamento.md`
-    - **Change:** Aplicar políticas pré-declaradas de renormalização para M5 e M14/M15, enquadrar cada métrica nos níveis 1 a 4, calcular $\text{IQC}_{\text{Comp}} = 3{,}50$, $\text{IQC}_{\text{Conf, parcial}} = 4{,}00$ (Gate M3 aprovado = 100%, Gate M4 não comprovado), $\text{IQC}_{\text{Manut}} = 2{,}20$ (base) $\to 2{,}60$ (pós-melhoria #56), $\text{IQC}_{\text{Interação}} = 3{,}14$ (Gate M12 aprovado = 100%) e $\text{IQM} = 3{,}19$ (base, Classe C) $\to 3{,}31$ (pós-melhoria #56, transição para Classe B), e elaborar o parecer técnico e backlog corretivo para as 4 categorias de stakeholders.
+    - **Change:** Aplicar políticas pré-declaradas de renormalização para `M5` (Seção 3.1) e `M14`/`M15` (Seção 3.4), enquadrar cada métrica nos níveis 1 a 4, calcular $\text{IQC}_{\text{Comp}} = 3{,}50$, declarar $\text{IQC}_{\text{Conf}}$ e $\text{IQM}$ **NÃO CALCULÁVEIS / SUSPENSOS** (conforme a Seção 5 do Framework GQM, pois `M4` e `M6` não possuem política prévia de exclusão; Gate `M3` aprovado $= 100\%$, Gate `M4` não comprovado), calcular $\text{IQC}_{\text{Manut}} = 2{,}20$ (commit congelado `7903a3e`) $\to 2{,}60$ (cenário simulado pós-patch `#56`), $\text{IQC}_{\text{Interação}} = 3{,}14$ (Gate `M12` aprovado $= 100\%$ no PR `#55`), classificar oficialmente o produto avaliado na **Classe C (Reprovado / Bloqueado)** com análise de sensibilidade ($\text{IQM}_{\text{sens-A}}: 2{,}84 \to 3{,}01$ sobre G1+G3+G4 e $\text{IQM}_{\text{sens-B}}: 3{,}19 \to 3{,}31$ sob cenário futuro de `M4`/`M6` para transição à Classe B), e elaborar o parecer técnico e backlog corretivo para as 4 categorias de stakeholders.
     - **Covers:** Fase 5 (ISO/IEC 25040:2024), Tabela de Limiares e Fluxograma de Decisão de Release.
     - **Acceptance criteria:**
-        - Tabela consolidada das 17 linhas operacionais com valor bruto medido, pontuação discreta $S_i \in \{1,2,3,4\}$, peso $w_i$ e status de cada hipótese (`H1.1` a `H4.4`: Confirmada/Refutada/Não testada).
-        - Memória de cálculo completa dos quatro $\text{IQC}_k$, do $\text{IQM}$ e avaliação explícita dos Gates M3, M4 e M12.
+        - Tabela consolidada das 17 linhas operacionais com valor bruto medido, pontuação discreta $S_i \in \{1,2,3,4\}$, peso $w_i$ e status de cada uma das 14 hipóteses (`H1.1` a `H4.4`: 7 Confirmadas, 3 Refutadas e 4 Não testadas).
+        - Memória de cálculo completa dos $\text{IQC}_k$, do status suspenso de $\text{IQM}$ (e análise de sensibilidade) e avaliação explícita dos Gates M3, M4 e M12.
         - Parecer técnico direcionado às 4 categorias de decisores (Secretarias Municipais, Portabilis/Mantenedores, Equipes de TI/Integradores e Professores/Secretários).
     - **Tests:** `bash scripts/docs/check_site.sh`.
     - **Risk:** none.
@@ -783,17 +783,17 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
     - **Responsável:** `Fábio Santos Araujo` *(Trilha F)*
     - **Matrícula UnB:** `22/2022082` | **GitHub:** `@fabiofonteles1`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h` | **Custo:** R$ `300,00`
-- **Goal:** Elaborar os slides da apresentação final (PC2), auditar o apontamento de horas reais e custos da Entrega 2 (PSM/CID), validar o build estrito da GitPage e publicar a Release E2 (`v2.0.0-pc2`).
+- **Goal:** Elaborar os slides da apresentação final (PC2), auditar o apontamento de horas reais e custos da Entrega 2 (PSM/CID), validar o build estrito da GitPage e preparar a Release E2 (`v2.0.0-pc2`).
 - **Depends on:** Issue #47.
-- **Scope:** `README.md`, `mkdocs.yml`, `docs/gestao_projeto_releases_milestones_issues.md`, `docs/apresentacao_pc2.pptx`, `docs/apresentacao_pc2.pdf` e tag Git `v2.0.0-pc2`.
-- [x] **Task:** Consolidar custos reais PSM/CID, produzir slides da Entrega 2 e publicar tag v2.0.0-pc2
+- **Scope:** `README.md`, `mkdocs.yml`, `docs/gestao_projeto_releases_milestones_issues.md`, `docs/apresentacao_pc2.pptx`, `docs/apresentacao_pc2.pdf` e notas da Release E2 (`v2.0.0-pc2`).
+- [x] **Task:** Consolidar custos reais PSM/CID, produzir slides da Entrega 2 e preparar notas da release v2.0.0-pc2
     - **Files:** `README.md`, `mkdocs.yml`, `docs/gestao_projeto_releases_milestones_issues.md`, `docs/gestao/horas-custos.md`, `docs/gestao/registro-de-medicoes.md`, `docs/apresentacao_pc2.pptx`, `docs/apresentacao_pc2.pdf`
-    - **Change:** Conferir e reconciliar o preenchimento de `Horas Efetivamente Realizadas` em todas as issues concluídas no GitHub, atualizar tabela consolidada de esforço e declaração de uso de IA, adicionar slides do PC2 (`apresentacao_pc2.pptx` e `apresentacao_pc2.pdf`), atualizar rodapé do `mkdocs.yml` para Release E2 e publicar release `v2.0.0-pc2`.
-    - **Covers:** Marco M6, Critério AG-C5 (PSM/CID) e Publicação da Release E2 (`v2.0.0-pc2`).
+    - **Change:** Conferir e reconciliar o preenchimento de `Horas Efetivamente Realizadas` em todas as issues concluídas e em PR no GitHub (`54,0h / R$ 2.700,00` na E2: `42,0h` concluídas + `12,0h` no PR `#55`), atualizar tabela consolidada de esforço e declaração de uso de IA, adicionar slides do PC2 (`apresentacao_pc2.pptx` e `apresentacao_pc2.pdf`) com identificação do apresentador de cada lâmina, atualizar rodapé do `mkdocs.yml` e preparar notas da release `v2.0.0-pc2`.
+    - **Covers:** Marco M6, Critério AG-C5 (PSM/CID) e Preparação da Release E2 (`v2.0.0-pc2`).
     - **Acceptance criteria:**
-        - Todas as issues concluídas dos Milestones M5 e M6 com responsável, horas estimadas, horas realizadas e custo preenchidos no GitHub e na documentação.
-        - Indicadores PSM/CID (`TCM`, `TRCD`, `ACM`, `VEC`) atualizados e auditados na GitPage (`Medição 3`).
-        - Build estrito (`bash scripts/docs/check_site.sh`) passando com zero erros e release `v2.0.0-pc2` pronta para homologação.
+        - Todas as issues executadas dos Milestones M5 e M6 com responsável, horas estimadas, horas realizadas e custo reconciliados entre o GitHub, a documentação e os slides (`54h / R$ 2.700,00` na E2; `126h / R$ 6.300,00` no acumulado E1+E2).
+        - Indicadores operacionais PSM/CID (`TCM`, `TRCD`, `ACM`) atualizados e auditados na GitPage (`Medição 3`).
+        - Build estrito (`bash scripts/docs/check_site.sh`) passando com zero erros e notas da release `v2.0.0-pc2` prontas para publicação na `main`.
     - **Tests:** `bash scripts/docs/check_site.sh && python -m unittest scripts/psm/test_indicadores.py scripts/docs/test_gen_pages.py`.
     - **Risk:** none.
 
@@ -843,13 +843,12 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
     ---
 
     - **Tipo de Release:** Marco de Execução, Conclusão e Parecer Técnico de Qualidade.
-    - **Convenção de Tag:** `v2.0.0-pc2`
-    - **Data de Publicação:** Encerramento do semestre letivo — Entrega 2 (15/11/2026).
+    - **Convenção de Tag Prevista:** `v2.0.0-pc2` (a ser criada na `main` após integração dos PRs de encerramento da Entrega 2).
     - **Conteúdo da Release:**
-        - Resultados empíricos da Fase 4 para Compatibilidade (`M1 = 100%`, `M2 = 90%`), Confiabilidade (**Gate M3 Aprovado = 100%**, 457 asserções; `M5` excluída pela Seção 3.1; `M4` e `M6` registradas como não comprovadas), Manutenibilidade (`M7a = 8`, `M7b = 72 -> 30`, `M8 = 0,38`, `M9 = 4,56`, `M10 = 63,82`, `M11 = 78,92%`) e Capacidade de Interação (**Gate M12 Aprovado = 100%**, `M13 = 75,0%`; `M14a/b` e `M15` renormalizadas pela Seção 3.4).
-        - Ação de Melhoria verificada (`getSituacaoNotas.patch` — Issue #56), reduzindo $v(G)$ de 72 para 15 com 50.000 testes de equivalência (0 divergências).
-        - Agregação Multicritério da Fase 5 ($\text{IQC}_{\text{Comp}} = 3{,}50$, $\text{IQC}_{\text{Conf, parcial}} = 4{,}00$, $\text{IQC}_{\text{Manut}} = 2{,}20 \to 2{,}60$, $\text{IQC}_{\text{Interação}} = 3{,}14$, $\text{IQM} = 3{,}19 \to 3{,}31$), enquadramento de release (Classe C no commit congelado $\to$ Classe B pós-melhoria e homologação de M4) e Parecer Técnico Conclusivo para os 4 grupos de stakeholders.
-        - Apresentação Final do Ponto de Controle 2 (`docs/apresentacao_pc2.pptx` e `docs/apresentacao_pc2.pdf`) e Auditoria PSM/CID (`Medição 3`).
+        - Resultados empíricos da Fase 4 para Compatibilidade (`M1 = 100%`, `M2 = 90%`), Confiabilidade (**Gate M3 Aprovado = 100%**, 457 asserções; `M5` excluída pela Seção 3.1; `M4` e `M6` registradas como não comprovadas sem política prévia), Manutenibilidade (`M7a = 8`, `M7b = 72 -> 30`, `M8 = 0,38`, `M9 = 4,56`, `M10 = 63,82`, `M11 = 78,92%`) e Capacidade de Interação (**Gate M12 Aprovado = 100%**, `M13 = 75,0%` no PR `#55`; `M14a/b` e `M15` renormalizadas pela Seção 3.4).
+        - Ação de Melhoria verificada (`docs/evidencias/melhoria/getSituacaoNotas.patch` — Issue `#56` / PR `#57`), reduzindo $v(G)$ de `getSituacaoNotas` (linhas `937–1167`, $231$ linhas físicas e $129$ LOC lógicos) de $72$ para $15$ ($59$ LOC lógicos, $\text{MI}_m: 16{,}9 \to 34{,}7$, universo de $213 \to 221$ callables) com $50.000$ cenários pseudoaleatórios (semente `2026`, $0$ divergências e $779$ no autoteste).
+        - Agregação Multicritério da Fase 5 ($\text{IQC}_{\text{Comp}} = 3{,}50$, $\text{IQC}_{\text{Conf}} = \text{SUSPENSO}$, $\text{IQC}_{\text{Manut}} = 2{,}20 \to 2{,}60$, $\text{IQC}_{\text{Interação}} = 3{,}14$, **$\text{IQM} = \text{NÃO CALCULÁVEL / SUSPENSO}$**, com análise de sensibilidade $2{,}84 \to 3{,}01$ e $3{,}19 \to 3{,}31$), enquadramento oficial do commit congelado `7903a3e` na **Classe C (Reprovado / Bloqueado)** (com cenário simulado de transição para a Classe B após patch `#56` e homologação de `M4`/`M6`) e Parecer Técnico Conclusivo para os 4 grupos de stakeholders.
+        - Apresentação Final do Ponto de Controle 2 (`docs/apresentacao_pc2.pptx` e `docs/apresentacao_pc2.pdf`) e Auditoria PSM/CID (`Medição 3`: `54,0h / R$ 2.700,00` na E2; `126,0h / R$ 6.300,00` em E1+E2).
 
 </div>
 

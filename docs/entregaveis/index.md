@@ -28,7 +28,7 @@ Esta página reúne, em um único lugar, todos os **artefatos oficiais de entreg
 <p class="gh-secao"><span>Releases, Julgamento Fase 5 e Código</span></p>
 <div class="gh-painel">
 <a class="gh-item" href="https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/releases" target="_blank" rel="noopener"><small>Tags v2.0.0-pc2 (E2) e v1.0.0-pc1 (E1)</small><span>Acessar Releases no GitHub</span></a>
-<a class="gh-item" href="../plano_medicao_testes.md#9-conclusao-da-avaliacao-agregacao-multicriterio-julgamento-dos-gates-e-parecer-tecnico-fase-5-isoiec-250402024"><small>IQC, IQM (3,19 -> 3,31), Gates e Parecer por Stakeholder</small><span>Relatório Conclusivo da Fase 5</span></a>
+<a class="gh-item" href="../plano_medicao_testes.md#9-conclusao-da-avaliacao-agregacao-multicriterio-julgamento-dos-gates-e-parecer-tecnico-fase-5-isoiec-250402024"><small>IQC, IQM Suspenso (Classe C; Sensibilidade 2,84 -> 3,01 / 3,19 -> 3,31), Gates e Parecer</small><span>Relatório Conclusivo da Fase 5</span></a>
 <a class="gh-item" href="https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/blob/main/scripts/evaluate-quality.php" target="_blank" rel="noopener"><small>Instrumento de extração estática PHP CLI</small><span>Script scripts/evaluate-quality.php</span></a>
 </div>
 </div>
