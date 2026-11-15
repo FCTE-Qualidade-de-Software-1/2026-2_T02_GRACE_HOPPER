@@ -1,0 +1,3579 @@
+{
+    "instrumento": {
+        "nome": "scripts/evaluate-quality.php",
+        "versao": "2.0.0",
+        "php": "8.3.6",
+        "tokenizador": "token_get_all (TOKEN_PARSE)"
+    },
+    "timestamp": "2026-11-14T19:08:13+00:00",
+    "commit": "7903a3efc7689942ee700007f86ed581023aad27",
+    "status": "executado",
+    "manifesto": [
+        "app/Services/RegistrationService.php",
+        "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+        "ieducar/modules/Avaliacao/Views/DiarioController.php",
+        "ieducar/modules/Avaliacao/Service/Boletim.php"
+    ],
+    "excluidos": [],
+    "regras": {
+        "unidade": "Callable concreto com corpo (método de classe, trait ou enum, ou função nomeada). Declarações abstratas e de interface são excluídas e listadas. Closures e funções anônimas são contadas dentro do callable que as contém.",
+        "cc": "v(G) = 1 + pontos de decisão no corpo: if, elseif, for, foreach, while, case, braço de match (exceto default), catch, &&, ||, and, or, ?? e ternário (?). \"else if\" conta pelo if. \"?\" logo após \"(\", \",\" ou \":\" é tipo anulável e não conta.",
+        "halstead": "Operandos: variáveis, identificadores, nomes qualificados, literais numéricos e de texto e constantes mágicas. Operadores: os demais tokens significativos (palavras-chave, símbolos e pontuação); \")\", \"]\" e \"}\" não contam, pois o par conta na abertura. Comentários, espaços e HTML embutido são ignorados. HV = N * log2(n).",
+        "lloc": "LOC lógico = 1 (declaração) + \";\" fora de parênteses no corpo + palavras-chave de estrutura (if, elseif, else, for, foreach, while, do, switch, case, default, try, catch, finally).",
+        "mi": "MI_m = min(100, max(0, (171 - 5,2 ln(HV) - 0,23 v(G) - 16,2 ln(LOC)) / 171 * 100)); MI = média simples dos MI_m."
+    },
+    "M10_MI": {
+        "name": "Índice de Manutenibilidade Normalizado",
+        "symbol": "MI",
+        "value": 63.79,
+        "threshold_excellent": ">= 80",
+        "threshold_critical": "< 40",
+        "status": "Coletado (Fase 4)",
+        "n": 221,
+        "S": 3,
+        "faixa": "Bom",
+        "hipotese": {
+            "id": "H3.4",
+            "criterio": "60 <= MI < 80",
+            "resultado": "Confirmada"
+        }
+    },
+    "inventario": [
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 6,
+                "n2": 5,
+                "N1": 6,
+                "N2": 6
+            },
+            "hv": 41.5132,
+            "lloc": 2,
+            "mi": 81.9683,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::__construct",
+            "linha_inicio": 28,
+            "linha_fim": 31
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 9,
+                "n2": 7,
+                "N1": 13,
+                "N2": 8
+            },
+            "hv": 84,
+            "lloc": 2,
+            "mi": 79.825,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::findAll",
+            "linha_inicio": 36,
+            "linha_fim": 41
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 13,
+                "n2": 35,
+                "N1": 90,
+                "N2": 69
+            },
+            "hv": 888.009,
+            "lloc": 5,
+            "mi": 63.8388,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::getRegistrationsNotEnrolled",
+            "linha_inicio": 47,
+            "linha_fim": 79
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 10,
+                "N1": 17,
+                "N2": 16
+            },
+            "hv": 137.6075,
+            "lloc": 5,
+            "mi": 69.6434,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::updateStatus",
+            "linha_inicio": 86,
+            "linha_fim": 94
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 13,
+                "n2": 26,
+                "N1": 73,
+                "N2": 58
+            },
+            "hv": 692.3877,
+            "lloc": 21,
+            "mi": 50.5965,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::checkUpdatedStatusAction",
+            "linha_inicio": 99,
+            "linha_fim": 141
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 9,
+                "n2": 10,
+                "N1": 19,
+                "N2": 14
+            },
+            "hv": 140.1816,
+            "lloc": 4,
+            "mi": 71.5665,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::processDisciplineScoreSituation",
+            "linha_inicio": 143,
+            "linha_fim": 150
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 8,
+                "n2": 10,
+                "N1": 14,
+                "N2": 12
+            },
+            "hv": 108.4181,
+            "lloc": 3,
+            "mi": 75.0733,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::markEnrollmentsAsTransferred",
+            "linha_inicio": 152,
+            "linha_fim": 157
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 8,
+                "n2": 10,
+                "N1": 14,
+                "N2": 12
+            },
+            "hv": 108.4181,
+            "lloc": 3,
+            "mi": 75.0733,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::markEnrollmentsAsReclassified",
+            "linha_inicio": 159,
+            "linha_fim": 164
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 8,
+                "n2": 10,
+                "N1": 14,
+                "N2": 12
+            },
+            "hv": 108.4181,
+            "lloc": 3,
+            "mi": 75.0733,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::markEnrollmentsAsAbandoned",
+            "linha_inicio": 166,
+            "linha_fim": 171
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 8,
+                "n2": 10,
+                "N1": 14,
+                "N2": 12
+            },
+            "hv": 108.4181,
+            "lloc": 3,
+            "mi": 75.0733,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::markEnrollmentsAsDeceased",
+            "linha_inicio": 173,
+            "linha_fim": 178
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 6,
+                "n2": 4,
+                "N1": 6,
+                "N2": 5
+            },
+            "hv": 36.5412,
+            "lloc": 2,
+            "mi": 82.3562,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::getActiveEnrollments",
+            "linha_inicio": 183,
+            "linha_fim": 186
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 9,
+                "n2": 22,
+                "N1": 33,
+                "N2": 27
+            },
+            "hv": 297.2518,
+            "lloc": 2,
+            "mi": 75.982,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::createTransferRequest",
+            "linha_inicio": 194,
+            "linha_fim": 205
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 9,
+                "N1": 16,
+                "N2": 15
+            },
+            "hv": 126.7113,
+            "lloc": 5,
+            "mi": 69.8942,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::updateRegistrationDate",
+            "linha_inicio": 210,
+            "linha_fim": 218
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 13,
+                "n2": 19,
+                "N1": 36,
+                "N2": 31
+            },
+            "hv": 335,
+            "lloc": 9,
+            "mi": 60.9658,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::updateEnrollmentsDate",
+            "linha_inicio": 223,
+            "linha_fim": 238
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 12,
+                "n2": 19,
+                "N1": 38,
+                "N2": 34
+            },
+            "hv": 356.7021,
+            "lloc": 6,
+            "mi": 65.0197,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::processEnrollmentsDates",
+            "linha_inicio": 240,
+            "linha_fim": 254
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 13,
+                "n2": 12,
+                "N1": 38,
+                "N2": 31
+            },
+            "hv": 320.4261,
+            "lloc": 7,
+            "mi": 63.3474,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::updateNextEnrollmentsRegistrationDate",
+            "linha_inicio": 256,
+            "linha_fim": 271
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 13,
+                "n2": 13,
+                "N1": 38,
+                "N2": 32
+            },
+            "hv": 329.0308,
+            "lloc": 7,
+            "mi": 63.2668,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::updatePreviousEnrollmentsRegistrationDate",
+            "linha_inicio": 273,
+            "linha_fim": 287
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 9,
+                "N1": 16,
+                "N2": 15
+            },
+            "hv": 126.7113,
+            "lloc": 5,
+            "mi": 69.8942,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::updateCancelDate",
+            "linha_inicio": 295,
+            "linha_fim": 303
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 15,
+                "n2": 23,
+                "N1": 57,
+                "N2": 42
+            },
+            "hv": 519.5448,
+            "lloc": 5,
+            "mi": 65.3344,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::cancelRegistration",
+            "linha_inicio": 315,
+            "linha_fim": 336
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 17,
+                "n2": 24,
+                "N1": 51,
+                "N2": 35
+            },
+            "hv": 460.7495,
+            "lloc": 4,
+            "mi": 67.9481,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::reorderSchoolClassesForRegistrations",
+            "linha_inicio": 349,
+            "linha_fim": 368
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 15,
+                "n2": 25,
+                "N1": 45,
+                "N2": 33
+            },
+            "hv": 415.1104,
+            "lloc": 9,
+            "mi": 60.4483,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::deactivateEnrollments",
+            "linha_inicio": 378,
+            "linha_fim": 397
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 15,
+                "n2": 25,
+                "N1": 53,
+                "N2": 40
+            },
+            "hv": 494.9393,
+            "lloc": 5,
+            "mi": 65.6164,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::reactivateTransferRequest",
+            "linha_inicio": 405,
+            "linha_fim": 423
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 18,
+                "n2": 41,
+                "N1": 87,
+                "N2": 63
+            },
+            "hv": 882.3965,
+            "lloc": 14,
+            "mi": 53.8348,
+            "arquivo": "app/Services/RegistrationService.php",
+            "simbolo": "RegistrationService::reflagPreviousGradeRegistration",
+            "linha_inicio": 429,
+            "linha_fim": 467
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 5,
+                "N1": 10,
+                "N2": 6
+            },
+            "hv": 59.207,
+            "lloc": 3,
+            "mi": 77.0474,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::__construct",
+            "linha_inicio": 31,
+            "linha_fim": 35
+        },
+        {
+            "cc": 8,
+            "halstead": {
+                "n1": 17,
+                "n2": 41,
+                "N1": 102,
+                "N2": 79
+            },
+            "hv": 1060.2946,
+            "lloc": 16,
+            "mi": 51.4733,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesCanChangeDiarioForAno",
+            "linha_inicio": 37,
+            "linha_fim": 72
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 11,
+                "n2": 12,
+                "N1": 23,
+                "N2": 15
+            },
+            "hv": 171.8954,
+            "lloc": 5,
+            "mi": 68.8323,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesRegraAvaliacaoHasNota",
+            "linha_inicio": 74,
+            "linha_fim": 83
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 11,
+                "n2": 13,
+                "N1": 27,
+                "N2": 17
+            },
+            "hv": 201.7384,
+            "lloc": 5,
+            "mi": 68.211,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesRegraAvaliacaoHasFormulaRecuperacao",
+            "linha_inicio": 85,
+            "linha_fim": 95
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 13,
+                "n2": 16,
+                "N1": 30,
+                "N2": 20
+            },
+            "hv": 242.899,
+            "lloc": 5,
+            "mi": 67.6464,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesRegraAvaliacaoHasFormulaRecuperacaoWithTypeRecuperacao",
+            "linha_inicio": 97,
+            "linha_fim": 108
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 12,
+                "n2": 25,
+                "N1": 61,
+                "N2": 43
+            },
+            "hv": 541.7832,
+            "lloc": 12,
+            "mi": 56.913,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesPreviousNotasHasBeenSet",
+            "linha_inicio": 110,
+            "linha_fim": 133
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 10,
+                "n2": 16,
+                "N1": 35,
+                "N2": 24
+            },
+            "hv": 277.3259,
+            "lloc": 9,
+            "mi": 61.8093,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesPreviousFaltasHasBeenSet",
+            "linha_inicio": 135,
+            "linha_fim": 151
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 18,
+                "n2": 24,
+                "N1": 54,
+                "N2": 39
+            },
+            "hv": 501.4855,
+            "lloc": 12,
+            "mi": 56.879,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesEtapaParecer",
+            "linha_inicio": 155,
+            "linha_fim": 177
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 12,
+                "n2": 14,
+                "N1": 26,
+                "N2": 18
+            },
+            "hv": 206.8193,
+            "lloc": 4,
+            "mi": 70.3839,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesPresenceOfComponenteCurricularIdIfParecerComponente",
+            "linha_inicio": 179,
+            "linha_fim": 190
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 11,
+                "n2": 13,
+                "N1": 25,
+                "N2": 17
+            },
+            "hv": 192.5684,
+            "lloc": 6,
+            "mi": 66.7597,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesRegraAvaliacaoHasParecer",
+            "linha_inicio": 194,
+            "linha_fim": 204
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 13,
+                "n2": 16,
+                "N1": 37,
+                "N2": 25
+            },
+            "hv": 301.1948,
+            "lloc": 8,
+            "mi": 62.5396,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesInexistenceOfNotaExame",
+            "linha_inicio": 208,
+            "linha_fim": 222
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 17,
+                "n2": 22,
+                "N1": 66,
+                "N2": 40
+            },
+            "hv": 560.2526,
+            "lloc": 13,
+            "mi": 55.7837,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesInexistenceNotasInNextEtapas",
+            "linha_inicio": 224,
+            "linha_fim": 248
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 17,
+                "n2": 21,
+                "N1": 64,
+                "N2": 38
+            },
+            "hv": 535.2886,
+            "lloc": 12,
+            "mi": 56.6807,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesInexistenceFaltasInNextEtapas",
+            "linha_inicio": 252,
+            "linha_fim": 274
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 10,
+                "n2": 11,
+                "N1": 26,
+                "N2": 14
+            },
+            "hv": 175.6927,
+            "lloc": 5,
+            "mi": 68.6314,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesPresenceOfMatriculaIdOrComponenteCurricularId",
+            "linha_inicio": 276,
+            "linha_fim": 285
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 11,
+                "n2": 22,
+                "N1": 50,
+                "N2": 34
+            },
+            "hv": 423.7291,
+            "lloc": 9,
+            "mi": 60.2513,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesPeriodoLancamentoFaltasNotas",
+            "linha_inicio": 287,
+            "linha_fim": 309
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 8,
+                "n2": 4,
+                "N1": 10,
+                "N2": 5
+            },
+            "hv": 53.7744,
+            "lloc": 2,
+            "mi": 81.0468,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canAcceptRequest",
+            "linha_inicio": 313,
+            "linha_fim": 317
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 11,
+                "n2": 10,
+                "N1": 37,
+                "N2": 19
+            },
+            "hv": 245.9698,
+            "lloc": 7,
+            "mi": 64.1516,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesAccessToRequestedSchool",
+            "linha_inicio": 319,
+            "linha_fim": 332
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 9,
+                "n2": 13,
+                "N1": 24,
+                "N2": 17
+            },
+            "hv": 182.8367,
+            "lloc": 2,
+            "mi": 77.0563,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canGetMatriculas",
+            "linha_inicio": 334,
+            "linha_fim": 347
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 7,
+                "n2": 7,
+                "N1": 16,
+                "N2": 11
+            },
+            "hv": 102.7986,
+            "lloc": 2,
+            "mi": 78.8074,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPost",
+            "linha_inicio": 349,
+            "linha_fim": 355
+        },
+        {
+            "cc": 6,
+            "halstead": {
+                "n1": 7,
+                "n2": 9,
+                "N1": 22,
+                "N2": 14
+            },
+            "hv": 144,
+            "lloc": 2,
+            "mi": 77.5134,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPostNota",
+            "linha_inicio": 357,
+            "linha_fim": 365
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 6,
+                "n2": 3,
+                "N1": 7,
+                "N2": 3
+            },
+            "hv": 31.6993,
+            "lloc": 2,
+            "mi": 82.7885,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPostNotaGeral",
+            "linha_inicio": 367,
+            "linha_fim": 370
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 7,
+                "n2": 4,
+                "N1": 10,
+                "N2": 5
+            },
+            "hv": 51.8915,
+            "lloc": 2,
+            "mi": 81.1552,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPostFalta",
+            "linha_inicio": 372,
+            "linha_fim": 376
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 7,
+                "n2": 8,
+                "N1": 19,
+                "N2": 12
+            },
+            "hv": 121.1136,
+            "lloc": 2,
+            "mi": 78.1743,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPostParecer",
+            "linha_inicio": 378,
+            "linha_fim": 385
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 7,
+                "n2": 5,
+                "N1": 10,
+                "N2": 6
+            },
+            "hv": 57.3594,
+            "lloc": 2,
+            "mi": 80.8506,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canDelete",
+            "linha_inicio": 387,
+            "linha_fim": 391
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 8,
+                "n2": 11,
+                "N1": 22,
+                "N2": 13
+            },
+            "hv": 148.6775,
+            "lloc": 5,
+            "mi": 69.2736,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::validatesAuthorizationToChangeDiario",
+            "linha_inicio": 393,
+            "linha_fim": 402
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 7,
+                "n2": 8,
+                "N1": 19,
+                "N2": 12
+            },
+            "hv": 121.1136,
+            "lloc": 2,
+            "mi": 78.1743,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canDeleteNota",
+            "linha_inicio": 404,
+            "linha_fim": 411
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 7,
+                "n2": 5,
+                "N1": 13,
+                "N2": 7
+            },
+            "hv": 71.6993,
+            "lloc": 2,
+            "mi": 80.0375,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canDeleteFalta",
+            "linha_inicio": 413,
+            "linha_fim": 418
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 7,
+                "n2": 5,
+                "N1": 13,
+                "N2": 7
+            },
+            "hv": 71.6993,
+            "lloc": 2,
+            "mi": 80.0375,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canDeleteParecer",
+            "linha_inicio": 420,
+            "linha_fim": 425
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 17,
+                "n2": 60,
+                "N1": 165,
+                "N2": 135
+            },
+            "hv": 1880.036,
+            "lloc": 31,
+            "mi": 43.8692,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postNota",
+            "linha_inicio": 433,
+            "linha_fim": 481
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 12,
+                "n2": 33,
+                "N1": 93,
+                "N2": 74
+            },
+            "hv": 917.1395,
+            "lloc": 13,
+            "mi": 54.6885,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postNotaGeral",
+            "linha_inicio": 483,
+            "linha_fim": 502
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 10,
+                "n2": 31,
+                "N1": 90,
+                "N2": 73
+            },
+            "hv": 873.281,
+            "lloc": 14,
+            "mi": 54.1354,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postMedia",
+            "linha_inicio": 504,
+            "linha_fim": 522
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 9,
+                "n2": 14,
+                "N1": 32,
+                "N2": 21
+            },
+            "hv": 239.7488,
+            "lloc": 7,
+            "mi": 64.4985,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postMediaDesbloqueia",
+            "linha_inicio": 524,
+            "linha_fim": 535
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 13,
+                "n2": 27,
+                "N1": 82,
+                "N2": 59
+            },
+            "hv": 750.3919,
+            "lloc": 13,
+            "mi": 55.0297,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteMedia",
+            "linha_inicio": 537,
+            "linha_fim": 554
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 6,
+                "n2": 3,
+                "N1": 7,
+                "N2": 3
+            },
+            "hv": 31.6993,
+            "lloc": 2,
+            "mi": 82.7885,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPostMedia",
+            "linha_inicio": 556,
+            "linha_fim": 559
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 6,
+                "n2": 3,
+                "N1": 7,
+                "N2": 3
+            },
+            "hv": 31.6993,
+            "lloc": 2,
+            "mi": 82.7885,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canDeleteMedia",
+            "linha_inicio": 561,
+            "linha_fim": 564
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 19,
+                "n2": 50,
+                "N1": 159,
+                "N2": 124
+            },
+            "hv": 1728.7124,
+            "lloc": 21,
+            "mi": 47.8141,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postNotaRecuperacaoParalela",
+            "linha_inicio": 569,
+            "linha_fim": 609
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 16,
+                "n2": 47,
+                "N1": 145,
+                "N2": 112
+            },
+            "hv": 1536.1609,
+            "lloc": 19,
+            "mi": 49.2558,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postNotaRecuperacaoEspecifica",
+            "linha_inicio": 611,
+            "linha_fim": 643
+        },
+        {
+            "cc": 6,
+            "halstead": {
+                "n1": 13,
+                "n2": 32,
+                "N1": 100,
+                "N2": 74
+            },
+            "hv": 955.5824,
+            "lloc": 16,
+            "mi": 52.0585,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postFalta",
+            "linha_inicio": 646,
+            "linha_fim": 669
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 13,
+                "n2": 34,
+                "N1": 82,
+                "N2": 63
+            },
+            "hv": 805.4154,
+            "lloc": 15,
+            "mi": 53.4588,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postParecer",
+            "linha_inicio": 671,
+            "linha_fim": 692
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 13,
+                "n2": 30,
+                "N1": 109,
+                "N2": 83
+            },
+            "hv": 1041.8428,
+            "lloc": 15,
+            "mi": 52.6761,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteNota",
+            "linha_inicio": 696,
+            "linha_fim": 715
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 12,
+                "n2": 37,
+                "N1": 96,
+                "N2": 77
+            },
+            "hv": 971.3448,
+            "lloc": 14,
+            "mi": 53.8118,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteNotaRecuperacaoParalela",
+            "linha_inicio": 717,
+            "linha_fim": 741
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 12,
+                "n2": 37,
+                "N1": 96,
+                "N2": 77
+            },
+            "hv": 971.3448,
+            "lloc": 14,
+            "mi": 53.8118,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteNotaRecuperacaoEspecifica",
+            "linha_inicio": 743,
+            "linha_fim": 767
+        },
+        {
+            "cc": 6,
+            "halstead": {
+                "n1": 14,
+                "n2": 35,
+                "N1": 99,
+                "N2": 76
+            },
+            "hv": 982.5742,
+            "lloc": 18,
+            "mi": 50.8579,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteFalta",
+            "linha_inicio": 769,
+            "linha_fim": 793
+        },
+        {
+            "cc": 6,
+            "halstead": {
+                "n1": 13,
+                "n2": 35,
+                "N1": 106,
+                "N2": 78
+            },
+            "hv": 1027.6331,
+            "lloc": 17,
+            "mi": 51.2631,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteParecer",
+            "linha_inicio": 795,
+            "linha_fim": 821
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 7,
+                "n2": 20,
+                "N1": 53,
+                "N2": 42
+            },
+            "hv": 451.7143,
+            "lloc": 8,
+            "mi": 61.5761,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteNotaGeral",
+            "linha_inicio": 823,
+            "linha_fim": 834
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 6,
+                "N1": 10,
+                "N2": 7
+            },
+            "hv": 64.725,
+            "lloc": 3,
+            "mi": 76.7764,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getRelocationDate",
+            "linha_inicio": 838,
+            "linha_fim": 844
+        },
+        {
+            "cc": 21,
+            "halstead": {
+                "n1": 23,
+                "n2": 116,
+                "N1": 428,
+                "N2": 316
+            },
+            "hv": 5296.4922,
+            "lloc": 59,
+            "mi": 32.4707,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getMatriculas",
+            "linha_inicio": 846,
+            "linha_fim": 1028
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 10,
+                "n2": 11,
+                "N1": 19,
+                "N2": 13
+            },
+            "hv": 140.5542,
+            "lloc": 3,
+            "mi": 74.4184,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::parecerGeral",
+            "linha_inicio": 1033,
+            "linha_fim": 1039
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 6,
+                "n2": 4,
+                "N1": 6,
+                "N2": 5
+            },
+            "hv": 36.5412,
+            "lloc": 2,
+            "mi": 82.3562,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::setCurrentMatriculaId",
+            "linha_inicio": 1041,
+            "linha_fim": 1044
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 13,
+                "n2": 9,
+                "N1": 33,
+                "N2": 18
+            },
+            "hv": 227.431,
+            "lloc": 8,
+            "mi": 63.3938,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getCurrentMatriculaId",
+            "linha_inicio": 1046,
+            "linha_fim": 1058
+        },
+        {
+            "cc": 6,
+            "halstead": {
+                "n1": 21,
+                "n2": 31,
+                "N1": 86,
+                "N2": 56
+            },
+            "hv": 809.4624,
+            "lloc": 13,
+            "mi": 54.5302,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::serviceBoletim",
+            "linha_inicio": 1066,
+            "linha_fim": 1095
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 7,
+                "n2": 5,
+                "N1": 13,
+                "N2": 5
+            },
+            "hv": 64.5293,
+            "lloc": 4,
+            "mi": 73.9257,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::trySaveServiceBoletim",
+            "linha_inicio": 1097,
+            "linha_fim": 1105
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 7,
+                "n2": 7,
+                "N1": 18,
+                "N2": 9
+            },
+            "hv": 102.7986,
+            "lloc": 5,
+            "mi": 70.3957,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::trySaveServiceBoletimFaltas",
+            "linha_inicio": 1107,
+            "linha_fim": 1114
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 10,
+                "n2": 6,
+                "N1": 17,
+                "N2": 10
+            },
+            "hv": 108,
+            "lloc": 5,
+            "mi": 70.2456,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getQuantidadeFalta",
+            "linha_inicio": 1118,
+            "linha_fim": 1127
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 10,
+                "n2": 8,
+                "N1": 17,
+                "N2": 9
+            },
+            "hv": 108.4181,
+            "lloc": 2,
+            "mi": 79.049,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getFaltaGeral",
+            "linha_inicio": 1129,
+            "linha_fim": 1135
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 10,
+                "n2": 10,
+                "N1": 22,
+                "N2": 13
+            },
+            "hv": 151.2675,
+            "lloc": 2,
+            "mi": 78.0362,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getFaltaComponente",
+            "linha_inicio": 1137,
+            "linha_fim": 1144
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 10,
+                "n2": 11,
+                "N1": 25,
+                "N2": 16
+            },
+            "hv": 180.085,
+            "lloc": 2,
+            "mi": 77.506,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getParecerComponente",
+            "linha_inicio": 1148,
+            "linha_fim": 1155
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 10,
+                "n2": 9,
+                "N1": 20,
+                "N2": 12
+            },
+            "hv": 135.9337,
+            "lloc": 2,
+            "mi": 78.3613,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getParecerGeral",
+            "linha_inicio": 1157,
+            "linha_fim": 1163
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 11,
+                "n2": 13,
+                "N1": 42,
+                "N2": 27
+            },
+            "hv": 316.3624,
+            "lloc": 10,
+            "mi": 60.1417,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getSituacaoComponente",
+            "linha_inicio": 1167,
+            "linha_fim": 1185
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 18,
+                "n2": 25,
+                "N1": 53,
+                "N2": 37
+            },
+            "hv": 488.3638,
+            "lloc": 10,
+            "mi": 58.8214,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getSituacaoComponentes",
+            "linha_inicio": 1187,
+            "linha_fim": 1203
+        },
+        {
+            "cc": 10,
+            "halstead": {
+                "n1": 28,
+                "n2": 94,
+                "N1": 330,
+                "N2": 285
+            },
+            "hv": 4262.4035,
+            "lloc": 56,
+            "mi": 35.1052,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::loadComponentesCurricularesForMatricula",
+            "linha_inicio": 1207,
+            "linha_fim": 1305
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 17,
+                "n2": 34,
+                "N1": 87,
+                "N2": 63
+            },
+            "hv": 850.8638,
+            "lloc": 15,
+            "mi": 53.4264,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getAreaConhecimento",
+            "linha_inicio": 1307,
+            "linha_fim": 1334
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 13,
+                "n2": 12,
+                "N1": 30,
+                "N2": 20
+            },
+            "hv": 232.1928,
+            "lloc": 4,
+            "mi": 69.763,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::createOrUpdateNotaExame",
+            "linha_inicio": 1336,
+            "linha_fim": 1346
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 11,
+                "n2": 11,
+                "N1": 25,
+                "N2": 17
+            },
+            "hv": 187.2961,
+            "lloc": 4,
+            "mi": 70.5509,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::deleteNotaExame",
+            "linha_inicio": 1348,
+            "linha_fim": 1358
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 12,
+                "n2": 20,
+                "N1": 47,
+                "N2": 33
+            },
+            "hv": 400,
+            "lloc": 9,
+            "mi": 60.4265,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaAtual",
+            "linha_inicio": 1364,
+            "linha_fim": 1383
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 9,
+                "n2": 14,
+                "N1": 26,
+                "N2": 20
+            },
+            "hv": 208.0838,
+            "lloc": 5,
+            "mi": 68.2514,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaGeral",
+            "linha_inicio": 1385,
+            "linha_fim": 1394
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 14,
+                "n2": 21,
+                "N1": 40,
+                "N2": 29
+            },
+            "hv": 353.9205,
+            "lloc": 8,
+            "mi": 62.049,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getMediaAtual",
+            "linha_inicio": 1396,
+            "linha_fim": 1413
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 12,
+                "n2": 18,
+                "N1": 35,
+                "N2": 24
+            },
+            "hv": 289.5065,
+            "lloc": 7,
+            "mi": 63.925,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getMediaArredondadaAtual",
+            "linha_inicio": 1415,
+            "linha_fim": 1432
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 12,
+                "n2": 14,
+                "N1": 32,
+                "N2": 20
+            },
+            "hv": 244.4229,
+            "lloc": 7,
+            "mi": 64.4398,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getMediaBloqueada",
+            "linha_inicio": 1434,
+            "linha_fim": 1449
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 12,
+                "n2": 20,
+                "N1": 49,
+                "N2": 35
+            },
+            "hv": 420,
+            "lloc": 10,
+            "mi": 59.28,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaRecuperacaoParalelaAtual",
+            "linha_inicio": 1451,
+            "linha_fim": 1471
+        },
+        {
+            "cc": 11,
+            "halstead": {
+                "n1": 23,
+                "n2": 47,
+                "N1": 135,
+                "N2": 97
+            },
+            "hv": 1421.9937,
+            "lloc": 25,
+            "mi": 45.9492,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::shouldShowRecuperacaoEspecifica",
+            "linha_inicio": 1473,
+            "linha_fim": 1529
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 12,
+                "n2": 20,
+                "N1": 49,
+                "N2": 35
+            },
+            "hv": 420,
+            "lloc": 10,
+            "mi": 59.28,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaRecuperacaoEspecificaAtual",
+            "linha_inicio": 1531,
+            "linha_fim": 1551
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 13,
+                "n2": 21,
+                "N1": 55,
+                "N2": 38
+            },
+            "hv": 473.134,
+            "lloc": 12,
+            "mi": 57.056,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaOriginal",
+            "linha_inicio": 1553,
+            "linha_fim": 1578
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 14,
+                "n2": 26,
+                "N1": 53,
+                "N2": 41
+            },
+            "hv": 500.2612,
+            "lloc": 11,
+            "mi": 57.8453,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaExame",
+            "linha_inicio": 1580,
+            "linha_fim": 1597
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 10,
+                "n2": 14,
+                "N1": 34,
+                "N2": 23
+            },
+            "hv": 261.3429,
+            "lloc": 7,
+            "mi": 64.2362,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNotaNecessariaExame",
+            "linha_inicio": 1599,
+            "linha_fim": 1612
+        },
+        {
+            "cc": 6,
+            "halstead": {
+                "n1": 15,
+                "n2": 22,
+                "N1": 72,
+                "N2": 49
+            },
+            "hv": 630.3439,
+            "lloc": 12,
+            "mi": 56.0491,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getFaltaAtual",
+            "linha_inicio": 1618,
+            "linha_fim": 1640
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 13,
+                "n2": 12,
+                "N1": 38,
+                "N2": 23
+            },
+            "hv": 283.2752,
+            "lloc": 5,
+            "mi": 67.0443,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getEtapaParecer",
+            "linha_inicio": 1642,
+            "linha_fim": 1649
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 16,
+                "n2": 26,
+                "N1": 73,
+                "N2": 51
+            },
+            "hv": 668.6474,
+            "lloc": 12,
+            "mi": 56.0042,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getParecerAtual",
+            "linha_inicio": 1651,
+            "linha_fim": 1675
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 19,
+                "n2": 27,
+                "N1": 68,
+                "N2": 51
+            },
+            "hv": 657.3039,
+            "lloc": 11,
+            "mi": 57.015,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getRoundingValues",
+            "linha_inicio": 1677,
+            "linha_fim": 1699
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 6,
+                "n2": 4,
+                "N1": 8,
+                "N2": 4
+            },
+            "hv": 39.8631,
+            "lloc": 2,
+            "mi": 82.0916,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getNavegacaoTab",
+            "linha_inicio": 1701,
+            "linha_fim": 1704
+        },
+        {
+            "cc": 21,
+            "halstead": {
+                "n1": 19,
+                "n2": 122,
+                "N1": 317,
+                "N2": 257
+            },
+            "hv": 4098.1025,
+            "lloc": 71,
+            "mi": 31.4968,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::getEvaluationRule",
+            "linha_inicio": 1713,
+            "linha_fim": 1826
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 14,
+                "n2": 22,
+                "N1": 60,
+                "N2": 42
+            },
+            "hv": 527.3324,
+            "lloc": 8,
+            "mi": 60.7019,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::inserirAuditoriaNotas",
+            "linha_inicio": 1828,
+            "linha_fim": 1852
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 10,
+                "n2": 6,
+                "N1": 13,
+                "N2": 8
+            },
+            "hv": 84,
+            "lloc": 2,
+            "mi": 79.6905,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::extrairValorNota",
+            "linha_inicio": 1854,
+            "linha_fim": 1857
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 13,
+                "n2": 10,
+                "N1": 25,
+                "N2": 16
+            },
+            "hv": 185.466,
+            "lloc": 3,
+            "mi": 73.1717,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::determinarOperacaoAuditoria",
+            "linha_inicio": 1859,
+            "linha_fim": 1866
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 7,
+                "N1": 12,
+                "N2": 9
+            },
+            "hv": 82.0447,
+            "lloc": 3,
+            "mi": 76.0554,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::sqlAuditoriaNotas",
+            "linha_inicio": 1868,
+            "linha_fim": 1914
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 10,
+                "n2": 11,
+                "N1": 19,
+                "N2": 14
+            },
+            "hv": 144.9465,
+            "lloc": 5,
+            "mi": 69.4854,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canChange",
+            "linha_inicio": 1916,
+            "linha_fim": 1923
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 15,
+                "n2": 26,
+                "N1": 65,
+                "N2": 48
+            },
+            "hv": 605.4034,
+            "lloc": 13,
+            "mi": 55.6826,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::postSituacao",
+            "linha_inicio": 1925,
+            "linha_fim": 1946
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 15,
+                "n2": 27,
+                "N1": 63,
+                "N2": 47
+            },
+            "hv": 593.1549,
+            "lloc": 15,
+            "mi": 54.389,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::changeRegistrationLockStatus",
+            "linha_inicio": 1948,
+            "linha_fim": 1973
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 9,
+                "n2": 10,
+                "N1": 15,
+                "N2": 11
+            },
+            "hv": 110.4461,
+            "lloc": 3,
+            "mi": 75.1514,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::canPostSituacaoAndNota",
+            "linha_inicio": 1975,
+            "linha_fim": 1980
+        },
+        {
+            "cc": 21,
+            "halstead": {
+                "n1": 11,
+                "n2": 45,
+                "N1": 200,
+                "N2": 138
+            },
+            "hv": 1962.886,
+            "lloc": 42,
+            "mi": 38.709,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioApiController.php",
+            "simbolo": "DiarioApiController::Gerar",
+            "linha_inicio": 1982,
+            "linha_fim": 2026
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 10,
+                "n2": 44,
+                "N1": 89,
+                "N2": 69
+            },
+            "hv": 909.2722,
+            "lloc": 12,
+            "mi": 55.6075,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioController.php",
+            "simbolo": "DiarioController::Gerar",
+            "linha_inicio": 9,
+            "linha_fim": 37
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 9,
+                "n2": 7,
+                "N1": 12,
+                "N2": 8
+            },
+            "hv": 80,
+            "lloc": 3,
+            "mi": 76.1321,
+            "arquivo": "ieducar/modules/Avaliacao/Views/DiarioController.php",
+            "simbolo": "DiarioController::_preRender",
+            "linha_inicio": 39,
+            "linha_fim": 44
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 8,
+                "N1": 21,
+                "N2": 13
+            },
+            "hv": 136,
+            "lloc": 6,
+            "mi": 67.9519,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::__construct",
+            "linha_inicio": 59,
+            "linha_fim": 66
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 14,
+                "n2": 6,
+                "N1": 26,
+                "N2": 17
+            },
+            "hv": 185.8429,
+            "lloc": 4,
+            "mi": 70.5746,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getExemptedStages",
+            "linha_inicio": 73,
+            "linha_fim": 80
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 15,
+                "n2": 11,
+                "N1": 34,
+                "N2": 20
+            },
+            "hv": 253.8237,
+            "lloc": 9,
+            "mi": 61.8096,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getNotaComponente",
+            "linha_inicio": 89,
+            "linha_fim": 106
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 11,
+                "n2": 8,
+                "N1": 22,
+                "N2": 13
+            },
+            "hv": 148.6775,
+            "lloc": 6,
+            "mi": 67.5463,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getMediaComponente",
+            "linha_inicio": 111,
+            "linha_fim": 122
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 11,
+                "n2": 9,
+                "N1": 21,
+                "N2": 13
+            },
+            "hv": 146.9456,
+            "lloc": 6,
+            "mi": 67.4475,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getNotaGeral",
+            "linha_inicio": 130,
+            "linha_fim": 141
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 17,
+                "n2": 14,
+                "N1": 48,
+                "N2": 28
+            },
+            "hv": 376.5189,
+            "lloc": 12,
+            "mi": 57.7506,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getFalta",
+            "linha_inicio": 150,
+            "linha_fim": 171
+        },
+        {
+            "cc": 6,
+            "halstead": {
+                "n1": 17,
+                "n2": 21,
+                "N1": 70,
+                "N2": 44
+            },
+            "hv": 598.2637,
+            "lloc": 16,
+            "mi": 53.4825,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getParecerDescritivo",
+            "linha_inicio": 180,
+            "linha_fim": 215
+        },
+        {
+            "cc": 8,
+            "halstead": {
+                "n1": 15,
+                "n2": 46,
+                "N1": 130,
+                "N2": 115
+            },
+            "hv": 1453.0306,
+            "lloc": 24,
+            "mi": 46.6738,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_setMatriculaInfo",
+            "linha_inicio": 224,
+            "linha_fim": 280
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 15,
+                "n2": 25,
+                "N1": 86,
+                "N2": 55
+            },
+            "hv": 750.3919,
+            "lloc": 17,
+            "mi": 52.3537,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_loadNotas",
+            "linha_inicio": 290,
+            "linha_fim": 332
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 12,
+                "n2": 18,
+                "N1": 56,
+                "N2": 37
+            },
+            "hv": 456.3408,
+            "lloc": 12,
+            "mi": 57.4349,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_loadMedias",
+            "linha_inicio": 341,
+            "linha_fim": 368
+        },
+        {
+            "cc": 10,
+            "halstead": {
+                "n1": 17,
+                "n2": 31,
+                "N1": 109,
+                "N2": 70
+            },
+            "hv": 999.7083,
+            "lloc": 29,
+            "mi": 45.7491,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_loadFalta",
+            "linha_inicio": 378,
+            "linha_fim": 430
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 11,
+                "n2": 15,
+                "N1": 31,
+                "N2": 20
+            },
+            "hv": 239.7224,
+            "lloc": 5,
+            "mi": 67.8209,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getFaltasLancadas",
+            "linha_inicio": 438,
+            "linha_fim": 452
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 13,
+                "n2": 23,
+                "N1": 48,
+                "N2": 35
+            },
+            "hv": 429.1038,
+            "lloc": 9,
+            "mi": 60.4819,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::retornaFaltasCiclo",
+            "linha_inicio": 462,
+            "linha_fim": 483
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 13,
+                "n2": 22,
+                "N1": 49,
+                "N2": 37
+            },
+            "hv": 441.1183,
+            "lloc": 9,
+            "mi": 60.2635,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getComponentesRegimeCiclico",
+            "linha_inicio": 493,
+            "linha_fim": 508
+        },
+        {
+            "cc": 7,
+            "halstead": {
+                "n1": 17,
+                "n2": 32,
+                "N1": 99,
+                "N2": 63
+            },
+            "hv": 909.583,
+            "lloc": 21,
+            "mi": 49.4978,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_loadParecerDescritivo",
+            "linha_inicio": 517,
+            "linha_fim": 566
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 8,
+                "n2": 6,
+                "N1": 14,
+                "N2": 6
+            },
+            "hv": 76.1471,
+            "lloc": 4,
+            "mi": 73.4223,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::hasNotaAluno",
+            "linha_inicio": 573,
+            "linha_fim": 580
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 16,
+                "n2": 28,
+                "N1": 58,
+                "N2": 43
+            },
+            "hv": 551.4026,
+            "lloc": 7,
+            "mi": 62.1003,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getQtdComponentes",
+            "linha_inicio": 582,
+            "linha_fim": 621
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 9,
+                "N1": 23,
+                "N2": 20
+            },
+            "hv": 175.7609,
+            "lloc": 5,
+            "mi": 68.8992,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getSituacaoNotaFalta",
+            "linha_inicio": 626,
+            "linha_fim": 635
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 9,
+                "n2": 13,
+                "N1": 27,
+                "N2": 23
+            },
+            "hv": 222.9716,
+            "lloc": 9,
+            "mi": 62.6072,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::montaObjetoSituacao",
+            "linha_inicio": 640,
+            "linha_fim": 651
+        },
+        {
+            "cc": 15,
+            "halstead": {
+                "n1": 11,
+                "n2": 17,
+                "N1": 95,
+                "N2": 75
+            },
+            "hv": 817.2503,
+            "lloc": 20,
+            "mi": 49.2095,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::verificaSituacao",
+            "linha_inicio": 656,
+            "linha_fim": 710
+        },
+        {
+            "cc": 6,
+            "halstead": {
+                "n1": 11,
+                "n2": 15,
+                "N1": 68,
+                "N2": 51
+            },
+            "hv": 559.3523,
+            "lloc": 21,
+            "mi": 51.1108,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::processaSituacaoDaNota",
+            "linha_inicio": 715,
+            "linha_fim": 752
+        },
+        {
+            "cc": 7,
+            "halstead": {
+                "n1": 12,
+                "n2": 23,
+                "N1": 77,
+                "N2": 57
+            },
+            "hv": 687.3239,
+            "lloc": 21,
+            "mi": 50.3498,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::processaSituacaoFalta",
+            "linha_inicio": 757,
+            "linha_fim": 802
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 10,
+                "n2": 15,
+                "N1": 36,
+                "N2": 30
+            },
+            "hv": 306.4945,
+            "lloc": 9,
+            "mi": 61.5052,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getSituacaoAluno",
+            "linha_inicio": 830,
+            "linha_fim": 844
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 13,
+                "n2": 21,
+                "N1": 44,
+                "N2": 34
+            },
+            "hv": 396.8221,
+            "lloc": 9,
+            "mi": 60.4508,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getLastStage",
+            "linha_inicio": 851,
+            "linha_fim": 867
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 6,
+                "N1": 12,
+                "N2": 7
+            },
+            "hv": 72.3397,
+            "lloc": 2,
+            "mi": 80.2795,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::deleteNotaComponenteCurricularMediaWithoutNotas",
+            "linha_inicio": 872,
+            "linha_fim": 888
+        },
+        {
+            "cc": 15,
+            "halstead": {
+                "n1": 23,
+                "n2": 75,
+                "N1": 282,
+                "N2": 224
+            },
+            "hv": 3347.0432,
+            "lloc": 59,
+            "mi": 34.6734,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getSituacaoNotas",
+            "linha_inicio": 937,
+            "linha_fim": 1047
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 9,
+                "n2": 9,
+                "N1": 24,
+                "N2": 13
+            },
+            "hv": 154.2872,
+            "lloc": 3,
+            "mi": 74.1349,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_idsDisciplinasNaoReprovativas",
+            "linha_inicio": 1054,
+            "linha_fim": 1063
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 18,
+                "n2": 20,
+                "N1": 50,
+                "N2": 39
+            },
+            "hv": 467.0655,
+            "lloc": 12,
+            "mi": 57.3643,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_situacaoNotasPorMediaGeral",
+            "linha_inicio": 1071,
+            "linha_fim": 1091
+        },
+        {
+            "cc": 12,
+            "halstead": {
+                "n1": 17,
+                "n2": 18,
+                "N1": 68,
+                "N2": 48
+            },
+            "hv": 594.9968,
+            "lloc": 11,
+            "mi": 56.2419,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_situacaoPorMediaGeral",
+            "linha_inicio": 1098,
+            "linha_fim": 1123
+        },
+        {
+            "cc": 7,
+            "halstead": {
+                "n1": 17,
+                "n2": 14,
+                "N1": 51,
+                "N2": 33
+            },
+            "hv": 416.1525,
+            "lloc": 9,
+            "mi": 59.9026,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_lancamentoNotasIncompleto",
+            "linha_inicio": 1130,
+            "linha_fim": 1155
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 15,
+                "n2": 14,
+                "N1": 32,
+                "N2": 24
+            },
+            "hv": 272.0469,
+            "lloc": 7,
+            "mi": 63.9796,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_situacaoComponenteProgressaoContinuada",
+            "linha_inicio": 1162,
+            "linha_fim": 1175
+        },
+        {
+            "cc": 17,
+            "halstead": {
+                "n1": 23,
+                "n2": 31,
+                "N1": 123,
+                "N2": 94
+            },
+            "hv": 1248.8106,
+            "lloc": 24,
+            "mi": 45.9239,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_situacaoComponentePorNota",
+            "linha_inicio": 1184,
+            "linha_fim": 1229
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 12,
+                "n2": 11,
+                "N1": 29,
+                "N2": 17
+            },
+            "hv": 208.0838,
+            "lloc": 7,
+            "mi": 64.7947,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_reprovadoPelaPrevisaoDeRecuperacao",
+            "linha_inicio": 1237,
+            "linha_fim": 1250
+        },
+        {
+            "cc": 6,
+            "halstead": {
+                "n1": 14,
+                "n2": 13,
+                "N1": 37,
+                "N2": 26
+            },
+            "hv": 299.5579,
+            "lloc": 6,
+            "mi": 64.8781,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_ajustarSituacaoGeralNotas",
+            "linha_inicio": 1258,
+            "linha_fim": 1274
+        },
+        {
+            "cc": 30,
+            "halstead": {
+                "n1": 32,
+                "n2": 109,
+                "N1": 496,
+                "N2": 398
+            },
+            "hv": 6382.7589,
+            "lloc": 104,
+            "mi": 25.3227,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getSituacaoFaltas",
+            "linha_inicio": 1322,
+            "linha_fim": 1541
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 9,
+                "n2": 6,
+                "N1": 14,
+                "N2": 9
+            },
+            "hv": 89.8585,
+            "lloc": 2,
+            "mi": 79.4855,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::regraNaoPermiteReprovarFalta",
+            "linha_inicio": 1549,
+            "linha_fim": 1553
+        },
+        {
+            "cc": 7,
+            "halstead": {
+                "n1": 23,
+                "n2": 18,
+                "N1": 64,
+                "N2": 39
+            },
+            "hv": 551.8279,
+            "lloc": 12,
+            "mi": 56.3191,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::calculaEtapaNotasAglutinada",
+            "linha_inicio": 1558,
+            "linha_fim": 1578
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 7,
+                "n2": 5,
+                "N1": 8,
+                "N2": 6
+            },
+            "hv": 50.1895,
+            "lloc": 2,
+            "mi": 81.3911,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::exibeSituacao",
+            "linha_inicio": 1580,
+            "linha_fim": 1583
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 14,
+                "n2": 8,
+                "N1": 21,
+                "N2": 14
+            },
+            "hv": 156.0801,
+            "lloc": 3,
+            "mi": 73.8307,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::exibeNotaNecessariaExame",
+            "linha_inicio": 1585,
+            "linha_fim": 1590
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 12,
+                "n2": 11,
+                "N1": 18,
+                "N2": 15
+            },
+            "hv": 149.2775,
+            "lloc": 4,
+            "mi": 71.3753,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::valorMediaSituacao",
+            "linha_inicio": 1598,
+            "linha_fim": 1604
+        },
+        {
+            "cc": 8,
+            "halstead": {
+                "n1": 20,
+                "n2": 32,
+                "N1": 98,
+                "N2": 71
+            },
+            "hv": 963.3743,
+            "lloc": 25,
+            "mi": 47.5368,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getSituacaoComponentesCurriculares",
+            "linha_inicio": 1649,
+            "linha_fim": 1690
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 9,
+                "n2": 7,
+                "N1": 12,
+                "N2": 8
+            },
+            "hv": 80,
+            "lloc": 2,
+            "mi": 79.8389,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getCurricularComponentSituation",
+            "linha_inicio": 1700,
+            "linha_fim": 1703
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 9,
+                "n2": 5,
+                "N1": 11,
+                "N2": 9
+            },
+            "hv": 76.1471,
+            "lloc": 2,
+            "mi": 80.1235,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_situacaoPrioritaria",
+            "linha_inicio": 1712,
+            "linha_fim": 1715
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 9,
+                "N1": 17,
+                "N2": 12
+            },
+            "hv": 118.5364,
+            "lloc": 4,
+            "mi": 72.211,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_createNotaAluno",
+            "linha_inicio": 1724,
+            "linha_fim": 1730
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 11,
+                "n2": 7,
+                "N1": 18,
+                "N2": 9
+            },
+            "hv": 112.588,
+            "lloc": 5,
+            "mi": 70.1191,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasNotaComponente",
+            "linha_inicio": 1739,
+            "linha_fim": 1748
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 11,
+                "n2": 7,
+                "N1": 18,
+                "N2": 9
+            },
+            "hv": 112.588,
+            "lloc": 5,
+            "mi": 70.1191,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasNotaGeral",
+            "linha_inicio": 1756,
+            "linha_fim": 1765
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 13,
+                "n2": 14,
+                "N1": 35,
+                "N2": 24
+            },
+            "hv": 280.5384,
+            "lloc": 9,
+            "mi": 61.5053,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_getNotaIdEtapa",
+            "linha_inicio": 1774,
+            "linha_fim": 1791
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 11,
+                "n2": 10,
+                "N1": 22,
+                "N2": 15
+            },
+            "hv": 162.5157,
+            "lloc": 6,
+            "mi": 67.1412,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_getNotaGeralIdEtapa",
+            "linha_inicio": 1796,
+            "linha_fim": 1807
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 8,
+                "n2": 6,
+                "N1": 14,
+                "N2": 6
+            },
+            "hv": 76.1471,
+            "lloc": 4,
+            "mi": 73.4223,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::hasFaltaAluno",
+            "linha_inicio": 1814,
+            "linha_fim": 1821
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 11,
+                "N1": 22,
+                "N2": 16
+            },
+            "hv": 161.4212,
+            "lloc": 5,
+            "mi": 69.158,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_createFaltaAluno",
+            "linha_inicio": 1830,
+            "linha_fim": 1837
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 9,
+                "n2": 8,
+                "N1": 16,
+                "N2": 9
+            },
+            "hv": 102.1866,
+            "lloc": 5,
+            "mi": 70.4139,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasFaltaGeral",
+            "linha_inicio": 1845,
+            "linha_fim": 1854
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 11,
+                "n2": 7,
+                "N1": 18,
+                "N2": 9
+            },
+            "hv": 112.588,
+            "lloc": 5,
+            "mi": 70.1191,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasFaltaComponente",
+            "linha_inicio": 1863,
+            "linha_fim": 1872
+        },
+        {
+            "cc": 9,
+            "halstead": {
+                "n1": 17,
+                "n2": 24,
+                "N1": 80,
+                "N2": 51
+            },
+            "hv": 701.8393,
+            "lloc": 17,
+            "mi": 52.0191,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_getFaltaIdEtapa",
+            "linha_inicio": 1881,
+            "linha_fim": 1913
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 8,
+                "n2": 6,
+                "N1": 14,
+                "N2": 6
+            },
+            "hv": 76.1471,
+            "lloc": 4,
+            "mi": 73.4223,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::hasParecerDescritivoAluno",
+            "linha_inicio": 1920,
+            "linha_fim": 1927
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 11,
+                "N1": 22,
+                "N2": 16
+            },
+            "hv": 161.4212,
+            "lloc": 5,
+            "mi": 69.158,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_createParecerDescritivoAluno",
+            "linha_inicio": 1936,
+            "linha_fim": 1943
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 9,
+                "n2": 5,
+                "N1": 13,
+                "N2": 8
+            },
+            "hv": 79.9545,
+            "lloc": 4,
+            "mi": 73.2739,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addNotas",
+            "linha_inicio": 1951,
+            "linha_fim": 1958
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 11,
+                "n2": 7,
+                "N1": 18,
+                "N2": 9
+            },
+            "hv": 112.588,
+            "lloc": 5,
+            "mi": 70.1191,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasParecerComponente",
+            "linha_inicio": 1967,
+            "linha_fim": 1976
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 8,
+                "n2": 7,
+                "N1": 14,
+                "N2": 7
+            },
+            "hv": 82.0447,
+            "lloc": 4,
+            "mi": 73.1955,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasParecerGeral",
+            "linha_inicio": 1984,
+            "linha_fim": 1991
+        },
+        {
+            "cc": 7,
+            "halstead": {
+                "n1": 16,
+                "n2": 25,
+                "N1": 75,
+                "N2": 50
+            },
+            "hv": 669.694,
+            "lloc": 16,
+            "mi": 53.005,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_getParecerIdEtapa",
+            "linha_inicio": 2000,
+            "linha_fim": 2034
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 9,
+                "n2": 15,
+                "N1": 31,
+                "N2": 30
+            },
+            "hv": 279.6827,
+            "lloc": 8,
+            "mi": 63.0339,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addNota",
+            "linha_inicio": 2042,
+            "linha_fim": 2052
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 9,
+                "n2": 12,
+                "N1": 26,
+                "N2": 25
+            },
+            "hv": 224.0082,
+            "lloc": 7,
+            "mi": 64.974,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addNotaGeral",
+            "linha_inicio": 2057,
+            "linha_fim": 2066
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 9,
+                "n2": 5,
+                "N1": 13,
+                "N2": 8
+            },
+            "hv": 79.9545,
+            "lloc": 4,
+            "mi": 73.2739,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addFaltas",
+            "linha_inicio": 2074,
+            "linha_fim": 2081
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 9,
+                "n2": 12,
+                "N1": 25,
+                "N2": 24
+            },
+            "hv": 215.2236,
+            "lloc": 7,
+            "mi": 65.0956,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addFalta",
+            "linha_inicio": 2089,
+            "linha_fim": 2098
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 9,
+                "n2": 5,
+                "N1": 13,
+                "N2": 8
+            },
+            "hv": 79.9545,
+            "lloc": 4,
+            "mi": 73.2739,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addPareceres",
+            "linha_inicio": 2107,
+            "linha_fim": 2114
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 9,
+                "n2": 10,
+                "N1": 19,
+                "N2": 18
+            },
+            "hv": 157.1733,
+            "lloc": 6,
+            "mi": 67.5119,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addParecer",
+            "linha_inicio": 2123,
+            "linha_fim": 2131
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 16,
+                "n2": 29,
+                "N1": 78,
+                "N2": 60
+            },
+            "hv": 757.8757,
+            "lloc": 15,
+            "mi": 53.6438,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_addValidators",
+            "linha_inicio": 2145,
+            "linha_fim": 2178
+        },
+        {
+            "cc": 6,
+            "halstead": {
+                "n1": 15,
+                "n2": 36,
+                "N1": 114,
+                "N2": 82
+            },
+            "hv": 1111.7954,
+            "lloc": 22,
+            "mi": 48.5811,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_addParecerValidators",
+            "linha_inicio": 2190,
+            "linha_fim": 2244
+        },
+        {
+            "cc": 11,
+            "halstead": {
+                "n1": 22,
+                "n2": 32,
+                "N1": 111,
+                "N2": 75
+            },
+            "hv": 1070.4091,
+            "lloc": 25,
+            "mi": 46.8129,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_updateEtapa",
+            "linha_inicio": 2252,
+            "linha_fim": 2301
+        },
+        {
+            "cc": 11,
+            "halstead": {
+                "n1": 19,
+                "n2": 41,
+                "N1": 145,
+                "N2": 95
+            },
+            "hv": 1417.6537,
+            "lloc": 34,
+            "mi": 43.0455,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_updateParecerEtapa",
+            "linha_inicio": 2310,
+            "linha_fim": 2383
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 14,
+                "n2": 19,
+                "N1": 51,
+                "N2": 34
+            },
+            "hv": 428.7735,
+            "lloc": 9,
+            "mi": 60.0808,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::arredondaNota",
+            "linha_inicio": 2393,
+            "linha_fim": 2413
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 9,
+                "n2": 7,
+                "N1": 14,
+                "N2": 7
+            },
+            "hv": 84,
+            "lloc": 4,
+            "mi": 73.1239,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::regraUsaTipoNotaNumericaConceitual",
+            "linha_inicio": 2418,
+            "linha_fim": 2425
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 12,
+                "n2": 14,
+                "N1": 22,
+                "N2": 17
+            },
+            "hv": 183.3171,
+            "lloc": 6,
+            "mi": 66.9095,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::componenteUsaNotaConceitual",
+            "linha_inicio": 2430,
+            "linha_fim": 2440
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 7,
+                "n2": 5,
+                "N1": 10,
+                "N2": 7
+            },
+            "hv": 60.9444,
+            "lloc": 2,
+            "mi": 80.6662,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::usaTabelaArredondamentoConceitual",
+            "linha_inicio": 2445,
+            "linha_fim": 2448
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 14,
+                "n2": 23,
+                "N1": 71,
+                "N2": 52
+            },
+            "hv": 640.7628,
+            "lloc": 13,
+            "mi": 55.3754,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::arredondaMedia",
+            "linha_inicio": 2456,
+            "linha_fim": 2486
+        },
+        {
+            "cc": 12,
+            "halstead": {
+                "n1": 27,
+                "n2": 57,
+                "N1": 176,
+                "N2": 138
+            },
+            "hv": 2007.1877,
+            "lloc": 35,
+            "mi": 41.579,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::preverNotaRecuperacao",
+            "linha_inicio": 2495,
+            "linha_fim": 2563
+        },
+        {
+            "cc": 16,
+            "halstead": {
+                "n1": 28,
+                "n2": 30,
+                "N1": 164,
+                "N2": 124
+            },
+            "hv": 1687.0985,
+            "lloc": 40,
+            "mi": 40.3042,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_calculateNotasRecuperacoesEspecificas",
+            "linha_inicio": 2571,
+            "linha_fim": 2641
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 7,
+                "n2": 3,
+                "N1": 7,
+                "N2": 5
+            },
+            "hv": 39.8631,
+            "lloc": 2,
+            "mi": 82.0916,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_calculateHoraFalta",
+            "linha_inicio": 2648,
+            "linha_fim": 2651
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 13,
+                "n2": 9,
+                "N1": 28,
+                "N2": 22
+            },
+            "hv": 222.9716,
+            "lloc": 7,
+            "mi": 64.7191,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_calculatePorcentagem",
+            "linha_inicio": 2662,
+            "linha_fim": 2674
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 13,
+                "n2": 9,
+                "N1": 29,
+                "N2": 17
+            },
+            "hv": 205.1339,
+            "lloc": 6,
+            "mi": 66.433,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_calculaMedia",
+            "linha_inicio": 2683,
+            "linha_fim": 2692
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 8,
+                "n2": 9,
+                "N1": 27,
+                "N2": 15
+            },
+            "hv": 171.6734,
+            "lloc": 10,
+            "mi": 62.1351,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::save",
+            "linha_inicio": 2704,
+            "linha_fim": 2716
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 14,
+                "n2": 20,
+                "N1": 62,
+                "N2": 42
+            },
+            "hv": 529.0961,
+            "lloc": 16,
+            "mi": 53.9906,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::saveNotas",
+            "linha_inicio": 2725,
+            "linha_fim": 2752
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 12,
+                "n2": 18,
+                "N1": 46,
+                "N2": 32
+            },
+            "hv": 382.7375,
+            "lloc": 12,
+            "mi": 57.8353,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::saveFaltas",
+            "linha_inicio": 2762,
+            "linha_fim": 2783
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 9,
+                "n2": 12,
+                "N1": 31,
+                "N2": 23
+            },
+            "hv": 237.1851,
+            "lloc": 8,
+            "mi": 63.4006,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::savePareceres",
+            "linha_inicio": 2792,
+            "linha_fim": 2804
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 7,
+                "n2": 14,
+                "N1": 28,
+                "N2": 24
+            },
+            "hv": 228.4005,
+            "lloc": 2,
+            "mi": 76.7832,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::reloadComponentes",
+            "linha_inicio": 2809,
+            "linha_fim": 2824
+        },
+        {
+            "cc": 28,
+            "halstead": {
+                "n1": 26,
+                "n2": 53,
+                "N1": 234,
+                "N2": 153
+            },
+            "hv": 2439.5631,
+            "lloc": 56,
+            "mi": 34.381,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::promover",
+            "linha_inicio": 2838,
+            "linha_fim": 2928
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 12,
+                "n2": 16,
+                "N1": 36,
+                "N2": 23
+            },
+            "hv": 283.6339,
+            "lloc": 8,
+            "mi": 62.8568,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::unlockMediaComponente",
+            "linha_inicio": 2933,
+            "linha_fim": 2948
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 15,
+                "n2": 35,
+                "N1": 101,
+                "N2": 80
+            },
+            "hv": 1021.538,
+            "lloc": 18,
+            "mi": 51.0087,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::updateMediaComponente",
+            "linha_inicio": 2954,
+            "linha_fim": 2996
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 12,
+                "n2": 19,
+                "N1": 44,
+                "N2": 30
+            },
+            "hv": 366.6105,
+            "lloc": 7,
+            "mi": 63.3415,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::updateMediaGeral",
+            "linha_inicio": 3001,
+            "linha_fim": 3022
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 7,
+                "n2": 5,
+                "N1": 9,
+                "N2": 7
+            },
+            "hv": 57.3594,
+            "lloc": 2,
+            "mi": 80.9851,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::alterarSituacao",
+            "linha_inicio": 3027,
+            "linha_fim": 3030
+        },
+        {
+            "cc": 26,
+            "halstead": {
+                "n1": 33,
+                "n2": 112,
+                "N1": 438,
+                "N2": 331
+            },
+            "hv": 5521.3501,
+            "lloc": 82,
+            "mi": 28.5532,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_updateNotaComponenteMedia",
+            "linha_inicio": 3035,
+            "linha_fim": 3220
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 7,
+                "n2": 6,
+                "N1": 11,
+                "N2": 9
+            },
+            "hv": 74.0088,
+            "lloc": 2,
+            "mi": 80.2101,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_updateMatricula",
+            "linha_inicio": 3232,
+            "linha_fim": 3235
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 10,
+                "n2": 11,
+                "N1": 27,
+                "N2": 19
+            },
+            "hv": 202.0466,
+            "lloc": 8,
+            "mi": 63.8882,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::deleteNota",
+            "linha_inicio": 3242,
+            "linha_fim": 3255
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 8,
+                "N1": 16,
+                "N2": 13
+            },
+            "hv": 116,
+            "lloc": 4,
+            "mi": 72.2768,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::deleteFalta",
+            "linha_inicio": 3262,
+            "linha_fim": 3268
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 8,
+                "n2": 8,
+                "N1": 16,
+                "N2": 13
+            },
+            "hv": 116,
+            "lloc": 4,
+            "mi": 72.2768,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::deleteParecer",
+            "linha_inicio": 3275,
+            "linha_fim": 3281
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 9,
+                "n2": 8,
+                "N1": 19,
+                "N2": 13
+            },
+            "hv": 130.7988,
+            "lloc": 5,
+            "mi": 69.6632,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::deleteNotaGeral",
+            "linha_inicio": 3288,
+            "linha_fim": 3296
+        },
+        {
+            "cc": 16,
+            "halstead": {
+                "n1": 26,
+                "n2": 56,
+                "N1": 183,
+                "N2": 128
+            },
+            "hv": 1977.1987,
+            "lloc": 40,
+            "mi": 39.8217,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::verificaNotasLancadasNasEtapasAnteriores",
+            "linha_inicio": 3309,
+            "linha_fim": 3410
+        },
+        {
+            "cc": 8,
+            "halstead": {
+                "n1": 25,
+                "n2": 34,
+                "N1": 88,
+                "N2": 63
+            },
+            "hv": 888.2791,
+            "lloc": 20,
+            "mi": 49.8976,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::verificaFaltasLancadasNasEtapasAnteriores",
+            "linha_inicio": 3422,
+            "linha_fim": 3457
+        },
+        {
+            "cc": 2,
+            "halstead": {
+                "n1": 10,
+                "n2": 12,
+                "N1": 17,
+                "N2": 15
+            },
+            "hv": 142.7018,
+            "lloc": 3,
+            "mi": 74.2377,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getNotaAtual",
+            "linha_inicio": 3466,
+            "linha_fim": 3472
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 12,
+                "n2": 13,
+                "N1": 35,
+                "N2": 28
+            },
+            "hv": 292.5629,
+            "lloc": 8,
+            "mi": 62.359,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getFaltaAtual",
+            "linha_inicio": 3482,
+            "linha_fim": 3496
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 6,
+                "n2": 4,
+                "N1": 9,
+                "N2": 4
+            },
+            "hv": 43.1851,
+            "lloc": 2,
+            "mi": 81.8482,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getRegrasRecuperacao",
+            "linha_inicio": 3506,
+            "linha_fim": 3509
+        },
+        {
+            "cc": 1,
+            "halstead": {
+                "n1": 11,
+                "n2": 14,
+                "N1": 28,
+                "N2": 17
+            },
+            "hv": 208.9735,
+            "lloc": 3,
+            "mi": 73.2123,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getEvaluationRule",
+            "linha_inicio": 3514,
+            "linha_fim": 3523
+        },
+        {
+            "cc": 5,
+            "halstead": {
+                "n1": 11,
+                "n2": 16,
+                "N1": 50,
+                "N2": 31
+            },
+            "hv": 385.1459,
+            "lloc": 12,
+            "mi": 57.6817,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::calculateStageScore",
+            "linha_inicio": 3531,
+            "linha_fim": 3554
+        },
+        {
+            "cc": 9,
+            "halstead": {
+                "n1": 21,
+                "n2": 34,
+                "N1": 88,
+                "N2": 60
+            },
+            "hv": 855.6412,
+            "lloc": 24,
+            "mi": 48.1497,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::allowsApproveWithDependence",
+            "linha_inicio": 3564,
+            "linha_fim": 3606
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 15,
+                "n2": 17,
+                "N1": 35,
+                "N2": 26
+            },
+            "hv": 305,
+            "lloc": 9,
+            "mi": 61.2511,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getCargaHoraria",
+            "linha_inicio": 3608,
+            "linha_fim": 3624
+        },
+        {
+            "cc": 4,
+            "halstead": {
+                "n1": 15,
+                "n2": 17,
+                "N1": 35,
+                "N2": 26
+            },
+            "hv": 305,
+            "lloc": 9,
+            "mi": 61.2511,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getDiasLetivos",
+            "linha_inicio": 3626,
+            "linha_fim": 3642
+        },
+        {
+            "cc": 3,
+            "halstead": {
+                "n1": 15,
+                "n2": 30,
+                "N1": 80,
+                "N2": 60
+            },
+            "hv": 768.8594,
+            "lloc": 7,
+            "mi": 60.9548,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::getHoraFalta",
+            "linha_inicio": 3647,
+            "linha_fim": 3677
+        }
+    ]
+}

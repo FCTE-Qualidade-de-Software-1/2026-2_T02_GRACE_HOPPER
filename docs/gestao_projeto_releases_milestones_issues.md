@@ -800,6 +800,27 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
     - **Tests:** `bash scripts/docs/check_site.sh && .venv-docs/bin/python -m unittest discover -s scripts -p 'test_*.py'`.
     - **Risk:** none.
 
+#### Issue #56 — Ação de Melhoria: Refatoração de `getSituacaoNotas` (M7b) com Teste de Equivalência
+
+- **Milestone:** M6: Análise, Julgamento, Artigo v2 e Release E2 (Fase 5 ISO/IEC 25040)
+- **Atribuição Individual:**
+    - **Responsável:** `Gabriel Barbaceli`
+    - **Matrícula UnB:** `21/1045122` | **GitHub:** `@Nibaacriba`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `4h` | **Custo:** `R$ 200,00`
+- **Goal:** Executar a ação de melhoria da Entrega 2 sobre o pior resultado de G3: o método `Avaliacao_Service_Boletim::getSituacaoNotas`, com $v(G) = 72$ (M7b Crítico).
+- **Depends on:** Issue #43.
+- **Scope:** Patch sobre `ieducar/modules/Avaliacao/Service/Boletim.php` no commit `7903a3e`, sem mudar o comportamento do produto; o julgamento da Fase 5 continua sobre o commit congelado.
+- [x] **Task:** Refatorar `getSituacaoNotas` por *Extract Method*, provar a equivalência de comportamento e medir o efeito em M7a, M7b e M10
+    - **Files:** `docs/evidencias/melhoria/`, `scripts/melhoria/teste_equivalencia.php`, `docs/fase-4/acao-de-melhoria.md`
+    - **Change:** Dividir o método em 8 métodos privados, remover código sem efeito no resultado, executar teste diferencial entre as versões original e refatorada e reexecutar o motor estático sobre o arquivo com o patch.
+    - **Covers:** Q3.1 e Q3.4; métricas M7a, M7b e M10; ação de melhoria da Entrega 2.
+    - **Acceptance criteria:**
+        - Patch aplicável ao commit avaliado.
+        - Teste de equivalência sem divergências (50.000 cenários) e autoteste detectando defeito injetado.
+        - Tabela antes e depois: $v(G)$ de `getSituacaoNotas` de 72 para 15; M7b de 72 (Crítico) para 30 (Bom); M7a mantido em 8; M10 de 63,82 para 63,79.
+    - **Tests:** `php scripts/melhoria/teste_equivalencia.php --original=... --refatorado=... --autoteste && bash scripts/docs/check_site.sh`.
+    - **Risk:** none.
+
 ---
 
 ## 4. Especificação das Releases do Projeto
