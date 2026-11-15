@@ -31,7 +31,7 @@ M5 (Densidade de Defeitos Operacionais Médios) depende de telemetria de produç
 
 ## 2. Inventário congelado
 
-Ver §8.1 do [Plano Operacional de Medição e Testes](../plano_medicao_testes.md#81-inventário-congelado-de-operações-compostas). Quatro operações identificadas: OP-01 (`Boletim::save()`), OP-02 (`RegistrationService::updateStatus()`, bloqueada por `transferencia_tipo`/`situacao_matricula` vazias), OP-03 (`cancelRegistration()`, referência positiva com `DB::transaction`), OP-04 (`updateMediaComponente/Geral()`).
+Ver §8.1 do [Plano Operacional de Medição e Testes](../plano_medicao_testes.md). Quatro operações identificadas: OP-01 (`Boletim::save()`), OP-02 (`RegistrationService::updateStatus()`, bloqueada por `transferencia_tipo`/`situacao_matricula` vazias), OP-03 (`cancelRegistration()`, referência positiva com `DB::transaction`), OP-04 (`updateMediaComponente/Geral()`).
 
 ## 3. Metodologia e caminho feliz
 
@@ -80,6 +80,8 @@ Evidência bruta em `op01-before.log`, `op01-happy.log`, `op01-after.log`, `op01
 4. **Injeção dispara** entre `saveNotas()` e `saveFaltas()` → `RuntimeException: FAULT_INJECTION_OP01_BETWEEN_SAVE_NOTAS_AND_FALTAS` (exit code ≠ 0).
 5. `saveFaltas()`, `savePareceres()` e `promover()` não executam.
 
+**Nota sobre IDs.** A Etapa B registrou `nota_aluno.id=3` (resíduo de tentativas anteriores). Antes da Etapa C, as sequences foram resetadas via `TRUNCATE ... RESTART IDENTITY CASCADE`, e a injeção gerou `id=1`. A diferença é cosmética — o estado (0 → 1) e a classificação (não atômico) não mudam.
+
 **Estado final (BEFORE = 0 em todas; AFTER após falha):**
 
 | Tabela | BEFORE | AFTER | Δ | Origem |
@@ -92,6 +94,16 @@ Evidência bruta em `op01-before.log`, `op01-happy.log`, `op01-after.log`, `op01
 
 **Evidência SQL de órfão estrutural** (`op01-orphans.log`):
 
+```text
+ check_name     | nota_aluno_id | nota_comp | nota_etapa |  nota  | falta_aluno_id | falta_comp_id |              classificacao
+----------------+---------------+-----------+------------+--------+----------------+---------------+-----------------------------------------
+ OP01_estado_final |             1 |         8 | 1          | 8.5000 |              1 |               | ORFAO: falta_aluno sem falta_componente
+
+   check_name    | nota_aluno | nota_comp | falta_aluno | falta_comp
+-----------------+------------+-----------+-------------+------------
+ contagens_final |          1 |         1 |           1 |          0
+```
+
 **Classificação:** NÃO ATÔMICA. `ITAE_OP-01 = 0%` (1 execução, 0 atômicas).
 
 **Observação metodológica.** O `falta_aluno=1` **não** é resultado de `saveFaltas()` ter rodado parcialmente — o método não foi invocado (a injeção dispara antes). A linha foi criada pelo construtor, via `_loadFalta()` (`Boletim.php:378`), como container de faltas. Se o experimento fosse conduzido com snapshot **após instanciação**, `falta_aluno=1` já estaria no "BEFORE" e a evidência de não-atomicidade seria idêntica: `nota_aluno` comita, `falta_componente_curricular` não. A inconsistência é a mesma — o estado pós-falha não reverte ao estado pré-`save()`.
@@ -100,11 +112,71 @@ Evidência bruta em `op01-before.log`, `op01-happy.log`, `op01-after.log`, `op01
 
 ## 5. Cálculo do ITAE e veredito do Gate M4
 
-[Preencher na Etapa D.]
+### 5.1 Cálculo
+
+$$
+\text{ITAE} = \frac{N_{\text{atômicas}}}{N_{\text{testadas}}} \times 100\% = \frac{0}{1} \times 100\% = 0{,}0\%
+$$
+
+**Denominador (n = 1):** OP-01 apenas. OP-02 e OP-03 não integram o denominador nesta rodada:
+- OP-02 (`updateStatus` TRANSFERIDO) está bloqueada por `pmieducar.transferencia_tipo` e `relatorio.situacao_matricula` vazias no `DemoSeeder`;
+- OP-03 (`cancelRegistration`) é referência positiva (tem `DB::transaction`) mas não foi executada nesta coleta;
+- OP-04 (`updateMediaComponente/Geral`) é recorte secundário do `Boletim`, funcionalmente coberto por OP-01.
+
+### 5.2 Veredito do Gate M4
+
+**Gate M4 = FAIL** (ITAE = 0% < 100%). A operação testada (OP-01) não reverte integralmente sob falha intermediária: `nota_aluno` e `nota_componente_curricular` permanecem comitadas enquanto `falta_componente_curricular` não é gravada. **H2.2 confirmada no recorte OP-01.**
+
+**Consequência para a release (por §3.3 do Plano):** Classe C (Reprovado / Bloqueado). Falha em gate binário determina Classe C independentemente do $\text{IQM}$ global. O $\text{IQM}$ não é calculado nesta issue; o resultado de M4 entra como insumo negativo no julgamento da Fase 5.
+
+### 5.3 Limitações do denominador
+
+A amostra é mínima (n = 1). A generalização para o universo de operações multi-escrita do i-Educar exige:
+- popular `transferencia_tipo` e `situacao_matricula` para desbloquear OP-02;
+- executar OP-03 como referência positiva (aumenta a credibilidade do instrumento ao demonstrar que ele **detecta** atomicidade quando presente);
+- executar OP-04 como recorte adicional do `Boletim`.
+
+Essas execuções enriqueceriam a caracterização, mas não alterariam o veredito binário: basta uma falha intermediária não revertida para reprovar o método no critério do Gate M4.
 
 ## 6. Triagem M5 (DDOM) e regra de tratamento
 
-[Preencher na Etapa D.]
+### 6.1 Checklist de mensurabilidade
+
+| # | Pergunta de instrumentação | Verificação empírica | Resultado |
+| :-: | :--- | :--- | :-: |
+| D1 | Há logs de transação acessíveis? | `grep -rn "Log::\|Monolog\|error_log"` em `app/` e `ieducar/modules/Avaliacao/` retornou 3 ocorrências: 1 ativa em `SchoolGradeBatchUpdateController.php:84` (contexto de batch import) e 2 comentadas em `DiarioApiController.php:1103` e `PromocaoApiController.php:108`. Nenhuma registra transação de matrícula/notas. | Não |
+| D2 | Existem tabelas de auditoria/eventos? | 4 tabelas: `modules.auditoria`, `public.ieducar_audit`, `public.log_unification_old_data`, `public.log_unifications`. As três últimas são de **unificação de dados** (migração histórica), não de eventos de negócio. `modules.auditoria` existe mas não registra operações de matrícula/notas em runtime. | Parcial |
+| D3 | Há identificador de rollback no núcleo legado? | `grep -n "rollback\|ROLLBACK\|savepoint"` em `ieducar/lib/CoreExt/DataMapper.php` retornou vazio. O mapper legado não tem controle transacional próprio. | Não |
+| D4 | Há métrica de confiabilidade exposta? | `grep -rn "metrics\|/health\|/status"` em `routes/` e `app/Http/` retornou 3 endpoints, todos de `/status` de **importação em lote** (`final-status-import`, `academic-year`, `school-grade.batch-update`), não de confiabilidade ou saúde de transações. | Não |
+| D5 | É possível reconstruir taxa de sucesso/falha por SQL? | `modules.auditoria` existe (confirmado via `\dt`), mas não há registros de transação de matrícula/notas em runtime. A tabela está vazia de eventos relevantes ao recorte avaliado. | Não |
+
+**Síntese:** 0 critérios plenamente atendidos, 1 parcial (D2). Total abaixo do limiar de 4/5 do plano para mensurabilidade.
+
+### 6.2 Condição de M5
+
+**M5 (DDOM) = NÃO MENSURÁVEL** no recorte avaliado. Justificativa:
+
+1. O núcleo legado não registra transações de negócio em log estruturado — as mensagens existentes são de contexto de batch import ou estão comentadas.
+2. As tabelas de auditoria disponíveis (`ieducar_audit`, `log_unification*`) referem-se a operações de migração histórica, não a operações de matrícula/notas em runtime.
+3. Não há identificador de rollback nem savepoint no `CoreExt/DataMapper` legado que permita rastrear reversão por transação.
+4. Não há métrica operacional de confiabilidade exposta por endpoint, dashboard ou SQL reconstrutível.
+
+Essa condição **confirma a previsão da Hipótese H2.2** quanto à não mensurabilidade de M5 no fluxo legado.
+
+### 6.3 Aplicação da política pré-declarada (§3.1 do Plano)
+
+Conforme a política de renormalização pré-declarada em §3.1 do Plano Operacional, o peso original $w_{\text{M5}} = 1{,}2$ é **excluído do denominador** da característica Confiabilidade. O $\text{IQC}_{\text{Confiabilidade}}$ passa a ser computado apenas com as métricas que possuem dados comprovados:
+
+$$
+\text{IQC}_{\text{Confiabilidade}} = \frac{S_{\text{M3}} \times 2{,}0 + S_{\text{M4}} \times 2{,}0 + S_{\text{M6}} \times 1{,}0}{2{,}0 + 2{,}0 + 1{,}0}
+$$
+
+Com os resultados desta rodada:
+- $S_{\text{M3}} = 4$ (DCNM = 100%, Gate M3 aprovado em `oficial-001`, conforme [Medição M3](medicao_m3_dcnm.md));
+- $S_{\text{M4}} = 1$ (ITAE = 0%, Gate M4 FAIL);
+- $S_{\text{M6}}$ depende da execução de M6 (backup/restore) e não é calculado nesta issue.
+
+A exclusão de M5 evita atribuição de nota substituta arbitrária e preserva a integridade do índice. A limitação é registrada no artigo e no presente relatório (§7), com a previsão de coleta futura em ambiente com telemetria operacional.
 
 ## 7. Rastreabilidade
 
