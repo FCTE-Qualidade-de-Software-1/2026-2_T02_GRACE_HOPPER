@@ -29,11 +29,11 @@ A equipe definiu o valor de referência de **`R$ 50,00` por hora técnica** com 
 
 | Etapa / Entrega | Horas Planejadas (Linha de Base) | Custo Planejado | Horas Realizadas (Consolidadas) | Custo Realizado | Situação |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Entrega 1 (Ponto de Controle 1 — `v1.0.0-pc1`)** | `72,0 h` | `R$ 3.600,00` | `72,0 h` *(55,0 h apontadas via tags de issue)* | `R$ 3.600,00` | Concluída (`19/19` issues) |
-| **Entrega 2 (Ponto de Controle 2 — `v2.0.0-pc2`)** | `72,0 h` | `R$ 3.600,00` | *Em execução* | *Em apuração* | Em andamento (`12` issues abertas) |
-| **TOTAL DO PROJETO (E1 + E2)** | **`144,0 h`** | **`R$ 7.200,00`** | **`72,0 h` acumuladas** | **`R$ 3.600,00` acumulados** | — |
+| **Entrega 1 (Ponto de Controle 1 — `v1.0.0-pc1`)** | `72,0 h` | `R$ 3.600,00` | `72,0 h` *(70,0 h apontadas em 19/19 issues)* | `R$ 3.600,00` | Concluída (`19/19` issues fechadas) |
+| **Entrega 2 (Ponto de Controle 2 — `v2.0.0-pc2`)** | `72,0 h` *(78,0 h c/ Issue extra `#56`)* | `R$ 3.600,00` | `52,0 h` apontadas em `10` issues concluídas/PR (`72,0 h` cota nominal) | `R$ 2.600,00` apontados (`R$ 3.600,00` cota nominal) | Release E2 publicada (`10/13` issues concluídas/PR; `#41`, `#42`, `#48` em aberto) |
+| **TOTAL DO PROJETO (E1 + E2)** | **`144,0 h`** | **`R$ 7.200,00`** | **`124,0 h` apontadas nas issues (`144,0 h` nominais)** | **`R$ 6.200,00` apontados (`R$ 7.200,00` nominais)** | Auditoria PSM/CID concluída |
 
-*Fonte: Elaborado pelos autores.*
+*Fonte: Elaborado pelos autores a partir dos dados auditados por `scripts/psm/coletar_dados.py`.*
 
 ---
 
@@ -57,29 +57,29 @@ A Tabela 3 apresenta a distribuição nominal de esforço, responsabilidades e c
 
 ---
 
-## 4. Entrega 2 (Ponto de Controle 2) — Orçamento Planejado por Trilha
+## 4. Entrega 2 (Ponto de Controle 2) — Orçamento Planejado e Apuração Real por Trilha
 
-Para a Entrega 2, foram estruturadas **12 issues de 6 horas cada (`#38` a `#49`)** divididas em **6 trilhas de especialidade** (Milestones `M5` e `M6`).
+Para a Entrega 2, foram estruturadas **12 issues originais de 6 horas cada (`#38` a `#49`, totalizando `72h` e `R$ 3.600,00`)** acrescidas da **Issue `#56` (Ação de Melhoria sobre `getSituacaoNotas`)**, distribuídas entre os 6 integrantes da equipe nos Milestones `M5` e `M6`. A Tabela 4 consolida o orçamento planejado ($4 \times 16,67\% + 2 \times 16,66\% = 100\%$) e as horas efetivamente realizadas e auditadas na Release E2 (`v2.0.0-pc2`).
 
-**Tabela 4 — Alocação planejada de esforço e custos para o Ponto de Controle 2 (Entrega 2)**
+**Tabela 4 — Alocação planejada e realizada de esforço e custos no Ponto de Controle 2 (Entrega 2)**
 
-| Integrante | Usuário GitHub | Trilha de Especialidade (E2) | Issues Atribuídas | Horas Planejadas | Valor / Hora | Custo Planejado | % Esforço |
-| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
-| **Arthur Soares Parente** | `@ArthurDevWorks` | **Trilha A:** Infraestrutura Docker, Coexistência (`M1`) e Backup (`M6`) | [#38](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/38), [#42](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/42) | `12h` | R$ 50,00 | R$ 600,00 | **16,67%** |
-| **Gabriel Barbaceli** | `@Nibaacriba` | **Trilha B:** Interoperabilidade REST (`M2`) e Proteção de Interação (`M12`, `M13`) | [#39](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/39), [#45](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/45) | `12h` | R$ 50,00 | R$ 600,00 | **16,67%** |
-| **Gustavo Silva Rodrigues** | `@g-srodrigues` | **Trilha C:** Confiabilidade, Oráculo Pedagógico (`M3`) e Transações (`M4`, `M5`) | [#40](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/40), [#41](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/41) | `12h` | R$ 50,00 | R$ 600,00 | **16,67%** |
-| **Ítalo Alves Sampaio de Oliveira** | `@ItaloSamP` | **Trilha D:** Análise Estática (`M7`–`M10`) e Testabilidade (`M11`) | [#43](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/43), [#44](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/44) | `12h` | R$ 50,00 | R$ 600,00 | **16,66%** |
-| **Ricardo Lucas Winchello Vieira Branco** | `@ChickRicks` | **Trilha E:** Qualidade em Uso (`M14`, `M15`) e Julgamento Multicritério (`IQM`) | [#46](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/46), [#47](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/47) | `12h` | R$ 50,00 | R$ 600,00 | **16,66%** |
-| **Fábio Santos Araujo** | `@fabiofonteles1` | **Trilha F:** Redação Científica Final (Artigo v2), Auditoria e Release E2 | [#48](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/48), [#49](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/49) | `12h` | R$ 50,00 | R$ 600,00 | **16,67%** |
-| **TOTAL PLANEJADO (E2)** | — | **12 Novas Issues — Fases 4 e 5 ISO/IEC 25040:2024** | `#38` a `#49` | **`72h`** | **R$ 50,00/h** | **`R$ 3.600,00`** | **`100%`** |
+| Integrante | Matrícula UnB | Usuário GitHub | Entregas Executadas / Atribuídas na Entrega 2 (Fases 4 e 5) | Issues no GitHub | Horas Planejadas | Horas Realizadas (Apontadas) | Valor / Hora | Custo Planejado (Realizado) | % Esforço Planejado |
+| :--- | :---: | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Arthur Soares Parente** | `23/2036770` | `@ArthurDevWorks` | Arquitetura e Testabilidade (`M8`, `M9`, `M11`) e Proteção de Interação (`Gate M12`, `M13` — PR #55) | [#44](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/44), [#45](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/45) | `12h` | `12,0h` | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,67%** |
+| **Fábio Santos Araujo** | `22/2022082` | `@fabiofonteles1` | Agregação Multicritério (`IQC`, `IQM`), Parecer Técnico Fase 5, Slides PC2, Auditoria PSM/CID e Release E2 | [#47](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/47), [#49](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/49) | `12h` | `12,0h` | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,67%** |
+| **Gabriel Barbaceli** | `21/1045122` | `@Nibaacriba` | Motor Estático AST (`M7a`, `M7b`, `M10`), Renormalização de Uso (`M14`/`M15` — PR #53) e Ação de Melhoria (`getSituacaoNotas` — PR #57) | [#43](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/43), [#46](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/46), [#56](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/56) | `12h` | `12,0h` (`6h + 2h + 4h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,67%** |
+| **Gustavo Silva Rodrigues** | `23/2036887` | `@g-srodrigues` | Oráculo Pedagógico Determinístico (`Gate M3 — DCNM = 100%` — PR #54) e Consolidação do Artigo v2 | [#40](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/40), [#48](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/48) | `12h` | `6,0h` (`#40` concluída; `#48` em andamento) | R$ 50,00 | R$ 600,00 (`R$ 300,00`) | **16,67%** |
+| **Ítalo Alves Sampaio de Oliveira** | `23/2037937` | `@ItaloSamP` | Provisionamento Docker, Coexistência (`M1 — TINCR = 100%`) e Contratos REST (`M2 — CEI = 90%` — PR #52) | [#38](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/38), [#39](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/39) | `12h` | `12,0h` | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,66%** |
+| **Ricardo Lucas Winchello Vieira Branco** | `22/1008409` | `@ChickRicks` | Trilha de Atomicidade Transacional (`Gate M4 — ITAE`), Triagem `M5` e Backup/Restauração (`M6 — CVPB`) | [#41](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/41), [#42](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/42) | `12h` | `0,0h` (`#41` e `#42` não concluídas no corte) | R$ 50,00 | R$ 600,00 (`R$ 0,00`) | **16,66%** |
+| **TOTAL CONSOLIDADO (E2)** | — | — | **13 Issues Mapeadas — Fases 4 e 5 ISO/IEC 25040:2024** | `#38` a `#49` e `#56` | **`72h`** | **`54,0h` (`10` issues)** | **R$ 50,00/h** | **`R$ 3.600,00` (`R$ 2.700,00`)** | **`100%`** |
 
-*Fonte: Elaborado pelos autores.*
+*Fonte: Elaborado pelos autores com base nos registros auditáveis das issues e Pull Requests no GitHub.*
 
 ---
 
 ## 5. Governança no Apontamento de Horas (Conferência GitHub vs. Linha de Base)
 
-O coletor automático `scripts/psm/coletar_dados.py` lê os campos `Horas Planejadas / Estimadas` e `Esforço Efetivo Realizado` diretamente no texto ou comentários de cada issue no GitHub:
+O coletor automático `scripts/psm/coletar_dados.py` lê os campos `Horas Planejadas / Estimadas` e `Horas Efetivamente Realizadas` diretamente no texto ou comentários de cada issue no GitHub:
 
-1. **Situação observada na Entrega 1:** Das 19 issues concluídas, 14 issues tinham ambos os campos preenchidos em formato numérico estruturado no GitHub (somando `55,0 h` estimadas e `55,0 h` realizadas), enquanto as issues `#09`, `#10`, `#11`, `#12` e `#14` tiveram suas horas consolidadas na documentação da equipe, mas permaneciam com o placeholder de template no corpo da issue no GitHub.
-2. **Regra para a Entrega 2:** Ao concluir cada uma das issues `#38` a `#49`, o integrante responsável deve registrar no corpo ou em comentário de fechamento da issue a linha `- **Esforço Efetivo Realizado**: X,Xh` com o tempo real cronometrado, permitindo que o cálculo automático de `VEC` capture desvios reais de esforço.
+1. **Reconciliação integral da Entrega 1 (`#01` a `#19`):** Todas as 19 issues fechadas da Entrega 1 possuem os campos `Horas Planejadas / Estimadas` e `Horas Efetivamente Realizadas` preenchidos em formato estruturado diretamente no GitHub (incluindo a reconciliação no GitHub das issues `#09`, `#10`, `#11`, `#12` e `#14`).
+2. **Auditoria da Entrega 2 (`#38` a `#49` e `#56`):** Todas as 10 issues com entrega técnica concluída na Entrega 2 (`#38`, `#39`, `#40`, `#43`, `#44`, `#45`, `#46`, `#47`, `#49` e `#56`) contêm responsável atribuído, matrícula, horas estimadas, horas efetivamente realizadas (`54,0 h` totais) e custo calculado (`R$ 2.700,00`) no corpo da issue no GitHub. No caso de `@Nibaacriba`, a economia de `4,0 h` na Issue `#46` (encerrada com `2,0 h` após acionamento da regra pré-declarada da Seção 3.4) foi integralmente realocada para a Issue `#56` (`4,0 h` na refatoração de `getSituacaoNotas`), mantendo sua carga total em exatas `12,0 h` (`R$ 600,00`).

@@ -56,6 +56,25 @@ No dia seguinte ao fechamento da Medição 1, a equipe conduziu a [Retrospectiva
 
 ---
 
+## Medição 3 — Fechamento e Auditoria da Entrega 2 (`15/11/2026` — Release `v2.0.0-pc2`)
+
+**Contexto:** Coleta de auditoria final para a publicação da **Release E2 (`v2.0.0-pc2`)**, realizada após a execução técnica da Fase 4 (`#38`, `#39`, `#40`, `#43`, `#44`, `#45`, `#46`), a implementação da Ação de Melhoria (`#56`) e a consolidação do Julgamento Multicritério da Fase 5 e dos entregáveis de governança (`#47`, `#49`).
+
+### 3.1 Quadro de Valores, Interpretação e Decisões (Medição 3)
+
+**Tabela 3 — Avaliação dos indicadores PSM/CID no fechamento da Entrega 2 (`v2.0.0-pc2`)**
+
+| Indicador | Valor Apurado pelo Painel | Interpretação do Estado na Release E2 | Decisão e Registro de Governança |
+| :--- | :---: | :--- | :--- |
+| **`TCM`** | **24/32 (75,0%)** fechadas na `main`<br>**29/32 (90,6%)** considerando PRs abertos (`#55`, `#57` e este PR)<br>*(E1: 19/19 = 100% · E2: 10/13 = 76,9% concluídas/PR)* | Das 13 issues da Entrega 2 (`#38`–`#49` e `#56`), 5 já estão fechadas na `main` (`#38`, `#39`, `#40`, `#43`, `#46`), 5 estão concluídas com PR submetido (`#44`, `#45` no PR #55; `#56` no PR #57; `#47`, `#49` neste PR), e 3 permanecem abertas (`#41`, `#42` e `#48`). | Registrar formalmente na Fase 5 o status não comprovado do Gate M4 (`#41`) e de `M6` (`#42`) sem arbitragem de dados (Seção 8.1 do Plano de Medição). |
+| **`TRCD`** | **21/23 (91,3%)** global<br>**21/21 (100,0%)** pós-workflow | Todos os 21 PRs integrados após a criação do pipeline CI passaram em 100% das verificações automatizadas (`mkdocs build --strict`, `check_site.sh`, testes Python e PHP). | Manter o bloqueio estrito de CI até a integração final dos PRs de fechamento da Release E2. |
+| **`ACM`** | **`M0`–`M4`: Concluídos (100%)**<br>**`M5` e `M6`: Em fechamento** | Os marcos de planejamento (`M0`–`M4`) encontram-se 100% encerrados. No `M5` e `M6`, a adição da Issue `#56` (Ação de Melhoria) permitiu remover o bloqueio crítico de manutenibilidade (`M7b: 72 -> 30`) dentro da mesma janela. | Consolidar o pacote da Release E2 (`v2.0.0-pc2`) preservando a rastreabilidade completa entre issues, PRs e commits de evidência. |
+| **`VEC`** | **`-3,3%` nas issues fechadas (`96,0h` reais / `98,0h` estimadas em 24/24 issues fechadas, `0` sem horas)**<br>*(Incluindo PRs `#55`, `#57` e `#47`/`#49`: `124,0h` reais / `128,0h` estimadas = `-3,1%`)* | **100% das 24 issues fechadas** possuem horas estimadas e horas efetivamente realizadas preenchidas no GitHub (`sem_horas_reais = []`). O desvio negativo (`-2,0h` líquido) reflete a economia de `4,0h` na Issue `#46` (encerrada com `2,0h` frente às `6,0h` planejadas após acionamento da regra pré-declarada da Seção 3.4), que foi integralmente reinvestida nas `4,0h` da Issue `#56` (Ação de Melhoria). | A reconciliação de 100% das issues concluídas no GitHub comprova a maturidade do controle de custos PSM/CID (Critério AG-C5). |
+
+*Fonte: Dados coletados automaticamente por `scripts/psm/coletar_dados.py` em 15/11/2026.*
+
+---
+
 ## Avaliação do Próprio Processo de Medição e Melhorias Implementadas
 
 Seguindo a recomendação do guia PSM/CID de auditar também a eficácia do sistema de medição, a equipe identificou e corrigiu nesta revisão da GitPage três limitações que dificultavam o acompanhamento:

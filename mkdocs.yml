@@ -4,7 +4,7 @@ site_author: Equipe Grace Hopper
 site_url: https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/
 repo_url: https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER
 repo_name: 2026-2_T02_GRACE_HOPPER
-copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA · 2026.2 · T02) · Release E1 (v1.0.0-pc1)"
+copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA · 2026.2 · T02) · Release E2 (v2.0.0-pc2)"
 
 theme:
   name: material
