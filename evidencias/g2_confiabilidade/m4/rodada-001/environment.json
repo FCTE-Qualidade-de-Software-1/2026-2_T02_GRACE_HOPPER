@@ -1,0 +1,29 @@
+# Ambiente — Issue #23 (M4/M5)
+date: 2026-11-15T16:50:16-03:00
+host: Linux ChickRicks 7.3.4-1-cachyos #1 SMP PREEMPT_DYNAMIC Thu, 12 Nov 2026 08:16:20 +0000 x86_64 GNU/Linux
+
+## Commits
+worktree: 7903a3efc7689942ee700007f86ed581023aad27
+worktree_clean: 0 arquivos modificados
+repo_time: afa3add08b6c2658d9af59c5513ee1987e32f0db
+
+## Versões
+PHP 8.5.12 (cli) (built: Nov  5 2026 18:58:31) (NTS)
+PostgreSQL 18.7 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+Redis server v=8.10.3 sha=00000000:1 malloc=jemalloc-5.3.0 bits=64 build=824ea7d79042256
+
+## Imagens (digests)
+[ieducar-m3-php:8.5] [ieducar-m3-php@sha256:dc3508e8a69eb30870d1f8c9490e619b2a981266270cd9b2fcd26588c531b757]
+[postgres:18-alpine] [postgres@sha256:1018733457011bf88d81db98cf43aac6d5150afc18787dbe204771fedf80ff95]
+[redis:8-alpine] [redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3]
+
+## Compose / Dockerfile
+9770b6d0b24a6c5bcca57ac4fc3696040e1f2c2670ea26335ff1581cb6c38fc5  scripts/avaliacao/m3/compose.yml
+edfb3b4bbf237648eaa7e56e9d08f37b24faa33df2709b32ac98e14c4e12c166  /home/ricardol/Projeto/i-educar-m3/docker/php/Dockerfile
+
+## Estado do banco
+ count 
+-------
+   210
+(1 row)
+
