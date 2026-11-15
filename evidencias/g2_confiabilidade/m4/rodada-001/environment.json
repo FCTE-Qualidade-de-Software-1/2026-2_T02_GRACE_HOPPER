@@ -84,6 +84,42 @@
       "cmd": "psql < /tmp/op01_before.sql",
       "exit_code": 0,
       "timestamp": "2026-11-15T21:25:00-03:00"
+    },
+    {
+      "step": "op01_inject_patch_apply",
+      "cmd": "sed -i inserção em Boletim.php:2600",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T22:05:00-03:00"
+    },
+    {
+      "step": "op01_inject_execute",
+      "cmd": "docker compose exec -e M4_FAULT_INJECT_OP01=1 php ... require happy_path_op01.php",
+      "exit_code": 1,
+      "expected_failure": true,
+      "timestamp": "2026-11-15T22:10:00-03:00"
+    },
+    {
+      "step": "op01_inject_orphans",
+      "cmd": "psql < /tmp/op01_orphans_v2.sql",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T22:12:00-03:00"
+    },
+    {
+      "step": "op01_inject_patch_revert",
+      "cmd": "cp /tmp/Boletim.php.original ...",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T22:15:00-03:00"
+    },
+    {
+      "step": "op01_baseline_restore",
+      "cmd": "pg_restore --clean --if-exists /tmp/baseline.dump",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T22:16:00-03:00"
+    },
+    {
+      "step": "op01_inject_before",
+      "cmd": "psql < /tmp/op01_inject_before.sql",
+      "exit_code": 0
     }
   ],
   "impediments": [
@@ -130,15 +166,36 @@
   ],
   "gate_context": {
     "M4_ITAE": {
-      "status": "partially_measured",
-      "value": null,
-      "pending_reason": "caminho feliz confirmado; injeção determinística pendente (Etapa C)",
+      "status": "measured",
+      "value": 0.0,
       "happy_path_observed": {
         "nota_aluno": "0 -> 1",
         "nota_componente_curricular": "0 -> 1",
         "falta_aluno": "0 -> 1",
         "falta_componente_curricular": "0 -> 1",
         "matricula_aprovado": "3 -> 3 (promover lancou CoreExt_Service_Exception de alerta)"
+      },
+      "atomic_ops": 0,
+      "total_ops": 1,
+      "gate": "FAIL",
+      "detail": {
+        "OP-01": {
+          "atomic": false,
+          "fault_point": "Boletim.php:2600 (entre saveNotas e saveFaltas)",
+          "classificacao": "NAO ATOMICA",
+          "itae_op01": 0.0,
+          "evidencia_sql": "evidencias/g2_confiabilidade/m4/rodada-001/op01-orphans.log",
+          "evidencia_log": "evidencias/g2_confiabilidade/m4/rodada-001/op01-inject.log"
+        }
+      },
+      "injection_observed": {
+        "nota_aluno": "0 -> 1 (comitada)",
+        "nota_componente_curricular": "0 -> 1 (comitada)",
+        "falta_aluno": "0 -> 1 (container criado por _loadFalta no construtor)",
+        "falta_componente_curricular": "0 -> 0 (saveFaltas nao executou)",
+        "matricula_aprovado": "3 -> 3 (promover nao executou)",
+        "exception": "RuntimeException: FAULT_INJECTION_OP01_BETWEEN_SAVE_NOTAS_AND_FALTAS",
+        "orphan_detected": "falta_aluno.id=1 sem falta_componente_curricular (orfaos estruturais)"
       }
     },
     "M5_DDOM": {

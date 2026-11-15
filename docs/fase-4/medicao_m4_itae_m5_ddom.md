@@ -46,3 +46,73 @@ O `etapaAtual` do serviço retorna `NULL` e `etapas` retorna `4`; o harness usa 
 ### 3.2 Resultado do caminho feliz
 
 Execução bem-sucedida das três primeiras escritas do `save()`, com a quarta (`promover()`) lançando `CoreExt_Service_Exception` de alerta:
+
+Estado após a execução:
+
+| Tabela | Linhas após | Detalhe |
+| :--- | :-: | :--- |
+| `modules.nota_aluno` | 1 | `id=3`, `matricula_id=3` |
+| `modules.nota_componente_curricular` | 1 | `nota_aluno_id=3`, `componente_curricular_id=8`, `etapa='1'`, `nota=8.5000` |
+| `modules.falta_aluno` | 1 | `id=3`, `matricula_id=3` |
+| `modules.falta_componente_curricular` | 1 | `falta_aluno_id=3`, `componente_curricular_id=8`, `etapa='1'`, `quantidade=2` |
+| `pmieducar.matricula` (3) | `aprovado=3` | inalterado |
+
+Evidência bruta em `op01-before.log`, `op01-happy.log`, `op01-after.log`, `op01-after-detail.log`.
+
+### 3.3 Ameaças à validade
+
+1. **`promover()` lança exceção de alerta** quando a situação calculada coincide com a anterior. Em produção, `trySaveServiceBoletim` (`DiarioApiController.php:1097`) engole `CoreExt_Service_Exception`, então o usuário não vê erro e as escritas anteriores permanecem comitadas. Registrado como IMP-07.
+2. **Warnings DEPRECATED** de `pg_escape_string` e `trim(null)` poluem stdout com PHP 8.5 (IMP-06). Não gravam nada; foram preservados nos logs com `2>&1`.
+3. **IDs iniciaram em 3** (não 1) por resíduos de tentativas anteriores; as sequences foram resetadas via `TRUNCATE ... RESTART IDENTITY CASCADE` antes da Etapa C.
+4. **Amostra única:** apenas a matrícula 3 foi usada no caminho feliz. A generalização para as 210 matrículas do `DemoSeeder` não é inferida.
+
+## 4. Injeção determinística e verificação de órfãos
+
+### 4.1 OP-01 — Boletim::save() — NÃO ATÔMICO
+
+**Método de injeção.** `RuntimeException` inserida entre `$this->saveNotas()` e `$this->saveFaltas()` em `Boletim.php` (linha 2600 após patch), controlada pela variável `M4_FAULT_INJECT_OP01=1`. Patch versionado em `patches/OP-01.patch`; aplicado via `sed`, revertido com `cp` do original. Determinismo: a variável de ambiente decide se a falha ocorre.
+
+**Cronologia observada.**
+
+1. `new Avaliacao_Service_Boletim(['matricula' => 3])` → construtor chama `_loadFalta()` (`Boletim.php:378`), que cria `falta_aluno.id=1` (container sem itens) via `_createFaltaAluno()`.
+2. `addNota(...)` e `addFalta(...)` apenas populam estruturas em memória.
+3. `save()` → `saveNotas()` comita `nota_aluno.id=1` e `nota_componente_curricular.id=1` (componente 8, etapa '1', nota 8.5).
+4. **Injeção dispara** entre `saveNotas()` e `saveFaltas()` → `RuntimeException: FAULT_INJECTION_OP01_BETWEEN_SAVE_NOTAS_AND_FALTAS` (exit code ≠ 0).
+5. `saveFaltas()`, `savePareceres()` e `promover()` não executam.
+
+**Estado final (BEFORE = 0 em todas; AFTER após falha):**
+
+| Tabela | BEFORE | AFTER | Δ | Origem |
+| :--- | :-: | :-: | :-: | :--- |
+| `modules.nota_aluno` | 0 | 1 | **+1** | `saveNotas()` comitada |
+| `modules.nota_componente_curricular` | 0 | 1 | **+1** | `saveNotas()` comitada |
+| `modules.falta_aluno` | 0 | 1 | +1 | construtor (`_loadFalta`), não `saveFaltas()` |
+| `modules.falta_componente_curricular` | 0 | 0 | 0 | `saveFaltas()` nunca executou |
+| `pmieducar.matricula.aprovado` | 3 | 3 | 0 | `promover()` nunca executou |
+
+**Evidência SQL de órfão estrutural** (`op01-orphans.log`):
+
+**Classificação:** NÃO ATÔMICA. `ITAE_OP-01 = 0%` (1 execução, 0 atômicas).
+
+**Observação metodológica.** O `falta_aluno=1` **não** é resultado de `saveFaltas()` ter rodado parcialmente — o método não foi invocado (a injeção dispara antes). A linha foi criada pelo construtor, via `_loadFalta()` (`Boletim.php:378`), como container de faltas. Se o experimento fosse conduzido com snapshot **após instanciação**, `falta_aluno=1` já estaria no "BEFORE" e a evidência de não-atomicidade seria idêntica: `nota_aluno` comita, `falta_componente_curricular` não. A inconsistência é a mesma — o estado pós-falha não reverte ao estado pré-`save()`.
+
+**Ameaça à validade.** O experimento isola a falha entre as duas primeiras escritas. A injeção entre `saveFaltas()` e `savePareceres()`, ou entre `savePareceres()` e `promover()`, não foi executada. A classificação "não atômica" decorre de uma única injeção, suficiente para provar que o método não é atômico em geral (basta uma falha intermediária não revertida). Execuções adicionais em outros pontos enriqueceriam a caracterização, mas não mudariam o veredito binário.
+
+## 5. Cálculo do ITAE e veredito do Gate M4
+
+[Preencher na Etapa D.]
+
+## 6. Triagem M5 (DDOM) e regra de tratamento
+
+[Preencher na Etapa D.]
+
+## 7. Rastreabilidade
+
+| Item | Valor |
+| :--- | :--- |
+| Commit do produto | `7903a3efc7689942ee700007f86ed581023aad27` |
+| Worktree clean (antes do harness) | `true` |
+| Hash do `compose.yml` | `9770b6d0b24a6c5bcca57ac4fc3696040e1f2c2670ea26335ff1581cb6c38fc5` |
+| Hash do `Dockerfile` do produto | `edfb3b4bbf237648eaa7e56e9d08f37b24faa33df2709b32ac98e14c4e12c166` |
+| Hash do baseline | `1d1510c6cae5b79c2e641dfa87d45f1323e25f696314dafa6d6106bd4c0e3ac7` |
+| Seed | `DemoSeeder` — 210 alunos, 210 matrículas (ano 2026) |

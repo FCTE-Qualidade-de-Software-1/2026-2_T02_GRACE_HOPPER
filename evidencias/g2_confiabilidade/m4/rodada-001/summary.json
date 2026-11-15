@@ -1,0 +1,39 @@
+{
+  "run_id": "rodada-001",
+  "run_type": "diagnostic",
+  "timestamp": "2026-11-15T22:30:00-03:00",
+  "product_commit": "7903a3efc7689942ee700007f86ed581023aad27",
+  "M4_ITAE": {
+    "value": 0.0,
+    "atomic_ops": 0,
+    "total_ops": 1,
+    "gate": "FAIL",
+    "classification": "NAO_ATOMICO",
+    "ops": {
+      "OP-01": {
+        "operation": "Boletim::save()",
+        "file": "ieducar/modules/Avaliacao/Service/Boletim.php",
+        "line": 2597,
+        "fault_point": "entre saveNotas e saveFaltas (linha 2600)",
+        "atomic": false,
+        "evidence_sql": "evidencias/g2_confiabilidade/m4/rodada-001/op01-orphans.log",
+        "evidence_log": "evidencias/g2_confiabilidade/m4/rodada-001/op01-inject.log"
+      }
+    }
+  },
+  "M5_DDOM": {
+    "status": "measured",
+    "measurable": false,
+    "checklist_result": {
+      "D1": "nao",
+      "D2": "parcial",
+      "D3": "nao",
+      "D4": "nao",
+      "D5": "nao"
+    },
+    "justification": "Nucleo legado sem log estruturado de transacao, sem identificador de rollback, sem metrica de confiabilidade exposta. Tabelas de auditoria existentes sao de unificacao de dados, nao de eventos de negocio.",
+    "treatment": "Peso w=1.2 excluido do IQC_Confiabilidade conforme Plano §3.1"
+  },
+  "release_class": "C",
+  "release_class_reason": "Gate M4 = FAIL (< 100%)"
+}

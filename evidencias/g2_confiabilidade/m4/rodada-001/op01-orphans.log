@@ -1,0 +1,10 @@
+    check_name     | nota_aluno_id | nota_comp | nota_etapa |  nota  | falta_aluno_id | falta_comp_id |              classificacao              
+-------------------+---------------+-----------+------------+--------+----------------+---------------+-----------------------------------------
+ OP01_estado_final |             1 |         8 | 1          | 8.5000 |              1 |               | ORFAO: falta_aluno sem falta_componente
+(1 row)
+
+   check_name    | nota_aluno | nota_comp | falta_aluno | falta_comp 
+-----------------+------------+-----------+-------------+------------
+ contagens_final |          1 |         1 |           1 |          0
+(1 row)
+
