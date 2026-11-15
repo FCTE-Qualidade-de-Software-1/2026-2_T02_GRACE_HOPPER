@@ -1,29 +1,101 @@
-# Ambiente — Issue #23 (M4/M5)
-date: 2026-11-15T16:50:16-03:00
-host: Linux ChickRicks 7.3.4-1-cachyos #1 SMP PREEMPT_DYNAMIC Thu, 12 Nov 2026 08:16:20 +0000 x86_64 GNU/Linux
-
-## Commits
-worktree: 7903a3efc7689942ee700007f86ed581023aad27
-worktree_clean: 0 arquivos modificados
-repo_time: afa3add08b6c2658d9af59c5513ee1987e32f0db
-
-## Versões
-PHP 8.5.12 (cli) (built: Nov  5 2026 18:58:31) (NTS)
-PostgreSQL 18.7 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
-Redis server v=8.10.3 sha=00000000:1 malloc=jemalloc-5.3.0 bits=64 build=824ea7d79042256
-
-## Imagens (digests)
-[ieducar-m3-php:8.5] [ieducar-m3-php@sha256:dc3508e8a69eb30870d1f8c9490e619b2a981266270cd9b2fcd26588c531b757]
-[postgres:18-alpine] [postgres@sha256:1018733457011bf88d81db98cf43aac6d5150afc18787dbe204771fedf80ff95]
-[redis:8-alpine] [redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3]
-
-## Compose / Dockerfile
-9770b6d0b24a6c5bcca57ac4fc3696040e1f2c2670ea26335ff1581cb6c38fc5  scripts/avaliacao/m3/compose.yml
-edfb3b4bbf237648eaa7e56e9d08f37b24faa33df2709b32ac98e14c4e12c166  /home/ricardol/Projeto/i-educar-m3/docker/php/Dockerfile
-
-## Estado do banco
- count 
--------
-   210
-(1 row)
-
+{
+  "schema_version": "1.0",
+  "issue": "23",
+  "milestone": "M5",
+  "run_id": "rodada-001",
+  "run_type": "diagnostic",
+  "timestamp_start": "2026-11-15T17:21:28-03:00",
+  "timestamp_end": null,
+  "host": {
+    "hostname": "ChickRicks",
+    "kernel": "Linux ChickRicks 7.3.4-1-cachyos #1 SMP PREEMPT_DYNAMIC Thu, 12 Nov 2026 08:16:20 +0000 x86_64 GNU/Linux",
+    "arch": "x86_64"
+  },
+  "commits": {
+    "worktree_product": "7903a3efc7689942ee700007f86ed581023aad27",
+    "worktree_branch": "",
+    "worktree_clean": true,
+    "instrument_repo": "351b5e629988ccd44ca9cda8ad840fde5545c98d"
+  },
+  "versions": {
+    "php": "8.5.12",
+    "postgresql": "18.7",
+    "redis": "8.10.3",
+    "docker": "29.9.3",
+    "docker_compose": "5.7.1"
+  },
+  "images": {
+    "ieducar_m3_php": {
+      "tag": "ieducar-m3-php:8.5",
+      "digest": "ieducar-m3-php@sha256:dc3508e8a69eb30870d1f8c9490e619b2a981266270cd9b2fcd26588c531b757"
+    },
+    "postgres": {
+      "tag": "postgres:18-alpine",
+      "digest": "postgres@sha256:1018733457011bf88d81db98cf43aac6d5150afc18787dbe204771fedf80ff95"
+    },
+    "redis": {
+      "tag": "redis:8-alpine",
+      "digest": "redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3"
+    }
+  },
+  "hashes": {
+    "compose_yml": "9770b6d0b24a6c5bcca57ac4fc3696040e1f2c2670ea26335ff1581cb6c38fc5",
+    "dockerfile_php": "edfb3b4bbf237648eaa7e56e9d08f37b24faa33df2709b32ac98e14c4e12c166",
+    "baseline_dump": "1d1510c6cae5b79c2e641dfa87d45f1323e25f696314dafa6d6106bd4c0e3ac7"
+  },
+  "baseline": {
+    "path": "evidencias/g2_confiabilidade/m4/baseline/baseline.dump",
+    "format": "pg_dump -Fc",
+    "counts": {
+      "pmieducar.matricula": 210,
+      "pmieducar.aluno": 210
+    }
+  },
+  "seed": {
+    "seeder_class": "DemoSeeder",
+    "records": "210 alunos, 210 matriculas (ano 2026)"
+  },
+  "env_vars": {
+    "M3_PRODUCT_DIR": "/home/ricardol/Projeto/i-educar-m3",
+    "COMPOSER_NO_SECURITY_BLOCKING": "1"
+  },
+  "commands": [],
+  "impediments": [
+    {
+      "id": "IMP-01",
+      "description": "COMPOSER_NO_SECURITY_BLOCKING=1 obrigatorio",
+      "source": "docs/agents/architecture.md linha 260",
+      "impact": "desvio do README; 18 PKSA advisories bloqueiam composer install sem ela"
+    },
+    {
+      "id": "IMP-02",
+      "description": "M3_PRODUCT_DIR precisa apontar para worktree no commit 7903a3efc",
+      "impact": "sem isso, buildx pede --allow=fs.read=/; resolvido com caminho real"
+    },
+    {
+      "id": "IMP-03",
+      "description": "Main sincronizada; rebase no-op; branch ja estava atualizada",
+      "impact": "nenhum — ambiente, baseline e commit fixado permanecem identicos"
+    },
+    {
+      "id": "IMP-04",
+      "description": "environment.json truncado para 0-byte e comitado em 351b5e6 antes de 17:10",
+      "source": "padrao jq|tee|mv sem && (erro de execucao, nao do ambiente)",
+      "impact": "regenerado via comando jq inline; hashes e contagens conferem com o tee original das 16:50"
+    }
+  ],
+  "gate_context": {
+    "M4_ITAE": {
+      "status": "pending",
+      "value": null
+    },
+    "M5_DDOM": {
+      "status": "pending",
+      "measurable": null
+    }
+  },
+  "acceptance": {
+    "official": false,
+    "reason": "modo diagnostico; falta versionar instrumento e rodada oficial"
+  }
+}
