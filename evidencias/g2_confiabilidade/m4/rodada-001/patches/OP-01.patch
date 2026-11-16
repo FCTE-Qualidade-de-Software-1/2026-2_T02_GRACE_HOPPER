@@ -1,0 +1,10 @@
+--- /tmp/Boletim.php.original	2026-11-15 19:09:59.128614559 -0300
++++ /home/ricardol/Projeto/i-educar-m3/ieducar/modules/Avaliacao/Service/Boletim.php	2026-11-15 19:09:59.130199368 -0300
+@@ -2598,6 +2598,7 @@
+     {
+         try {
+             $this->saveNotas();
++            if (getenv("M4_FAULT_INJECT_OP01") === "1") { throw new \RuntimeException("FAULT_INJECTION_OP01_BETWEEN_SAVE_NOTAS_AND_FALTAS"); }
+             $this->saveFaltas();
+             $this->savePareceres();
+             $this->promover();

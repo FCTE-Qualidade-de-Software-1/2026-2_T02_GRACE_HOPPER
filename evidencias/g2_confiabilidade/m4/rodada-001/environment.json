@@ -1,0 +1,219 @@
+{
+  "schema_version": "1.0",
+  "issue": "41",
+  "milestone": "M5",
+  "run_id": "rodada-001",
+  "run_type": "diagnostic",
+  "timestamp_start": "2026-11-15T17:21:28-03:00",
+  "timestamp_end": null,
+  "host": {
+    "hostname": "ChickRicks",
+    "kernel": "Linux ChickRicks 7.3.4-1-cachyos #1 SMP PREEMPT_DYNAMIC Thu, 12 Nov 2026 08:16:20 +0000 x86_64 GNU/Linux",
+    "arch": "x86_64"
+  },
+  "commits": {
+    "worktree_product": "7903a3efc7689942ee700007f86ed581023aad27",
+    "worktree_branch": "",
+    "worktree_clean": true,
+    "instrument_repo": "351b5e629988ccd44ca9cda8ad840fde5545c98d"
+  },
+  "versions": {
+    "php": "8.5.12",
+    "postgresql": "18.7",
+    "redis": "8.10.3",
+    "docker": "29.9.3",
+    "docker_compose": "5.7.1"
+  },
+  "images": {
+    "ieducar_m3_php": {
+      "tag": "ieducar-m3-php:8.5",
+      "digest": "ieducar-m3-php@sha256:dc3508e8a69eb30870d1f8c9490e619b2a981266270cd9b2fcd26588c531b757"
+    },
+    "postgres": {
+      "tag": "postgres:18-alpine",
+      "digest": "postgres@sha256:1018733457011bf88d81db98cf43aac6d5150afc18787dbe204771fedf80ff95"
+    },
+    "redis": {
+      "tag": "redis:8-alpine",
+      "digest": "redis@sha256:7958cfbb9d152f87dadfbc89f1b0b15938f0b81ff8982feb327476f4911935c3"
+    }
+  },
+  "hashes": {
+    "compose_yml": "9770b6d0b24a6c5bcca57ac4fc3696040e1f2c2670ea26335ff1581cb6c38fc5",
+    "dockerfile_php": "edfb3b4bbf237648eaa7e56e9d08f37b24faa33df2709b32ac98e14c4e12c166",
+    "baseline_dump": "1d1510c6cae5b79c2e641dfa87d45f1323e25f696314dafa6d6106bd4c0e3ac7"
+  },
+  "baseline": {
+    "path": "evidencias/g2_confiabilidade/m4/baseline/baseline.dump",
+    "format": "pg_dump -Fc",
+    "counts": {
+      "pmieducar.matricula": 210,
+      "pmieducar.aluno": 210
+    }
+  },
+  "seed": {
+    "seeder_class": "DemoSeeder",
+    "records": "210 alunos, 210 matriculas (ano 2026)"
+  },
+  "env_vars": {
+    "M3_PRODUCT_DIR": "/home/ricardol/Projeto/i-educar-m3",
+    "COMPOSER_NO_SECURITY_BLOCKING": "1"
+  },
+  "commands": [
+    {
+      "step": "baseline_restore",
+      "cmd": "pg_restore --clean --if-exists /tmp/baseline.dump",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T21:20:00-03:00"
+    },
+    {
+      "step": "op01_happy_before",
+      "cmd": "psql < /tmp/op01_before.sql",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T21:22:00-03:00"
+    },
+    {
+      "step": "op01_happy_execute",
+      "cmd": "tinker --execute=require /tmp/happy_path_op01.php",
+      "exit_code": 0,
+      "expected_failure": false,
+      "timestamp": "2026-11-15T21:24:00-03:00"
+    },
+    {
+      "step": "op01_happy_after",
+      "cmd": "psql < /tmp/op01_before.sql",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T21:25:00-03:00"
+    },
+    {
+      "step": "op01_inject_patch_apply",
+      "cmd": "sed -i inserção em Boletim.php:2600",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T22:05:00-03:00"
+    },
+    {
+      "step": "op01_inject_execute",
+      "cmd": "docker compose exec -e M4_FAULT_INJECT_OP01=1 php ... require happy_path_op01.php",
+      "exit_code": 1,
+      "expected_failure": true,
+      "timestamp": "2026-11-15T22:10:00-03:00"
+    },
+    {
+      "step": "op01_inject_orphans",
+      "cmd": "psql < /tmp/op01_orphans_v2.sql",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T22:12:00-03:00"
+    },
+    {
+      "step": "op01_inject_patch_revert",
+      "cmd": "cp /tmp/Boletim.php.original ...",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T22:15:00-03:00"
+    },
+    {
+      "step": "op01_baseline_restore",
+      "cmd": "pg_restore --clean --if-exists /tmp/baseline.dump",
+      "exit_code": 0,
+      "timestamp": "2026-11-15T22:16:00-03:00"
+    },
+    {
+      "step": "op01_inject_before",
+      "cmd": "psql < /tmp/op01_inject_before.sql",
+      "exit_code": 0
+    }
+  ],
+  "impediments": [
+    {
+      "id": "IMP-01",
+      "description": "COMPOSER_NO_SECURITY_BLOCKING=1 obrigatorio",
+      "source": "docs/agents/architecture.md linha 260",
+      "impact": "desvio do README; 18 PKSA advisories bloqueiam composer install sem ela"
+    },
+    {
+      "id": "IMP-02",
+      "description": "M3_PRODUCT_DIR precisa apontar para worktree no commit 7903a3efc",
+      "impact": "sem isso, buildx pede --allow=fs.read=/; resolvido com caminho real"
+    },
+    {
+      "id": "IMP-03",
+      "description": "Main sincronizada; rebase no-op; branch ja estava atualizada",
+      "impact": "nenhum — ambiente, baseline e commit fixado permanecem identicos"
+    },
+    {
+      "id": "IMP-04",
+      "description": "environment.json truncado para 0-byte e comitado em 351b5e6 antes de 17:10",
+      "source": "padrao jq|tee|mv sem && (erro de execucao, nao do ambiente)",
+      "impact": "regenerado via comando jq inline; hashes e contagens conferem com o tee original das 16:50"
+    },
+    {
+      "id": "IMP-05",
+      "description": "componente_curricular_turma vazia; fallback getEscolaSerieDisciplina (escola 2, serie 6) retornou 9 componentes (IDs 8-16)",
+      "source": "IedFinder::getComponentesTurma linha 562+ (fallback quando count == 0)",
+      "impact": "nenhum — happy path executavel sem fixture"
+    },
+    {
+      "id": "IMP-06",
+      "description": "Warnings DEPRECATED em runtime legado (CoreExt) com PHP 8.5: pg_escape_string e trim(null)",
+      "source": "ieducar/lib/CoreExt/DataMapper.php:326,274,369,417,425 + Entity.php:208",
+      "impact": "Nao grava nada; polui stdout. Log salvo com 2>&1 preserva warnings para evidencia"
+    },
+    {
+      "id": "IMP-07",
+      "description": "promover() lanca CoreExt_Service_Exception quando situacao nao muda; excecao engolida por DiarioApiController::trySaveServiceBoletim",
+      "source": "Boletim.php:2817 + DiarioApiController.php:1097-1104",
+      "impact": "No harness a excecao sobe mas as 3 escritas anteriores ja comitaram; em producao o usuario nao ve erro. Evidencia de nao-atomicidade"
+    }
+  ],
+  "gate_context": {
+    "M4_ITAE": {
+      "status": "measured",
+      "value": 0.0,
+      "happy_path_observed": {
+        "nota_aluno": "0 -> 1",
+        "nota_componente_curricular": "0 -> 1",
+        "falta_aluno": "0 -> 1",
+        "falta_componente_curricular": "0 -> 1",
+        "matricula_aprovado": "3 -> 3 (promover lancou CoreExt_Service_Exception de alerta)"
+      },
+      "atomic_ops": 0,
+      "total_ops": 1,
+      "gate": "FAIL",
+      "detail": {
+        "OP-01": {
+          "atomic": false,
+          "fault_point": "Boletim.php:2600 (entre saveNotas e saveFaltas)",
+          "classificacao": "NAO ATOMICA",
+          "itae_op01": 0.0,
+          "evidencia_sql": "evidencias/g2_confiabilidade/m4/rodada-001/op01-orphans.log",
+          "evidencia_log": "evidencias/g2_confiabilidade/m4/rodada-001/op01-inject.log"
+        }
+      },
+      "injection_observed": {
+        "nota_aluno": "0 -> 1 (comitada)",
+        "nota_componente_curricular": "0 -> 1 (comitada)",
+        "falta_aluno": "0 -> 1 (container criado por _loadFalta no construtor)",
+        "falta_componente_curricular": "0 -> 0 (saveFaltas nao executou)",
+        "matricula_aprovado": "3 -> 3 (promover nao executou)",
+        "exception": "RuntimeException: FAULT_INJECTION_OP01_BETWEEN_SAVE_NOTAS_AND_FALTAS",
+        "orphan_detected": "falta_aluno.id=1 sem falta_componente_curricular (orfaos estruturais)"
+      }
+    },
+    "M5_DDOM": {
+      "status": "measured",
+      "measurable": false,
+      "checklist_result": {
+        "D1": "nao",
+        "D2": "parcial",
+        "D3": "nao",
+        "D4": "nao",
+        "D5": "nao"
+      },
+      "justification": "Nucleo legado sem log estruturado de transacao, sem identificador de rollback em CoreExt/DataMapper, sem metrica de confiabilidade exposta. Tabelas de auditoria existentes (ieducar_audit, log_unification*) sao de migracao historica, nao de eventos de negocio em runtime.",
+      "treatment": "Peso w=1.2 excluido do IQC_Confiabilidade conforme Plano §3.1; IQC_Conf suspenso por M6 (Issue #42)"
+    }
+  },
+  "acceptance": {
+    "official": true,
+    "reason": "rodada diagnostica adotada como valida para o gate; ver §7.1 do relatorio"
+  }
+}
