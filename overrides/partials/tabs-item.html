@@ -1,0 +1,65 @@
+{% macro render_content(nav_item, ref) %}
+  {% set ref = ref or nav_item %}
+  {% if nav_item == ref or "navigation.indexes" in features %}
+    {% if nav_item.is_index and nav_item.meta and nav_item.meta.icon %}
+      {% include ".icons/" ~ nav_item.meta.icon ~ ".svg" %}
+    {% endif %}
+  {% endif %}
+  {{ ref.title }}
+{% endmacro %}
+
+{% macro render(nav_item, ref) %}
+  {% set ref = ref or nav_item %}
+  {% set class = "md-tabs__item" %}
+  {% if ref.active %}
+    {% set class = class ~ " md-tabs__item--active" %}
+  {% endif %}
+  {% if nav_item.children %}
+    {% set first = nav_item.children | first %}
+    {% set target_url = (first.url if not first.children else (first.children | first).url) | url %}
+    <li class="{{ class }} md-tabs__item--has-dropdown">
+      <a href="{{ target_url }}" class="md-tabs__link md-tabs__link--has-dropdown" aria-haspopup="true">
+        <span>{{ render_content(first, ref) }}</span>
+        <span class="gh-tab-caret" aria-hidden="true">▾</span>
+      </a>
+      <div class="gh-tab-dropdown" role="menu" aria-label="{{ ref.title }}">
+        {% for child in nav_item.children %}
+          {% if child.children %}
+            <div class="gh-dropdown__group">
+              <div class="gh-dropdown__group-title">{{ child.title }}</div>
+              {% for subchild in child.children %}
+                <a href="{{ subchild.url | url }}" class="gh-dropdown__link{% if subchild.active %} gh-dropdown__link--active{% endif %}" role="menuitem">
+                  {{ subchild.title }}
+                </a>
+              {% endfor %}
+            </div>
+          {% else %}
+            <a href="{{ child.url | url }}" class="gh-dropdown__link{% if child.is_index %} gh-dropdown__link--index{% endif %}{% if child.active %} gh-dropdown__link--active{% endif %}" role="menuitem">
+              {% if child.is_index %}
+                Visão geral — {{ ref.title }}
+              {% else %}
+                {{ child.title }}
+              {% endif %}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </li>
+  {% else %}
+    <li class="{{ class }}">
+      <a href="{{ nav_item.url | url }}" class="md-tabs__link">
+        {{ render_content(nav_item, ref) }}
+      </a>
+    </li>
+  {% endif %}
+{% endmacro %}
+
+<nav class="md-tabs" aria-label="{{ lang.t('tabs') }}" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      {% for nav_item in nav %}
+        {{ render(nav_item) }}
+      {% endfor %}
+    </ul>
+  </div>
+</nav>
