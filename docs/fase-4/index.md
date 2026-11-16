@@ -63,7 +63,7 @@ Conforme a regra da **Seção 5.2 e Figura 2 do Framework GQM**, quando uma mét
 | **G2 — Confiabilidade** ($\text{IQC}_{\text{Conf}}$) | $30\%$ | **$2{,}80$** | **$2{,}80$** | `M3 = 100%` ($S=4$), `M4` REPROVADO (ITAE = 0%, $S=1$), `M6 = 100%` ($S=4$, Issue `#42`); `M5` excluída pela política §3.1. |
 | **G3 — Manutenibilidade** ($\text{IQC}_{\text{Manut}}$) | $30\%$ | **$2{,}20$** *(c/ PR #55)* | **$2{,}60$** *(c/ patch #56 + PR #55)* | **Reprovado no commit congelado ($2{,}20 < 2{,}50$)**; no cenário com o patch da `#56`, sobe para $2{,}60 \ge 2{,}50$ |
 | **G4 — Interação e Uso** ($\text{IQC}_{\text{Interação}}$) | $20\%$ | **$3{,}14$** *(c/ PR #55)* | **$3{,}14$** *(c/ PR #55)* | Renormalizado por política prévia (`M14`/`M15` excluídas) com `M12` ($S=4$) e `M13` ($75{,}00\% \Rightarrow S=1$, Crítico) |
-| **Índice Global ($\text{IQM}$)** | **$100\%$** | **$2{,}83$** | **$3{,}02$** *(c/ patch #56)* | Calculado (Gate M4 reprovado determina Classe C, mas $\text{IQM} \ge 2{,}75$) |
+| **Índice Global ($\text{IQM}$)** | **$100\%$** | **$2{,}83$** | **$2{,}95$** *(c/ patch #56)* | Calculado (Gate M4 reprovado determina Classe C, mas $\text{IQM} \ge 2{,}75$) |
 
 *Fonte: Elaborado pelos autores com base na Seção 9.3 do Plano Operacional de Medição e Testes.*
 

@@ -531,7 +531,7 @@ $$
 | **G2 — Confiabilidade** ($\text{IQC}_{\text{Conf}}$) | $30\%$ ($0{,}30$) | `M3 = 100%`, `M4 = 0%`, `M5` excluída, `M6 = 100%` | **$2{,}80$** | **$2{,}80$** | **$2{,}80$** | Calculado (Gate M4 reprovado; $\text{IQC}_{\text{Conf}} \ge 2{,}50$) |
 | **G3 — Manutenibilidade** ($\text{IQC}_{\text{Manut}}$) | $30\%$ ($0{,}30$) | `M7a`, `M7b`, `M10` na `main`; `M8`, `M9`, `M11` no PR `#55` | **$2{,}20$** | **$2{,}60$** | **$2{,}60$** | **Reprovado na base ($< 2{,}50$)**; atende no cenário c/ patch `#56` |
 | **G4 — Interação e Uso** ($\text{IQC}_{\text{Interação}}$) | $20\%$ ($0{,}20$) | `M12`, `M13` no PR `#55`; `M14a/b` e `M15` excluídas | **$3{,}14$** | **$3{,}14$** | **$3{,}14$** | Atende ($\ge 3{,}00$; possui $S_{13}=1$) |
-| **Índice Global ($\text{IQM}$)** | **$100\%$ ($1{,}00$)** | **14 medidas / 3 excluídas** | **$2{,}83$** | **$3{,}02$** *(c/ patch #56)* | **$3{,}02$** | **Veredito oficial: Classe C (Gate M4 reprovado)** |
+| **Índice Global ($\text{IQM}$)** | **$100\%$ ($1{,}00$)** | **14 medidas / 3 excluídas** | **$2{,}83$** | **$2{,}95$** *(c/ patch #56)* | **$$2{,}95$** | **Veredito oficial: Classe C (Gate M4 reprovado)** |
 
 *Fonte: Elaborado pelos autores conforme regras das Seções 5.2, 5.3 e 5.4 do Framework GQM.*
 

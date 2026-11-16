@@ -31,3 +31,18 @@
 CVPB = (N sucessos / 6) × 100%
 
 Limiares: 100% = Excelente · [95,100) = Bom · [90,95) = Regular · <90% = Crítico
+
+## Nota de revisão de escopo (antes da execução bem-sucedida)
+
+A execução inicial com `pg_dump -n pmieducar -n modules -n cadastro` produziu 164 erros de
+restore, todos por dependência externa: funções `public.audit()`, `public.update_updated_at()`,
+`public.when_deleted_*()`, tabelas `public.document_absence_reasons`/`public.menus` e schema
+`portal.funcionario`.
+
+O backup de 3 schemas sem suas dependências **não é um backup recuperável**: o sistema ficaria
+sem funções de auditoria, sem triggers de atualização, sem FKs para `portal.funcionario`. O
+procedimento correto para medir Recuperabilidade (ISO/IEC 25010) é **backup completo do banco**.
+
+**Escopo ajustado:** `pg_dump -Fc testing` (sem `-n`, todos os schemas) para todos os 6 testes.
+
+**Commit do ajuste:** `c5606fc1c1c27baf9417a87d1947b31f5230603c`
