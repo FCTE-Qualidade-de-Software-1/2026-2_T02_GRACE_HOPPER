@@ -71,7 +71,7 @@
 
 % ---------- Chaves de controle ----------
 \newif\ifrascunho      \rascunhofalse
-\newif\ifentregafinal  \entregafinalfalse
+\newif\ifentregafinal  \entregafinaltrue
 
 % ---------- Macros auxiliares ----------
 \newcommand{\TODO}[1]{\ifrascunho\textcolor{red}{\textbf{[TODO: #1]}}\fi}
@@ -191,7 +191,7 @@ Universidade de Brasília (UnB)\\
 
 % ---------- Resumo e palavras-chave ----------
 \begin{abstract}
-Sistemas públicos de gestão escolar concentram registros de matrícula, enturmação, notas e menções que sustentam históricos escolares e o Censo Escolar. Este artigo apresenta o planejamento e a especificação da avaliação de qualidade da plataforma livre i-Educar (\texttt{branch 2.12}), delimitada aos módulos de Matrícula de Alunos e de Lançamento de Notas e Menções. A avaliação adota a ISO/IEC 25040:2024 como referência de processo e combina o modelo de produto da ISO/IEC 25010:2023 com a qualidade em uso da ISO/IEC 25019:2023. O recorte abrange Compatibilidade, Confiabilidade, Manutenibilidade e Capacidade de interação, complementadas por eficácia e eficiência em tarefas. A Fase 1 define propósito, partes interessadas, arquitetura, modelo adaptado, priorização, escopo e relação com os ODS 4 e 16. A Fase 2 aplica \textit{Goal-Question-Metric} (GQM): 4 objetivos, 14 questões com hipóteses verificáveis, 15 medições (famílias de métricas) e 17 linhas operacionais, incluindo três critérios eliminatórios para exatidão de notas, atomicidade transacional e proteção contra entradas inválidas. O acompanhamento do projeto utiliza medidas do \textit{Practical Software Measurement} (PSM/CID). Esta entrega especifica a avaliação; a coleta e a análise empírica dos resultados compõem a segunda entrega.
+Sistemas públicos de gestão escolar concentram registros de matrícula, enturmação, notas e menções que sustentam históricos escolares e o Censo Escolar. Este artigo apresenta o planejamento, a execução e os resultados da avaliação de qualidade da plataforma livre i-Educar (\texttt{branch 2.12}), delimitada aos módulos de Matrícula de Alunos e de Lançamento de Notas e Menções. A avaliação adota a ISO/IEC 25040:2024 como referência de processo e combina o modelo de produto da ISO/IEC 25010:2023 com a qualidade em uso da ISO/IEC 25019:2023. O recorte abrange Compatibilidade, Confiabilidade, Manutenibilidade e Capacidade de interação, complementadas por eficácia e eficiência em tarefas. A Fase 1 define propósito, partes interessadas, arquitetura, modelo adaptado, priorização, escopo e relação com os ODS 4 e 16. A Fase 2 aplica \textit{Goal-Question-Metric} (GQM): 4 objetivos, 14 questões com hipóteses verificáveis, 15 medições (famílias de métricas) e 17 linhas operacionais, incluindo três critérios eliminatórios para exatidão de notas, atomicidade transacional e proteção contra entradas inválidas. O acompanhamento do projeto utiliza medidas do \textit{Practical Software Measurement} (PSM/CID). Na execução, o cálculo de notas acertou 30 de 30 casos e o sistema bloqueou 12 de 12 entradas inválidas, mas o salvamento do boletim não é atômico (ITAE = 0\%), o que classifica os módulos na Classe C. A complexidade concentra-se no núcleo legado ($v(G)$ máximo de 72), e a ação de melhoria reduziu esse método para 15 com equivalência verificada em 50.000 cenários.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -207,7 +207,7 @@ O i-Educar~\cite{ieducar_repo} foi selecionado como objeto de estudo por três m
 
 Este trabalho avalia os módulos de \textbf{Matrícula de Alunos} e de \textbf{Lançamento de Notas e Menções} do i-Educar (\texttt{branch 2.12}) quanto a quatro características da ISO/IEC 25010:2023~\cite{iso25010} --- Compatibilidade, Confiabilidade, Manutenibilidade e Capacidade de interação --- complementadas por eficácia e eficiência em uso da ISO/IEC 25019:2023~\cite{iso25019}. Os objetivos específicos são verificar: (i) se a aplicação coexiste sem colisão de recursos e mantém contratos JSON estáveis na API REST; (ii) se o cálculo de médias/menções é determinístico e se as escritas compostas e restaurações de backup preservam a integridade do banco; (iii) qual o nível de complexidade, acoplamento e cobertura de testes ativos na arquitetura híbrida; e (iv) se o sistema previne erros de digitação com mensagens claras e permite que usuários iniciantes concluam matrículas e lançamentos de notas com eficiência.
 
-A contribuição desta entrega consiste no planejamento da avaliação (Fase 1) e na especificação das medições com GQM (Fase 2), conectando cada parte interessada a objetivos, questões, hipóteses, equações e regras de decisão. A Seção~\ref{sec:ref} apresenta o referencial teórico; a Seção~\ref{sec:met}, a metodologia e o PSM/CID; a Seção~\ref{sec:fase1}, os requisitos da avaliação (Fase 1); e a Seção~\ref{sec:fase2}, o planejamento GQM (Fase 2). O planejamento e a especificação GQM estão documentados na GitPage da equipe~\cite{gracehopper_gqm,gracehopper_pc1} e versionados no repositório da equipe (\url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER}), associados à entrega \texttt{E1} (\texttt{v1.0.0-pc1}).
+A contribuição deste trabalho consiste no planejamento da avaliação (Fase 1), na especificação das medições com GQM (Fase 2), no projeto e na execução das medições (Fases 3 e 4) e na proposição de uma melhoria, conectando cada parte interessada a objetivos, questões, hipóteses, equações e regras de decisão. A Seção~\ref{sec:ref} apresenta o referencial teórico; a Seção~\ref{sec:met}, a metodologia e o PSM/CID; a Seção~\ref{sec:fase1}, os requisitos da avaliação (Fase 1); a Seção~\ref{sec:fase2}, o planejamento GQM (Fase 2); a Seção~\ref{sec:fase3}, o projeto da avaliação (Fase 3); a Seção~\ref{sec:fase4}, os resultados, o julgamento e a ação de melhoria (Fase 4); e a Seção~\ref{sec:conclusao}, as conclusões. O planejamento e a especificação GQM estão documentados na GitPage da equipe~\cite{gracehopper_gqm,gracehopper_pc1} e versionados no repositório da equipe (\url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER}), associados às entregas \texttt{E1} (\texttt{v1.0.0-pc1}) e \texttt{E2} (\texttt{v2.0.0-pc2}).
 
 % =====================================================================
 \section{Referencial Teórico}\label{sec:ref}
@@ -229,7 +229,7 @@ A abordagem GQM, proposta por Basili, Caldiera e Rombach~\cite{basili1994gqm}, e
 O estudo caracteriza-se como pesquisa aplicada, diagnóstica e de abordagem mista (quantitativa e qualitativa), conduzida por meio de estudo de caso sobre os módulos de Matrícula e de Lançamento de Notas e Menções do i-Educar 2.12. A avaliação é independente e realizada por avaliadores externos, não constituindo certificação ou homologação oficial.
 
 \subsection{Abordagem de avaliação e estratégia de medição}
-A avaliação toma como referência o repositório oficial \texttt{portabilis/i-educar}~\cite{ieducar_repo}, na \texttt{branch 2.12}, fixado no commit \path{7903a3efc7689942ee700007f86ed581023aad27}. A execução prevista utiliza uma instância Docker local, isolada de redes municipais reais. A vertente quantitativa reúne métricas estáticas de código (complexidade ciclomática~\cite{mccabe1996structured}, acoplamento e índice de manutenibilidade), conformidade de contrato JSON, oráculos de notas, injeção de falhas e sessões de uso; a qualitativa examina rotas, modelos e mensagens. Nesta entrega, especificam-se os instrumentos e critérios; os resultados dessas medições dependem da execução na Entrega 2.
+A avaliação toma como referência o repositório oficial \texttt{portabilis/i-educar}~\cite{ieducar_repo}, na \texttt{branch 2.12}, fixado no commit \path{7903a3efc7689942ee700007f86ed581023aad27}. A execução prevista utiliza uma instância Docker local, isolada de redes municipais reais. A vertente quantitativa reúne métricas estáticas de código (complexidade ciclomática~\cite{mccabe1996structured}, acoplamento e índice de manutenibilidade), conformidade de contrato JSON, oráculos de notas, injeção de falhas e sessões de uso; a qualitativa examina rotas, modelos e mensagens. Os instrumentos e critérios especificados na Entrega 1 foram executados na Entrega 2 (Seções~\ref{sec:fase3} e~\ref{sec:fase4}).
 
 O julgamento segue duas etapas: (i) verificação de três critérios eliminatórios não-compensatórios (\textit{gates binários}) para funções em que falhas parciais corrompem registros escolares; e (ii) agregação ponderada das pontuações discretas ($S_i \in \{1, 2, 3, 4\}$) em Índices de Qualidade por Característica ($\text{IQC}_k$) e no Índice Global de Qualidade dos Módulos ($\text{IQM}$).
 
@@ -282,6 +282,8 @@ Registrar horas por integrante e issue para comparar execução e planejamento \
 \bottomrule
 \end{tabular}
 \end{table}
+
+Na Entrega 2, foram planejadas 13 issues (72h, R\$ 3.600,00 de cota). Até o fechamento deste texto, 11 foram executadas, somando 60h e R\$ 3.000,00; as issues de backup (M6) e do artigo permaneciam abertas. As horas realizadas continuam iguais às estimadas na maior parte das issues, o que mantém a limitação do VEC observada na Entrega 1.
 
 \subsection{Rastreabilidade, aspectos éticos e limitações}\label{sec:limitacoes}
 A GitPage da equipe reúne a documentação da avaliação, incluindo o planejamento e o framework GQM~\cite{gracehopper_gqm,gracehopper_pc1}; o quadro Kanban está no GitHub Project da equipe~\cite{repo_gracehopper}. Para assegurar a rastreabilidade, cada medição deverá registrar a versão do produto, a versão do instrumento, o cenário, a data, o responsável e a evidência produzida.
@@ -837,13 +839,95 @@ onde $i \in k$ identifica as métricas graduais da característica $k$, e $w_i$ 
 \ifentregafinal
 
 \section{Fase 3: Projeto da Avaliação}\label{sec:fase3}
-\TODO{Descrever na Entrega 2 os manifestos congelados, scripts de coleta, procedimentos de teste e ambiente Docker.}
+
+A Fase 3 converteu a especificação GQM em instrumentos executáveis sobre o commit fixado. A regra adotada para todas as medições foi congelar o universo (manifesto de casos, endpoints, operações, arquivos ou cenários) antes da primeira coleta, com \textit{hash} SHA-256 quando aplicável, e preservar as saídas brutas no repositório~\cite{repo_gracehopper}. A Tabela~\ref{tab:projeto} resume o universo e o instrumento de cada família de métricas.
+
+O ambiente de execução é Docker local com dados fictícios do \texttt{DemoSeeder} do próprio produto (210 alunos e 210 matrículas em 2026). M1 e M2 usam duas instâncias parametrizadas por variáveis de ambiente; M3 e M4 usam o ambiente de testes com PHP~8.5 e PostgreSQL~18. As métricas estáticas (M7 a M10) usam um motor léxico próprio (\texttt{scripts/evaluate-quality.php}, baseado em \texttt{token\_get\_all}), com testes automatizados no fluxo de integração contínua da GitPage.
+
+\begin{table}[!t]
+\centering
+\caption{Projeto da avaliação: universo congelado e instrumento por métrica. Fonte: plano de medição e evidências do repositório.}
+\label{tab:projeto}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}L{0.95cm}L{3.15cm}L{4.15cm}@{}}
+\toprule
+\textbf{Métrica} & \textbf{Universo congelado} & \textbf{Instrumento e evidência} \\
+\midrule
+M1 & 16 recursos compartilháveis (portas, \texttt{container\_name}, banco, Redis, volumes) & Duas instâncias simultâneas; log de comandos e baseline do \textit{compose} oficial \\
+M2 & 10 endpoints de leitura de Matrícula e Diário & JSON Schema congelado com SHA-256; executor com sondas inválidas \\
+M3 & 30 casos do oráculo pedagógico & Teste PHPUnit sobre \texttt{Boletim.php}; rodada \texttt{oficial-001} \\
+M4 / M5 & 4 operações multi-escrita; \textit{checklist} D1--D5 & Injeção determinística de exceção, contagem SQL e verificação de órfãos \\
+M7--M10 & 213 \textit{callables} em 4 arquivos de produção & Motor estático próprio (v(G), Halstead, LOC lógico, MI) \\
+M8 / M9 & 5 componentes (47 tipos); 18 modelos \texttt{Legacy*} & Motor estático; manifestos com SHA-256 \\
+M11 & 30 arquivos de teste dos domínios & Execução real do Pest com relatório JUnit \\
+M12 / M13 & 12 cenários inválidos em 4 categorias & Capturas HTTP brutas e contagem SQL antes/depois; classificação causa/ação \\
+M14 / M15 & Tarefas T1 e T2 com $\ge 5$ participantes & Declaradas não mensuráveis antes da coleta (política prévia) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+As sessões com participantes (M14 e M15) exigiam recrutamento de pelo menos cinco usuários iniciantes, TCLE e restauração do banco entre sessões. Em 12/11/2026, antes de qualquer coleta, a equipe registrou que essas sessões não cabiam no cronograma e declarou as três linhas não mensuráveis, aplicando a renormalização pré-declarada do $\text{IQC}_{\text{Inter/Uso}}$ (M12 com peso 2,0 e M13 com peso 0,8). Nenhum dado de uso foi estimado ou substituído.
 
 \section{Fase 4: Execução, Resultados e Análise}\label{sec:fase4}
-\TODO{Apresentar na Entrega 2 os valores medidos, níveis atingidos, confronto com hipóteses e melhorias executadas.}
+
+A Tabela~\ref{tab:resultados} consolida as 17 linhas operacionais medidas no commit \texttt{7903a3e}, o nível atingido e o confronto com as hipóteses. Os relatórios detalhados, com cálculo e evidências de cada métrica, estão na GitPage da equipe~\cite{gracehopper_gqm}.
+
+\begin{table}[!t]
+\centering
+\caption{Resultados da Fase 4 no commit congelado. Fonte: relatórios e evidências da Fase 4 no repositório da equipe.}
+\label{tab:resultados}
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\begin{tabular}{@{}L{0.75cm}L{3.55cm}C{0.55cm}L{2.95cm}@{}}
+\toprule
+\textbf{Métrica} & \textbf{Valor medido} & \textbf{$S_i$} & \textbf{Hipótese} \\
+\midrule
+M1 & 100\% (16/16 isolados; \textit{compose} oficial: 57,9\%) & 4 & H1.1 confirmada \\
+M2 & 90\% (9/10 endpoints; E08 falha em C3) & 3 & H1.2 confirmada \\
+M3$^*$ & 100\% (30/30 casos; 457 asserções) & Gate & H2.1 confirmada \\
+M4$^*$ & 0\% (0/1 operação atômica) & Gate & H2.2 confirmada \\
+M5 & Não mensurável (D1--D5: 0 de 5 atendidos) & -- & (cláusula de M5 em H2.2) \\
+M6 & Não executada & -- & H2.3 não testada \\
+M7a & P90 = 8 & 4 & H3.1 refutada \\
+M7b & Máximo = 72 (\texttt{getSituacaoNotas}) & 1 & (H3.1: máximo $>$ 30) \\
+M8 & DSPM = 0,3784 & 2 & H3.2 confirmada \\
+M9 & IFDL = 4,56 (82 adaptações/18 modelos) & 1 & H3.3 refutada \\
+M10 & MI médio = 63,82 & 3 & H3.4 confirmada \\
+M11 & 78,92\% (146/185 casos ativos) & 2 & H3.5 confirmada \\
+M12$^*$ & 100\% (12/12 bloqueados, 0 HTTP 500) & Gate & H4.1 confirmada \\
+M13 & 75\% (9/12 com causa e ação) & 1 & H4.2 refutada \\
+M14a/b, M15 & Não mensuráveis (política prévia) & -- & H4.3 e H4.4 não testadas \\
+\bottomrule
+\multicolumn{4}{@{}L{8.0cm}@{}}{\scriptsize $^*$ Critério eliminatório (\textit{gate}).}
+\end{tabular}
+\end{table}
+
+\textbf{Compatibilidade.} As duas instâncias coexistiram sem colisão quando os 16 recursos foram parametrizados (M1 = 100\%). O \textit{compose} oficial, porém, fixa sete \texttt{container\_name} e impede uma segunda instância no mesmo \textit{host} (57,9\%). Em M2, nove dos dez endpoints cumpriram os contratos; o E08 do Diário responde 401 no formato do Laravel em vez do envelope legado usado pelo mesmo recurso.
+
+\textbf{Confiabilidade.} O cálculo de médias, recuperações e situações acertou os 30 casos do oráculo (M3 = 100\%). Já a injeção de falha entre \texttt{saveNotas()} e \texttt{saveFaltas()} em \texttt{Boletim::save()} deixou a nota gravada sem a falta correspondente: o método não usa transação e o chamador \texttt{trySaveServiceBoletim()} descarta \texttt{CoreExt\_Service\_Exception}. Com isso, ITAE = 0\% e o \textit{gate} M4 é reprovado. M5 não é mensurável sem telemetria de produção, e a M6 (backup e restauração) não foi executada nesta entrega.
+
+\textbf{Manutenibilidade.} A complexidade é baixa na maior parte do código (93,4\% dos \textit{callables} com $v(G) \le 10$), mas se concentra no núcleo legado: \texttt{getSituacaoNotas} tem $v(G) = 72$ e $\text{MI}_m = 16{,}9$. Os modelos \texttt{Legacy*} acumulam em média 4,56 adaptações defensivas, e o componente de modelos de domínio está na ``zona de dor'' de Martin ($A = 0$, $I = 0$). Os 39 testes suprimidos estão todos em \texttt{tests/Unit/Modules/Service/}, justamente os serviços de boletim e faltas.
+
+\textbf{Capacidade de interação.} Os 12 cenários inválidos foram bloqueados sem erro 500 e sem gravação (M12 = 100\%). Três mensagens, porém, não orientam a correção: duas do Diário legado informam o bloqueio sem a janela de datas válida, e a da API v2 apenas indica que o campo deve ser numérico. A classificação de M13 foi feita por um único avaliador, sem dupla leitura independente.
+
+\subsection{Julgamento da avaliação}\label{sec:julgamento}
+
+Na Etapa~1, M3 e M12 atingiram 100\%, mas M4 foi reprovado, o que determina \textbf{Classe C} pela regra não compensatória. Na Etapa~2, $\text{IQC}_{\text{Comp}} = (4 + 3)/2 = 3{,}50$; $\text{IQC}_{\text{Manut}} = 13{,}2/6{,}0 = 2{,}20$; e $\text{IQC}_{\text{Inter/Uso}} = (4 \times 2{,}0 + 1 \times 0{,}8)/2{,}8 = 3{,}14$, com a renormalização prévia. Como a M6 não tem dados nem política de exclusão, $\text{IQC}_{\text{Conf}}$ e o $\text{IQM}$ ficam \textbf{não calculáveis}, conforme a Seção~\ref{sec:fase2}. Independentemente disso, $\text{IQC}_{\text{Manut}} < 2{,}5$ também levaria à Classe C. Das 14 hipóteses, 8 foram confirmadas, 3 refutadas (H3.1, H3.3 e H4.2) e 3 não testadas (H2.3, H4.3 e H4.4).
+
+\subsection{Ação de melhoria}\label{sec:melhoria}
+
+O pior resultado de Manutenibilidade orientou a ação de melhoria: refatorar \texttt{getSituacaoNotas} por \textit{Extract Method}, dividindo o método em oito métodos privados com uma decisão cada e removendo código sem efeito. A equivalência de comportamento foi verificada por teste diferencial entre as versões original e refatorada em 50.000 cenários pseudoaleatórios com semente fixa, com zero divergências; um defeito injetado de propósito foi detectado em 779 cenários. Com o \textit{patch}, $v(G)$ do método cai de 72 para 15, M7b passa de 72 (Crítico) para 30 (Bom) e M10 permanece estável (63,82 para 63,79). No cenário com o \textit{patch} aplicado, $\text{IQC}_{\text{Manut}}$ sobe para 2,60, acima do piso de 2,5. O produto avaliado continua sendo o commit congelado; o \textit{patch} é uma proposta validada para incorporação.
+
+\subsection{Relação entre as características}\label{sec:relacao}
+
+Os resultados mostram que as características se reforçam no mesmo ponto do código. O \texttt{Boletim.php} concentra o método de maior complexidade (M7b), a operação não atômica (M4) e os serviços cujos testes estão suprimidos (M11). Assim, a baixa manutenibilidade do núcleo legado não é só um custo de evolução: ela dificulta corrigir a falha de confiabilidade com segurança, porque falta rede de testes justamente onde a correção precisa ser feita. Por outro lado, a exatidão do cálculo (M3) mostra que complexidade alta não implicou erro funcional nos casos testados. Entre Capacidade de interação e Confiabilidade, a proteção contra entradas inválidas (M12) preserva a integridade dos dados, mas as mensagens do legado (M13) e o descarte de exceções em \texttt{trySaveServiceBoletim()} reduzem o que o usuário sabe sobre o que foi ou não gravado. Já a Compatibilidade depende sobretudo de configuração: a coexistência é alcançável sem alterar o código, apenas parametrizando o ambiente.
 
 \section{Conclusão}\label{sec:conclusao}
-\TODO{Retomar na Entrega 2 os objetivos, responder às necessidades dos stakeholders e sintetizar as conclusões.}
+
+A avaliação respondeu aos quatro objetivos com evidências versionadas. O i-Educar 2.12 calcula notas corretamente e bloqueia entradas inválidas, mas não garante atomicidade no salvamento do boletim, o que o classifica como \textbf{Classe C} nos módulos avaliados. Para as Secretarias de Educação, a recomendação é não homologar o commit avaliado sem corrigir a transação de \texttt{Boletim::save()} e sem validar o procedimento de backup (M6). Para os mantenedores, as prioridades são envolver as escritas do boletim em transação, incorporar o \textit{patch} de \texttt{getSituacaoNotas}, reativar os 39 testes suprimidos e incluir a janela de datas nas mensagens de bloqueio. Para as equipes de TI, a coexistência exige parametrizar os \texttt{container\_name} e tratar o 401 do endpoint E08. Para as escolas, a capacitação deve cobrir as mensagens de bloqueio do Diário.
+
+\textbf{Ameaças à validade.} M4 testou uma operação em uma rodada registrada como diagnóstica; M13 teve um único avaliador; três cenários de M12 são requisições de leitura; M6, M14 e M15 não foram medidas; e o ambiente é um único \textit{host} com dados fictícios. Os valores de M7 a M11 dependem das regras do motor próprio. Como trabalhos futuros, ficam a remedição de M4 após a correção da transação, a execução de M6 e as sessões de qualidade em uso. Os artefatos estão no repositório da equipe, associados à entrega \texttt{E2} (\texttt{v2.0.0-pc2}).
 
 \fi % fim do \ifentregafinal
 
@@ -890,6 +974,11 @@ Gemini e Codex &
 Refinamento da documentação, estruturação da GitPage e do artigo em \LaTeX, apoio a equações e análise de referências ISO &
 Out. 2026 &
 Revisão das sugestões e conferência das informações pela equipe; o apoio não substitui a consulta às fontes normativas \\
+\addlinespace[2pt]
+Claude &
+Redação das seções da Entrega 2 do artigo a partir dos relatórios da GitPage, revisão de PRs e apoio a scripts de medição &
+Nov. 2026 &
+Valores conferidos contra as evidências versionadas no repositório; resultados experimentais produzidos pelos instrumentos da equipe \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -974,6 +1063,30 @@ Em atendimento à transparência da contribuição individual (Premissa 13 e Cri
 221008409 & Ricardo Lucas W.\ V.\ Branco & Revisão da GitPage e do artigo & 12h & R\$ 600 & 16,66\% \\
 \midrule
 \textbf{Total} & \textbf{Equipe Grace Hopper} & \textbf{Consolidado Entrega 1} & \textbf{72h} & \textbf{R\$ 3.600} & \textbf{100,00\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Na Entrega 2, a cota planejada também foi de 12h por integrante (72h e R\$ 3.600). A Tabela~\ref{tab:contribuicao2} registra as issues e as horas executadas até o fechamento deste texto; o percentual refere-se ao esforço executado (60h).
+
+\begin{table}[H]
+\centering
+\caption{Responsabilidades e esforço executado por integrante na Entrega 2. Fonte: issues do GitHub e documento de gestão da equipe.}
+\label{tab:contribuicao2}
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\begin{tabular}{@{}L{1.15cm}L{1.65cm}L{2.75cm}ccr@{}}
+\toprule
+\textbf{Matrícula} & \textbf{Nome} & \textbf{Responsabilidade (E2)} & \textbf{Horas} & \textbf{Custo} & \textbf{\%} \\
+\midrule
+232036770 & Arthur Soares Parente & M8, M9, M11, M12 e M13 (Issues \texttt{\#44}, \texttt{\#45}) & 12h & R\$ 600 & 20,00\% \\
+222022082 & Fábio Santos Araujo & Julgamento da Fase 5, slides do PC2 e auditoria PSM/CID (Issues \texttt{\#47}, \texttt{\#49}) & 12h & R\$ 600 & 20,00\% \\
+211045122 & Gabriel Barbaceli & M7a, M7b e M10 (Issue \texttt{\#43}); M14/M15 (Issue \texttt{\#46}); ação de melhoria (Issue \texttt{\#56}) & 12h & R\$ 600 & 20,00\% \\
+232036887 & Gustavo Silva Rodrigues & Oráculo de notas, M3 (Issue \texttt{\#40}); artigo v2 (Issue \texttt{\#48}, aberta) & 6h & R\$ 300 & 10,00\% \\
+232037937 & Ítalo Alves Sampaio de Oliveira & Ambiente Docker e M1 (Issue \texttt{\#38}); contratos e M2 (Issue \texttt{\#39}) & 12h & R\$ 600 & 20,00\% \\
+221008409 & Ricardo Lucas W.\ V.\ Branco & M4 e M5 (Issue \texttt{\#41}); M6 (Issue \texttt{\#42}, aberta) & 6h & R\$ 300 & 10,00\% \\
+\midrule
+\textbf{Total} & \textbf{Equipe Grace Hopper} & \textbf{Executado na Entrega 2} & \textbf{60h} & \textbf{R\$ 3.000} & \textbf{100,00\%} \\
 \bottomrule
 \end{tabular}
 \end{table}
