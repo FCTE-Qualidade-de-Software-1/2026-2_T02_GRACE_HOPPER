@@ -374,7 +374,7 @@ flowchart LR
 
     subgraph DECISAO["Julgamento Final de Release (Fase 5)"]
         VEREDITO["Commit Congelado 7903a3e:<br/>CLASSE C — REPROVADO / BLOQUEADO<br/>(Gate M4 reprovado, ITAE = 0% + IQC_Manut = 2,20 &lt; 2,50)"]
-        CENARIO["Análise de Sensibilidade (Cenário Hipotético):<br/>Com Patch #56 + Merge PR #55 + Aprovação M4/M6<br/>→ Potencial transição para CLASSE B"]
+        CENARIO["Análise de Sensibilidade (Cenário Hipotético):<br/>Após corrigir Boletim::save() e remedir M4 + M6<br/>→ Potencial transição para CLASSE B"]
         VEREDITO -.-> CENARIO
     end
 
@@ -516,8 +516,8 @@ $$
    - No commit congelado (`7903a3e`): $\dfrac{0{,}20(3{,}50) + 0{,}30(2{,}20) + 0{,}20(3{,}1429)}{0{,}70} = \dfrac{1{,}9886}{0{,}70} = \mathbf{2{,}84}$.
    - Com o patch da Issue `#56` aplicado: $\dfrac{0{,}20(3{,}50) + 0{,}30(2{,}60) + 0{,}20(3{,}1429)}{0{,}70} = \dfrac{2{,}1086}{0{,}70} = \mathbf{3{,}01}$.
 
-3. **Cenário S3 — Simulação do $\text{IQM}$ sob Hipótese de Comprovação de `M4 = 100%` ($S_{\text{M4}} = 4$) e Variação de `M6`:**
-   - Se `M4` for aprovado ($S_{\text{M4}} = 4$) e `M6` obtiver nota mínima ($S_{\text{M6}} = 1$), $\text{IQC}_{\text{Conf, sim}} = (4 \times 2{,}0 + 4 \times 2{,}0 + 1 \times 1{,}0)/5{,}0 = \mathbf{3{,}40}$, resultando em $\text{IQM}_{\text{sim}} = \mathbf{3{,}01}$ no commit congelado (ainda Classe C por $\text{IQC}_{\text{Manut}} = 2{,}20 < 2{,}50$) e $\text{IQM}_{\text{sim}} = \mathbf{3{,}13}$ no cenário com o patch da `#56`.
+3. **Cenário S3 — Simulação do $\text{IQM}$ sob Hipótese de Correção de OP-01 e Remedição de `M4 = 100%` ($S_{\text{M4}} = 4$) e Variação de `M6`:**
+   - Se, após corrigir `Boletim::save()` para envolver `saveNotas()` + `saveFaltas()` + `savePareceres()` + `promover()` em `DB::transaction`, a remediação resultar em `M4 = 100%` ($S_{\text{M4}} = 4$) e `M6` obter nota mínima ($S_{\text{M6}} = 1$), $\text{IQC}_{\text{Conf, sim}} = (4 \times 2{,}0 + 4 \times 2{,}0 + 1 \times 1{,}0)/5{,}0 = \mathbf{3{,}40}$, resultando em $\text{IQM}_{\text{sim}} = \mathbf{3{,}01}$ no commit congelado (ainda Classe C por $\text{IQC}_{\text{Manut}} = 2{,}20 < 2{,}50$) e $\text{IQM}_{\text{sim}} = \mathbf{3{,}13}$ no cenário com o patch da `#56`.
    - No limite superior otimista em que tanto `M4` quanto `M6` atinjam $100\%$ ($S_{\text{M4}} = S_{\text{M6}} = 4 \Rightarrow \text{IQC}_{\text{Conf, sim}} = \mathbf{4{,}00}$), ter-se-ia $\text{IQM}_{\text{sim}} = 0{,}30(4{,}00) + 0{,}30(2{,}20) + 0{,}20(3{,}1429) + 0{,}20(3{,}50) = \mathbf{3{,}19}$ no commit congelado e $\text{IQM}_{\text{sim}} = 0{,}30(4{,}00) + 0{,}30(2{,}60) + 0{,}20(3{,}1429) + 0{,}20(3{,}50) = \mathbf{3{,}31}$ com o patch da `#56`.
 
 **Tabela 10 — Síntese oficial dos Índices $\text{IQC}_k$ e $\text{IQM}$ no commit congelado (`7903a3e`) e cenários de sensibilidade**
@@ -525,7 +525,7 @@ $$
 | Característica ISO/IEC 25010 / 25019 | Peso Global $W_k$ | Cobertura de Métricas | Valor Oficial (`7903a3e`) | Cenário S1 (c/ Patch `#56`) | Cenário S3 Limite Superior (`M4=M6=100%` + Patch `#56`) | Situação frente ao Piso Classe B ($\ge 2{,}50$) |
 | :--- | :-: | :--- | :-: | :-: | :-: | :--- |
 | **G1 — Compatibilidade** ($\text{IQC}_{\text{Comp}}$) | $20\%$ ($0{,}20$) | `M1`, `M2` ($2/2$ na `main`) | **$3{,}50$** | **$3{,}50$** | **$3{,}50$** | Atende ($\ge 3{,}00$) |
-| **G2 — Confiabilidade** ($\text{IQC}_{\text{Conf}}$) | $30\%$ ($0{,}30$) | `M3` na `main`; `M5` excluída; `M4` e `M6` sem coleta | **SUSPENSO** | **SUSPENSO** | *$4{,}00$ (simulado)* | Bloqueado no commit congelado (Gate `M4` pendente) |
+| **G2 — Confiabilidade** ($\text{IQC}_{\text{Conf}}$) | $30\%$ ($0{,}30$) | `M3` na `main`; `M5` excluída; `M4` reprovado; `M6` sem coleta | **SUSPENSO** | **SUSPENSO** | *$4{,}00$ (simulado)* | Bloqueado no commit congelado (Gate `M4` reprovado, ITAE = 0%) |
 | **G3 — Manutenibilidade** ($\text{IQC}_{\text{Manut}}$) | $30\%$ ($0{,}30$) | `M7a`, `M7b`, `M10` na `main`; `M8`, `M9`, `M11` no PR `#55` | **$2{,}20$** | **$2{,}60$** | **$2{,}60$** | **Reprovado na base ($< 2{,}50$)**; atende no cenário c/ patch `#56` |
 | **G4 — Interação e Uso** ($\text{IQC}_{\text{Interação}}$) | $20\%$ ($0{,}20$) | `M12`, `M13` no PR `#55`; `M14a/b` e `M15` excluídas | **$3{,}14$** | **$3{,}14$** | **$3{,}14$** | Atende ($\ge 3{,}00$; possui $S_{13}=1$) |
 | **Índice Global ($\text{IQM}$)** | **$100\%$ ($1{,}00$)** | **11 medidas / 4 excluídas / 2 sem coleta** | **SUSPENSO** *(parcial G1+G3+G4: $2{,}84$)* | **SUSPENSO** *(parcial G1+G3+G4: $3{,}01$)* | *$3{,}31$ (simulado; $3{,}19$ s/ patch)* | **Veredito oficial: Classe C (Bloqueado)** |
@@ -540,7 +540,7 @@ Confrontando os resultados das Tabelas 8, 9 e 10 com o fluxograma da Figura 2 e 
   - **Causa 1 (Gate Binário M4 Reprovado e Suspensão do IQM):** O Gate Binário `M4 (ITAE)` foi medido e **REPROVADO** (`ITAE = 0/1 = 0%`, OP-01 não atômica sob falha intermediária), determinando Classe C pela regra não-compensatória da Seção 5.1. A métrica gradual `M6 (CVPB)` não foi executada e não tem política prévia de renormalização; pela Seção 5.2 e Figura 2, o $\text{IQM}$ fica **NÃO CALCULÁVEL / SUSPENSO**, vedando aprovação por média parcial.
    - **Causa 2 (Piso Eliminatório de Manutenibilidade no Commit Congelado):** O produto avaliado é o commit congelado `7903a3e` (que não contém o patch da Issue `#56`). Nele, o índice de Manutenibilidade é **$\text{IQC}_{\text{Manut}} = 2{,}20 < 2{,}50$**, violando o piso mínimo de $2{,}50$ exigido para todas as características devido a $\text{CC}_{\max} = 72$ (`M7b`, $S = 1$) e $\text{IFDL} = 4{,}56$ (`M9`, $S = 1$).
 2. **Cenário Hipotético de Transição para a Classe B (Análise de Sensibilidade):**
-   - A transição para a **Classe B (Aprovado com Ressalvas)** não é o estado atual do commit congelado, mas um **cenário de engenharia alcançável** caso três condições sejam cumpridas: (i) incorporação do patch validado na Issue `#56` (`docs/evidencias/melhoria/getSituacaoNotas.patch`) ao código do produto, elevando $\text{IQC}_{\text{Manut}}$ de **$2{,}20$ para $2{,}60 \ge 2{,}50$**; (ii) conclusão dos ajustes de revisão e integração do PR `#55` (`M8`, `M9`, `M11`, `M12` e `M13`); e (iii) execução empírica e aprovação de `M4` ($\text{ITAE} = 100\%$) e `M6` ($\text{CVPB}$).
+   - A transição para a **Classe B (Aprovado com Ressalvas)** não é o estado atual do commit congelado, mas um **cenário de engenharia alcançável** caso três condições sejam cumpridas: (i) incorporação do patch validado na Issue `#56` (`docs/evidencias/melhoria/getSituacaoNotas.patch`) ao código do produto, elevando $\text{IQC}_{\text{Manut}}$ de **$2{,}20$ para $2{,}60 \ge 2{,}50$**; (ii) conclusão dos ajustes de revisão e integração do PR `#55` (`M8`, `M9`, `M11`, `M12` e `M13`); e (iii) correção de `Boletim::save()` (envolver `saveNotas()`, `saveFaltas()`, `savePareceres()` e `promover()` em `DB::transaction`) seguida de remediação de `M4` ($\text{ITAE} = 100\%$) e execução de `M6` ($\text{CVPB}$).
    - Mesmo nesse cenário, o produto ficaria enquadrado na **Classe B** (e não na Classe A) porque $\text{IQC}_{\text{Manut}} = 2{,}60 < 3{,}00$ e subsistem métricas graduais em nível Crítico ($S_i = 1$ em `M9` e `M13`), exigindo o Plano de Ação Corretiva da Tabela 11.
 
 ### 9.5 Plano de Ação Corretiva Priorizado (Backlog de Engenharia)
