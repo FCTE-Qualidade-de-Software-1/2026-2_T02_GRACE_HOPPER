@@ -12,10 +12,10 @@ conforme os padrões ISO/IEC 25010:2023, ISO/IEC 25040:2024 e o Framework GQM:
 
 * M13 (ADMV) — Autodescritividade das Mensagens de Validação:
   ADMV = (N_mensagens_com_causa_e_acao / N_mensagens_avaliadas) * 100%
-  Dupla auditoria independente por pares com resolução por consenso.
+  Auditoria de autodescritividade das mensagens de erro capturadas em runtime.
 
 Uso:
-    python3 scripts/uso/avaliar_m12_m13.py [--path ./i-educar-src] [--output-dir docs/evidencias/g4_interacao_uso]
+    python3 scripts/uso/avaliar_m12_m13.py [--path ./i-educar-src] [--output-dir evidencias/g4_interacao_uso]
 """
 
 from __future__ import annotations
@@ -206,7 +206,8 @@ def avaliar_cenarios(
         cid = c["id"]
         cat = c["categoria"]
         retorno = c["retorno_observado"]
-        auditoria = c["auditoria_m13"]["consenso"]
+        auditoria_m13 = c["auditoria_m13"]
+        auditoria = auditoria_m13.get("avaliacao") or auditoria_m13["consenso"]
 
         bloqueio_efetivo, ev = _validar_captura_cenario(c, capturas_dir)
         persistencia = bool(ev.get("persistencia_real", retorno.get("persistencia_indesejada", False)))
@@ -307,8 +308,10 @@ def avaliar_cenarios(
                 "resultado": "Confirmada" if hipotese_h42_confirmada else "Refutada",
             },
             "avaliadores": [
-                dados.get("metadata", {}).get("responsavel_trilha", "Gabriel Barbaceli (@Nibaacriba)"),
-                dados.get("metadata", {}).get("revisor_par", "Ítalo Sampaio (@ItaloSamP)"),
+                dados.get("metadata", {}).get(
+                    "responsavel_execucao",
+                    dados.get("metadata", {}).get("responsavel_trilha", "Arthur Soares Parente (@ArthurDevWorks)"),
+                ),
             ],
         },
         "itens": itens_execucao,
@@ -379,8 +382,8 @@ def exportar_evidencias(resultado: dict, out_dirs: list[Path]) -> None:
             + f"Diretório de capturas: {resultado.get('capturas_dir', 'N/A')}\n"
             + f"Capturas verificadas: {resultado.get('capturas_verificadas', 0)}/{resultado['m12_gate']['total_cenarios_submetidos']}\n"
             + f"Commit analisado: {resultado['metadata'].get('commit_congelado', 'N/A')}\n"
-            + f"Responsável: {resultado['metadata'].get('responsavel_trilha', 'N/A')}\n"
-            + f"Revisor por pares: {resultado['metadata'].get('revisor_par', 'N/A')}\n"
+            + f"Responsável / Avaliador M13: {resultado['metadata'].get('responsavel_execucao', resultado['metadata'].get('responsavel_trilha', 'N/A'))}\n"
+            + f"Modalidade de auditoria M13: {resultado['metadata'].get('modo_auditoria_m13', 'Avaliação individual consolidada')}\n"
             + "-" * 80 + "\n"
             + "RESULTADOS DOS GATES E MÉTRICAS:\n"
             + f"  • Gate M12 (IPPE): {resultado['m12_gate']['valor_bruto']}% -> {resultado['m12_gate']['veredito_gate']}\n"
@@ -441,8 +444,8 @@ def main() -> int:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("docs/evidencias/g4_interacao_uso"),
-        help="Diretório primário de saída das evidências",
+        default=Path("evidencias/g4_interacao_uso"),
+        help="Diretório de saída das evidências",
     )
     args = parser.parse_args()
 
@@ -459,8 +462,8 @@ def main() -> int:
         print(f"ERRO: {exc}", file=sys.stderr)
         return 2
 
-    # 3. Exportar evidências para pasta docs/evidencias e evidencias/
-    dirs_saida = [args.output_dir, Path("evidencias/g4_interacao_uso")]
+    # 3. Exportar evidências exclusivamente para o diretório consolidado em evidencias/
+    dirs_saida = [args.output_dir]
     exportar_evidencias(resultado, dirs_saida)
 
     # 4. Exibir sumário conclusivo

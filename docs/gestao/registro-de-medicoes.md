@@ -76,6 +76,25 @@ No dia seguinte ao fechamento da Medição 1, a equipe conduziu a [Retrospectiva
 
 ---
 
+## Medição 4 — Fechamento e Auditoria da Entrega 2 (`15/11/2026` — Preparação para `v2.0.0-pc2`)
+
+**Contexto:** Coleta de auditoria final da **Entrega 2 (`v2.0.0-pc2`)**, realizada após a execução técnica da Fase 4 (`#38`, `#39`, `#40`, `#43`, `#46` integradas na `main`, além de `#44` e `#45` em revisão no PR `#55`), a implementação da Ação de Melhoria (`#56`, integrada no PR `#57`) e a consolidação do Julgamento Multicritério da Fase 5 e dos entregáveis de governança (`#47` e `#49`, submetidos no PR `#58`).
+
+### 4.1 Quadro de Valores, Interpretação e Decisões (Medição 4)
+
+**Tabela 4 — Avaliação dos indicadores PSM/CID no fechamento da Entrega 2 (`v2.0.0-pc2`)**
+
+| Indicador | Valor Apurado na Auditoria | Interpretação do Estado na Entrega 2 | Decisão e Registro de Governança |
+| :--- | :---: | :--- | :--- |
+| **`TCM`** | **25/32 (78,1%)** fechadas na `main`<br>**27/32 (84,4%)** com `#47` e `#49` (PR `#58`)<br>**29/32 (90,6%)** incluindo `#44` e `#45` (PR `#55`)<br>*(E1: 19/19 = 100% · E2: 8/13 concluídas + 2 em PR #55)* | Das 13 issues da Entrega 2 (`#38`–`#49` e `#56`), 6 já estão fechadas na `main` (`#38`, `#39`, `#40`, `#43`, `#46`, `#56`), 2 estão concluídas neste PR `#58` (`#47`, `#49`), 2 estão em revisão no PR `#55` (`#44`, `#45`), e 3 permanecem abertas (`#41`, `#42` e `#48`). | Registrar formalmente na Fase 5 o status não comprovado do Gate `M4` (`#41`) e de `M6` (`#42`), mantendo $\text{IQC}_{\text{Conf}}$ e $\text{IQM}$ oficialmente suspensos sem arbitragem de dados (Seção 5 do Framework GQM). |
+| **`TRCD`** | **22/24 (91,7%)** global<br>**22/22 (100,0%)** pós-workflow | Todos os PRs integrados após a criação do pipeline CI (incluindo os PRs `#52`, `#53`, `#54` e `#57` da Entrega 2) passaram em 100% das verificações automatizadas (`mkdocs build --strict`, `check_site.sh`, testes Python e PHP). | Manter o bloqueio estrito de CI até a integração final dos PRs de fechamento e criação da tag `v2.0.0-pc2`. |
+| **`ACM`** | **`M0`–`M4`: Concluídos (100%)**<br>**`M5` e `M6`: Em fechamento** | Os marcos de planejamento (`M0`–`M4`) encontram-se 100% encerrados. No `M5` e `M6`, a execução da Issue `#56` (Ação de Melhoria) permitiu demonstrar a remoção do gargalo crítico de manutenibilidade (`M7b: 72 -> 30`, $\text{IQC}_{\text{Manut}}: 2{,}20 \to 2{,}60$). | Consolidar o pacote da Release E2 (`v2.0.0-pc2`) preservando a rastreabilidade completa entre issues, PRs e commits de evidência. |
+| **Recursos e Custos (AG-C5)** | **E2: `54,0 h` / `R$ 2.700,00` executados** de `72,0 h` / `R$ 3.600,00` planejados<br>**Total (E1+E2): `126,0 h` / `R$ 6.300,00`** de `144,0 h` / `R$ 7.200,00` | Na Entrega 2, `42,0 h` (`R$ 2.100,00`) correspondem às 8 issues concluídas (`30,0 h` já integradas na `main` + `12,0 h` no PR `#58`) e `12,0 h` (`R$ 600,00`) às 2 issues em revisão no PR `#55`, restando `18,0 h` (`R$ 900,00`) nas 3 issues abertas (`#41`, `#42`, `#48`). A economia de `4,0 h` na Issue `#46` (`2,0 h` realizadas) foi integralmente realocada na Issue `#56` (`4,0 h`), mantendo a cota de `@Nibaacriba` em `12,0 h` (`R$ 600,00`). | A reconciliação unificada entre `README.md`, `horas-custos.md`, documento de gestão e slides assegura rastreabilidade orçamentária integral (Critério AG-C5). |
+
+*Fonte: Elaborado pelos autores a partir dos registros auditados das issues e Pull Requests no GitHub em 15/11/2026.*
+
+---
+
 ## Avaliação do Próprio Processo de Medição e Melhorias Implementadas
 
 Seguindo a recomendação do guia PSM/CID de auditar também a eficácia do sistema de medição, a equipe identificou e corrigiu nesta revisão da GitPage três limitações que dificultavam o acompanhamento:

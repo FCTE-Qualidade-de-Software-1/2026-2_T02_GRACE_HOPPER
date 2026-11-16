@@ -4,7 +4,7 @@ site_author: Equipe Grace Hopper
 site_url: https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/
 repo_url: https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER
 repo_name: 2026-2_T02_GRACE_HOPPER
-copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA · 2026.2 · T02) · Release E1 (v1.0.0-pc1)"
+copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA · 2026.2 · T02) · Release E2 (v2.0.0-pc2)"
 
 theme:
   name: material
@@ -118,6 +118,7 @@ nav:
       - Manutenibilidade (M8, M9 e M11): fase-4/manutenibilidade-m8-m9-m11.md
       - Capacidade de Interação (Gate M12 e M13): fase-4/interacao-m12-m13.md
       - Qualidade em uso (M14a, M14b e M15): fase-4/qualidade-em-uso-m14-m15.md
+      - Ação de melhoria (getSituacaoNotas): fase-4/acao-de-melhoria.md
   - Gestão do projeto:
       - gestao/index.md
       - Planejar:

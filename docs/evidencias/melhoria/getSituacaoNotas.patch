@@ -1,0 +1,442 @@
+diff --git a/ieducar/modules/Avaliacao/Service/Boletim.php b/ieducar/modules/Avaliacao/Service/Boletim.php
+index 86141a4..355b87d 100644
+--- a/ieducar/modules/Avaliacao/Service/Boletim.php
++++ b/ieducar/modules/Avaliacao/Service/Boletim.php
+@@ -960,15 +960,7 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
+         }
+ 
+         $disciplinaDispensadaTurma = clsPmieducarTurma::getDisciplinaDispensada($this->getOption('ref_cod_turma'));
+-        $disciplinasNaoReprovativas = array_filter($componentesMatricula, function ($componente) {
+-            return $componente->desconsidera_para_progressao;
+-        });
+-        $disciplinasNaoReprovativas = array_map(function ($disciplina) {
+-            return $disciplina->id;
+-        }, $disciplinasNaoReprovativas);
+-
+-        // A situação é "aprovado" por padrão
+-        $situacaoGeral = App_Model_MatriculaSituacao::APROVADO;
++        $disciplinasNaoReprovativas = $this->_idsDisciplinasNaoReprovativas($componentesMatricula);
+ 
+         if ($this->getRegraAvaliacaoTipoNota() == RegraAvaliacao_Model_Nota_TipoValor::NENHUM) {
+             $situacao->situacao = App_Model_MatriculaSituacao::APROVADO;
+@@ -977,38 +969,7 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
+         }
+ 
+         if ($this->getRegraAvaliacaoNotaGeralPorEtapa() == '1') {
+-            $mediaGeral = $this->getMediaGeral();
+-
+-            if ($this->getRegraAvaliacaoTipoNota() == RegraAvaliacao_Model_Nota_TipoValor::NUMERICA) {
+-                $media = $mediaGeral->mediaArredondada;
+-            } else {
+-                $media = $mediaGeral->media;
+-            }
+-
+-            $etapa = $mediaGeral->etapa;
+-
+-            if ($etapa == $this->getOption('etapas') && $media < $this->getRegraAvaliacaoMedia() && $this->hasRegraAvaliacaoFormulaRecuperacao()) {
+-                $situacaoGeral = App_Model_MatriculaSituacao::EM_EXAME;
+-            } elseif ($etapa == $this->getOption('etapas') && $media < $this->getRegraAvaliacaoMedia()) {
+-                $situacaoGeral = App_Model_MatriculaSituacao::REPROVADO;
+-            } elseif ($etapa == 'Rc' && $media < $this->getRegraAvaliacaoMediaRecuperacao()) {
+-                $situacaoGeral = $this->getRegraAvaliacaoAprovarPelaFrequenciaAposExame() ? App_Model_MatriculaSituacao::APROVADO_APOS_EXAME : App_Model_MatriculaSituacao::REPROVADO;
+-            } elseif ($etapa == 'Rc' && $media >= $this->getRegraAvaliacaoMediaRecuperacao() && $this->hasRegraAvaliacaoFormulaRecuperacao()) {
+-                $situacaoGeral = App_Model_MatriculaSituacao::APROVADO_APOS_EXAME;
+-            } elseif ($etapa < $this->getOption('etapas') && $etapa != 'Rc') {
+-                $situacaoGeral = App_Model_MatriculaSituacao::EM_ANDAMENTO;
+-            } else {
+-                $situacaoGeral = App_Model_MatriculaSituacao::APROVADO;
+-            }
+-
+-            foreach ($mediasComponentes as $id => $mediaComponente) {
+-                $situacao->componentesCurriculares[$id] = new stdClass;
+-                $situacao->componentesCurriculares[$id]->situacao = $situacaoGeral;
+-            }
+-
+-            $situacao->situacao = $situacaoGeral;
+-
+-            return $situacao;
++            return $this->_situacaoNotasPorMediaGeral($situacao, $mediasComponentes);
+         }
+ 
+         if (is_numeric($disciplinaDispensadaTurma)) {
+@@ -1019,45 +980,31 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
+             unset($mediasComponentes[$disciplinaDispensadaTurma]);
+         }
+ 
+-        $mediasComponenentesTotal = $mediasComponentes;
+-
+-        foreach ($disciplinasNaoReprovativas as $d) {
+-            unset($mediasComponenentesTotal[$d]);
+-        }
++        $mediasComponenentesTotal = array_diff_key($mediasComponentes, array_flip($disciplinasNaoReprovativas));
+ 
+-        $totalComponentes = $this->getQtdComponentes($calcularSituacaoAluno, $disciplinasNaoReprovativas);
+-
+-        if (empty($mediasComponenentesTotal) && count($componentesMatricula)) {
+-            $situacaoGeral = App_Model_MatriculaSituacao::EM_ANDAMENTO;
+-        }
+-
+-        if (!$calcularSituacaoAluno) {
+-            // Se não tiver nenhuma média ou a quantidade for diferente dos componentes
+-            // curriculares da matrícula, ainda está em andamento
+-            if ((count($mediasComponentes) == 0 || count($mediasComponentes) != count($componentes))
+-                && $this->getRegraAvaliacaoDefinirComponentePorEtapa() != '1') {
+-                $situacaoGeral = App_Model_MatriculaSituacao::EM_ANDAMENTO;
+-            }
+-        } elseif ($calcularSituacaoAluno && count($mediasComponenentesTotal) < $totalComponentes) {
+-            $situacaoGeral = App_Model_MatriculaSituacao::EM_ANDAMENTO;
+-        }
++        // A situação é "aprovado" por padrão
++        $situacaoGeral = App_Model_MatriculaSituacao::APROVADO;
+ 
+-        if ((count($mediasComponentes) == 0 || count($mediasComponenentesTotal) < $totalComponentes)
+-            && $this->getRegraAvaliacaoDefinirComponentePorEtapa() == '1') {
++        if ($this->_lancamentoNotasIncompleto(
++            $calcularSituacaoAluno,
++            $mediasComponentes,
++            $mediasComponenentesTotal,
++            $componentes,
++            $componentesMatricula,
++            $this->getQtdComponentes($calcularSituacaoAluno, $disciplinasNaoReprovativas)
++        )) {
+             $situacaoGeral = App_Model_MatriculaSituacao::EM_ANDAMENTO;
+         }
+ 
+-        $qtdComponenteReprovado = 0;
+         $qtdComponentes = 0;
+         $somaMedias = 0;
+-        $media = 0;
+         $turmaId = $this->getOption('ref_cod_turma');
+         $codigosAglutinados = $this->codigoDisciplinasAglutinadas();
+         $componentesEmExame = 0;
++        $progressaoContinuada = $this->getRegraAvaliacaoTipoProgressao() == RegraAvaliacao_Model_TipoProgressao::CONTINUADA;
+ 
+         foreach ($mediasComponentes as $id => $mediaComponente) {
+             $mediaComponente = $mediaComponente[0];
+-            $etapa = $mediaComponente->etapa;
+             $qtdComponentes++;
+             $media = $this->valorMediaSituacao($mediaComponente);
+             $somaMedias += $media;
+@@ -1068,77 +1015,24 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
+                 $situacao->componentesCurriculares[$id] = new stdClass;
+             }
+ 
+-            if ($this->getRegraAvaliacaoTipoProgressao() == RegraAvaliacao_Model_TipoProgressao::CONTINUADA) {
+-                $getCountNotaCC = App_Model_IedFinder::verificaSeExisteNotasComponenteCurricular($matriculaId, $id);
+-
+-                if ($getCountNotaCC[0]['cc'] == 0) {
+-                    $etapa = 0;
+-                }
+-
+-                if ($etapa < $lastStage && (string) $etapa != 'Rc') {
+-                    $situacao->componentesCurriculares[$id]->situacao = App_Model_MatriculaSituacao::EM_ANDAMENTO;
+-                    $situacaoGeral = App_Model_MatriculaSituacao::EM_ANDAMENTO;
+-                } else {
+-                    $situacao->componentesCurriculares[$id]->situacao = App_Model_MatriculaSituacao::APROVADO;
+-                    $situacaoGeral = App_Model_MatriculaSituacao::APROVADO;
+-                }
++            if ($progressaoContinuada) {
++                // Na progressão continuada, a situação geral acompanha a do último componente avaliado.
++                $situacaoGeral = $this->_situacaoComponenteProgressaoContinuada($matriculaId, $id, $mediaComponente->etapa, $lastStage);
++                $situacao->componentesCurriculares[$id]->situacao = $situacaoGeral;
+ 
+                 continue;
+             }
+ 
+-            $situacaoAtualComponente = $mediaComponente->situacao;
+-            $permiteSituacaoEmExame = true;
+-
+-            if ($situacaoAtualComponente == App_Model_MatriculaSituacao::REPROVADO ||
+-                $situacaoAtualComponente == App_Model_MatriculaSituacao::APROVADO) {
+-                $permiteSituacaoEmExame = false;
+-            }
+-
+-            if ($etapa == $lastStage && $media < $this->getRegraAvaliacaoMedia() && $this->hasRegraAvaliacaoFormulaRecuperacao() && $permiteSituacaoEmExame) {
+-                // lets make some changes here >:)
+-                $situacao->componentesCurriculares[$id]->situacao = App_Model_MatriculaSituacao::EM_EXAME;
+-                $componentesEmExame++;
++            $resultado = $this->_situacaoComponentePorNota($id, $mediaComponente, $media, $lastStage, $disciplinasNaoReprovativas);
++            $situacao->componentesCurriculares[$id]->situacao = $resultado->situacao;
++            $componentesEmExame += $resultado->emExame;
+ 
+-                if ($this->hasRegraAvaliacaoReprovacaoAutomatica()) {
+-                    $previsaoRecuperacao = $this->preverNotaRecuperacao($id);
+-                    if (is_numeric($previsaoRecuperacao) && ($previsaoRecuperacao == '+' . $this->getRegraAvaliacaoNotaMaximaExameFinal())) {
+-                        $situacao->componentesCurriculares[$id]->situacao = App_Model_MatriculaSituacao::REPROVADO;
+-                        if ($this->exibeSituacao($id)) {
+-                            $qtdComponenteReprovado++;
+-                        }
+-                    }
+-                }
+-            } elseif ($etapa == $lastStage && $media < $this->getRegraAvaliacaoMedia()) {
+-                if ($this->exibeSituacao($id)) {
+-                    $qtdComponenteReprovado++;
+-                }
+-                $situacao->componentesCurriculares[$id]->situacao = App_Model_MatriculaSituacao::REPROVADO;
+-            } elseif ((string) $etapa == 'Rc' && $media < $this->getRegraAvaliacaoMediaRecuperacao()) {
+-                if ($this->exibeSituacao($id)) {
+-                    $qtdComponenteReprovado++;
+-                }
+-                $situacao->componentesCurriculares[$id]->situacao = $this->getRegraAvaliacaoAprovarPelaFrequenciaAposExame() ? App_Model_MatriculaSituacao::APROVADO_APOS_EXAME : App_Model_MatriculaSituacao::REPROVADO;
+-            } elseif (
+-                (string) $etapa == 'Rc' &&
+-                $media >= $this->getRegraAvaliacaoMediaRecuperacao()
+-                && $this->hasRegraAvaliacaoFormulaRecuperacao()
+-            ) {
+-                $situacao->componentesCurriculares[$id]->situacao = App_Model_MatriculaSituacao::APROVADO_APOS_EXAME;
+-            } elseif ($etapa < $lastStage && (string) $etapa != 'Rc' && !in_array($id, $disciplinasNaoReprovativas)) {
+-                $situacao->componentesCurriculares[$id]->situacao = App_Model_MatriculaSituacao::EM_ANDAMENTO;
+-            } else {
+-                $situacao->componentesCurriculares[$id]->situacao = App_Model_MatriculaSituacao::APROVADO;
+-            }
+-
+-            if (in_array($id, $disciplinasNaoReprovativas) && $situacao->componentesCurriculares[$id]->situacao == App_Model_MatriculaSituacao::REPROVADO) {
++            if (in_array($id, $disciplinasNaoReprovativas) && $resultado->situacao == App_Model_MatriculaSituacao::REPROVADO) {
+                 continue;
+             }
+ 
+-            if ($this->_situacaoPrioritaria(
+-                $situacao->componentesCurriculares[$id]->situacao,
+-                $situacaoGeral
+-            )) {
+-                $situacaoGeral = $situacao->componentesCurriculares[$id]->situacao;
++            if ($this->_situacaoPrioritaria($resultado->situacao, $situacaoGeral)) {
++                $situacaoGeral = $resultado->situacao;
+             }
+         }
+ 
+@@ -1147,6 +1041,222 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
+             $situacao->componentesCurriculares[$id]->situacao = $situacao->componentesCurriculares[$codigosAglutinados[0]]->situacao;
+         }
+ 
++        $situacao->situacao = $this->_ajustarSituacaoGeralNotas($situacaoGeral, $somaMedias, $qtdComponentes, $componentesEmExame);
++
++        return $situacao;
++    }
++
++    /**
++     * Retorna os IDs dos componentes da matrícula que não são considerados para a progressão.
++     *
++     * @return array
++     */
++    private function _idsDisciplinasNaoReprovativas(array $componentesMatricula)
++    {
++        $naoReprovativas = array_filter($componentesMatricula, function ($componente) {
++            return $componente->desconsidera_para_progressao;
++        });
++
++        return array_map(function ($disciplina) {
++            return $disciplina->id;
++        }, $naoReprovativas);
++    }
++
++    /**
++     * Situação das notas quando a regra de avaliação usa uma nota geral por etapa: todos os
++     * componentes recebem a situação calculada a partir da média geral.
++     *
++     * @return stdClass
++     */
++    private function _situacaoNotasPorMediaGeral(stdClass $situacao, array $mediasComponentes)
++    {
++        $mediaGeral = $this->getMediaGeral();
++
++        if ($this->getRegraAvaliacaoTipoNota() == RegraAvaliacao_Model_Nota_TipoValor::NUMERICA) {
++            $media = $mediaGeral->mediaArredondada;
++        } else {
++            $media = $mediaGeral->media;
++        }
++
++        $situacaoGeral = $this->_situacaoPorMediaGeral($media, $mediaGeral->etapa);
++
++        foreach ($mediasComponentes as $id => $mediaComponente) {
++            $situacao->componentesCurriculares[$id] = new stdClass;
++            $situacao->componentesCurriculares[$id]->situacao = $situacaoGeral;
++        }
++
++        $situacao->situacao = $situacaoGeral;
++
++        return $situacao;
++    }
++
++    /**
++     * Converte a média geral e a etapa em que ela foi lançada na situação da matrícula.
++     *
++     * @return int
++     */
++    private function _situacaoPorMediaGeral($media, $etapa)
++    {
++        $ultimaEtapa = $etapa == $this->getOption('etapas');
++
++        if ($ultimaEtapa && $media < $this->getRegraAvaliacaoMedia()) {
++            return $this->hasRegraAvaliacaoFormulaRecuperacao()
++                ? App_Model_MatriculaSituacao::EM_EXAME
++                : App_Model_MatriculaSituacao::REPROVADO;
++        }
++
++        if ($etapa == 'Rc' && $media < $this->getRegraAvaliacaoMediaRecuperacao()) {
++            return $this->getRegraAvaliacaoAprovarPelaFrequenciaAposExame()
++                ? App_Model_MatriculaSituacao::APROVADO_APOS_EXAME
++                : App_Model_MatriculaSituacao::REPROVADO;
++        }
++
++        if ($etapa == 'Rc' && $media >= $this->getRegraAvaliacaoMediaRecuperacao() && $this->hasRegraAvaliacaoFormulaRecuperacao()) {
++            return App_Model_MatriculaSituacao::APROVADO_APOS_EXAME;
++        }
++
++        if ($etapa < $this->getOption('etapas') && $etapa != 'Rc') {
++            return App_Model_MatriculaSituacao::EM_ANDAMENTO;
++        }
++
++        return App_Model_MatriculaSituacao::APROVADO;
++    }
++
++    /**
++     * Indica se ainda faltam médias lançadas para que a situação da matrícula deixe de estar em andamento.
++     *
++     * @return bool
++     */
++    private function _lancamentoNotasIncompleto(
++        $calcularSituacaoAluno,
++        array $mediasComponentes,
++        array $mediasComponenentesTotal,
++        $componentes,
++        array $componentesMatricula,
++        $totalComponentes
++    ) {
++        if (empty($mediasComponenentesTotal) && count($componentesMatricula)) {
++            return true;
++        }
++
++        $componentePorEtapa = $this->getRegraAvaliacaoDefinirComponentePorEtapa() == '1';
++
++        if ($componentePorEtapa) {
++            return count($mediasComponentes) == 0 || count($mediasComponenentesTotal) < $totalComponentes;
++        }
++
++        if (!$calcularSituacaoAluno) {
++            // Se não tiver nenhuma média ou a quantidade for diferente dos componentes
++            // curriculares da matrícula, ainda está em andamento
++            return count($mediasComponentes) == 0 || count($mediasComponentes) != count($componentes);
++        }
++
++        return count($mediasComponenentesTotal) < $totalComponentes;
++    }
++
++    /**
++     * Situação de um componente quando a regra de avaliação usa progressão continuada.
++     *
++     * @return int
++     */
++    private function _situacaoComponenteProgressaoContinuada($matriculaId, $componenteId, $etapa, $lastStage)
++    {
++        $getCountNotaCC = App_Model_IedFinder::verificaSeExisteNotasComponenteCurricular($matriculaId, $componenteId);
++
++        if ($getCountNotaCC[0]['cc'] == 0) {
++            $etapa = 0;
++        }
++
++        if ($etapa < $lastStage && (string) $etapa != 'Rc') {
++            return App_Model_MatriculaSituacao::EM_ANDAMENTO;
++        }
++
++        return App_Model_MatriculaSituacao::APROVADO;
++    }
++
++    /**
++     * Situação de um componente a partir da sua média, da etapa da média e da regra de avaliação.
++     *
++     * Retorna um objeto com a situação do componente e com o indicador de componente em exame (0 ou 1).
++     *
++     * @return stdClass
++     */
++    private function _situacaoComponentePorNota($id, $mediaComponente, $media, $lastStage, array $disciplinasNaoReprovativas)
++    {
++        $resultado = new stdClass;
++        $resultado->emExame = 0;
++
++        $etapa = $mediaComponente->etapa;
++        $situacaoAtualComponente = $mediaComponente->situacao;
++        $permiteSituacaoEmExame = $situacaoAtualComponente != App_Model_MatriculaSituacao::REPROVADO
++            && $situacaoAtualComponente != App_Model_MatriculaSituacao::APROVADO;
++        $abaixoDaMedia = $etapa == $lastStage && $media < $this->getRegraAvaliacaoMedia();
++
++        if ($abaixoDaMedia && $this->hasRegraAvaliacaoFormulaRecuperacao() && $permiteSituacaoEmExame) {
++            $resultado->emExame = 1;
++            $resultado->situacao = $this->_reprovadoPelaPrevisaoDeRecuperacao($id)
++                ? App_Model_MatriculaSituacao::REPROVADO
++                : App_Model_MatriculaSituacao::EM_EXAME;
++
++            return $resultado;
++        }
++
++        if ($abaixoDaMedia) {
++            $resultado->situacao = App_Model_MatriculaSituacao::REPROVADO;
++
++            return $resultado;
++        }
++
++        if ((string) $etapa == 'Rc' && $media < $this->getRegraAvaliacaoMediaRecuperacao()) {
++            $resultado->situacao = $this->getRegraAvaliacaoAprovarPelaFrequenciaAposExame()
++                ? App_Model_MatriculaSituacao::APROVADO_APOS_EXAME
++                : App_Model_MatriculaSituacao::REPROVADO;
++
++            return $resultado;
++        }
++
++        if ((string) $etapa == 'Rc'
++            && $media >= $this->getRegraAvaliacaoMediaRecuperacao()
++            && $this->hasRegraAvaliacaoFormulaRecuperacao()) {
++            $resultado->situacao = App_Model_MatriculaSituacao::APROVADO_APOS_EXAME;
++        } elseif ($etapa < $lastStage && (string) $etapa != 'Rc' && !in_array($id, $disciplinasNaoReprovativas)) {
++            $resultado->situacao = App_Model_MatriculaSituacao::EM_ANDAMENTO;
++        } else {
++            $resultado->situacao = App_Model_MatriculaSituacao::APROVADO;
++        }
++
++        return $resultado;
++    }
++
++    /**
++     * Indica se a reprovação automática deve reprovar o componente em exame porque a nota
++     * prevista para a recuperação é maior que a nota máxima do exame final.
++     *
++     * @return bool
++     */
++    private function _reprovadoPelaPrevisaoDeRecuperacao($id)
++    {
++        if (!$this->hasRegraAvaliacaoReprovacaoAutomatica()) {
++            return false;
++        }
++
++        $previsaoRecuperacao = $this->preverNotaRecuperacao($id);
++
++        if (is_numeric($previsaoRecuperacao) && ($previsaoRecuperacao == '+' . $this->getRegraAvaliacaoNotaMaximaExameFinal())) {
++            return true;
++        }
++
++        return false;
++    }
++
++    /**
++     * Aplica à situação geral as regras finais de aprovação pela média das disciplinas
++     * e de reprovação automática após dependências.
++     *
++     * @return int
++     */
++    private function _ajustarSituacaoGeralNotas($situacaoGeral, $somaMedias, $qtdComponentes, $componentesEmExame)
++    {
+         if ($situacaoGeral == App_Model_MatriculaSituacao::REPROVADO
+             && $this->hasRegraAvaliacaoAprovaMediaDisciplina()
+             && ($somaMedias / $qtdComponentes) >= $this->getRegraAvaliacaoMediaRecuperacao()) {
+@@ -1160,10 +1270,7 @@ class Avaliacao_Service_Boletim implements CoreExt_Configurable
+             $situacaoGeral = App_Model_MatriculaSituacao::REPROVADO;
+         }
+ 
+-        // Situação geral
+-        $situacao->situacao = $situacaoGeral;
+-
+-        return $situacao;
++        return $situacaoGeral;
+     }
+ 
+     /**

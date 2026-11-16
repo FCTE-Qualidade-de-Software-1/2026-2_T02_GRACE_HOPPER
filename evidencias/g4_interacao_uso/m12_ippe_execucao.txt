@@ -1,13 +1,13 @@
 ================================================================================
 RELATÓRIO DE EXECUÇÃO DO GATE M12 (IPPE) E AUDITORIA M13 (ADMV)
 ================================================================================
-Data de apuração: 2026-11-14T19:05:54.139859+00:00
+Data de apuração: 2026-11-16T00:24:08.229970+00:00
 Alvo do produto: i-educar-src
 Diretório de capturas: evidencias/g4_interacao_uso/capturas_m12
 Capturas verificadas: 12/12
 Commit analisado: 7903a3efc7689942ee700007f86ed581023aad27
-Responsável: Gabriel Barbaceli (@Nibaacriba)
-Revisor por pares: Ítalo Sampaio (@ItaloSamP)
+Responsável / Avaliador M13: Arthur Soares Parente (@ArthurDevWorks)
+Modalidade de auditoria M13: Avaliação individual consolidada pelo executor responsável
 --------------------------------------------------------------------------------
 RESULTADOS DOS GATES E MÉTRICAS:
   • Gate M12 (IPPE): 100.0% -> APROVADO

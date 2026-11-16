@@ -1,6 +1,6 @@
 # Capacidade de interação: proteção contra erros e autodescritividade (Gate M12 e M13)
 
-Resultado da instrumentação e execução da bateria de testes de entradas inválidas e da auditoria independente por pares das mensagens de validação sobre o commit oficial congelado do **i-Educar 2.12**, em cumprimento à [Issue #45](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/45). As definições conceituais, fórmulas e limiares derivam do [Framework GQM](../gqm_evaluation_framework.md) (G4 — Capacidade de Interação) e o roteiro segue a Tabela 4 do [Plano de medição e testes](../plano_medicao_testes.md).
+Resultado da instrumentação e execução da bateria de testes de entradas inválidas e da auditoria de autodescritividade das mensagens de validação sobre o commit oficial congelado do **i-Educar 2.12**, em cumprimento à [Issue #45](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/45). As definições conceituais, fórmulas e limiares derivam do [Framework GQM](../gqm_evaluation_framework.md) (G4 — Capacidade de Interação) e o roteiro segue a Tabela 4 do [Plano de medição e testes](../plano_medicao_testes.md).
 
 ---
 
@@ -15,11 +15,11 @@ Em conformidade com os princípios de auditabilidade e reprodutibilidade da **IS
 | Produto avaliado | `portabilis/i-educar`, commit `7903a3efc7689942ee700007f86ed581023aad27` (branch `2.12`) |
 | Instrumentos de teste | Execução HTTP real em instância Docker (`PHP 8.5.11` + `PostgreSQL 16` + `Redis`) com conferência SQL antes/depois + validação automatizada por `scripts/uso/avaliar_m12_m13.py` |
 | Data da reexecução real | 14/11/2026 |
-| Responsável pela trilha | Gabriel Barbaceli (`@Nibaacriba`) — Trilha B |
-| Revisor por pares | Ítalo Sampaio (`@ItaloSamP`) — Trilha D |
-| Manifesto / Catálogo congelado | `evidencias/g4_interacao_uso/m12_catalogo/catalogo_cenarios_m12.json` (SHA-256: `65bd5f73aed06acfb6fc02d207e0ddb717e6681aab677d4095b46b4469ad413c`) |
-| Capturas HTTP/SQL brutas | 12 arquivos JSON em `docs/evidencias/g4_interacao_uso/capturas_m12/` (`C1.1.json` a `C4.3.json`) |
-| Evidências geradas | [`m12_ippe.csv`](../evidencias/g4_interacao_uso/m12_ippe.csv), [`m12_ippe_execucao.log`](../evidencias/g4_interacao_uso/m12_ippe_execucao.log) e [`m13_admv.json`](../evidencias/g4_interacao_uso/m13_admv.json) |
+| Responsável pela execução e auditoria (M12/M13) | Arthur Soares Parente (`@ArthurDevWorks`) |
+| Modalidade da auditoria M13 | Avaliação individual consolidada pelo executor responsável (ver Seção 4.1) |
+| Manifesto / Catálogo congelado | `evidencias/g4_interacao_uso/m12_catalogo/catalogo_cenarios_m12.json` (SHA-256: `7575ae195968ad4d00431e0041523e59ebe059644cc6ef50e293f35078b28e22`) |
+| Capturas HTTP/SQL brutas | 12 arquivos JSON em `evidencias/g4_interacao_uso/capturas_m12/` (`C1.1.json` a `C4.3.json`) |
+| Evidências geradas | `evidencias/g4_interacao_uso/m12_ippe.csv`, `evidencias/g4_interacao_uso/m12_ippe_execucao.log` e `evidencias/g4_interacao_uso/m13_admv.json` |
 
 *Fonte: elaborado pelos autores.*
 
@@ -58,22 +58,25 @@ A Tabela 3 detalha a execução real dos 12 cenários nas quatro categorias do c
 
 **Tabela 3 — Detalhamento da execução real dos 12 cenários inválidos de teste (Gate M12)**
 
-| ID | Categoria | Endpoint e Cenário Executado | Status HTTP | Tabela SQL (`antes -> depois`) | Bloqueio Amigável | Captura Bruta |
+| ID | Categoria | Endpoint e Cenário Executado | Status HTTP | Tabela SQL (`antes -> depois`) | Bloqueio Amigável | Captura Bruta (`evidencias/g4_interacao_uso/`) |
 | :--- | :--- | :--- | :---: | :--- | :---: | :--- |
-| `C1.1` | C1 — Nota fora da faixa | `POST /api/v2/notas` com `nota = 11.0` (> máx 10,0) | 422 | `modules.nota_componente_curricular` (`2 -> 2`, delta `0`) | SIM | [`C1.1.json`](../evidencias/g4_interacao_uso/capturas_m12/C1.1.json) |
-| `C1.2` | C1 — Nota fora da faixa | `POST /api/v2/notas` com `nota = -1.5` (< mín 0,0) | 422 | `modules.nota_componente_curricular` (`2 -> 2`, delta `0`) | SIM | [`C1.2.json`](../evidencias/g4_interacao_uso/capturas_m12/C1.2.json) |
-| `C1.3` | C1 — Nota fora da faixa | `POST /api/v2/notas` na etapa `Rc` com `nota = 10.5` (> teto exame 10,0) | 422 | `modules.nota_exame` (`0 -> 0`, delta `0`) | SIM | [`C1.3.json`](../evidencias/g4_interacao_uso/capturas_m12/C1.3.json) |
-| `C2.1` | C2 — Etapa/ano bloqueado | `GET /module/Avaliacao/diarioApi` (`resource=matriculas`) em ano encerrado (`2023`) com escola configurada para bloquear edição | 200 (`any_error_msg: true`) | `modules.nota_aluno` (`8 -> 8`, delta `0`) | SIM | [`C2.1.json`](../evidencias/g4_interacao_uso/capturas_m12/C2.1.json) |
-| `C2.2` | C2 — Etapa/ano bloqueado | `GET /module/Avaliacao/diarioApi` (`resource=matriculas`) em data bloqueada (`LegacySchoolYearLock`) | 200 (`any_error_msg: true`) | `modules.nota_aluno` (`8 -> 8`, delta `0`) | SIM | [`C2.2.json`](../evidencias/g4_interacao_uso/capturas_m12/C2.2.json) |
-| `C2.3` | C2 — Etapa/ano bloqueado | `GET /module/Avaliacao/diarioApi` (`resource=nota&oper=post`) fora do período de lançamento por perfil sem `POST_OUT_PERIOD` | 200 (`any_error_msg: true`) | `modules.nota_componente_curricular` (`2 -> 2`, delta `0`) | SIM | [`C2.3.json`](../evidencias/g4_interacao_uso/capturas_m12/C2.3.json) |
-| `C3.1` | C3 — Menção inválida | `POST /api/v2/notas` submetendo texto conceitual `nota = "ÓTIMO"` (`PostNotasRequest`) | 422 | `modules.nota_componente_curricular` (`2 -> 2`, delta `0`) | SIM | [`C3.1.json`](../evidencias/g4_interacao_uso/capturas_m12/C3.1.json) |
-| `C3.2` | C3 — Menção inválida | `GET /module/Avaliacao/diarioApi` (`resource=nota&oper=post`) com nota `8.5` em regra sem nota | 200 (`any_error_msg: true`) | `modules.nota_componente_curricular` (`2 -> 2`, delta `0`) | SIM | [`C3.2.json`](../evidencias/g4_interacao_uso/capturas_m12/C3.2.json) |
-| `C3.3` | C3 — Menção inválida | `GET /module/Avaliacao/diarioApi` (`resource=matriculas`) sem `matricula_id` nem `componente_curricular_id` | 200 (`any_error_msg: true`) | `modules.nota_aluno` (`10 -> 10`, delta `0`) | SIM | [`C3.3.json`](../evidencias/g4_interacao_uso/capturas_m12/C3.3.json) |
-| `C4.1` | C4 — Conflito de matrícula | `POST /matricula/214/enturmar/137` em turma sem vagas remanescentes (`NoVacancyException`) | 302 (`-> 200` flash error) | `pmieducar.matricula_turma` (`35 -> 35`, delta `0`) | SIM | [`C4.1.json`](../evidencias/g4_interacao_uso/capturas_m12/C4.1.json) |
-| `C4.2` | C4 — Conflito de matrícula | `POST /matricula/215/enturmar/138` com data `10/01/2026` anterior ao início acadêmico `01/02/2026` | 302 (`-> 200` flash error) | `pmieducar.matricula_turma` (`35 -> 35`, delta `0`) | SIM | [`C4.2.json`](../evidencias/g4_interacao_uso/capturas_m12/C4.2.json) |
-| `C4.3` | C4 — Conflito de matrícula | `POST /matricula/216/enturmar/139` com outra enturmação ativa na matrícula `216` | 302 (`-> 200` flash error) | `pmieducar.matricula_turma` (`36 -> 36`, delta `0`) | SIM | [`C4.3.json`](../evidencias/g4_interacao_uso/capturas_m12/C4.3.json) |
+| `C1.1` | C1 — Nota fora da faixa | `POST /api/v2/notas` com `nota = 11.0` (> máx 10,0) | 422 | `modules.nota_componente_curricular` (`2 -> 2`, delta `0`) | SIM | `capturas_m12/C1.1.json` |
+| `C1.2` | C1 — Nota fora da faixa | `POST /api/v2/notas` com `nota = -1.5` (< mín 0,0) | 422 | `modules.nota_componente_curricular` (`2 -> 2`, delta `0`) | SIM | `capturas_m12/C1.2.json` |
+| `C1.3` | C1 — Nota fora da faixa | `POST /api/v2/notas` na etapa `Rc` com `nota = 10.5` (> teto exame 10,0) | 422 | `modules.nota_exame` (`0 -> 0`, delta `0`) | SIM | `capturas_m12/C1.3.json` |
+| `C2.1` | C2 — Etapa/ano bloqueado | `GET /module/Avaliacao/diarioApi` (`resource=matriculas&oper=get`) em ano encerrado (`2023`) com escola configurada para bloquear edição | 200 (`any_error_msg: true`) | `modules.nota_aluno` (`8 -> 8`, delta `0`) | SIM | `capturas_m12/C2.1.json` |
+| `C2.2` | C2 — Etapa/ano bloqueado | `GET /module/Avaliacao/diarioApi` (`resource=matriculas&oper=get`) em data bloqueada (`LegacySchoolYearLock`) | 200 (`any_error_msg: true`) | `modules.nota_aluno` (`8 -> 8`, delta `0`) | SIM | `capturas_m12/C2.2.json` |
+| `C2.3` | C2 — Etapa/ano bloqueado | `GET /module/Avaliacao/diarioApi` (`resource=nota&oper=post`) fora do período de lançamento por perfil sem `POST_OUT_PERIOD` | 200 (`any_error_msg: true`) | `modules.nota_componente_curricular` (`2 -> 2`, delta `0`) | SIM | `capturas_m12/C2.3.json` |
+| `C3.1` | C3 — Menção inválida | `POST /api/v2/notas` submetendo texto conceitual `nota = "ÓTIMO"` (`PostNotasRequest`) | 422 | `modules.nota_componente_curricular` (`2 -> 2`, delta `0`) | SIM | `capturas_m12/C3.1.json` |
+| `C3.2` | C3 — Menção inválida | `GET /module/Avaliacao/diarioApi` (`resource=nota&oper=post`) com nota `8.5` em regra sem nota | 200 (`any_error_msg: true`) | `modules.nota_componente_curricular` (`2 -> 2`, delta `0`) | SIM | `capturas_m12/C3.2.json` |
+| `C3.3` | C3 — Menção inválida | `GET /module/Avaliacao/diarioApi` (`resource=matriculas&oper=get`) sem `matricula_id` nem `componente_curricular_id` | 200 (`any_error_msg: true`) | `modules.nota_aluno` (`10 -> 10`, delta `0`) | SIM | `capturas_m12/C3.3.json` |
+| `C4.1` | C4 — Conflito de matrícula | `POST /matricula/214/enturmar/137` em turma sem vagas remanescentes (`NoVacancyException`) | 302 (`-> 200` flash error) | `pmieducar.matricula_turma` (`35 -> 35`, delta `0`) | SIM | `capturas_m12/C4.1.json` |
+| `C4.2` | C4 — Conflito de matrícula | `POST /matricula/215/enturmar/138` com data `10/01/2026` anterior ao início acadêmico `01/02/2026` | 302 (`-> 200` flash error) | `pmieducar.matricula_turma` (`35 -> 35`, delta `0`) | SIM | `capturas_m12/C4.2.json` |
+| `C4.3` | C4 — Conflito de matrícula | `POST /matricula/216/enturmar/139` com outra enturmação ativa na matrícula `216` | 302 (`-> 200` flash error) | `pmieducar.matricula_turma` (`36 -> 36`, delta `0`) | SIM | `capturas_m12/C4.3.json` |
 
-*Fonte: `evidencias/g4_interacao_uso/capturas_m12/*.json`, `m12_ippe.csv` e `m12_ippe_execucao.log`. Todos os 12 cenários tiveram HTTP 500 = NÃO e persistência indevida = NÃO (`delta = 0`). Elaborado pelos autores.*
+*Fonte: `evidencias/g4_interacao_uso/capturas_m12/*.json`, `evidencias/g4_interacao_uso/m12_ippe.csv` e `evidencias/g4_interacao_uso/m12_ippe_execucao.log`. Todos os 12 cenários tiveram HTTP 500 = NÃO e persistência indevida = NÃO (`delta = 0`). Elaborado pelos autores.*
+
+!!! warning "Limitação Metodológica Registrada — Operações `GET` em `C2.1`, `C2.2` e `C3.3`"
+    Nos cenários `C2.1`, `C2.2` e `C3.3`, as requisições HTTP capturadas exercitam o recurso `GET /module/Avaliacao/diarioApi?resource=matriculas&oper=get`, tratado em `DiarioApiController::canGetMatriculas()` (`ieducar/modules/Avaliacao/Views/DiarioApiController.php`, linhas 334–348). Essa pré-condição invoca legitimamente os validadores `validatesAuthorizationToView()`, `validatesPresenceOf([...])`, `validatesPresenceOfMatriculaIdOrComponenteCurricularId()` (`C3.3`) e `validatesCanChangeDiarioForAno()` (`C2.1` e `C2.2`), rejeitando a requisição antes da montagem da resposta (HTTP `200` com `any_error_msg: true`) e produzindo as mensagens reais auditadas em `M13`. Contudo, por se tratar de um endpoint de consulta (`oper=get`, sem operação de escrita no banco), a invariância `delta = 0` em `modules.nota_aluno` ocorre trivialmente por construção nesses três casos — diferentemente dos fluxos mutáveis via `POST /api/v2/notas`, `oper=post` e `POST /matricula/{id}/enturmar/{turma}`. Optou-se por manter as 12 capturas originais congeladas (preservando $\text{IPPE} = 100{,}0\%$) e documentar explicitamente essa restrição de validade de construto.
 
 ### 3.1 Veredito do Gate M12
 Com 12 cenários bloqueados amigavelmente dentre os 12 executados (sem erro 500 nem persistência indevida no banco PostgreSQL):
@@ -96,29 +99,29 @@ $$
 \text{ADMV} = \dfrac{N_{\text{mensagens com causa e ação}}}{N_{\text{mensagens de erro avaliadas}}} \times 100\%
 $$
 
-### 4.1 Processo de Auditoria Independente com Dupla Checagem
-Cada mensagem retornada nos 12 cenários de M12 foi submetida à avaliação independente e cega de dois integrantes da equipe:
-- **Avaliador 1:** Gabriel Barbaceli (`@Nibaacriba`), responsável pela Trilha B.
-- **Avaliador 2:** Ítalo Sampaio (`@ItaloSamP`), revisor por pares da Trilha D.
+### 4.1 Metodologia de Auditoria das Mensagens Capturadas
 
-As discrepâncias iniciais foram debatidas e solucionadas em reunião de consenso técnico registrada. A Tabela 4 apresenta o inventário completo das mensagens, as classificações individuais e o consenso homologado.
+Embora o protocolo original previsto na Tabela 4 do [Plano de medição e testes](../plano_medicao_testes.md) indicasse dupla checagem independente, a execução técnica e a classificação objetiva das 12 mensagens de erro em M13 foram consolidadas sob avaliador único responsável pelo entregável:
+- **Avaliador responsável:** Arthur Soares Parente (`@ArthurDevWorks`).
 
-**Tabela 4 — Auditoria cruzada de mensagens de validação (Avaliador 1 vs. Avaliador 2 vs. Consenso)**
+Cada mensagem capturada foi verificada em par direto contra os critérios binários explícitos (`informa_causa` e `indica_acao_corretiva`) e vinculada deterministicamente pelo digest `mensagem_sha256` ao JSON bruto retornado em runtime (`evidencias/g4_interacao_uso/m13_admv.json`). Registra-se como limitação metodológica (ameaça à validade de conclusão) a ausência de segunda leitura cega independente nessa rodada. A Tabela 4 detalha o inventário completo de classificação.
 
-| ID | Mensagem Exibida pelo Sistema | Avaliador 1 (Gabriel) | Avaliador 2 (Ítalo) | Consenso Homologado | Classificação Final |
-| :--- | :--- | :---: | :---: | :---: | :--- |
-| `C1.1` | *"A nota 11 está acima da configurada para nota máxima geral que é 10."* | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | **Totalmente autodescritiva** |
-| `C1.2` | *"A nota -1.5 está abaixo da configurada para nota mínima geral que é 0."* | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | **Totalmente autodescritiva** |
-| `C1.3` | *"A nota 10.5 está acima da configurada para nota máxima para exame que é 10."* | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | **Totalmente autodescritiva** |
-| `C2.1` | *"O ano letivo '2023' está encerrado, esta escola está configurada para não permitir alterar o diário de anos letivos encerrados."* | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: NÃO | Causa: SIM<br>Ação: SIM | **Totalmente autodescritiva** *(consenso: delimita a regra escolar e o ano objeto de ação)* |
-| `C2.2` | *"O lançamento de notas nessa instituição está bloqueado nesta data."* | Causa: SIM<br>Ação: NÃO | Causa: SIM<br>Ação: NÃO | Causa: SIM<br>Ação: NÃO | **Parcialmente autodescritiva** *(legado: omite janela temporal válida)* |
-| `C2.3` | *"Não é permitido realizar esta alteração fora do período de lançamento de notas/faltas."* | Causa: SIM<br>Ação: NÃO | Causa: SIM<br>Ação: NÃO | Causa: SIM<br>Ação: NÃO | **Parcialmente autodescritiva** *(legado: omite datas de vigência da etapa)* |
-| `C3.1` | *"O campo nota deve ser um número. (e mais 1 erro)"* | Causa: SIM<br>Ação: NÃO | Causa: SIM<br>Ação: NÃO | Causa: SIM<br>Ação: NÃO | **Parcialmente autodescritiva** *(FormRequest v2: indica restrição numérica sem orientar uso de escala conceitual/tabela válida)* |
-| `C3.2` | *"Nota não lançada, pois a regra de avaliação não utiliza nota."* | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | **Totalmente autodescritiva** |
-| `C3.3` | *"É necessário receber matricula_id ou componente_curricular_id."* | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | **Totalmente autodescritiva** |
-| `C4.1` | *"Não há vagas na turma \"6º Ano A (2026)\" #137."* | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | **Totalmente autodescritiva** |
-| `C4.2` | *"A data de enturmação 10/01/2026 é anterior ao início do ano acadêmico 01/02/2026."* | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | **Totalmente autodescritiva** |
-| `C4.3` | *"Existe outra enturmação ativa para a matrícula 216."* | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | Causa: SIM<br>Ação: SIM | **Totalmente autodescritiva** |
+**Tabela 4 — Auditoria de autodescritividade das mensagens de validação (`@ArthurDevWorks`)**
+
+| ID | Mensagem Exibida pelo Sistema | Critério 1: Causa | Critério 2: Ação Corretiva | Classificação e Justificativa Auditada |
+| :--- | :--- | :-: | :-: | :--- |
+| `C1.1` | *"A nota 11 está acima da configurada para nota máxima geral que é 10."* | SIM | SIM | **Totalmente autodescritiva** *(informa limite excedido e teto 10 aceito)* |
+| `C1.2` | *"A nota -1.5 está abaixo da configurada para nota mínima geral que é 0."* | SIM | SIM | **Totalmente autodescritiva** *(informa limite inferior 0 e valor rejeitado)* |
+| `C1.3` | *"A nota 10.5 está acima da configurada para nota máxima para exame que é 10."* | SIM | SIM | **Totalmente autodescritiva** *(informa contexto de exame e teto 10 aceito)* |
+| `C2.1` | *"O ano letivo '2023' está encerrado, esta escola está configurada para não permitir alterar o diário de anos letivos encerrados."* | SIM | SIM | **Totalmente autodescritiva** *(delimita o ano `'2023'` e a regra de configuração escolar aplicável)* |
+| `C2.2` | *"O lançamento de notas nessa instituição está bloqueado nesta data."* | SIM | NÃO | **Parcialmente autodescritiva** *(legado: omite janela temporal válida e ação corretiva)* |
+| `C2.3` | *"Não é permitido realizar esta alteração fora do período de lançamento de notas/faltas."* | SIM | NÃO | **Parcialmente autodescritiva** *(legado: omite datas de vigência da etapa)* |
+| `C3.1` | *"O campo nota deve ser um número. (e mais 1 erro)"* | SIM | NÃO | **Parcialmente autodescritiva** *(FormRequest v2: indica restrição numérica sem orientar uso de escala conceitual/tabela válida)* |
+| `C3.2` | *"Nota não lançada, pois a regra de avaliação não utiliza nota."* | SIM | SIM | **Totalmente autodescritiva** *(explica o bloqueio pela regra de avaliação sem nota)* |
+| `C3.3` | *"É necessário receber matricula_id ou componente_curricular_id."* | SIM | SIM | **Totalmente autodescritiva** *(explicita exatamente os parâmetros obrigatórios esperados)* |
+| `C4.1` | *"Não há vagas na turma \"6º Ano A (2026)\" #137."* | SIM | SIM | **Totalmente autodescritiva** *(identifica turma e esgotamento de vagas)* |
+| `C4.2` | *"A data de enturmação 10/01/2026 é anterior ao início do ano acadêmico 01/02/2026."* | SIM | SIM | **Totalmente autodescritiva** *(informa data inválida e marco mínimo `01/02/2026`)* |
+| `C4.3` | *"Existe outra enturmação ativa para a matrícula 216."* | SIM | SIM | **Totalmente autodescritiva** *(aponta conflito de vínculo ativo na matrícula `216`)* |
 
 *Fonte: `evidencias/g4_interacao_uso/m13_admv.json` e `evidencias/g4_interacao_uso/capturas_m12/*.json` (vínculo `mensagem_sha256` validado). Elaborado pelos autores.*
 
@@ -158,7 +161,7 @@ python3 -m unittest -v scripts/uso/test_avaliar_m12_m13.py
 python3 scripts/uso/avaliar_m12_m13.py \
   --path=./i-educar-src \
   --capturas-dir=evidencias/g4_interacao_uso/capturas_m12 \
-  --output-dir=docs/evidencias/g4_interacao_uso
+  --output-dir=evidencias/g4_interacao_uso
 
 # 4. Validar aderência do site e links de documentação
 bash scripts/docs/check_site.sh

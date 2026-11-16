@@ -1,0 +1,18 @@
+Teste de equivalência de getSituacaoNotas
+Cenários: 50000 (semente 2026)
+Métodos auxiliares novos: _idsDisciplinasNaoReprovativas, _situacaoNotasPorMediaGeral, _situacaoPorMediaGeral, _lancamentoNotasIncompleto, _situacaoComponenteProgressaoContinuada, _situacaoComponentePorNota, _reprovadoPelaPrevisaoDeRecuperacao, _ajustarSituacaoGeralNotas
+Distribuição dos resultados da versão original:
+  - exceção (Error:Attempt to assign property "situacao" on null): 225
+  - exceção (ErrorException:Undefined array key 11): 100
+  - exceção (ErrorException:Undefined array key 12): 85
+  - exceção (ErrorException:Undefined array key 13): 56
+  - exceção (ErrorException:Undefined array key 14): 39
+  - exceção (ErrorException:Undefined array key 15): 28
+  - exceção (ErrorException:Undefined array key 16): 23
+  - situação 1: 15494
+  - situação 2: 4034
+  - situação 3: 28237
+  - situação 7: 608
+  - situação 8: 1071
+Divergências: 0
+Autoteste (defeito injetado): 779 divergência(s) detectada(s)

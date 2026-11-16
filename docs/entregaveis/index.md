@@ -4,29 +4,31 @@ Esta página reúne, em um único lugar, todos os **artefatos oficiais de entreg
 
 ---
 
-## 1. Artefatos Principais — Ponto de Controle 1 / Entrega 1 (`v1.0.0-pc1`)
+## 1. Artefatos Principais — Ponto de Controle 2 / Entrega 2 (`v2.0.0-pc2`) e Entrega 1 (`v1.0.0-pc1`)
 
 <div class="gh-colunas">
 <div class="gh-coluna">
-<p class="gh-secao"><span>Artigo Científico (IEEE)</span></p>
+<p class="gh-secao"><span>Apresentação Final — PC2 (Entrega 2)</span></p>
 <div class="gh-painel">
-<a class="gh-item" href="../artigo/main.pdf" target="_blank" rel="noopener"><small>PDF compilado · Formato IEEEtran · 10 páginas</small><span>Baixar Artigo Científico E1 (PDF)</span></a>
-<a class="gh-item" href="https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/tree/main/docs/artigo" target="_blank" rel="noopener"><small>Código-fonte LaTeX e roteiro de validação</small><span>Ver pasta docs/artigo/ no GitHub</span></a>
+<a class="gh-item" href="../apresentacao_pc2.pdf" target="_blank" rel="noopener"><small>PDF · 11 slides · Ponto de Controle 2 (Fases 4 e 5)</small><span>Baixar Apresentação PC2 (PDF)</span></a>
+<a class="gh-item" href="../apresentacao_pc2.pptx" target="_blank" rel="noopener"><small>Arquivo editável PowerPoint (.pptx) — Entrega 2</small><span>Baixar Apresentação PC2 (PPTX)</span></a>
 </div>
 </div>
 
 <div class="gh-coluna">
-<p class="gh-secao"><span>Apresentação de Slides</span></p>
+<p class="gh-secao"><span>Apresentação PC1 e Artigo (IEEE)</span></p>
 <div class="gh-painel">
-<a class="gh-item" href="../apresentacao_pc1.pdf" target="_blank" rel="noopener"><small>PDF · 8 slides · Ponto de Controle 1</small><span>Baixar Apresentação PC1 (PDF)</span></a>
-<a class="gh-item" href="../apresentacao_pc1.pptx" target="_blank" rel="noopener"><small>Arquivo editável PowerPoint (.pptx)</small><span>Baixar Apresentação PC1 (PPTX)</span></a>
+<a class="gh-item" href="../artigo/main.pdf" target="_blank" rel="noopener"><small>PDF compilado · Formato IEEEtran · 10 páginas</small><span>Baixar Artigo Científico (PDF)</span></a>
+<a class="gh-item" href="../apresentacao_pc1.pdf" target="_blank" rel="noopener"><small>PDF · 11 slides · Ponto de Controle 1 (Fases 1 a 3)</small><span>Baixar Apresentação PC1 (PDF)</span></a>
+<a class="gh-item" href="../apresentacao_pc1.pptx" target="_blank" rel="noopener"><small>Arquivo editável PowerPoint (.pptx) — Entrega 1</small><span>Baixar Apresentação PC1 (PPTX)</span></a>
 </div>
 </div>
 
 <div class="gh-coluna">
-<p class="gh-secao"><span>Releases e Código</span></p>
+<p class="gh-secao"><span>Releases, Julgamento Fase 5 e Código</span></p>
 <div class="gh-painel">
-<a class="gh-item" href="https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/releases" target="_blank" rel="noopener"><small>Tag v1.0.0-pc1 · Pacote oficial</small><span>Acessar Releases no GitHub</span></a>
+<a class="gh-item" href="https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/releases" target="_blank" rel="noopener"><small>Tags v2.0.0-pc2 (E2) e v1.0.0-pc1 (E1)</small><span>Acessar Releases no GitHub</span></a>
+<a class="gh-item" href="../plano_medicao_testes.md#9-conclusao-da-avaliacao-agregacao-multicriterio-julgamento-dos-gates-e-parecer-tecnico-fase-5-isoiec-250402024"><small>IQC, IQM Suspenso (Classe C; Sensibilidade 2,84 -> 3,01 / 3,19 -> 3,31), Gates e Parecer</small><span>Relatório Conclusivo da Fase 5</span></a>
 <a class="gh-item" href="https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/blob/main/scripts/evaluate-quality.php" target="_blank" rel="noopener"><small>Instrumento de extração estática PHP CLI</small><span>Script scripts/evaluate-quality.php</span></a>
 </div>
 </div>

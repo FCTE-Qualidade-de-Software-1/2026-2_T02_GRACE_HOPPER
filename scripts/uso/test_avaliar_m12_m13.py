@@ -77,6 +77,7 @@ class TestAvaliarM12M13(unittest.TestCase):
         self.assertEqual(m13["nivel_ordinal"], 1)
         self.assertEqual(m13["nivel_rotulo"], "Crítico")
         self.assertEqual(m13["hipotese_h42"]["resultado"], "Refutada")
+        self.assertEqual(m13["avaliadores"], ["Arthur Soares Parente (@ArthurDevWorks)"])
 
     def test_catalogo_com_falha_em_gate(self):
         # Cria catálogo sintético com 1 cenário retornando erro 500

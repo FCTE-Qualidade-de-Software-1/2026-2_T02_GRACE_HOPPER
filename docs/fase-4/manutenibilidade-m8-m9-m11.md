@@ -15,10 +15,10 @@ Em conformidade com os princípios de reproducibilidade da ISO/IEC 25040:2024 e 
 | Produto | `portabilis/i-educar`, commit `7903a3efc7689942ee700007f86ed581023aad27` (branch `2.12`) |
 | Instrumento | `scripts/evaluate-quality.php` versão 3.0.0 (`token_get_all` com resolução de `namespace` e `use` aliases para M8 + consumo de JUnit XML do runner Pest/PHPUnit para M11) |
 | Data da coleta | 14/11/2026 |
-| Comando de extração | `php scripts/evaluate-quality.php --path=./i-educar-src --evidence-dir=evidencias/g3_manutenibilidade` |
+| Comando de extração | `php scripts/evaluate-quality.php --path=./i-educar-src --m11-junit=evidencias/g3_manutenibilidade/m11_runner_junit.xml --evidence-dir=evidencias/g3_manutenibilidade --evidence-scope=m8-m11` |
 | Runner de testes (M11) | `vendor/bin/pest --colors=never --log-junit=/tmp/m11_runner_junit.xml` sobre os 30 arquivos do manifesto (PHP 8.5.11, Pest 5.3.2, PostgreSQL) |
-| Manifestos congelados | `mapa_componentes_m8.json`, `manifesto_modelos_legacy_m9.json` e `manifesto_testes_m11.json` |
-| Evidências geradas | [`m8_dspm.json`](../evidencias/g3_manutenibilidade/m8_dspm.json), [`m8_dspm.csv`](../evidencias/g3_manutenibilidade/m8_dspm.csv), [`m9_ifdl.json`](../evidencias/g3_manutenibilidade/m9_ifdl.json), [`m11_ttae.json`](../evidencias/g3_manutenibilidade/m11_ttae.json), [`m11_ttae.txt`](../evidencias/g3_manutenibilidade/m11_ttae.txt), [`m11_runner_junit.xml`](../evidencias/g3_manutenibilidade/m11_runner_junit.xml) e [`m11_runner.log`](../evidencias/g3_manutenibilidade/m11_runner.log) |
+| Manifestos congelados | `evidencias/g3_manutenibilidade/manifestos/`: `mapa_componentes_m8.json`, `manifesto_modelos_legacy_m9.json` e `manifesto_testes_m11.json` |
+| Evidências geradas | `evidencias/g3_manutenibilidade/m8_dspm.json`, `evidencias/g3_manutenibilidade/m8_dspm.csv`, `evidencias/g3_manutenibilidade/m9_ifdl.json`, `evidencias/g3_manutenibilidade/m11_ttae.json`, `evidencias/g3_manutenibilidade/m11_ttae.txt`, `evidencias/g3_manutenibilidade/m11_runner_junit.xml` e `evidencias/g3_manutenibilidade/m11_runner.log` |
 
 *Fonte: elaborado pelos autores.*
 
@@ -116,7 +116,7 @@ A hipótese `H3.3` estimava que os modelos apresentariam em média entre 1,0 e 2
 
 A métrica M11 avalia a efetividade e a integridade da suíte de testes automatizados nos domínios de Matrícula e Notas/Diário por meio da execução real do runner (`vendor/bin/pest --colors=never --log-junit`), registrando o status de cada caso e a contagem de asserções executadas em runtime. Casos ignorados (`<skipped/>`), casos ativos com zero asserções ou casos com falha/erro não entram no numerador.
 
-O manifesto congelado mapeia **30 arquivos de teste**, nos quais o runner descobriu e reportou **185 casos no relatório JUnit**, com **1038 asserções totais** (**938** em casos ativos não ignorados), **0 falhas/erros** e **0 casos ativos sem asserção**.
+O manifesto congelado mapeia os **30 arquivos de teste**, nos quais o runner descobriu e reportou **185 casos no relatório JUnit**, com **1038 asserções totais** (**938** em casos ativos não ignorados), **0 falhas/erros** e **0 casos ativos sem asserção**. A diferença em relação à varredura léxica preliminar da primeira versão (**158** casos estimados estaticamente, onde `119/158 = 75,32%`) decorre exclusivamente da expansão em runtime de **27 casos dinâmicos** pelo Pest/PHPUnit nos mesmos 30 arquivos do manifesto: compartilhamento via `uses(Avaliacao_Service_ParecerDescritivoCommon::class)` (+19 casos líquidos distribuídos em `ParecerDescritivoComponenteAnualTest`, `ParecerDescritivoComponenteEtapaTest`, `ParecerDescritivoGeralAnualTest` e `ParecerDescritivoGeralEtapaTest`), `uses(Avaliacao_Service_FaltaCommon::class)` (+2 em `FaltaComponenteTest` e +2 em `FaltaGeralTest`) e datasets `->with(...)` (+4 casos em `tests/Feature/Api/V2/NotasTest.php`, de 32 para 36). Assim, a adoção do relatório JUnit oficial elevou a precisão da apuração para `146/185 = 78,92%`.
 
 $$
 \text{TTAE} = \dfrac{N_{\text{ativos com asserção}}}{N_{\text{casos descobertos pelo runner}}} \times 100\% = \dfrac{146}{185} \times 100\% = 78{,}92\%
@@ -159,7 +159,8 @@ php scripts/tests/evaluate_quality_test.php
 php scripts/evaluate-quality.php \
   --path=./i-educar-src \
   --m11-junit=evidencias/g3_manutenibilidade/m11_runner_junit.xml \
-  --evidence-dir=evidencias/g3_manutenibilidade
+  --evidence-dir=evidencias/g3_manutenibilidade \
+  --evidence-scope=m8-m11
 
 # 4. Validar aderência do site e links da documentação
 bash scripts/docs/check_site.sh

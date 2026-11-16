@@ -5,8 +5,6 @@
     "produto": "portabilis/i-educar",
     "commit_congelado": "7903a3efc7689942ee700007f86ed581023aad27",
     "data_congelamento": "2026-11-12",
-    "responsavel_trilha": "Gabriel Barbaceli (@Nibaacriba)",
-    "revisor_par": "Ítalo Sampaio (@ItaloSamP)",
     "total_cenarios": 12,
     "distribuicao_categorias": {
       "C1_NOTA_FORA_DA_FAIXA": 3,
@@ -16,9 +14,12 @@
     },
     "versao_catalogo": "2.0.0-reexecucao-real",
     "data_reexecucao_real": "2026-11-14",
-    "evidencias_brutas_dir": "evidencias/g4_interacao_uso/capturas_m12"
+    "evidencias_brutas_dir": "evidencias/g4_interacao_uso/capturas_m12",
+    "responsavel_execucao": "Arthur Soares Parente (@ArthurDevWorks)",
+    "modo_auditoria_m13": "Avaliação individual consolidada pelo executor responsável",
+    "observacao_metodologica": "Os cenários C2.1, C2.2 e C3.3 exercitam validações reais de DiarioApiController::canGetMatriculas() (validatesCanChangeDiarioForAno e validatesPresenceOfMatriculaIdOrComponenteCurricularId) via GET (resource=matriculas&oper=get); por ser endpoint de consulta, delta=0 no banco decorre por construção do caráter somente leitura dessa operação."
   },
-  "data_apuracao": "2026-11-14T19:05:54.139859+00:00",
+  "data_apuracao": "2026-11-16T00:24:08.229970+00:00",
   "alvo_produto": "i-educar-src",
   "capturas_dir": "evidencias/g4_interacao_uso/capturas_m12",
   "capturas_verificadas": 12,
@@ -56,8 +57,7 @@
       "resultado": "Refutada"
     },
     "avaliadores": [
-      "Gabriel Barbaceli (@Nibaacriba)",
-      "Ítalo Sampaio (@ItaloSamP)"
+      "Arthur Soares Parente (@ArthurDevWorks)"
     ]
   },
   "itens": [

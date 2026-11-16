@@ -42,7 +42,7 @@ hide:
 <a class="gh-item" href="fase-1/"><small>E1 · Concluída · ISO/IEC 25010 e ODS 4/16</small><span>Fase 1: Estabelecer os requisitos</span></a>
 <a class="gh-item" href="fase-2/"><small>E1 · Concluída · 4 Objetivos · 17 Linhas · 3 Gates</small><span>Fase 2: Especificar a avaliação (GQM)</span></a>
 <a class="gh-item" href="fase-3/"><small>E1 · Concluída · Docker, Scripts e TCLE</small><span>Fase 3: Projetar a avaliação</span></a>
-<a class="gh-item" href="fase-4/"><small>E2 · Em execução · Coleta M1–M15 e Parecer IQM</small><span>Fases 4 e 5: Executar e concluir a avaliação</span></a>
+<a class="gh-item" href="fase-4/"><small>E2 · Concluída · Coleta M1–M15, Melhoria #56 e Parecer IQM</small><span>Fases 4 e 5: Executar e concluir a avaliação</span></a>
 </div>
 </div>
 
@@ -52,9 +52,9 @@ hide:
 <a class="gh-item" href="gestao/"><small>Ciclo Planejar · Medir · Avaliar e Decidir</small><span>Visão geral da gestão</span></a>
 <a class="gh-item" href="gestao/planejamento/"><small>Milestones M0 a M6 · Trilhas A–F</small><span>Planejamento de marcos e sprints</span></a>
 <a class="gh-item" href="gestao/plano-de-medicao/"><small>Fichas do Modelo de Informação (Aula 09)</small><span>Plano de medição do PSM</span></a>
-<a class="gh-item" href="indicadores_psm/"><small>TCM · ACM · VEC · TRCD automatizados</small><span>Painel de indicadores PSM/CID</span></a>
-<a class="gh-item" href="gestao/horas-custos/"><small>Critério AG-C5 · 72h · R$ 3.600,00 · 100%</small><span>Horas, custos e esforço</span></a>
-<a class="gh-item" href="gestao/registro-de-medicoes/"><small>Valores, interpretações e decisões E1 → E2</small><span>Registro de medições e decisões</span></a>
+<a class="gh-item" href="indicadores_psm/"><small>TCM · ACM · TRCD automatizados</small><span>Painel de indicadores PSM/CID</span></a>
+<a class="gh-item" href="gestao/horas-custos/"><small>Critério AG-C5 · E1+E2 (144h plan. / 126h realizadas)</small><span>Horas, custos e esforço</span></a>
+<a class="gh-item" href="gestao/registro-de-medicoes/"><small>Medições 1, 2 e 3 (Auditoria Entrega 2)</small><span>Registro de medições e decisões</span></a>
 </div>
 </div>
 
@@ -64,7 +64,7 @@ hide:
 <a class="gh-item" href="sobre/grace-hopper/"><small>História e legado na computação</small><span>Quem foi Grace Hopper</span></a>
 <a class="gh-item" href="sobre/equipe/"><small>6 integrantes · Papéis e contribuições</small><span>Equipe avaliadora</span></a>
 <a class="gh-item" href="sobre/retrospectiva-1/"><small>Lições aprendidas e plano de ação</small><span>Retrospectiva da Entrega 1</span></a>
-<a class="gh-item" href="entregaveis/"><small>Artigo IEEE, Apresentação PC1 e Relatórios</small><span>Central de entregáveis e releases</span></a>
+<a class="gh-item" href="entregaveis/"><small>Artigo IEEE, Apresentações PC1/PC2 e Relatórios</small><span>Central de entregáveis e releases</span></a>
 <a class="gh-item" href="painel_projeto/"><small>Consulta direta à API do GitHub</small><span>Painel de issues em tempo real</span></a>
 <a class="gh-item" href="https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER" target="_blank" rel="noopener"><small>Código, scripts e evidências</small><span>Repositório no GitHub</span></a>
 </div>

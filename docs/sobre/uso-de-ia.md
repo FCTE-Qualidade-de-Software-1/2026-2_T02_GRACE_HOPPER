@@ -15,45 +15,45 @@ Em cumprimento às diretrizes de integridade e transparência acadêmica da disc
 | :--- | :--- | :---: | :--- |
 | **OpenCode** | Apoio ao desenvolvimento da GitPage e preparação de alterações na documentação com agentes organizados por tarefa | Out. 2026 | Sugestões revisadas e adaptadas ao contexto do projeto antes da implementação; todas as decisões metodológicas permaneceram sob responsabilidade da equipe. |
 | **Claude** | Refinamento textual da GitPage, identificação de inconsistências terminológicas entre seções e revisão de clareza da escrita | Out. 2026 | Sugestões examinadas manualmente frente às definições do grupo; revisão humana integral do conteúdo publicado. |
-| **GitHub Copilot** | Ajustes de estruturação HTML/CSS da GitPage, refinamento dos slides da apresentação PC1 e apoio na redação do manuscrito no VS Code | Out. 2026 | A ferramenta não executou a avaliação do i-Educar nem gerou resultados experimentais. Alterações revisadas contra o framework GQM e os registros do GitHub. |
-| **Gemini e Codex** | Estruturação e modularização da GitPage, formatação de equações em LaTeX/MathJax, scripts de automação e conferência de aderência às rubricas | Out.–Nov. 2026 | Conferência manual das fórmulas, pesos, limiares e referências normativas ISO/IEC pela equipe; o apoio não substitui a leitura das fontes primárias. |
+| **GitHub Copilot** | Ajustes de estruturação HTML/CSS da GitPage, refinamento dos slides da apresentação PC1/PC2 e apoio na redação do manuscrito no VS Code | Out.–Nov. 2026 | A ferramenta não executou a avaliação do i-Educar nem gerou resultados experimentais. Alterações revisadas contra o framework GQM e os registros do GitHub. |
+| **Gemini, Claude e Codex** | Estruturação da GitPage, formatação de equações em LaTeX/MathJax, apoio à codificação dos scripts coletores (`scripts/avaliacao/`, `scripts/evaluate-quality.php`), geração dos slides PC2 e conferência das memórias de cálculo da Fase 5 | Out.–Nov. 2026 | Conferência manual das fórmulas, pesos, limiares, saídas brutas em `evidencias/` e referências normativas ISO/IEC pela equipe; nenhum dado de medição foi sintetizado ou arbitrado por IA. |
 
-*Fonte: Registro do projeto e seção de Declaração de Uso de IA do artigo científico da Entrega 1.*
+*Fonte: Registro do projeto e declarações das Entregas 1 e 2.*
 
 ---
 
-## 2. Declaração Individual por Integrante
+## 2. Declaração Individual por Integrante (Entregas 1 e 2)
 
-Abaixo estão discriminadas as frentes de trabalho de cada membro e a forma como as ferramentas de apoio foram utilizadas e supervisionadas:
+Abaixo estão discriminadas as frentes de trabalho de cada membro nas Entregas 1 e 2 e a forma como as ferramentas de apoio foram utilizadas e supervisionadas:
 
 ### 2.1. Arthur Soares Parente (`23/2036770`)
-- **Participação no trabalho:** Infraestrutura do repositório, automação e arquitetura da GitPage; formulação matemática dos limiares e regras de decisão; planejamento do ambiente Docker, do motor de análise estática PHP e do protocolo experimental de usabilidade (TCLE); auditoria preventiva das rubricas e publicação da Release E1 (Issues `#01`, `#09`, `#10`, `#11`, `#12`, `#15`, `#16` e `#18`).
+- **Participação no trabalho:** Na Entrega 1, infraestrutura do repositório, automação da GitPage, limiares, planejamento Docker/AST/TCLE e Release E1 (Issues `#01`, `#09`, `#10`, `#11`, `#12`, `#15`, `#16` e `#18`). Na Entrega 2, medição de acoplamento (`M8 — DSPM`), fricção legado-moderno (`M9 — IFDL`), testes ativos com asserção (`M11 — TTAE`), proteção contra erros do usuário (`Gate M12 — IPPE`) e autodescritividade de mensagens (`M13 — ADMV`) (Issues `#44` e `#45`, PR `#55`).
 - **Ferramentas utilizadas:** Gemini e Codex.
-- **Apoio de IA e revisão humana:** Apoio na estruturação e automação das páginas em MkDocs Material, estilização CSS, conferência de consistência das especificações do ambiente Docker e auditoria documental frente às rubricas. Todas as configurações, scripts e fórmulas foram testados e validados localmente antes do commit.
+- **Apoio de IA e revisão humana:** Apoio na automação dos scripts de extração estática e de submissão dos 12 cenários negativos contra o container do i-Educar, além da formatação dos relatórios em Markdown. Todas as consultas SQL, capturas HTTP e contagens de JUnit XML foram verificadas manualmente.
 
 ### 2.2. Fábio Santos Araujo (`22/2022082`)
-- **Participação no trabalho:** Elaboração e estruturação do artigo científico no template IEEE, preparação dos slides da apresentação do Ponto de Controle 1 e melhorias na apresentação visual da GitPage (Issues `#13`, `#14` e `#18`).
-- **Ferramenta utilizada:** GitHub Copilot.
-- **Apoio de IA e revisão humana:** Auxílio em ajustes de HTML/CSS da GitPage, refinamento da estrutura de slides e revisão de clareza no artigo em LaTeX. Todas as tabelas e citações foram conferidas manualmente contra os documentos-fonte da equipe.
+- **Participação no trabalho:** Na Entrega 1, estruturação do artigo científico no template IEEE, apresentação de slides PC1 e melhorias na GitPage (Issues `#13`, `#14` e `#18`). Na Entrega 2, consolidação da Fase 5 (cálculo dos índices $\text{IQC}_k$, análise do status suspenso de $\text{IQM}$ e cenários de sensibilidade, verificação dos Gates Binários, enquadramento de release e parecer técnico por stakeholder), elaboração da apresentação final PC2 (`apresentacao_pc2.pptx` e `apresentacao_pc2.pdf`), auditoria de horas e custos PSM/CID (`Medição 3`) e preparação da Release E2 (`v2.0.0-pc2`) (Issues `#47` e `#49`).
+- **Ferramentas utilizadas:** GitHub Copilot e Gemini (Antigravity).
+- **Apoio de IA e revisão humana:** Apoio na conferência algébrica das memórias de cálculo de $\text{IQC}_k$ e $\text{IQM}$, geração programática dos slides PC2 (`python-pptx` e PDF) e reconciliação automatizada de metadados das issues via GitHub CLI. Todos os números, equações e pareceres foram auditados contra as evidências brutas da Fase 4.
 
 ### 2.3. Gabriel Barbaceli (`21/1045122`)
-- **Participação no trabalho:** Definição do propósito e uso pretendido da avaliação, matriz de priorização ($C = I \times R$), especificação GQM de Compatibilidade (`G1`) e de Capacidade de Interação/Qualidade em Uso (`G4`), e sincronização do quadro de integrantes (Issues `#05`, `#08`, `#17` e `#19`).
+- **Participação no trabalho:** Na Entrega 1, definição do propósito, matriz de priorização ($C = I \times R$), especificação GQM de `G1` e `G4` e quadro de integrantes (Issues `#05`, `#08`, `#17` e `#19`). Na Entrega 2, evolução e execução do motor estático AST (`M7a`, `M7b`, `M10`), formalização da regra de contingência para `M14a/b` e `M15` e execução da Ação de Melhoria sobre `getSituacaoNotas` com 50.000 testes de equivalência (Issues `#43`, `#46` e `#56`, PRs `#53` e `#57`).
 - **Ferramenta utilizada:** Claude.
-- **Apoio de IA e revisão humana:** Refinamento da redação técnica na GitPage, detecção de eventuais divergências entre tabelas e revisão gramatical. As métricas, hipóteses e limiares foram definidos e validados pelo autor.
+- **Apoio de IA e revisão humana:** Apoio na escrita do parser AST em PHP, do arnês de teste diferencial de equivalência e na redação técnica dos relatórios da GitPage. O patch de refatoração e os resultados de equivalência foram integralmente validados por execução real.
 
 ### 2.4. Gustavo Silva Rodrigues (`23/2036887`)
-- **Participação no trabalho:** Adaptação do modelo de qualidade da ISO/IEC 25010:2023, delimitação do escopo da avaliação e coautoria/revisão do artigo científico em LaTeX (Issues `#04` e `#13`).
+- **Participação no trabalho:** Na Entrega 1, adaptação do modelo ISO/IEC 25010:2023, delimitação do escopo e coautoria do artigo (Issues `#04` e `#13`). Na Entrega 2, construção do manifesto congelado de 30 cenários do oráculo pedagógico e execução da bateria determinística do `Gate M3 (DCNM = 100%)` sobre `Boletim.php`, além da consolidação do Artigo v2 (Issues `#40` e `#48`, PR `#54`).
 - **Ferramentas utilizadas:** Gemini e Codex.
-- **Apoio de IA e revisão humana:** Apoio à estruturação do artigo em LaTeX, formatação tipográfica de equações e verificação de consistência terminológica da edição 2023 da ISO/IEC 25010. Todo o conteúdo foi confrontado com o escopo real do i-Educar.
+- **Apoio de IA e revisão humana:** Apoio na estruturação do runner de testes PHPUnit do oráculo (`M3OracleTest.php`), consolidação dos logs JSON/JUnit e formatação em LaTeX. Todas as regras pedagógicas e asserções foram conferidas sobre o código-fonte do i-Educar 2.12.
 
 ### 2.5. Ítalo Alves Sampaio de Oliveira (`23/2037937`)
-- **Participação no trabalho:** Contextualização do i-Educar e mapeamento da arquitetura híbrida; identificação das partes interessadas e alinhamento aos ODS 4 e 16; especificação GQM de Confiabilidade (`G2`) e Manutenibilidade (`G3`) (Issues `#02`, `#03`, `#06` e `#07`).
-- **Ferramenta utilizada:** OpenCode (com agentes organizados por tarefa).
-- **Apoio de IA e revisão humana:** Auxílio na organização dos arquivos de documentação da GitPage e formatação das árvores e tabelas GQM. Ítalo revisou todas as sugestões contra a base de código do `portabilis/i-educar`.
+- **Participação no trabalho:** Na Entrega 1, contextualização arquitetural do i-Educar, mapeamento de stakeholders, ODS 4/16 e GQM de `G2` e `G3` (Issues `#02`, `#03`, `#06` e `#07`). Na Entrega 2, provisionamento do ambiente Docker do i-Educar 2.12, ensaio de coexistência de instâncias (`M1 — TINCR = 100%`) e validação contratual JSON Schema dos 10 endpoints REST (`M2 — CEI = 90%`) (Issues `#38` e `#39`, PR `#52`).
+- **Ferramentas utilizadas:** OpenCode e Claude.
+- **Apoio de IA e revisão humana:** Auxílio na elaboração dos scripts `m1_coexistencia.sh` e `m2_cei.py`, derivação dos JSON Schemas a partir dos controllers e documentação das ameaças à validade. Todos os testes foram executados em containers reais e auditados pelo autor.
 
 ### 2.6. Ricardo Lucas Winchello Vieira Branco (`22/1008409`)
-- **Participação no trabalho:** Revisão técnica cruzada da GitPage e validação de conformidade do artigo científico frente aos critérios de avaliação da disciplina.
-- **Supervisão e revisão humana:** Conferência independente de links, numeração de tabelas/figuras, somas percentuais de esforço e aderência entre os números reportados na GitPage e no PDF do artigo.
+- **Participação no trabalho:** Na Entrega 1, revisão técnica cruzada da GitPage e validação do artigo frente às rubricas da disciplina. Na Entrega 2, designado para a trilha de confiabilidade complementar (`Issues #41` e `#42`) e revisão de conformidade documental.
+- **Supervisão e revisão humana:** Conferência independente de links, numeração de tabelas/figuras, somas percentuais de esforço e aderência entre os números reportados na GitPage e nas apresentações.
 
 ---
 

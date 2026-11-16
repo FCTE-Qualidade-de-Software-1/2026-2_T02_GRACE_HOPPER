@@ -1,11 +1,11 @@
 {
     "instrumento": {
         "nome": "scripts/evaluate-quality.php",
-        "versao": "3.0.0",
-        "php": "8.2.17",
+        "versao": "2.0.0",
+        "php": "8.3.6",
         "tokenizador": "token_get_all (TOKEN_PARSE)"
     },
-    "timestamp": "2026-11-14T18:50:59+00:00",
+    "timestamp": "2026-11-14T19:08:13+00:00",
     "commit": "7903a3efc7689942ee700007f86ed581023aad27",
     "status": "executado",
     "manifesto": [
@@ -27,8 +27,8 @@
         "threshold_excellent": "<= 10",
         "threshold_critical": "> 20",
         "status": "Coletado (Fase 4)",
-        "n": 213,
-        "posto": 192,
+        "n": 221,
+        "posto": 199,
         "S": 4,
         "faixa": "Excelente",
         "hipotese": {
@@ -40,13 +40,16 @@
     "M7b_CC_MAX": {
         "name": "Complexidade Ciclomática Máxima",
         "symbol": "CC_max",
-        "value": 72,
+        "value": 30,
         "threshold_excellent": "<= 15",
         "threshold_critical": "> 50",
         "status": "Coletado (Fase 4)",
-        "n": 213,
-        "S": 1,
-        "faixa": "Crítico"
+        "n": 221,
+        "simbolos_no_maximo": [
+            "ieducar/modules/Avaliacao/Service/Boletim.php :: Avaliacao_Service_Boletim::getSituacaoFaltas"
+        ],
+        "S": 3,
+        "faixa": "Bom"
     },
     "inventario": [
         {
@@ -1030,515 +1033,571 @@
             "linha_fim": 888
         },
         {
-            "cc": 72,
+            "cc": 15,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::getSituacaoNotas",
             "linha_inicio": 937,
-            "linha_fim": 1167
+            "linha_fim": 1047
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_idsDisciplinasNaoReprovativas",
+            "linha_inicio": 1054,
+            "linha_fim": 1063
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_situacaoNotasPorMediaGeral",
+            "linha_inicio": 1071,
+            "linha_fim": 1091
+        },
+        {
+            "cc": 12,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_situacaoPorMediaGeral",
+            "linha_inicio": 1098,
+            "linha_fim": 1123
+        },
+        {
+            "cc": 7,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_lancamentoNotasIncompleto",
+            "linha_inicio": 1130,
+            "linha_fim": 1155
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_situacaoComponenteProgressaoContinuada",
+            "linha_inicio": 1162,
+            "linha_fim": 1175
+        },
+        {
+            "cc": 17,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_situacaoComponentePorNota",
+            "linha_inicio": 1184,
+            "linha_fim": 1229
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_reprovadoPelaPrevisaoDeRecuperacao",
+            "linha_inicio": 1237,
+            "linha_fim": 1250
+        },
+        {
+            "cc": 6,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_ajustarSituacaoGeralNotas",
+            "linha_inicio": 1258,
+            "linha_fim": 1274
         },
         {
             "cc": 30,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::getSituacaoFaltas",
-            "linha_inicio": 1215,
-            "linha_fim": 1434
+            "linha_inicio": 1322,
+            "linha_fim": 1541
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::regraNaoPermiteReprovarFalta",
-            "linha_inicio": 1442,
-            "linha_fim": 1446
+            "linha_inicio": 1549,
+            "linha_fim": 1553
         },
         {
             "cc": 7,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::calculaEtapaNotasAglutinada",
-            "linha_inicio": 1451,
-            "linha_fim": 1471
+            "linha_inicio": 1558,
+            "linha_fim": 1578
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::exibeSituacao",
-            "linha_inicio": 1473,
-            "linha_fim": 1476
+            "linha_inicio": 1580,
+            "linha_fim": 1583
         },
         {
             "cc": 3,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::exibeNotaNecessariaExame",
-            "linha_inicio": 1478,
-            "linha_fim": 1483
+            "linha_inicio": 1585,
+            "linha_fim": 1590
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::valorMediaSituacao",
-            "linha_inicio": 1491,
-            "linha_fim": 1497
+            "linha_inicio": 1598,
+            "linha_fim": 1604
         },
         {
             "cc": 8,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::getSituacaoComponentesCurriculares",
-            "linha_inicio": 1542,
-            "linha_fim": 1583
+            "linha_inicio": 1649,
+            "linha_fim": 1690
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::getCurricularComponentSituation",
-            "linha_inicio": 1593,
-            "linha_fim": 1596
+            "linha_inicio": 1700,
+            "linha_fim": 1703
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_situacaoPrioritaria",
-            "linha_inicio": 1605,
-            "linha_fim": 1608
+            "linha_inicio": 1712,
+            "linha_fim": 1715
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_createNotaAluno",
-            "linha_inicio": 1617,
-            "linha_fim": 1623
-        },
-        {
-            "cc": 2,
-            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
-            "simbolo": "Avaliacao_Service_Boletim::_hasNotaComponente",
-            "linha_inicio": 1632,
-            "linha_fim": 1641
-        },
-        {
-            "cc": 2,
-            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
-            "simbolo": "Avaliacao_Service_Boletim::_hasNotaGeral",
-            "linha_inicio": 1649,
-            "linha_fim": 1658
-        },
-        {
-            "cc": 4,
-            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
-            "simbolo": "Avaliacao_Service_Boletim::_getNotaIdEtapa",
-            "linha_inicio": 1667,
-            "linha_fim": 1684
-        },
-        {
-            "cc": 3,
-            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
-            "simbolo": "Avaliacao_Service_Boletim::_getNotaGeralIdEtapa",
-            "linha_inicio": 1689,
-            "linha_fim": 1700
-        },
-        {
-            "cc": 2,
-            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
-            "simbolo": "Avaliacao_Service_Boletim::hasFaltaAluno",
-            "linha_inicio": 1707,
-            "linha_fim": 1714
-        },
-        {
-            "cc": 1,
-            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
-            "simbolo": "Avaliacao_Service_Boletim::_createFaltaAluno",
-            "linha_inicio": 1723,
+            "linha_inicio": 1724,
             "linha_fim": 1730
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasNotaComponente",
+            "linha_inicio": 1739,
+            "linha_fim": 1748
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasNotaGeral",
+            "linha_inicio": 1756,
+            "linha_fim": 1765
+        },
+        {
+            "cc": 4,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_getNotaIdEtapa",
+            "linha_inicio": 1774,
+            "linha_fim": 1791
+        },
+        {
+            "cc": 3,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_getNotaGeralIdEtapa",
+            "linha_inicio": 1796,
+            "linha_fim": 1807
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::hasFaltaAluno",
+            "linha_inicio": 1814,
+            "linha_fim": 1821
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_createFaltaAluno",
+            "linha_inicio": 1830,
+            "linha_fim": 1837
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_hasFaltaGeral",
-            "linha_inicio": 1738,
-            "linha_fim": 1747
+            "linha_inicio": 1845,
+            "linha_fim": 1854
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_hasFaltaComponente",
-            "linha_inicio": 1756,
-            "linha_fim": 1765
+            "linha_inicio": 1863,
+            "linha_fim": 1872
         },
         {
             "cc": 9,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_getFaltaIdEtapa",
-            "linha_inicio": 1774,
-            "linha_fim": 1806
+            "linha_inicio": 1881,
+            "linha_fim": 1913
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::hasParecerDescritivoAluno",
-            "linha_inicio": 1813,
-            "linha_fim": 1820
-        },
-        {
-            "cc": 1,
-            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
-            "simbolo": "Avaliacao_Service_Boletim::_createParecerDescritivoAluno",
-            "linha_inicio": 1829,
-            "linha_fim": 1836
-        },
-        {
-            "cc": 2,
-            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
-            "simbolo": "Avaliacao_Service_Boletim::addNotas",
-            "linha_inicio": 1844,
-            "linha_fim": 1851
-        },
-        {
-            "cc": 2,
-            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
-            "simbolo": "Avaliacao_Service_Boletim::_hasParecerComponente",
-            "linha_inicio": 1860,
-            "linha_fim": 1869
-        },
-        {
-            "cc": 2,
-            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
-            "simbolo": "Avaliacao_Service_Boletim::_hasParecerGeral",
-            "linha_inicio": 1877,
-            "linha_fim": 1884
-        },
-        {
-            "cc": 7,
-            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
-            "simbolo": "Avaliacao_Service_Boletim::_getParecerIdEtapa",
-            "linha_inicio": 1893,
+            "linha_inicio": 1920,
             "linha_fim": 1927
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_createParecerDescritivoAluno",
+            "linha_inicio": 1936,
+            "linha_fim": 1943
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::addNotas",
+            "linha_inicio": 1951,
+            "linha_fim": 1958
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasParecerComponente",
+            "linha_inicio": 1967,
+            "linha_fim": 1976
+        },
+        {
+            "cc": 2,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_hasParecerGeral",
+            "linha_inicio": 1984,
+            "linha_fim": 1991
+        },
+        {
+            "cc": 7,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
+            "simbolo": "Avaliacao_Service_Boletim::_getParecerIdEtapa",
+            "linha_inicio": 2000,
+            "linha_fim": 2034
+        },
+        {
+            "cc": 1,
+            "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::addNota",
-            "linha_inicio": 1935,
-            "linha_fim": 1945
+            "linha_inicio": 2042,
+            "linha_fim": 2052
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::addNotaGeral",
-            "linha_inicio": 1950,
-            "linha_fim": 1959
+            "linha_inicio": 2057,
+            "linha_fim": 2066
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::addFaltas",
-            "linha_inicio": 1967,
-            "linha_fim": 1974
+            "linha_inicio": 2074,
+            "linha_fim": 2081
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::addFalta",
-            "linha_inicio": 1982,
-            "linha_fim": 1991
+            "linha_inicio": 2089,
+            "linha_fim": 2098
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::addPareceres",
-            "linha_inicio": 2000,
-            "linha_fim": 2007
+            "linha_inicio": 2107,
+            "linha_fim": 2114
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::addParecer",
-            "linha_inicio": 2016,
-            "linha_fim": 2024
+            "linha_inicio": 2123,
+            "linha_fim": 2131
         },
         {
             "cc": 4,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_addValidators",
-            "linha_inicio": 2038,
-            "linha_fim": 2071
+            "linha_inicio": 2145,
+            "linha_fim": 2178
         },
         {
             "cc": 6,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_addParecerValidators",
-            "linha_inicio": 2083,
-            "linha_fim": 2137
+            "linha_inicio": 2190,
+            "linha_fim": 2244
         },
         {
             "cc": 11,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_updateEtapa",
-            "linha_inicio": 2145,
-            "linha_fim": 2194
+            "linha_inicio": 2252,
+            "linha_fim": 2301
         },
         {
             "cc": 11,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_updateParecerEtapa",
-            "linha_inicio": 2203,
-            "linha_fim": 2276
+            "linha_inicio": 2310,
+            "linha_fim": 2383
         },
         {
             "cc": 5,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::arredondaNota",
-            "linha_inicio": 2286,
-            "linha_fim": 2306
+            "linha_inicio": 2393,
+            "linha_fim": 2413
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::regraUsaTipoNotaNumericaConceitual",
-            "linha_inicio": 2311,
-            "linha_fim": 2318
+            "linha_inicio": 2418,
+            "linha_fim": 2425
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::componenteUsaNotaConceitual",
-            "linha_inicio": 2323,
-            "linha_fim": 2333
+            "linha_inicio": 2430,
+            "linha_fim": 2440
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::usaTabelaArredondamentoConceitual",
-            "linha_inicio": 2338,
-            "linha_fim": 2341
+            "linha_inicio": 2445,
+            "linha_fim": 2448
         },
         {
             "cc": 5,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::arredondaMedia",
-            "linha_inicio": 2349,
-            "linha_fim": 2379
+            "linha_inicio": 2456,
+            "linha_fim": 2486
         },
         {
             "cc": 12,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::preverNotaRecuperacao",
-            "linha_inicio": 2388,
-            "linha_fim": 2456
+            "linha_inicio": 2495,
+            "linha_fim": 2563
         },
         {
             "cc": 16,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_calculateNotasRecuperacoesEspecificas",
-            "linha_inicio": 2464,
-            "linha_fim": 2534
+            "linha_inicio": 2571,
+            "linha_fim": 2641
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_calculateHoraFalta",
-            "linha_inicio": 2541,
-            "linha_fim": 2544
+            "linha_inicio": 2648,
+            "linha_fim": 2651
         },
         {
             "cc": 3,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_calculatePorcentagem",
-            "linha_inicio": 2555,
-            "linha_fim": 2567
+            "linha_inicio": 2662,
+            "linha_fim": 2674
         },
         {
             "cc": 3,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_calculaMedia",
-            "linha_inicio": 2576,
-            "linha_fim": 2585
+            "linha_inicio": 2683,
+            "linha_fim": 2692
         },
         {
             "cc": 3,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::save",
-            "linha_inicio": 2597,
-            "linha_fim": 2609
+            "linha_inicio": 2704,
+            "linha_fim": 2716
         },
         {
             "cc": 5,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::saveNotas",
-            "linha_inicio": 2618,
-            "linha_fim": 2645
+            "linha_inicio": 2725,
+            "linha_fim": 2752
         },
         {
             "cc": 4,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::saveFaltas",
-            "linha_inicio": 2655,
-            "linha_fim": 2676
+            "linha_inicio": 2762,
+            "linha_fim": 2783
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::savePareceres",
-            "linha_inicio": 2685,
-            "linha_fim": 2697
+            "linha_inicio": 2792,
+            "linha_fim": 2804
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::reloadComponentes",
-            "linha_inicio": 2702,
-            "linha_fim": 2717
+            "linha_inicio": 2809,
+            "linha_fim": 2824
         },
         {
             "cc": 28,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::promover",
-            "linha_inicio": 2731,
-            "linha_fim": 2821
+            "linha_inicio": 2838,
+            "linha_fim": 2928
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::unlockMediaComponente",
-            "linha_inicio": 2826,
-            "linha_fim": 2841
+            "linha_inicio": 2933,
+            "linha_fim": 2948
         },
         {
             "cc": 4,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::updateMediaComponente",
-            "linha_inicio": 2847,
-            "linha_fim": 2889
+            "linha_inicio": 2954,
+            "linha_fim": 2996
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::updateMediaGeral",
-            "linha_inicio": 2894,
-            "linha_fim": 2915
+            "linha_inicio": 3001,
+            "linha_fim": 3022
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::alterarSituacao",
-            "linha_inicio": 2920,
-            "linha_fim": 2923
+            "linha_inicio": 3027,
+            "linha_fim": 3030
         },
         {
             "cc": 26,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_updateNotaComponenteMedia",
-            "linha_inicio": 2928,
-            "linha_fim": 3113
+            "linha_inicio": 3035,
+            "linha_fim": 3220
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::_updateMatricula",
-            "linha_inicio": 3125,
-            "linha_fim": 3128
+            "linha_inicio": 3232,
+            "linha_fim": 3235
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::deleteNota",
-            "linha_inicio": 3135,
-            "linha_fim": 3148
+            "linha_inicio": 3242,
+            "linha_fim": 3255
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::deleteFalta",
-            "linha_inicio": 3155,
-            "linha_fim": 3161
+            "linha_inicio": 3262,
+            "linha_fim": 3268
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::deleteParecer",
-            "linha_inicio": 3168,
-            "linha_fim": 3174
+            "linha_inicio": 3275,
+            "linha_fim": 3281
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::deleteNotaGeral",
-            "linha_inicio": 3181,
-            "linha_fim": 3189
+            "linha_inicio": 3288,
+            "linha_fim": 3296
         },
         {
             "cc": 16,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::verificaNotasLancadasNasEtapasAnteriores",
-            "linha_inicio": 3202,
-            "linha_fim": 3303
+            "linha_inicio": 3309,
+            "linha_fim": 3410
         },
         {
             "cc": 8,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::verificaFaltasLancadasNasEtapasAnteriores",
-            "linha_inicio": 3315,
-            "linha_fim": 3350
+            "linha_inicio": 3422,
+            "linha_fim": 3457
         },
         {
             "cc": 2,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::getNotaAtual",
-            "linha_inicio": 3359,
-            "linha_fim": 3365
+            "linha_inicio": 3466,
+            "linha_fim": 3472
         },
         {
             "cc": 5,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::getFaltaAtual",
-            "linha_inicio": 3375,
-            "linha_fim": 3389
+            "linha_inicio": 3482,
+            "linha_fim": 3496
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::getRegrasRecuperacao",
-            "linha_inicio": 3399,
-            "linha_fim": 3402
+            "linha_inicio": 3506,
+            "linha_fim": 3509
         },
         {
             "cc": 1,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::getEvaluationRule",
-            "linha_inicio": 3407,
-            "linha_fim": 3416
+            "linha_inicio": 3514,
+            "linha_fim": 3523
         },
         {
             "cc": 5,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::calculateStageScore",
-            "linha_inicio": 3424,
-            "linha_fim": 3447
+            "linha_inicio": 3531,
+            "linha_fim": 3554
         },
         {
             "cc": 9,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::allowsApproveWithDependence",
-            "linha_inicio": 3457,
-            "linha_fim": 3499
+            "linha_inicio": 3564,
+            "linha_fim": 3606
         },
         {
             "cc": 4,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::getCargaHoraria",
-            "linha_inicio": 3501,
-            "linha_fim": 3517
+            "linha_inicio": 3608,
+            "linha_fim": 3624
         },
         {
             "cc": 4,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::getDiasLetivos",
-            "linha_inicio": 3519,
-            "linha_fim": 3535
+            "linha_inicio": 3626,
+            "linha_fim": 3642
         },
         {
             "cc": 3,
             "arquivo": "ieducar/modules/Avaliacao/Service/Boletim.php",
             "simbolo": "Avaliacao_Service_Boletim::getHoraFalta",
-            "linha_inicio": 3540,
-            "linha_fim": 3570
+            "linha_inicio": 3647,
+            "linha_fim": 3677
         }
     ]
 }

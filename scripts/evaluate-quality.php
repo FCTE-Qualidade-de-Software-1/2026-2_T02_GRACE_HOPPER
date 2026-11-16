@@ -153,58 +153,56 @@ final class AnalisadorCallables
         return ['callables' => $callables, 'excluidos' => $excluidos];
     }
 
-    /** Mede v(G), Halstead, LOC lógico e MI no intervalo de tokens do callable. */
-    private function medir(array $tokens, int $inicioAssinatura, int $inicioCorpo, int $fimCorpo): array
+    /** @return array<string,mixed> */
+    private function medir(array $tokens, int $inicio, int $inicioCorpo, int $fim): array
     {
         $cc = 1;
+        $lloc = 1; // a própria declaração do callable
+        $parenteses = 0;
         $operadores = [];
         $operandos = [];
-        $lloc = 1; // 1 para a linha de declaração da função
+        $anterior = null;
 
-        $parenteses = 0;
-        for ($i = $inicioCorpo; $i <= $fimCorpo; $i++) {
+        for ($i = $inicio; $i <= $fim; $i++) {
             $t = $tokens[$i];
             $id = is_array($t) ? $t[0] : null;
-
-            if ($t === '(') {
-                $parenteses++;
-            } elseif ($t === ')') {
-                $parenteses--;
-            }
-
-            // CC: pontos de decisão
-            if (is_array($t) && $id === T_MATCH) {
-                $cc += $this->bracosMatch($tokens, $i);
-            }
-            if (is_array($t) && in_array($id, self::TOKENS_DECISAO, true)) {
-                $cc++;
-            } elseif ($t === '?') {
-                // Ternário: não conta "?" de tipos anuláveis nem após ":"
-                if (!$this->anteriorSignificativo($tokens, $i, ['(', ',', ':'])) {
-                    $cc++;
-                }
-            }
-
-            // LOC lógico: instruções terminadas em ";" (fora de for) e estruturas de controle
-            if ($t === ';' && $parenteses === 0) {
-                $lloc++;
-            } elseif (is_array($t) && in_array($id, self::TOKENS_ESTRUTURA, true)) {
-                $lloc++;
-            }
-
-            // Halstead: operadores e operandos
-            if (in_array($id, self::TOKENS_IGNORADOS, true)) {
+            if ($id !== null && in_array($id, self::TOKENS_IGNORADOS, true)) {
                 continue;
             }
-            if (is_array($t) && in_array($id, self::TOKENS_OPERANDO, true)) {
-                $operandos[] = $t[1];
-            } else {
-                // Fechamentos de delimitadores não contam para não duplicar o operador
-                $chave = is_array($t) ? $t[1] : (string) $t;
-                if (!in_array($chave, [')', ']', '}'], true)) {
-                    $operadores[] = $chave;
+            $texto = is_array($t) ? $t[1] : $t;
+            $noCorpo = $i > $inicioCorpo;
+
+            // Halstead: parênteses, colchetes e chaves contam uma vez, na abertura.
+            if (!in_array($texto, [')', ']', '}'], true)) {
+                if ($id !== null && in_array($id, self::TOKENS_OPERANDO, true)) {
+                    $operandos[] = $texto;
+                } else {
+                    $operadores[] = $id !== null ? strtolower($texto) : $texto;
                 }
             }
+
+            if ($noCorpo) {
+                if ($id === T_MATCH) {
+                    $cc += $this->bracosMatch($tokens, $i);
+                }
+                if ($id !== null && in_array($id, self::TOKENS_DECISAO, true)) {
+                    $cc++;
+                } elseif ($texto === '?' && !in_array($anterior, ['(', ',', ':'], true)) {
+                    $cc++; // ternário; "?" após "(", "," ou ":" é tipo anulável
+                }
+
+                if ($texto === '(') {
+                    $parenteses++;
+                } elseif ($texto === ')') {
+                    $parenteses--;
+                } elseif ($texto === ';' && $parenteses === 0) {
+                    $lloc++;
+                }
+                if ($id !== null && in_array($id, self::TOKENS_ESTRUTURA, true)) {
+                    $lloc++;
+                }
+            }
+            $anterior = $texto;
         }
 
         $n1 = count(array_unique($operadores));
@@ -213,23 +211,20 @@ final class AnalisadorCallables
         $N2 = count($operandos);
         $vocabulario = $n1 + $n2;
         $comprimento = $N1 + $N2;
-        $hv = ($vocabulario > 0 && $comprimento > 0) ? $comprimento * log($vocabulario, 2) : 0.0;
+        $hv = $vocabulario > 1 ? $comprimento * log($vocabulario, 2) : 0.0;
 
         $mi = null;
         if ($hv > 0 && $lloc > 0) {
-            $bruto = (171.0 - 5.2 * log($hv) - 0.23 * $cc - 16.2 * log($lloc)) / 171.0 * 100.0;
+            $bruto = (171 - 5.2 * log($hv) - 0.23 * $cc - 16.2 * log($lloc)) / 171 * 100;
             $mi = min(100.0, max(0.0, $bruto));
         }
 
         return [
             'cc' => $cc,
-            'lloc' => $lloc,
-            'halstead' => [
-                'n1' => $n1, 'n2' => $n2, 'N1' => $N1, 'N2' => $N2,
-                'vocabulario' => $vocabulario, 'comprimento' => $comprimento,
-            ],
+            'halstead' => ['n1' => $n1, 'n2' => $n2, 'N1' => $N1, 'N2' => $N2],
             'hv' => round($hv, 4),
-            'mi' => $mi !== null ? round($mi, 4) : null,
+            'lloc' => $lloc,
+            'mi' => $mi === null ? null : round($mi, 4),
         ];
     }
 
@@ -1286,6 +1281,10 @@ final class QualityEvaluator
         $ccs = array_column($inventario, 'cc');
         $p90 = self::percentilPostoMaisProximo($ccs, 0.90);
         $max = max($ccs);
+        $empatados = array_values(array_map(
+            fn ($c) => $c['arquivo'] . ' :: ' . $c['simbolo'],
+            array_filter($inventario, fn ($c) => $c['cc'] === $max)
+        ));
         $semMi = array_values(array_filter($inventario, fn ($c) => $c['mi'] === null));
         $miMedio = $semMi ? null : array_sum(array_column($inventario, 'mi')) / $n;
 
@@ -1295,16 +1294,13 @@ final class QualityEvaluator
         ] + self::nivel('M7a', (float) $p90['valor']));
 
         $metricas['M7b_CC_MAX'] = array_merge($metricas['M7b_CC_MAX'], [
-            'value' => $max, 'n' => $n,
+            'value' => $max, 'n' => $n, 'simbolos_no_maximo' => $empatados,
             'status' => 'Coletado (Fase 4)',
         ] + self::nivel('M7b', (float) $max));
 
-        if ($miMedio !== null) {
-            $metricas['M10_MI'] = array_merge($metricas['M10_MI'], [
-                'value' => round($miMedio, 2), 'n' => $n,
-                'status' => 'Coletado (Fase 4)',
-            ] + self::nivel('M10', (float) $miMedio));
-        }
+        $metricas['M10_MI'] = array_merge($metricas['M10_MI'], $miMedio === null
+            ? ['value' => null, 'n' => $n, 'status' => 'Incompleto: ' . count($semMi) . ' callable(s) sem HV ou LOC válido']
+            : ['value' => round($miMedio, 2), 'n' => $n, 'status' => 'Coletado (Fase 4)'] + self::nivel('M10', (float) $miMedio));
 
         $metricas['M7a_CC_P90']['hipotese'] = ['id' => 'H3.1', 'criterio' => '10 < CC_P90 <= 20 e CC_max > 30',
             'resultado' => ($p90['valor'] > 10 && $p90['valor'] <= 20 && $max > 30) ? 'Confirmada' : 'Refutada'];
@@ -1358,7 +1354,7 @@ final class QualityEvaluator
     }
 
     /** Grava as evidências de Manutenibilidade previstas no plano de medição. */
-    public function gravarEvidencias(array $data, string $dir): void
+    public function gravarEvidencias(array $data, string $dir, string $scope = 'all'): void
     {
         if (!is_dir($dir) && !mkdir($dir, 0775, true)) {
             throw new RuntimeException("Não foi possível criar $dir");
@@ -1366,22 +1362,28 @@ final class QualityEvaluator
         $base = array_intersect_key($data, array_flip(['instrumento', 'timestamp', 'commit', 'status', 'manifesto', 'excluidos']));
         $opcoes = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
 
-        // M7
-        $m7 = $base + [
-            'regras' => array_intersect_key($data['regras'], array_flip(['unidade', 'cc', 'p90'])),
-            'M7a_CC_P90' => $data['metrics']['M7a_CC_P90'],
-            'M7b_CC_MAX' => $data['metrics']['M7b_CC_MAX'],
-            'inventario' => array_map(fn ($c) => array_intersect_key($c, array_flip(['arquivo', 'simbolo', 'linha_inicio', 'linha_fim', 'cc'])), $data['inventario']),
-        ];
-        file_put_contents("$dir/m7_complexidade.json", json_encode($m7, $opcoes) . PHP_EOL);
+        if ($scope === 'all' || $scope === 'm7-m10') {
+            // M7
+            $m7 = $base + [
+                'regras' => array_intersect_key($data['regras'], array_flip(['unidade', 'cc', 'p90'])),
+                'M7a_CC_P90' => $data['metrics']['M7a_CC_P90'],
+                'M7b_CC_MAX' => $data['metrics']['M7b_CC_MAX'],
+                'inventario' => array_map(fn ($c) => array_intersect_key($c, array_flip(['arquivo', 'simbolo', 'linha_inicio', 'linha_fim', 'cc'])), $data['inventario']),
+            ];
+            file_put_contents("$dir/m7_complexidade.json", json_encode($m7, $opcoes) . PHP_EOL);
 
-        // M10
-        $m10 = $base + [
-            'regras' => array_intersect_key($data['regras'], array_flip(['unidade', 'cc', 'halstead', 'lloc', 'mi'])),
-            'M10_MI' => $data['metrics']['M10_MI'],
-            'inventario' => array_map(fn ($c) => array_intersect_key($c, array_flip(['arquivo', 'simbolo', 'linha_inicio', 'linha_fim', 'cc', 'halstead', 'hv', 'lloc', 'mi'])), $data['inventario']),
-        ];
-        file_put_contents("$dir/m10_mi.json", json_encode($m10, $opcoes) . PHP_EOL);
+            // M10
+            $m10 = $base + [
+                'regras' => array_intersect_key($data['regras'], array_flip(['unidade', 'cc', 'halstead', 'lloc', 'mi'])),
+                'M10_MI' => $data['metrics']['M10_MI'],
+                'inventario' => array_map(fn ($c) => array_intersect_key($c, array_flip(['arquivo', 'simbolo', 'linha_inicio', 'linha_fim', 'cc', 'halstead', 'hv', 'lloc', 'mi'])), $data['inventario']),
+            ];
+            file_put_contents("$dir/m10_mi.json", json_encode($m10, $opcoes) . PHP_EOL);
+        }
+
+        if ($scope === 'm7-m10') {
+            return;
+        }
 
         // M8 (DSPM)
         if (isset($data['detalhes_m8'])) {
@@ -1529,6 +1531,7 @@ if (PHP_SAPI === 'cli' && realpath($argv[0] ?? '') === __FILE__) {
     $path = '.';
     $commit = null;
     $evidencias = null;
+    $evidenceScope = 'all';
     $m11Junit = null;
 
     foreach (array_slice($argv, 1) as $arg) {
@@ -1540,6 +1543,8 @@ if (PHP_SAPI === 'cli' && realpath($argv[0] ?? '') === __FILE__) {
             $commit = substr($arg, 9);
         } elseif (str_starts_with($arg, '--evidence-dir=')) {
             $evidencias = substr($arg, 15);
+        } elseif (str_starts_with($arg, '--evidence-scope=')) {
+            $evidenceScope = substr($arg, 17);
         } elseif (str_starts_with($arg, '--m11-junit=')) {
             $m11Junit = substr($arg, 12);
         }
@@ -1548,7 +1553,7 @@ if (PHP_SAPI === 'cli' && realpath($argv[0] ?? '') === __FILE__) {
     $evaluator = new QualityEvaluator($path, $format, $commit, $m11Junit);
     $data = $evaluator->run();
     if ($evidencias !== null && $data['status'] === 'executado') {
-        $evaluator->gravarEvidencias($data, $evidencias);
+        $evaluator->gravarEvidencias($data, $evidencias, $evidenceScope);
     }
     $evaluator->render($data);
     exit(0);
