@@ -191,7 +191,7 @@ Universidade de Brasília (UnB)\\
 
 % ---------- Resumo e palavras-chave ----------
 \begin{abstract}
-Sistemas públicos de gestão escolar concentram registros de matrícula, enturmação, notas e menções que sustentam históricos escolares e o Censo Escolar. Este artigo apresenta o planejamento, a execução e os resultados da avaliação de qualidade da plataforma livre i-Educar (\texttt{branch 2.12}), delimitada aos módulos de Matrícula de Alunos e de Lançamento de Notas e Menções. A avaliação adota a ISO/IEC 25040:2024 como referência de processo e combina o modelo de produto da ISO/IEC 25010:2023 com a qualidade em uso da ISO/IEC 25019:2023. O recorte abrange Compatibilidade, Confiabilidade, Manutenibilidade e Capacidade de interação, complementadas por eficácia e eficiência em tarefas. A Fase 1 define propósito, partes interessadas, arquitetura, modelo adaptado, priorização, escopo e relação com os ODS 4 e 16. A Fase 2 aplica \textit{Goal-Question-Metric} (GQM): 4 objetivos, 14 questões com hipóteses verificáveis, 15 medições (famílias de métricas) e 17 linhas operacionais, incluindo três critérios eliminatórios para exatidão de notas, atomicidade transacional e proteção contra entradas inválidas. O acompanhamento do projeto utiliza medidas do \textit{Practical Software Measurement} (PSM/CID). Na execução, o cálculo de notas acertou 30 de 30 casos e o sistema bloqueou 12 de 12 entradas inválidas, mas o salvamento do boletim não é atômico (ITAE = 0\%), o que classifica os módulos na Classe C. A complexidade concentra-se no núcleo legado ($v(G)$ máximo de 72), e a ação de melhoria reduziu esse método para 15 com equivalência verificada em 50.000 cenários.
+Sistemas públicos de gestão escolar concentram registros de matrícula, enturmação, notas e menções que sustentam históricos escolares e o Censo Escolar. Este artigo apresenta o planejamento, a execução e os resultados da avaliação de qualidade da plataforma livre i-Educar (\texttt{branch 2.12}), delimitada aos módulos de Matrícula de Alunos e de Lançamento de Notas e Menções. A avaliação adota a ISO/IEC 25040:2024 como referência de processo e combina o modelo de produto da ISO/IEC 25010:2023 com a qualidade em uso da ISO/IEC 25019:2023. O recorte abrange Compatibilidade, Confiabilidade, Manutenibilidade e Capacidade de interação, complementadas por eficácia e eficiência em tarefas. A Fase 1 define propósito, partes interessadas, arquitetura, modelo adaptado, priorização, escopo e relação com os ODS 4 e 16. A Fase 2 aplica \textit{Goal-Question-Metric} (GQM): 4 objetivos, 14 questões com hipóteses verificáveis, 15 medições (famílias de métricas) e 17 linhas operacionais, incluindo três critérios eliminatórios para exatidão de notas, atomicidade transacional e proteção contra entradas inválidas. O acompanhamento do projeto utiliza medidas do \textit{Practical Software Measurement} (PSM/CID). Na execução, o cálculo de notas acertou 30 de 30 casos, o sistema bloqueou 12 de 12 entradas inválidas e as 6 restaurações de backup tiveram sucesso, mas o salvamento do boletim não é atômico (ITAE = 0\%), o que classifica os módulos na Classe C ($\text{IQM} = 2{,}83$). A complexidade concentra-se no núcleo legado ($v(G)$ máximo de 72), e a ação de melhoria reduziu esse método para 15 com equivalência verificada em 50.000 cenários.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -283,7 +283,7 @@ Registrar horas por integrante e issue para comparar execução e planejamento \
 \end{tabular}
 \end{table}
 
-Na Entrega 2, foram planejadas 13 issues (72h, R\$ 3.600,00 de cota). Até o fechamento deste texto, 11 foram executadas, somando 60h e R\$ 3.000,00; as issues de backup (M6) e do artigo permaneciam abertas. As horas realizadas continuam iguais às estimadas na maior parte das issues, o que mantém a limitação do VEC observada na Entrega 1.
+Na Entrega 2, foram planejadas 13 issues (72h, R\$ 3.600,00 de cota). Até o fechamento deste texto, 12 foram executadas, somando 66h e R\$ 3.300,00; apenas a issue do artigo permanecia aberta. As horas realizadas continuam iguais às estimadas na maior parte das issues, o que mantém a limitação do VEC observada na Entrega 1.
 
 \subsection{Rastreabilidade, aspectos éticos e limitações}\label{sec:limitacoes}
 A GitPage da equipe reúne a documentação da avaliação, incluindo o planejamento e o framework GQM~\cite{gracehopper_gqm,gracehopper_pc1}; o quadro Kanban está no GitHub Project da equipe~\cite{repo_gracehopper}. Para assegurar a rastreabilidade, cada medição deverá registrar a versão do produto, a versão do instrumento, o cenário, a data, o responsável e a evidência produzida.
@@ -546,7 +546,7 @@ Isolamento de variáveis/portas em subida de 2ª instância (M1) e contratos JSO
 Exportação do Educacenso/INEP (repositório externo) e integrações que exijam credenciais de produção \\
 \addlinespace[2pt]
 Banco e código-fonte &
-Oráculos (M3), transações (M4), restore de 3 esquemas (M6) e código/testes em \texttt{app/} e \texttt{ieducar/} (M7a--M11) &
+Oráculos (M3), transações (M4), backup completo do banco, verificado nos 3 esquemas (M6) e código/testes em \texttt{app/} e \texttt{ieducar/} (M7a--M11) &
 Terceiros em \texttt{vendor/}; estresse multi-município; coleta empírica de M5 caso não haja logs reais de produção \\
 \bottomrule
 \end{tabular}
@@ -888,7 +888,7 @@ M2 & 90\% (9/10 endpoints; E08 falha em C3) & 3 & H1.2 confirmada \\
 M3$^*$ & 100\% (30/30 casos; 457 asserções) & Gate & H2.1 confirmada \\
 M4$^*$ & 0\% (0/1 operação atômica) & Gate & H2.2 confirmada \\
 M5 & Não mensurável (D1--D5: 0 de 5 atendidos) & -- & (cláusula de M5 em H2.2) \\
-M6 & Não executada & -- & H2.3 não testada \\
+M6 & 100\% (6/6 restaurações) & 4 & H2.3 confirmada \\
 M7a & P90 = 8 & 4 & H3.1 refutada \\
 M7b & Máximo = 72 (\texttt{getSituacaoNotas}) & 1 & (H3.1: máximo $>$ 30) \\
 M8 & DSPM = 0,3784 & 2 & H3.2 confirmada \\
@@ -905,7 +905,7 @@ M14a/b, M15 & Não mensuráveis (política prévia) & -- & H4.3 e H4.4 não test
 
 \textbf{Compatibilidade.} As duas instâncias coexistiram sem colisão quando os 16 recursos foram parametrizados (M1 = 100\%). O \textit{compose} oficial, porém, fixa sete \texttt{container\_name} e impede uma segunda instância no mesmo \textit{host} (57,9\%). Em M2, nove dos dez endpoints cumpriram os contratos; o E08 do Diário responde 401 no formato do Laravel em vez do envelope legado usado pelo mesmo recurso.
 
-\textbf{Confiabilidade.} O cálculo de médias, recuperações e situações acertou os 30 casos do oráculo (M3 = 100\%). Já a injeção de falha entre \texttt{saveNotas()} e \texttt{saveFaltas()} em \texttt{Boletim::save()} deixou a nota gravada sem a falta correspondente: o método não usa transação e o chamador \texttt{trySaveServiceBoletim()} descarta \texttt{CoreExt\_Service\_Exception}. Com isso, ITAE = 0\% e o \textit{gate} M4 é reprovado. M5 não é mensurável sem telemetria de produção, e a M6 (backup e restauração) não foi executada nesta entrega.
+\textbf{Confiabilidade.} O cálculo de médias, recuperações e situações acertou os 30 casos do oráculo (M3 = 100\%). Já a injeção de falha entre \texttt{saveNotas()} e \texttt{saveFaltas()} em \texttt{Boletim::save()} deixou a nota gravada sem a falta correspondente: o método não usa transação e o chamador \texttt{trySaveServiceBoletim()} descarta \texttt{CoreExt\_Service\_Exception}. Com isso, ITAE = 0\% e o \textit{gate} M4 é reprovado. M5 não é mensurável sem telemetria de produção, Na M6, as seis restaurações planejadas (formatos \textit{custom}, SQL, diretório, \texttt{--clean}, só esquema e só dados) recuperaram as tuplas e as chaves estrangeiras dos três esquemas (CVPB = 100\%). O backup só funcionou com o banco completo, pois os três esquemas dependem de funções de auditoria em \texttt{public} e do esquema \texttt{portal}, e a restauração somente de dados exigiu desativar os gatilhos de auditoria.
 
 \textbf{Manutenibilidade.} A complexidade é baixa na maior parte do código (93,4\% dos \textit{callables} com $v(G) \le 10$), mas se concentra no núcleo legado: \texttt{getSituacaoNotas} tem $v(G) = 72$ e $\text{MI}_m = 16{,}9$. Os modelos \texttt{Legacy*} acumulam em média 4,56 adaptações defensivas, e o componente de modelos de domínio está na ``zona de dor'' de Martin ($A = 0$, $I = 0$). Os 39 testes suprimidos estão todos em \texttt{tests/Unit/Modules/Service/}, justamente os serviços de boletim e faltas.
 
@@ -913,11 +913,11 @@ M14a/b, M15 & Não mensuráveis (política prévia) & -- & H4.3 e H4.4 não test
 
 \subsection{Julgamento da avaliação}\label{sec:julgamento}
 
-Na Etapa~1, M3 e M12 atingiram 100\%, mas M4 foi reprovado, o que determina \textbf{Classe C} pela regra não compensatória. Na Etapa~2, $\text{IQC}_{\text{Comp}} = (4 + 3)/2 = 3{,}50$; $\text{IQC}_{\text{Manut}} = 13{,}2/6{,}0 = 2{,}20$; e $\text{IQC}_{\text{Inter/Uso}} = (4 \times 2{,}0 + 1 \times 0{,}8)/2{,}8 = 3{,}14$, com a renormalização prévia. Como a M6 não tem dados nem política de exclusão, $\text{IQC}_{\text{Conf}}$ e o $\text{IQM}$ ficam \textbf{não calculáveis}, conforme a Seção~\ref{sec:fase2}. Independentemente disso, $\text{IQC}_{\text{Manut}} < 2{,}5$ também levaria à Classe C. Das 14 hipóteses, 8 foram confirmadas, 3 refutadas (H3.1, H3.3 e H4.2) e 3 não testadas (H2.3, H4.3 e H4.4).
+Na Etapa~1, M3 e M12 atingiram 100\%, mas M4 foi reprovado, o que determina \textbf{Classe C} pela regra não compensatória. Na Etapa~2, $\text{IQC}_{\text{Comp}} = (4 + 3)/2 = 3{,}50$; $\text{IQC}_{\text{Manut}} = 13{,}2/6{,}0 = 2{,}20$; e $\text{IQC}_{\text{Inter/Uso}} = (4 \times 2{,}0 + 1 \times 0{,}8)/2{,}8 = 3{,}14$, com a renormalização prévia. Com M5 excluída por política prévia, $\text{IQC}_{\text{Conf}} = (4 \times 2{,}0 + 1 \times 2{,}0 + 4 \times 1{,}0)/5{,}0 = 2{,}80$, e o índice global é $\text{IQM} = 0{,}30(2{,}80) + 0{,}30(2{,}20) + 0{,}20(3{,}14) + 0{,}20(3{,}50) = 2{,}83$. O IQM supera o piso de 2,75 da Classe B, mas tem caráter informativo: o \textit{gate} M4 reprovado e $\text{IQC}_{\text{Manut}} < 2{,}5$ levam, cada um, à Classe C. Das 14 hipóteses, 9 foram confirmadas, 3 refutadas (H3.1, H3.3 e H4.2) e 2 não testadas (H4.3 e H4.4).
 
 \subsection{Ação de melhoria}\label{sec:melhoria}
 
-O pior resultado de Manutenibilidade orientou a ação de melhoria: refatorar \texttt{getSituacaoNotas} por \textit{Extract Method}, dividindo o método em oito métodos privados com uma decisão cada e removendo código sem efeito. A equivalência de comportamento foi verificada por teste diferencial entre as versões original e refatorada em 50.000 cenários pseudoaleatórios com semente fixa, com zero divergências; um defeito injetado de propósito foi detectado em 779 cenários. Com o \textit{patch}, $v(G)$ do método cai de 72 para 15, M7b passa de 72 (Crítico) para 30 (Bom) e M10 permanece estável (63,82 para 63,79). No cenário com o \textit{patch} aplicado, $\text{IQC}_{\text{Manut}}$ sobe para 2,60, acima do piso de 2,5. O produto avaliado continua sendo o commit congelado; o \textit{patch} é uma proposta validada para incorporação.
+O pior resultado de Manutenibilidade orientou a ação de melhoria: refatorar \texttt{getSituacaoNotas} por \textit{Extract Method}, dividindo o método em oito métodos privados com uma decisão cada e removendo código sem efeito. A equivalência de comportamento foi verificada por teste diferencial entre as versões original e refatorada em 50.000 cenários pseudoaleatórios com semente fixa, com zero divergências; um defeito injetado de propósito foi detectado em 779 cenários. Com o \textit{patch}, $v(G)$ do método cai de 72 para 15, M7b passa de 72 (Crítico) para 30 (Bom) e M10 permanece estável (63,82 para 63,79). No cenário com o \textit{patch} aplicado, $\text{IQC}_{\text{Manut}}$ sobe para 2,60, acima do piso de 2,5, e o IQM para 2,95; a Classe B dependeria ainda de corrigir a transação de \texttt{Boletim::save()} e aprovar o \textit{gate} M4. O produto avaliado continua sendo o commit congelado; o \textit{patch} é uma proposta validada para incorporação.
 
 \subsection{Relação entre as características}\label{sec:relacao}
 
@@ -925,9 +925,9 @@ Os resultados mostram que as características se reforçam no mesmo ponto do có
 
 \section{Conclusão}\label{sec:conclusao}
 
-A avaliação respondeu aos quatro objetivos com evidências versionadas. O i-Educar 2.12 calcula notas corretamente e bloqueia entradas inválidas, mas não garante atomicidade no salvamento do boletim, o que o classifica como \textbf{Classe C} nos módulos avaliados. Para as Secretarias de Educação, a recomendação é não homologar o commit avaliado sem corrigir a transação de \texttt{Boletim::save()} e sem validar o procedimento de backup (M6). Para os mantenedores, as prioridades são envolver as escritas do boletim em transação, incorporar o \textit{patch} de \texttt{getSituacaoNotas}, reativar os 39 testes suprimidos e incluir a janela de datas nas mensagens de bloqueio. Para as equipes de TI, a coexistência exige parametrizar os \texttt{container\_name} e tratar o 401 do endpoint E08. Para as escolas, a capacitação deve cobrir as mensagens de bloqueio do Diário.
+A avaliação respondeu aos quatro objetivos com evidências versionadas. O i-Educar 2.12 calcula notas corretamente e bloqueia entradas inválidas, mas não garante atomicidade no salvamento do boletim, o que o classifica como \textbf{Classe C} nos módulos avaliados. Para as Secretarias de Educação, a recomendação é não homologar o commit avaliado sem corrigir a transação de \texttt{Boletim::save()}; o procedimento de backup (M6) foi validado, desde que o \textit{dump} inclua o banco completo. Para os mantenedores, as prioridades são envolver as escritas do boletim em transação, incorporar o \textit{patch} de \texttt{getSituacaoNotas}, reativar os 39 testes suprimidos e incluir a janela de datas nas mensagens de bloqueio. Para as equipes de TI, a coexistência exige parametrizar os \texttt{container\_name} e tratar o 401 do endpoint E08. Para as escolas, a capacitação deve cobrir as mensagens de bloqueio do Diário.
 
-\textbf{Ameaças à validade.} M4 testou uma operação em uma rodada registrada como diagnóstica; M13 teve um único avaliador; três cenários de M12 são requisições de leitura; M6, M14 e M15 não foram medidas; e o ambiente é um único \textit{host} com dados fictícios. Os valores de M7 a M11 dependem das regras do motor próprio. Como trabalhos futuros, ficam a remedição de M4 após a correção da transação, a execução de M6 e as sessões de qualidade em uso. Os artefatos estão no repositório da equipe, associados à entrega \texttt{E2} (\texttt{v2.0.0-pc2}).
+\textbf{Ameaças à validade.} M4 testou uma operação em uma rodada registrada como diagnóstica; M13 teve um único avaliador; três cenários de M12 são requisições de leitura; M14 e M15 não foram medidas; a M6 não exercitou o conteúdo de notas e faltas, cujas tabelas estavam vazias no banco de teste; e o ambiente é um único \textit{host} com dados fictícios. Os valores de M7 a M11 dependem das regras do motor próprio. Como trabalhos futuros, ficam a remedição de M4 após a correção da transação, e as sessões de qualidade em uso. Os artefatos estão no repositório da equipe, associados à entrega \texttt{E2} (\texttt{v2.0.0-pc2}).
 
 \fi % fim do \ifentregafinal
 
@@ -1067,7 +1067,7 @@ Em atendimento à transparência da contribuição individual (Premissa 13 e Cri
 \end{tabular}
 \end{table}
 
-Na Entrega 2, a cota planejada também foi de 12h por integrante (72h e R\$ 3.600). A Tabela~\ref{tab:contribuicao2} registra as issues e as horas executadas até o fechamento deste texto; o percentual refere-se ao esforço executado (60h).
+Na Entrega 2, a cota planejada também foi de 12h por integrante (72h e R\$ 3.600). A Tabela~\ref{tab:contribuicao2} registra as issues e as horas executadas até o fechamento deste texto; o percentual refere-se ao esforço executado (66h).
 
 \begin{table}[H]
 \centering
@@ -1079,14 +1079,14 @@ Na Entrega 2, a cota planejada também foi de 12h por integrante (72h e R\$ 3.60
 \toprule
 \textbf{Matrícula} & \textbf{Nome} & \textbf{Responsabilidade (E2)} & \textbf{Horas} & \textbf{Custo} & \textbf{\%} \\
 \midrule
-232036770 & Arthur Soares Parente & M8, M9, M11, M12 e M13 (Issues \texttt{\#44}, \texttt{\#45}) & 12h & R\$ 600 & 20,00\% \\
-222022082 & Fábio Santos Araujo & Julgamento da Fase 5, slides do PC2 e auditoria PSM/CID (Issues \texttt{\#47}, \texttt{\#49}) & 12h & R\$ 600 & 20,00\% \\
-211045122 & Gabriel Barbaceli & M7a, M7b e M10 (Issue \texttt{\#43}); M14/M15 (Issue \texttt{\#46}); ação de melhoria (Issue \texttt{\#56}) & 12h & R\$ 600 & 20,00\% \\
-232036887 & Gustavo Silva Rodrigues & Oráculo de notas, M3 (Issue \texttt{\#40}); artigo v2 (Issue \texttt{\#48}, aberta) & 6h & R\$ 300 & 10,00\% \\
-232037937 & Ítalo Alves Sampaio de Oliveira & Ambiente Docker e M1 (Issue \texttt{\#38}); contratos e M2 (Issue \texttt{\#39}) & 12h & R\$ 600 & 20,00\% \\
-221008409 & Ricardo Lucas W.\ V.\ Branco & M4 e M5 (Issue \texttt{\#41}); M6 (Issue \texttt{\#42}, aberta) & 6h & R\$ 300 & 10,00\% \\
+232036770 & Arthur Soares Parente & M8, M9, M11, M12 e M13 (Issues \texttt{\#44}, \texttt{\#45}) & 12h & R\$ 600 & 18,18\% \\
+222022082 & Fábio Santos Araujo & Julgamento da Fase 5, slides do PC2 e auditoria PSM/CID (Issues \texttt{\#47}, \texttt{\#49}) & 12h & R\$ 600 & 18,18\% \\
+211045122 & Gabriel Barbaceli & M7a, M7b e M10 (Issue \texttt{\#43}); M14/M15 (Issue \texttt{\#46}); ação de melhoria (Issue \texttt{\#56}) & 12h & R\$ 600 & 18,18\% \\
+232036887 & Gustavo Silva Rodrigues & Oráculo de notas, M3 (Issue \texttt{\#40}); artigo v2 (Issue \texttt{\#48}, aberta) & 6h & R\$ 300 & 9,09\% \\
+232037937 & Ítalo Alves Sampaio de Oliveira & Ambiente Docker e M1 (Issue \texttt{\#38}); contratos e M2 (Issue \texttt{\#39}) & 12h & R\$ 600 & 18,18\% \\
+221008409 & Ricardo Lucas W.\ V.\ Branco & M4 e M5 (Issue \texttt{\#41}); M6 (Issue \texttt{\#42}) & 12h & R\$ 600 & 18,19\% \\
 \midrule
-\textbf{Total} & \textbf{Equipe Grace Hopper} & \textbf{Executado na Entrega 2} & \textbf{60h} & \textbf{R\$ 3.000} & \textbf{100,00\%} \\
+\textbf{Total} & \textbf{Equipe Grace Hopper} & \textbf{Executado na Entrega 2} & \textbf{66h} & \textbf{R\$ 3.300} & \textbf{100,00\%} \\
 \bottomrule
 \end{tabular}
 \end{table}
