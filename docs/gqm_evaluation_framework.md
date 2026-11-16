@@ -805,7 +805,7 @@ Esta seção sintetiza os resultados empíricos obtidos na Fase 4 e a aplicaçã
 
 ### 7.1 Síntese das 17 Linhas Operacionais de Métricas e Veredito das 14 Hipóteses
 
-A Tabela 5 consolida os valores empíricos medidos no commit congelado `7903a3e` (e o cenário simulado com o patch corretivo `docs/evidencias/melhoria/getSituacaoNotas.patch` da Issue [#56](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/56) sobre `M7b` e `M10`), as pontuações ordinais $S_i \in \{1, 2, 3, 4\}$ e o status final das **14 hipóteses (`H1.1` a `H4.4`)** (**7 confirmadas**, **3 refutadas** e **4 não testadas**; nota-se que `M8`, `M9`, `M11`, `M12` e `M13` dependem da integração do PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55)).
+A Tabela 5 consolida os valores empíricos medidos no commit congelado `7903a3e` (e o cenário simulado com o patch corretivo `docs/evidencias/melhoria/getSituacaoNotas.patch` da Issue [#56](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/56) sobre `M7b` e `M10`), as pontuações ordinais $S_i \in \{1, 2, 3, 4\}$ e o status final das **14 hipóteses (`H1.1` a `H4.4`)** (**9 confirmadas**, **3 refutadas** e **2 não testadas**; `M8`, `M9`, `M11`, `M12` e `M13` vêm do PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55), `M4` do PR #59 e `M6` do PR #61).
 
 **Tabela 5 — Quadro consolidado de resultados empíricos (Fase 4) e julgamento por métrica (Fase 5)**
 
@@ -814,9 +814,9 @@ A Tabela 5 consolida os valores empíricos medidos no commit congelado `7903a3e`
 | **M1** | `TINCR` (Coexistência) | **$100{,}0\%$** ($16/16$ c/ override; baseline $57{,}9\%$) | Excelente (**4**) | $1{,}0$ | $1{,}0$ | `H1.1` | **Confirmada** |
 | **M2** | `CEI` (Interoperabilidade) | **$90{,}0\%$** ($9/10$ endpoints; falha em `E08`) | Bom (**3**) | $1{,}0$ | $1{,}0$ | `H1.2` | **Confirmada** |
 | **M3** | `DCNM` (**GATE BINÁRIO**) | **$100{,}0\%$** ($30/30$ casos; $457$ asserções) | **APROVADO** (**4**) | $2{,}0$ | $2{,}0$ | `H2.1` | **Confirmada** |
-| **M4** | `ITAE` (**GATE BINÁRIO**) | **Não executado** (Issue #41 pendente; s/ política prévia) | **BLOQUEADO** (—) | $2{,}0$ | Sem política prévia | `H2.2` | **Não testada** (`M4` pendente; `M5` confirmada inaplicável) |
+| **M4** | `ITAE` (**GATE BINÁRIO**) | **$0/1 = 0{,}0\%$** (`OP-01` `Boletim::save()` não atômica) | **REPROVADO** (**1**) | $2{,}0$ | $2{,}0$ | `H2.2` | **Confirmada** (`ITAE < 100\%`; `M5` não mensurável) |
 | **M5** | `DDOM` (Defeitos Operacionais) | **Não mensurável** (sem logs de produção 90d) | Excluída (—) | $1{,}2$ | $0{,}0$ (Seção 3.1) | `H2.2` | *Vide linha M4* (`M5` declarada não mensurável) |
-| **M6** | `CVPB` (Backup/Restauração) | **Não executado** (Issue #42 pendente; s/ política prévia) | Não comprovado (—) | $1{,}0$ | Sem política prévia | `H2.3` | **Não testada** |
+| **M6** | `CVPB` (Backup/Restauração) | **$6/6 = 100{,}0\%$** (6 formatos de backup completo; Issue #42) | Excelente (**4**) | $1{,}0$ | $1{,}0$ | `H2.3` | **Confirmada** |
 | **M7a** | `CC-P90` (Complexidade P90) | **$8$** [$8$ pós-patch] ($n = 213 \to 221$ callables) | Excelente (**4**) | $1{,}0$ | $1{,}0$ | `H3.1` | **Refutada** (conjunção) |
 | **M7b** | `CC-MAX` (Complexidade Máx.) | **$72$** (`getSituacaoNotas`, $129$ LOC lóg.) [**$30$** pós-patch #56] | Crítico (**1**) [Bom (**3**)] | $1{,}2$ | $1{,}2$ | `H3.1` | **Refutada** (conjunção) |
 | **M8** | `DSPM` (Distância de Martin — PR #55) | **$0{,}3784$** (`C3_Dominio_Models`: $11$ classes, $D = 1{,}000$) | Regular (**2**) | $0{,}8$ | $0{,}8$ | `H3.2` | **Confirmada** (PR #55) |
@@ -834,15 +834,15 @@ A Tabela 5 consolida os valores empíricos medidos no commit congelado `7903a3e`
 ### 7.2 Síntese dos Índices $\text{IQC}_k$, $\text{IQM}$ e Classificação Final da Release
 
 1. **$\text{IQC}_{\text{Comp}}$ (Peso $20\%$):** $(4 \times 1{,}0 + 3 \times 1{,}0) / 2{,}0 = \mathbf{3{,}50}$ (Atende Classe A).
-2. **$\text{IQC}_{\text{Conf}}$ (Peso $30\%$):** **NÃO CALCULÁVEL / SUSPENSO** — Conforme a Seção 5.2 e a Figura 2, apenas `M5` possui política prévia de exclusão (Seção 3.1 do Plano); `M4` (Gate Binário) e `M6` (métrica gradual) ficaram sem coleta nas Issues `#41` e `#42` e não possuem política prévia de renormalização. Atribuir $\text{IQC}_{\text{Conf}} = 4{,}00$ com base apenas em `M3` ($30/30 = 100\%$) equivaleria a supor nota máxima para `M4` e `M6`.
+2. **$\text{IQC}_{\text{Conf}}$ (Peso $30\%$):** $(4 \times 2{,}0 + 1 \times 2{,}0 + 4 \times 1{,}0)/5{,}0 = \mathbf{2{,}80}$ — `M3 = 100%` ($S=4$), Gate `M4` reprovado ($\text{ITAE} = 0\%$, $S=1$, Issue `#41`) e `M6 = 100%` ($S=4$, Issue `#42`); `M5` excluída pela política prévia da Seção 3.1 do Plano.
 3. **$\text{IQC}_{\text{Manut}}$ (Peso $30\%$, considerando `M8`, `M9` e `M11` do PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55)):**
    - **Baseline oficial (`7903a3e`):** $(4\times 1{,}0 + 1\times 1{,}2 + 2\times 0{,}8 + 1\times 0{,}6 + 3\times 1{,}0 + 2\times 1{,}4)/6{,}0 = 13{,}2/6{,}0 = \mathbf{2{,}20}$ (**Reprovado $< 2{,}50$**).
    - **Cenário Simulado Pós-Patch (Issue [#56](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/56), `docs/evidencias/melhoria/getSituacaoNotas.patch`):** $(4\times 1{,}0 + 3\times 1{,}2 + 2\times 0{,}8 + 1\times 0{,}6 + 3\times 1{,}0 + 2\times 1{,}4)/6{,}0 = 15{,}6/6{,}0 = \mathbf{2{,}60}$ (**Atingiria $\ge 2{,}50$, faixa Classe B**).
 4. **$\text{IQC}_{\text{Interação}}$ (Peso $20\%$, considerando `M12` e `M13` do PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55)):** Com `M14a`, `M14b` e `M15` excluídas pela regra prévia da Seção 3.4 do Plano, $(4 \times 2{,}0 + 1 \times 0{,}8) / 2{,}8 = 8{,}8 / 2{,}8 = \mathbf{3{,}14}$ (Atende Classe A/B).
 5. **Índice Global $\text{IQM}$ e Decisão Final:**
-   - **Julgamento Oficial do Produto Avaliado (Commit Congelado `7903a3e`):** **$\text{IQM} = \text{NÃO CALCULÁVEL / SUSPENSO}$** e **Classificação Oficial: CLASSE C (Reprovado / Bloqueado)**, por duplo fundamento independente: (a) Gate Binário `M4` não comprovado e `M6` sem coleta; e (b) $\text{IQC}_{\text{Manut}} = 2{,}20 < 2{,}50$.
+   - **Julgamento Oficial do Produto Avaliado (Commit Congelado `7903a3e`):** **$\text{IQM} = 0{,}30(2{,}80) + 0{,}30(2{,}20) + 0{,}20(3{,}14) + 0{,}20(3{,}50) = \mathbf{2{,}83}$** e **Classificação Oficial: CLASSE C (Reprovado / Bloqueado)**, por duplo fundamento independente: (a) Gate Binário `M4` reprovado ($\text{ITAE} = 0\%$); e (b) $\text{IQC}_{\text{Manut}} = 2{,}20 < 2{,}50$. Como o gate é eliminatório, o $\text{IQM}$ tem caráter informativo.
    - **Análise de Sensibilidade e Simulação de Cenários (Não Oficial):**
-     - *Sensibilidade A (Renormalização parcial sobre G1+G3+G4, peso $0{,}70$):* $\text{IQM}_{\text{sens-A, base}} = \mathbf{2{,}84} \to \text{IQM}_{\text{sens-A, pós-patch}} = \mathbf{3{,}01}$ ($+0{,}17$).
-     - *Sensibilidade B (Hipótese otimista supondo aprovação futura em `M4` e `M6` com $\text{IQC}_{\text{Conf}} = 4{,}00$):* $\text{IQM}_{\text{sens-B, base}} = \mathbf{3{,}19} \to \text{IQM}_{\text{sens-B, pós-patch}} = \mathbf{3{,}31}$ ($+0{,}12$), cenário condicional no qual o produto passaria a se enquadrar na **Classe B (Aprovado com Ressalvas)**.
+     - *Sensibilidade A (patch da `#56`, $\text{IQC}_{\text{Manut}} = 2{,}60$):* $\text{IQM} = \mathbf{2{,}83} \to \mathbf{2{,}95}$ ($+0{,}12$).
+     - *Sensibilidade B (hipótese de correção de `Boletim::save()` e aprovação futura em `M4`, com $\text{IQC}_{\text{Conf}} = 4{,}00$):* $\text{IQM}_{\text{sens-B, base}} = \mathbf{3{,}19} \to \text{IQM}_{\text{sens-B, pós-patch}} = \mathbf{3{,}31}$ ($+0{,}12$), cenário condicional no qual o produto passaria a se enquadrar na **Classe B (Aprovado com Ressalvas)**.
 
 

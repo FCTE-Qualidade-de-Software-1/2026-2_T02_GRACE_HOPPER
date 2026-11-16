@@ -1,0 +1,69 @@
+{
+  "run_id": "rodada-001",
+  "run_type": "diagnostic",
+  "timestamp_end": "2026-11-16T02:03:18Z",
+  "product_commit": "7903a3efc7689942ee700007f86ed581023aad27",
+  "commit_manifesto_m6": "ad76ed6",
+  "M6_CVPB": {
+    "value": 100.0,
+    "successes": 6,
+    "total": 6,
+    "gate": "PASS",
+    "classification": "EXCELENTE",
+    "S": 4,
+    "tests": {
+      "T01": {
+        "description": "custom format (-Fc)",
+        "status": "PASS"
+      },
+      "T02": {
+        "description": "plain SQL (-Fp)",
+        "status": "PASS"
+      },
+      "T03": {
+        "description": "directory format (-Fd)",
+        "status": "PASS"
+      },
+      "T04": {
+        "description": "clean/if-exists",
+        "status": "PASS"
+      },
+      "T05": {
+        "description": "schema-only",
+        "status": "PASS"
+      },
+      "T06": {
+        "description": "data-only (com --disable-triggers)",
+        "status": "PASS"
+      }
+    }
+  },
+  "M4_M5_consolidated": {
+    "M4_ITAE": {
+      "value": 0.0,
+      "gate": "FAIL",
+      "S": 1
+    },
+    "M5_DDOM": {
+      "status": "measured",
+      "measurable": false,
+      "treatment": "w=1.2 excluido"
+    },
+    "M6_CVPB": {
+      "value": 100.0,
+      "gate": "PASS",
+      "S": 4
+    }
+  },
+  "IQC_Conf": {
+    "value": 2.80,
+    "formula": "(4*2 + 1*2 + 4*1) / 5",
+    "calculated": true
+  },
+  "IQM": {
+    "value": 2.83,
+    "calculated": true
+  },
+  "release_class": "C",
+  "release_class_reason": "Gate M4 REPROVADO (ITAE = 0%) e IQC_Manut = 2,20 < 2,50"
+}

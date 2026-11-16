@@ -1,0 +1,7 @@
+teste,descricao,status
+T01,custom format,PASS
+T02,plain SQL,PASS
+T03,directory format,PASS
+T04,clean/if-exists,PASS
+T05,schema-only,PASS
+T06,data-only,PASS
