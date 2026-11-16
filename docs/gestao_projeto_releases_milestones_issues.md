@@ -610,7 +610,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Atribuição Individual:**
     - **Responsável:** `Ricardo Lucas Winchello Vieira Branco` *(auto-atribuição no GitHub)*
     - **Matrícula UnB:** `22/1008409` | **GitHub:** `@ChickRicks`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `0h (Aberta — Gate M4 não comprovado na Release E2; M5 excluída pela Seção 3.1)` | **Custo:** R$ `0,00`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h (Aberta — Gate M4 não comprovado na Release E2; M5 excluída pela Seção 3.1)` | **Custo:** R$ `300,00`
 - **Goal:** Inventariar as operações multi-escrita de Matrícula e Diário, executar testes de injeção determinística de falha para aferir o Gate Binário M4 (ITAE) e formalizar o registro de M5 (DDOM).
 - **Depends on:** Issue #38.
 - **Scope:** `app/Services/RegistrationService.php`, `LegacyRegistration`, `LegacyEnrollment`, `DiarioController.php`, `DiarioApiController.php`, `Boletim.php` e esquemas `pmieducar` e `modules`.
@@ -631,7 +631,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Atribuição Individual:**
     - **Responsável:** `Ricardo Lucas Winchello Vieira Branco` *(auto-atribuição no GitHub)*
     - **Matrícula UnB:** `22/1008409` | **GitHub:** `@ChickRicks`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `0h (Aberta — não comprovada na Release E2)` | **Custo:** R$ `0,00`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h (Aberta — não comprovada na Release E2)` | **Custo:** R$ `300,00`
 - **Goal:** Planejar e executar o protocolo de backup e restauração isolada dos esquemas `pmieducar`, `modules` e `cadastro` no PostgreSQL 18 para medir M6 (CVPB).
 - **Depends on:** Issue #38.
 - **Scope:** Serviço PostgreSQL 18 (`postgres:18-alpine`), utilitários `pg_dump` / `pg_restore` / `psql`, esquemas `pmieducar`, `modules` e `cadastro`.

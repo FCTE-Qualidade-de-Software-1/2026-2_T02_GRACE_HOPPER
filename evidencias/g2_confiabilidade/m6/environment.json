@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "issue": "42",
+  "milestone": "M6",
+  "run_id": "rodada-001",
+  "run_type": "diagnostic",
+  "timestamp_start": "2026-11-16T01:25:29Z",
+  "commit_manifesto_m6": "ad76ed6",
+  "commit_manifesto_m6_full": "ad76ed639eafd97469af2d139a56212efd0d3f38",
+  "product_commit": "7903a3efc7689942ee700007f86ed581023aad27",
+  "ambiente": "scripts/avaliacao/m3/compose.yml",
+  "baseline_counts": {
+    "pmieducar.matricula": 210,
+    "pmieducar.aluno": 210,
+    "pmieducar.escola": 2,
+    "pmieducar.turma": 21,
+    "pmieducar.serie": 12,
+    "pmieducar.curso": 2,
+    "pmieducar.matricula_turma": 210,
+    "modules.nota_aluno": 0,
+    "modules.falta_aluno": 0,
+    "modules.regra_avaliacao": 1,
+    "cadastro.pessoa": 633,
+    "cadastro.fisica": 631
+  },
+  "baseline_total_tuplas": 2132,
+  "commands": [
+    {
+      "step": "m6_manifest_freeze",
+      "cmd": "git commit manifesto ad76ed6",
+      "exit_code": 0
+    },
+    {
+      "step": "m6_run_v3",
+      "cmd": "bash scripts/avaliacao/m6/run_m6.sh",
+      "exit_code": 0,
+      "successes": 6,
+      "total": 6
+    }
+  ],
+  "impediments": [],
+  "gate_context": {
+    "M6_CVPB": {
+      "status": "measured",
+      "value": 100.0,
+      "successes": 6,
+      "total": 6,
+      "gate": "PASS",
+      "S": 4,
+      "tests_passed": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06"
+      ],
+      "evidencia": "evidencias/g2_confiabilidade/m6/results.csv e T01-T06/"
+    }
+  },
+  "acceptance": {
+    "official": true
+  }
+}
