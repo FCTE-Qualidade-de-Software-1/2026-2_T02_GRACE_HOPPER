@@ -671,42 +671,42 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M5: Instrumentação e Execução das Medições (Fase 4 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Arthur Soares Parente` *(auto-atribuição no GitHub, PR #55 em revisão)*
+    - **Responsável:** `Arthur Soares Parente` *(auto-atribuição no GitHub, PR #55 em revisão final)*
     - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h (submetidas no PR #55)` | **Custo:** R$ `300,00`
 - **Goal:** Congelar os manifestos de componentes e modelos `Legacy*`, medir a Distância da Sequência Principal de Martin (M8 — DSPM), o Índice de Fricção de Dados (M9 — IFDL) e a Taxa de Testes Ativos com Asserção (M11 — TTAE).
 - **Depends on:** Issue #43.
 - **Scope:** Componentes de Matrícula e Notas em `app/` e `ieducar/`, modelos `app/Models/Legacy*.php` e suíte de testes PHPUnit/Pest dos domínios avaliados.
-- [x] **Task:** Coletar métricas estruturais M8 (DSPM) e M9 (IFDL) e executar runner de testes para apurar M11 (TTAE) *(Submetida no PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55), em revisão)*
-    - **Files:** `scripts/evaluate-quality.php`, `docs/plano_medicao_testes.md`, `evidencias/g3_manutenibilidade/`
-    - **Change:** Congelar mapa caminho -> componente para calcular $C_a, C_e, N_a, N_c, A, I, D$ ($\text{DSPM} = 0{,}3784$, M8, com `C3_Dominio_Models` em $D = 1{,}000$ sobre $11$ classes concretas); auditar $82$ adaptações defensivas nos $18$ modelos `Legacy*` ($\text{IFDL} = 82 / 18 = 4{,}5556$, M9); executar `vendor/bin/pest --log-junit` nos $30$ arquivos de teste do manifesto para contar $185$ casos declarados, $146$ ativos com asserção ($938$ asserções) e $39$ *skipped* ($\text{TTAE} = 78{,}92\%$, M11).
+- [x] **Task:** Coletar métricas estruturais M8 (DSPM) e M9 (IFDL) e executar runner de testes para apurar M11 (TTAE) *(Submetida no PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55))*
+    - **Files:** `scripts/evaluate-quality.php`, `scripts/tests/evaluate_quality_test.php`, `docs/fase-4/manutenibilidade-m8-m9-m11.md`, `evidencias/g3_manutenibilidade/`
+    - **Change:** Congelar mapa caminho -> componente para calcular $C_a, C_e, N_a, N_c, A, I, D$ ($\text{DSPM} = 0{,}3784$, M8, com `C3_Dominio_Models` em $D = 1{,}000$ sobre $11$ classes concretas e preservação integral da semântica `v2.0.0` em M7/M10); auditar $82$ adaptações defensivas nos $18$ modelos `Legacy*` ($\text{IFDL} = 82 / 18 = 4{,}5556$, M9); executar `vendor/bin/pest --log-junit` nos $30$ arquivos de teste do manifesto para contar $185$ casos descobertos em runtime (expandindo os $158$ declarados estaticamente via `uses()`/`datasets`), $146$ ativos com asserção ($938$ asserções) e $39$ *skipped* ($\text{TTAE} = 78{,}92\%$, M11).
     - **Covers:** Questões Q3.2, Q3.3 e Q3.5, Hipóteses H3.2, H3.3 e H3.5, e Métricas M8 (DSPM), M9 (IFDL) e M11 (TTAE).
     - **Acceptance criteria:**
         - Tabela por componente com $C_a, C_e, A, I, D_p$ e média $\text{DSPM} = 0{,}3784$ (M8, Regular $S=2$, H3.2 confirmada).
         - Manifesto dos $18$ modelos `Legacy*` com localização das $82$ adaptações defensivas e cálculo de $\text{IFDL} = 4{,}5556$ (M9, Crítico $S=1$, H3.3 refutada).
-        - Relatório de execução do runner Pest/PHPUnit (`m11_runner_junit.xml`) comprovando $185$ declarados, $146$ ativos com asserção, $39$ `<skipped/>` e $\text{TTAE} = 78{,}92\%$ (M11, Regular $S=2$, H3.5 confirmada).
-    - **Tests:** `php scripts/evaluate-quality.php && bash scripts/docs/check_site.sh`.
+        - Relatório de execução real do runner Pest/PHPUnit (`m11_runner_junit.xml`) comprovando $185$ descobertos, $146$ ativos com asserção ($0$ sem asserção, $0$ falhas), $39$ `<skipped/>` e $\text{TTAE} = 78{,}92\%$ (M11, Regular $S=2$, H3.5 confirmada), com semântica `v2.0.0` de M7/M10 preservada.
+    - **Tests:** `php scripts/tests/evaluate_quality_test.php && php scripts/evaluate-quality.php --path=./i-educar-src --m11-junit=evidencias/g3_manutenibilidade/m11_runner_junit.xml --evidence-dir=evidencias/g3_manutenibilidade --evidence-scope=m8-m11 && bash scripts/docs/check_site.sh`.
     - **Risk:** none.
 
 #### Issue #45 — Testes de Proteção contra Erros do Usuário (Gate M12 — IPPE) e Auditoria de Mensagens (M13 — ADMV)
 
 - **Milestone:** M5: Instrumentação e Execução das Medições (Fase 4 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Arthur Soares Parente` *(auto-atribuição no GitHub, PR #55 em revisão)*
+    - **Responsável:** `Arthur Soares Parente` *(auto-atribuição no GitHub, PR #55 em revisão final)*
     - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h (submetidas no PR #55)` | **Custo:** R$ `300,00`
 - **Goal:** Executar o catálogo de entradas inválidas na interface e API para aferir o Gate Binário M12 (IPPE) e avaliar a autodescritividade das mensagens de validação para medir M13 (ADMV).
 - **Depends on:** Issue #38.
 - **Scope:** Fluxos de Matrícula e Diário de Classe, validações `validatesCanChangeDiarioForAno`, `validatesPeriodoLancamentoFaltasNotas`, `Portabilis_Messenger` e `src/Support/Exceptions/Error.php`.
-- [x] **Task:** Submeter catálogo de cenários inválidos (M12) e classificar mensagens de erro com revisão por pares (M13) *(Submetida no PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55), em revisão)*
-    - **Files:** `docs/plano_medicao_testes.md`, `evidencias/g4_interacao_uso/m12_ippe.csv`, `evidencias/g4_interacao_uso/capturas_m12/`, `evidencias/g4_interacao_uso/m13_admv.json`
-    - **Change:** Executar 12 cenários inválidos (`C1.1` a `C4.3`), conferindo no banco ausência de gravação ($\Delta\text{DB} = 0$) e ausência de erro 500 ($\text{IPPE} = 12/12 = 100{,}0\%$, Gate M12 Aprovado); classificar cada mensagem por 2 avaliadores independentes quanto a causa + ação corretiva ($\text{ADMV} = 9/12 = 75{,}00\%$, M13, com falhas de ação corretiva em `C2.2`, `C2.3` e `C3.1`).
+- [x] **Task:** Submeter catálogo de cenários inválidos (M12) e auditar autodescritividade das mensagens de erro (M13) *(Submetida no PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55))*
+    - **Files:** `scripts/uso/avaliar_m12_m13.py`, `scripts/uso/test_avaliar_m12_m13.py`, `evidencias/g4_interacao_uso/m12_catalogo/`, `evidencias/g4_interacao_uso/capturas_m12/`, `evidencias/g4_interacao_uso/m12_ippe.csv`, `evidencias/g4_interacao_uso/m12_ippe_execucao.log`, `evidencias/g4_interacao_uso/m13_admv.json`, `docs/fase-4/interacao-m12-m13.md`
+    - **Change:** Executar 12 cenários inválidos (`C1.1` a `C4.3`) contra i-Educar + PostgreSQL com capturas HTTP/SQL brutas (`422` API v2, `200 any_error_msg` API legada — documentada a limitação metodológica do uso de `GET resource=matriculas&oper=get` em `C2.1`, `C2.2` e `C3.3` — e `302 -> 200` web flash error), conferindo ausência de gravação ($\Delta\text{DB} = 0$) e ausência de erro 500 ($\text{IPPE} = 12/12 = 100{,}0\%$, Gate M12 Aprovado); auditar as 12 mensagens sob avaliação individual de `@ArthurDevWorks` quanto a causa + ação corretiva ($\text{ADMV} = 9/12 = 75{,}00\%$, M13, com falhas de ação corretiva em `C2.2`, `C2.3` e `C3.1`).
     - **Covers:** Questões Q4.1 e Q4.2, Hipóteses H4.1 e H4.2, Gate Binário M12 (IPPE) e Métrica M13 (ADMV).
     - **Acceptance criteria:**
-        - Catálogo de 12 cenários inválidos executado (`m12_ippe.csv` e `capturas_m12/`) com evidência de requisição/tela, status HTTP e consulta SQL pós-submissão comprovando bloqueio amigável ($\text{IPPE} = 100{,}0\%$, Gate M12 Aprovado, H4.1 confirmada).
-        - Tabela de classificação dupla independente das 12 mensagens exibidas (`m13_admv.json`) com resolução de consenso ($\text{ADMV} = 75{,}00\%$, Crítico $S=1$, H4.2 refutada).
-        - Cálculo final de $\text{IPPE}$ (Gate M12) e $\text{ADMV}$ (M13) documentados na GitPage.
-    - **Tests:** `bash scripts/docs/check_site.sh`.
+        - Catálogo de 12 cenários inválidos congelado com SHA-256 e executado em runtime (`m12_ippe.csv` e `capturas_m12/`) com evidência HTTP/SQL comprovando bloqueio amigável e `delta = 0` ($\text{IPPE} = 100{,}0\%$, Gate M12 Aprovado, H4.1 confirmada) e limitação de `GET` em `C2.1`, `C2.2` e `C3.3` explicitamente registrada.
+        - Auditoria das 12 mensagens exibidas (`m13_admv.json`, vinculadas via `mensagem_sha256` às capturas reais) atribuída integralmente ao executor responsável (`@ArthurDevWorks`, $\text{ADMV} = 75{,}00\%$, Crítico $S=1$, H4.2 refutada).
+        - Cálculo final de $\text{IPPE}$ (Gate M12) e $\text{ADMV}$ (M13) consolidados em `evidencias/g4_interacao_uso/`, documentados na GitPage e validados em script reproduzível.
+    - **Tests:** `python3 -m unittest -v scripts/uso/test_avaliar_m12_m13.py && python3 scripts/uso/avaliar_m12_m13.py --path=./i-educar-src --capturas-dir=evidencias/g4_interacao_uso/capturas_m12 --output-dir=evidencias/g4_interacao_uso && bash scripts/docs/check_site.sh`.
     - **Risk:** none.
 
 ---

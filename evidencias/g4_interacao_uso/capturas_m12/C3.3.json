@@ -1,0 +1,55 @@
+{
+    "cenario_id": "C3.3",
+    "timestamp_execucao": "2026-11-14T19:01:26+00:00",
+    "ambiente": {
+        "php_version": "8.5.11",
+        "banco": "PostgreSQL (testing)",
+        "base_url": "http://127.0.0.1:8099"
+    },
+    "requisicao": {
+        "method": "GET",
+        "url": "/module/Avaliacao/diarioApi?resource=matriculas&oper=get&instituicao_id=192&escola_id=409&curso_id=336&serie_id=282&turma_id=131&ano=2026&etapa=1",
+        "query": {
+            "resource": "matriculas",
+            "oper": "get",
+            "instituicao_id": 192,
+            "escola_id": 409,
+            "curso_id": 336,
+            "serie_id": 282,
+            "turma_id": 131,
+            "ano": 2026,
+            "etapa": "1"
+        }
+    },
+    "resposta": {
+        "status_http": 200,
+        "headers": [
+            "HTTP/1.1 200 OK",
+            "Host: 127.0.0.1:8099",
+            "Connection: close",
+            "X-Powered-By: PHP/8.5.11",
+            "X-Powered-By: PHP/8.5.11",
+            "Content-Type: application/json; charset=UTF-8",
+            "Cache-Control: no-cache, private",
+            "Date: Sat, 14 Nov 2026 19:01:26 GMT",
+            "X-XSS-Protection: 0",
+            "X-Frame-Options: SAMEORIGIN",
+            "Content-Security-Policy: frame-ancestors 'self'",
+            "Set-Cookie: i_educar_session=79FSdziGB6XhFBU79BmUtsUroJWiBeFN5S9PSfPR; expires=Sat, 14 Nov 2026 21:01:26 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+        ],
+        "body_raw": "{\"matricula_id\":null,\"matriculas\":[],\"navegacao_tab\":null,\"can_change\":true,\"locked\":false,\"oper\":\"get\",\"resource\":\"matriculas\",\"msgs\":[{\"msg\":\"\\u00c9 necess\\u00e1rio receber matricula_id ou componente_curricular_id.\",\"type\":\"error\"}],\"any_error_msg\":true}",
+        "sha256_body": "2a0c7a5eb9bed9207a98f56e5cc61b4bbe8d125a7ccb382641d168c363dc513b",
+        "redirect_location": null,
+        "redirect_follow_status": null
+    },
+    "mensagem_capturada": "É necessário receber matricula_id ou componente_curricular_id.",
+    "codigo_erro": null,
+    "sql_verificacao": {
+        "tabela": "modules.nota_aluno",
+        "query": "SELECT COUNT(*) FROM modules.nota_aluno",
+        "contagem_antes": 10,
+        "contagem_depois": 10,
+        "delta": 0,
+        "persistencia_indesejada": false
+    }
+}

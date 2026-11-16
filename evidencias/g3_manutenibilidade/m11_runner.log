@@ -1,0 +1,249 @@
+
+   DEPR  Tests\Unit\Modules\Service\AvaliacaoServiceSituacaoTest
+  ! situacao aluno → The any() invoked count expectation is deprecated…  0.24s  
+
+   DEPR  Tests\Unit\Modules\Service\FaltaAlunoTest
+  ! cria nova instancia de falta aluno → The any() invoked count expect… 0.09s  
+
+   DEPR  Tests\Unit\Modules\Service\FaltaComponenteSituacaoTest
+  ! situacao faltas em andamento → The any() invoked count expectation…  0.07s  
+  ! situacao faltas em andamento um componente aprovado de quatro totai… 0.05s  
+  ! situacao faltas aprovado → The any() invoked count expectation is d… 0.05s  
+  ! situacao faltas reprovado → The any() invoked count expectation is…  0.05s  
+
+   DEPR  Tests\Unit\Modules\Service\FaltaComponenteTest
+  ! instancia de falta e registrada apenas uma vez no boletim → The any… 0.07s  
+  ! adiciona falta no boletim → The any() invoked count expectation is…  0.06s  
+  ! salvar faltas de um componente curricular no boletim → The any() in… 0.05s  
+  ! salvas faltas de um componente com etapas lancadas → The any() invo… 0.05s  
+  ! salvas faltas de um componente e atualizada etapa da ultima instanc… 0.05s  
+
+   DEPR  Tests\Unit\Modules\Service\FaltaGeralSituacaoTest
+  ! situacao faltas em andamento → The any() invoked count expectation…  0.06s  
+  ! situacao faltas aprovado → The any() invoked count expectation is d… 0.05s  
+  ! situacao faltas reprovado → The any() invoked count expectation is…  0.05s  
+
+   DEPR  Tests\Unit\Modules\Service\FaltaGeralTest
+  ! instancia de falta e registrada apenas uma vez no boletim → The any… 0.07s  
+  ! adiciona falta no boletim → The any() invoked count expectation is…  0.07s  
+  ! salvar faltas no boletim → The any() invoked count expectation is d… 0.05s  
+  ! salvas faltas no boletim com etapas lancadas → The any() invoked co… 0.05s  
+  ! salvas faltas atualizando etapa da ultima instancia adicionada no b… 0.06s  
+
+   DEPR  Tests\Unit\Modules\Service\InicializacaoTest
+  ! instancia lanca excecao caso codigo de matricula nao seja informado… 0.06s  
+  ! instancia lanca excecao com opcao nao aceita pela classe → The any(… 0.05s  
+  ! dados de matricula inicializados → The any() invoked count expectat… 0.05s  
+  ! instancia regra de avaliacao atraves de um numero de matricula → Th… 0.07s  
+
+   DEPR  Tests\Unit\Modules\Service\NotaAlunoTest
+  ! cria nova instancia de nota aluno → The any() invoked count expecta… 0.07s  
+
+   DEPR  Tests\Unit\Modules\Service\NotaConceitualSituacaoTest
+  ! situacao componentes curriculares um componente lancado em exame de… 0.06s  
+  ! situacao componentes curriculares um componente lancado em exame de… 0.05s  
+  ! situacao componentes curriculares um componente lancado em exame de… 0.06s  
+  ! situacao componentes curriculares um componente lancado em exame de… 0.05s  
+  ! situacao componentes curriculares um componente lancado reprovado u… 0.06s  
+
+   DEPR  Tests\Unit\Modules\Service\NotaNumericaSituacaoTest
+  ! situacao componentes curriculares um componente lancado em exame de… 0.07s  
+  ! situacao componentes curriculares um componente lancado em exame de… 0.06s  
+  ! situacao componentes curriculares um componente lancado em exame de… 0.06s  
+  ! situacao componentes curriculares um componente lancado em exame de… 0.06s  
+  ! situacao componentes curriculares um componente lancado reprovado u… 0.05s  
+
+   DEPR  Tests\Unit\Modules\Service\NotaRecuperacaoTest
+  ! salvar notas de um componente curricular no boletim em recuperacao…  0.06s  
+  ! salvar notas de um componente curricular no boletim em recuperacao…  0.06s  
+
+   DEPR  Tests\Unit\Modules\Service\NotaTest
+  ! instancia de nota componente e registrada apenas uma vez no boletio… 0.07s  
+  ! adiciona nota no boletim → The any() invoked count expectation is d… 0.05s  
+  ! salvar notas de um componente curricular no boletim → The any() inv… 0.05s  
+  ! salvas notas de um componente com etapas lancadas → The any() invok… 0.05s  
+
+   DEPR  Tests\Unit\Modules\Service\ParecerDescritivoAlunoTest
+  ! cria nova instancia de parecer descritivo aluno → The any() invoked… 0.07s  
+
+   DEPR  Tests\Unit\Modules\Service\ParecerDescritivoComponenteAnualTest
+  ! instancia de parecer e registrada apenas uma vez no boletim → The a… 0.07s  
+  ! adiciona parecer no boletim → The any() invoked count expectation i… 0.07s  
+  ! salvar pareceres no boletim → The any() invoked count expectation i… 0.07s  
+  ! salvar pareceres no boletim com etapas ja lancadas → The any() invo… 0.06s  
+  ! salvas pareceres atualizando etapa da ultima instancia adicionada n… 0.07s  
+  ! salvas pareceres atualizando etapa da ultima instancia adicionada n… 0.05s  
+
+   DEPR  Tests\Unit\Modules\Service\ParecerDescritivoComponenteEtapaTest
+  ! instancia de parecer e registrada apenas uma vez no boletim → The a… 0.07s  
+  ! adiciona parecer no boletim → The any() invoked count expectation i… 0.07s  
+  ! salvar pareceres no boletim → The any() invoked count expectation i… 0.07s  
+  ! salvar pareceres no boletim com etapas ja lancadas → The any() invo… 0.07s  
+  ! salvas pareceres atualizando etapa da ultima instancia adicionada n… 0.07s  
+  ! salvas pareceres atualizando etapa da ultima instancia adicionada n… 0.05s  
+
+   DEPR  Tests\Unit\Modules\Service\ParecerDescritivoGeralAnualTest
+  ! instancia de parecer e registrada apenas uma vez no boletim → The a… 0.07s  
+  ! adiciona parecer no boletim → The any() invoked count expectation i… 0.06s  
+  ! salvar pareceres no boletim → The any() invoked count expectation i… 0.07s  
+  ! salvar pareceres no boletim com etapas ja lancadas → The any() invo… 0.07s  
+  ! salvas pareceres atualizando etapa da ultima instancia adicionada n… 0.05s  
+  ! salvas pareceres atualizando etapa da ultima instancia adicionada n… 0.05s  
+
+   DEPR  Tests\Unit\Modules\Service\ParecerDescritivoGeralEtapaTest
+  ! instancia de parecer e registrada apenas uma vez no boletim → The a… 0.07s  
+  ! adiciona parecer no boletim → The any() invoked count expectation i… 0.07s  
+  ! salvar pareceres no boletim → The any() invoked count expectation i… 0.07s  
+  ! salvar pareceres no boletim com etapas ja lancadas → The any() invo… 0.07s  
+  ! salvas pareceres atualizando etapa da ultima instancia adicionada n… 0.06s  
+
+   DEPR  Tests\Unit\Modules\Service\PromocaoAlunoTest
+  ! promover aluno lanca excecao caso situacao esteja em andamento → Th… 0.06s  
+  ! promover aluno automaticamente progressao continuada → The any() in… 0.06s  
+  ! promover aluno automaticamente progressao nao continuada auto media… 0.06s  
+  ! reprovar aluno automaticamente progressao nao continuada auto media… 0.06s  
+  ! promover aluno automaticamente progressao nao continuada auto media… 0.06s  
+  ! promover aluno manualmente progressao nao continuada → The any() in… 0.06s  
+  ! reprovar aluno manualmente progressao nao continuada → The any() in… 0.06s  
+  ! save boletim → The any() invoked count expectation is deprecated an… 0.06s  
+  ! integracao matricula promover aluno → The any() invoked count expec… 0.06s  
+
+   DEPR  Tests\Unit\Modules\Service\UtilityTest
+  ! arredonda nota lanca excecao se parametro nao for numerico → The an… 0.07s  
+  ! arredonda nota numerica → The any() invoked count expectation is de… 0.07s  
+  ! arredonda nota conceitual → The any() invoked count expectation is…  0.07s  
+  ! prever nota para recuperacao → The any() invoked count expectation…  0.05s  
+
+   PASS  Tests\Unit\Exceptions\Registration\MissingEvaluationRuleForCurrentYearTest
+  ✓ is a registration exception with a fixed message                     0.02s  
+
+   PASS  Tests\Unit\Exceptions\Enrollment\ExistsActiveEnrollmentSameTimeExceptionTest
+  ✓ message names the registration                                       0.01s  
+
+   PASS  Tests\Unit\Exceptions\Enrollment\PreviousEnrollCancellationDateExceptionTest
+  ✓ message compares the exit date with the registration date            0.02s  
+
+   PASS  Tests\Unit\Exceptions\Enrollment\PreviousEnrollRegistrationDateExceptionTest
+  ✓ message compares the enrollment date with the registration date      0.02s  
+
+   PASS  Tests\Unit\Enum\RegistrationStatusTest
+  ✓ descriptive values                                                   0.01s  
+  ✓ inactive statuses                                                    0.01s  
+  ✓ registration and enrollment status calls the retained student repro… 0.01s  
+
+   PASS  Tests\Feature\Services\EnrollmentServiceTest
+  ✓ cancel enrollment                                                    0.09s  
+  ✓ cancelamento que falha ao gravar desfaz e devolve falso              0.08s  
+  ✓ cancellation date before academic year exception                     0.07s  
+  ✓ cancellation date after academic year exception                      0.07s  
+  ✓ previous cancellation date exception                                 0.07s  
+  ✓ enroll                                                               0.07s  
+  ✓ no vacancy exception                                                 0.07s  
+  ✓ exists active enrollment exception                                   0.08s  
+  ✓ enroll date before academic year exception                           0.09s  
+  ✓ enroll date before academic year allowed                             0.08s  
+  ✓ enroll date after academic year exception                            0.07s  
+  ✓ previous enroll date exception                                       0.07s  
+  ✓ get previous enrollment withou relocation date                       0.07s  
+  ✓ get previous enrollment with relocation date before departed date    0.07s  
+  ✓ get previous enrollment with relocation date after departed date     0.07s  
+  ✓ reorder                                                              0.07s  
+  ✓ find find all is enrolled and another classroom enrollments          0.09s  
+  ✓ cancel before the registration date exception                        0.07s  
+  ✓ enroll before the registration date exception                        0.07s  
+  ✓ create from screen                                                   0.08s  
+  ✓ update from screen                                                   0.08s  
+  ✓ register departures ignore invalid ids and reclassification closes…  0.07s  
+  ✓ marks each situation                                                 0.07s  
+  ✓ previous enrollment is null without enrollments                      0.07s  
+  ✓ reorder school class renumbers the valid enrollments and sends the…  0.10s  
+  ✓ update exit date                                                     0.09s  
+  ✓ exists active enrollment same time exception                         0.09s  
+
+   PASS  Tests\Feature\Commands\RegistrationReorderCommandTest
+  ✓ reordena os sequenciais das enturmações da matrícula                 0.14s  
+  ✓ avisa quando a matrícula não existe                                  0.03s  
+
+   PASS  Tests\Feature\Api\V2\NotasTest
+  ✓ rejects request without token                                        0.10s  
+  ✓ rejects request with invalid token                                   0.08s  
+  ✓ stores discipline score                                              0.15s  
+  ✓ updates the score when posting the same stage twice                  0.17s  
+  ✓ rejects score above the rule maximum                                 0.10s  
+  ✓ accepts score equal to the rule maximum                              0.13s  
+  ✓ rejects remedial score that raises the score above the maximum       0.10s  
+  ✓ accepts score above the maximum when rule sums the remedial score    0.13s  
+  ✓ rejects score below the rule minimum                                 0.10s  
+  ✓ rejects exam score above the exam maximum                            0.10s  
+  ✓ exam score is not limited by the general maximum                     0.13s  
+  ✓ does not store when previous stages have no scores                   0.11s  
+  ✓ stores score when previous stages have scores                        0.17s  
+  ✓ does not store when registration is not found                        0.08s  
+  ✓ does not store when discipline does not belong to school class       0.09s  
+  ✓ rejects request without discipline                                   0.08s  
+  ✓ rejects score in scientific notation with ('nota')                   0.08s  
+  ✓ rejects score in scientific notation with ('recuperacao')            0.08s  
+  ✓ stores score with more than four decimal places truncated            0.13s  
+  ✓ rejects stage in an invalid format                                   0.08s  
+  ✓ stores scores in stages above four when the school calendar has the… 0.33s  
+  ✓ rejects stage greater than the school class stages with dataset "et… 0.19s  
+  ✓ rejects stage greater than the school class stages with dataset "et… 0.18s  
+  ✓ rejects stage greater than the school class stages with dataset "et… 0.23s  
+  ✓ stores score of a discipline partially exempted and removes its exa… 0.14s  
+  ✓ calculates the discipline average without the exempted stages        0.14s  
+  ✓ ignores exempted stages outside the school calendar when calculatin… 0.13s  
+  ✓ discounts the exempted stage from the specific stages of the discip… 0.13s  
+  ✓ rejects score in a stage exempted for the registration               0.15s  
+  ✓ rejects exam score of a discipline exempted in every stage           0.11s  
+  ✓ stores exam score of a discipline exempted only in some stages       0.18s  
+  ✓ rejects score in a stage outside the specific stages of the discipl… 0.11s  
+  ✓ rejects score in a stage outside the specific stages of the discipl… 0.11s  
+  ✓ rejects exam score of a discipline exempted in every specific stage  0.11s  
+  ✓ rejects score of a discipline outside the dependency of the registr… 0.11s  
+  ✓ unexpected failure answers 500 with the reason                       0.09s  
+
+   PASS  Tests\Feature\Api\V2\FaltasComponenteTest
+  ✓ rejects request without token                                        0.03s  
+  ✓ rejects request with invalid token                                   0.02s  
+  ✓ requires mandatory fields                                            0.04s  
+  ✓ rejects negative absences                                            0.03s  
+  ✓ rejects stage lower than one                                         0.03s  
+  ✓ rejects non integer knowledge area                                   0.03s  
+  ✓ does not store when registration is not found                        0.03s  
+  ✓ stores discipline absence when rule is by component                  0.10s  
+  ✓ accepts zero absences                                                0.10s  
+  ✓ updates the amount when posting the same stage twice                 0.12s  
+  ✓ does not allow discipline absence when rule is general               0.08s  
+  ✓ does not store when discipline does not belong to school class       0.09s  
+  ✓ distributes absences among grouped disciplines of the knowledge are… 0.12s  
+  ✓ does not store when knowledge area has no grouped disciplines in sc… 0.08s  
+  ✓ distributes absences by knowledge area without informing the discip… 0.10s  
+  ✓ requires the discipline when knowledge area is not informed          0.07s  
+  ✓ rejects stage outside the school calendar                            0.10s  
+  ✓ stores absence in stages above four when the school calendar has th… 0.10s  
+  ✓ stores absence of each grade in a multigrade school class            0.15s  
+  ✓ rejects discipline of another grade in a multigrade school class     0.11s  
+  ✓ unexpected failure answers 500 with the reason                       0.09s  
+
+   PASS  Tests\Feature\Api\V2\FaltasGeralTest
+  ✓ rejects request without token                                        0.03s  
+  ✓ rejects request with invalid token                                   0.03s  
+  ✓ requires mandatory fields                                            0.03s  
+  ✓ rejects negative absences                                            0.03s  
+  ✓ rejects stage lower than one                                         0.03s  
+  ✓ stores general absence when rule is general attendance               0.11s  
+  ✓ accepts zero absences                                                0.10s  
+  ✓ updates the amount when posting the same stage twice                 0.13s  
+  ✓ does not allow general absence when rule is by component             0.08s  
+  ✓ does not store when registration is not found                        0.03s  
+  ✓ rejects stage outside the school calendar                            0.14s  
+  ✓ stores absence in stages above four when the school calendar has th… 0.12s  
+  ✓ unexpected failure answers 500 with the reason                       0.10s  
+  ✓ rejects registration whose enrollment is in an inactive school clas… 0.08s  
+
+   PASS  Tests\Api\DiarioRecuperaBoletimTest
+  ✓ recupera boletim estrutura                                           0.09s  
+
+  Tests:    77 deprecated, 108 passed (1038 assertions)
+  Duration: 14.75s
+

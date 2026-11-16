@@ -1,0 +1,59 @@
+{
+    "cenario_id": "C2.3",
+    "timestamp_execucao": "2026-11-14T19:01:26+00:00",
+    "ambiente": {
+        "php_version": "8.5.11",
+        "banco": "PostgreSQL (testing)",
+        "base_url": "http://127.0.0.1:8099"
+    },
+    "requisicao": {
+        "method": "GET",
+        "url": "/module/Avaliacao/diarioApi?resource=nota&oper=post&instituicao_id=192&escola_id=424&curso_id=339&serie_id=285&turma_id=134&ano=2026&ano_escolar=2026&etapa=1&matricula_id=210&componente_curricular_id=412&att_value=8.0",
+        "query": {
+            "resource": "nota",
+            "oper": "post",
+            "instituicao_id": 192,
+            "escola_id": 424,
+            "curso_id": 339,
+            "serie_id": 285,
+            "turma_id": 134,
+            "ano": 2026,
+            "ano_escolar": 2026,
+            "etapa": "1",
+            "matricula_id": 210,
+            "componente_curricular_id": 412,
+            "att_value": "8.0"
+        }
+    },
+    "resposta": {
+        "status_http": 200,
+        "headers": [
+            "HTTP/1.1 200 OK",
+            "Host: 127.0.0.1:8099",
+            "Connection: close",
+            "X-Powered-By: PHP/8.5.11",
+            "X-Powered-By: PHP/8.5.11",
+            "Content-Type: application/json; charset=UTF-8",
+            "Cache-Control: no-cache, private",
+            "Date: Sat, 14 Nov 2026 19:01:26 GMT",
+            "X-XSS-Protection: 0",
+            "X-Frame-Options: SAMEORIGIN",
+            "Content-Security-Policy: frame-ancestors 'self'",
+            "Set-Cookie: i_educar_session=TfPnfkJCjiEPgdoO3Z370R1civcdwduGKmaMxDW1; expires=Sat, 14 Nov 2026 21:01:26 GMT; Max-Age=7200; path=/; httponly; samesite=lax"
+        ],
+        "body_raw": "{\"should_show_recuperacao_especifica\":false,\"componente_curricular_id\":\"412\",\"matricula_id\":\"210\",\"situacao\":\"Cursando\",\"nota_necessaria_exame\":\"\",\"media\":0,\"media_arredondada\":\"\",\"oper\":\"post\",\"resource\":\"nota\",\"msgs\":[{\"msg\":\"N\\u00e3o \\u00e9 permitido realizar esta altera\\u00e7\\u00e3o fora do per\\u00edodo de lan\\u00e7amento de notas\\/faltas.\",\"type\":\"error\"}],\"any_error_msg\":true}",
+        "sha256_body": "e38e82e2b4dd49b8ad7f248ec27cc942bb57e5a2bfd7fe2295810e7fff294480",
+        "redirect_location": null,
+        "redirect_follow_status": null
+    },
+    "mensagem_capturada": "Não é permitido realizar esta alteração fora do período de lançamento de notas/faltas.",
+    "codigo_erro": null,
+    "sql_verificacao": {
+        "tabela": "modules.nota_componente_curricular",
+        "query": "SELECT COUNT(*) FROM modules.nota_componente_curricular",
+        "contagem_antes": 2,
+        "contagem_depois": 2,
+        "delta": 0,
+        "persistencia_indesejada": false
+    }
+}

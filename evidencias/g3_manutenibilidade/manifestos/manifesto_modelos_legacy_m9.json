@@ -1,0 +1,138 @@
+{
+  "versao": "1.0.0",
+  "data_congelamento": "2026-11-12T01:30:00+00:00",
+  "descricao": "Manifesto congelado dos modelos Legacy*.php e rubricagem de adaptadores defensivos para o Índice de Fricção de Dados Legado-Moderno (M9 — IFDL)",
+  "categorias_rubrica": {
+    "LEGADO_SCHEMA_MAP": "Mapeamento explícito de nomes de esquemas, tabelas, chaves primárias ou colunas legadas (ex.: $table='pmieducar.*', $primaryKey='cod_*', const CREATED_AT, $legacy array)",
+    "TYPE_CAST_NULL_FILTER": "Adaptações defensivas de conversão de tipos, booleanos, mutators/accessors Attribute::make e tipagem explícita de campos do esquema legado",
+    "QUERY_SCOPE_ADAPTER": "Escopos de consulta e filtros defensivos de status legado (ex.: where('ativo', 1))"
+  },
+  "modelos": [
+    {
+      "classe": "LegacyRegistration",
+      "caminho": "app/Models/LegacyRegistration.php",
+      "tabela": "pmieducar.matricula",
+      "chave_primaria": "cod_matricula",
+      "dominio": "Matrícula"
+    },
+    {
+      "classe": "LegacyEnrollment",
+      "caminho": "app/Models/LegacyEnrollment.php",
+      "tabela": "pmieducar.matricula_turma",
+      "chave_primaria": "id",
+      "dominio": "Enturmação"
+    },
+    {
+      "classe": "LegacyEvaluationRule",
+      "caminho": "app/Models/LegacyEvaluationRule.php",
+      "tabela": "modules.regra_avaliacao",
+      "chave_primaria": "id",
+      "dominio": "Avaliação"
+    },
+    {
+      "classe": "LegacyRoundingTable",
+      "caminho": "app/Models/LegacyRoundingTable.php",
+      "tabela": "modules.tabela_arredondamento",
+      "chave_primaria": "id",
+      "dominio": "Avaliação"
+    },
+    {
+      "classe": "LegacyValueRoundingTable",
+      "caminho": "app/Models/LegacyValueRoundingTable.php",
+      "tabela": "modules.tabela_arredondamento_valor",
+      "chave_primaria": "id",
+      "dominio": "Avaliação"
+    },
+    {
+      "classe": "LegacyDisciplineScore",
+      "caminho": "app/Models/LegacyDisciplineScore.php",
+      "tabela": "modules.nota_componente_curricular",
+      "chave_primaria": "id",
+      "dominio": "Notas"
+    },
+    {
+      "classe": "LegacyStudentScore",
+      "caminho": "app/Models/LegacyStudentScore.php",
+      "tabela": "modules.nota_aluno",
+      "chave_primaria": "id",
+      "dominio": "Notas"
+    },
+    {
+      "classe": "LegacyRegistrationScore",
+      "caminho": "app/Models/LegacyRegistrationScore.php",
+      "tabela": "modules.nota_aluno",
+      "chave_primaria": "id",
+      "dominio": "Notas"
+    },
+    {
+      "classe": "LegacyStudentAbsence",
+      "caminho": "app/Models/LegacyStudentAbsence.php",
+      "tabela": "modules.falta_aluno",
+      "chave_primaria": "id",
+      "dominio": "Faltas"
+    },
+    {
+      "classe": "LegacyScoreExam",
+      "caminho": "app/Models/LegacyScoreExam.php",
+      "tabela": "modules.nota_exame",
+      "chave_primaria": "id",
+      "dominio": "Exame Final"
+    },
+    {
+      "classe": "LegacyDiscipline",
+      "caminho": "app/Models/LegacyDiscipline.php",
+      "tabela": "modules.componente_curricular",
+      "chave_primaria": "id",
+      "dominio": "Componentes Curriculares"
+    },
+    {
+      "classe": "LegacySchoolClass",
+      "caminho": "app/Models/LegacySchoolClass.php",
+      "tabela": "pmieducar.turma",
+      "chave_primaria": "cod_turma",
+      "dominio": "Turmas"
+    },
+    {
+      "classe": "LegacyStudent",
+      "caminho": "app/Models/LegacyStudent.php",
+      "tabela": "pmieducar.aluno",
+      "chave_primaria": "cod_aluno",
+      "dominio": "Alunos"
+    },
+    {
+      "classe": "LegacyAcademicYearStage",
+      "caminho": "app/Models/LegacyAcademicYearStage.php",
+      "tabela": "pmieducar.ano_letivo_modulo",
+      "chave_primaria": "id",
+      "dominio": "Etapas Letivas"
+    },
+    {
+      "classe": "LegacySchoolYearLock",
+      "caminho": "app/Models/LegacySchoolYearLock.php",
+      "tabela": "pmieducar.bloqueio_ano_letivo",
+      "chave_primaria": "id",
+      "dominio": "Bloqueio de Ano/Diário"
+    },
+    {
+      "classe": "LegacyRemedialRule",
+      "caminho": "app/Models/LegacyRemedialRule.php",
+      "tabela": "modules.regra_recuperacao",
+      "chave_primaria": "id",
+      "dominio": "Recuperação Paralela"
+    },
+    {
+      "classe": "LegacyAverageFormula",
+      "caminho": "app/Models/LegacyAverageFormula.php",
+      "tabela": "modules.formula_media",
+      "chave_primaria": "id",
+      "dominio": "Fórmulas de Média"
+    },
+    {
+      "classe": "LegacyDisciplineScoreAverage",
+      "caminho": "app/Models/LegacyDisciplineScoreAverage.php",
+      "tabela": "modules.nota_componente_curricular_media",
+      "chave_primaria": "id",
+      "dominio": "Médias de Notas"
+    }
+  ]
+}

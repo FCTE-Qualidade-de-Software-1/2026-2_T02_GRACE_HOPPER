@@ -56,13 +56,33 @@ No dia seguinte ao fechamento da Medição 1, a equipe conduziu a [Retrospectiva
 
 ---
 
-## Medição 3 — Fechamento e Auditoria da Entrega 2 (`15/11/2026` — Preparação para `v2.0.0-pc2`)
+## Medição 3 — Execução da Entrega 2 e Auditoria de Contribuição (`12/11/2026`)
 
-**Contexto:** Coleta de auditoria final da **Entrega 2 (`v2.0.0-pc2`)**, realizada após a execução técnica da Fase 4 (`#38`, `#39`, `#40`, `#43`, `#46` integradas na `main`, além de `#44` e `#45` em revisão no PR `#55`), a implementação da Ação de Melhoria (`#56`, integrada no PR `#57`) e a consolidação do Julgamento Multicritério da Fase 5 e dos entregáveis de governança (`#47` e `#49`, submetidos no PR `#58`).
+**Contexto:** Coleta realizada durante a execução das Trilhas técnicas da Entrega 2, acompanhada da modernização visual da GitPage (reativação do índice lateral direito) e da inclusão de gráficos analíticos de tempo de ciclo, horas estimadas vs. reais e matriz de contribuição por integrante.
 
 ### 3.1 Quadro de Valores, Interpretação e Decisões (Medição 3)
 
-**Tabela 3 — Avaliação dos indicadores PSM/CID no fechamento da Entrega 2 (`v2.0.0-pc2`)**
+**Tabela 3 — Avaliação dos indicadores PSM/CID na Medição 3**
+
+| Indicador | Valor Apurado pelo Painel | Interpretação do Estado Atual | Decisão e Próximo Passo |
+| :--- | :---: | :--- | :--- |
+| **`TCM`** | **19/31 (61,3%)** acumulado<br>*(E1: 19/19 = 100% · E2: 0/12 = 0%)* | As 19 issues da Entrega 1 permanecem concluídas. As 12 issues da Entrega 2 estão em execução ativa pelas Trilhas A a F, com previsão de entrega nos marcos M5 e M6. | Manter a cadência de desenvolvimento nas trilhas técnicas do i-Educar e monitorar pull requests em andamento. |
+| **`TRCD`** | **21/23 (91,3%)** global<br>**21/21 (100,0%)** pós-workflow | Todos os 21 PRs integrados desde a implantação do workflow de validação passaram com sucesso em `mkdocs build --strict` e `check_site.sh`. | Manter a execução mandatória do build estrito em todos os novos PRs. |
+| **Aprovação antes do merge** | **22/23 (95,7%)** dos PRs integrados | Excelente adesão ao `CONTRIBUTING.md`, com apenas 1 PR não auditado previamente antes da ativação do CI. | Preservar a revisão por pares obrigatória. |
+| **`VEC`** | **-34,3%**<br>*(71,0h reais vs. 108,0h estimadas nas issues apontadas)* | A variação reflete que parte das issues concluídas apontou esforço efetivo menor que o limite máximo estimado, e 5 issues concluídas ainda demandam formalização de horas. | Realizar auditoria fina de apontamentos nas issues de fechamento da Entrega 2. |
+| **Tempo de Ciclo Médio (`TC`)** | **7,7 dias** (mín: 1,5d; máx: 12,0d) | O tempo médio de resolução das tarefas encontra-se perfeitamente contido na faixa operacional sem investigação estipulada pelo PSM (3,0 a 10,0 dias). | Continuar o monitoramento visual através do gráfico de dispersão de tempo de ciclo no painel PSM. |
+
+*Fonte: Dados coletados automaticamente por `scripts/psm/coletar_dados.py` em 12/11/2026.*
+
+---
+
+## Medição 4 — Fechamento e Auditoria da Entrega 2 (`15/11/2026` — Preparação para `v2.0.0-pc2`)
+
+**Contexto:** Coleta de auditoria final da **Entrega 2 (`v2.0.0-pc2`)**, realizada após a execução técnica da Fase 4 (`#38`, `#39`, `#40`, `#43`, `#46` integradas na `main`, além de `#44` e `#45` em revisão no PR `#55`), a implementação da Ação de Melhoria (`#56`, integrada no PR `#57`) e a consolidação do Julgamento Multicritério da Fase 5 e dos entregáveis de governança (`#47` e `#49`, submetidos no PR `#58`).
+
+### 4.1 Quadro de Valores, Interpretação e Decisões (Medição 4)
+
+**Tabela 4 — Avaliação dos indicadores PSM/CID no fechamento da Entrega 2 (`v2.0.0-pc2`)**
 
 | Indicador | Valor Apurado na Auditoria | Interpretação do Estado na Entrega 2 | Decisão e Registro de Governança |
 | :--- | :---: | :--- | :--- |

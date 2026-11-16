@@ -33,6 +33,8 @@ A execução empírica sobre o commit congelado `7903a3efc7689942ee700007f86ed58
 - [Confiabilidade — M3 (DCNM, Gate Binário)](medicao_m3_dcnm.md): execução oficial dos 30 cenários do oráculo de notas e menções (`oficial-001`, 457 asserções).
 - [Medição M4 e M5 — Atomicidade Transacional (ITAE) e Triagem DDOM](medicao_m4_itae_m5_ddom.md)
 - [Manutenibilidade (M7a, M7b e M10)](manutenibilidade-m7-m10.md): resultado da execução do motor estático sobre os 213 callables dos 4 arquivos do manifesto no commit congelado.
+- [Manutenibilidade (M8, M9 e M11)](manutenibilidade-m8-m9-m11.md): distância da sequência principal de Martin (M8), atrito legado-moderno (M9) e taxa de testes ativos com asserção (M11).
+- [Capacidade de interação (Gate M12 e M13)](interacao-m12-m13.md): testes de proteção contra erros do usuário (Gate M12) e auditoria de autodescritividade das mensagens de validação (M13).
 - [Qualidade em uso (M14a, M14b e M15)](qualidade-em-uso-m14-m15.md): métricas declaradas não mensuráveis antes da coleta e renormalização do $\text{IQC}_{\text{Interação}}$.
 - [Ação de melhoria](acao-de-melhoria.md): refatoração de `getSituacaoNotas` ($v(G)$ de 72 para 15), com teste de equivalência de comportamento (50.000 cenários pseudoaleatórios, semente 2026) e nova medição de M7a, M7b e M10.
 - [Consolidação de M4 a M15 na Seção 8 do Plano de Medição](../plano_medicao_testes.md#8-resultados-consolidados-das-medicoes-m4-a-m15-e-acao-de-melhoria-fase-4): síntese de G2 (`M4`, `M5`, `M6`), G3 (`M8`, `M9` e `M11` do PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55)) e G4 (`M12` e `M13` do PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55)).
