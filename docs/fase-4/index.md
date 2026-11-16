@@ -31,6 +31,7 @@ A execução empírica sobre o commit congelado `7903a3efc7689942ee700007f86ed58
 
 - [Compatibilidade — M1 (TINCR) e M2 (CEI)](../plano_medicao_testes.md#6-resultados-da-execucao-da-caracteristica-compatibilidade-g1-issues-38-e-39): isolamento de recursos em containers e conformidade contratual de 10 endpoints REST.
 - [Confiabilidade — M3 (DCNM, Gate Binário)](medicao_m3_dcnm.md): execução oficial dos 30 cenários do oráculo de notas e menções (`oficial-001`, 457 asserções).
+- [Medição M4 e M5 — Atomicidade Transacional (ITAE) e Triagem DDOM](medicao_m4_itae_m5_ddom.md)
 - [Manutenibilidade (M7a, M7b e M10)](manutenibilidade-m7-m10.md): resultado da execução do motor estático sobre os 213 callables dos 4 arquivos do manifesto no commit congelado.
 - [Qualidade em uso (M14a, M14b e M15)](qualidade-em-uso-m14-m15.md): métricas declaradas não mensuráveis antes da coleta e renormalização do $\text{IQC}_{\text{Interação}}$.
 - [Ação de melhoria](acao-de-melhoria.md): refatoração de `getSituacaoNotas` ($v(G)$ de 72 para 15), com teste de equivalência de comportamento (50.000 cenários pseudoaleatórios, semente 2026) e nova medição de M7a, M7b e M10.

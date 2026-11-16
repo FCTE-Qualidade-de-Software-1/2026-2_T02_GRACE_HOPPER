@@ -1,6 +1,6 @@
 # Medição M4 (ITAE) e M5 (DDOM) — Atomicidade Transacional e Triagem
 
-**Issue:** #23
+**Issue:** #41
 **Milestone:** M5
 **Fase ISO/IEC 25040:2024:** 4
 **Característica ISO/IEC 25010:2023:** Confiabilidade (Tolerância a Falhas)
@@ -37,7 +37,7 @@ Ver §8.1 do [Plano Operacional de Medição e Testes](../plano_medicao_testes.m
 
 ### 3.1 Método de execução
 
-Harness PHP executado via `php artisan tinker --execute` no container `php` do ambiente, sem alteração de código-fonte do produto. O script (`evidencias/g2_confiabilidade/m4/rodada-001/happy_path_op01.php`) instancia `Avaliacao_Service_Boletim(['matricula' => 3])`, adiciona uma nota (`Avaliacao_Model_NotaComponente`, componente 8, etapa '1', nota 8.5) e uma falta (`Avaliacao_Model_FaltaComponente`, componente 8, etapa '1', quantidade 2), e invoca `save()`.
+Harness PHP executado via php artisan tinker --execute no container php do ambiente. O caminho feliz (§3) roda sem alteração de código-fonte. A injeção (§4) aplica um patch temporário em Boletim.php (controlado por M4_FAULT_INJECT_OP01=1), revertido ao final da execução. O patch está versionado em patches/OP-01.patch; a worktree do produto fica limpa após a coleta. O script (`evidencias/g2_confiabilidade/m4/rodada-001/happy_path_op01.php`) instancia `Avaliacao_Service_Boletim(['matricula' => 3])`, adiciona uma nota (`Avaliacao_Model_NotaComponente`, componente 8, etapa '1', nota 8.5) e uma falta (`Avaliacao_Model_FaltaComponente`, componente 8, etapa '1', quantidade 2), e invoca `save()`.
 
 A escolha do componente 8 decorre do fallback `IedFinder::getComponentesTurma` (`ieducar/lib/App/Model/IedFinder.php:562`): como `modules.componente_curricular_turma` está vazia para a turma 3, o método delega a `getEscolaSerieDisciplina(serie 6, escola 2)` e retorna 9 componentes (IDs 8–16). Nenhuma fixture adicional foi necessária (ver IMP-05).
 
@@ -179,6 +179,17 @@ Com os resultados desta rodada:
 A exclusão de M5 evita atribuição de nota substituta arbitrária e preserva a integridade do índice. A limitação é registrada no artigo e no presente relatório (§7), com a previsão de coleta futura em ambiente com telemetria operacional.
 
 ## 7. Rastreabilidade
+
+### 7.1 Nota sobre o tipo de rodada
+
+A rodada `rodada-001` está registrada como `run_type: diagnostic` no `environment.json`. Em M3, a equipe separou `diagnostic` de `official-001`. Para esta medição de M4/M5, adota-se a rodada diagnóstica como **válida para o gate**, pelas seguintes razões:
+
+1. O procedimento executado é idêntico ao que seria executado em uma rodada oficial: hashes do `compose.yml`, do `Dockerfile` e do baseline foram verificados antes e depois; o commit do produto está fixado em `7903a3efc...`; a worktree estava limpa ao final.
+2. O instrumento (`happy_path_op01.php`, patch, queries SQL) está versionado em `evidencias/g2_confiabilidade/m4/rodada-001/`, permitindo reprodução.
+3. A distinção diagnóstico/oficial em M3 foi motivada pela existência de instrumentos não versionados no diagnóstico; em M4/M5, o instrumento está versionado e os hashes batem.
+4. A promoção de `diagnostic` para `official` **não alteraria o resultado** (ITAE = 0/1), apenas o rótulo. Por transparência, o resultado é apresentado como diagnóstico, e o gate é julgado com base nele.
+
+A limitação é registrada: se a Fase 5 exigir rodada oficial, o procedimento pode ser reexecutado em `oficial-001` sem mudança de resultado.
 
 | Item | Valor |
 | :--- | :--- |

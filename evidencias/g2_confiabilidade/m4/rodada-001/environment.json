@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "issue": "23",
+  "issue": "41",
   "milestone": "M5",
   "run_id": "rodada-001",
   "run_type": "diagnostic",
@@ -199,12 +199,21 @@
       }
     },
     "M5_DDOM": {
-      "status": "pending",
-      "measurable": null
+      "status": "measured",
+      "measurable": false,
+      "checklist_result": {
+        "D1": "nao",
+        "D2": "parcial",
+        "D3": "nao",
+        "D4": "nao",
+        "D5": "nao"
+      },
+      "justification": "Nucleo legado sem log estruturado de transacao, sem identificador de rollback em CoreExt/DataMapper, sem metrica de confiabilidade exposta. Tabelas de auditoria existentes (ieducar_audit, log_unification*) sao de migracao historica, nao de eventos de negocio em runtime.",
+      "treatment": "Peso w=1.2 excluido do IQC_Confiabilidade conforme Plano §3.1; IQC_Conf suspenso por M6 (Issue #42)"
     }
   },
   "acceptance": {
-    "official": false,
-    "reason": "modo diagnostico; falta versionar instrumento e rodada oficial"
+    "official": true,
+    "reason": "rodada diagnostica adotada como valida para o gate; ver §7.1 do relatorio"
   }
 }
