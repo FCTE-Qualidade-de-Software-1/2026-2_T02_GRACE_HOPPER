@@ -46,3 +46,7 @@ procedimento correto para medir Recuperabilidade (ISO/IEC 25010) é **backup com
 **Escopo ajustado:** `pg_dump -Fc testing` (sem `-n`, todos os schemas) para todos os 6 testes.
 
 **Commit do ajuste:** `c5606fc1c1c27baf9417a87d1947b31f5230603c`
+
+**Desvio adicional no T06:** o manifesto original previa `pg_dump --data-only` restaurado em banco com o schema de T05. Na execução, os gatilhos de auditoria (`public.audit()`) dispararam durante o `COPY` e colidiram com a inserção explícita em `public.ieducar_audit` (`duplicate key value violates unique constraint ieducar_audit_pkey`). O T06 passou a usar `--data-only -Fc` com `pg_restore --disable-triggers`. A colisão é registrada como achado de recuperabilidade: a restauração somente de dados exige desativar os gatilhos de auditoria.
+
+**Evidência da rodada inicial:** os logs da primeira execução (164 erros) não foram versionados. O procedimento original fica rastreável pelo commit `05b37b4`, que congelou este manifesto antes da execução.

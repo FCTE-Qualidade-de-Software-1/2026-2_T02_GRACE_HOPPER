@@ -409,7 +409,7 @@ A Tabela 9 apresenta o quadro sinótico completo das **17 linhas operacionais de
 | :-: | :-: | :--- | :--- | :--- | :-: | :-: | :-: | :--- | :-: |
 | **M1** | `TINCR` | G1 — Compatibilidade (Coexistência) | **$100{,}0\%$** ($16/16$ c/ override; baseline $11/19 = 57{,}9\%$) | Excelente ($= 100\%$) | **$4$** | $1{,}0$ | Ativo ($1{,}0$) | `H1.1`: $\text{TINCR} \ge 85\%$ | **Confirmada** (c/ ressalva de override) |
 | **M2** | `CEI` | G1 — Compatibilidade (Interoperabilidade) | **$90{,}0\%$** ($9/10$ endpoints; `E08` falhou em C3) | Bom ($[85\%, 100\%)$) | **$3$** | $1{,}0$ | Ativo ($1{,}0$) | `H1.2`: $\text{CEI} \ge 85\%$ | **Confirmada** |
-| **M3** | `DCNM` | G2 — Confiabilidade (Ausência de Falhas — **GATE**) | **$100{,}0\%$** ($30/30$ casos; $457$ asserções) | Excelente ($= 100\%$) | **$4$** | $2{,}0$ | Suspenso em $\text{IQC}_{\text{Conf}}$ | `H2.1`: $\text{DCNM} = 100\%$ | **Confirmada** |
+| **M3** | `DCNM` | G2 — Confiabilidade (Ausência de Falhas — **GATE**) | **$100{,}0\%$** ($30/30$ casos; $457$ asserções) | Excelente ($= 100\%$) | **$4$** | $2{,}0$ | Ativo ($2{,}0$) | `H2.1`: $\text{DCNM} = 100\%$ | **Confirmada** |
 | **M4** | `ITAE` | G2 — Confiabilidade (Tolerância a Falhas — **GATE**) | **$0/1 = 0{,}0\%$** (`OP-01` não atômica) | Gate Reprovado (FAIL) | **$1$** | $2{,}0$ | Ativo ($2{,}0$) | `H2.2` (parte M4): $\text{ITAE} < 100\%$ em operação c/ legado | **Confirmada** (ITAE = 0% em OP-01) |
 | **M5** | `DDOM` | G2 — Confiabilidade (Ausência de Falhas) | **Não mensurável** (sem logs de produção 90d) | Excluída (Política Seção 3.1) | **—** | $1{,}2$ | Excluído ($0{,}0$) | `H2.2` (parte M5): M5 não mensurável s/ produção | **Confirmada** (cláusula M5 confirmada em laboratório) |
 | **M6** | `CVPB` | G2 — Confiabilidade (Recuperabilidade) | **$6/6 = 100{,}0\%$** (custom, plain, directory, clean/if-exists, schema-only, data-only) | Excelente ($= 100\%$) | **$4$** | $1{,}0$ | Ativo ($1{,}0$) | `H2.3`: $\text{CVPB} \ge 95\%$ | **Confirmada** (CVPB = 100%) |
@@ -503,7 +503,7 @@ $$
 
 #### 6. Análise de Sensibilidade e Simulação de Cenários (Pós-Melhoria #56 e Hipóteses sobre M4/M6)
 
-Para apoiar a tomada de decisão sem violar a regra de suspensão oficial do $\text{IQM}$, avaliam-se separadamente três cenários de sensibilidade:
+Para apoiar a tomada de decisão sem alterar o julgamento oficial (Classe C pelo Gate `M4`), avaliam-se separadamente três cenários de sensibilidade:
 
 1. **Cenário S1 — Efeito do Patch da Ação de Melhoria ([Issue #56](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/56)) sobre $\text{IQC}_{\text{Manut}}$:**
    Caso o patch `docs/evidencias/melhoria/getSituacaoNotas.patch` seja incorporado ao produto, `M7b` passa de $72$ ($S_{\text{M7b}} = 1$) para $30$ ($S_{\text{M7b}} = 3$), acrescentando $2 \times 1{,}2 = +2{,}4$ pontos ponderados ao numerador de G3:
@@ -514,24 +514,24 @@ $$
 
    Nesse cenário, G3 sobe $+0{,}40$ ponto (de $2{,}20$ para $2{,}60$) e passa a atender o piso $\ge 2{,}50$ da Classe B.
 
-2. **Cenário S2 — Média Parcial Restrita às 3 Características com Dados ($\text{G1} + \text{G3} + \text{G4}$, peso $0{,}70$):**
-   Considerando apenas as três características medidas (soma de pesos globais $= 0{,}20 + 0{,}30 + 0{,}20 = 0{,}70$):
-   - No commit congelado (`7903a3e`): $\dfrac{0{,}20(3{,}50) + 0{,}30(2{,}20) + 0{,}20(3{,}1429)}{0{,}70} = \dfrac{1{,}9886}{0{,}70} = \mathbf{2{,}84}$.
-   - Com o patch da Issue `#56` aplicado: $\dfrac{0{,}20(3{,}50) + 0{,}30(2{,}60) + 0{,}20(3{,}1429)}{0{,}70} = \dfrac{2{,}1086}{0{,}70} = \mathbf{3{,}01}$.
+2. **Cenário S2 — $\text{IQM}$ com as 4 características medidas (oficial e com o patch `#56`):**
+   Com a `M6` medida, as quatro características têm dados e não é mais necessária a média parcial sobre G1, G3 e G4 usada antes da Issue `#42`:
+   - No commit congelado (`7903a3e`): $0{,}30(2{,}80) + 0{,}30(2{,}20) + 0{,}20(3{,}1429) + 0{,}20(3{,}50) = \mathbf{2{,}83}$.
+   - Com o patch da Issue `#56` aplicado: $0{,}30(2{,}80) + 0{,}30(2{,}60) + 0{,}20(3{,}1429) + 0{,}20(3{,}50) = \mathbf{2{,}95}$.
 
-3. **Cenário S3 — Simulação do $\text{IQM}$ sob Hipótese de Correção de OP-01 e Remedição de `M4 = 100%` ($S_{\text{M4}} = 4$) e Variação de `M6`:**
-   - Se, após corrigir `Boletim::save()` para envolver `saveNotas()` + `saveFaltas()` + `savePareceres()` + `promover()` em `DB::transaction`, a remediação resultar em `M4 = 100%` ($S_{\text{M4}} = 4$) e `M6` obter nota mínima ($S_{\text{M6}} = 1$), $\text{IQC}_{\text{Conf, sim}} = (4 \times 2{,}0 + 4 \times 2{,}0 + 1 \times 1{,}0)/5{,}0 = \mathbf{3{,}40}$, resultando em $\text{IQM}_{\text{sim}} = \mathbf{3{,}01}$ no commit congelado (ainda Classe C por $\text{IQC}_{\text{Manut}} = 2{,}20 < 2{,}50$) e $\text{IQM}_{\text{sim}} = \mathbf{3{,}13}$ no cenário com o patch da `#56`.
-   - No limite superior otimista em que tanto `M4` quanto `M6` atinjam $100\%$ ($S_{\text{M4}} = S_{\text{M6}} = 4 \Rightarrow \text{IQC}_{\text{Conf, sim}} = \mathbf{4{,}00}$), ter-se-ia $\text{IQM}_{\text{sim}} = 0{,}30(4{,}00) + 0{,}30(2{,}20) + 0{,}20(3{,}1429) + 0{,}20(3{,}50) = \mathbf{3{,}19}$ no commit congelado e $\text{IQM}_{\text{sim}} = 0{,}30(4{,}00) + 0{,}30(2{,}60) + 0{,}20(3{,}1429) + 0{,}20(3{,}50) = \mathbf{3{,}31}$ com o patch da `#56`.
+3. **Cenário S3 — Simulação do $\text{IQM}$ sob Hipótese de Correção de OP-01 e Remedição de `M4 = 100%` ($S_{\text{M4}} = 4$), com `M6 = 100%` medida:**
+   - Se, após corrigir `Boletim::save()` para envolver `saveNotas()` + `saveFaltas()` + `savePareceres()` + `promover()` em `DB::transaction`, a remedição resultar em `M4 = 100%` ($S_{\text{M4}} = 4$), então $\text{IQC}_{\text{Conf, sim}} = (4 \times 2{,}0 + 4 \times 2{,}0 + 4 \times 1{,}0)/5{,}0 = \mathbf{4{,}00}$.
+   - Nesse caso, ter-se-ia $\text{IQM}_{\text{sim}} = 0{,}30(4{,}00) + 0{,}30(2{,}20) + 0{,}20(3{,}1429) + 0{,}20(3{,}50) = \mathbf{3{,}19}$ no commit congelado e $\text{IQM}_{\text{sim}} = 0{,}30(4{,}00) + 0{,}30(2{,}60) + 0{,}20(3{,}1429) + 0{,}20(3{,}50) = \mathbf{3{,}31}$ com o patch da `#56`.
 
 **Tabela 10 — Síntese oficial dos Índices $\text{IQC}_k$ e $\text{IQM}$ no commit congelado (`7903a3e`) e cenários de sensibilidade**
 
-| Característica ISO/IEC 25010 / 25019 | Peso Global $W_k$ | Cobertura de Métricas | Valor Oficial (`7903a3e`) | Cenário S1 (c/ Patch `#56`) | Cenário S3 Limite Superior (`M4=M6=100%` + Patch `#56`) | Situação frente ao Piso Classe B ($\ge 2{,}50$) |
+| Característica ISO/IEC 25010 / 25019 | Peso Global $W_k$ | Cobertura de Métricas | Valor Oficial (`7903a3e`) | Cenário S1 (c/ Patch `#56`) | Cenário S3 (`M4 = 100%` simulado + Patch `#56`) | Situação frente ao Piso Classe B ($\ge 2{,}50$) |
 | :--- | :-: | :--- | :-: | :-: | :-: | :--- |
 | **G1 — Compatibilidade** ($\text{IQC}_{\text{Comp}}$) | $20\%$ ($0{,}20$) | `M1`, `M2` ($2/2$ na `main`) | **$3{,}50$** | **$3{,}50$** | **$3{,}50$** | Atende ($\ge 3{,}00$) |
-| **G2 — Confiabilidade** ($\text{IQC}_{\text{Conf}}$) | $30\%$ ($0{,}30$) | `M3 = 100%`, `M4 = 0%`, `M5` excluída, `M6 = 100%` | **$2{,}80$** | **$2{,}80$** | **$2{,}80$** | Calculado (Gate M4 reprovado; $\text{IQC}_{\text{Conf}} \ge 2{,}50$) |
+| **G2 — Confiabilidade** ($\text{IQC}_{\text{Conf}}$) | $30\%$ ($0{,}30$) | `M3 = 100%`, `M4 = 0%`, `M5` excluída, `M6 = 100%` | **$2{,}80$** | **$2{,}80$** | *$4{,}00$ (simulado)* | Calculado (Gate M4 reprovado; $\text{IQC}_{\text{Conf}} \ge 2{,}50$) |
 | **G3 — Manutenibilidade** ($\text{IQC}_{\text{Manut}}$) | $30\%$ ($0{,}30$) | `M7a`, `M7b`, `M10` na `main`; `M8`, `M9`, `M11` no PR `#55` | **$2{,}20$** | **$2{,}60$** | **$2{,}60$** | **Reprovado na base ($< 2{,}50$)**; atende no cenário c/ patch `#56` |
 | **G4 — Interação e Uso** ($\text{IQC}_{\text{Interação}}$) | $20\%$ ($0{,}20$) | `M12`, `M13` no PR `#55`; `M14a/b` e `M15` excluídas | **$3{,}14$** | **$3{,}14$** | **$3{,}14$** | Atende ($\ge 3{,}00$; possui $S_{13}=1$) |
-| **Índice Global ($\text{IQM}$)** | **$100\%$ ($1{,}00$)** | **14 medidas / 3 excluídas** | **$2{,}83$** | **$2{,}95$** *(c/ patch #56)* | **$$2{,}95$** | **Veredito oficial: Classe C (Gate M4 reprovado)** |
+| **Índice Global ($\text{IQM}$)** | **$100\%$ ($1{,}00$)** | **14 medidas / 3 excluídas** | **$2{,}83$** | **$2{,}95$** *(c/ patch #56)* | *$3{,}31$ (simulado; $3{,}19$ s/ patch)* | **Veredito oficial: Classe C (Gate M4 reprovado)** |
 
 *Fonte: Elaborado pelos autores conforme regras das Seções 5.2, 5.3 e 5.4 do Framework GQM.*
 

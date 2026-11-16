@@ -1,7 +1,7 @@
 # Medição M6 (CVPB) — Completude e Verificabilidade do Procedimento de Backup
 
 **Issue:** #42
-**Milestone:** M6
+**Milestone:** M5
 **Fase ISO/IEC 25040:2024:** 4 (Execução da Avaliação)
 **Característica ISO/IEC 25010:2023:** Confiabilidade (Recuperabilidade)
 **Commit do produto:** `7903a3efc7689942ee700007f86ed581023aad27`
@@ -55,12 +55,12 @@ Cada teste executa o ciclo completo:
 
 | Teste | Descrição | Status | SHA-256 | Tuplas | FKs |
 | :-: | :--- | :-: | :-: | :-: | :-: |
-| T01 | Custom format | **PASS** | `evidencias/g2_confiabilidade/m6/T01/dump.sha256` | ✓ | ✓ |
-| T02 | Plain SQL | **PASS** | `T02/dump.sha256` | ✓ | ✓ |
-| T03 | Directory format | **PASS** | `T03/dump.sha256` | ✓ | ✓ |
-| T04 | Clean/if-exists | **PASS** | `T04/dump.sha256` | ✓ | ✓ |
-| T05 | Schema-only | **PASS** | `T05/dump.sha256` | ✓ (3 schemas, 0 tuplas) | N/A |
-| T06 | Data-only | **PASS** | `T06/dump.sha256` | ✓ | ✓ |
+| T01 | Custom format | **PASS** | `evidencias/g2_confiabilidade/m6/T01/dump.sha256` | Sim | Sim |
+| T02 | Plain SQL | **PASS** | `T02/dump.sha256` | Sim | Sim |
+| T03 | Directory format | **PASS** | `T03/dump.sha256` | Sim | Sim |
+| T04 | Clean/if-exists | **PASS** | `T04/dump.sha256` | Sim | Sim |
+| T05 | Schema-only | **PASS** | `T05/dump.sha256` | Sim (3 schemas, 0 tuplas) | N/A |
+| T06 | Data-only | **PASS** | `T06/dump.sha256` | Sim | Sim |
 
 $$
 \text{CVPB} = \frac{6}{6} \times 100\% = \mathbf{100{,}0\%}
@@ -90,6 +90,8 @@ $$
 
 - **Backup de banco completo vs. 3 schemas**: o escopo foi ajustado de `-n pmieducar -n modules -n cadastro` para dump completo, porque o backup filtrado excluía dependências (funções `public.*`, schema `portal`) que os triggers e FKs dos 3 schemas referenciam. A verificação de tuplas permanece no recorte acadêmico.
 - **Amostra**: 6 cenários cobrem os 3 formatos do `pg_dump` (custom, plain, directory) + 2 modos (schema-only, data-only) + 1 variação (clean/if-exists). Cenários de recuperação parcial (PITR com WAL) não foram cobertos.
+- **Rodada inicial não preservada**: os logs da primeira execução (164 erros de restore com o escopo de 3 schemas) não foram versionados; o procedimento original permanece rastreável pelo manifesto congelado no commit `05b37b4`.
+- **Tabelas de notas e faltas vazias na linha de base**: `modules.nota_aluno` e `modules.falta_aluno` têm 0 tuplas no banco de teste, então a restauração do conteúdo de notas e faltas não foi exercitada; a CVPB comprova a restauração do esquema e das demais tabelas contadas.
 - **Ambiente**: medição em PostgreSQL 18.7 do container Docker local; comportamento de `pg_dump`/`pg_restore` em versões anteriores pode variar.
 
 ## 7. Rastreabilidade
@@ -97,7 +99,7 @@ $$
 | Item | Valor |
 | :--- | :--- |
 | Commit do produto | `7903a3efc7689942ee700007f86ed581023aad27` |
-| Commit do manifesto | `ad76ed6` |
+| Commit do manifesto | `05b37b4` (versão original, com `-n pmieducar -n modules -n cadastro`) |
 | Baseline de tuplas | 2.132 tuplas em 12 tabelas |
 | Resultados | `evidencias/g2_confiabilidade/m6/results.csv` |
 | Memória de cálculo | `evidencias/g2_confiabilidade/m6/cvpb.log` |
