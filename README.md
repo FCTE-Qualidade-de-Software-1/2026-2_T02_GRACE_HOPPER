@@ -215,7 +215,7 @@ Durante a preparação das Entregas 1 e 2, ferramentas de inteligência artifici
 - **Participação no trabalho:** Revisão técnica cruzada da GitPage e validação de conformidade do artigo frente às rubricas na Entrega 1, e atribuição na trilha de confiabilidade complementar (`#41`, `#42`) na Entrega 2.
 - **Supervisão e revisão humana:** Conferência independente de links, numeração de tabelas/figuras, somas percentuais de esforço e aderência entre os números reportados na GitPage e nas apresentações.
 - **Ferramentas utilizadas:** deepseek
-- **Apoio de IA declarado:** Auxílio na estruturação dos arquivos, auxílio na montagem de testes de atomicidade
+- **Apoio de IA declarado:** Auxílio na estruturação dos arquivos, auxílio na montagem de testes de de M4 e M6
 
 ### 7.7 Revisão humana e responsabilidade pelo conteúdo
 

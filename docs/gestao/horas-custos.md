@@ -30,9 +30,8 @@ A equipe definiu o valor de referência de **`R$ 50,00` por hora técnica** com 
 | Etapa / Entrega | Horas Planejadas (Linha de Base) | Custo Planejado | Horas Realizadas (Consolidadas) | Custo Realizado | Situação |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **Entrega 1 (Ponto de Controle 1 — `v1.0.0-pc1`)** | `72,0 h` | `R$ 3.600,00` | `72,0 h` | `R$ 3.600,00` | Concluída (`19/19` issues fechadas) |
-| **Entrega 2 (Ponto de Controle 2 — `v2.0.0-pc2`)** | `72,0 h` | `R$ 3.600,00` | **`60,0 h`** (em `11` issues executadas) | **`R$ 3.000,00`** | Em fechamento (`11/13` issues executadas; `#42` e `#48` em aberto = `12,0 h` / `R$ 600,00`) |
+| **Entrega 2 (Ponto de Controle 2 — `v2.0.0-pc2`)** | `72,0 h` | `R$ 3.600,00` | **`60,0 h`** (em `11` issues executadas) | **`R$ 3.000,00`** | Em fechamento (`12/13` issues executadas; `#42` e `#48` em aberto = `12,0 h` / `R$ 600,00`) |
 | **TOTAL DO PROJETO (E1 + E2)** | **`144,0 h`** | **`R$ 7.200,00`** | **`132,0 h`** | **`R$ 6.600,00`** | Auditoria PSM/CID reconciliada |
-
 *Fonte: Elaborado pelos autores a partir dos registros de issues e Pull Requests no GitHub.*
 
 ---
@@ -104,6 +103,7 @@ Para a Entrega 2, foram estruturadas **12 issues originais de 6 horas cada (`#38
 | **Ítalo Alves Sampaio de Oliveira** | `23/2037937` | `@ItaloSamP` | Provisionamento Docker, Coexistência (`M1 — TINCR = 100%`) e Contratos REST (`M2 — CEI = 90%` — PR #52) | [#38](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/38), [#39](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/39) | `12h` | `12,0h` (`6h + 6h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,66%** |
 | **Ricardo Lucas Winchello Vieira Branco** | `22/1008409` | `@ChickRicks` | Trilha de Atomicidade Transacional (`Gate M4 — ITAE`), Triagem `M5` e Backup/Restauração (`M6 — CVPB`) | [#41](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/41), [#42](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/42) | `12h` | `0,0h` (`#41` e `#42` não concluídas no corte) | R$ 50,00 | R$ 600,00 (`R$ 0,00`) | **16,66%** |
 | **TOTAL CONSOLIDADO (E2)** | — | — | **13 Issues Mapeadas — Fases 4 e 5 ISO/IEC 25040:2024** | `#38` a `#49` e `#56` | **`72h`** | **`60,0h` (11 issues executadas)** | **R$ 50,00/h** | **`R$ 3.600,00` (`R$ 3.000,00`)** | **`100%`** |
+
 
 *Fonte: Elaborado pelos autores com base nos registros auditáveis das issues e Pull Requests no GitHub.*
 
