@@ -33,15 +33,15 @@ O planejamento da Entrega 2 estruturou **12 issues atômicas de 6 horas cada (72
 
 | Integrante (Nome e Matrícula) | Usuário GitHub | Entregas Executadas / Atribuídas (Entrega 2) | Issues no GitHub | Horas Planejadas (Realizadas) | Valor / Hora (R$) | Custo Planejado (Realizado) | % Esforço (AG-C5) | Status |
 | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Arthur Soares Parente**<br>Matrícula: `23/2036770` | `@ArthurDevWorks` | **Arquitetura e Interação:** `M8` (`DSPM`), `M9` (`IFDL`), `M11` (`TTAE`), `Gate M12` (`IPPE`) e `M13` (`ADMV`) | [#44](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/44), [#45](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/45) | 12h (`12,0h`*) | R$ 50,00 | R$ 600,00 (`R$ 600,00`*) | **16,67%** | Em revisão (PR #55) |
+| **Arthur Soares Parente**<br>Matrícula: `23/2036770` | `@ArthurDevWorks` | **Arquitetura e Interação:** `M8` (`DSPM`), `M9` (`IFDL`), `M11` (`TTAE`), `Gate M12` (`IPPE`) e `M13` (`ADMV`) | [#44](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/44), [#45](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/45) | 12h (`12,0h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,67%** | [x] Concluído (PR #55) |
 | **Fábio Santos Araujo**<br>Matrícula: `22/2022082` | `@fabiofonteles1` | **Julgamento Fase 5 e Release E2:** Agregação `IQC`/`IQM`, Parecer Técnico, Slides PC2, Auditoria PSM/CID e Prep. `v2.0.0-pc2` | [#47](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/47), [#49](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/49) | 12h (`12,0h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,67%** | [x] Concluído (PR #58) |
 | **Gabriel Barbaceli**<br>Matrícula: `21/1045122` | `@Nibaacriba` | **Motor Estático e Melhoria:** `M7a`, `M7b`, `M10`, Contingência `M14`/`M15` e Patch `getSituacaoNotas` | [#43](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/43), [#46](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/46), [#56](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/56) | 12h (`12,0h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,67%** | [x] Concluído (PRs #53 e #57) |
-| **Gustavo Silva Rodrigues**<br>Matrícula: `23/2036887` | `@g-srodrigues` | **Confiabilidade e Artigo v2:** Oráculo Pedagógico (`Gate M3 — DCNM = 100%`) e Consolidação Científica IEEE | [#40](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/40), [#48](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/48) | 12h (`6,0h` em `#40`) | R$ 50,00 | R$ 600,00 (`R$ 300,00`) | **16,67%** | `#40` Concluída (PR #54) · `#48` Aberta |
+| **Gustavo Silva Rodrigues**<br>Matrícula: `23/2036887` | `@g-srodrigues` | **Confiabilidade e Artigo v2:** Oráculo Pedagógico (`Gate M3 — DCNM = 100%`) e Consolidação Científica IEEE | [#40](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/40), [#48](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/48) | 12h (`12,0h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,67%** | [x] Concluído (PRs #54 e #62) |
 | **Ítalo Alves Sampaio de Oliveira**<br>Matrícula: `23/2037937` | `@ItaloSamP` | **Compatibilidade (G1):** Provisionamento Docker, Coexistência (`M1 — TINCR = 100%`) e Contratos REST (`M2 — CEI = 90%`) | [#38](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/38), [#39](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/39) | 12h (`12,0h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,66%** | [x] Concluído (PR #52) |
 | **Ricardo Lucas Winchello Vieira Branco**<br>Matrícula: `22/1008409` | `@ChickRicks` | **Transações e Backup (G2):** Atomicidade (`Gate M4 — ITAE`), Triagem `M5` e Restauração (`M6 — CVPB`) | [#41](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/41), [#42](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/issues/42) | 12h (`12,0h`) | R$ 50,00 | R$ 600,00 (`R$ 600,00`) | **16,66%** | Concluído (`#41`, `#42`) |
-| **TOTAIS CONSOLIDADOS (PC2)** | — | **13 Issues Mapeadas — Fases 4 e 5 ISO/IEC 25040:2024** | `#38` a `#49` e `#56` | **72h (`66,0h` executadas em 12 issues)** | Média: R$ 50,00/h | **R$ 3.600,00 (`R$ 3.300,00`)** | **100%** | **12 Executadas + 1 Aberta (`#48`)** |
+| **TOTAIS CONSOLIDADOS (PC2)** | — | **13 Issues Mapeadas — Fases 4 e 5 ISO/IEC 25040:2024** | `#38` a `#49` e `#56` | **72h (`72,0h` executadas em 13 issues)** | Média: R$ 50,00/h | **R$ 3.600,00 (`R$ 3.600,00`)** | **100%** | **13 Executadas** |
 
-*Fonte: Elaborado pelos autores com base na auditoria PSM/CID sobre o GitHub em 15/11/2026.*
+*Fonte: Elaborado pelos autores com base na auditoria PSM/CID sobre o GitHub em 15/11/2026, atualizada em 21/11/2026 com a conclusão da issue `#48` (PR #62).*
 
 ---
 
@@ -761,11 +761,11 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 - **Atribuição Individual:**
     - **Responsável:** `Gustavo Silva Rodrigues` *(auto-atribuição no GitHub)*
     - **Matrícula UnB:** `23/2036887` | **GitHub:** `@g-srodrigues`
-    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `0h (Aberta — em consolidação)` | **Custo:** R$ `0,00`
+    - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h` (concluída em 21/11/2026, PR #62) | **Custo:** R$ `300,00`
 - **Goal:** Integrar os resultados empíricos da Fase 4 e o julgamento da Fase 5 na versão final do artigo acadêmico (`docs/artigo/main.tex`), resolvendo todas as pendências de validação da Entrega 1.
 - **Depends on:** Issue #47.
 - **Scope:** `docs/artigo/main.tex`, `docs/artigo/esqueleto_validacao.md` e sincronização estrita com os dados da GitPage.
-- [ ] **Task:** Redigir seções de Execução (Fase 4), Resultados, Discussão, Ameaças à Validade e Conclusão (Fase 5) no Artigo v2
+- [x] **Task:** Redigir seções de Execução (Fase 4), Resultados, Discussão, Ameaças à Validade e Conclusão (Fase 5) no Artigo v2
     - **Files:** `docs/artigo/main.tex`, `docs/artigo/esqueleto_validacao.md`
     - **Change:** Ativar e redigir as seções da Entrega 2 no artigo em LaTeX, incluir tabelas de resultados empíricos, análise das hipóteses, ameaças à validade (interna, externa, construto e conclusão), atualização dos indicadores PSM/CID e revisão das pendências listadas em `esqueleto_validacao.md`.
     - **Covers:** Marco M6, Entrega 2 do Artigo Científico e Critérios Gerais AG-C1 a AG-C5.

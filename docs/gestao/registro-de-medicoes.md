@@ -95,6 +95,23 @@ No dia seguinte ao fechamento da Medição 1, a equipe conduziu a [Retrospectiva
 
 ---
 
+## Medição 5 — Fechamento da Versão Final (`21/11/2026` — Artigo v2 e `v3.0.0-final`)
+
+**Contexto:** Atualização de recursos e custos após a conclusão da issue `#48` (consolidação do artigo v2), entregue pelo PR `#62` em 21/11/2026. Os valores da Medição 4 permanecem como retrato de 15/11; esta medição registra o fechamento das horas da Entrega 2.
+
+### 5.1 Quadro de Valores, Interpretação e Decisões (Medição 5)
+
+**Tabela 5 — Recursos e custos no fechamento da versão final**
+
+| Indicador | Valor Apurado | Interpretação | Decisão e Registro de Governança |
+| :--- | :---: | :--- | :--- |
+| **`TCM` (Entrega 2)** | **13/13 (100%)** issues executadas | Com a `#48` concluída, todas as issues da Entrega 2 (`#38` a `#49` e `#56`) foram executadas. | Fechar o milestone `M6` após o merge do PR `#62`. |
+| **Recursos e Custos (AG-C5)** | **E2: `72,0 h` / `R$ 3.600,00`** executados de `72,0 h` / `R$ 3.600,00` planejados<br>**Total (E1+E2): `144,0 h` / `R$ 7.200,00`** de `144,0 h` / `R$ 7.200,00` | A `#48` registrou `6,0 h` (`R$ 300,00`), fechando a cota de `12,0 h` de `@g-srodrigues`. As horas apontadas seguem iguais às estimadas, o que mantém a limitação do `VEC` (0%) já registrada nas medições anteriores. | Manter README, `horas-custos.md`, catálogo de gestão e artigo com os mesmos totais (`144,0 h`, 100%). |
+
+*Fonte: Elaborado pelos autores a partir das issues `#40` e `#48` e do PR `#62` no GitHub em 21/11/2026.*
+
+---
+
 ## Avaliação do Próprio Processo de Medição e Melhorias Implementadas
 
 Seguindo a recomendação do guia PSM/CID de auditar também a eficácia do sistema de medição, a equipe identificou e corrigiu nesta revisão da GitPage três limitações que dificultavam o acompanhamento:
