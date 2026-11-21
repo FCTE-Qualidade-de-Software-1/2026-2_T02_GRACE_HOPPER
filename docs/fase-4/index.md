@@ -29,15 +29,32 @@ A execução empírica sobre o commit congelado `7903a3efc7689942ee700007f86ed58
 
 ### 1.1 Relatórios Técnicos da Fase 4
 
-- [Compatibilidade — M1 (TINCR) e M2 (CEI)](../plano_medicao_testes.md#6-resultados-da-execucao-da-caracteristica-compatibilidade-g1-issues-38-e-39): isolamento de recursos em containers e conformidade contratual de 10 endpoints REST.
+- [Compatibilidade — M1 (TINCR) e M2 (CEI)](compatibilidade-m1-m2.md): isolamento de recursos em containers e conformidade contratual de 10 endpoints REST.
 - [Confiabilidade — M3 (DCNM, Gate Binário)](medicao_m3_dcnm.md): execução oficial dos 30 cenários do oráculo de notas e menções (`oficial-001`, 457 asserções).
 - [Medição M4 e M5 — Atomicidade Transacional (ITAE) e Triagem DDOM](medicao_m4_itae_m5_ddom.md)
+- [Medição M6 — Backup e restauração (CVPB)](medicao_m6_cvpb.md): seis cenários de backup completo e restauração, com contagem de tuplas e verificação de FKs ($\text{CVPB} = 6/6 = 100\%$).
 - [Manutenibilidade (M7a, M7b e M10)](manutenibilidade-m7-m10.md): resultado da execução do motor estático sobre os 213 callables dos 4 arquivos do manifesto no commit congelado.
 - [Manutenibilidade (M8, M9 e M11)](manutenibilidade-m8-m9-m11.md): distância da sequência principal de Martin (M8), atrito legado-moderno (M9) e taxa de testes ativos com asserção (M11).
 - [Capacidade de interação (Gate M12 e M13)](interacao-m12-m13.md): testes de proteção contra erros do usuário (Gate M12) e auditoria de autodescritividade das mensagens de validação (M13).
 - [Qualidade em uso (M14a, M14b e M15)](qualidade-em-uso-m14-m15.md): métricas declaradas não mensuráveis antes da coleta e renormalização do $\text{IQC}_{\text{Interação}}$.
 - [Ação de melhoria](acao-de-melhoria.md): refatoração de `getSituacaoNotas` ($v(G)$ de 72 para 15), com teste de equivalência de comportamento (50.000 cenários pseudoaleatórios, semente 2026) e nova medição de M7a, M7b e M10.
 - [Consolidação de M4 a M15 na Seção 8 do Plano de Medição](../plano_medicao_testes.md#8-resultados-consolidados-das-medicoes-m4-a-m15-e-acao-de-melhoria-fase-4): síntese de G2 (`M4`, `M5`, `M6`), G3 (`M8`, `M9` e `M11` do PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55)) e G4 (`M12` e `M13` do PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55)).
+
+### 1.2 Desvios em Relação ao Plano
+
+A Tabela 2 registra as divergências entre o planejado na Fase 3 e o executado, além da exclusão prévia de `M14` e `M15`. Nenhuma delas altera a classe final.
+
+**Tabela 2 — Desvios entre o planejado e o executado e efeito no julgamento**
+
+| Métrica | Planejado | Executado | Efeito no julgamento |
+| :--- | :--- | :--- | :--- |
+| `M4` | Rodada oficial com 4 operações | Rodada diagnóstica com 1 operação | Gate reprovado com 0/1 ou 0/4 |
+| `M6` | Dump dos 3 esquemas | Dump do banco completo; notas e faltas vazias | $\text{CVPB} = 100\%$ não cobre o conteúdo de notas e faltas |
+| `M12` | 12 escritas inválidas | 3 dos 12 cenários são leituras | As 9 escritas também foram bloqueadas; gate mantido |
+| `M13` | 2 classificadores | 1 classificador | ±1 mensagem: 66,7%–83,3%; $\text{IQC}_{\text{Interação}}$ de 3,14 a 3,43; Classe C mantida |
+| `M14` / `M15` | Sessões com ≥ 5 iniciantes | Não executadas (política prévia de 12/11) | H4.3 e H4.4 não testadas; qualidade em uso sem resultado |
+
+*Fonte: Elaborado pelos autores a partir dos relatórios da Fase 4 (Tabela XIV do artigo final).*
 
 ---
 
@@ -55,7 +72,7 @@ A consolidação completa da Atividade 5 da ISO/IEC 25040:2024 encontra-se na [S
 
 Conforme a **Seção 5.2 e a Figura 2 do Framework GQM**, o $\text{IQM}$ só é calculável quando todas as métricas graduais têm dado ou política prévia de exclusão. Com a medição da `M6` (`CVPB = 100%`, Issue `#42`) e do Gate `M4` (reprovado), todas as características passaram a ter dados (`M5`, `M14` e `M15` excluídas por política prévia), e o $\text{IQM}$ oficial é calculado. Como o Gate `M4` foi reprovado, a Classe C é determinada pelo gate e o $\text{IQM}$ tem caráter informativo. Os valores de sensibilidade (incluindo o efeito do patch da Issue `#56`) são reportados separadamente como simulação de cenários:
 
-**Tabela 2 — Índices $\text{IQC}_k$ e $\text{IQM}$ oficiais no commit congelado (`7903a3e`) e análise de sensibilidade pós-melhoria (`#56`)**
+**Tabela 3 — Índices $\text{IQC}_k$ e $\text{IQM}$ oficiais no commit congelado (`7903a3e`) e análise de sensibilidade pós-melhoria (`#56`)**
 
 | Dimensão Avaliada | Peso Global ($W_k$) | Valor Oficial no Commit Congelado (`7903a3e`) | Cenário de Sensibilidade Pós-Patch (`#56`) | Situação frente às Regras da Seção 5 do Framework GQM |
 | :--- | :-: | :-: | :-: | :--- |

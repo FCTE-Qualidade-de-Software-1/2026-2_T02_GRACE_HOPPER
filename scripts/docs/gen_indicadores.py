@@ -159,19 +159,19 @@ def grafico_horas_por_integrante(c: dict) -> str:
             f'<text class="psm-rot" x="{x0 - 10}" y="{y + 24}" text-anchor="end">{escape(nome_curto)}</text>'
             f'<rect class="psm-trilho" x="{x0}" y="{y + 4}" width="{larg}" height="14" rx="3"/>'
             f'<rect class="psm-leg psm-s1" x="{x0}" y="{y + 4}" width="{max(w_est, 1):.1f}" height="14" rx="3">'
-            f'<title>{escape(m["nome"])}: {rot_est} estimadas nas issues</title></rect>'
+            f'<title>{escape(m["nome"])}: {rot_est} estimadas (12h da E1 + issues da E2)</title></rect>'
             f'<text class="psm-eixo" x="{x0 + w_est + 8}" y="{y + 15}">{rot_est} est.</text>'
             f'<rect class="psm-trilho" x="{x0}" y="{y + 22}" width="{larg}" height="14" rx="3"/>'
             f'<rect class="psm-barra" x="{x0}" y="{y + 22}" width="{max(w_real, 1):.1f}" height="14" rx="3">'
-            f'<title>{escape(m["nome"])}: {rot_real} realizadas nas issues</title></rect>'
+            f'<title>{escape(m["nome"])}: {rot_real} realizadas (12h da E1 + issues da E2)</title></rect>'
             f'<text class="psm-val" x="{x0 + w_real + 8}" y="{y + 33}">{rot_real} real</text>'
         )
     ly = alt - 12
     partes.append(
         f'<rect class="psm-leg psm-s1" x="{x0}" y="{ly - 10}" width="12" height="12" rx="2"/>'
-        f'<text class="psm-eixo" x="{x0 + 18}" y="{ly}">Horas Estimadas nas issues</text>'
+        f'<text class="psm-eixo" x="{x0 + 18}" y="{ly}">Horas estimadas (E1 + E2)</text>'
         f'<rect class="psm-barra" x="{x0 + 190}" y="{ly - 10}" width="12" height="12" rx="2"/>'
-        f'<text class="psm-eixo" x="{x0 + 208}" y="{ly}">Horas Reais apontadas</text>'
+        f'<text class="psm-eixo" x="{x0 + 208}" y="{ly}">Horas realizadas (E1 + E2)</text>'
     )
     return svg(W, alt, "".join(partes), "Horas estimadas vs. horas reais por integrante")
 
@@ -398,19 +398,19 @@ def pagina(dados: dict) -> str:
         "|VEC| > 25% exige recalibração das estimativas da etapa seguinte; desvio expressivo entre integrantes aciona rebalanceamento."
     ))
     L.append("### 2.1 Distribuição de esforço e comparação planejado vs. real\n")
-    L.append("**Figura 3 — Horas estimadas vs. horas reais apontadas por integrante**\n")
+    L.append("**Figura 3 — Horas estimadas vs. horas realizadas por integrante (12h consolidadas da E1 + issues da E2)**\n")
     L.append(grafico_horas_por_integrante(c) + "\n")
-    L.append("*Fonte: campos de esforço das issues atribuídas a cada integrante no GitHub.*\n")
+    L.append("*Fonte: 12h por integrante consolidadas na Entrega 1 ([Horas e Custos](gestao/horas-custos.md)) somadas aos campos de esforço das issues da Entrega 2 (milestones M5 e M6) atribuídas a cada integrante; issues com mais de um responsável têm as horas divididas entre eles.*\n")
 
-    L.append("**Figura 4 — Distribuição do esforço total realizado por integrante (% das horas reais)**\n")
+    L.append("**Figura 4 — Distribuição do esforço consolidado por integrante (% das horas realizadas em E1 + E2)**\n")
     L.append(grafico_distribuicao_esforco(c) + "\n")
-    L.append("*Fonte: horas reais apuradas nas issues fechadas de cada integrante.*\n")
+    L.append("*Fonte: 12h consolidadas da Entrega 1 e horas realizadas nas issues fechadas da Entrega 2 de cada integrante (mesma base do Apêndice A do artigo).*\n")
 
     L.append("### 2.2 Tabela de contribuição consolidada dos participantes\n")
     L.append("A Tabela 3 consolida a atuação dos 6 integrantes sob múltiplas dimensões de evidência (commits, PRs, issues e horas), "
              "em estrita conformidade com o critério **AG-C5 (Transparência da Contribuição Individual)**.\n")
     L.append("**Tabela 3 — Matriz de contribuição individual por integrante**\n")
-    L.append("| Integrante | Usuário GitHub | Papel Principal | Commits | PRs Abertos | PRs Integrados | Issues Fechadas | Horas Estimadas | Horas Reais | % Horas Reais |\n"
+    L.append("| Integrante | Usuário GitHub | Papel Principal | Commits | PRs Abertos | PRs Integrados | Issues Fechadas | Horas Estimadas (E1 + E2) | Horas Realizadas (E1 + E2) | % do Esforço |\n"
              "| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
     for m in c["membros"]:
         L.append(f"| **{escape(m['nome'])}** | [`@{m['login']}`]({REPO_URL}/commits?author={m['login']}) | "
@@ -422,11 +422,11 @@ def pagina(dados: dict) -> str:
              "O integrante Ricardo Winchello atuou na revisão técnica cruzada da GitPage e validação externa do artigo científico.*\n")
 
     L.append("### 2.3 Levantamento financeiro: Custo planejado inicial vs. Esforço de fato empregado\n")
-    L.append("Na linha de base inicial do projeto ([Horas e Custos](gestao/horas-custos.md)), cada integrante recebeu uma alocação nominal "
-             "simétrica de **12,0 horas técnicas por entrega** (R$ 600,00 à taxa de R$ 50,00/h). A Tabela 4 compara esse custo orçado inicial com o valor monetário "
-             "do esforço efetivamente registrado nas issues do repositório.\n")
+    L.append("Na linha de base do projeto ([Horas e Custos](gestao/horas-custos.md)), cada integrante recebeu uma alocação nominal "
+             "simétrica de **12,0 horas técnicas por entrega** (R$ 600,00 por entrega e R$ 1.200,00 no projeto, à taxa de R$ 50,00/h). A Tabela 4 compara esse custo orçado "
+             "com o valor do esforço consolidado: 12h da Entrega 1 e as horas registradas nas issues da Entrega 2.\n")
     L.append("**Tabela 4 — Comparativo entre custo planejado inicial e esforço de fato apontado**\n")
-    L.append("| Integrante | Custo Planejado (E1) | Horas Reais Apontadas | Custo Apurado via Issues | Desvio Financeiro | Situação Orcamentária |\n"
+    L.append("| Integrante | Custo Planejado (E1 + E2) | Horas Realizadas (E1 + E2) | Custo Apurado | Desvio Financeiro | Situação Orcamentária |\n"
              "| :--- | :---: | :---: | :---: | :---: | :--- |\n")
     for m in c["membros"]:
         desv = m["desvio_custo"]
@@ -438,16 +438,16 @@ def pagina(dados: dict) -> str:
     total_custo_real = sum(m["custo_realizado"] for m in c["membros"])
     desv_total = total_custo_real - total_custo_plan
     s_desv_tot = f"+{moeda(desv_total)}" if desv_total > 0 else moeda(desv_total)
-    L.append(f"| **TOTAL DO PROJETO (E1)** | **{moeda(total_custo_plan)}** | **{num(c['total_horas_reais'])} h** | "
-             f"**{moeda(total_custo_real)}** | **{s_desv_tot}** | Linha de base nominal: 72h / R$ 3.600,00 |\n")
-    L.append("*Nota metodológica: na Entrega 1, a equipe consolidou 72h totais de dedicação; a apuração automatizada "
-             "captura o subconjunto de horas registradas com tags numéricas nas issues do GitHub.*\n")
+    L.append(f"| **TOTAL DO PROJETO (E1 + E2)** | **{moeda(total_custo_plan)}** | **{num(c['total_horas_reais'])} h** | "
+             f"**{moeda(total_custo_real)}** | **{s_desv_tot}** | Linha de base nominal: 144h / R$ 7.200,00 |\n")
+    L.append("*Nota metodológica: na Entrega 1, a equipe consolidou 72h totais de dedicação (12h por integrante), porque as horas registradas nas issues da E1 não refletem a divisão real do trabalho; a apuração automatizada "
+             "usa essas 12h e soma as horas registradas nas issues da E2. As horas brutas das issues da E1 estão na Tabela 3 de Horas e Custos.*\n")
 
     # 3. Desempenho dos processos
     L.append("## 3. Desempenho dos Processos (`TRCD` e Tempo de Ciclo)\n")
     L.append(ficha_psm(
         "Conformidade técnica, revisão por pares dos pull requests integrados e lead time de resolução das issues.",
-        "TRCD = PRs com build estrito aprovado ÷ PRs integrados | TC = data de fechamento − data de criação (dias).",
+        "TRCD = PRs com build estrito aprovado ÷ PRs integrados | TC = data de fechamento − data de início registrada na issue (ou data de criação, quando não há início registrado), em dias.",
         "Pull requests, revisões (APPROVED), workflows do GitHub Actions e datas de criação/fechamento das issues.",
         "TRCD pós-workflow < 100% ou merge sem aprovação bloqueia release; tempo de ciclo médio fora da faixa de 3 a 10 dias aciona auditoria."
     ))
@@ -464,14 +464,14 @@ def pagina(dados: dict) -> str:
              f"A faixa sem investigação adotada pelo PSM é de **{tc['faixa_esperada']}**.\n")
     L.append("**Figura 5 — Tempo de ciclo de cada issue concluída (dias corridos)**\n")
     L.append(grafico_tempo_ciclo(tc) + "\n")
-    L.append("*Fonte: datas de abertura e fechamento registradas na API do GitHub.*\n")
+    L.append("*Fonte: campo \"Data de Início\" do corpo das issues (ou data de criação, quando ausente) e data de fechamento na API do GitHub.*\n")
 
     L.append("**Tabela 5 — Detalhamento do tempo de ciclo por issue**\n")
-    L.append("| Issue | Responsáveis | Criada em | Fechada em | Tempo de Ciclo | Situação PSM |\n| :--- | :--- | :---: | :---: | :---: | :--- |")
+    L.append("| Issue | Responsáveis | Início | Fechada em | Tempo de Ciclo | Situação PSM |\n| :--- | :--- | :---: | :---: | :---: | :--- |")
     for i in tc["issues"]:
         resp = ", ".join(f"`@{r_nome}`" for r_nome in i["responsaveis"]) or "sem responsável"
         L.append(f"| [#{i['numero']} — {escape(titulo_curto(i['titulo']))}]({REPO_URL}/issues/{i['numero']}) | {resp} | "
-                 f"{dia(i['criada_em'])} | {dia(i['fechada_em'])} | **{num(i['dias'])} dias** | {i['situacao']} |")
+                 f"{dia(i['inicio'])}{'' if i['inicio_registrado'] else ' (criação)'} | {dia(i['fechada_em'])} | **{num(i['dias'])} dias** | {i['situacao']} |")
     L.append("\n*Fonte: issues do repositório da equipe.*\n")
 
     # 4. Evolução Semanal e Histórico

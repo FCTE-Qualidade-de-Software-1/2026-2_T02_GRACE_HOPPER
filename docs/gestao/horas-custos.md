@@ -79,6 +79,8 @@ A Tabela 4 detalha essa correlação por integrante, confrontando:
 
 *Fonte: Elaborado pelos autores a partir dos dados do repositório e do Plano de Medição PSM.*
 
+**Diferença entre as horas em issues e a consolidação da E1.** As horas registradas nas issues da Entrega 1 não cobrem as 12h consolidadas de todos os integrantes: Gustavo tem 8h registradas (`#4` e `#13`, 4h faltantes), Fábio tem 4h (`#13`, 8h faltantes) e Ricardo não tem issue com horas (12h faltantes); Arthur (19h) e Ítalo (28h) registraram mais que 12h. A `#13` tem dois responsáveis (Fábio e Gustavo), e suas 4h aparecem na linha de cada um. As horas sem issue correspondem a atividades feitas fora do GitHub (redação no Overleaf, slides e revisão) e ficaram registradas apenas na consolidação de 12h por integrante aprovada pela equipe. Por isso, o [Painel PSM/CID](../indicadores_psm.md) e o Apêndice A do artigo usam as 12h consolidadas da E1 e somam as horas das issues da E2.
+
 ### Análise Qualitativa dos Desvios e Complementaridade Técnica
 
 A análise cruzada das Tabelas 3 e 4 evidencia a dinâmica cooperativa e complementar da equipe:
