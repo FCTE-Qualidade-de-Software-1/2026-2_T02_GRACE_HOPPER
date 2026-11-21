@@ -901,14 +901,14 @@ Na Etapa~1, M3 e M12 atingiram 100\%, mas M4 foi reprovado, o que determina a \t
 \draw[densely dotted] (0,2) -- (6.05,2) node[right] {3,0};
 % Compatibilidade, Confiabilidade, Interação (sem patch)
 \fill[gray!55] (0.45,0) rectangle (0.95,2.50); \node[above] at (0.70,2.50) {3,50};
-\fill[gray!55] (1.45,0) rectangle (1.95,1.80); \node[above] at (1.70,1.80) {2,80};
+\fill[gray!55] (1.45,0) rectangle (1.95,1.80); \node[below] at (1.70,1.80) {2,80};
 \fill[gray!55] (3.85,0) rectangle (4.35,2.14); \node[above] at (4.10,2.14) {3,14};
 % Manutenibilidade: atual e com patch
-\fill[gray!55] (2.45,0) rectangle (2.85,1.20); \node[above] at (2.65,1.20) {2,20};
+\fill[gray!55] (2.45,0) rectangle (2.85,1.20); \node[below] at (2.65,1.20) {2,20};
 \draw[fill=white] (2.90,0) rectangle (3.30,1.60); \node[above] at (3.10,1.60) {2,60};
 % IQM: atual e com patch
-\fill[gray!55] (4.85,0) rectangle (5.25,1.83); \node[above] at (5.05,1.83) {2,83};
-\draw[fill=white] (5.30,0) rectangle (5.70,1.95); \node[above] at (5.50,1.95) {2,95};
+\fill[gray!55] (4.85,0) rectangle (5.25,1.83); \node[below] at (5.05,1.83) {2,83};
+\draw[fill=white] (5.30,0) rectangle (5.70,1.95); \node[below] at (5.50,1.95) {2,95};
 \node[below] at (0.70,0) {Comp.};
 \node[below] at (1.70,0) {Conf.};
 \node[below] at (2.88,0) {Manut.};
@@ -956,9 +956,9 @@ Escolas: capacitar & M12 = 100\%; M13 = 75\% & Treinar as mensagens de bloqueio 
 % =====================================================================
 \section*{Declaração de Uso de Inteligência Artificial}
 \label{sec:ia}
-Um assistente de IA integrado ao Copilot SDK no VS Code foi utilizado para apoiar a redação e a revisão de clareza do manuscrito, bem como a organização das medições de gestão a partir dos registros do projeto. Nenhuma ferramenta de IA executou a avaliação do i-Educar nem gerou resultados experimentais. A equipe conferiu manualmente fórmulas, pesos e limiares contra o framework GQM e os dados de gestão nas Issues e Milestones do GitHub.
+O GitHub Copilot, assistente de IA integrado ao VS Code via Copilot SDK, foi utilizado para apoiar a redação e a revisão de clareza do manuscrito, bem como a organização das medições de gestão a partir dos registros do projeto. Nenhuma ferramenta de IA executou a avaliação do i-Educar nem gerou resultados experimentais. A equipe conferiu manualmente fórmulas, pesos e limiares contra o framework GQM e os dados de gestão nas Issues e Milestones do GitHub.
 
-OpenCode apoiou a GitPage; GitHub Copilot apoiou HTML, CSS e slides; Gemini e Codex apoiaram documentação, equações e estrutura \LaTeX\ em outubro; Claude apoiou a revisão textual, a definição do fluxo e da navegação do artigo e a redação, sempre em conjunto com o raciocínio dos integrantes que redigiram e revisaram o texto, além da revisão de PRs e scripts, sem novas coletas. A revisão humana desta versão foi concluída: a equipe leu o artigo inteiro e conferiu valores, tabelas e referências contra as evidências do repositório.
+OpenCode apoiou a GitPage; o GitHub Copilot também apoiou HTML, CSS e slides; Gemini e Codex apoiaram documentação, equações e estrutura \LaTeX\ em outubro; Claude apoiou a revisão textual, a definição do fluxo e da navegação do artigo e a redação, sempre em conjunto com o raciocínio dos integrantes que redigiram e revisaram o texto, além da revisão de PRs e scripts, sem novas coletas. A revisão humana desta versão foi concluída: a equipe leu o artigo inteiro e conferiu valores, tabelas e referências contra as evidências do repositório.
 
 % =====================================================================
 \begin{thebibliography}{15}
