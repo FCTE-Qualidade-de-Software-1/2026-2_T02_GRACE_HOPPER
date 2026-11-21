@@ -138,6 +138,8 @@ A amostra é mínima (n = 1). A generalização para o universo de operações m
 
 Essas execuções enriqueceriam a caracterização, mas não alterariam o veredito binário: basta uma falha intermediária não revertida para reprovar o método no critério do Gate M4.
 
+**Aplicação da regra do denominador do framework.** O [framework GQM](../gqm_evaluation_framework.md) (seção 5.1, Regras de Julgamento dos Gates Binários) determina que, para M3/M4, "casos planejados não executados ou pulados permanecem no denominador e não conformes". Pelo inventário congelado de 4 operações, o ITAE oficial é, portanto, **0/4 = 0%**: OP-01 falhou, OP-02 ficou bloqueada e OP-03/OP-04 não foram executadas. O valor 0/1 acima descreve apenas a operação efetivamente executada. O gate segue **REPROVADO** em ambos os cálculos, e a Classe C, os IQC e o IQM não mudam. O artigo final apresenta os dois valores (Tabela de resultados e Tabela de desvios).
+
 ## 6. Triagem M5 (DDOM) e regra de tratamento
 
 ### 6.1 Checklist de mensurabilidade

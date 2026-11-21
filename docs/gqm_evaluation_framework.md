@@ -814,7 +814,7 @@ A Tabela 5 consolida os valores empíricos medidos no commit congelado `7903a3e`
 | **M1** | `TINCR` (Coexistência) | **$100{,}0\%$** ($16/16$ c/ override; baseline $57{,}9\%$) | Excelente (**4**) | $1{,}0$ | $1{,}0$ | `H1.1` | **Confirmada** |
 | **M2** | `CEI` (Interoperabilidade) | **$90{,}0\%$** ($9/10$ endpoints; falha em `E08`) | Bom (**3**) | $1{,}0$ | $1{,}0$ | `H1.2` | **Confirmada** |
 | **M3** | `DCNM` (**GATE BINÁRIO**) | **$100{,}0\%$** ($30/30$ casos; $457$ asserções) | **APROVADO** (**4**) | $2{,}0$ | $2{,}0$ | `H2.1` | **Confirmada** |
-| **M4** | `ITAE` (**GATE BINÁRIO**) | **$0/1 = 0{,}0\%$** (`OP-01` `Boletim::save()` não atômica) | **REPROVADO** (**1**) | $2{,}0$ | $2{,}0$ | `H2.2` | **Confirmada** (`ITAE < 100\%`; `M5` não mensurável) |
+| **M4** | `ITAE` (**GATE BINÁRIO**) | **$0/1 = 0{,}0\%$** executada (`OP-01` `Boletim::save()` não atômica); **$0/4$** pela regra do denominador (OP-02 a OP-04 não executadas contam como não conformes) | **REPROVADO** (**1**) | $2{,}0$ | $2{,}0$ | `H2.2` | **Confirmada** (`ITAE < 100\%`; `M5` não mensurável) |
 | **M5** | `DDOM` (Defeitos Operacionais) | **Não mensurável** (sem logs de produção 90d) | Excluída (—) | $1{,}2$ | $0{,}0$ (Seção 3.1) | `H2.2` | *Vide linha M4* (`M5` declarada não mensurável) |
 | **M6** | `CVPB` (Backup/Restauração) | **$6/6 = 100{,}0\%$** (6 formatos de backup completo; Issue #42) | Excelente (**4**) | $1{,}0$ | $1{,}0$ | `H2.3` | **Confirmada** |
 | **M7a** | `CC-P90` (Complexidade P90) | **$8$** [$8$ pós-patch] ($n = 213 \to 221$ callables) | Excelente (**4**) | $1{,}0$ | $1{,}0$ | `H3.1` | **Refutada** (conjunção) |

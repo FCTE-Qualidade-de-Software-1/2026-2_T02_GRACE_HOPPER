@@ -46,17 +46,17 @@ As Tabelas 1 e 1-B registram os membros da equipe avaliadora, com identificaçã
 
 | Integrante                                | Matrícula UnB |  Usuário GitHub   | Papel Principal e Entregas na Entrega 2 (Fases 4 e 5)                                  | Issues GitHub | Horas Plan. (Reais) | Valor / Hora | Custo Plan. (Real) | % Esforço Plan. |
 | :---------------------------------------- | :-----------: | :---------------: | :------------------------------------------------------------------------------------- | :-----------: | :-----------------: | :----------: | :----------------: | :-------------: |
-| **Arthur Soares Parente**                 | `23/2036770`  | `@ArthurDevWorks` | Arquitetura (`M8`, `M9`, `M11`), Proteção (`Gate M12`) e Mensagens (`M13` — PR #55 em revisão) | `#44`, `#45`  |   12h (`12,0h`*)    |   R$ 50,00   | R$ 600 (`R$ 600`*) |   **16,67%**    |
+| **Arthur Soares Parente**                 | `23/2036770`  | `@ArthurDevWorks` | Arquitetura (`M8`, `M9`, `M11`), Proteção (`Gate M12`) e Mensagens (`M13` — PR #55) | `#44`, `#45`  |   12h (`12,0h`)    |   R$ 50,00   | R$ 600 (`R$ 600`) |   **16,67%**    |
 | **Fábio Santos Araujo**                   | `22/2022082`  | `@fabiofonteles1` | Agregação `IQC`/`IQM`, Parecer Fase 5, Slides PC2, Auditoria PSM/CID e Prep. Release E2 | `#47`, `#49`  |   12h (`12,0h`)     |   R$ 50,00   | R$ 600 (`R$ 600`)  |   **16,67%**    |
 | **Gabriel Barbaceli**                     | `21/1045122`  |   `@Nibaacriba`   | Motor Estático AST (`M7a/b`, `M10`), Renormalização `M14/M15` e Melhoria (`#56`)       | `#43`, `#46`, `#56` | 12h (`12,0h`) |   R$ 50,00   | R$ 600 (`R$ 600`)  |   **16,67%**    |
-| **Gustavo Silva Rodrigues**               | `23/2036887`  |  `@g-srodrigues`  | Oráculo Pedagógico Determinístico (`Gate M3 — DCNM = 100%`) e Artigo Científico v2     | `#40`, `#48`  |   12h (`6,0h`)      |   R$ 50,00   | R$ 600 (`R$ 300`)  |   **16,67%**    |
+| **Gustavo Silva Rodrigues**               | `23/2036887`  |  `@g-srodrigues`  | Oráculo Pedagógico Determinístico (`Gate M3 — DCNM = 100%`) e Artigo Científico v2     | `#40`, `#48`  |   12h (`12,0h`)     |   R$ 50,00   | R$ 600 (`R$ 600`)  |   **16,67%**    |
 | **Ítalo Alves Sampaio de Oliveira**       | `23/2037937`  |   `@ItaloSamP`    | Ambiente Docker, Coexistência (`M1 = 100%`) e Contratos REST (`M2 = 90%` — PR #52)     | `#38`, `#39`  |   12h (`12,0h`)     |   R$ 50,00   | R$ 600 (`R$ 600`)  |   **16,66%**    |
 | **Ricardo Lucas Winchello Vieira Branco** | `22/1008409`  |   `@ChickRicks`   | Trilha de Atomicidade Transacional (`Gate M4 — ITAE`), `M5` e Backup (`M6 — CVPB`)     | `#41`, `#42`  |   12h (`12,0h`)      |   R$ 50,00   | R$ 600 (`R$ 600`)    |   **16,66%**    |
-| **TOTAL CONSOLIDADO (E2)**                |       —       |         —         | **Esforço Consolidado — Ponto de Controle 2 (`12/13` issues executadas + `1` aberta: `#48`)** | `#38`–`#49`, `#56` | **72h (`66,0h`)** | **R$ 50,00/h** | **R$ 3.600 (`R$ 3.300`)** | **100%** |
+| **TOTAL CONSOLIDADO (E2)**                |       —       |         —         | **Esforço Consolidado — Entrega 2 (`13/13` issues executadas)** | `#38`–`#49`, `#56` | **72h (`72,0h`)** | **R$ 50,00/h** | **R$ 3.600 (`R$ 3.600`)** | **100%** |
 
-*Fonte: Elaborado pelos autores com base na auditoria automatizada de `scripts/psm/coletar_dados.py` em 15/11/2026.*
+*Fonte: Elaborado pelos autores com base na auditoria automatizada de `scripts/psm/coletar_dados.py` em 15/11/2026, atualizada em 21/11/2026 com a conclusão da issue `#48` (PR #62).*
 
-_Nota: O esforço planejado em cada etapa foi dividido igualmente entre os 6 integrantes ($4 \times 16{,}67\% + 2 \times 16{,}66\% = 100\%$, totalizando `144h` e `R$ 7.200,00` planejados no projeto completo E1 + E2). Na Entrega 2, foram executadas e apontadas `66,0h` (`R$ 3.300,00`), em 12 issues executadas (`#38`, `#39`, `#40`, `#41`, `#42`, `#43`, `#44`, `#45`, `#46`, `#47`, `#49` e `#56`), restando `6,0h` (`R$ 300,00`) na issue aberta `#48`. No acumulado do projeto (E1 + E2), o esforço executado soma `138,0h` (`R$ 6.900,00`) de `144,0h` (`R$ 7.200,00`) planejadas._
+_Nota: O esforço planejado em cada etapa foi dividido igualmente entre os 6 integrantes ($4 \times 16{,}67\% + 2 \times 16{,}66\% = 100\%$, totalizando `144h` e `R$ 7.200,00` planejados no projeto completo E1 + E2). Na Entrega 2, foram executadas e apontadas `72,0h` (`R$ 3.600,00`) nas 13 issues (`#38` a `#49` e `#56`); a issue `#48` (artigo v2) foi concluída em 21/11/2026 com `6,0h` (`R$ 300,00`), pelo PR #62. No acumulado do projeto (E1 + E2), o esforço executado soma `144,0h` (`R$ 7.200,00`), igual ao planejado._
 
 ---
 
@@ -101,7 +101,7 @@ A avaliação empírica sobre o commit congelado `7903a3efc7689942ee700007f86ed5
 
 - **Gates Binários Eliminatórios (Etapa 1):**
   - **Gate 1 (`M3 — DCNM`):** **APROVADO (`100,0%`**, `30/30` cenários do oráculo pedagógico e `457` asserções executadas sobre `Boletim.php`).
-  - **Gate 2 (`M4 — ITAE`):** **REPROVADO (FAIL, ITAE = 0/1 = 0%)** — evidência em `evidencias/g2_confiabilidade/m4/rodada-001/summary.json` (OP-01 `Boletim::save()` não atômica: `nota_aluno` comitada sem `falta_componente_curricular` sob falha intermediária).
+  - **Gate 2 (`M4 — ITAE`):** **REPROVADO (FAIL, ITAE = 0/1 executada = 0%; 0/4 pela regra do denominador)** — evidência em `evidencias/g2_confiabilidade/m4/rodada-001/summary.json` (OP-01 `Boletim::save()` não atômica: `nota_aluno` comitada sem `falta_componente_curricular` sob falha intermediária).
   - **Gate 3 (`M12 — IPPE`, PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55)):** **APROVADO (`100,0%`**, `12/12` cenários de entradas inválidas bloqueados sem erro HTTP 500 e com variação nula no PostgreSQL, $\Delta\text{DB} = 0$, registrados em `evidencias/g4_interacao_uso/m12_ippe.csv` e `capturas_m12/`).
 - **Índices por Característica ($\text{IQC}_k$) e Cenário da Ação de Melhoria (Issue `#56` / PR `#57`):**
   - **$\text{IQC}_{\text{Comp}}$ (Peso $20\%$):** **$3{,}50$** (`M1: TINCR = 100,0%`, $S=4$; `M2: CEI = 90,0%`, $S=3$).
