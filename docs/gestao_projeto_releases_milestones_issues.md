@@ -671,7 +671,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M5: Instrumentação e Execução das Medições (Fase 4 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Arthur Soares Parente` *(auto-atribuição no GitHub, PR #55 em revisão final)*
+    - **Responsável:** `Arthur Soares Parente` *(auto-atribuição no GitHub, PR #55)*
     - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h (submetidas no PR #55)` | **Custo:** R$ `300,00`
 - **Goal:** Congelar os manifestos de componentes e modelos `Legacy*`, medir a Distância da Sequência Principal de Martin (M8 — DSPM), o Índice de Fricção de Dados (M9 — IFDL) e a Taxa de Testes Ativos com Asserção (M11 — TTAE).
@@ -692,7 +692,7 @@ Cada issue abaixo foi detalhada de forma atômica e rastreável, contendo seçõ
 
 - **Milestone:** M5: Instrumentação e Execução das Medições (Fase 4 ISO/IEC 25040)
 - **Atribuição Individual:**
-    - **Responsável:** `Arthur Soares Parente` *(auto-atribuição no GitHub, PR #55 em revisão final)*
+    - **Responsável:** `Arthur Soares Parente` *(auto-atribuição no GitHub, PR #55)*
     - **Matrícula UnB:** `23/2036770` | **GitHub:** `@ArthurDevWorks`
     - **Valor da Hora:** R$ `50,00` | **Horas Estimadas:** 6h | **Horas Realizadas:** `6h (submetidas no PR #55)` | **Custo:** R$ `300,00`
 - **Goal:** Executar o catálogo de entradas inválidas na interface e API para aferir o Gate Binário M12 (IPPE) e avaliar a autodescritividade das mensagens de validação para medir M13 (ADMV).
