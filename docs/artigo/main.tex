@@ -844,7 +844,7 @@ M3$^*$ & 100\% (30/30 casos; 457 asserções) & Aprov. & H2.1 confirmada & \path
 M4$^*$ & 0\% (0/1 executada; 0/4 pela regra do denominador) & Reprov. & H2.2 confirmada (legado) & \path{g2_confiabilidade/m4/rodada-001/} \\
 M5 & Não mensurável (D1--D5: 0 de 5 atendidos) & -- & Cláusula de M5 em H2.2 & $^\ddagger$\path{medicao_m4_itae_m5_ddom.md} \\
 M6 & 100\% (6/6 restaurações) & 4 & H2.3 confirmada & \path{g2_confiabilidade/m6/} \\
-M7a & P90 = 8 (199 de 213 com $v(G) \le 10$) & 4 & H3.1 parcialmente refutada & $^\dagger$\path{g3_manutenibilidade/m7_complexidade.json} \\
+M7a & P90 = 8 (199 de 213 com $v(G) \le 10$) & 4 & H3.1 refutada & $^\dagger$\path{g3_manutenibilidade/m7_complexidade.json} \\
 M7b & Máximo = 72 (\texttt{getSituacaoNotas}) & 1 & H3.1: máximo ($>30$) confirmado & idem \\
 M8 & DSPM = 0,3784 & 2 & H3.2 confirmada & \path{g3_manutenibilidade/m8_dspm.json} \\
 M9 & IFDL = 4,56 (82 adaptações em 18 modelos) & 1 & H3.3 refutada & \path{g3_manutenibilidade/m9_ifdl.json} \\
@@ -889,7 +889,7 @@ M13 & 2 classificadores & 1 classificador & $\pm 1$ mensagem: 66,7\%--83,3\%; $\
 
 \subsection{Julgamento da avaliação}\label{sec:julgamento}
 
-Na Etapa~1, M3 e M12 atingiram 100\%, mas M4 foi reprovado, o que determina a \textbf{Classe C} pela regra não compensatória. Na Etapa~2, com as políticas prévias, $\text{IQC}_{\text{Comp}} = (4 + 3)/2 = 3{,}50$; $\text{IQC}_{\text{Conf}} = (4 \times 2{,}0 + 1 \times 2{,}0 + 4 \times 1{,}0)/5{,}0 = 2{,}80$; $\text{IQC}_{\text{Manut}} = 13{,}2/6{,}0 = 2{,}20$; e $\text{IQC}_{\text{Inter}} = (4 \times 2{,}0 + 1 \times 0{,}8)/2{,}8 = 3{,}14$. O índice global é $\text{IQM} = 0{,}30(2{,}80) + 0{,}30(2{,}20) + 0{,}20(3{,}14) + 0{,}20(3{,}50) = 2{,}83$ (Figura~\ref{fig:iqc}). O IQM supera o piso de 2,75, mas é informativo: o \textit{gate} M4 reprovado e o $\text{IQC}_{\text{Manut}} < 2{,}5$ levam, cada um, à Classe C. Das 14 hipóteses, 9 foram confirmadas, 2 refutadas (H3.3 e H4.2), 1 parcialmente refutada (H3.1: o P90 ficou abaixo do previsto, mas o máximo superou 30) e 2 não testadas (H4.3 e H4.4).
+Na Etapa~1, M3 e M12 atingiram 100\%, mas M4 foi reprovado, o que determina a \textbf{Classe C} pela regra não compensatória. Na Etapa~2, com as políticas prévias, $\text{IQC}_{\text{Comp}} = (4 + 3)/2 = 3{,}50$; $\text{IQC}_{\text{Conf}} = (4 \times 2{,}0 + 1 \times 2{,}0 + 4 \times 1{,}0)/5{,}0 = 2{,}80$; $\text{IQC}_{\text{Manut}} = 13{,}2/6{,}0 = 2{,}20$; e $\text{IQC}_{\text{Inter}} = (4 \times 2{,}0 + 1 \times 0{,}8)/2{,}8 = 3{,}14$. O índice global é $\text{IQM} = 0{,}30(2{,}80) + 0{,}30(2{,}20) + 0{,}20(3{,}14) + 0{,}20(3{,}50) = 2{,}83$ (Figura~\ref{fig:iqc}). O IQM supera o piso de 2,75, mas é informativo: o \textit{gate} M4 reprovado e o $\text{IQC}_{\text{Manut}} < 2{,}5$ levam, cada um, à Classe C. Das 14 hipóteses, 9 foram confirmadas, 3 refutadas (H3.1, H3.3 e H4.2) e 2 não testadas (H4.3 e H4.4). A H3.1 é refutada pela conjunção: o P90 ficou abaixo da faixa prevista, embora o máximo tenha superado 30.
 
 \begin{figure}[!t]
 \centering
