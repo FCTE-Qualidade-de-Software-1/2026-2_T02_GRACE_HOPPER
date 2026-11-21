@@ -3,7 +3,7 @@
 **Disciplina:** Qualidade de Software 1 (FGA0315)  
 **Instituição:** Universidade de Brasília (UnB) — Faculdade de Ciências e Tecnologias em Engenharia (FCTE / FGA)  
 **Projeto de Avaliação:** Avaliação da Qualidade do Software Livre i-Educar (Release E1)  
-**Equipe Avaliadora:** Grupo T02 — Grace Hopper  
+**Equipe Avaliadora:** Grupo T01 — Grace Hopper  
 
 ---
 

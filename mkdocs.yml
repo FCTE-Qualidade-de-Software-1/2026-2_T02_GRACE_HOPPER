@@ -1,10 +1,10 @@
 site_name: Grace Hopper · Qualidade de Software
-site_description: FGA0315 Qualidade de Software 1 - 2026.2 - T02 - Equipe Grace Hopper (Avaliação do i-Educar)
+site_description: FGA0315 Qualidade de Software 1 - 2026.2 - T01 - Equipe Grace Hopper (Avaliação do i-Educar)
 site_author: Equipe Grace Hopper
 site_url: https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/
 repo_url: https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER
 repo_name: 2026-2_T02_GRACE_HOPPER
-copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA · 2026.2 · T02) · Release E2 (v2.0.0-pc2)"
+copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA · 2026.2 · T01) · Versão final (v3.0.0-final)"
 
 theme:
   name: material
