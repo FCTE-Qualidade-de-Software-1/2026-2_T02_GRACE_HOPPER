@@ -48,7 +48,7 @@ A consolidação completa da Atividade 5 da ISO/IEC 25040:2024 encontra-se na [S
 ### 2.1 Veredito dos 3 Gates Binários Eliminatórios
 
 1. **Gate 1 — `M3 (DCNM)`:** **APROVADO** ($\text{DCNM} = 30/30 = 100{,}0\%$, $457$ asserções em `evidencias/g2_confiabilidade/m3/oficial-001/summary.json`).
-2. **Gate 2 — `M4 (ITAE)`:** **REPROVADO** (FAIL, ITAE = 0/1 = 0%) — evidência em evidencias/g2_confiabilidade/m4/rodada-001/summary.json
+2. **Gate 2 — `M4 (ITAE)`:** **REPROVADO** (FAIL, ITAE = 0/1 executada = 0%; 0/4 pela regra do denominador do framework GQM, com OP-02 bloqueada e OP-03/OP-04 não executadas contadas como não conformes) — evidência em evidencias/g2_confiabilidade/m4/rodada-001/summary.json
 3. **Gate 3 — `M12 (IPPE)`:** **APROVADO (no PR #55, em revisão)** ($\text{IPPE} = 12/12 = 100{,}0\%$, zero persistência indevida e zero HTTP 500 nas capturas de `evidencias/g4_interacao_uso/capturas_m12/` e `m12_ippe.csv` do PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55)).
 
 ### 2.2 Índices de Qualidade por Característica ($\text{IQC}_k$) e Índice Global ($\text{IQM}$)

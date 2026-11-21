@@ -101,7 +101,7 @@ A avaliação empírica sobre o commit congelado `7903a3efc7689942ee700007f86ed5
 
 - **Gates Binários Eliminatórios (Etapa 1):**
   - **Gate 1 (`M3 — DCNM`):** **APROVADO (`100,0%`**, `30/30` cenários do oráculo pedagógico e `457` asserções executadas sobre `Boletim.php`).
-  - **Gate 2 (`M4 — ITAE`):** **REPROVADO (FAIL, ITAE = 0/1 = 0%)** — evidência em `evidencias/g2_confiabilidade/m4/rodada-001/summary.json` (OP-01 `Boletim::save()` não atômica: `nota_aluno` comitada sem `falta_componente_curricular` sob falha intermediária).
+  - **Gate 2 (`M4 — ITAE`):** **REPROVADO (FAIL, ITAE = 0/1 executada = 0%; 0/4 pela regra do denominador)** — evidência em `evidencias/g2_confiabilidade/m4/rodada-001/summary.json` (OP-01 `Boletim::save()` não atômica: `nota_aluno` comitada sem `falta_componente_curricular` sob falha intermediária).
   - **Gate 3 (`M12 — IPPE`, PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55)):** **APROVADO (`100,0%`**, `12/12` cenários de entradas inválidas bloqueados sem erro HTTP 500 e com variação nula no PostgreSQL, $\Delta\text{DB} = 0$, registrados em `evidencias/g4_interacao_uso/m12_ippe.csv` e `capturas_m12/`).
 - **Índices por Característica ($\text{IQC}_k$) e Cenário da Ação de Melhoria (Issue `#56` / PR `#57`):**
   - **$\text{IQC}_{\text{Comp}}$ (Peso $20\%$):** **$3{,}50$** (`M1: TINCR = 100,0%`, $S=4$; `M2: CEI = 90,0%`, $S=3$).
