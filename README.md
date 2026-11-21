@@ -97,7 +97,7 @@ A avaliação é conduzida seguindo estritamente as normas internacionais vigent
 
 ## 4. Execução, Julgamento Multicritério e Decisão (Fases 4 e 5 — ISO/IEC 25040:2024)
 
-A avaliação empírica sobre o commit congelado `7903a3efc7689942ee700007f86ed581023aad27` do **i-Educar 2.12** produziu os seguintes resultados consolidados (detalhados nas [Seções 8 e 9 do Plano Operacional de Medição e Testes](docs/plano_medicao_testes.md); nota-se que `M8`, `M9`, `M11`, `M12` e `M13` provêm do PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55), em revisão):
+A avaliação empírica sobre o commit congelado `7903a3efc7689942ee700007f86ed581023aad27` do **i-Educar 2.12** produziu os seguintes resultados consolidados (detalhados nas [Seções 8 e 9 do Plano Operacional de Medição e Testes](docs/plano_medicao_testes.md); nota-se que `M8`, `M9`, `M11`, `M12` e `M13` provêm do PR [#55](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/pull/55), integrado na `main`):
 
 - **Gates Binários Eliminatórios (Etapa 1):**
   - **Gate 1 (`M3 — DCNM`):** **APROVADO (`100,0%`**, `30/30` cenários do oráculo pedagógico e `457` asserções executadas sobre `Boletim.php`).
