@@ -4,7 +4,7 @@ site_author: Equipe Grace Hopper
 site_url: https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/
 repo_url: https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER
 repo_name: 2026-2_T02_GRACE_HOPPER
-copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA · 2026.2 · T01) · Versão final (v3.0.0-final)"
+copyright: "Equipe Grace Hopper — Qualidade de Software 1 (FGA0315 — UnB/FGA · 2026.2 · T01) · Versão final (v3.0.0-final) · Atualizado em 21/11/2026"
 
 theme:
   name: material
@@ -113,6 +113,7 @@ nav:
       - Plano de medição e testes: plano_medicao_testes.md
   - Fases 4 e 5:
       - fase-4/index.md
+      - Compatibilidade (M1 e M2): fase-4/compatibilidade-m1-m2.md
       - M3 — Notas e Menções: fase-4/medicao_m3_dcnm.md
       - Medição M4 e M5 — ITAE e DDOM: fase-4/medicao_m4_itae_m5_ddom.md
       - Medição M6 — CVPB: fase-4/medicao_m6_cvpb.md

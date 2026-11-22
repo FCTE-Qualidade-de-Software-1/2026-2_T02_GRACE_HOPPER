@@ -3,7 +3,7 @@
 [![Norma ISO/IEC 25010:2023](https://img.shields.io/badge/Norma-ISO%2FIEC%2025010%3A2023-blue.svg)](https://www.iso.org/standard/78176.html)
 [![Norma ISO/IEC 25040:2024](https://img.shields.io/badge/Processo-ISO%2FIEC%2025040%3A2024-green.svg)](https://www.iso.org/standard/83642.html)
 [![Metodologia GQM](https://img.shields.io/badge/Metodologia-GQM%20v2.0-orange.svg)](docs/gqm_evaluation_framework.md)
-[![Status da Release](<https://img.shields.io/badge/Release-E2%20(v2.0.0--pc2)-purple.svg>)](docs/gestao_projeto_releases_milestones_issues.md)
+[![Status da Release](<https://img.shields.io/badge/Release-Final%20(v3.0.0--final)-purple.svg>)](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_GRACE_HOPPER/releases)
 [![Documentação GitHub Pages](https://img.shields.io/badge/Docs-GitHub%20Pages-blue.svg)](https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/)
 
 <section class="gh-hero">
@@ -12,7 +12,7 @@
   <div class="gh-hero__meta">
     <span>Projeto acadêmico</span>
     <span>Semestre 2026.2</span>
-    <span>Release E2 · v2.0.0-pc2</span>
+    <span>Versão final · v3.0.0-final</span>
   </div>
   <div class="gh-hero__actions">
     <a class="gh-button gh-button--primary" href="https://fcte-qualidade-de-software-1.github.io/2026-2_T02_GRACE_HOPPER/gqm_evaluation_framework/">Explorar framework GQM</a>
@@ -122,7 +122,8 @@ A documentação do projeto está organizada em módulos temáticos, detalhados 
 
 | Artefato Documental                         | Caminho no Repositório                                                                                                             | Conteúdo Principal                                                                                                                                                    |
 | :------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Apresentação Final — PC2 (Entrega 2)**    | [`docs/apresentacao_pc2.pdf`](docs/apresentacao_pc2.pdf) · [`docs/apresentacao_pc2.pptx`](docs/apresentacao_pc2.pptx)              | Slides finais da Entrega 2 (11 lâminas): resultados de M1 a M15, Ação de Melhoria (`#56`), cálculo de $\text{IQC}_k$/$\text{IQM}$, parecer por stakeholder e PSM/CID. |
+| **Apresentação Final (Fases 1 a 4)**        | [`docs/apresentacao_final.pdf`](docs/apresentacao_final.pdf) · [`docs/apresentacao_final.pptx`](docs/apresentacao_final.pptx)      | Slides da apresentação final (16 lâminas): propósito, modelo GQM, projeto, resultados, desvios, julgamento (Classe C, IQM = 2,83), ação de melhoria, relação entre características, decisões das partes interessadas e gestão PSM/CID. |
+| **Apresentação do PC2 (Entrega 2)**         | [`docs/apresentacao_pc2.pdf`](docs/apresentacao_pc2.pdf) · [`docs/apresentacao_pc2.pptx`](docs/apresentacao_pc2.pptx)              | Slides do Ponto de Controle 2 (11 lâminas): resultados de M1 a M15, Ação de Melhoria (`#56`), cálculo de $\text{IQC}_k$/$\text{IQM}$, parecer por stakeholder e PSM/CID. |
 | **Plano Operacional e Julgamento Fase 5**   | [`docs/plano_medicao_testes.md`](docs/plano_medicao_testes.md)                                                                     | Roteiro operacional (M1 a M15), resultados da Fase 4 (Seções 6 a 8) e conclusão da Fase 5 (Seção 9: Gates, $\text{IQC}_k$, $\text{IQM}$, backlog e parecer técnico). |
 | **Framework GQM de Avaliação (v2.0)**       | [`docs/gqm_evaluation_framework.md`](docs/gqm_evaluation_framework.md)                                                             | Objeto de avaliação, árvores GQM por característica, fórmulas matemáticas (M1 a M15), limiares, regras de decisão e quadro consolidado da Fase 5 (Seção 7).          |
 | **Relatório da Medição M3 (Gate DCNM)**     | [`docs/fase-4/medicao_m3_dcnm.md`](docs/fase-4/medicao_m3_dcnm.md)                                                                 | Execução oficial dos 30 cenários do oráculo de notas e menções (`oficial-001`, 457 asserções, $\text{DCNM} = 100\%$).                                                |

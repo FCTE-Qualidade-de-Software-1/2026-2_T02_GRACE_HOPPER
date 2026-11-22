@@ -187,42 +187,42 @@ MEMBROS_EQUIPE = [
         "nome": "Arthur Soares Parente",
         "matricula": "23/2036770",
         "papel": "Gestão de Configuração e GitPage",
-        "trilha_e2": "Trilha A: Docker, Coexistência (M1) e Backup (M6)",
+        "trilha_e2": "Arquitetura (M8/M9), Testes (M11), Proteção (M12) e Mensagens (M13) — #44 e #45",
     },
     {
         "login": "fabiofonteles1",
         "nome": "Fábio Santos Araujo",
         "matricula": "22/2022082",
         "papel": "Redação Científica e Comunicação",
-        "trilha_e2": "Trilha F: Redação Final, Auditoria e Release E2",
+        "trilha_e2": "Julgamento (IQC/IQM), PC2, Auditoria PSM e Release E2 — #47 e #49",
     },
     {
         "login": "Nibaacriba",
         "nome": "Gabriel Barbaceli",
         "matricula": "21/1045122",
         "papel": "GQM Compatibilidade e Interação",
-        "trilha_e2": "Trilha B: REST (M2) e Proteção de Interação (M12/M13)",
+        "trilha_e2": "Complexidade (M7/M10), M14/M15 e Ação de Melhoria — #43, #46 e #56",
     },
     {
         "login": "g-srodrigues",
         "nome": "Gustavo Silva Rodrigues",
         "matricula": "23/2036887",
         "papel": "Analista de Qualidade e ISO/IEC 25010",
-        "trilha_e2": "Trilha C: Confiabilidade, Oráculo (M3) e Falhas (M4/M5)",
+        "trilha_e2": "Oráculo de Notas (M3) e Artigo v2 — #40 e #48",
     },
     {
         "login": "ItaloSamP",
         "nome": "Ítalo Alves Sampaio de Oliveira",
         "matricula": "23/2037937",
         "papel": "Arquitetura e Stakeholders",
-        "trilha_e2": "Trilha D: Análise Estática (M7-M10) e Testabilidade (M11)",
+        "trilha_e2": "Docker, Coexistência (M1) e Contratos REST (M2) — #38 e #39",
     },
     {
         "login": "ChickRicks",
         "nome": "Ricardo Lucas Winchello Vieira Branco",
         "matricula": "22/1008409",
         "papel": "Revisão Cruzada e Validação",
-        "trilha_e2": "Trilha E: Qualidade em Uso (M14/M15) e Julgamento (IQM)",
+        "trilha_e2": "Atomicidade (M4), Triagem M5 e Backup (M6) — #41 e #42",
     },
 ]
 
@@ -234,7 +234,12 @@ def tempo_ciclo(dados: dict) -> dict:
     for i in concluidas:
         d_criada = data(i["criada_em"])
         d_fechada = data(i["fechada_em"])
-        dias = (d_fechada - d_criada).total_seconds() / 86400.0 if d_criada and d_fechada else 0.0
+        d_inicio = data(i.get("iniciada_em"))
+        # Usa a "Data de Início" registrada na issue quando ela é válida (entre a criação e o fechamento);
+        # caso contrário, conta a partir da criação.
+        inicio_registrado = bool(d_inicio and d_criada and d_fechada and d_criada.date() <= d_inicio.date() <= d_fechada.date())
+        d_base = d_inicio if inicio_registrado else d_criada
+        dias = max((d_fechada - d_base).total_seconds() / 86400.0, 0.0) if d_base and d_fechada else 0.0
         if dias > 10.0:
             situacao = "Investigar"
         elif dias < 2.0:
@@ -246,6 +251,8 @@ def tempo_ciclo(dados: dict) -> dict:
             "titulo": i["titulo"],
             "responsaveis": i.get("responsaveis", []),
             "criada_em": d_criada,
+            "inicio": d_base,
+            "inicio_registrado": inicio_registrado,
             "fechada_em": d_fechada,
             "dias": round(dias, 1),
             "situacao": situacao,
@@ -263,6 +270,16 @@ def tempo_ciclo(dados: dict) -> dict:
 
 
 # -------------------------------------------------------------- Contribuições
+HORAS_CONSOLIDADAS_E1 = 12.0  # Entrega 1: 72h consolidadas em partes iguais pela equipe (horas-custos.md)
+MARCOS_E2 = ("M5", "M6")
+
+
+def issues_e2(dados: dict) -> list[dict]:
+    """Issues da Entrega 2: as que pertencem aos milestones M5 e M6."""
+    numeros = {m["numero"] for m in dados.get("milestones", []) if str(m.get("titulo", "")).startswith(MARCOS_E2)}
+    return [i for i in dados["issues"] if i.get("milestone") in numeros]
+
+
 def contribuicoes(dados: dict) -> dict:
     contribuidores_map = dados.get("contribuidores", {})
     prs_por_autor: dict[str, int] = {}
@@ -275,6 +292,7 @@ def contribuicoes(dados: dict) -> dict:
                 prs_integrados_por_autor[autor] = prs_integrados_por_autor.get(autor, 0) + 1
 
     total_fechadas = len([i for i in dados["issues"] if i.get("fechada_em")])
+    e2 = issues_e2(dados)
     membros_resumo = []
     total_horas_reais = 0.0
     total_horas_est = 0.0
@@ -289,13 +307,22 @@ def contribuicoes(dados: dict) -> dict:
         issues_fechadas = [i for i in issues_membro if i.get("fechada_em")]
         issues_abertas = [i for i in issues_membro if not i.get("fechada_em")]
 
-        h_est = sum(i["horas_estimadas"] for i in issues_membro if i.get("horas_estimadas"))
-        h_real = sum(i["horas_realizadas"] for i in issues_fechadas if i.get("horas_realizadas") is not None)
+        # Horas brutas registradas nas issues atribuídas (todas as entregas), apenas para referência.
+        h_issues = sum(i["horas_realizadas"] for i in issues_fechadas if i.get("horas_realizadas") is not None)
+
+        # Esforço consolidado = 12h da E1 (consolidação da equipe) + horas das issues da E2.
+        # Issues com mais de um responsável têm as horas divididas entre eles.
+        e2_membro = [i for i in e2 if login in i.get("responsaveis", [])]
+        h_est_e2 = sum(i["horas_estimadas"] / len(i["responsaveis"]) for i in e2_membro if i.get("horas_estimadas"))
+        h_real_e2 = sum(i["horas_realizadas"] / len(i["responsaveis"]) for i in e2_membro
+                        if i.get("fechada_em") and i.get("horas_realizadas") is not None)
+        h_est = HORAS_CONSOLIDADAS_E1 + h_est_e2
+        h_real = HORAS_CONSOLIDADAS_E1 + h_real_e2
 
         total_horas_reais += h_real
         total_horas_est += h_est
 
-        custo_planejado = 600.0  # Linha de base PC1: 12h @ R$ 50/h
+        custo_planejado = 2 * HORAS_CONSOLIDADAS_E1 * VALOR_HORA  # Linha de base: 12h por entrega @ R$ 50/h
         custo_realizado = h_real * VALOR_HORA
         desvio_custo = custo_realizado - custo_planejado
 
@@ -313,7 +340,10 @@ def contribuicoes(dados: dict) -> dict:
             "issues_abertas": len(issues_abertas),
             "horas_estimadas": h_est,
             "horas_realizadas": h_real,
-            "horas_consolidadas_e1": 12.0,
+            "horas_issues": h_issues,
+            "horas_consolidadas_e1": HORAS_CONSOLIDADAS_E1,
+            "horas_estimadas_e2": h_est_e2,
+            "horas_realizadas_e2": h_real_e2,
             "custo_planejado": custo_planejado,
             "custo_realizado": custo_realizado,
             "desvio_custo": desvio_custo,

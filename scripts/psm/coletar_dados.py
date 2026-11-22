@@ -39,6 +39,7 @@ RE_REALIZADA = re.compile(
     r"(?:Horas\s+Efetivamente\s+Realizadas|Horas\s+Efetivas\s+Realizadas|Esfor[çc]o\s+Efetivo\s+Realizado)\**\s*[:|]\s*`?\s*([^|\n`]*)",
     re.IGNORECASE,
 )
+RE_INICIO = re.compile(r"Data\s+de\s+In[ií]cio\**\s*:\**\s*`?\[?\s*(\d{4}-\d{2}-\d{2})", re.IGNORECASE)
 RE_NUMERO = re.compile(r"^\s*(\d+(?:[.,]\d+)?)\s*(?:h\b|hora)", re.IGNORECASE)
 
 
@@ -103,16 +104,19 @@ def coletar(cli: Cliente) -> dict:
             continue
         comentarios = cli.todos(f"/issues/{i['number']}/comments?per_page=100") if i.get("comments") else []
         textos = [i.get("body") or ""] + [c.get("body") or "" for c in comentarios]
-        estimada = realizada = None
+        estimada = realizada = inicio = None
         for t in textos:  # o registro mais recente prevalece
             estimada = extrair_horas(t, RE_ESTIMADA) or estimada
             realizada = extrair_horas(t, RE_REALIZADA) or realizada
+            achado = RE_INICIO.search(t)
+            inicio = (achado.group(1) + "T00:00:00-03:00") if achado else inicio
         issues.append({
             "numero": i["number"],
             "titulo": i["title"],
             "estado": i["state"],
             "criada_em": i["created_at"],
             "fechada_em": i.get("closed_at"),
+            "iniciada_em": inicio,
             "milestone": i["milestone"]["number"] if i.get("milestone") else None,
             "labels": [l["name"] for l in i.get("labels", [])],
             "responsaveis": [a["login"] for a in i.get("assignees", [])],

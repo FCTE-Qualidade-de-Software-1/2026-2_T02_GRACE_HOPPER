@@ -91,6 +91,42 @@ class TestIndicadores(unittest.TestCase):
         self.assertEqual(arthur["commits"], 10)
         self.assertEqual(arthur["issues_fechadas"], 1)
 
+    def test_contribuicoes_consolidadas(self):
+        dados = base()
+        dados["milestones"].append({"numero": 5, "titulo": "M5: Execução", "prazo": None, "prazo_simulado": False})
+        # E1: horas brutas não entram (a E1 é consolidada em 12h por integrante).
+        dados["issues"][0]["responsaveis"] = ["ArthurDevWorks"]
+        # E2: issue com dois responsáveis tem as horas divididas.
+        dados["issues"].append({"numero": 4, "titulo": "d", "milestone": 5, "criada_em": "2026-11-08T12:00:00Z",
+                                "fechada_em": "2026-11-15T12:00:00Z", "horas_estimadas": 6.0, "horas_realizadas": 6.0,
+                                "responsaveis": ["ArthurDevWorks", "g-srodrigues"]})
+        c = ind.contribuicoes(dados)
+        arthur = next(m for m in c["membros"] if m["login"] == "ArthurDevWorks")
+        gustavo = next(m for m in c["membros"] if m["login"] == "g-srodrigues")
+        ricardo = next(m for m in c["membros"] if m["login"] == "ChickRicks")
+        self.assertEqual(arthur["horas_realizadas"], 15.0)
+        self.assertEqual(gustavo["horas_realizadas"], 15.0)
+        self.assertEqual(ricardo["horas_realizadas"], 12.0)
+        self.assertEqual(c["total_horas_reais"], 6 * 12.0 + 6.0)
+
+    def test_tempo_ciclo_usa_data_de_inicio(self):
+        dados = base()
+        dados["issues"][0]["iniciada_em"] = "2026-10-18T00:00:00-03:00"
+        tc = ind.tempo_ciclo(dados)
+        item = next(x for x in tc["issues"] if x["numero"] == 1)
+        self.assertTrue(item["inicio_registrado"])
+        self.assertLess(item["dias"], 10.0)
+        # Data de início fora do intervalo criação–fechamento é ignorada.
+        dados["issues"][0]["iniciada_em"] = "2026-09-01T00:00:00-03:00"
+        item = next(x for x in ind.tempo_ciclo(dados)["issues"] if x["numero"] == 1)
+        self.assertFalse(item["inicio_registrado"])
+
+    def test_extrai_data_de_inicio(self):
+        from coletar_dados import RE_INICIO
+        self.assertEqual(RE_INICIO.search("  - **Data de Início:** `[2026-11-15]`").group(1), "2026-11-15")
+        self.assertEqual(RE_INICIO.search("- **Data de Início:** 2026-10-22.").group(1), "2026-10-22")
+        self.assertIsNone(RE_INICIO.search("- **Data de Início:** `[AAAA-MM-DD]`"))
+
     def test_historico_medicoes(self):
         h = ind.historico_medicoes(base())
         self.assertGreaterEqual(len(h), 5)
