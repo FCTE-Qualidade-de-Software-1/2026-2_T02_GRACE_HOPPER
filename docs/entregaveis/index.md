@@ -10,7 +10,7 @@ Esta página reúne, em um único lugar, todos os **artefatos oficiais de entreg
 <div class="gh-coluna">
 <p class="gh-secao"><span>Apresentação Final e Artigo (IEEE)</span></p>
 <div class="gh-painel">
-<a class="gh-item" href="../apresentacao_final.pdf" target="_blank" rel="noopener"><small>PDF · 15 slides · Fases 1 a 4, julgamento e conclusão</small><span>Baixar Apresentação Final (PDF)</span></a>
+<a class="gh-item" href="../apresentacao_final.pdf" target="_blank" rel="noopener"><small>PDF · 16 slides · Fases 1 a 4, julgamento e conclusão</small><span>Baixar Apresentação Final (PDF)</span></a>
 <a class="gh-item" href="../apresentacao_final.pptx" target="_blank" rel="noopener"><small>Arquivo editável PowerPoint (.pptx) — Apresentação final</small><span>Baixar Apresentação Final (PPTX)</span></a>
 <a class="gh-item" href="../artigo/main.pdf" target="_blank" rel="noopener"><small>PDF compilado · Formato IEEEtran · 15 páginas · versão final</small><span>Baixar Artigo Científico (PDF)</span></a>
 </div>
